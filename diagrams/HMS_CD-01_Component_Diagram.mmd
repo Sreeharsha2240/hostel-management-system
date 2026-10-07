@@ -1,0 +1,28 @@
+flowchart TB
+    Browser[Web Browser: Admin / Warden / Student]
+    subgraph Presentation[Presentation layer - Django]
+        C1[C1 Web UI: views + templates + Bootstrap]
+        SEC[Security middleware: CSRF, sessions, HTTPS redirect, headers]
+    end
+    subgraph Application[Application layer - Django apps]
+        C2[C2 Auth and Access Control]
+        C3[C3 Student Module]
+        C4[C4 Hostel, Room and Bed Module]
+        C5[C5 Allocation Module]
+        C6[C6 Payment and Receipt Module]
+        RL[(reportlab PDF library)]
+        C7[C7 Report Module]
+        C8[C8 Audit and Logging]
+    end
+    subgraph Data[Data layer]
+        C9[C9 Data Access Layer: Django ORM]
+        C10[(C10 MySQL 8.0)]
+    end
+    Browser -- HTTPS --> C1
+    Browser -- HTTPS --> SEC
+    C1 -- calls --> C2
+    C1 -- calls --> C3 & C4 & C5 & C6 & C7
+    C6 --> RL
+    C2 & C3 & C4 & C5 & C6 & C7 -. write change records .-> C8
+    C2 & C3 & C4 & C5 & C6 & C7 & C8 -- uses --> C9
+    C9 -- SQL --> C10

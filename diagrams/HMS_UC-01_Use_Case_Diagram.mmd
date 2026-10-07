@@ -1,0 +1,18 @@
+flowchart LR
+    Admin([Administrator])
+    Warden([Warden - Hostel Staff])
+    Student([Student])
+    subgraph HMS[Hostel Management System]
+        UC1(UC1 Login / Logout)
+        UC2(UC2 Manage Staff Accounts)
+        UC3(UC3 Manage Hostels, Rooms and Beds)
+        UC4(UC4 Manage Student Records)
+        UC5(UC5 Allocate Bed)
+        UC6(UC6 Transfer / Release Allocation)
+        UC7(UC7 Record Payment and Issue Receipt)
+        UC8(UC8 View Occupancy Report)
+        UC9(UC9 View Own Allocation and Payment)
+    end
+    Admin --- UC1 & UC2 & UC3 & UC4 & UC5 & UC6 & UC7 & UC8
+    Warden --- UC1 & UC4 & UC5 & UC6 & UC7 & UC8
+    Student --- UC1 & UC9

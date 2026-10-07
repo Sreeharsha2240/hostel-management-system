@@ -1,0 +1,27 @@
+sequenceDiagram
+    actor W as Warden
+    participant UI as Web UI (C1)
+    participant AC as Auth & Access (C2)
+    participant ST as Student Module (C3)
+    participant DA as Data Access (C9)
+    participant DB as MySQL (C10)
+    participant AU as Audit (C8)
+    W->>UI: submit Add Student form (with CSRF token)
+    UI->>AC: verify session & role (Admin/Warden)
+    AC-->>UI: authorised
+    UI->>ST: register(student data)
+    ST->>ST: validate mandatory fields & formats
+    ST->>DA: exists(student_id)?
+    DA->>DB: SELECT ... WHERE student_id = ? (parameterised)
+    DB-->>DA: result
+    alt validation fails OR Student ID already exists
+        ST-->>UI: 400 field errors / 409 "Student ID already registered"
+        UI-->>W: show error message
+    else all data valid and ID is new
+        ST->>DA: save(student)
+        DA->>DB: INSERT student
+        DB-->>DA: saved
+        ST->>AU: log(user, CREATE student, id, time)
+        ST-->>UI: 201 Created
+        UI-->>W: success message + student record
+    end

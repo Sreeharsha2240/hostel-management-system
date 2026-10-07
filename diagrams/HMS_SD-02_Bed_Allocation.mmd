@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor W as Warden
+    participant UI as Web UI (C1)
+    participant AC as Auth & Access (C2)
+    participant AL as Allocation (C5)
+    participant DA as Data Access (C9)
+    participant DB as MySQL (C10)
+    participant AU as Audit (C8)
+    W->>UI: select student + available bed, confirm
+    UI->>AC: verify session & role (Admin/Warden)
+    AC-->>UI: authorised
+    UI->>AL: allocate(student_id, bed_id)
+    AL->>DA: begin transaction
+    DA->>DB: SELECT bed FOR UPDATE; load student + active allocation
+    DB-->>DA: bed, student, hostel data
+    AL->>AL: check student Active, no active allocation, bed Available, gender = hostel type
+    alt any rule fails
+        AL->>DA: rollback
+        AL-->>UI: 409 occupied / 409 already allocated / 422 gender mismatch
+        UI-->>W: show reason
+    else all rules pass
+        AL->>DA: create allocation; set bed = Occupied
+        DA->>DB: INSERT allocation; UPDATE bed; COMMIT
+        DB-->>DA: committed
+        AL->>AU: log(user, ALLOCATE, student, bed, time)
+        AL-->>UI: 201 Created (allocation id, date)
+        UI-->>W: confirmation shown
+    end
