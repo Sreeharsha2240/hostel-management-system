@@ -44,7 +44,7 @@ The project uses a custom user model, `accounts.User` (`AUTH_USER_MODEL`). Refer
 
 ## Development setup
 
-Requires Python 3.11+ and Git.
+Requires Python 3.11+, Git and MySQL 8 (8.4 LTS recommended; MySQL 8.0, named in the SRS, reached end of life in April 2026).
 
 ```powershell
 git clone https://github.com/Sreeharsha2240/hostel-management-system.git
@@ -57,14 +57,32 @@ pip install -r requirements.txt
 copy .env.example .env            # Linux/macOS: cp .env.example .env
 ```
 
-Edit `.env` and replace `DJANGO_SECRET_KEY` with a generated key (the command is in the file). `.env` holds secrets and is ignored by Git; never commit it.
+Edit `.env`: replace `DJANGO_SECRET_KEY` with a generated key (the command is in the file) and set `DB_PASSWORD` to the password chosen in the database setup below. `.env` holds secrets and is ignored by Git; never commit it.
 
 ```powershell
+python manage.py check --database default   # verifies the MySQL connection
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
 
-The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/.
+The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/. Run the tests with `python manage.py test`.
 
-Until the MySQL configuration (HMS-02) is merged, the project uses Django's default local SQLite file.
+### Database setup (MySQL)
+
+1. Install MySQL Server 8 (Windows: `winget install Oracle.MySQL`, then run MySQL Configurator from the Start menu; Ubuntu: `sudo apt install mysql-server`) and make sure the server is running on port 3306.
+2. Create the database and an application account. Run `mysql -u root -p` and execute the statements below, choosing your own password:
+
+   ```sql
+   CREATE DATABASE hms CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+   CREATE USER 'hms_user'@'localhost' IDENTIFIED BY 'choose-a-password';
+   GRANT ALL PRIVILEGES ON hms.* TO 'hms_user'@'localhost';
+   -- Django's test runner creates and drops a separate test_hms database.
+   GRANT ALL PRIVILEGES ON test_hms.* TO 'hms_user'@'localhost';
+   ```
+
+   The application connects only as `hms_user`, which has no rights outside these two databases (SAD 3.9). Do not use the root account in `.env`.
+3. Put the same password in `DB_PASSWORD` in `.env`. Change `DB_NAME`, `DB_HOST` or `DB_PORT` only if your setup differs from the defaults.
+4. Run `python manage.py migrate` to create the tables. `python manage.py showmigrations` lists what has been applied.
+
+**Working with migrations.** After changing a model, run `python manage.py makemigrations <app>` and commit the generated file in `<app>/migrations/` together with the model change. Never edit or delete a migration that is already on `main`; add a new one instead.

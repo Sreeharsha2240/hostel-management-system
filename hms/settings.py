@@ -101,10 +101,20 @@ WSGI_APPLICATION = 'hms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# MySQL 8 (SRS 2.5). Credentials come from the environment, never from code.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DB_NAME', 'hms'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', 'localhost'),
+        'PORT': env('DB_PORT', '3306'),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            # Reject invalid or truncated values instead of silently altering them.
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
