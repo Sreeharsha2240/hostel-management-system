@@ -50,6 +50,8 @@ Requires Python 3.11+ and Git.
 git clone https://github.com/Sreeharsha2240/hostel-management-system.git
 cd hostel-management-system
 python -m venv .venv
+# If PowerShell says running scripts is disabled, first run once:
+#   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 .venv\Scripts\activate            # Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
 copy .env.example .env            # Linux/macOS: cp .env.example .env
