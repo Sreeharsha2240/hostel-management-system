@@ -44,7 +44,7 @@ The project uses a custom user model, `accounts.User` (`AUTH_USER_MODEL`). Refer
 
 ## Development setup
 
-Requires Python 3.11+, Git and MySQL 8 (8.4 LTS recommended; MySQL 8.0, named in the SRS, reached end of life in April 2026).
+Requires Python 3.11+, Git and MySQL 8 (8.4 LTS recommended; MySQL 8.0, named in the SRS, reached end of life in April 2026). On Linux, `pip` compiles `mysqlclient`, so install its build packages first: `sudo apt install python3-dev default-libmysqlclient-dev build-essential pkg-config`.
 
 ```powershell
 git clone https://github.com/Sreeharsha2240/hostel-management-system.git
@@ -71,7 +71,7 @@ The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1
 ### Database setup (MySQL)
 
 1. Install MySQL Server 8 (Windows: `winget install Oracle.MySQL`, then run MySQL Configurator from the Start menu; Ubuntu: `sudo apt install mysql-server`) and make sure the server is running on port 3306.
-2. Create the database and an application account. Run `mysql -u root -p` and execute the statements below, choosing your own password:
+2. Create the database and an application account. Open a MySQL prompt as root (Windows: **MySQL 8.4 Command Line Client** in the Start menu, which asks for the root password; Ubuntu: `sudo mysql`) and run the statements below, choosing your own password:
 
    ```sql
    CREATE DATABASE hms CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
@@ -82,7 +82,7 @@ The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1
    ```
 
    The application connects only as `hms_user`, which has no rights outside these two databases (SAD 3.9). Do not use the root account in `.env`.
-3. Put the same password in `DB_PASSWORD` in `.env`. Change `DB_NAME`, `DB_HOST` or `DB_PORT` only if your setup differs from the defaults.
+3. Put the same password in `DB_PASSWORD` in `.env`. Change `DB_NAME`, `DB_HOST` or `DB_PORT` only if your setup differs from the defaults; if you rename the database, grant on `test_<new name>` instead of `test_hms`.
 4. Run `python manage.py migrate` to create the tables. `python manage.py showmigrations` lists what has been applied.
 
 **Working with migrations.** After changing a model, run `python manage.py makemigrations <app>` and commit the generated file in `<app>/migrations/` together with the model change. Never edit or delete a migration that is already on `main`; add a new one instead.
