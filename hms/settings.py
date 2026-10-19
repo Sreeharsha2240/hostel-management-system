@@ -147,7 +147,21 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'accounts.validators.LetterAndDigitPasswordValidator',
+    },
 ]
+
+# Rolling inactivity timeout: successful requests refresh the session expiry.
+SESSION_COOKIE_AGE = 15 * 60
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = env('DJANGO_SESSION_COOKIE_SECURE', 'False').lower() == 'true'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'login'
 
 
 # Internationalization
