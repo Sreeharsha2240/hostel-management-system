@@ -86,3 +86,23 @@ The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1
 4. Run `python manage.py migrate` to create the tables. `python manage.py showmigrations` lists what has been applied.
 
 **Working with migrations.** After changing a model, run `python manage.py makemigrations <app>` and commit the generated file in `<app>/migrations/` together with the model change. Never edit or delete a migration that is already on `main`; add a new one instead.
+For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environment; leave it `False` for the documented local HTTP development server.
+
+## Team collaboration (HMS-03)
+
+### Branches and commits
+
+- Start from the latest `main` and create one branch per issue: `feature/HMS-<number>-short-description` for features or `fix/HMS-<number>-short-description` for fixes (for example, `feature/HMS-04-role-login`).
+- Keep commits focused and use `HMS-<number>: imperative summary` (for example, `HMS-04: Add role-aware login`).
+- Do not commit secrets, local databases, generated files, or unrelated changes.
+
+### Pull requests and reviews
+
+- Open a pull request into `main`, link the issue, and describe the change, acceptance criteria covered, and checks run (or why a check could not be run).
+- Request at least one review from a teammate. The author must not approve their own pull request.
+- Reviewers check the changed code, issue acceptance criteria, security implications, and relevant tests/checks. Request changes for defects; approve only after they are addressed.
+- Merge only after the required review and checks pass. Use the repository's configured merge method and delete the feature branch after merging.
+
+### Audit events (HMS-05)
+
+Domain actions should call `audit.services.record_event(action, actor=user, record_type=..., record_id=...)` after a successful change. Use action names such as `allocation_create`, `allocation_release`, and `payment_record`. The audit event stores actor, action, record reference, and timestamp; do not pass passwords, session identifiers, or personal data. Events have no automatic deletion policy, so the application retains them until an authorized database maintenance action removes them.
