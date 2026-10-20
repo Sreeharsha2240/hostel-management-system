@@ -74,6 +74,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'accounts.middleware.PrivatePageMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -83,7 +84,7 @@ ROOT_URLCONF = 'hms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,6 +135,8 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'accounts.User'
 
+AUTHENTICATION_BACKENDS = ['accounts.backends.LockoutBackend']
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -156,7 +159,15 @@ AUTH_PASSWORD_VALIDATORS = [
 SESSION_COOKIE_AGE = 15 * 60
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = env('DJANGO_SESSION_COOKIE_SECURE', 'False').lower() == 'true'
+SESSION_COOKIE_SECURE = env(
+    'DJANGO_SESSION_COOKIE_SECURE', 'False' if DEBUG else 'True',
+).lower() == 'true'
+CSRF_COOKIE_SECURE = env(
+    'DJANGO_CSRF_COOKIE_SECURE', 'False' if DEBUG else 'True',
+).lower() == 'true'
+SECURE_SSL_REDIRECT = env(
+    'DJANGO_SECURE_SSL_REDIRECT', 'False' if DEBUG else 'True',
+).lower() == 'true'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = 'login'
@@ -180,6 +191,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

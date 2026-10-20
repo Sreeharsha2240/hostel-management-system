@@ -12,13 +12,15 @@ class AccountCreationForm(forms.ModelForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'role')
 
-    def clean_password(self):
-        password = self.cleaned_data['password']
+    def _post_clean(self):
+        super()._post_clean()
+        password = self.cleaned_data.get('password')
+        if not password:
+            return
         try:
-            validate_password(password)
+            validate_password(password, self.instance)
         except ValidationError as error:
             self.add_error('password', error)
-        return password
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -32,3 +34,9 @@ class AccountUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'role')
+
+    def clean_role(self):
+        role = self.cleaned_data['role']
+        if self.instance.is_superuser and role != User.Role.ADMIN:
+            raise ValidationError('A superuser must retain the Admin role.')
+        return role

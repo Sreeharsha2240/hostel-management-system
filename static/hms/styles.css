@@ -1,0 +1,49 @@
+:root { color-scheme: light; --ink: #182b39; --muted: #536675; --line: #dbe3e9; --accent: #0b6157; --paper: #fff; --ground: #f4f7f9; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: var(--ground); font: 16px/1.6 system-ui, sans-serif; }
+a { color: var(--accent); text-underline-offset: .2em; }
+a:hover { text-decoration-thickness: 2px; }
+button, input, select, textarea { font: inherit; }
+button, .button { display: inline-block; padding: .55rem 1rem; border: 1px solid var(--accent); border-radius: .4rem; color: white; background: var(--accent); cursor: pointer; text-decoration: none; line-height: 1.5; }
+button.secondary, .button.secondary { background: var(--paper); color: var(--accent); }
+button.danger { color: #9b2525; background: #fff; border-color: #cc9191; }
+:focus-visible { outline: 3px solid #df9b1b; outline-offset: 3px; }
+.site-header { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; padding: 1rem 4%; background: var(--paper); border-bottom: 1px solid var(--line); }
+.brand { font-size: 1.4rem; font-weight: 750; text-decoration: none; }
+.brand span { display: block; color: var(--muted); font-size: .75rem; font-weight: 500; }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 1.1rem; }
+.account-menu { margin-left: auto; display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: .85rem; }
+.container { width: min(1180px, 92%); margin: 2.5rem auto; min-height: 70vh; }
+h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.2; margin: 0 0 1rem; }
+h2 { font-size: 1.25rem; }
+.page-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.page-heading h1 { margin: 0; }
+.card { padding: 1.5rem; margin-bottom: 1.5rem; background: var(--paper); border: 1px solid var(--line); border-radius: .65rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 1.2rem; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 0 1.5rem; }
+.form-field { margin-bottom: 1.15rem; }
+.form-field label { display: block; font-weight: 600; margin-bottom: .3rem; }
+input, select, textarea { width: 100%; max-width: 100%; padding: .55rem .7rem; border: 1px solid #9baebc; border-radius: .35rem; background: white; color: var(--ink); }
+input[type=checkbox] { width: auto; }
+input[readonly] { background: #edf1f4; }
+small, .muted { color: var(--muted); }
+.field-errors, .errorlist { color: #9b2525; margin: .25rem 0; padding-left: 1.2rem; }
+.notice { padding: .8rem 1rem; margin: 1rem 0; border: 1px solid #9ccaba; border-radius: .4rem; background: #eaf5ef; }
+.notice.error { color: #842323; background: #fff1f1; border-color: #e7bcbc; }
+.filters { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; }
+.filters .form-field { flex: 1 1 180px; margin: 0; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th, td { padding: .85rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-size: .85rem; }
+td .actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.badge { display: inline-block; padding: .15rem .6rem; border-radius: 1rem; background: #e9eff4; font-size: .8rem; white-space: nowrap; }
+.badge.Available, .badge.Active { color: #175b41; background: #e4f3e9; }
+.badge.Occupied, .badge.Inactive { color: #684224; background: #fff0dd; }
+.pagination { display: flex; gap: 1.5rem; justify-content: center; margin: 1.5rem 0; }
+.narrow { max-width: 650px; margin: 0 auto; }
+dl { display: grid; grid-template-columns: minmax(120px, 1fr) 2fr; gap: .5rem 1rem; }
+dt { color: var(--muted); } dd { margin: 0; overflow-wrap: anywhere; }
+.skip-link { position: absolute; left: -9999px; } .skip-link:focus { left: 1rem; top: 1rem; background: white; padding: 1rem; z-index: 2; }
+footer { text-align: center; color: var(--muted); padding: 1rem; font-size: .8rem; }
+@media (max-width: 640px) { .account-menu { margin-left: 0; } .site-header { gap: 1rem; } .card { padding: 1rem; } th, td { padding: .6rem .4rem; } }

@@ -1,21 +1,20 @@
-from datetime import timedelta
-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils import timezone
+from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 
+from audit.models import AuditEvent
+from audit.services import record_event
+
+from .decorators import roles_required
 from .forms import AccountCreationForm, AccountUpdateForm
 from .models import User
 
 
-LOCKOUT_ATTEMPTS = 5
-LOCKOUT_DURATION = timedelta(minutes=15)
-
-
+@never_cache
 @require_http_methods(['GET', 'POST'])
 def sign_in(request):
     if request.user.is_authenticated:
@@ -24,32 +23,12 @@ def sign_in(request):
     if request.method == 'POST':
         username = request.POST.get('username', '').strip()
         password = request.POST.get('password', '')
-        user = User.objects.filter(username__iexact=username, is_active=True).first()
-        if user and user.is_locked():
-            error = 'Invalid username or password'
+        authenticated = authenticate(request, username=username, password=password)
+        if authenticated:
+            login(request, authenticated)
+            return redirect('dashboard')
         else:
-            authenticated = authenticate(request, username=username, password=password)
-            if authenticated:
-                with transaction.atomic():
-                    locked_user = User.objects.select_for_update().get(pk=authenticated.pk)
-                    if locked_user.is_locked():
-                        error = 'Invalid username or password'
-                    else:
-                        locked_user.failed_attempts = 0
-                        locked_user.locked_until = None
-                        locked_user.save(update_fields=['failed_attempts', 'locked_until'])
-                        login(request, locked_user)
-                        return redirect('dashboard')
-            else:
-                if user:
-                    with transaction.atomic():
-                        locked_user = User.objects.select_for_update().get(pk=user.pk)
-                        locked_user.failed_attempts += 1
-                        if locked_user.failed_attempts >= LOCKOUT_ATTEMPTS:
-                            locked_user.locked_until = timezone.now() + LOCKOUT_DURATION
-                            locked_user.failed_attempts = 0
-                        locked_user.save(update_fields=['failed_attempts', 'locked_until'])
-                error = 'Invalid username or password'
+            error = 'Invalid username or password'
     return render(request, 'accounts/login.html', {'error': error})
 
 
@@ -60,38 +39,30 @@ def sign_out(request):
     return redirect('login')
 
 
-@login_required
+@roles_required(*User.Role.values)
 def dashboard(request):
     role_templates = {
         User.Role.ADMIN: 'accounts/dashboard_admin.html',
         User.Role.WARDEN: 'accounts/dashboard_warden.html',
         User.Role.STUDENT: 'accounts/dashboard_student.html',
     }
-    template = role_templates.get(request.user.role, 'accounts/dashboard_student.html')
+    template = role_templates[request.user.role]
     return render(request, template, {'role': request.user.get_role_display()})
 
 
-def admin_role_required(view):
-    def wrapped(request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            from django.contrib.auth.views import redirect_to_login
-            return redirect_to_login(request.get_full_path())
-        if request.user.role != User.Role.ADMIN:
-            return HttpResponseForbidden('Access denied')
-        return view(request, *args, **kwargs)
-    wrapped.__name__ = view.__name__
-    wrapped.__doc__ = view.__doc__
-    return wrapped
+admin_role_required = roles_required(User.Role.ADMIN)
 
 
 @login_required
 @admin_role_required
 @require_http_methods(['GET', 'POST'])
+@transaction.atomic
 def user_management(request):
     if request.method == 'POST':
         form = AccountCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            account = form.save()
+            record_event(user=request.user, action=AuditEvent.Action.CREATE, record=account)
             return redirect('user-management')
     else:
         form = AccountCreationForm()
@@ -102,6 +73,7 @@ def user_management(request):
 @login_required
 @admin_role_required
 @require_http_methods(['GET', 'POST'])
+@transaction.atomic
 def update_user(request, user_id):
     target = get_object_or_404(User, pk=user_id)
     if request.method == 'POST':
@@ -109,6 +81,7 @@ def update_user(request, user_id):
         if form.is_valid():
             if form.has_changed():
                 form.save()
+                record_event(user=request.user, action=AuditEvent.Action.UPDATE, record=target)
             return redirect('user-management')
     else:
         form = AccountUpdateForm(instance=target)
@@ -118,11 +91,13 @@ def update_user(request, user_id):
 @login_required
 @admin_role_required
 @require_http_methods(['POST'])
+@transaction.atomic
 def deactivate_user(request, user_id):
-    target = User.objects.get(pk=user_id)
+    target = get_object_or_404(User.objects.select_for_update(), pk=user_id)
     if target.pk == request.user.pk:
         return HttpResponseForbidden('You cannot deactivate your own account')
     if target.is_active:
         target.is_active = False
         target.save(update_fields=['is_active'])
+        record_event(user=request.user, action=AuditEvent.Action.DEACTIVATE, record=target)
     return redirect('user-management')
