@@ -21,4 +21,3 @@ class HMSUserAdmin(UserAdmin):
     def has_delete_permission(self, request, obj=None):
         return False  # Accounts are deactivated, never deleted.
 
-\r\n
