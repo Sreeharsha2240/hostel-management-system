@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.signals import (
-    user_logged_in, user_logged_out, user_login_failed,
+    user_logged_in,
+    user_logged_out,
+    user_login_failed,
 )
 from django.dispatch import receiver
 
@@ -20,8 +22,10 @@ def log_login_failure(sender, credentials, request, **kwargs):
     if isinstance(username, str) and len(username) <= 150:
         target = get_user_model().objects.filter(username__iexact=username).first()
     record_event(
-        user=None, action=AuditEvent.Action.LOGIN_FAILED,
-        record=target, record_type='accounts.user',
+        user=None,
+        action=AuditEvent.Action.LOGIN_FAILED,
+        record=target,
+        record_type='accounts.user',
     )
 
 

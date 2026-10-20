@@ -20,23 +20,34 @@ class AuditTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.admin = User.objects.create_superuser(
-            username='audit-admin', password='Strongpass123',
+            username='audit-admin',
+            password='Strongpass123',
         )
         cls.warden = User.objects.create_user(
-            username='audit-warden', password='Strongpass123', role=User.Role.WARDEN,
+            username='audit-warden',
+            password='Strongpass123',
+            role=User.Role.WARDEN,
         )
 
     def test_authentication_events_include_actor_record_and_time_without_secrets(self):
         before = timezone.now()
-        self.client.post(reverse('login'), {
-            'username': self.warden.username, 'password': 'wrong-secret-123',
-        })
+        self.client.post(
+            reverse('login'),
+            {
+                'username': self.warden.username,
+                'password': 'wrong-secret-123',
+            },
+        )
         failure = AuditEvent.objects.get(action=AuditEvent.Action.LOGIN_FAILED)
         self.assertIsNone(failure.user_id)
         self.assertEqual(failure.record_id, str(self.warden.pk))
-        self.client.post(reverse('login'), {
-            'username': self.warden.username, 'password': 'Strongpass123',
-        })
+        self.client.post(
+            reverse('login'),
+            {
+                'username': self.warden.username,
+                'password': 'Strongpass123',
+            },
+        )
         login = AuditEvent.objects.get(action=AuditEvent.Action.LOGIN)
         self.assertEqual(login.user_id, self.warden.pk)
         self.assertEqual(login.record_type, 'accounts.user')
@@ -61,63 +72,94 @@ class AuditTests(TestCase):
 
     def test_create_update_and_deactivate_accounts_record_the_admin_actor(self):
         self.client.force_login(self.admin)
-        self.client.post(reverse('user-management'), {
-            'username': 'audited-account', 'password': 'Otherstrong42',
-            'role': User.Role.WARDEN,
-        })
+        self.client.post(
+            reverse('user-management'),
+            {
+                'username': 'audited-account',
+                'password': 'Otherstrong42',
+                'role': User.Role.WARDEN,
+            },
+        )
         target = User.objects.get(username='audited-account')
-        self.client.post(reverse('user-update', args=[target.pk]), {
-            'first_name': 'Edited', 'role': User.Role.STUDENT,
-        })
+        self.client.post(
+            reverse('user-update', args=[target.pk]),
+            {
+                'first_name': 'Edited',
+                'role': User.Role.STUDENT,
+            },
+        )
         self.client.post(reverse('user-deactivate', args=[target.pk]))
         events = AuditEvent.objects.filter(record_id=str(target.pk)).order_by('pk')
-        self.assertEqual(list(events.values_list('action', flat=True)), [
-            AuditEvent.Action.CREATE, AuditEvent.Action.UPDATE,
-            AuditEvent.Action.DEACTIVATE,
-        ])
+        self.assertEqual(
+            list(events.values_list('action', flat=True)),
+            [
+                AuditEvent.Action.CREATE,
+                AuditEvent.Action.UPDATE,
+                AuditEvent.Action.DEACTIVATE,
+            ],
+        )
         self.assertEqual(set(events.values_list('user_id', flat=True)), {self.admin.pk})
 
     def test_audit_failure_rolls_back_account_creation(self):
         self.client.force_login(self.admin)
-        with patch('accounts.views.record_event', side_effect=RuntimeError('audit failed')):
+        with patch(
+            'accounts.views.record_event', side_effect=RuntimeError('audit failed')
+        ):
             with self.assertRaises(RuntimeError):
-                self.client.post(reverse('user-management'), {
-                    'username': 'must-rollback', 'password': 'Otherstrong42',
-                    'role': User.Role.WARDEN,
-                })
+                self.client.post(
+                    reverse('user-management'),
+                    {
+                        'username': 'must-rollback',
+                        'password': 'Otherstrong42',
+                        'role': User.Role.WARDEN,
+                    },
+                )
         self.assertFalse(User.objects.filter(username='must-rollback').exists())
 
     def test_only_admin_can_read_audit_log_including_direct_json_requests(self):
         response = self.client.get(reverse('audit-log'))
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(self.client.get(
-            reverse('audit-log'), HTTP_ACCEPT='application/json',
-        ).status_code, 401)
+        self.assertEqual(
+            self.client.get(
+                reverse('audit-log'),
+                HTTP_ACCEPT='application/json',
+            ).status_code,
+            401,
+        )
         for role in (User.Role.WARDEN, User.Role.STUDENT):
             self.warden.role = role
             self.warden.save(update_fields=['role'])
             self.client.force_login(self.warden)
-            response = self.client.get(reverse('audit-log'), HTTP_ACCEPT='application/json')
+            response = self.client.get(
+                reverse('audit-log'), HTTP_ACCEPT='application/json'
+            )
             self.assertEqual(response.status_code, 403)
             self.assertEqual(response.json()['error']['code'], 'ACCESS_DENIED')
         self.client.force_login(self.admin)
         self.assertEqual(self.client.get(reverse('audit-log')).status_code, 200)
-        self.assertEqual(self.client.get(
-            reverse('audit-log'), HTTP_ACCEPT='application/json',
-        ).status_code, 200)
+        self.assertEqual(
+            self.client.get(
+                reverse('audit-log'),
+                HTTP_ACCEPT='application/json',
+            ).status_code,
+            200,
+        )
 
     def test_audit_filter_and_pagination_keep_valid_query_links(self):
         for index in range(27):
             record_event(
-                user=self.admin, action=AuditEvent.Action.CREATE,
-                record_type='sample', record_id=str(index),
+                user=self.admin,
+                action=AuditEvent.Action.CREATE,
+                record_type='sample',
+                record_id=str(index),
             )
         self.client.force_login(self.admin)
         response = self.client.get(reverse('audit-log'), {'action': 'create'})
         self.assertContains(response, 'action=create&amp;page=2')
         self.assertNotContains(response, '??')
         page = self.client.get(
-            reverse('audit-log'), {'action': 'create', 'page': 2},
+            reverse('audit-log'),
+            {'action': 'create', 'page': 2},
             HTTP_ACCEPT='application/json',
         ).json()
         self.assertEqual(page['page'], 2)
@@ -125,7 +167,9 @@ class AuditTests(TestCase):
         self.assertEqual(len(page['results']), 2)
 
     def test_events_cannot_be_changed_or_deleted_through_supported_orm_operations(self):
-        event = record_event(user=self.admin, action=AuditEvent.Action.CREATE, record=self.warden)
+        event = record_event(
+            user=self.admin, action=AuditEvent.Action.CREATE, record=self.warden
+        )
         event.action = AuditEvent.Action.UPDATE
         with self.assertRaises(ValidationError):
             event.save()
@@ -138,14 +182,18 @@ class AuditTests(TestCase):
         with self.assertRaises(ValidationError):
             AuditEvent.objects.all().delete()
         replacement = AuditEvent(
-            pk=event.pk, action='update', record_type='accounts.user',
+            pk=event.pk,
+            action='update',
+            record_type='accounts.user',
             record_id=str(self.warden.pk),
         )
         with self.assertRaises(IntegrityError), transaction.atomic():
             replacement.save()
         with self.assertRaises(ValidationError):
             AuditEvent.objects.bulk_create(
-                [replacement], update_conflicts=True, update_fields=['action'],
+                [replacement],
+                update_conflicts=True,
+                update_fields=['action'],
             )
         event.refresh_from_db()
         self.assertEqual(event.action, AuditEvent.Action.CREATE)
@@ -154,10 +202,16 @@ class AuditTests(TestCase):
         now = timezone.now()
         events = []
         for age in (367, 366, 365, 0):
-            with patch('django.utils.timezone.now', return_value=now - timedelta(days=age)):
-                events.append(record_event(
-                    user=self.admin, action=AuditEvent.Action.CREATE, record=self.warden,
-                ))
+            with patch(
+                'django.utils.timezone.now', return_value=now - timedelta(days=age)
+            ):
+                events.append(
+                    record_event(
+                        user=self.admin,
+                        action=AuditEvent.Action.CREATE,
+                        record=self.warden,
+                    )
+                )
         with self.assertRaises(CommandError):
             call_command('purge_audit_logs', days=365, stdout=StringIO())
         with self.assertRaises(ValidationError):
@@ -168,9 +222,10 @@ class AuditTests(TestCase):
             self.assertIn('1 audit entries eligible', output.getvalue())
             self.assertEqual(AuditEvent.objects.count(), 4)
             call_command('purge_audit_logs', stdout=StringIO())
-        self.assertEqual(set(AuditEvent.objects.values_list('pk', flat=True)), {
-            event.pk for event in events[1:]
-        })
+        self.assertEqual(
+            set(AuditEvent.objects.values_list('pk', flat=True)),
+            {event.pk for event in events[1:]},
+        )
 
     def test_admin_password_changes_are_audited_without_password_contents(self):
         self.client.force_login(self.admin)
@@ -179,12 +234,58 @@ class AuditTests(TestCase):
             {'password1': 'Changedstrong42', 'password2': 'Changedstrong42'},
         )
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(AuditEvent.objects.filter(
-            user=self.admin, action=AuditEvent.Action.UPDATE,
-            record_id=str(self.warden.pk),
-        ).exists())
+        self.assertTrue(
+            AuditEvent.objects.filter(
+                user=self.admin,
+                action=AuditEvent.Action.UPDATE,
+                record_id=str(self.warden.pk),
+            ).exists()
+        )
         self.assertNotIn('Changedstrong42', str(list(AuditEvent.objects.values())))
 
     def test_invalid_audit_action_is_rejected(self):
         with self.assertRaises(ValueError):
             record_event(user=self.admin, action='unknown', record=self.warden)
+
+    def test_django_admin_account_changes_emit_one_event_per_successful_change(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(
+            reverse('admin:accounts_user_add'),
+            {
+                'username': 'admin-created-account',
+                'password1': 'Otherstrong42',
+                'password2': 'Otherstrong42',
+                'usable_password': 'true',
+                'role': 'warden',
+            },
+        )
+        self.assertEqual(response.status_code, 302)
+        target = User.objects.get(username='admin-created-account')
+        local_joined = timezone.localtime(target.date_joined)
+        data = {
+            'username': target.username,
+            'first_name': 'Edited',
+            'last_name': '',
+            'email': '',
+            'role': 'warden',
+            'is_active': 'on',
+            'date_joined_0': local_joined.strftime('%Y-%m-%d'),
+            'date_joined_1': local_joined.strftime('%H:%M:%S'),
+        }
+        url = reverse('admin:accounts_user_change', args=[target.pk])
+        self.assertEqual(self.client.post(url, data).status_code, 302)
+        data.pop('is_active')
+        self.assertEqual(self.client.post(url, data).status_code, 302)
+        self.assertEqual(
+            list(
+                AuditEvent.objects.filter(
+                    record_type='accounts.user',
+                    record_id=str(target.pk),
+                )
+                .order_by('pk')
+                .values_list('action', flat=True)
+            ),
+            ['create', 'update', 'deactivate'],
+        )
+        target.refresh_from_db()
+        self.assertFalse(target.is_active)

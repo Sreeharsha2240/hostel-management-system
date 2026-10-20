@@ -19,14 +19,29 @@ def event_list(request):
         events = events.filter(action=action)
     page = Paginator(events, 25).get_page(request.GET.get('page'))
     if wants_json(request):
-        return JsonResponse({
-            'results': [{
-                'id': event.pk, 'user_id': event.user_id, 'action': event.action,
-                'record_type': event.record_type, 'record_id': event.record_id,
-                'timestamp': event.timestamp.isoformat(),
-            } for event in page],
-            'page': page.number, 'total': page.paginator.count,
-        })
-    return render(request, 'audit/event_list.html', {
-        'page_obj': page, 'actions': AuditEvent.Action.choices, 'action': action,
-    })
+        return JsonResponse(
+            {
+                'results': [
+                    {
+                        'id': event.pk,
+                        'user_id': event.user_id,
+                        'action': event.action,
+                        'record_type': event.record_type,
+                        'record_id': event.record_id,
+                        'timestamp': event.timestamp.isoformat(),
+                    }
+                    for event in page
+                ],
+                'page': page.number,
+                'total': page.paginator.count,
+            }
+        )
+    return render(
+        request,
+        'audit/event_list.html',
+        {
+            'page_obj': page,
+            'actions': AuditEvent.Action.choices,
+            'action': action,
+        },
+    )

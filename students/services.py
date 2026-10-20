@@ -11,7 +11,8 @@ def save_student_with_audit(student, *, actor):
     creating = student.pk is None
     student.save()
     record_event(
-        user=actor, action=AuditEvent.Action.CREATE if creating else AuditEvent.Action.UPDATE,
+        user=actor,
+        action=AuditEvent.Action.CREATE if creating else AuditEvent.Action.UPDATE,
         record=student,
     )
     return student

@@ -8,5 +8,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('manage/users/', views.user_management, name='user-management'),
     path('manage/users/<int:user_id>/update/', views.update_user, name='user-update'),
-    path('manage/users/<int:user_id>/deactivate/', views.deactivate_user, name='user-deactivate'),
+    path(
+        'manage/users/<int:user_id>/deactivate/',
+        views.deactivate_user,
+        name='user-deactivate',
+    ),
 ]

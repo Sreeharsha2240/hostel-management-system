@@ -68,6 +68,10 @@ python manage.py runserver
 
 The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/. Run the tests with `python manage.py test`.
 
+For repeatable lint, migration, MySQL, coverage and saved-evidence checks, install
+`requirements-dev.txt` and run `python scripts/run_checks.py`. See
+[testing instructions](docs/TESTING.md) and the [Sprint 1 review handoff](docs/SPRINT1_HANDOFF.md).
+
 ### Authentication and role access (HMS-04)
 
 - Sign in at `/login/` with a username and password. Admin, Warden and Student accounts receive separate dashboards. Signing out uses a POST request and clears the session.

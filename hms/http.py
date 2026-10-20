@@ -38,7 +38,9 @@ def add_validation_errors(form, error):
 def form_error(request, form, *, status=400, code='VALIDATION_ERROR'):
     if wants_json(request):
         return api_error(
-            'Please correct the highlighted fields.', code=code, status=status,
+            'Please correct the highlighted fields.',
+            code=code,
+            status=status,
             fields=form.errors.get_json_data(),
         )
     return None

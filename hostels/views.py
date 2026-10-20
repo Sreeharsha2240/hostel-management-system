@@ -14,22 +14,28 @@ from audit.services import record_event
 from hms.forms import bind_model_form as bind_form
 from hms.http import add_validation_errors, form_error, wants_json
 
+from .allocation_access import active_bed_ids
 from .forms import AvailableBedFilterForm, BedStatusForm, HostelForm, RoomForm
 from .models import Bed, Hostel, Room
 from .services import save_room_with_audit
-
 
 STAFF_ROLES = (User.Role.ADMIN, User.Role.WARDEN)
 
 
 def invalid_form(request, form, **context):
-    duplicate = any(
-        error.code in ('unique', 'unique_together', 'conflict')
-        for errors in form.errors.as_data().values() for error in errors
+    codes = {
+        error.code for errors in form.errors.as_data().values() for error in errors
+    }
+    if codes & {'unique', 'unique_together', 'conflict'}:
+        status, code = 409, 'DUPLICATE'
+    elif 'HAS_ACTIVE_ALLOCATION' in codes:
+        status, code = 409, 'HAS_ACTIVE_ALLOCATION'
+    else:
+        status, code = 400, 'VALIDATION_ERROR'
+    response = form_error(request, form, status=status, code=code)
+    return response or render(
+        request, 'hostels/form.html', {'form': form, **context}, status=status
     )
-    status = 409 if duplicate else 400
-    response = form_error(request, form, status=status, code='DUPLICATE' if duplicate else 'VALIDATION_ERROR')
-    return response or render(request, 'hostels/form.html', {'form': form, **context}, status=status)
 
 
 @roles_required(*STAFF_ROLES)
@@ -38,14 +44,27 @@ def hostel_list(request):
     if request.method == 'POST':
         return hostel_form(request)
     hostels = Hostel.objects.annotate(
-        room_count=Count('rooms', distinct=True), bed_count=Count('rooms__beds', distinct=True),
+        room_count=Count('rooms', distinct=True),
+        bed_count=Count('rooms__beds', distinct=True),
     ).order_by('name', 'pk')
     page = Paginator(hostels, 25).get_page(request.GET.get('page'))
     if wants_json(request):
-        return JsonResponse({'results': [
-            {'id': hostel.pk, 'name': hostel.name, 'type': hostel.type,
-             'rooms': hostel.room_count, 'beds': hostel.bed_count} for hostel in page
-        ], 'page': page.number, 'total': page.paginator.count})
+        return JsonResponse(
+            {
+                'results': [
+                    {
+                        'id': hostel.pk,
+                        'name': hostel.name,
+                        'type': hostel.type,
+                        'rooms': hostel.room_count,
+                        'beds': hostel.bed_count,
+                    }
+                    for hostel in page
+                ],
+                'page': page.number,
+                'total': page.paginator.count,
+            }
+        )
     return render(request, 'hostels/hostel_list.html', {'page_obj': page})
 
 
@@ -65,16 +84,24 @@ def hostel_form(request, hostel_id=None):
                     hostel = form.save()
                     record_event(
                         user=request.user,
-                        action=AuditEvent.Action.CREATE if creating else AuditEvent.Action.UPDATE,
+                        action=AuditEvent.Action.CREATE
+                        if creating
+                        else AuditEvent.Action.UPDATE,
                         record=hostel,
                     )
             except ValidationError as error:
                 add_validation_errors(form, error)
             except IntegrityError:
-                form.add_error('name', ValidationError('Hostel name already exists.', code='conflict'))
+                form.add_error(
+                    'name',
+                    ValidationError('Hostel name already exists.', code='conflict'),
+                )
             else:
                 if wants_json(request):
-                    return JsonResponse({'id': hostel.pk, 'name': hostel.name, 'type': hostel.type}, status=201 if creating else 200)
+                    return JsonResponse(
+                        {'id': hostel.pk, 'name': hostel.name, 'type': hostel.type},
+                        status=201 if creating else 200,
+                    )
                 messages.success(request, 'Hostel saved.')
                 return redirect('hostel-detail', hostel_id=hostel.pk)
         return invalid_form(request, form, title=title)
@@ -88,14 +115,20 @@ def hostel_form(request, hostel_id=None):
 def hostel_detail(request, hostel_id):
     hostel = get_object_or_404(Hostel, pk=hostel_id)
     rooms = hostel.rooms.prefetch_related('beds')
-    return render(request, 'hostels/hostel_detail.html', {'hostel': hostel, 'rooms': rooms})
+    return render(
+        request, 'hostels/hostel_detail.html', {'hostel': hostel, 'rooms': rooms}
+    )
 
 
 @roles_required(User.Role.ADMIN)
 @require_http_methods(['GET', 'POST', 'PATCH'])
 def room_form(request, hostel_id=None, room_id=None):
-    room = get_object_or_404(Room.objects.select_related('hostel'), pk=room_id) if room_id else Room(
-        hostel=get_object_or_404(Hostel, pk=hostel_id),
+    room = (
+        get_object_or_404(Room.objects.select_related('hostel'), pk=room_id)
+        if room_id
+        else Room(
+            hostel=get_object_or_404(Hostel, pk=hostel_id),
+        )
     )
     creating = room.pk is None
     form = bind_form(request, RoomForm, instance=room)
@@ -107,13 +140,23 @@ def room_form(request, hostel_id=None, room_id=None):
             except ValidationError as error:
                 add_validation_errors(form, error)
             except IntegrityError:
-                form.add_error(None, ValidationError('Room already exists in this hostel.', code='conflict'))
+                form.add_error(
+                    None,
+                    ValidationError(
+                        'Room already exists in this hostel.', code='conflict'
+                    ),
+                )
             else:
                 if wants_json(request):
-                    return JsonResponse({
-                        'room_id': room.pk,
-                        'beds': list(room.beds.values('id', 'bed_number', 'status')),
-                    }, status=201 if creating else 200)
+                    return JsonResponse(
+                        {
+                            'room_id': room.pk,
+                            'beds': list(
+                                room.beds.values('id', 'bed_number', 'status')
+                            ),
+                        },
+                        status=201 if creating else 200,
+                    )
                 messages.success(request, 'Room and beds saved.')
                 return redirect('hostel-detail', hostel_id=room.hostel_id)
         return invalid_form(request, form, title=title)
@@ -133,7 +176,9 @@ def bed_status(request, bed_id):
                     bed = Bed.objects.select_for_update().get(pk=bed.pk)
                     bed.status = form.cleaned_data['status']
                     bed.save(update_fields=['status'])
-                    record_event(user=request.user, action=AuditEvent.Action.UPDATE, record=bed)
+                    record_event(
+                        user=request.user, action=AuditEvent.Action.UPDATE, record=bed
+                    )
             except ValidationError as error:
                 add_validation_errors(form, error)
             else:
@@ -149,10 +194,20 @@ def bed_status(request, bed_id):
 @require_GET
 def available_beds(request):
     form = AvailableBedFilterForm(request.GET)
-    beds = Bed.objects.select_related('room__hostel').filter(status=Bed.Status.AVAILABLE)
+    beds = (
+        Bed.objects.select_related('room__hostel')
+        .filter(
+            status=Bed.Status.AVAILABLE,
+        )
+        .exclude(pk__in=active_bed_ids())
+    )
     valid = form.is_valid()
     if valid:
-        for field, lookup in (('hostel', 'room__hostel'), ('floor', 'room__floor'), ('room_type', 'room__room_type')):
+        for field, lookup in (
+            ('hostel', 'room__hostel'),
+            ('floor', 'room__floor'),
+            ('room_type', 'room__room_type'),
+        ):
             value = form.cleaned_data[field]
             if value is not None and value != '':
                 beds = beds.filter(**{lookup: value})
@@ -163,11 +218,30 @@ def available_beds(request):
             return response
     page = Paginator(beds, 25).get_page(request.GET.get('page'))
     if wants_json(request):
-        return JsonResponse({'beds': [
-            {'id': bed.pk, 'bed_number': bed.bed_number, 'status': bed.status,
-             'hostel_id': bed.room.hostel_id, 'hostel': bed.room.hostel.name,
-             'floor': bed.room.floor, 'room_type': bed.room.room_type} for bed in page
-        ], 'page': page.number, 'total': page.paginator.count})
-    return render(request, 'hostels/available_beds.html', {
-        'form': form, 'page_obj': page,
-    }, status=200 if valid else 400)
+        return JsonResponse(
+            {
+                'beds': [
+                    {
+                        'id': bed.pk,
+                        'bed_number': bed.bed_number,
+                        'status': bed.status,
+                        'hostel_id': bed.room.hostel_id,
+                        'hostel': bed.room.hostel.name,
+                        'floor': bed.room.floor,
+                        'room_type': bed.room.room_type,
+                    }
+                    for bed in page
+                ],
+                'page': page.number,
+                'total': page.paginator.count,
+            }
+        )
+    return render(
+        request,
+        'hostels/available_beds.html',
+        {
+            'form': form,
+            'page_obj': page,
+        },
+        status=200 if valid else 400,
+    )

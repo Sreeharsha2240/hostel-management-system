@@ -20,19 +20,26 @@ class HostelModelTests(TestCase):
 
     def room(self, number='101', capacity=3, **kwargs):
         return Room.objects.create(
-            hostel=kwargs.pop('hostel', self.hostel), room_number=number,
-            capacity=capacity, floor=0, room_type=Room.Type.TRIPLE,
-            fee_amount='5000.00', **kwargs,
+            hostel=kwargs.pop('hostel', self.hostel),
+            room_number=number,
+            capacity=capacity,
+            floor=0,
+            room_type=Room.Type.TRIPLE,
+            fee_amount='5000.00',
+            **kwargs,
         )
 
     def test_each_allowed_capacity_creates_exactly_that_many_available_beds(self):
         for capacity in range(1, 5):
             with self.subTest(capacity=capacity):
                 room = self.room(number=str(capacity), capacity=capacity)
-                self.assertEqual(list(room.beds.values_list('bed_number', flat=True)), [
-                    f'{capacity}-{chr(65 + index)}' for index in range(capacity)
-                ])
-                self.assertEqual(set(room.beds.values_list('status', flat=True)), {'Available'})
+                self.assertEqual(
+                    list(room.beds.values_list('bed_number', flat=True)),
+                    [f'{capacity}-{chr(65 + index)}' for index in range(capacity)],
+                )
+                self.assertEqual(
+                    set(room.beds.values_list('status', flat=True)), {'Available'}
+                )
 
     def test_hostel_and_room_uniqueness_and_invalid_capacity(self):
         self.room()
@@ -50,7 +57,9 @@ class HostelModelTests(TestCase):
         room = self.room()
         with self.assertRaises(IntegrityError), transaction.atomic():
             with connection.cursor() as cursor:
-                cursor.execute('UPDATE hostels_room SET capacity = %s WHERE id = %s', [5, room.pk])
+                cursor.execute(
+                    'UPDATE hostels_room SET capacity = %s WHERE id = %s', [5, room.pk]
+                )
         room.refresh_from_db()
         self.assertEqual(room.capacity, 3)
 
@@ -103,7 +112,10 @@ class HostelModelTests(TestCase):
         room.room_number = '202'
         room.save()
         self.assertEqual(list(room.beds.values_list('pk', flat=True)), ids)
-        self.assertEqual(list(room.beds.values_list('bed_number', flat=True)), ['202-A', '202-B', '202-C'])
+        self.assertEqual(
+            list(room.beds.values_list('bed_number', flat=True)),
+            ['202-A', '202-B', '202-C'],
+        )
 
     def test_bed_creation_failure_rolls_back_room_and_preceding_beds(self):
         save = Bed.save
@@ -113,7 +125,10 @@ class HostelModelTests(TestCase):
                 raise RuntimeError('simulated storage failure')
             return save(bed, *args, **kwargs)
 
-        with patch.object(Bed, 'save', new=fail_second_bed), self.assertRaises(RuntimeError):
+        with (
+            patch.object(Bed, 'save', new=fail_second_bed),
+            self.assertRaises(RuntimeError),
+        ):
             self.room()
         self.assertEqual(Room.objects.count(), 0)
         self.assertEqual(Bed.objects.count(), 0)
@@ -152,13 +167,23 @@ class HostelModelTests(TestCase):
 class HostelViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.admin = User.objects.create_user(username='hostel-admin', role=User.Role.ADMIN)
-        cls.warden = User.objects.create_user(username='hostel-warden', role=User.Role.WARDEN)
-        cls.student = User.objects.create_user(username='hostel-student', role=User.Role.STUDENT)
+        cls.admin = User.objects.create_user(
+            username='hostel-admin', role=User.Role.ADMIN
+        )
+        cls.warden = User.objects.create_user(
+            username='hostel-warden', role=User.Role.WARDEN
+        )
+        cls.student = User.objects.create_user(
+            username='hostel-student', role=User.Role.STUDENT
+        )
         cls.hostel = Hostel.objects.create(name='Boys B', type=Hostel.Type.BOYS)
         cls.room = Room.objects.create(
-            hostel=cls.hostel, room_number='101', capacity=3, floor=0,
-            room_type=Room.Type.TRIPLE, fee_amount='5000.00',
+            hostel=cls.hostel,
+            room_number='101',
+            capacity=3,
+            floor=0,
+            room_type=Room.Type.TRIPLE,
+            fee_amount='5000.00',
         )
 
     def test_only_admin_can_write_even_with_direct_post_or_patch(self):
@@ -166,17 +191,34 @@ class HostelViewTests(TestCase):
             self.client.force_login(account)
             for url, data in (
                 (reverse('hostel-list'), {'name': 'Forbidden', 'type': 'Boys'}),
-                (reverse('hostel-update', args=[self.hostel.pk]), {'name': 'Forbidden', 'type': 'Boys'}),
-                (reverse('room-create', args=[self.hostel.pk]), {
-                    'room_number': '102', 'capacity': 2, 'floor': 0,
-                    'room_type': 'Double', 'fee_amount': 100,
-                }),
-                (reverse('bed-update', args=[self.room.beds.first().pk]), {'status': 'Maintenance'}),
+                (
+                    reverse('hostel-update', args=[self.hostel.pk]),
+                    {'name': 'Forbidden', 'type': 'Boys'},
+                ),
+                (
+                    reverse('room-create', args=[self.hostel.pk]),
+                    {
+                        'room_number': '102',
+                        'capacity': 2,
+                        'floor': 0,
+                        'room_type': 'Double',
+                        'fee_amount': 100,
+                    },
+                ),
+                (
+                    reverse('bed-update', args=[self.room.beds.first().pk]),
+                    {'status': 'Maintenance'},
+                ),
             ):
                 with self.subTest(role=account.role, url=url):
                     self.assertEqual(self.client.post(url, data).status_code, 403)
                     if url != reverse('hostel-list'):
-                        self.assertEqual(self.client.patch(url, data, content_type='application/json').status_code, 403)
+                        self.assertEqual(
+                            self.client.patch(
+                                url, data, content_type='application/json'
+                            ).status_code,
+                            403,
+                        )
         self.assertEqual(Hostel.objects.count(), 1)
         self.assertEqual(Room.objects.count(), 1)
         self.assertEqual(self.room.beds.filter(status='Available').count(), 3)
@@ -184,7 +226,11 @@ class HostelViewTests(TestCase):
     def test_warden_can_read_but_student_cannot_read_staff_records(self):
         for account, expected in ((self.warden, 200), (self.student, 403)):
             self.client.force_login(account)
-            for name, args in (('hostel-list', []), ('hostel-detail', [self.hostel.pk]), ('available-beds', [])):
+            for name, args in (
+                ('hostel-list', []),
+                ('hostel-detail', [self.hostel.pk]),
+                ('available-beds', []),
+            ):
                 with self.subTest(role=account.role, name=name):
                     response = self.client.get(reverse(name, args=args))
                     self.assertEqual(response.status_code, expected)
@@ -193,99 +239,194 @@ class HostelViewTests(TestCase):
 
     def test_admin_json_creation_and_automatic_beds_are_audited(self):
         self.client.force_login(self.admin)
-        response = self.client.post(reverse('hostel-list'), {
-            'name': 'Girls B', 'type': 'Girls',
-        }, content_type='application/json')
+        response = self.client.post(
+            reverse('hostel-list'),
+            {
+                'name': 'Girls B',
+                'type': 'Girls',
+            },
+            content_type='application/json',
+        )
         self.assertEqual(response.status_code, 201)
         hostel_id = response.json()['id']
-        response = self.client.post(reverse('room-create', args=[hostel_id]), {
-            'room_number': '202', 'capacity': 2, 'floor': 1,
-            'room_type': 'Double', 'fee_amount': '4000.00',
-        }, content_type='application/json')
+        response = self.client.post(
+            reverse('room-create', args=[hostel_id]),
+            {
+                'room_number': '202',
+                'capacity': 2,
+                'floor': 1,
+                'room_type': 'Double',
+                'fee_amount': '4000.00',
+            },
+            content_type='application/json',
+        )
         self.assertEqual(response.status_code, 201)
-        self.assertEqual([bed['bed_number'] for bed in response.json()['beds']], ['202-A', '202-B'])
-        self.assertEqual(AuditEvent.objects.filter(
-            user=self.admin, action='create', record_type='hostels.bed',
-        ).count(), 2)
+        self.assertEqual(
+            [bed['bed_number'] for bed in response.json()['beds']], ['202-A', '202-B']
+        )
+        self.assertEqual(
+            AuditEvent.objects.filter(
+                user=self.admin,
+                action='create',
+                record_type='hostels.bed',
+            ).count(),
+            2,
+        )
 
     def test_duplicate_hostel_and_room_return_conflict_without_saving(self):
         self.client.force_login(self.admin)
-        response = self.client.post(reverse('hostel-list'), {
-            'name': self.hostel.name, 'type': 'Boys',
-        }, content_type='application/json')
+        response = self.client.post(
+            reverse('hostel-list'),
+            {
+                'name': self.hostel.name,
+                'type': 'Boys',
+            },
+            content_type='application/json',
+        )
         self.assertEqual(response.status_code, 409)
-        response = self.client.post(reverse('room-create', args=[self.hostel.pk]), {
-            'room_number': '101', 'capacity': 2, 'floor': 0,
-            'room_type': 'Double', 'fee_amount': '4000.00',
-        }, content_type='application/json')
+        response = self.client.post(
+            reverse('room-create', args=[self.hostel.pk]),
+            {
+                'room_number': '101',
+                'capacity': 2,
+                'floor': 0,
+                'room_type': 'Double',
+                'fee_amount': '4000.00',
+            },
+            content_type='application/json',
+        )
         self.assertEqual(response.status_code, 409)
         self.assertEqual(Room.objects.count(), 1)
 
     def test_invalid_room_fields_and_malformed_json_are_rejected(self):
         self.client.force_login(self.admin)
         url = reverse('room-create', args=[self.hostel.pk])
-        valid = {'room_number': '102', 'capacity': 2, 'floor': 0, 'room_type': 'Double', 'fee_amount': '4000.00'}
-        for field, value in (('capacity', 5), ('floor', -1), ('fee_amount', '-1'), ('room_type', 'other'), ('room_number', "' OR 1=1")):
+        valid = {
+            'room_number': '102',
+            'capacity': 2,
+            'floor': 0,
+            'room_type': 'Double',
+            'fee_amount': '4000.00',
+        }
+        for field, value in (
+            ('capacity', 5),
+            ('floor', -1),
+            ('fee_amount', '-1'),
+            ('room_type', 'other'),
+            ('room_number', "' OR 1=1"),
+        ):
             with self.subTest(field=field):
-                response = self.client.post(url, {**valid, field: value}, content_type='application/json')
+                response = self.client.post(
+                    url, {**valid, field: value}, content_type='application/json'
+                )
                 self.assertEqual(response.status_code, 400)
-        self.assertEqual(self.client.post(url, '[', content_type='application/json').status_code, 400)
+        self.assertEqual(
+            self.client.post(url, '[', content_type='application/json').status_code, 400
+        )
         self.assertEqual(Room.objects.count(), 1)
 
-    def test_available_beds_filter_floor_zero_type_and_hostel_and_exclude_nonavailable(self):
+    def test_available_beds_filter_floor_zero_type_and_hostel_and_exclude_nonavailable(
+        self,
+    ):
         first, second, third = self.room.beds.all()
         Bed.objects.filter(pk=second.pk).update(status=Bed.Status.OCCUPIED)
         Bed.objects.filter(pk=third.pk).update(status=Bed.Status.MAINTENANCE)
         other = Hostel.objects.create(name='Other', type='Girls')
-        Room.objects.create(hostel=other, room_number='101', capacity=1, floor=1, room_type='Single', fee_amount=0)
+        Room.objects.create(
+            hostel=other,
+            room_number='101',
+            capacity=1,
+            floor=1,
+            room_type='Single',
+            fee_amount=0,
+        )
         self.client.force_login(self.warden)
         url = reverse('available-beds')
-        response = self.client.get(url, {
-            'hostel': self.hostel.pk, 'floor': 0, 'room_type': 'Triple',
-        }, HTTP_ACCEPT='application/json')
+        response = self.client.get(
+            url,
+            {
+                'hostel': self.hostel.pk,
+                'floor': 0,
+                'room_type': 'Triple',
+            },
+            HTTP_ACCEPT='application/json',
+        )
         self.assertEqual(response.status_code, 200)
         self.assertEqual([bed['id'] for bed in response.json()['beds']], [first.pk])
-        self.assertEqual(self.client.get(url, {'floor': 'bad'}, HTTP_ACCEPT='application/json').status_code, 400)
+        self.assertEqual(
+            self.client.get(
+                url, {'floor': 'bad'}, HTTP_ACCEPT='application/json'
+            ).status_code,
+            400,
+        )
 
     def test_room_and_bed_can_be_updated_through_html_and_json(self):
         self.client.force_login(self.admin)
-        response = self.client.patch(reverse('room-update', args=[self.room.pk]), {
-            'room_number': '103', 'capacity': 4, 'floor': 1,
-            'room_type': 'Triple', 'fee_amount': '6000.00',
-        }, content_type='application/json')
+        response = self.client.patch(
+            reverse('room-update', args=[self.room.pk]),
+            {
+                'room_number': '103',
+                'capacity': 4,
+                'floor': 1,
+                'room_type': 'Triple',
+                'fee_amount': '6000.00',
+            },
+            content_type='application/json',
+        )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.room.beds.count(), 4)
         bed = self.room.beds.first()
-        response = self.client.post(reverse('bed-update', args=[bed.pk]), {'status': 'Maintenance'})
+        response = self.client.post(
+            reverse('bed-update', args=[bed.pk]), {'status': 'Maintenance'}
+        )
         self.assertEqual(response.status_code, 302)
         bed.refresh_from_db()
         self.assertEqual(bed.status, 'Maintenance')
 
     def test_audit_failure_rolls_back_room_and_automatic_beds(self):
         self.client.force_login(self.admin)
-        with patch('hostels.services.record_event', side_effect=RuntimeError('audit failed')):
+        with patch(
+            'hostels.services.record_event', side_effect=RuntimeError('audit failed')
+        ):
             with self.assertRaises(RuntimeError):
-                self.client.post(reverse('room-create', args=[self.hostel.pk]), {
-                    'room_number': '105', 'capacity': 2, 'floor': 0,
-                    'room_type': 'Double', 'fee_amount': 100,
-                })
+                self.client.post(
+                    reverse('room-create', args=[self.hostel.pk]),
+                    {
+                        'room_number': '105',
+                        'capacity': 2,
+                        'floor': 0,
+                        'room_type': 'Double',
+                        'fee_amount': 100,
+                    },
+                )
         self.assertFalse(Room.objects.filter(room_number='105').exists())
         self.assertEqual(Bed.objects.count(), 3)
 
     def test_html_forms_csrf_and_missing_records(self):
         self.client.force_login(self.admin)
         for name, args in (
-            ('hostel-create', []), ('hostel-update', [self.hostel.pk]),
-            ('room-create', [self.hostel.pk]), ('room-update', [self.room.pk]),
+            ('hostel-create', []),
+            ('hostel-update', [self.hostel.pk]),
+            ('room-create', [self.hostel.pk]),
+            ('room-update', [self.room.pk]),
             ('bed-update', [self.room.beds.first().pk]),
         ):
             self.assertEqual(self.client.get(reverse(name, args=args)).status_code, 200)
         csrf_client = Client(enforce_csrf_checks=True)
         csrf_client.force_login(self.admin)
-        self.assertEqual(csrf_client.post(reverse('hostel-list'), {
-            'name': 'No CSRF', 'type': 'Boys',
-        }).status_code, 403)
-        self.assertEqual(self.client.get(reverse('hostel-detail', args=[999999])).status_code, 404)
+        self.assertEqual(
+            csrf_client.post(
+                reverse('hostel-list'),
+                {
+                    'name': 'No CSRF',
+                    'type': 'Boys',
+                },
+            ).status_code,
+            403,
+        )
+        self.assertEqual(
+            self.client.get(reverse('hostel-detail', args=[999999])).status_code, 404
+        )
 
     def test_hostel_names_are_escaped_when_displayed(self):
         Hostel.objects.create(name='<script>alert(1)</script>', type='Boys')

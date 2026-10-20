@@ -1,0 +1,84 @@
+name: Sprint 1 checks
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'feature/**', 'fix/**']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  mysql-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.14']
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: hms-ci-root
+          MYSQL_ROOT_HOST: '%'
+          MYSQL_DATABASE: hms
+          MYSQL_USER: hms_user
+          MYSQL_PASSWORD: hms-ci-app
+        ports:
+          - 33306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -u root -phms-ci-root"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=12
+    env:
+      DJANGO_SECRET_KEY: ci-only-key-for-ephemeral-test-databases-1234567890
+      DJANGO_DEBUG: 'True'
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,testserver
+      DJANGO_SESSION_COOKIE_SECURE: 'False'
+      DJANGO_CSRF_COOKIE_SECURE: 'False'
+      DJANGO_SECURE_SSL_REDIRECT: 'False'
+      DB_NAME: hms
+      DB_USER: hms_user
+      DB_PASSWORD: hms-ci-app
+      DB_HOST: 127.0.0.1
+      DB_PORT: '33306'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+      - name: Install MySQL build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-dev default-libmysqlclient-dev build-essential pkg-config
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Grant the app access to its separate test database
+        run: |
+          python - <<'PY'
+          import MySQLdb
+          connection = MySQLdb.connect(host='127.0.0.1', port=33306, user='root', passwd='hms-ci-root')
+          with connection.cursor() as cursor:
+              cursor.execute("GRANT ALL PRIVILEGES ON test_hms.* TO 'hms_user'@'%'")
+          connection.close()
+          PY
+      - name: Apply migrations to the fresh MySQL database
+        run: python manage.py migrate --noinput
+      - name: Run lint, migration, MySQL and coverage checks
+        run: python scripts/run_checks.py
+      - name: Preserve test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sprint1-python-${{ matrix.python }}
+          path: test-results/
+          if-no-files-found: warn

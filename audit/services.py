@@ -14,5 +14,7 @@ def record_event(*, user, action, record=None, record_type='', record_id=''):
         raise ValueError('A known action and affected record type are required.')
     return AuditEvent.objects.create(
         user=user if user and user.is_authenticated else None,
-        action=action, record_type=record_type, record_id=record_id,
+        action=action,
+        record_type=record_type,
+        record_id=record_id,
     )

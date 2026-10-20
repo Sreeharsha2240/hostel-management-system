@@ -62,12 +62,16 @@ def user_management(request):
         form = AccountCreationForm(request.POST)
         if form.is_valid():
             account = form.save()
-            record_event(user=request.user, action=AuditEvent.Action.CREATE, record=account)
+            record_event(
+                user=request.user, action=AuditEvent.Action.CREATE, record=account
+            )
             return redirect('user-management')
     else:
         form = AccountCreationForm()
     users = User.objects.order_by('username')
-    return render(request, 'accounts/user_management.html', {'form': form, 'users': users})
+    return render(
+        request, 'accounts/user_management.html', {'form': form, 'users': users}
+    )
 
 
 @login_required
@@ -81,11 +85,15 @@ def update_user(request, user_id):
         if form.is_valid():
             if form.has_changed():
                 form.save()
-                record_event(user=request.user, action=AuditEvent.Action.UPDATE, record=target)
+                record_event(
+                    user=request.user, action=AuditEvent.Action.UPDATE, record=target
+                )
             return redirect('user-management')
     else:
         form = AccountUpdateForm(instance=target)
-    return render(request, 'accounts/user_update.html', {'form': form, 'account': target})
+    return render(
+        request, 'accounts/user_update.html', {'form': form, 'account': target}
+    )
 
 
 @login_required
@@ -99,5 +107,7 @@ def deactivate_user(request, user_id):
     if target.is_active:
         target.is_active = False
         target.save(update_fields=['is_active'])
-        record_event(user=request.user, action=AuditEvent.Action.DEACTIVATE, record=target)
+        record_event(
+            user=request.user, action=AuditEvent.Action.DEACTIVATE, record=target
+        )
     return redirect('user-management')

@@ -12,9 +12,7 @@ class HMSUserAdmin(AuditedAdminMixin, UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         ('HMS access', {'fields': ('role', 'failed_attempts', 'locked_until')}),
     )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        ('HMS access', {'fields': ('role',)}),
-    )
+    add_fieldsets = UserAdmin.add_fieldsets + (('HMS access', {'fields': ('role',)}),)
     readonly_fields = ('failed_attempts', 'locked_until')
 
     @transaction.atomic

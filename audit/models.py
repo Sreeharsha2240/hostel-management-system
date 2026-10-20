@@ -8,14 +8,22 @@ from django.utils import timezone
 
 class AuditQuerySet(models.QuerySet):
     def bulk_create(
-        self, objs, batch_size=None, ignore_conflicts=False, update_conflicts=False,
-        update_fields=None, unique_fields=None,
+        self,
+        objs,
+        batch_size=None,
+        ignore_conflicts=False,
+        update_conflicts=False,
+        update_fields=None,
+        unique_fields=None,
     ):
         if update_conflicts:
             raise ValidationError('Audit entries cannot be changed.')
         return super().bulk_create(
-            objs, batch_size=batch_size, ignore_conflicts=ignore_conflicts,
-            update_conflicts=update_conflicts, update_fields=update_fields,
+            objs,
+            batch_size=batch_size,
+            ignore_conflicts=ignore_conflicts,
+            update_conflicts=update_conflicts,
+            update_fields=update_fields,
             unique_fields=unique_fields,
         )
 
@@ -50,8 +58,11 @@ class AuditEvent(models.Model):
         ACCESS_DENIED = 'access_denied', 'Access denied'
 
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.PROTECT,
-        null=True, blank=True, related_name='audit_events',
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name='audit_events',
     )
     action = models.CharField(max_length=20, choices=Action.choices)
     record_type = models.CharField(max_length=100)
@@ -64,7 +75,11 @@ class AuditEvent(models.Model):
         ordering = ['-timestamp', '-pk']
 
     def save(self, *args, **kwargs):
-        if not self._state.adding or kwargs.get('force_update') or kwargs.get('update_fields'):
+        if (
+            not self._state.adding
+            or kwargs.get('force_update')
+            or kwargs.get('update_fields')
+        ):
             raise ValidationError('Audit entries cannot be changed.')
         # Never let a new Python object overwrite an existing event by its PK.
         kwargs['force_insert'] = True

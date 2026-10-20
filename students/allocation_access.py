@@ -18,9 +18,15 @@ def active_allocation(student):
     allocation_model = get_allocation_model()
     if allocation_model is None:
         return None
-    return allocation_model.objects.filter(
-        student_id=student.pk, vacated_on__isnull=True,
-    ).select_related('bed__room__hostel').order_by('-pk').first()
+    return (
+        allocation_model.objects.filter(
+            student_id=student.pk,
+            vacated_on__isnull=True,
+        )
+        .select_related('bed__room__hostel')
+        .order_by('-pk')
+        .first()
+    )
 
 
 def student_ids_for_hostel(hostel):
@@ -28,5 +34,6 @@ def student_ids_for_hostel(hostel):
     if allocation_model is None:
         return []
     return allocation_model.objects.filter(
-        bed__room__hostel=hostel, vacated_on__isnull=True,
+        bed__room__hostel=hostel,
+        vacated_on__isnull=True,
     ).values_list('student_id', flat=True)

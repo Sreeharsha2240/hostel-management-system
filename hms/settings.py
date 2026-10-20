@@ -59,13 +59,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # HMS modules (SAD 3.4)
-    'accounts',     # C2 Auth & Access Control
-    'students',     # C3 Student Module
-    'hostels',      # C4 Hostel, Room & Bed Module
+    'accounts',  # C2 Auth & Access Control
+    'students',  # C3 Student Module
+    'hostels',  # C4 Hostel, Room & Bed Module
     'allocations',  # C5 Allocation Module
-    'payments',     # C6 Payment & Receipt Module
-    'reports',      # C7 Report Module
-    'audit',        # C8 Audit & Logging
+    'payments',  # C6 Payment & Receipt Module
+    'reports',  # C7 Report Module
+    'audit',  # C8 Audit & Logging
 ]
 
 MIDDLEWARE = [
@@ -122,7 +122,7 @@ DATABASES = {
             # invalid, truncated and zero-date values the same way.
             'init_command': (
                 "SET sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,"
-                "NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,"
+                'NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,'
                 "NO_ENGINE_SUBSTITUTION'"
             ),
         },
@@ -159,15 +159,27 @@ AUTH_PASSWORD_VALIDATORS = [
 SESSION_COOKIE_AGE = 15 * 60
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = env(
-    'DJANGO_SESSION_COOKIE_SECURE', 'False' if DEBUG else 'True',
-).lower() == 'true'
-CSRF_COOKIE_SECURE = env(
-    'DJANGO_CSRF_COOKIE_SECURE', 'False' if DEBUG else 'True',
-).lower() == 'true'
-SECURE_SSL_REDIRECT = env(
-    'DJANGO_SECURE_SSL_REDIRECT', 'False' if DEBUG else 'True',
-).lower() == 'true'
+SESSION_COOKIE_SECURE = (
+    env(
+        'DJANGO_SESSION_COOKIE_SECURE',
+        'False' if DEBUG else 'True',
+    ).lower()
+    == 'true'
+)
+CSRF_COOKIE_SECURE = (
+    env(
+        'DJANGO_CSRF_COOKIE_SECURE',
+        'False' if DEBUG else 'True',
+    ).lower()
+    == 'true'
+)
+SECURE_SSL_REDIRECT = (
+    env(
+        'DJANGO_SECURE_SSL_REDIRECT',
+        'False' if DEBUG else 'True',
+    ).lower()
+    == 'true'
+)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = 'login'

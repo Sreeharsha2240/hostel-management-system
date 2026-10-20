@@ -1,0 +1,21 @@
+[run]
+branch = True
+source = accounts, audit, students, hostels, allocations, payments, reports, hms
+omit =
+    */migrations/*
+    */tests.py
+    */test_*.py
+    */apps.py
+    */__init__.py
+    hms/settings.py
+    hms/urls.py
+    hms/asgi.py
+    hms/wsgi.py
+
+[report]
+precision = 2
+show_missing = True
+fail_under = 70
+
+[xml]
+output = test-results/coverage.xml

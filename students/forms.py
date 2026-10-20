@@ -8,15 +8,25 @@ from .models import Student
 
 class StudentRegistrationForm(forms.ModelForm):
     dob = forms.DateField(
-        label='Date of birth', input_formats=['%d-%m-%Y', '%Y-%m-%d'],
+        label='Date of birth',
+        input_formats=['%d-%m-%Y', '%Y-%m-%d'],
         widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
     )
 
     class Meta:
         model = Student
         fields = (
-            'student_id', 'name', 'dob', 'gender', 'course', 'year', 'mobile',
-            'email', 'guardian_name', 'guardian_mobile', 'address',
+            'student_id',
+            'name',
+            'dob',
+            'gender',
+            'course',
+            'year',
+            'mobile',
+            'email',
+            'guardian_name',
+            'guardian_mobile',
+            'address',
         )
         labels = {'student_id': 'Student ID (SRN)'}
         widgets = {'address': forms.Textarea(attrs={'rows': 3})}
@@ -31,17 +41,30 @@ class StudentUpdateForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = (
-            'student_id', 'mobile', 'email', 'course', 'year',
-            'guardian_name', 'guardian_mobile', 'address',
+            'student_id',
+            'mobile',
+            'email',
+            'course',
+            'year',
+            'guardian_name',
+            'guardian_mobile',
+            'address',
         )
         widgets = {'address': forms.Textarea(attrs={'rows': 3})}
 
     def clean(self):
         data = super().clean()
-        if 'student_id' in self.data and str(self.data['student_id']).strip().upper() != self.instance.student_id:
-            self.add_error('student_id', ValidationError(
-                'Student ID cannot be changed.', code='IMMUTABLE_FIELD',
-            ))
+        if (
+            'student_id' in self.data
+            and str(self.data['student_id']).strip().upper() != self.instance.student_id
+        ):
+            self.add_error(
+                'student_id',
+                ValidationError(
+                    'Student ID cannot be changed.',
+                    code='IMMUTABLE_FIELD',
+                ),
+            )
         return data
 
 

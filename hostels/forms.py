@@ -25,4 +25,6 @@ class BedStatusForm(forms.ModelForm):
 class AvailableBedFilterForm(forms.Form):
     hostel = forms.ModelChoiceField(queryset=Hostel.objects.all(), required=False)
     floor = forms.IntegerField(min_value=0, max_value=99, required=False)
-    room_type = forms.ChoiceField(choices=[('', 'All room types'), *Room.Type.choices], required=False)
+    room_type = forms.ChoiceField(
+        choices=[('', 'All room types'), *Room.Type.choices], required=False
+    )
