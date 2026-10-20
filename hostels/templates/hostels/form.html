@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="narrow"><h1>{{ title }}</h1><form method="post" class="card">{% csrf_token %}
+{% include 'includes/form.html' %}<button type="submit">Save</button> <a href="{% url 'hostel-list' %}">Cancel</a>
+</form></div>
+{% endblock %}

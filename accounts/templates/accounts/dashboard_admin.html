@@ -8,6 +8,9 @@
     <section aria-labelledby="admin-tools-heading">
       <h2 id="admin-tools-heading">Administration</h2>
       <p><a href="{% url 'user-management' %}">Manage user accounts and roles</a></p>
+      <p><a href="{% url 'hostel-list' %}">Manage hostels, rooms and beds</a></p>
+      <p><a href="{% url 'available-beds' %}">Find available beds</a></p>
+      <p><a href="{% url 'audit-log' %}">Review audit log</a></p>
       <p>Use the administration tools to create and deactivate accounts.</p>
     </section>
     <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Sign out</button></form>

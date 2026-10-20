@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}{{ hostel.name }}{% endblock %}
+{% block content %}
+<div class="page-heading"><div><h1>{{ hostel.name }}</h1><span class="muted">{{ hostel.type }} hostel</span></div>{% if request.user.role == 'admin' %}<a class="button" href="{% url 'room-create' hostel.pk %}">Add room</a>{% endif %}</div>
+{% for room in rooms %}<section class="card">
+<h2>Room {{ room.room_number }}</h2><p>Floor {{ room.floor }} · {{ room.room_type }} · Capacity {{ room.capacity }} · Fee ₹{{ room.fee_amount }}</p>
+{% if request.user.role == 'admin' %}<p><a href="{% url 'room-update' room.pk %}">Edit room</a></p>{% endif %}
+<ul>{% for bed in room.beds.all %}<li>{{ bed.bed_number }} <span class="badge {{ bed.status }}">{{ bed.get_status_display }}</span>{% if request.user.role == 'admin' %} <a href="{% url 'bed-update' bed.pk %}">Change status</a>{% endif %}</li>{% endfor %}</ul>
+</section>{% empty %}<div class="card">No rooms have been added to this hostel.</div>{% endfor %}
+<p><a href="{% url 'hostel-list' %}">All hostels</a></p>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Available beds{% endblock %}
+{% block content %}
+<div class="page-heading"><h1>Available beds</h1><span class="muted">{{ page_obj.paginator.count }} available</span></div>
+<form method="get" class="card filters">{% include 'includes/form.html' %}<button type="submit">Filter</button> <a href="{% url 'available-beds' %}">Clear</a></form>
+<div class="card table-wrap"><table>
+<thead><tr><th>Hostel</th><th>Bed</th><th>Floor</th><th>Room type</th><th>Room fee (INR)</th></tr></thead>
+<tbody>{% for bed in page_obj %}<tr><td>{{ bed.room.hostel.name }}</td><td>{{ bed.bed_number }}</td><td>{{ bed.room.floor }}</td><td>{{ bed.room.room_type }}</td><td>₹{{ bed.room.fee_amount }}</td></tr>{% empty %}<tr><td colspan="5">No available beds match these filters.</td></tr>{% endfor %}</tbody>
+</table></div>{% include 'includes/pagination.html' %}
+{% endblock %}

@@ -7,7 +7,9 @@
     <p>Signed in as {{ request.user.username }}.</p>
     <section aria-labelledby="warden-tools-heading">
       <h2 id="warden-tools-heading">Hostel operations</h2>
-      <p>Student, room and allocation tools will appear here as those modules become available.</p>
+      <p><a href="{% url 'hostel-list' %}">View hostels and rooms</a></p>
+      <p><a href="{% url 'available-beds' %}">Find available beds</a></p>
+      <p>Allocation tools will appear here as that module becomes available.</p>
     </section>
     <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Sign out</button></form>
   </main>

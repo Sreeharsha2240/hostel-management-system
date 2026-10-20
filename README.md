@@ -99,6 +99,30 @@ For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environm
 
 ## Team collaboration (HMS-03)
 
+### Hostels, rooms and beds (HMS-07)
+
+After `python manage.py migrate`, Admin users can add and edit hostels at
+`/hostels/`, create rooms from each hostel page and change bed status. Wardens
+can read hostel/room lists and search `/beds/available/`; Students cannot access
+these staff pages. Forms and JSON requests enforce the same permissions and
+validation. JSON clients send `Content-Type: application/json` for writes and
+`Accept: application/json` for reads, with a session and CSRF token.
+
+Room capacity is 1–4. Saving a room creates the required A–D beds atomically;
+repeated saves preserve existing bed IDs and statuses. Growing capacity adds
+only missing beds. Shrinking removes only excess Available beds and refuses
+beds that are occupied, under maintenance or protected by allocation history.
+Renaming a room updates bed labels without replacing the bed records. Room
+types follow the SRS Single/Double/Triple choices; capacity is configured
+separately, including the SRS allowance of four beds. Room fees are nonnegative
+INR amounts; allocation/payment behavior remains in Sprint 2.
+
+`/beds/available/?hostel=<id>&floor=0&room_type=Triple` supports combined filters
+and excludes Occupied and Maintenance beds. Lists use 25 records per page.
+Hostel records in Django admin are read-only; use application forms for audited
+changes. `python manage.py test hostels --noinput` tests validation, permissions,
+automatic beds, capacity changes, rollback and filtering.
+
 ### Session security and audit logging (HMS-05)
 
 Run `python manage.py migrate` after updating: the audit app adds its first table.
