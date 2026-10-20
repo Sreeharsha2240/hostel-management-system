@@ -4,12 +4,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponseForbidden
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 
 from audit.services import record_event
-from .forms import AccountCreationForm
+from .forms import AccountCreationForm, AccountUpdateForm
 from .models import User
 
 
@@ -99,6 +99,24 @@ def user_management(request):
         form = AccountCreationForm()
     users = User.objects.order_by('username')
     return render(request, 'accounts/user_management.html', {'form': form, 'users': users})
+
+
+@login_required
+@admin_role_required
+@require_http_methods(['GET', 'POST'])
+def update_user(request, user_id):
+    target = get_object_or_404(User, pk=user_id)
+    if request.method == 'POST':
+        form = AccountUpdateForm(request.POST, instance=target)
+        if form.is_valid():
+            if form.has_changed():
+                updated_user = form.save()
+                record_event('user_update', actor=request.user, record_type='user',
+                             record_id=updated_user.pk)
+            return redirect('user-management')
+    else:
+        form = AccountUpdateForm(instance=target)
+    return render(request, 'accounts/user_update.html', {'form': form, 'account': target})
 
 
 @login_required

@@ -35,3 +35,8 @@ class AuditEventTests(TestCase):
         second = record_event('logout')
         AuditEvent.objects.filter(pk=first.pk).update(timestamp=timezone.now() - timedelta(seconds=1))
         self.assertEqual(list(AuditEvent.objects.all()), [second, first])
+
+    def test_audit_events_cannot_be_deleted_from_admin(self):
+        from audit.admin import AuditEventAdmin
+
+        self.assertFalse(AuditEventAdmin.has_delete_permission(None, None))

@@ -26,3 +26,9 @@ class AccountCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class AccountUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'role')

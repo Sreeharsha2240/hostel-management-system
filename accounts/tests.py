@@ -121,3 +121,25 @@ class AuthenticationTests(TestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertEqual(User.objects.filter(username='student1').count(), 1)
+
+    def test_admin_can_update_account_and_audit_change(self):
+        admin_user = User.objects.create_user(username='admin-update', password='Validpass123', role=User.Role.ADMIN)
+        target = User.objects.create_user(username='target-user', password='Validpass123', role=User.Role.WARDEN)
+        self.client.force_login(admin_user)
+
+        response = self.client.post(reverse('user-update', args=[target.pk]), {
+            'first_name': 'Updated', 'last_name': 'User', 'email': 'updated@example.test',
+            'role': User.Role.STUDENT,
+        })
+
+        self.assertRedirects(response, reverse('user-management'))
+        target.refresh_from_db()
+        self.assertEqual(target.first_name, 'Updated')
+        self.assertEqual(target.role, User.Role.STUDENT)
+        event = AuditEvent.objects.get(action='user_update', record_id=str(target.pk))
+        self.assertEqual(event.actor, admin_user)
+
+    def test_non_admin_cannot_update_account(self):
+        target = User.objects.create_user(username='target-update', password='Validpass123', role=User.Role.WARDEN)
+        self.client.force_login(self.student)
+        self.assertEqual(self.client.get(reverse('user-update', args=[target.pk])).status_code, 403)

@@ -7,7 +7,8 @@
     <h2>Create account</h2>
     <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Create user</button></form>
     <h2>Existing accounts</h2>
-    <ul>{% for account in users %}<li>{{ account.username }} — {{ account.get_role_display }}{% if account.is_active %}
+    <ul>{% for account in users %}<li>{{ account.username }} — {{ account.get_role_display }}
+      <a href="{% url 'user-update' account.pk %}">Edit</a>{% if account.is_active %}
       <form method="post" action="{% url 'user-deactivate' account.pk %}" style="display:inline">{% csrf_token %}<button type="submit">Deactivate</button></form>
       {% else %}(inactive){% endif %}</li>{% empty %}<li>No accounts.</li>{% endfor %}</ul>
     <p><a href="{% url 'dashboard' %}">Back to dashboard</a></p>
