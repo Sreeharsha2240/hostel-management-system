@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Student dashboard · HMS</title></head>
+<body>
+  <main>
+    <h1>Student dashboard</h1>
+    <p>Signed in as {{ request.user.username }}.</p>
+    <section aria-labelledby="student-info-heading">
+      <h2 id="student-info-heading">Your hostel information</h2>
+      <p>Your accommodation details will appear here when they are available.</p>
+    </section>
+    <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Sign out</button></form>
+  </main>
+</body>
+</html>

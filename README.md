@@ -68,6 +68,15 @@ python manage.py runserver
 
 The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/. Run the tests with `python manage.py test`.
 
+### Authentication and role access (HMS-04)
+
+- Sign in at `/login/` with a username and password. Admin, Warden and Student accounts receive separate dashboards. Signing out uses a POST request and clears the session.
+- Admins manage accounts at `/manage/users/`: they can create accounts, assign roles and deactivate accounts. Warden and Student requests to account-management routes receive HTTP 403, including direct POST requests.
+- Passwords are stored with Django's password hasher and must have at least eight characters, including a letter and a digit. Usernames are unique.
+- Five consecutive failed logins lock the account for 15 minutes. The login form uses the same generic error for unknown usernames, incorrect passwords and locked accounts.
+- Sessions expire after 15 minutes of inactivity. For HTTPS, set `DJANGO_SESSION_COOKIE_SECURE=True` as described below.
+- Verify authentication behavior with `python manage.py test accounts.tests`. That suite includes a local test-client timing check requiring login and each role's dashboard to respond in under two seconds; production response times depend on the deployment environment.
+
 ### Database setup (MySQL)
 
 1. Install MySQL Server 8 (Windows: `winget install Oracle.MySQL`, then run MySQL Configurator from the Start menu; Ubuntu: `sudo apt install mysql-server`) and make sure the server is running on port 3306.

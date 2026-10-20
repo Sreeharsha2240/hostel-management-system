@@ -1,7 +1,8 @@
 from datetime import timedelta
+from time import perf_counter
 
 from django.conf import settings
-from django.test import TestCase, override_settings
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
@@ -27,6 +28,11 @@ class AuthenticationTests(TestCase):
         self.assertRedirects(self.client.get(reverse('dashboard')), f'{reverse("login")}?next={reverse("dashboard")}')
 
     def test_each_role_can_access_dashboard_and_dashboard_reflects_role(self):
+        expected_content = {
+            User.Role.ADMIN: 'Manage user accounts and roles',
+            User.Role.WARDEN: 'Hostel operations',
+            User.Role.STUDENT: 'Your hostel information',
+        }
         for role, label in ((User.Role.ADMIN, 'Admin'), (User.Role.WARDEN, 'Warden'),
                             (User.Role.STUDENT, 'Student')):
             with self.subTest(role=role):
@@ -34,7 +40,37 @@ class AuthenticationTests(TestCase):
                     username=f'{role}-dashboard', password='Validpass123', role=role,
                 )
                 self.client.force_login(account)
-                self.assertContains(self.client.get(reverse('dashboard')), label)
+                response = self.client.get(reverse('dashboard'))
+                self.assertContains(response, f'{label} dashboard')
+                self.assertContains(response, expected_content[role])
+                if role == User.Role.ADMIN:
+                    self.assertContains(response, reverse('user-management'))
+                else:
+                    self.assertNotContains(response, reverse('user-management'))
+
+    def test_login_and_role_dashboard_respond_within_two_seconds(self):
+        for role in User.Role.values:
+            account = self.student if role == User.Role.STUDENT else User.objects.create_user(
+                username=f'{role}-performance', password='Validpass123', role=role,
+            )
+            client = Client()
+            with self.subTest(role=role):
+                started = perf_counter()
+                login_response = client.post(
+                    reverse('login'), {'username': account.username, 'password': 'Validpass123'},
+                )
+                login_seconds = perf_counter() - started
+                self.assertRedirects(login_response, reverse('dashboard'))
+                self.assertLess(login_seconds, 2.0, f'{role} login took {login_seconds:.3f} seconds')
+
+                started = perf_counter()
+                dashboard_response = client.get(reverse('dashboard'))
+                dashboard_seconds = perf_counter() - started
+                self.assertEqual(dashboard_response.status_code, 200)
+                self.assertLess(
+                    dashboard_seconds, 2.0,
+                    f'{role} dashboard took {dashboard_seconds:.3f} seconds',
+                )
 
     def test_session_cookie_is_http_only_and_uses_fifteen_minute_rolling_expiry(self):
         response = self.client.post(reverse('login'), {'username': 'student1', 'password': 'Validpass123'})
@@ -91,8 +127,18 @@ class AuthenticationTests(TestCase):
         self.assertTrue(AuditEvent.objects.filter(action='user_deactivate', record_id=str(target.pk)).exists())
 
     def test_non_admin_cannot_manage_accounts(self):
-        self.client.force_login(self.student)
-        self.assertEqual(self.client.get(reverse('user-management')).status_code, 403)
+        for role in (User.Role.WARDEN, User.Role.STUDENT):
+            with self.subTest(role=role):
+                account = User.objects.create_user(
+                    username=f'{role}-no-admin', password='Validpass123', role=role,
+                )
+                self.client.force_login(account)
+                self.assertEqual(self.client.get(reverse('user-management')).status_code, 403)
+                self.assertEqual(self.client.post(reverse('user-management'), {
+                    'username': f'{role}-intruder',
+                    'password': 'Validpass123',
+                    'role': User.Role.ADMIN,
+                }).status_code, 403)
 
     def test_non_admin_cannot_read_audit_events(self):
         self.client.force_login(self.student)

@@ -69,7 +69,13 @@ def sign_out(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html', {'role': request.user.get_role_display()})
+    role_templates = {
+        User.Role.ADMIN: 'accounts/dashboard_admin.html',
+        User.Role.WARDEN: 'accounts/dashboard_warden.html',
+        User.Role.STUDENT: 'accounts/dashboard_student.html',
+    }
+    template = role_templates.get(request.user.role, 'accounts/dashboard_student.html')
+    return render(request, template, {'role': request.user.get_role_display()})
 
 
 def admin_role_required(view):
