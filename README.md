@@ -68,6 +68,15 @@ python manage.py runserver
 
 The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/. Run the tests with `python manage.py test`.
 
+### Authentication and role access (HMS-04)
+
+- Sign in at `/login/` with a username and password. Admin, Warden and Student accounts receive separate dashboards. Signing out uses a POST request and clears the session.
+- Admins manage accounts at `/manage/users/`: they can create accounts, assign roles and deactivate accounts. Warden and Student requests to account-management routes receive HTTP 403, including direct POST requests.
+- Passwords are stored with Django's password hasher and must have at least eight characters, including a letter and a digit. Usernames are unique.
+- Five consecutive failed logins lock the account for 15 minutes. The login form uses the same generic error for unknown usernames, incorrect passwords and locked accounts.
+- Sessions expire after 15 minutes of inactivity. For HTTPS, set `DJANGO_SESSION_COOKIE_SECURE=True` as described below.
+- Verify authentication behavior with `python manage.py test accounts.tests`. That suite includes a local test-client timing check requiring login and each role's dashboard to respond in under two seconds; production response times depend on the deployment environment.
+
 ### Database setup (MySQL)
 
 1. Install MySQL Server 8 (Windows: `winget install Oracle.MySQL`, then run MySQL Configurator from the Start menu; Ubuntu: `sudo apt install mysql-server`) and make sure the server is running on port 3306.
@@ -86,3 +95,20 @@ The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1
 4. Run `python manage.py migrate` to create the tables. `python manage.py showmigrations` lists what has been applied.
 
 **Working with migrations.** After changing a model, run `python manage.py makemigrations <app>` and commit the generated file in `<app>/migrations/` together with the model change. Never edit or delete a migration that is already on `main`; add a new one instead.
+For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environment; leave it `False` for the documented local HTTP development server.
+
+## Team collaboration (HMS-03)
+
+### Branches and commits
+
+- Start from the latest `main` and create one branch per issue: `feature/HMS-<number>-short-description` for features or `fix/HMS-<number>-short-description` for fixes (for example, `feature/HMS-04-role-login`).
+- Keep commits focused and use `HMS-<number>: imperative summary` (for example, `HMS-04: Add role-aware login`).
+- Do not commit secrets, local databases, generated files, or unrelated changes.
+
+### Pull requests and reviews
+
+- Open a pull request into `main`, link the issue, and describe the change, acceptance criteria covered, and checks run (or why a check could not be run).
+- Request at least one review from a teammate. The author must not approve their own pull request.
+- Reviewers check the changed code, issue acceptance criteria, security implications, and relevant tests/checks. Request changes for defects; approve only after they are addressed.
+- Merge only after the required review and checks pass. Use the repository's configured merge method and delete the feature branch after merging.
+

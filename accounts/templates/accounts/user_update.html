@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Edit account · HMS</title></head>
+<body>
+  <main>
+    <h1>Edit account: {{ account.username }}</h1>
+    <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Save changes</button></form>
+    <p><a href="{% url 'user-management' %}">Cancel</a></p>
+  </main>
+</body>
+</html>
