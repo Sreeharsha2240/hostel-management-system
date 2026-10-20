@@ -13,7 +13,7 @@ changing issue assignees, story points, sprint assignments or product ownership.
 | [#18](https://github.com/Sreeharsha2240/hostel-management-system/pull/18) | #5 session protection and retained audit events | Sreeharsha | #17 |
 | [#19](https://github.com/Sreeharsha2240/hostel-management-system/pull/19) | #7 hostel, room and bed management | Vaishnavi | #18 |
 | [#20](https://github.com/Sreeharsha2240/hostel-management-system/pull/20) | #6 student records and allocation read checks | Vaishnavi | #19 |
-| Tests/CI draft | #10 repeatable checks, integration tests and evidence | Vaishnavi | #20 |
+| [#21](https://github.com/Sreeharsha2240/hostel-management-system/pull/21) | #10 repeatable checks, integration tests and evidence | Vaishnavi | #20 |
 
 The feature PRs are drafts for review. Each targets its dependency branch so its
 diff contains only that issue's work. After the base is merged, retarget the
@@ -73,6 +73,10 @@ activities; no such results or recording are claimed here.
 A duplicate active Codex task was stopped after it was found editing this same
 repository. Its 29 unfinished files were saved outside Git in
 `../.codex-work/preserved-20261020-235340.zip`; the reviewed audit foundation was
-then continued in an isolated checkout. The original work is retained rather
-than discarded. See the final local Git stash for the original checkout snapshot
-when it is transferred to the reviewed branch.
+then continued in an isolated checkout. The same 29-file snapshot is also
+retained in the local Git stash, labelled
+`preserved duplicate session before reviewed Sprint 1 checkout (2026-10-21)`
+(stash commit `731d178bb3e5e870b65fe6a3fd76f3ce1e4556cb`). The original
+checkout is now on the combined reviewed branch. Its development database was
+backed up under `../.codex-work/database-backups/` before applying the pending
+migrations. These private backups are outside the published repository.
