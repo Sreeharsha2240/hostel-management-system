@@ -28,7 +28,7 @@ def sign_in(request):
         user = User.objects.filter(username__iexact=username, is_active=True).first()
         if user and user.is_locked():
             error = 'Invalid username or password'
-            record_event('login_failure', record_type='authentication')
+            record_event('login_failure', actor=user, record_type='user', record_id=user.pk)
         else:
             authenticated = authenticate(request, username=username, password=password)
             if authenticated:
