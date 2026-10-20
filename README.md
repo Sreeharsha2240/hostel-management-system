@@ -112,4 +112,3 @@ For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environm
 - Reviewers check the changed code, issue acceptance criteria, security implications, and relevant tests/checks. Request changes for defects; approve only after they are addressed.
 - Merge only after the required review and checks pass. Use the repository's configured merge method and delete the feature branch after merging.
 
-\r\n
