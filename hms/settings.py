@@ -101,10 +101,30 @@ WSGI_APPLICATION = 'hms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# MySQL 8 (SRS 2.5). Credentials come from the environment, never from code.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DB_NAME', 'hms'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST', 'localhost'),
+        'PORT': env('DB_PORT', '3306'),
+        # Store datetimes in India time (keep equal to TIME_ZONE below). With
+        # UTC storage, Django's __date/__month lookups need MySQL's time zone
+        # tables, which new installs lack, and silently match nothing.
+        # India has no daylight saving, so local storage is unambiguous.
+        'TIME_ZONE': 'Asia/Kolkata',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            # MySQL 8's default modes, set explicitly so every machine rejects
+            # invalid, truncated and zero-date values the same way.
+            'init_command': (
+                "SET sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,"
+                "NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,"
+                "NO_ENGINE_SUBSTITUTION'"
+            ),
+        },
     }
 }
 
