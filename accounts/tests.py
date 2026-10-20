@@ -6,7 +6,6 @@ from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
-from audit.models import AuditEvent
 from .models import User
 
 
@@ -21,7 +20,6 @@ class AuthenticationTests(TestCase):
         dashboard = self.client.get(reverse('dashboard'))
         self.assertEqual(dashboard.status_code, 200)
         self.assertContains(dashboard, 'Student')
-        self.assertTrue(AuditEvent.objects.filter(action='login_success', actor=self.student).exists())
         session_key = self.client.session.session_key
         self.client.post(reverse('logout'))
         self.assertNotEqual(self.client.session.session_key, session_key)
@@ -89,19 +87,12 @@ class AuthenticationTests(TestCase):
         self.assertIsNotNone(self.student.locked_until)
         self.assertGreater(self.student.locked_until, timezone.now())
         self.assertEqual(self.student.failed_attempts, 0)
-        self.assertEqual(AuditEvent.objects.filter(action='login_failure').count(), 5)
-        self.assertTrue(AuditEvent.objects.filter(
-            action='login_failure', actor=self.student, record_id=str(self.student.pk),
-        ).exists())
 
-    def test_locked_account_keeps_generic_error_and_records_affected_user(self):
+    def test_locked_account_keeps_generic_error(self):
         self.student.locked_until = timezone.now() + timedelta(minutes=15)
         self.student.save(update_fields=['locked_until'])
         response = self.client.post(reverse('login'), {'username': 'student1', 'password': 'wrong'})
         self.assertContains(response, 'Invalid username or password')
-        event = AuditEvent.objects.get(action='login_failure')
-        self.assertEqual(event.actor, self.student)
-        self.assertEqual(event.record_id, str(self.student.pk))
 
     def test_expired_session_requires_login(self):
         self.client.force_login(self.student)
@@ -123,8 +114,6 @@ class AuthenticationTests(TestCase):
         self.client.post(reverse('user-deactivate', args=[target.pk]))
         target.refresh_from_db()
         self.assertFalse(target.is_active)
-        self.assertTrue(AuditEvent.objects.filter(action='user_create', record_id=str(target.pk)).exists())
-        self.assertTrue(AuditEvent.objects.filter(action='user_deactivate', record_id=str(target.pk)).exists())
 
     def test_non_admin_cannot_manage_accounts(self):
         for role in (User.Role.WARDEN, User.Role.STUDENT):
@@ -139,16 +128,6 @@ class AuthenticationTests(TestCase):
                     'password': 'Validpass123',
                     'role': User.Role.ADMIN,
                 }).status_code, 403)
-
-    def test_non_admin_cannot_read_audit_events(self):
-        self.client.force_login(self.student)
-        self.assertEqual(self.client.get(reverse('audit-events')).status_code, 403)
-
-    def test_anonymous_user_cannot_read_audit_events(self):
-        self.assertRedirects(
-            self.client.get(reverse('audit-events')),
-            f'{reverse("login")}?next={reverse("audit-events")}',
-        )
 
     def test_password_policy_rejects_password_without_letter_or_digit(self):
         admin_user = User.objects.create_user(username='admin2', password='Validpass123', role=User.Role.ADMIN)
@@ -168,7 +147,7 @@ class AuthenticationTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(User.objects.filter(username='student1').count(), 1)
 
-    def test_admin_can_update_account_and_audit_change(self):
+    def test_admin_can_update_account(self):
         admin_user = User.objects.create_user(username='admin-update', password='Validpass123', role=User.Role.ADMIN)
         target = User.objects.create_user(username='target-user', password='Validpass123', role=User.Role.WARDEN)
         self.client.force_login(admin_user)
@@ -182,8 +161,6 @@ class AuthenticationTests(TestCase):
         target.refresh_from_db()
         self.assertEqual(target.first_name, 'Updated')
         self.assertEqual(target.role, User.Role.STUDENT)
-        event = AuditEvent.objects.get(action='user_update', record_id=str(target.pk))
-        self.assertEqual(event.actor, admin_user)
 
     def test_non_admin_cannot_update_account(self):
         target = User.objects.create_user(username='target-update', password='Validpass123', role=User.Role.WARDEN)

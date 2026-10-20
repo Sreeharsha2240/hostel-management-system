@@ -112,6 +112,4 @@ For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environm
 - Reviewers check the changed code, issue acceptance criteria, security implications, and relevant tests/checks. Request changes for defects; approve only after they are addressed.
 - Merge only after the required review and checks pass. Use the repository's configured merge method and delete the feature branch after merging.
 
-### Audit events (HMS-05)
-
-Domain actions should call `audit.services.record_event(action, actor=user, record_type=..., record_id=...)` after a successful change. Use action names such as `allocation_create`, `allocation_release`, and `payment_record`. The audit event stores actor, action, record reference, and timestamp; do not pass passwords, session identifiers, or personal data. Events are append-only in the application and cannot be deleted through Django admin. Retain each event for at least 365 days; do not remove events before one year. There is no automatic purge, so events remain indefinitely until a separate, authorized retention process is established.
+\r\n

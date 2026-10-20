@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 
-from audit.services import record_event
 from .forms import AccountCreationForm, AccountUpdateForm
 from .models import User
 
@@ -28,7 +27,6 @@ def sign_in(request):
         user = User.objects.filter(username__iexact=username, is_active=True).first()
         if user and user.is_locked():
             error = 'Invalid username or password'
-            record_event('login_failure', actor=user, record_type='user', record_id=user.pk)
         else:
             authenticated = authenticate(request, username=username, password=password)
             if authenticated:
@@ -41,7 +39,6 @@ def sign_in(request):
                         locked_user.locked_until = None
                         locked_user.save(update_fields=['failed_attempts', 'locked_until'])
                         login(request, locked_user)
-                        record_event('login_success', actor=locked_user, record_type='user', record_id=locked_user.pk)
                         return redirect('dashboard')
             else:
                 if user:
@@ -52,8 +49,6 @@ def sign_in(request):
                             locked_user.locked_until = timezone.now() + LOCKOUT_DURATION
                             locked_user.failed_attempts = 0
                         locked_user.save(update_fields=['failed_attempts', 'locked_until'])
-                record_event('login_failure', actor=user, record_type='user' if user else 'authentication',
-                             record_id=user.pk if user else '')
                 error = 'Invalid username or password'
     return render(request, 'accounts/login.html', {'error': error})
 
@@ -61,8 +56,6 @@ def sign_in(request):
 @require_http_methods(['POST'])
 @login_required
 def sign_out(request):
-    actor = request.user
-    record_event('logout', actor=actor, record_type='user', record_id=actor.pk)
     logout(request)  # Django flushes the session and invalidates its key.
     return redirect('login')
 
@@ -98,8 +91,7 @@ def user_management(request):
     if request.method == 'POST':
         form = AccountCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            record_event('user_create', actor=request.user, record_type='user', record_id=user.pk)
+            form.save()
             return redirect('user-management')
     else:
         form = AccountCreationForm()
@@ -116,9 +108,7 @@ def update_user(request, user_id):
         form = AccountUpdateForm(request.POST, instance=target)
         if form.is_valid():
             if form.has_changed():
-                updated_user = form.save()
-                record_event('user_update', actor=request.user, record_type='user',
-                             record_id=updated_user.pk)
+                form.save()
             return redirect('user-management')
     else:
         form = AccountUpdateForm(instance=target)
@@ -135,5 +125,4 @@ def deactivate_user(request, user_id):
     if target.is_active:
         target.is_active = False
         target.save(update_fields=['is_active'])
-        record_event('user_deactivate', actor=request.user, record_type='user', record_id=target.pk)
     return redirect('user-management')
