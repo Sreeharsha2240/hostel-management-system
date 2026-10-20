@@ -15,6 +15,7 @@
     <nav aria-label="Main navigation">
       <a href="{% url 'dashboard' %}">Dashboard</a>
       {% if request.user.role == 'admin' or request.user.role == 'warden' %}
+      <a href="{% url 'student-list' %}">Students</a>
       <a href="{% url 'hostel-list' %}">Hostels</a>
       <a href="{% url 'available-beds' %}">Available beds</a>
       {% endif %}

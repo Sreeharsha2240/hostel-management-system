@@ -99,6 +99,37 @@ For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environm
 
 ## Team collaboration (HMS-03)
 
+### Student records (HMS-06)
+
+Admin and Warden users can register/search students at `/students/`, view each
+student, update contact/course/year/guardian fields and deactivate records.
+Student users cannot access these staff routes. Student IDs are canonical
+uppercase, exactly 13 alphanumeric characters, unique and immutable. Duplicate
+IDs produce `Student ID already registered`. Dates of birth accept DD-MM-YYYY
+or ISO dates; displayed dates use DD-MM-YYYY. Mobile numbers require ten digits,
+year is 1–5, and field lengths follow SRS Appendix B. Records are retained when
+deactivated; permanent deletion is blocked.
+
+`GET /students/?q=<id-or-partial-name>&hostel=<hostel-id>` supports search and
+25-row pagination. `PATCH /students/<id>/` accepts partial updates to the allowed
+fields; attempts to change Student ID return HTTP 422. Creation, updates and
+deactivation are audited atomically. Django admin exposes records read-only.
+
+The read adapter in `students/allocation_access.py` uses the SAD contract
+`allocations.Allocation(student, bed, vacated_on)`. It filters by the student's
+current hostel and refuses deactivation while an active allocation exists,
+including the bed in the error. Before HMS-08 supplies that model there are no
+allocation records, so hostel searches have no matches. HMS-08 must acquire the
+Student row lock before allocation to serialize it with deactivation. Tests
+exercise this read contract using a temporary MySQL table, not a Sprint 2
+allocation implementation; integration must be repeated against the actual
+Allocation model when it arrives.
+
+`python manage.py test students --noinput` covers validation, authorization,
+duplicate/immutable IDs, search, soft deletion, audit rollback and the allocation
+read contract. It also checks paginated searches over 5,000 dummy student
+records against the two-second target; this is not the 50-user load test.
+
 ### Hostels, rooms and beds (HMS-07)
 
 After `python manage.py migrate`, Admin users can add and edit hostels at

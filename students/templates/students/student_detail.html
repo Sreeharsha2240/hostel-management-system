@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ student.name }}{% endblock %}
+{% block content %}
+<div class="page-heading"><div><h1>{{ student.name }}</h1><span class="muted">{{ student.student_id }}</span></div><a class="button" href="{% url 'student-update' student.pk %}">Update contact and course</a></div>
+{% if error %}<div class="notice error" role="alert">{{ error }}</div>{% endif %}
+<section class="card"><h2>Student details</h2><dl>
+<dt>Status</dt><dd>{{ student.status }}</dd><dt>Date of birth</dt><dd>{{ student.dob|date:'d-m-Y' }}</dd>
+<dt>Gender</dt><dd>{{ student.gender }}</dd><dt>Course / year</dt><dd>{{ student.course }} / {{ student.year }}</dd>
+<dt>Mobile</dt><dd>{{ student.mobile }}</dd><dt>Email</dt><dd>{{ student.email }}</dd>
+<dt>Guardian</dt><dd>{{ student.guardian_name }} · {{ student.guardian_mobile }}</dd>
+<dt>Address</dt><dd>{{ student.address|default:'Not provided' }}</dd>
+<dt>Current bed</dt><dd>{% if allocation %}{{ allocation.bed }}{% else %}No active allocation{% endif %}</dd>
+</dl></section>
+{% if student.status == 'Active' %}<section class="card"><h2>Deactivate student</h2><p>The student record will be retained. A student with an active allocation cannot be deactivated.</p><form method="post" action="{% url 'student-deactivate' student.pk %}">{% csrf_token %}<label><input type="checkbox" required> Confirm deactivation of {{ student.student_id }}</label><p><button class="danger" type="submit">Deactivate student</button></p></form></section>{% endif %}
+<p><a href="{% url 'student-list' %}">All students</a></p>
+{% endblock %}

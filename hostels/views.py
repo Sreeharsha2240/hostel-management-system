@@ -11,7 +11,8 @@ from accounts.decorators import roles_required
 from accounts.models import User
 from audit.models import AuditEvent
 from audit.services import record_event
-from hms.http import add_validation_errors, form_error, request_data, wants_json
+from hms.forms import bind_model_form as bind_form
+from hms.http import add_validation_errors, form_error, wants_json
 
 from .forms import AvailableBedFilterForm, BedStatusForm, HostelForm, RoomForm
 from .models import Bed, Hostel, Room
@@ -19,19 +20,6 @@ from .services import save_room_with_audit
 
 
 STAFF_ROLES = (User.Role.ADMIN, User.Role.WARDEN)
-
-
-def bind_form(request, form_class, **kwargs):
-    error = None
-    try:
-        data = request_data(request) if request.method != 'GET' else None
-    except ValidationError as exception:
-        data, error = {}, exception
-    form = form_class(data, **kwargs)
-    if error:
-        form.is_valid()
-        form.add_error(None, error)
-    return form
 
 
 def invalid_form(request, form, **context):

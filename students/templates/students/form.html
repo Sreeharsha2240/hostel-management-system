@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ title }}</h1><form method="post" class="card">{% csrf_token %}
+<div class="form-grid">{% include 'includes/form.html' %}</div><button type="submit">Save student</button> <a href="{% url 'student-list' %}">Cancel</a>
+</form>
+{% endblock %}
