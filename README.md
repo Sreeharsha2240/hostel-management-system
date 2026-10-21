@@ -99,6 +99,38 @@ For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environm
 
 ## Team collaboration (HMS-03)
 
+### Session security and audit logging (HMS-05)
+
+Run `python manage.py migrate` after updating: the audit app adds its first table.
+Admin users can read and filter events at `/audit/` (or request JSON using
+`Accept: application/json`). Wardens and Students receive HTTP 403. The Django
+admin also exposes a read-only audit list to Admin superusers.
+
+Both `/login/` and Django's `/admin/login/` use the same five-attempt, 15-minute
+lockout backend. Successful logins, failed attempts, logout and account changes
+write audit events. Events store the acting user when authenticated, action,
+affected record identifiers and timestamp; credentials, submitted usernames for
+unknown accounts, session tokens and request bodies are not stored. An attempted
+account is identified as the affected record for a failed login, not as an
+authenticated actor. Data changes and their audit entries share a transaction.
+
+Sessions use a rolling 15-minute expiry and HttpOnly cookies. Authenticated pages
+send `Cache-Control: no-store`. The `.env.example` explicitly allows local HTTP.
+For HTTPS deployment, set `DJANGO_DEBUG=False`,
+`DJANGO_SESSION_COOKIE_SECURE=True`, `DJANGO_CSRF_COOKIE_SECURE=True` and
+`DJANGO_SECURE_SSL_REDIRECT=True`, and configure TLS at the web server.
+
+Audit events cannot be edited or deleted through the application or its normal
+ORM operations. `python manage.py purge_audit_logs --dry-run` reports expired
+entries; omit `--dry-run` to remove only entries older than 366 days. The command
+rejects a shorter retention period. No cleanup is scheduled automatically.
+Future allocation, release and payment services must call
+`audit.services.record_event(...)` inside their transaction; those Sprint 2
+operations are not implemented by HMS-05.
+
+Run `python manage.py test audit accounts --noinput` for audit, session and
+lockout regression tests on the configured MySQL server.
+
 ### Branches and commits
 
 - Start from the latest `main` and create one branch per issue: `feature/HMS-<number>-short-description` for features or `fix/HMS-<number>-short-description` for fixes (for example, `feature/HMS-04-role-login`).

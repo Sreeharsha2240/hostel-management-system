@@ -28,4 +28,6 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if self.is_superuser and self.role != self.Role.ADMIN:
             self.role = self.Role.ADMIN
+            if kwargs.get('update_fields') is not None:
+                kwargs['update_fields'] = set(kwargs['update_fields']) | {'role'}
         super().save(*args, **kwargs)
