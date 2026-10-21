@@ -37,7 +37,7 @@ class DatabaseConfigurationTests(TestCase):
 
     def test_date_lookups_use_india_dates(self):
         # 20:00 UTC on 13 Oct is 01:30 IST on 14 Oct.
-        get_user_model().objects.create(
+        get_user_model().objects.create_user(
             username='late-signup',
             date_joined=datetime.datetime(
                 2026, 10, 13, 20, 0, tzinfo=datetime.timezone.utc),
