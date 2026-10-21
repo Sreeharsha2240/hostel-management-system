@@ -67,16 +67,3 @@ added by this Sprint 1 follow-up. TLS is configured at deployment and still
 requires deployment testing. Wider load, backup, browser/usability checks and
 the Sprint 1 one-minute outcome video remain with the planned team acceptance
 activities; no such results or recording are claimed here.
-
-## Preserved local work
-
-A duplicate active Codex task was stopped after it was found editing this same
-repository. Its 29 unfinished files were saved outside Git in
-`../.codex-work/preserved-20261020-235340.zip`; the reviewed audit foundation was
-then continued in an isolated checkout. The same 29-file snapshot is also
-retained in the local Git stash, labelled
-`preserved duplicate session before reviewed Sprint 1 checkout (2026-10-21)`
-(stash commit `731d178bb3e5e870b65fe6a3fd76f3ce1e4556cb`). The original
-checkout is now on the combined reviewed branch. Its development database was
-backed up under `../.codex-work/database-backups/` before applying the pending
-migrations. These private backups are outside the published repository.
