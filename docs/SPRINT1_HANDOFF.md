@@ -1,28 +1,29 @@
 # Sprint 1 review handoff
 
 The checked-in backlog assigns Sprint 1 to 19–23 October 2026. Devansh's #1 and
-#2 are merged. Sreeharsha also merged #3/#4 through PR #16. With Devansh's
-authorization, this work helps with the remaining Sprint 1 issues without
-changing issue assignees, story points, sprint assignments or product ownership.
+#2 are merged. Sreeharsha also merged #3/#4 through PR #16 and the authentication
+review follow-up through PR #17. This handoff covers the remaining Sprint 1
+implementations; issue assignments and product ownership remain unchanged.
 
 ## Review order
 
 | PR | Issue / change | Current owner | Review dependency |
 | --- | --- | --- | --- |
-| [#17](https://github.com/Sreeharsha2240/hostel-management-system/pull/17) | Review fixture convention and authentication startup syntax fix | Devansh, follow-up to #2/#4 | `main` |
-| [#18](https://github.com/Sreeharsha2240/hostel-management-system/pull/18) | #5 session protection and retained audit events | Sreeharsha | #17 |
+| [#17](https://github.com/Sreeharsha2240/hostel-management-system/pull/17) (merged) | Review fixture convention and authentication startup syntax fix | Devansh, follow-up to #2/#4 | `main` |
+| [#18](https://github.com/Sreeharsha2240/hostel-management-system/pull/18) | #5 session protection and retained audit events | Sreeharsha | `main` |
 | [#19](https://github.com/Sreeharsha2240/hostel-management-system/pull/19) | #7 hostel, room and bed management | Vaishnavi | #18 |
 | [#20](https://github.com/Sreeharsha2240/hostel-management-system/pull/20) | #6 student records and allocation read checks | Vaishnavi | #19 |
 | [#21](https://github.com/Sreeharsha2240/hostel-management-system/pull/21) | #10 repeatable checks, integration tests and evidence | Vaishnavi | #20 |
 
-The feature PRs are drafts for review. Each targets its dependency branch so its
-diff contains only that issue's work. After the base is merged, retarget the
-dependent PR to `main` and review its resulting diff. Student management uses
-the hostel models for its hostel filter, which explains the implementation
-order #7 before #6. No feature PR closes an issue automatically.
+PR #18 targets `main` for review after #17 merged. PRs #19–#21 remain drafts,
+each targeting its dependency branch so its diff contains only that issue's
+work. After the base is merged, retarget the dependent PR to `main` and review
+its resulting diff. Student management uses the hostel models for its hostel
+filter, which explains the implementation order #7 before #6. No feature PR
+closes an issue automatically.
 
 Part-2 requires the assigned team member to raise the submission PR and the repo
-owner to review/merge. These drafts are authored by Devansh as an implementation
+owner to review/merge. These implementation PRs are authored by Devansh as a
 handoff. The assigned owners should review/adopt the branches and raise their
 own final submission PRs under their accounts. Product ownership stays with
 Sreeharsha; acceptance and merging remain team responsibilities.
@@ -30,9 +31,21 @@ Sreeharsha; acceptance and merging remain team responsibilities.
 ## Review findings addressed
 
 Sreeharsha withdrew the missing-password objection on PR #15, approved it and
-merged it. PR #17 still changes that fixture to `create_user()` as originally
-requested. It also fixes a separate literal `\r\n` token in the merged
-`accounts/admin.py` which prevents Django startup.
+merged it. The merged PR #17 uses `create_user()` for that fixture as originally
+requested. It also removes a literal `\r\n` token from `accounts/admin.py`
+that prevented Django startup.
+
+Sreeharsha retracted the password-change audit and admin-route findings on #18
+after checking Django 5.2.18. The existing focused regression passes: Django's
+password-change handler calls the audited `log_change()` hook, and its route is
+`auth_user_password_change` with the custom User model. No password contents
+are recorded. The reviewer must update the remaining changes-requested review
+state; this handoff does not claim approval.
+
+The explicit room `bulk_update()` guard from #19 is included in #20 and #21.
+It rejects bulk changes to capacity, room number and hostel. Regression tests
+check that bed IDs, labels and statuses stay unchanged after rejected writes,
+while fee and floor bulk updates remain supported.
 
 The Sprint 1 follow-up closes the Django-admin lockout bypass by using one
 authentication backend, logs both login routes and account-management routes,

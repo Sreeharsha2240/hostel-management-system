@@ -151,8 +151,10 @@ class HostelModelTests(TestCase):
         with self.assertRaises(ValidationError):
             Room.objects.bulk_create([Room()])
         for field, value in (
-            ('capacity', 1), ('room_number', '202'),
-            ('hostel', self.other), ('hostel_id', self.other.pk),
+            ('capacity', 1),
+            ('room_number', '202'),
+            ('hostel', self.other),
+            ('hostel_id', self.other.pk),
         ):
             with self.subTest(field=field):
                 setattr(room, field, value)
@@ -173,7 +175,8 @@ class HostelModelTests(TestCase):
         room.floor = 1
         room.fee_amount = Decimal('6000.00')
         updated = Room.objects.filter(pk=room.pk).bulk_update(
-            [room], ['floor', 'fee_amount'],
+            [room],
+            ['floor', 'fee_amount'],
         )
         self.assertEqual(updated, 1)
         room.refresh_from_db()
