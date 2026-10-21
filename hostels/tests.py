@@ -1,3 +1,4 @@
+from decimal import Decimal
 from unittest.mock import patch
 
 from django.core.exceptions import ValidationError
@@ -144,10 +145,44 @@ class HostelModelTests(TestCase):
 
     def test_bulk_room_changes_that_bypass_bed_generation_are_rejected(self):
         room = self.room()
+        original_beds = list(room.beds.values_list('pk', 'bed_number', 'status'))
         with self.assertRaises(ValidationError):
             Room.objects.filter(pk=room.pk).update(capacity=1)
         with self.assertRaises(ValidationError):
             Room.objects.bulk_create([Room()])
+        for field, value in (
+            ('capacity', 1), ('room_number', '202'),
+            ('hostel', self.other), ('hostel_id', self.other.pk),
+        ):
+            with self.subTest(field=field):
+                setattr(room, field, value)
+                with self.assertRaises(ValidationError):
+                    Room.objects.filter(pk=room.pk).bulk_update([room], [field])
+                room.refresh_from_db()
+                self.assertEqual(room.room_number, '101')
+                self.assertEqual(room.capacity, 3)
+                self.assertEqual(room.hostel_id, self.hostel.pk)
+                self.assertEqual(
+                    list(room.beds.values_list('pk', 'bed_number', 'status')),
+                    original_beds,
+                )
+
+    def test_bulk_room_fee_and_floor_updates_preserve_generated_beds(self):
+        room = self.room()
+        original_beds = list(room.beds.values_list('pk', 'bed_number', 'status'))
+        room.floor = 1
+        room.fee_amount = Decimal('6000.00')
+        updated = Room.objects.filter(pk=room.pk).bulk_update(
+            [room], ['floor', 'fee_amount'],
+        )
+        self.assertEqual(updated, 1)
+        room.refresh_from_db()
+        self.assertEqual(room.floor, 1)
+        self.assertEqual(room.fee_amount, Decimal('6000.00'))
+        self.assertEqual(
+            list(room.beds.values_list('pk', 'bed_number', 'status')),
+            original_beds,
+        )
 
     def test_bed_validation_and_hostel_type_change_protect_occupied_beds(self):
         room = self.room()

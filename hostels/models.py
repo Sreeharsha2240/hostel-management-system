@@ -53,6 +53,13 @@ class RoomQuerySet(models.QuerySet):
     def bulk_create(self, *args, **kwargs):
         raise ValidationError('Save rooms individually to generate their beds.')
 
+    def bulk_update(self, objs, fields, batch_size=None):
+        if {'capacity', 'room_number', 'hostel', 'hostel_id'} & set(fields):
+            raise ValidationError(
+                'Save rooms individually to keep their beds consistent.',
+            )
+        return super().bulk_update(objs, fields, batch_size=batch_size)
+
 
 class Room(models.Model):
     class Type(models.TextChoices):
