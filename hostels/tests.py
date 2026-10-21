@@ -133,6 +133,15 @@ class HostelModelTests(TestCase):
             Room.objects.filter(pk=room.pk).update(capacity=1)
         with self.assertRaises(ValidationError):
             Room.objects.bulk_create([Room()])
+        for field, value in (('capacity', 1), ('room_number', '202')):
+            with self.subTest(field=field):
+                setattr(room, field, value)
+                with self.assertRaises(ValidationError):
+                    Room.objects.filter(pk=room.pk).bulk_update([room], [field])
+                room.refresh_from_db()
+                self.assertEqual(room.room_number, '101')
+                self.assertEqual(room.capacity, 3)
+                self.assertEqual(room.beds.count(), 3)
 
     def test_bed_validation_and_hostel_type_change_protect_occupied_beds(self):
         room = self.room()
