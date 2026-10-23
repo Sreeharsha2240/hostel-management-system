@@ -3,13 +3,139 @@ from datetime import date
 
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
-from django.test import TestCase
+from django.test import Client, TestCase
+from django.urls import reverse
+
+from accounts.models import User
 
 from allocations.models import Allocation
 from students.models import Student
 from .models import Bed, Hostel, Room
 
 class HostelModelTests(TestCase):
+    def setUp(self):
+        self.hostel = Hostel.objects.create(
+            name="Test Hostel",
+            hostel_type=Hostel.HostelType.BOYS,
+        )
+
+
+class HostelManagementViewTests(TestCase):
+    def setUp(self):
+        self.admin = User.objects.create_user(
+            username="hostel_admin", password="TestPassword123!", role=User.Role.ADMIN
+        )
+        self.warden = User.objects.create_user(
+            username="hostel_warden", password="TestPassword123!", role=User.Role.WARDEN
+        )
+        self.client = Client()
+        self.client.force_login(self.admin)
+        self.hostel = Hostel.objects.create(
+            name="Filtered Boys Hostel", hostel_type=Hostel.HostelType.BOYS
+        )
+        self.other_hostel = Hostel.objects.create(
+            name="Filtered Girls Hostel", hostel_type=Hostel.HostelType.GIRLS
+        )
+        self.room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="701",
+            floor=7,
+            room_type=Room.RoomType.DOUBLE,
+            capacity=3,
+        )
+        self.other_room = Room.objects.create(
+            hostel=self.other_hostel,
+            room_number="801",
+            floor=8,
+            room_type=Room.RoomType.SINGLE,
+            capacity=1,
+        )
+
+    def test_admin_can_create_hostel_and_room(self):
+        hostel_response = self.client.post(
+            reverse("hostel-list"),
+            {"name": "Admin Created Hostel", "hostel_type": Hostel.HostelType.BOYS},
+        )
+        self.assertRedirects(hostel_response, reverse("hostel-list"))
+        created_hostel = Hostel.objects.get(name="Admin Created Hostel")
+
+        room_response = self.client.post(
+            reverse("room-create"),
+            {
+                "hostel": created_hostel.pk,
+                "room_number": "901",
+                "floor": 9,
+                "room_type": Room.RoomType.SINGLE,
+                "capacity": 1,
+            },
+        )
+        self.assertRedirects(room_response, reverse("bed-list"))
+        self.assertTrue(Room.objects.filter(hostel=created_hostel, room_number="901").exists())
+
+    def test_only_admin_can_create_or_edit_hostels_and_rooms(self):
+        self.client.force_login(self.warden)
+        forbidden_requests = (
+            ("get", reverse("hostel-list")),
+            ("post", reverse("hostel-list"), {"name": "Forbidden", "hostel_type": "Boys"}),
+            ("get", reverse("hostel-update", args=[self.hostel.pk])),
+            ("get", reverse("room-create")),
+            ("post", reverse("room-create"), {
+                "hostel": self.hostel.pk,
+                "room_number": "702",
+                "floor": 7,
+                "room_type": "Single",
+                "capacity": 1,
+            }),
+            ("get", reverse("room-update", args=[self.room.pk])),
+        )
+
+        for request in forbidden_requests:
+            method, url, *data = request
+            response = getattr(self.client, method)(url, *(data or [{}]))
+            self.assertEqual(response.status_code, 403, f"{method.upper()} {url}")
+
+        self.assertFalse(Hostel.objects.filter(name="Forbidden").exists())
+        self.assertFalse(Room.objects.filter(room_number="702").exists())
+
+    def test_available_bed_filter_combines_hostel_floor_and_room_type(self):
+        available = self.room.beds.get(label="701-A")
+        occupied = self.room.beds.get(label="701-B")
+        maintenance = self.room.beds.get(label="701-C")
+        occupied.status = Bed.BedStatus.OCCUPIED
+        occupied.save(update_fields=["status"])
+        maintenance.status = Bed.BedStatus.MAINTENANCE
+        maintenance.save(update_fields=["status"])
+
+        response = self.client.get(
+            reverse("bed-list"),
+            {
+                "hostel": self.hostel.pk,
+                "floor": 7,
+                "room_type": Room.RoomType.DOUBLE,
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(list(response.context["beds"]), [available])
+        self.assertNotIn(self.other_room.beds.get(), response.context["beds"])
+
+    def test_available_bed_results_exclude_occupied_and_maintenance_beds(self):
+        occupied = self.room.beds.get(label="701-A")
+        maintenance = self.room.beds.get(label="701-B")
+        occupied.status = Bed.BedStatus.OCCUPIED
+        occupied.save(update_fields=["status"])
+        maintenance.status = Bed.BedStatus.MAINTENANCE
+        maintenance.save(update_fields=["status"])
+
+        response = self.client.get(reverse("bed-list"))
+
+        self.assertEqual(response.status_code, 200)
+        bed_ids = set(response.context["beds"].values_list("pk", flat=True))
+        self.assertNotIn(occupied.pk, bed_ids)
+        self.assertNotIn(maintenance.pk, bed_ids)
+
+
+class HostelModelBehaviorTests(TestCase):
     def setUp(self):
         self.hostel = Hostel.objects.create(
             name="Test Hostel",

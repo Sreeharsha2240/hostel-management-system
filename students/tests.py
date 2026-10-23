@@ -1,5 +1,6 @@
 
 from datetime import date
+from time import perf_counter
 
 from django.core.exceptions import ValidationError
 from django.test import TestCase, Client
@@ -111,6 +112,139 @@ class StudentDeactivationViewTests(TestCase):
             capacity=2,
         )
         self.bed = self.room.beds.get(label="101-A")
+
+    def student_payload(self, **overrides):
+        payload = {
+            "student_id": "PES1234567890",
+            "name": "Test Student",
+            "date_of_birth": "2005-05-15",
+            "gender": Student.Gender.MALE,
+            "course": "Computer Science",
+            "year": "2",
+            "mobile": "9876543210",
+            "email": "student@example.com",
+            "guardian_name": "Test Guardian",
+            "guardian_mobile": "9876543211",
+            "address": "Bengaluru",
+            "status": Student.Status.ACTIVE,
+        }
+        payload.update(overrides)
+        return payload
+
+    def test_admin_can_register_student(self):
+        response = self.client.post(
+            reverse("student-create"),
+            self.student_payload(student_id="PES0000000001"),
+        )
+
+        self.assertRedirects(response, reverse("student-list"))
+        self.assertTrue(
+            Student.objects.filter(student_id="PES0000000001").exists()
+        )
+
+    def test_warden_can_register_student(self):
+        warden = User.objects.create_user(
+            username="student_warden",
+            password="TestPassword123!",
+            role=User.Role.WARDEN,
+        )
+        self.client.force_login(warden)
+
+        response = self.client.post(
+            reverse("student-create"), self.student_payload(student_id="PES0000000002")
+        )
+
+        self.assertRedirects(response, reverse("student-list"))
+        self.assertTrue(
+            Student.objects.filter(student_id="PES0000000002").exists()
+        )
+
+    def test_student_role_cannot_register_update_or_deactivate(self):
+        student_user = User.objects.create_user(
+            username="student_role",
+            password="TestPassword123!",
+            role=User.Role.STUDENT,
+        )
+        self.client.force_login(student_user)
+
+        for url, method in (
+            (reverse("student-list"), "get"),
+            (reverse("student-create"), "get"),
+            (reverse("student-update", args=[self.student.pk]), "get"),
+            (reverse("student-deactivate", args=[self.student.pk]), "post"),
+        ):
+            response = getattr(self.client, method)(url)
+            self.assertEqual(response.status_code, 403)
+
+    def test_admin_can_update_contact_course_and_year_but_not_student_id(self):
+        response = self.client.post(
+            reverse("student-update", args=[self.student.pk]),
+            self.student_payload(
+                student_id="PES0000000001",
+                mobile="9000000000",
+                course="Engineering",
+                year="3",
+            ),
+        )
+
+        self.assertRedirects(response, reverse("student-list"))
+        self.student.refresh_from_db()
+        self.assertEqual(self.student.student_id, "PES1234567890")
+        self.assertEqual(self.student.mobile, "9000000000")
+        self.assertEqual(self.student.course, "Engineering")
+        self.assertEqual(self.student.year, 3)
+
+    def test_duplicate_registration_shows_required_message(self):
+        response = self.client.post(
+            reverse("student-create"),
+            self.student_payload(student_id=self.student.student_id),
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Student ID already registered")
+        self.assertEqual(Student.objects.count(), 1)
+
+    def test_search_matches_student_id_partial_name_and_hostel(self):
+        response = self.client.get(reverse("student-list"), {"q": "PES1234567890"})
+        self.assertContains(response, self.student.student_id)
+
+        response = self.client.get(reverse("student-list"), {"q": "Test Stud"})
+        self.assertContains(response, self.student.student_id)
+
+        Allocation.objects.create(student=self.student, bed=self.bed)
+        response = self.client.get(
+            reverse("student-list"), {"q": "Deactivation Test Hostel"}
+        )
+        self.assertContains(response, self.student.student_id)
+
+    def test_student_search_handles_5000_records_within_two_seconds(self):
+        Student.objects.bulk_create(
+            [
+                Student(
+                    student_id=f"PES{index:010d}",
+                    name=f"Synthetic Student {index:05d}",
+                    date_of_birth=date(2005, 5, 15),
+                    gender=Student.Gender.MALE,
+                    course="Computer Science",
+                    year=2,
+                    mobile="9876543210",
+                    email=f"student{index}@example.test",
+                    guardian_name="Synthetic Guardian",
+                    guardian_mobile="9876543211",
+                )
+                for index in range(5000)
+            ]
+        )
+
+        started = perf_counter()
+        response = self.client.get(
+            reverse("student-list"), {"q": "PES0000004999"}
+        )
+        elapsed = perf_counter() - started
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "PES0000004999")
+        self.assertLess(elapsed, 2.0, f"5000-record search took {elapsed:.3f}s")
 
     def test_unallocated_student_can_be_deactivated(self):
         response = self.client.post(

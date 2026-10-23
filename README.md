@@ -66,7 +66,9 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/. Run the tests with `python manage.py test`.
+The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/. Run the tests with `python manage.py test`. The Sprint 1 test scope and saved CI evidence are described in [`docs/SPRINT1_TESTING.md`](docs/SPRINT1_TESTING.md).
+
+The allocation interface and model currently present in the repository are an early integration scaffold for Sprint 2 issue #8. They do not complete allocation acceptance criteria such as gender-to-hostel validation, transfers and allocation history; issue #8 remains open and is not claimed as a Sprint 1 deliverable.
 
 ### Authentication and role access (HMS-04)
 

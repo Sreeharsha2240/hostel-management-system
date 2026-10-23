@@ -68,4 +68,15 @@ jobs:
         run: python manage.py check
 
       - name: Run all tests
-        run: python manage.py test
+        run: |
+          set -o pipefail
+          python manage.py test 2>&1 | tee test-results.txt
+
+      - name: Save test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sprint1-test-evidence-${{ github.sha }}
+          path: test-results.txt
+          if-no-files-found: warn
+          retention-days: 30
