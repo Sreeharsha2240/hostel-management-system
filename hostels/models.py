@@ -22,7 +22,29 @@ class Hostel(models.Model):
         return self.name
 
 
+class RoomQuerySet(models.QuerySet):
+    SYNC_FIELDS = {"capacity", "room_number"}
+
+    def update(self, **kwargs):
+        if self.SYNC_FIELDS.intersection(kwargs):
+            raise ValueError(
+                "Use Room.save() to change capacity or room_number "
+                "so beds can be synchronized."
+            )
+        return super().update(**kwargs)
+
+    def bulk_update(self, objs, fields, batch_size=None):
+        if self.SYNC_FIELDS.intersection(fields):
+            raise ValueError(
+                "Use Room.save() to change capacity or room_number "
+                "so beds can be synchronized."
+            )
+        return super().bulk_update(objs, fields, batch_size=batch_size)
+
 class Room(models.Model):
+
+    objects = RoomQuerySet.as_manager()
+    
     class RoomType(models.TextChoices):
         SINGLE = "Single", "Single"
         DOUBLE = "Double", "Double"
@@ -135,6 +157,8 @@ class Room(models.Model):
 
     def __str__(self):
         return f"{self.hostel.name} - Room {self.room_number}"
+    
+    
 
 
 class Bed(models.Model):

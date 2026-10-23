@@ -9,7 +9,6 @@ from allocations.models import Allocation
 from students.models import Student
 from .models import Bed, Hostel, Room
 
-
 class HostelModelTests(TestCase):
     def setUp(self):
         self.hostel = Hostel.objects.create(
@@ -186,3 +185,72 @@ class HostelModelTests(TestCase):
         room.refresh_from_db()
         self.assertEqual(room.capacity, 3)
         self.assertEqual(room.beds.count(), 3)
+
+    
+    def test_queryset_update_rejects_capacity_and_room_number(self):
+        room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="501",
+            floor=5,
+            room_type=Room.RoomType.TRIPLE,
+            capacity=3,
+        )
+
+        room.beds.get(label="501-B").status = Bed.BedStatus.MAINTENANCE
+        room.beds.get(label="501-B").save()
+
+        before = list(
+            room.beds.order_by("label").values_list("label", "status")
+        )
+
+        with self.assertRaises(ValueError):
+            Room.objects.filter(pk=room.pk).update(capacity=2)
+
+        with self.assertRaises(ValueError):
+            Room.objects.filter(pk=room.pk).update(room_number="502")
+
+        room.refresh_from_db()
+        after = list(
+            room.beds.order_by("label").values_list("label", "status")
+        )
+
+        self.assertEqual(room.capacity, 3)
+        self.assertEqual(room.room_number, "501")
+        self.assertEqual(len(after), 3)
+        self.assertEqual(after, before)
+
+    def test_bulk_update_rejects_capacity_and_room_number(self):
+        room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="601",
+            floor=6,
+            room_type=Room.RoomType.TRIPLE,
+            capacity=3,
+        )
+
+        room.beds.get(label="601-B").status = Bed.BedStatus.MAINTENANCE
+        room.beds.get(label="601-B").save()
+
+        before = list(
+            room.beds.order_by("label").values_list("label", "status")
+        )
+
+        room.capacity = 2
+        with self.assertRaises(ValueError):
+            Room.objects.bulk_update([room], ["capacity"])
+
+        room.refresh_from_db()
+        room.room_number = "602"
+        with self.assertRaises(ValueError):
+            Room.objects.bulk_update([room], ["room_number"])
+
+        room.refresh_from_db()
+        after = list(
+            room.beds.order_by("label").values_list("label", "status")
+        )
+
+        self.assertEqual(room.capacity, 3)
+        self.assertEqual(room.room_number, "601")
+        self.assertEqual(len(after), 3)
+        self.assertEqual(after, before)
+
