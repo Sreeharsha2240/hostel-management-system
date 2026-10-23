@@ -12,6 +12,8 @@ from allocations.models import Allocation
 from students.models import Student
 from .models import Bed, Hostel, Room
 
+
+
 class HostelModelTests(TestCase):
     def setUp(self):
         self.hostel = Hostel.objects.create(
