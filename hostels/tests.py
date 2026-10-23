@@ -7,12 +7,10 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from accounts.models import User
-
 from allocations.models import Allocation
 from students.models import Student
+
 from .models import Bed, Hostel, Room
-
-
 
 class HostelModelTests(TestCase):
     def setUp(self):
@@ -382,3 +380,210 @@ class HostelModelBehaviorTests(TestCase):
         self.assertEqual(len(after), 3)
         self.assertEqual(after, before)
 
+class HostelManagementPermissionTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+        self.admin = User.objects.create_user(
+            username="hostel_admin",
+            password="TestPassword123!",
+            role=User.Role.ADMIN,
+        )
+        self.warden = User.objects.create_user(
+            username="hostel_warden",
+            password="TestPassword123!",
+            role=User.Role.WARDEN,
+        )
+        self.student_user = User.objects.create_user(
+            username="hostel_student",
+            password="TestPassword123!",
+            role=User.Role.STUDENT,
+        )
+
+        self.hostel = Hostel.objects.create(
+            name="Test Boys Hostel",
+            hostel_type=Hostel.HostelType.BOYS,
+        )
+
+    def test_admin_can_access_hostel_management(self):
+        self.client.force_login(self.admin)
+
+        response = self.client.get(reverse("hostel-list"))
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_warden_cannot_manage_hostels(self):
+        self.client.force_login(self.warden)
+
+        response = self.client.get(reverse("hostel-list"))
+
+        self.assertEqual(response.status_code, 403)
+
+    def test_student_cannot_manage_hostels(self):
+        self.client.force_login(self.student_user)
+
+        response = self.client.get(reverse("hostel-list"))
+
+        self.assertEqual(response.status_code, 403)
+
+    def test_warden_cannot_add_room(self):
+        self.client.force_login(self.warden)
+
+        response = self.client.get(reverse("room-create"))
+
+        self.assertEqual(response.status_code, 403)
+
+
+    def test_warden_cannot_create_hostel_with_post(self):
+        self.client.force_login(self.warden)
+
+        response = self.client.post(
+            reverse("hostel-list"),
+            {
+                "name": "Unauthorized Hostel",
+                "hostel_type": Hostel.HostelType.BOYS,
+            },
+        )
+
+        self.assertEqual(response.status_code, 403)
+        self.assertFalse(
+            Hostel.objects.filter(name="Unauthorized Hostel").exists()
+        )
+
+    def test_warden_cannot_create_room_with_post(self):
+        self.client.force_login(self.warden)
+
+        response = self.client.post(
+            reverse("room-create"),
+            {
+                "hostel": self.hostel.pk,
+                "room_number": "999",
+                "floor": 1,
+                "room_type": Room.RoomType.SINGLE,
+                "capacity": 1,
+            },
+        )
+
+        self.assertEqual(response.status_code, 403)
+        self.assertFalse(
+            Room.objects.filter(
+                hostel=self.hostel,
+                room_number="999",
+            ).exists()
+        )
+
+    def test_anonymous_user_is_redirected_to_login(self):
+        response = self.client.get(reverse("hostel-list"))
+
+        self.assertEqual(response.status_code, 302)
+
+
+class BedFilteringViewTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+        self.user = User.objects.create_user(
+            username="bed_filter_user",
+            password="TestPassword123!",
+            role=User.Role.STUDENT,
+        )
+        self.client.force_login(self.user)
+
+        self.hostel1 = Hostel.objects.create(
+            name="North Hostel",
+            hostel_type=Hostel.HostelType.BOYS,
+        )
+        self.hostel2 = Hostel.objects.create(
+            name="South Hostel",
+            hostel_type=Hostel.HostelType.BOYS,
+        )
+
+        self.room1 = Room.objects.create(
+            hostel=self.hostel1,
+            room_number="101",
+            floor=1,
+            room_type=Room.RoomType.DOUBLE,
+            capacity=2,
+        )
+        self.room2 = Room.objects.create(
+            hostel=self.hostel1,
+            room_number="201",
+            floor=2,
+            room_type=Room.RoomType.SINGLE,
+            capacity=1,
+        )
+        self.room3 = Room.objects.create(
+            hostel=self.hostel2,
+            room_number="101",
+            floor=1,
+            room_type=Room.RoomType.DOUBLE,
+            capacity=2,
+        )
+
+        self.available_bed = self.room1.beds.get(label="101-A")
+        self.occupied_bed = self.room1.beds.get(label="101-B")
+        self.maintenance_bed = self.room3.beds.get(label="101-A")
+
+        self.occupied_bed.status = Bed.BedStatus.OCCUPIED
+        self.occupied_bed.save()
+
+        self.maintenance_bed.status = Bed.BedStatus.MAINTENANCE
+        self.maintenance_bed.save()
+
+    def test_available_filter_excludes_occupied_and_maintenance_beds(self):
+        response = self.client.get(reverse("bed-list"))
+
+        beds = list(response.context["beds"])
+
+        self.assertIn(self.available_bed, beds)
+        self.assertNotIn(self.occupied_bed, beds)
+        self.assertNotIn(self.maintenance_bed, beds)
+
+    def test_filter_by_hostel(self):
+        response = self.client.get(
+            reverse("bed-list"),
+            {"hostel": self.hostel1.pk, "status": ""},
+        )
+
+        beds = list(response.context["beds"])
+
+        self.assertTrue(beds)
+        self.assertTrue(
+            all(bed.room.hostel_id == self.hostel1.pk for bed in beds)
+        )
+
+    def test_filter_by_floor(self):
+        response = self.client.get(
+            reverse("bed-list"),
+            {"floor": "2", "status": ""},
+        )
+
+        beds = list(response.context["beds"])
+
+        self.assertEqual(len(beds), 1)
+        self.assertEqual(beds[0].room.floor, 2)
+
+    def test_filter_by_room_type(self):
+        response = self.client.get(
+            reverse("bed-list"),
+            {"room_type": Room.RoomType.SINGLE, "status": ""},
+        )
+
+        beds = list(response.context["beds"])
+
+        self.assertEqual(len(beds), 1)
+        self.assertEqual(beds[0].room.room_type, Room.RoomType.SINGLE)
+
+    def test_combined_filters_return_only_matching_available_beds(self):
+        response = self.client.get(
+            reverse("bed-list"),
+            {
+                "hostel": self.hostel1.pk,
+                "floor": "1",
+                "room_type": Room.RoomType.DOUBLE,
+            },
+        )
+
+        beds = list(response.context["beds"])
+
+        self.assertEqual(beds, [self.available_bed])
