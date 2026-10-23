@@ -1,3 +1,59 @@
-from django.db import models
 
-# Create your models here.
+from django.db import models
+from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
+
+
+class Student(models.Model):
+    class Gender(models.TextChoices):
+        MALE = "Male", "Male"
+        FEMALE = "Female", "Female"
+
+    class Status(models.TextChoices):
+        ACTIVE = "Active", "Active"
+        INACTIVE = "Inactive", "Inactive"
+
+    student_id = models.CharField(
+        max_length=13,
+        unique=True,
+        validators=[
+            RegexValidator(
+                regex=r"^[A-Za-z0-9]{13}$",
+                message="Student ID must contain exactly 13 letters or numbers.",
+            )
+        ],
+    )
+    name = models.CharField(max_length=60)
+    date_of_birth = models.DateField()
+    gender = models.CharField(max_length=6, choices=Gender.choices)
+    course = models.CharField(max_length=30)
+    year = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    mobile = models.CharField(
+        max_length=10,
+        validators=[RegexValidator(r"^\d{10}$", "Enter a 10-digit mobile number.")],
+    )
+    email = models.EmailField(max_length=80)
+    guardian_name = models.CharField(max_length=60)
+    guardian_mobile = models.CharField(
+        max_length=10,
+        validators=[RegexValidator(r"^\d{10}$", "Enter a 10-digit guardian mobile number.")],
+    )
+    address = models.CharField(max_length=200, blank=True)
+    status = models.CharField(
+        max_length=8,
+        choices=Status.choices,
+        default=Status.ACTIVE,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["name"]
+        indexes = [
+            models.Index(fields=["name"]),
+            models.Index(fields=["status"]),
+        ]
+
+    def __str__(self):
+        return f"{self.student_id} - {self.name}"
