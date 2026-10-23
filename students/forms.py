@@ -26,7 +26,23 @@ class StudentForm(forms.ModelForm):
         }
 
     def clean_student_id(self):
-        return self.cleaned_data["student_id"].strip().upper()
+        student_id = self.cleaned_data["student_id"].strip().upper()
+
+        existing_students = Student.objects.filter(
+            student_id__iexact=student_id
+        )
+
+        if self.instance.pk:
+            existing_students = existing_students.exclude(
+                pk=self.instance.pk
+            )
+
+        if existing_students.exists():
+            raise forms.ValidationError(
+                "Student ID already registered"
+            )
+
+        return student_id
 
     def clean_name(self):
         return self.cleaned_data["name"].strip()

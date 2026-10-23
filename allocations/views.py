@@ -1,7 +1,7 @@
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseForbidden
@@ -10,11 +10,11 @@ from django.views.decorators.http import require_http_methods
 
 from accounts.models import User
 from allocations.models import Allocation
-from .forms import StudentForm
-from .models import Student
+from hostels.models import Bed
+from students.models import Student
 
 
-def can_manage_students(user):
+def can_manage_allocations(user):
     return user.is_authenticated and user.role in (
         User.Role.ADMIN,
         User.Role.WARDEN,
@@ -22,142 +22,140 @@ def can_manage_students(user):
 
 
 @login_required
-def student_list(request):
-    if not can_manage_students(request.user):
+def allocation_list(request):
+    if not can_manage_allocations(request.user):
         return HttpResponseForbidden(
-            "You do not have permission to manage students."
+            "You do not have permission to manage allocations."
         )
 
     query = request.GET.get("q", "").strip()
-    students = Student.objects.all()
+    allocations = Allocation.objects.select_related(
+        "student",
+        "bed",
+        "bed__room",
+        "bed__room__hostel",
+    )
 
     if query:
-        students = students.filter(
-            Q(student_id__icontains=query)
-            | Q(name__icontains=query)
-            | Q(
-                allocations__status=Allocation.AllocationStatus.ACTIVE,
-                allocations__bed__room__hostel__name__icontains=query,
+        allocations = allocations.filter(
+            Q(student__student_id__icontains=query)
+            | Q(student__name__icontains=query)
+            | Q(bed__label__icontains=query)
+            | Q(bed__room__hostel__name__icontains=query)
+        )
+
+    return render(
+        request,
+        "allocations/allocation_list.html",
+        {"allocations": allocations, "query": query},
+    )
+
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def allocation_create(request):
+    if not can_manage_allocations(request.user):
+        return HttpResponseForbidden(
+            "You do not have permission to create allocations."
+        )
+
+    students = Student.objects.filter(status=Student.Status.ACTIVE)
+    beds = Bed.objects.filter(
+        status=Bed.BedStatus.AVAILABLE
+    ).select_related("room", "room__hostel")
+
+    if request.method == "POST":
+        student_id = request.POST.get("student", "")
+        bed_id = request.POST.get("bed", "")
+        allocated_on = request.POST.get("allocated_on", "")
+
+        student = Student.objects.filter(
+            pk=student_id,
+            status=Student.Status.ACTIVE,
+        ).first()
+
+        bed = Bed.objects.filter(
+            pk=bed_id,
+            status=Bed.BedStatus.AVAILABLE,
+        ).select_related("room", "room__hostel").first()
+
+        if student is None:
+            messages.error(
+                request, "Please select a valid active student."
             )
-        ).distinct()
+        elif bed is None:
+            messages.error(
+                request, "Please select an available bed."
+            )
+        else:
+            allocation = Allocation(student=student, bed=bed)
 
-    paginator = Paginator(students, 20)
-    page_obj = paginator.get_page(request.GET.get("page"))
+            if allocated_on:
+                allocation.allocated_on = allocated_on
 
-    return render(
-        request,
-        "students/student_list.html",
-        {"page_obj": page_obj, "query": query},
-    )
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
-def student_create(request):
-    if not can_manage_students(request.user):
-        return HttpResponseForbidden(
-            "You do not have permission to register students."
-        )
-
-    form = StudentForm(request.POST or None)
-
-    if request.method == "POST" and form.is_valid():
-        student = form.save()
-        messages.success(
-            request,
-            f"Student {student.student_id} registered successfully.",
-        )
-        return redirect("student-list")
-
-    return render(
-        request,
-        "students/student_form.html",
-        {"form": form, "heading": "Register Student"},
-    )
-
-
-@login_required
-@require_http_methods(["GET", "POST"])
-def student_update(request, pk):
-    if not can_manage_students(request.user):
-        return HttpResponseForbidden(
-            "You do not have permission to update students."
-        )
-
-    student = get_object_or_404(Student, pk=pk)
-    form = StudentForm(request.POST or None, instance=student)
-
-    # Student ID cannot be changed after registration.
-    form.fields["student_id"].disabled = True
-
-    # Status changes must go through the guarded deactivation view.
-    form.fields.pop("status")
-
-    if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(
-            request,
-            f"Student {student.student_id} updated successfully.",
-        )
-        return redirect("student-list")
+            try:
+                with transaction.atomic():
+                    allocation.save()
+            except (ValidationError, ValueError) as exc:
+                if hasattr(exc, "message_dict"):
+                    for errors in exc.message_dict.values():
+                        for error in errors:
+                            messages.error(request, error)
+                elif hasattr(exc, "messages"):
+                    for error in exc.messages:
+                        messages.error(request, error)
+                else:
+                    messages.error(request, str(exc))
+            else:
+                messages.success(
+                    request,
+                    f"Bed {bed.label} allocated to {student.name}.",
+                )
+                return redirect("allocation-list")
 
     return render(
         request,
-        "students/student_form.html",
+        "allocations/allocation_form.html",
         {
-            "form": form,
-            "heading": "Update Student",
-            "student": student,
+            "students": students,
+            "beds": beds,
         },
     )
+
 
 
 @login_required
 @require_http_methods(["POST"])
 @transaction.atomic
-def student_deactivate(request, pk):
-    if not can_manage_students(request.user):
+def allocation_complete(request, pk):
+    if not can_manage_allocations(request.user):
         return HttpResponseForbidden(
-            "You do not have permission to deactivate students."
+            "You do not have permission to complete allocations."
         )
 
-    student = get_object_or_404(
-        Student.objects.select_for_update(),
+    allocation = get_object_or_404(
+        Allocation.objects.select_for_update(),
         pk=pk,
     )
 
-    # An active allocation prevents student deactivation.
-    allocation = (
-        Allocation.objects.select_related(
-            "bed",
-            "bed__room",
-            "bed__room__hostel",
-        )
-        .filter(
-            student=student,
-            status=Allocation.AllocationStatus.ACTIVE,
-        )
-        .first()
-    )
+    if allocation.status != Allocation.AllocationStatus.ACTIVE:
+        messages.info(request, "This allocation is already inactive.")
+        return redirect("allocation-list")
 
-    if allocation:
-        messages.error(
-            request,
-            f"Cannot deactivate {student.student_id}: "
-            f"active bed {allocation.bed.label} in "
-            f"{allocation.bed.room.hostel.name} is allocated to this student. "
-            "Complete the allocation first.",
-        )
-        return redirect("student-list")
+    from django.utils import timezone
 
-    if student.status == Student.Status.INACTIVE:
-        messages.info(request, "This student is already inactive.")
+    allocation.status = Allocation.AllocationStatus.COMPLETED
+    allocation.vacated_on = timezone.localdate()
+
+    try:
+        allocation.save()
+    except ValidationError as exc:
+        messages.error(request, str(exc))
     else:
-        student.status = Student.Status.INACTIVE
-        student.save(update_fields=["status", "updated_at"])
         messages.success(
             request,
-            f"Student {student.student_id} deactivated successfully.",
+            f"Allocation for {allocation.student.name} has been completed.",
         )
 
-    return redirect("student-list")
+    return redirect("allocation-list")

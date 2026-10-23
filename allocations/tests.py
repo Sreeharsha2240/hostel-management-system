@@ -1,3 +1,6 @@
+from django.urls import reverse
+
+from accounts.models import User
 
 from datetime import date
 
@@ -132,3 +135,122 @@ class AllocationModelTests(TestCase):
 
         self.bed1.refresh_from_db()
         self.assertEqual(self.bed1.status, Bed.BedStatus.MAINTENANCE)
+
+class AllocationViewTests(TestCase):
+    def setUp(self):
+        self.admin = User.objects.create_user(
+            username="allocation_admin",
+            password="TestPassword123!",
+            role=User.Role.ADMIN,
+        )
+
+        self.student_user = User.objects.create_user(
+            username="allocation_student",
+            password="TestPassword123!",
+            role=User.Role.STUDENT,
+        )
+
+        self.student = Student.objects.create(
+            student_id="PES9876543210",
+            name="Allocation Test Student",
+            date_of_birth=date(2005, 5, 15),
+            gender=Student.Gender.MALE,
+            course="Computer Science",
+            year=2,
+            mobile="9876543210",
+            email="allocation_student@example.com",
+            guardian_name="Test Guardian",
+            guardian_mobile="9876543211",
+        )
+
+        self.hostel = Hostel.objects.create(
+            name="Allocation View Hostel",
+            hostel_type=Hostel.HostelType.BOYS,
+        )
+
+        self.room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="201",
+            floor=2,
+            room_type=Room.RoomType.DOUBLE,
+            capacity=2,
+        )
+
+        self.bed = self.room.beds.get(label="201-A")
+
+    def test_admin_can_view_allocation_list(self):
+        self.client.force_login(self.admin)
+
+        response = self.client.get(reverse("allocation-list"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Hostel Allocations")
+
+    def test_admin_can_open_allocation_form(self):
+        self.client.force_login(self.admin)
+
+        response = self.client.get(reverse("allocation-create"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Create Hostel Allocation")
+        self.assertContains(response, self.student.student_id)
+
+    def test_student_cannot_manage_allocations(self):
+        self.client.force_login(self.student_user)
+
+        self.assertEqual(
+            self.client.get(reverse("allocation-list")).status_code,
+            403,
+        )
+        self.assertEqual(
+            self.client.get(reverse("allocation-create")).status_code,
+            403,
+        )
+
+    def test_admin_can_create_allocation(self):
+        self.client.force_login(self.admin)
+
+        response = self.client.post(
+            reverse("allocation-create"),
+            {
+                "student": self.student.pk,
+                "bed": self.bed.pk,
+                "allocated_on": "2026-10-23",
+            },
+        )
+
+        self.assertRedirects(response, reverse("allocation-list"))
+
+        allocation = Allocation.objects.get(student=self.student)
+        self.assertEqual(allocation.bed, self.bed)
+        self.assertEqual(
+            allocation.status,
+            Allocation.AllocationStatus.ACTIVE,
+        )
+
+        self.bed.refresh_from_db()
+        self.assertEqual(self.bed.status, Bed.BedStatus.OCCUPIED)
+
+    def test_admin_can_complete_allocation(self):
+        self.client.force_login(self.admin)
+
+        allocation = Allocation.objects.create(
+            student=self.student,
+            bed=self.bed,
+        )
+
+        response = self.client.post(
+            reverse("allocation-complete", args=[allocation.pk]),
+        )
+
+        self.assertRedirects(response, reverse("allocation-list"))
+
+        allocation.refresh_from_db()
+        self.assertEqual(
+            allocation.status,
+            Allocation.AllocationStatus.COMPLETED,
+        )
+        self.assertIsNotNone(allocation.vacated_on)
+
+        self.bed.refresh_from_db()
+        self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)

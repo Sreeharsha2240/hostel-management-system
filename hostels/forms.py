@@ -1,5 +1,6 @@
 
 from django import forms
+
 from .models import Hostel, Room
 
 
@@ -20,12 +21,18 @@ class RoomForm(forms.ModelForm):
         capacity = cleaned_data.get("capacity")
 
         if room.pk and capacity is not None:
-            existing_beds = room.beds.count()
-            if capacity < existing_beds:
+            from allocations.models import Allocation
+
+            active_bed_count = room.beds.filter(
+                allocations__status=Allocation.AllocationStatus.ACTIVE
+            ).distinct().count()
+
+            if active_bed_count > capacity:
                 self.add_error(
                     "capacity",
-                    f"This room already has {existing_beds} beds. "
-                    "Capacity cannot be reduced below the existing bed count.",
+                    f"This room has {active_bed_count} beds with active "
+                    "allocations. Complete or move allocations before "
+                    "reducing capacity further.",
                 )
 
         return cleaned_data

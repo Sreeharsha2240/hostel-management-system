@@ -10,6 +10,8 @@ from allocations.models import Allocation
 from hostels.models import Bed, Hostel, Room
 from students.models import Student
 
+from students.forms import StudentForm
+
 
 class StudentModelTests(TestCase):
     def student_data(self, **overrides):
@@ -38,6 +40,19 @@ class StudentModelTests(TestCase):
         Student.objects.create(**self.student_data())
         with self.assertRaises(Exception):
             Student.objects.create(**self.student_data(name="Another Student"))
+
+    def test_duplicate_student_id_form_shows_exact_error_message(self):
+        Student.objects.create(**self.student_data())
+
+        form = StudentForm(
+            data=self.student_data(name="Another Student")
+        )
+
+        self.assertFalse(form.is_valid())
+        self.assertEqual(
+            form.errors["student_id"],
+            ["Student ID already registered"],
+        )
 
     def test_student_can_be_deactivated_without_deleting_record(self):
         student = Student.objects.create(**self.student_data())

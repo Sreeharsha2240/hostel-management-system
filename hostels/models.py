@@ -1,7 +1,7 @@
 
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
-from django.db import models
+from django.db import models, transaction
 
 
 class Hostel(models.Model):
@@ -52,30 +52,86 @@ class Room(models.Model):
     def clean(self):
         super().clean()
 
-        if self.capacity and not 1 <= self.capacity <= 4:
-            raise ValidationError({"capacity": "Capacity must be between 1 and 4."})
+        if self.capacity is not None and not 1 <= self.capacity <= 4:
+            raise ValidationError({
+                "capacity": "Capacity must be between 1 and 4."
+            })
 
-        if self.pk and self.capacity:
-            existing_beds = self.beds.count()
-            if self.capacity < existing_beds:
-                raise ValidationError({
-                    "capacity": (
-                        f"This room already has {existing_beds} beds. "
-                        "Capacity cannot be reduced below the existing bed count."
-                    )
-                })
+        if not self.pk or self.capacity is None:
+            return
 
+        from allocations.models import Allocation
+
+        allocated_beds = self.beds.filter(
+            allocations__status=Allocation.AllocationStatus.ACTIVE
+        ).distinct().count()
+
+        if allocated_beds > self.capacity:
+            raise ValidationError({
+                "capacity": (
+                    f"This room has {allocated_beds} beds with active "
+                    "allocations. Complete or move allocations before "
+                    "reducing capacity further."
+                )
+            })
+
+    @transaction.atomic
     def save(self, *args, **kwargs):
+        old_room_number = None
+
+        if self.pk:
+            previous = Room.objects.select_for_update().get(pk=self.pk)
+            old_room_number = previous.room_number
+
         super().save(*args, **kwargs)
 
-        # Create any missing beds automatically. Existing beds are preserved.
-        labels = ["A", "B", "C", "D"]
-        for label in labels[:self.capacity]:
+        # Rename existing bed labels when the room number changes.
+        if old_room_number is not None and old_room_number != self.room_number:
+            for bed in self.beds.select_for_update().all():
+                suffix = bed.label.rsplit("-", 1)[-1]
+                bed.label = f"{self.room_number}-{suffix}"
+                bed.save(update_fields=["label"])
+
+        # Remove excess beds only when they have no allocation history.
+        # Beds with allocation records must be preserved.
+        if self.beds.count() > self.capacity:
+            from allocations.models import Allocation
+
+            removable_beds = (
+                self.beds.exclude(
+                    allocations__isnull=False
+                )
+                .order_by("-label")
+                .distinct()
+            )
+
+            excess = self.beds.count() - self.capacity
+
+            for bed in removable_beds[:excess]:
+                bed.delete()
+
+        # Create missing beds without duplicating existing labels.
+        for suffix in ["A", "B", "C", "D"][:self.capacity]:
             Bed.objects.get_or_create(
                 room=self,
-                label=f"{self.room_number}-{label}",
+                label=f"{self.room_number}-{suffix}",
                 defaults={"status": Bed.BedStatus.AVAILABLE},
             )
+
+        # A historical or allocated bed may need to remain beyond capacity.
+        # Never silently delete a bed that has an allocation record.
+        if self.beds.count() > self.capacity:
+            from allocations.models import Allocation
+
+            active_bed_count = self.beds.filter(
+                allocations__status=Allocation.AllocationStatus.ACTIVE
+            ).distinct().count()
+
+            if active_bed_count > self.capacity:
+                raise ValidationError(
+                    "Capacity cannot be reduced below the number of "
+                    "beds with active allocations."
+                )
 
     def __str__(self):
         return f"{self.hostel.name} - Room {self.room_number}"

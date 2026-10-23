@@ -1,0 +1,83 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Create Hostel Allocation</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags|default:'info' }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="student" class="form-label">Student</label>
+            <select
+                id="student"
+                name="student"
+                class="form-select"
+                required
+            >
+                <option value="">Select a student</option>
+                {% for student in students %}
+                    <option
+                        value="{{ student.pk }}"
+                        {% if request.POST.student == student.pk|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ student.student_id }} — {{ student.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="bed" class="form-label">Available Bed</label>
+            <select
+                id="bed"
+                name="bed"
+                class="form-select"
+                required
+            >
+                <option value="">Select a bed</option>
+                {% for bed in beds %}
+                    <option
+                        value="{{ bed.pk }}"
+                        {% if request.POST.bed == bed.pk|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ bed.room.hostel.name }} —
+                        Room {{ bed.room.room_number }} —
+                        {{ bed.label }} ({{ bed.get_status_display }})
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="allocated_on" class="form-label">
+                Allocation Date
+            </label>
+            <input
+                type="date"
+                id="allocated_on"
+                name="allocated_on"
+                class="form-control"
+                value="{{ request.POST.allocated_on|default:'' }}"
+            >
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Allocate Bed
+        </button>
+
+        <a href="{% url 'allocation-list' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}
