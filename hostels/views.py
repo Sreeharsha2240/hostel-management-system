@@ -1,3 +1,123 @@
-from django.shortcuts import render
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_http_methods
+
+from accounts.models import User
+from .forms import HostelForm, RoomForm
+from .models import Bed, Hostel, Room
+
+
+def can_manage_hostels(user):
+    return user.is_authenticated and user.role == User.Role.ADMIN
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def hostel_list(request):
+    if not can_manage_hostels(request.user):
+        return HttpResponseForbidden("Only admins can manage hostels.")
+
+    form = HostelForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("hostel-list")
+
+    hostels = Hostel.objects.all()
+    return render(request, "hostels/hostel_list.html", {
+        "hostels": hostels,
+        "form": form,
+    })
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def hostel_update(request, pk):
+    if not can_manage_hostels(request.user):
+        return HttpResponseForbidden("Only admins can manage hostels.")
+
+    hostel = get_object_or_404(Hostel, pk=pk)
+    form = HostelForm(request.POST or None, instance=hostel)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("hostel-list")
+
+    return render(request, "hostels/hostel_form.html", {
+        "form": form,
+        "heading": "Edit Hostel",
+    })
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def room_create(request):
+    if not can_manage_hostels(request.user):
+        return HttpResponseForbidden("Only admins can manage rooms.")
+
+    form = RoomForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("bed-list")
+
+    return render(request, "hostels/room_form.html", {
+        "form": form,
+        "heading": "Add Room",
+    })
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def room_update(request, pk):
+    if not can_manage_hostels(request.user):
+        return HttpResponseForbidden("Only admins can manage rooms.")
+
+    room = get_object_or_404(Room, pk=pk)
+    form = RoomForm(request.POST or None, instance=room)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        return redirect("bed-list")
+
+    return render(request, "hostels/room_form.html", {
+        "form": form,
+        "heading": "Edit Room",
+    })
+
+
+@login_required
+def bed_list(request):
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden()
+
+    beds = Bed.objects.select_related("room", "room__hostel").all()
+
+    hostel_id = request.GET.get("hostel")
+    floor = request.GET.get("floor")
+    room_type = request.GET.get("room_type")
+    status = request.GET.get("status", Bed.BedStatus.AVAILABLE)
+
+    if hostel_id:
+        beds = beds.filter(room__hostel_id=hostel_id)
+    if floor:
+        beds = beds.filter(room__floor=floor)
+    if room_type:
+        beds = beds.filter(room__room_type=room_type)
+    if status:
+        beds = beds.filter(status=status)
+
+    return render(request, "hostels/bed_list.html", {
+        "beds": beds,
+        "hostels": Hostel.objects.filter(is_active=True),
+        "room_types": Room.RoomType.choices,
+        "statuses": Bed.BedStatus.choices,
+        "selected_hostel": hostel_id or "",
+        "selected_floor": floor or "",
+        "selected_room_type": room_type or "",
+        "selected_status": status,
+    })
