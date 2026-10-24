@@ -12,6 +12,8 @@ from hostels.models import Bed, Hostel, Room
 from students.models import Student
 
 from students.forms import StudentForm
+from django.test import override_settings
+from time import perf_counter
 
 
 class StudentModelTests(TestCase):
@@ -280,3 +282,169 @@ class StudentDeactivationViewTests(TestCase):
         self.assertEqual(response.status_code, 405)
         self.student.refresh_from_db()
         self.assertEqual(self.student.status, Student.Status.ACTIVE)
+
+class StudentManagementViewTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.admin = User.objects.create_user(
+            username="management_admin",
+            password="TestPassword123!",
+            role=User.Role.ADMIN,
+        )
+        self.warden = User.objects.create_user(
+            username="management_warden",
+            password="TestPassword123!",
+            role=User.Role.WARDEN,
+        )
+        self.other_user = User.objects.create_user(
+            username="management_student",
+            password="TestPassword123!",
+            role=User.Role.STUDENT,
+        )
+
+    def student_data(self, **overrides):
+        data = {
+            "student_id": "PES1234567890",
+            "name": "Test Student",
+            "date_of_birth": "2005-05-15",
+            "gender": Student.Gender.MALE,
+            "course": "Computer Science",
+            "year": 2,
+            "mobile": "9876543210",
+            "email": "student@example.com",
+            "guardian_name": "Test Guardian",
+            "guardian_mobile": "9876543211",
+            "address": "Bengaluru",
+            "status": Student.Status.ACTIVE,
+        }
+        data.update(overrides)
+        return data
+
+    def create_student(self, **overrides):
+        data = self.student_data(**overrides)
+        data["date_of_birth"] = date.fromisoformat(data["date_of_birth"])
+        return Student.objects.create(**data)
+
+    def test_admin_can_register_student(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(
+            reverse("student-create"),
+            self.student_data(),
+        )
+        self.assertRedirects(response, reverse("student-list"))
+        self.assertTrue(
+            Student.objects.filter(student_id="PES1234567890").exists()
+        )
+
+    def test_warden_can_register_student(self):
+        self.client.force_login(self.warden)
+        response = self.client.post(
+            reverse("student-create"),
+            self.student_data(),
+        )
+        self.assertRedirects(response, reverse("student-list"))
+        self.assertTrue(
+            Student.objects.filter(student_id="PES1234567890").exists()
+        )
+
+    def test_admin_can_update_student(self):
+        student = self.create_student()
+        self.client.force_login(self.admin)
+
+        response = self.client.post(
+            reverse("student-update", args=[student.pk]),
+            self.student_data(name="Updated Student"),
+        )
+
+        self.assertRedirects(response, reverse("student-list"))
+        student.refresh_from_db()
+        self.assertEqual(student.name, "Updated Student")
+
+    def test_student_search_matches_name_and_id(self):
+        self.create_student(
+            student_id="PES1111111111",
+            name="Aarav Sharma",
+            email="aarav@example.com",
+        )
+        self.create_student(
+            student_id="PES2222222222",
+            name="Meera Rao",
+            email="meera@example.com",
+        )
+        self.client.force_login(self.admin)
+
+        response = self.client.get(
+            reverse("student-list"), {"q": "Aarav"}
+        )
+        self.assertContains(response, "Aarav Sharma")
+        self.assertNotContains(response, "Meera Rao")
+
+        response = self.client.get(
+            reverse("student-list"), {"q": "PES2222222222"}
+        )
+        self.assertContains(response, "Meera Rao")
+        self.assertNotContains(response, "Aarav Sharma")
+
+    def test_student_role_cannot_access_management_views(self):
+        student = self.create_student()
+        self.client.force_login(self.other_user)
+
+        urls = [
+            reverse("student-list"),
+            reverse("student-create"),
+            reverse("student-update", args=[student.pk]),
+        ]
+
+        for url in urls:
+            with self.subTest(url=url):
+                response = self.client.get(url)
+                self.assertEqual(response.status_code, 403)
+
+    def test_anonymous_user_is_redirected_to_login(self):
+        student = self.create_student()
+
+        urls = [
+            reverse("student-list"),
+            reverse("student-create"),
+            reverse("student-update", args=[student.pk]),
+        ]
+
+        for url in urls:
+            with self.subTest(url=url):
+                response = self.client.get(url)
+                self.assertEqual(response.status_code, 302)
+    def test_student_search_performance_with_5000_records(self):
+        students = [
+            Student(
+                student_id=f"PES{i:010d}",
+                name=f"Test Student {i}",
+                date_of_birth=date(2005, 5, 15),
+                gender=Student.Gender.MALE,
+                course="Computer Science",
+                year=2,
+                mobile="9876543210",
+                email=f"student{i}@example.com",
+                guardian_name="Test Guardian",
+                guardian_mobile="9876543211",
+                status=Student.Status.ACTIVE,
+            )
+            for i in range(1, 5001)
+        ]
+
+        Student.objects.bulk_create(students, batch_size=500)
+
+        self.client.force_login(self.admin)
+
+        start_time = perf_counter()
+        response = self.client.get(
+            reverse("student-list"),
+            {"q": "Test Student 4999"},
+        )
+        elapsed_time = perf_counter() - start_time
+
+        self.assertEqual(response.status_code, 200)
+        self.assertLess(
+            elapsed_time,
+            2.0,
+            f"Search took {elapsed_time:.2f} seconds; expected under 2 seconds.",
+        )
