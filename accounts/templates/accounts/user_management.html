@@ -1,17 +1,37 @@
-<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Users · HMS</title></head>
-<body>
-  <main>
-    <h1>Manage user accounts</h1>
-    <h2>Create account</h2>
-    <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Create user</button></form>
-    <h2>Existing accounts</h2>
-    <ul>{% for account in users %}<li>{{ account.username }} — {{ account.get_role_display }}
-      <a href="{% url 'user-update' account.pk %}">Edit</a>{% if account.is_active %}
-      <form method="post" action="{% url 'user-deactivate' account.pk %}" style="display:inline">{% csrf_token %}<button type="submit">Deactivate</button></form>
-      {% else %}(inactive){% endif %}</li>{% empty %}<li>No accounts.</li>{% endfor %}</ul>
-    <p><a href="{% url 'dashboard' %}">Back to dashboard</a></p>
-  </main>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Manage accounts{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+  <div><p class="eyebrow">Administration</p><h1>Manage accounts</h1></div>
+  <span class="muted">Create accounts and manage access</span>
+</div>
+<section class="card">
+  <h2>Existing accounts <span class="muted">({{ users|length }})</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Username</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>
+      {% for account in users %}
+        <tr>
+          <td>{{ account.username }}</td>
+          <td>{{ account.get_role_display }}</td>
+          <td><span class="badge {% if account.is_active %}Active{% else %}Inactive{% endif %}">{% if account.is_active %}Active{% else %}Inactive{% endif %}</span></td>
+          <td><a href="{% url 'user-update' account.pk %}">Edit</a>{% if account.is_active %}
+            <form method="post" action="{% url 'user-deactivate' account.pk %}" style="display:inline">{% csrf_token %}<button class="secondary" type="submit">Deactivate</button></form>
+          {% endif %}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">No accounts yet.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<details class="card account-create">
+  <summary>Create account</summary>
+  <p class="muted">Add a student, warden, or admin account.</p>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Create account</button></form>
+</details>
+{% endblock %}

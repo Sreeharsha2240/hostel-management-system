@@ -1,4 +1,6 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponseForbidden
@@ -8,9 +10,10 @@ from django.views.decorators.http import require_http_methods
 
 from audit.models import AuditEvent
 from audit.services import record_event
+from hostels.models import Bed
 
 from .decorators import roles_required
-from .forms import AccountCreationForm, AccountUpdateForm
+from .forms import AccountCreationForm, AccountUpdateForm, ProfileSettingsForm
 from .models import User
 
 
@@ -47,7 +50,47 @@ def dashboard(request):
         User.Role.STUDENT: 'accounts/dashboard_student.html',
     }
     template = role_templates[request.user.role]
-    return render(request, template, {'role': request.user.get_role_display()})
+    context = {'role': request.user.get_role_display()}
+    if request.user.role == User.Role.STUDENT:
+        context.update({
+            'available_bed_count': Bed.objects.filter(
+                status=Bed.BedStatus.AVAILABLE,
+                room__hostel__is_active=True,
+            ).count(),
+        })
+    return render(request, template, context)
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+@transaction.atomic
+def settings_view(request):
+    profile_form = ProfileSettingsForm(instance=request.user)
+    password_form = PasswordChangeForm(user=request.user)
+
+    if request.method == 'POST':
+        section = request.POST.get('section')
+        if section == 'profile':
+            profile_form = ProfileSettingsForm(request.POST, instance=request.user)
+            if profile_form.is_valid():
+                if profile_form.has_changed():
+                    profile_form.save()
+                    record_event(user=request.user, action=AuditEvent.Action.UPDATE, record=request.user)
+                messages.success(request, 'Your profile settings have been saved.')
+                return redirect('settings')
+        elif section == 'password':
+            password_form = PasswordChangeForm(user=request.user, data=request.POST)
+            if password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)
+                record_event(user=user, action=AuditEvent.Action.UPDATE, record=user)
+                messages.success(request, 'Your password has been changed.')
+                return redirect('settings')
+
+    return render(request, 'accounts/settings.html', {
+        'profile_form': profile_form,
+        'password_form': password_form,
+    })
 
 
 admin_role_required = roles_required(User.Role.ADMIN)
