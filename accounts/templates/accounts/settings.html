@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+<div class="page-heading">
+  <div><p class="eyebrow">Your account</p><h1>Settings</h1></div>
+  <span class="muted">Manage your profile and sign-in security</span>
+</div>
+<div class="settings-grid">
+  <section class="card">
+    <p class="eyebrow">Profile</p>
+    <h2>Personal details</h2>
+    <p class="muted">Update the name and email address shown on your account.</p>
+    <form method="post">
+      {% csrf_token %}<input type="hidden" name="section" value="profile">
+      {{ profile_form.as_p }}
+      <button type="submit">Save profile</button>
+    </form>
+  </section>
+  <section class="card">
+    <p class="eyebrow">Security</p>
+    <h2>Change password</h2>
+    <p class="muted">Choose a strong password you do not use elsewhere.</p>
+    <form method="post">
+      {% csrf_token %}<input type="hidden" name="section" value="password">
+      {{ password_form.as_p }}
+      <button type="submit">Update password</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

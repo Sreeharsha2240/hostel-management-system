@@ -1,15 +1,39 @@
-<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Student dashboard · HMS</title></head>
-<body>
-  <main>
-    <h1>Student dashboard</h1>
-    <p>Signed in as {{ request.user.username }}.</p>
-    <section aria-labelledby="student-info-heading">
-      <h2 id="student-info-heading">Your hostel information</h2>
-      <p>Your accommodation details will appear here when they are available.</p>
-    </section>
-    <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit">Sign out</button></form>
-  </main>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Student dashboard{% endblock %}
+
+{% block content %}
+<section class="student-dashboard-hero">
+  <div class="welcome student-welcome">
+    <p class="eyebrow">Student workspace</p>
+    <h1>Welcome, {{ request.user.first_name|default:request.user.username }}</h1>
+    <p>Find your place on campus and keep your account up to date.</p>
+  </div>
+</section>
+<section class="student-summary" aria-label="Your account summary">
+  <div class="summary-card">
+    <span class="eyebrow">Beds available</span>
+    <strong>{{ available_bed_count }}</strong>
+    <span class="muted">Across active hostels</span>
+  </div>
+  <div class="summary-card">
+    <span class="eyebrow">Signed in as</span>
+    <strong>{{ request.user.username }}</strong>
+    <span class="muted">Student account</span>
+  </div>
+</section>
+<section class="dashboard-grid student-shortcuts" aria-label="Student shortcuts">
+  <article class="dashboard-card">
+    <p class="eyebrow">Accommodation</p>
+    <h2>Find a bed</h2>
+    <p>{{ available_bed_count }} available {% if available_bed_count == 1 %}bed{% else %}beds{% endif %} to browse. Filter by hostel, floor, room type, or status.</p>
+    <a href="{% url 'bed-list' %}">Browse beds</a>
+  </article>
+  <article class="dashboard-card">
+    <p class="eyebrow">Your account</p>
+    <h2>Profile &amp; security</h2>
+    <p>Keep your contact details current and update your password when needed.</p>
+    <a href="{% url 'settings' %}">Manage settings</a>
+  </article>
+</section>
+{% endblock %}

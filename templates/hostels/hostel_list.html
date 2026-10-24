@@ -1,7 +1,6 @@
-
 {% extends "base.html" %}
 
-{% block title %}Hostel Management{% endblock %}
+{% block title %}Hostel management{% endblock %}
 
 {% block navigation %}
 <a href="{% url 'student-list' %}">Students</a>
@@ -10,33 +9,25 @@
 {% endblock %}
 
 {% block content %}
-<h1>Hostel Management</h1>
-
-<h2>Add Hostel</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Hostel</button>
-</form>
-
-<h2>Existing Hostels</h2>
-<p><a href="{% url 'room-create' %}">Add Room</a></p>
-
-<table>
-    <thead>
-        <tr><th>Name</th><th>Type</th><th>Status</th><th>Action</th></tr>
-    </thead>
-    <tbody>
+<div class="page-heading">
+  <div><p class="eyebrow">Accommodation</p><h1>Hostels</h1></div>
+  <a class="button secondary" href="{% url 'room-create' %}">Add a room</a>
+</div>
+<section class="card">
+  <h2>Add a hostel</h2>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Save hostel</button></form>
+</section>
+<section class="card">
+  <h2>Hostel directory</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Name</th><th>Type</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
         {% for hostel in hostels %}
-        <tr>
-            <td>{{ hostel.name }}</td>
-            <td>{{ hostel.hostel_type }}</td>
-            <td>{% if hostel.is_active %}Active{% else %}Inactive{% endif %}</td>
-            <td><a href="{% url 'hostel-update' hostel.pk %}">Edit</a></td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="4">No hostels added yet.</td></tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <tr><td>{{ hostel.name }}</td><td>{{ hostel.hostel_type }}</td><td><span class="badge {% if hostel.is_active %}Active{% else %}Inactive{% endif %}">{% if hostel.is_active %}Active{% else %}Inactive{% endif %}</span></td><td><a href="{% url 'hostel-update' hostel.pk %}">Edit</a></td></tr>
+        {% empty %}<tr><td colspan="4">No hostels added yet. Use the form above to create one.</td></tr>{% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 {% endblock %}

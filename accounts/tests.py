@@ -29,7 +29,7 @@ class AuthenticationTests(TestCase):
         expected_content = {
             User.Role.ADMIN: 'Manage user accounts and roles',
             User.Role.WARDEN: 'Hostel operations',
-            User.Role.STUDENT: 'Your hostel information',
+            User.Role.STUDENT: 'Find your place on campus',
         }
         for role, label in ((User.Role.ADMIN, 'Admin'), (User.Role.WARDEN, 'Warden'),
                             (User.Role.STUDENT, 'Student')):

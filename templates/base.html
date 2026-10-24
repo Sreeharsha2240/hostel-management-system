@@ -10,15 +10,23 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="{% url 'dashboard' %}">HMS <span>Hostel Management</span></a>
+    <a class="brand" href="{% url 'dashboard' %}">HMS <span>Hostel Management System</span></a>
     {% if request.user.is_authenticated %}
     <nav aria-label="Main navigation">
-      <a href="{% url 'dashboard' %}">Dashboard</a>
-      {% block navigation %}{% endblock %}
-      {% if request.user.role == 'admin' %}
-      <a href="{% url 'user-management' %}">Accounts</a>
-      <a href="{% url 'audit-log' %}">Audit log</a>
+      <a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}aria-current="page"{% endif %}>Dashboard</a>
+      {% if request.user.role == 'admin' or request.user.role == 'warden' %}
+      <a href="{% url 'student-list' %}" {% if request.resolver_match.url_name == 'student-list' or request.resolver_match.url_name == 'student-create' or request.resolver_match.url_name == 'student-update' %}aria-current="page"{% endif %}>Students</a>
+      <a href="{% url 'allocation-list' %}" {% if request.resolver_match.url_name == 'allocation-list' or request.resolver_match.url_name == 'allocation-create' %}aria-current="page"{% endif %}>Allocations</a>
       {% endif %}
+      {% if request.user.role == 'admin' %}
+      <a href="{% url 'hostel-list' %}" {% if request.resolver_match.url_name == 'hostel-list' or request.resolver_match.url_name == 'hostel-update' or request.resolver_match.url_name == 'room-create' or request.resolver_match.url_name == 'room-update' %}aria-current="page"{% endif %}>Hostels</a>
+      {% endif %}
+      <a href="{% url 'bed-list' %}" {% if request.resolver_match.url_name == 'bed-list' %}aria-current="page"{% endif %}>Beds</a>
+      {% if request.user.role == 'admin' %}
+      <a href="{% url 'user-management' %}" {% if request.resolver_match.url_name == 'user-management' or request.resolver_match.url_name == 'user-update' %}aria-current="page"{% endif %}>Accounts</a>
+      <a href="{% url 'audit-log' %}" {% if request.resolver_match.url_name == 'audit-log' %}aria-current="page"{% endif %}>Audit log</a>
+      {% endif %}
+      <a href="{% url 'settings' %}" {% if request.resolver_match.url_name == 'settings' %}aria-current="page"{% endif %}>Settings</a>
     </nav>
     <div class="account-menu"><span>{{ request.user.username }} · {{ request.user.get_role_display }}</span>
       <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="secondary" type="submit">Sign out</button></form>
@@ -29,6 +37,5 @@
     {% for message in messages %}<div class="notice {{ message.tags }}" role="status">{{ message }}</div>{% endfor %}
     {% block content %}{% endblock %}
   </main>
-  <footer>Hostel Management System · Team 3</footer>
 </body>
 </html>
