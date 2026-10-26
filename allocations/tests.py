@@ -241,7 +241,7 @@ class AllocationViewTests(TestCase):
         self.client.force_login(self.admin)
 
         with patch(
-            "allocations.views.record_event",
+            "allocations.services.record_event",
             side_effect=RuntimeError("audit write failed"),
         ):
             with self.assertRaises(RuntimeError):
@@ -262,7 +262,7 @@ class AllocationViewTests(TestCase):
         )
 
         with patch(
-            "allocations.views.record_event",
+            "allocations.services.record_event",
             side_effect=RuntimeError("audit write failed"),
         ):
             with self.assertRaises(RuntimeError):
