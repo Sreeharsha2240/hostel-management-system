@@ -53,7 +53,7 @@ python -m venv .venv
 # If PowerShell says running scripts is disabled, first run once:
 #   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 .venv\Scripts\activate            # Linux/macOS: source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt # runtime only: requirements.txt
 copy .env.example .env            # Linux/macOS: cp .env.example .env
 ```
 
@@ -68,7 +68,9 @@ python manage.py runserver
 
 The site runs at http://127.0.0.1:8000/ and the Django admin at http://127.0.0.1:8000/admin/. Run the tests with `python manage.py test`. The Sprint 1 test scope and saved CI evidence are described in [`docs/SPRINT1_TESTING.md`](docs/SPRINT1_TESTING.md).
 
-The allocation interface and model currently present in the repository are an early integration scaffold for Sprint 2 issue #8. They do not complete allocation acceptance criteria such as gender-to-hostel validation, transfers and allocation history; issue #8 remains open and is not claimed as a Sprint 1 deliverable.
+The Sprint 2 allocation and payment workflows, migration notes and API examples
+are documented in [`docs/SPRINT2.md`](docs/SPRINT2.md). Issue acceptance and merge
+remain subject to team review.
 
 ### Authentication and role access (HMS-04)
 

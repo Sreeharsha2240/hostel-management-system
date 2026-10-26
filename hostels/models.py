@@ -1,6 +1,7 @@
+from decimal import Decimal
 
 from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models, transaction
 
 
@@ -41,10 +42,10 @@ class RoomQuerySet(models.QuerySet):
             )
         return super().bulk_update(objs, fields, batch_size=batch_size)
 
-class Room(models.Model):
 
+class Room(models.Model):
     objects = RoomQuerySet.as_manager()
-    
+
     class RoomType(models.TextChoices):
         SINGLE = "Single", "Single"
         DOUBLE = "Double", "Double"
@@ -61,6 +62,13 @@ class Room(models.Model):
     capacity = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(4)]
     )
+    fee_amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal("0.00"),
+        validators=[MinValueValidator(Decimal("0.00"))],
+        help_text="Room fee in INR. Set a positive fee before using payment status.",
+    )
 
     class Meta:
         ordering = ["hostel", "floor", "room_number"]
@@ -68,38 +76,46 @@ class Room(models.Model):
             models.UniqueConstraint(
                 fields=["hostel", "room_number"],
                 name="unique_room_number_per_hostel",
-            )
+            ),
+            models.CheckConstraint(
+                condition=models.Q(fee_amount__gte=0), name="nonnegative_room_fee"
+            ),
         ]
 
     def clean(self):
         super().clean()
 
         if self.capacity is not None and not 1 <= self.capacity <= 4:
-            raise ValidationError({
-                "capacity": "Capacity must be between 1 and 4."
-            })
+            raise ValidationError({"capacity": "Capacity must be between 1 and 4."})
 
         if not self.pk or self.capacity is None:
             return
 
         from allocations.models import Allocation
 
-        allocated_beds = self.beds.filter(
-            allocations__status=Allocation.AllocationStatus.ACTIVE
-        ).distinct().count()
+        allocated_beds = (
+            self.beds.filter(allocations__status=Allocation.AllocationStatus.ACTIVE)
+            .distinct()
+            .count()
+        )
 
         if allocated_beds > self.capacity:
-            raise ValidationError({
-                "capacity": (
-                    f"This room has {allocated_beds} beds with active "
-                    "allocations. Complete or move allocations before "
-                    "reducing capacity further."
-                )
-            })
+            raise ValidationError(
+                {
+                    "capacity": (
+                        f"This room has {allocated_beds} beds with active "
+                        "allocations. Complete or move allocations before "
+                        "reducing capacity further."
+                    )
+                }
+            )
 
     @transaction.atomic
     def save(self, *args, **kwargs):
         old_room_number = None
+        self.fee_amount = self._meta.get_field("fee_amount").clean(
+            self.fee_amount, self
+        )
 
         if self.pk:
             previous = Room.objects.select_for_update().get(pk=self.pk)
@@ -120,9 +136,7 @@ class Room(models.Model):
             from allocations.models import Allocation
 
             removable_beds = (
-                self.beds.exclude(
-                    allocations__isnull=False
-                )
+                self.beds.exclude(allocations__isnull=False)
                 .order_by("-label")
                 .distinct()
             )
@@ -133,7 +147,7 @@ class Room(models.Model):
                 bed.delete()
 
         # Create missing beds without duplicating existing labels.
-        for suffix in ["A", "B", "C", "D"][:self.capacity]:
+        for suffix in ["A", "B", "C", "D"][: self.capacity]:
             Bed.objects.get_or_create(
                 room=self,
                 label=f"{self.room_number}-{suffix}",
@@ -145,9 +159,11 @@ class Room(models.Model):
         if self.beds.count() > self.capacity:
             from allocations.models import Allocation
 
-            active_bed_count = self.beds.filter(
-                allocations__status=Allocation.AllocationStatus.ACTIVE
-            ).distinct().count()
+            active_bed_count = (
+                self.beds.filter(allocations__status=Allocation.AllocationStatus.ACTIVE)
+                .distinct()
+                .count()
+            )
 
             if active_bed_count > self.capacity:
                 raise ValidationError(
@@ -157,8 +173,6 @@ class Room(models.Model):
 
     def __str__(self):
         return f"{self.hostel.name} - Room {self.room_number}"
-    
-    
 
 
 class Bed(models.Model):

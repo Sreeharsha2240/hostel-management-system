@@ -33,5 +33,11 @@
     <p>Review recorded security and account events.</p>
     <a href="{% url 'audit-log' %}">View activity</a>
   </article>
+  <article class="dashboard-card">
+    <p class="eyebrow">Fees</p>
+    <h2>Payments</h2>
+    <p>Record payments, view receipts and check student balances.</p>
+    <a href="{% url 'payment-list' %}">Open payments</a>
+  </article>
 </section>
 {% endblock %}

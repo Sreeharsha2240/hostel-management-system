@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Hostel, Room, Bed
+
+from .models import Bed, Hostel, Room
 
 
 class RoomInline(admin.TabularInline):
@@ -23,7 +24,14 @@ class HostelAdmin(admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ("room_number", "hostel", "floor", "room_type", "capacity")
+    list_display = (
+        "room_number",
+        "hostel",
+        "floor",
+        "room_type",
+        "capacity",
+        "fee_amount",
+    )
     list_filter = ("hostel", "floor", "room_type")
     search_fields = ("room_number", "hostel__name")
     inlines = (BedInline,)

@@ -1,4 +1,3 @@
-
 from django import forms
 
 from .models import Hostel, Room
@@ -13,7 +12,22 @@ class HostelForm(forms.ModelForm):
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ["hostel", "room_number", "floor", "room_type", "capacity"]
+        fields = [
+            "hostel",
+            "room_number",
+            "floor",
+            "room_type",
+            "capacity",
+            "fee_amount",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["fee_amount"].required = False
+
+    def clean_fee_amount(self):
+        fee = self.cleaned_data.get("fee_amount")
+        return self.instance.fee_amount if fee is None else fee
 
     def clean(self):
         cleaned_data = super().clean()
@@ -23,9 +37,11 @@ class RoomForm(forms.ModelForm):
         if room.pk and capacity is not None:
             from allocations.models import Allocation
 
-            active_bed_count = room.beds.filter(
-                allocations__status=Allocation.AllocationStatus.ACTIVE
-            ).distinct().count()
+            active_bed_count = (
+                room.beds.filter(allocations__status=Allocation.AllocationStatus.ACTIVE)
+                .distinct()
+                .count()
+            )
 
             if active_bed_count > capacity:
                 self.add_error(
