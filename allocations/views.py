@@ -10,6 +10,8 @@ from django.views.decorators.http import require_http_methods
 
 from accounts.models import User
 from allocations.models import Allocation
+from audit.models import AuditEvent
+from audit.services import record_event
 from hostels.models import Bed
 from students.models import Student
 
@@ -97,6 +99,11 @@ def allocation_create(request):
             try:
                 with transaction.atomic():
                     allocation.save()
+                    record_event(
+                        user=request.user,
+                        action=AuditEvent.Action.ALLOCATE,
+                        record=allocation,
+                    )
             except (ValidationError, ValueError) as exc:
                 if hasattr(exc, "message_dict"):
                     for errors in exc.message_dict.values():
@@ -150,6 +157,11 @@ def allocation_complete(request, pk):
 
     try:
         allocation.save()
+        record_event(
+            user=request.user,
+            action=AuditEvent.Action.RELEASE,
+            record=allocation,
+        )
     except ValidationError as exc:
         messages.error(request, str(exc))
     else:
