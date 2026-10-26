@@ -99,7 +99,10 @@ remain subject to team review.
 4. Run `python manage.py migrate` to create the tables. `python manage.py showmigrations` lists what has been applied.
 
 **Working with migrations.** After changing a model, run `python manage.py makemigrations <app>` and commit the generated file in `<app>/migrations/` together with the model change. Never edit or delete a migration that is already on `main`; add a new one instead.
-For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environment; leave it `False` for the documented local HTTP development server.
+For an HTTPS deployment, set `DJANGO_DEBUG=False`, `DJANGO_SESSION_COOKIE_SECURE=True`,
+`DJANGO_CSRF_COOKIE_SECURE=True` and `DJANGO_SECURE_SSL_REDIRECT=True` in the environment.
+Keep the secure-cookie and redirect flags `False` for the documented local HTTP
+development server.
 
 ## Team collaboration (HMS-03)
 
@@ -128,12 +131,12 @@ For HTTPS deployment, set `DJANGO_DEBUG=False`,
 `DJANGO_SECURE_SSL_REDIRECT=True`, and configure TLS at the web server.
 
 Audit events cannot be edited or deleted through the application or its normal
-ORM operations. `python manage.py purge_audit_logs --dry-run` reports expired
-entries; omit `--dry-run` to remove only entries older than 366 days. The command
-rejects a shorter retention period. No cleanup is scheduled automatically.
-Future allocation, release and payment services must call
-`audit.services.record_event(...)` inside their transaction; those Sprint 2
-operations are not implemented by HMS-05.
+ORM operations. Student, hostel, room, and bed changes, allocation and release,
+and payment creation and refunds write audit events in the same transaction as
+the corresponding change. `python manage.py purge_audit_logs --dry-run` reports
+expired entries; omit `--dry-run` to remove only entries older than 366 days.
+The command rejects a shorter retention period. No cleanup is scheduled
+automatically, so operators should schedule the command as a maintenance task.
 
 Run `python manage.py test audit accounts --noinput` for audit, session and
 lockout regression tests on the configured MySQL server.

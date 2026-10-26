@@ -74,9 +74,24 @@ class AuthenticationTests(TestCase):
         response = self.client.post(reverse('login'), {'username': 'student1', 'password': 'Validpass123'})
         cookie = response.cookies[settings.SESSION_COOKIE_NAME]
         self.assertTrue(cookie['httponly'])
+        self.assertEqual(bool(cookie['secure']), settings.SESSION_COOKIE_SECURE)
         self.assertEqual(self.client.session.get_expiry_age(), 15 * 60)
         self.assertTrue(settings.SESSION_EXPIRE_AT_BROWSER_CLOSE)
         self.assertTrue(settings.SESSION_SAVE_EVERY_REQUEST)
+
+    @override_settings(SESSION_COOKIE_SECURE=True, CSRF_COOKIE_SECURE=True)
+    def test_session_and_csrf_cookies_are_secure_when_enabled_for_deployment(self):
+        login_page = self.client.get(reverse('login'))
+        csrf_cookie = login_page.cookies[settings.CSRF_COOKIE_NAME]
+        self.assertTrue(csrf_cookie['secure'])
+
+        response = self.client.post(
+            reverse('login'),
+            {'username': 'student1', 'password': 'Validpass123'},
+        )
+        session_cookie = response.cookies[settings.SESSION_COOKIE_NAME]
+        self.assertTrue(session_cookie['secure'])
+        self.assertTrue(session_cookie['httponly'])
 
     def test_invalid_password_is_generic_and_locks_after_five_attempts(self):
         first = self.client.post(reverse('login'), {'username': 'student1', 'password': 'wrong'})
