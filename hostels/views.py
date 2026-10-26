@@ -1,12 +1,15 @@
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
 from accounts.models import User
+from audit.models import AuditEvent
+from audit.services import record_event
 from .forms import HostelForm, RoomForm
 from .models import Bed, Hostel, Room
 
@@ -24,7 +27,13 @@ def hostel_list(request):
     form = HostelForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        form.save()
+        with transaction.atomic():
+            hostel = form.save()
+            record_event(
+                user=request.user,
+                action=AuditEvent.Action.CREATE,
+                record=hostel,
+            )
         return redirect("hostel-list")
 
     hostels = Hostel.objects.all()
@@ -44,7 +53,19 @@ def hostel_update(request, pk):
     form = HostelForm(request.POST or None, instance=hostel)
 
     if request.method == "POST" and form.is_valid():
-        form.save()
+        with transaction.atomic():
+            # ModelForm validation mutates its instance before save(), so read
+            # the persisted value to classify deactivation reliably.
+            was_active = Hostel.objects.values_list(
+                "is_active", flat=True
+            ).get(pk=hostel.pk)
+            hostel = form.save()
+            action = (
+                AuditEvent.Action.DEACTIVATE
+                if was_active and not hostel.is_active
+                else AuditEvent.Action.UPDATE
+            )
+            record_event(user=request.user, action=action, record=hostel)
         return redirect("hostel-list")
 
     return render(request, "hostels/hostel_form.html", {
@@ -62,7 +83,13 @@ def room_create(request):
     form = RoomForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        form.save()
+        with transaction.atomic():
+            room = form.save()
+            record_event(
+                user=request.user,
+                action=AuditEvent.Action.CREATE,
+                record=room,
+            )
         return redirect("bed-list")
 
     return render(request, "hostels/room_form.html", {
@@ -81,7 +108,13 @@ def room_update(request, pk):
     form = RoomForm(request.POST or None, instance=room)
 
     if request.method == "POST" and form.is_valid():
-        form.save()
+        with transaction.atomic():
+            room = form.save()
+            record_event(
+                user=request.user,
+                action=AuditEvent.Action.UPDATE,
+                record=room,
+            )
         return redirect("bed-list")
 
     return render(request, "hostels/room_form.html", {

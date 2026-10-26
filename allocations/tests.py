@@ -1,13 +1,13 @@
-from django.urls import reverse
-
-from accounts.models import User
-
 from datetime import date
+from unittest.mock import patch
 
 from django.core.exceptions import ValidationError
 from django.test import TestCase
+from django.urls import reverse
 
+from accounts.models import User
 from allocations.models import Allocation
+from audit.models import AuditEvent
 from hostels.models import Bed, Hostel, Room
 from students.models import Student
 
@@ -227,7 +227,51 @@ class AllocationViewTests(TestCase):
             allocation.status,
             Allocation.AllocationStatus.ACTIVE,
         )
+        event = AuditEvent.objects.get(
+            action=AuditEvent.Action.ALLOCATE,
+            record_type="allocations.allocation",
+            record_id=str(allocation.pk),
+        )
+        self.assertEqual(event.user, self.admin)
 
+        self.bed.refresh_from_db()
+        self.assertEqual(self.bed.status, Bed.BedStatus.OCCUPIED)
+
+    def test_allocation_creation_rolls_back_if_audit_event_fails(self):
+        self.client.force_login(self.admin)
+
+        with patch(
+            "allocations.services.record_event",
+            side_effect=RuntimeError("audit write failed"),
+        ):
+            with self.assertRaises(RuntimeError):
+                self.client.post(
+                    reverse("allocation-create"),
+                    {"student": self.student.pk, "bed": self.bed.pk},
+                )
+
+        self.assertFalse(Allocation.objects.filter(student=self.student).exists())
+        self.bed.refresh_from_db()
+        self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)
+
+    def test_release_rolls_back_if_audit_event_fails(self):
+        self.client.force_login(self.admin)
+        allocation = Allocation.objects.create(
+            student=self.student,
+            bed=self.bed,
+        )
+
+        with patch(
+            "allocations.services.record_event",
+            side_effect=RuntimeError("audit write failed"),
+        ):
+            with self.assertRaises(RuntimeError):
+                self.client.post(
+                    reverse("allocation-complete", args=[allocation.pk]),
+                )
+
+        allocation.refresh_from_db()
+        self.assertEqual(allocation.status, Allocation.AllocationStatus.ACTIVE)
         self.bed.refresh_from_db()
         self.assertEqual(self.bed.status, Bed.BedStatus.OCCUPIED)
 
@@ -254,3 +298,9 @@ class AllocationViewTests(TestCase):
 
         self.bed.refresh_from_db()
         self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)
+        event = AuditEvent.objects.get(
+            action=AuditEvent.Action.RELEASE,
+            record_type="allocations.allocation",
+            record_id=str(allocation.pk),
+        )
+        self.assertEqual(event.user, self.admin)
