@@ -197,3 +197,6 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# The optional verification runner keeps JUnit output with its other evidence.
+TEST_OUTPUT_DIR = os.environ.get('HMS_TEST_OUTPUT_DIR', 'test-results/junit')

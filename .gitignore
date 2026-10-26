@@ -16,6 +16,11 @@ staticfiles/
 # Tests and coverage
 .coverage
 htmlcov/
+test-results/
+coverage.xml
+test-results.txt
+TEST-*.xml
+.ruff_cache/
 
 # Editors and OS
 .vscode/

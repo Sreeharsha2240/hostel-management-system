@@ -27,5 +27,11 @@
     <p>Record payments, view receipts and check student balances.</p>
     <a href="{% url 'payment-list' %}">Open payments</a>
   </article>
+  <article class="dashboard-card">
+    <p class="eyebrow">Overview</p>
+    <h2>Reports</h2>
+    <p>Review occupancy and payment status, with CSV downloads.</p>
+    <a href="{% url 'occupancy-report' %}">Open reports</a>
+  </article>
 </section>
 {% endblock %}

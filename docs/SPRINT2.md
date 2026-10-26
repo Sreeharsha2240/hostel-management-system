@@ -102,3 +102,59 @@ receipt parsing). Runtime deployments need only `requirements.txt`.
 `python manage.py test payments hostels --noinput` passed 44 tests on MySQL
 8.4.9, including concurrent numbering/corrections, rollback, immutable history,
 balance transitions, permissions, CSRF, validation and actual PDF contents.
+
+## HMS-11: reports (REQ-23, TC-RPT-01)
+
+Staff open `/reports/occupancy/` or `/reports/payment-status/` from Reports on
+the navigation/dashboard. `?hostel=<hostel-pk>` filters either report; an empty
+filter includes every hostel, including inactive/empty hostels, or every student
+including students without an allocation. A student is assigned to the current
+or most recent completed allocation's hostel for the payment report. Released
+students remain visible in that hostel's payment report.
+
+`Accept: application/json` (or `?format=json`) returns `{rows, generated_on}`.
+`?format=csv` downloads the same rows and numeric values. The occupancy report
+includes total, occupied, available and maintenance bed counts and percentage
+occupied, safely returning 0.00% for zero beds. An active allocation takes
+precedence over a stale Available/Maintenance flag. Otherwise, an Occupied flag
+counts as occupied, Maintenance counts as maintenance and Available counts as
+available. Historical allocation rows cannot multiply a bed count. Thus each
+valid bed belongs to one count, and maintenance beds never count as available.
+
+The payment report includes student ID/name, hostel/room, fee, paid, due and
+Paid/Partial/Pending status using the policy above. Independent subqueries avoid
+duplicating payment sums when a student has several allocations. Occupancy uses
+two data queries irrespective of hostel count; payment status uses one query
+irrespective of student count. Both reports include a generated timestamp.
+CSV output uses UTF-8 with a BOM, quotes commas/newlines correctly, and prefixes
+spreadsheet formula-like names with an apostrophe so they remain literal text.
+HTML escapes names normally. Both reports are read-only and staff-only.
+
+`python manage.py test reports --noinput` passed all nine report tests, covering
+calculations, history, stale flags, maintenance, empty hostels, filters, payment
+corrections, HTML/JSON/CSV agreement, CSV text handling, access and query counts.
+
+## Repeatable combined verification
+
+With the MySQL application/test database grants described in the README and
+`requirements-dev.txt` installed, run `python scripts/run_checks.py`. Do not run
+two suites against the same MySQL test database at once. The runner checks
+Django/database configuration and migration consistency, creates a separate
+fresh test database, runs all tests under branch-aware coverage, enforces a 70%
+combined statement/branch coverage minimum, and saves JUnit XML, logs, coverage
+XML/JSON and `run.json` in an ignored timestamped `test-results/` directory.
+It never migrates or populates the application database. `run.json` records the
+commit, dirty status, versions, test totals, coverage and each check's exit code;
+it records no credentials or connection settings.
+
+GitHub Actions runs the same command on Python 3.11 and 3.14 against MySQL 8.4
+LTS, after applying migrations to a fresh application database. Each matrix job
+uploads its own `hms-test-evidence-py<version>-<commit>` artifact for 30 days.
+Open the corresponding PR check to download the complete evidence. This covers
+automated module/integration verification; broader Sprint 2 acceptance,
+browser/OS compatibility, backup/recovery drills and team sign-off remain #13.
+
+Merge order: allocation PR #25, then payment PR #26, then reports. Dependent PRs
+are stacked for focused review and should be retargeted to main after their
+parent merges. Issues close on merge, not on opening a PR. The complete combined
+run and CI results will be recorded after verification.
