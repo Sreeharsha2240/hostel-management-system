@@ -332,7 +332,7 @@ class HostelModelBehaviorTests(TestCase):
             student_id="PES9876543211",
             name="Test Student Two",
             date_of_birth=date(2005, 2, 15),
-            gender=Student.Gender.FEMALE,
+            gender=Student.Gender.MALE,
             course="Engineering",
             year=2,
             mobile="9876543212",

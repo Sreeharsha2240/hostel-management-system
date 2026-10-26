@@ -1,6 +1,15 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.db import models, transaction
 
-from django.db import models
-from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
+
+class StudentQuerySet(models.QuerySet):
+    def update(self, **kwargs):
+        if "status" in kwargs:
+            raise ValidationError(
+                "Save student status individually to check active allocations."
+            )
+        return super().update(**kwargs)
 
 
 class Student(models.Model):
@@ -37,7 +46,9 @@ class Student(models.Model):
     guardian_name = models.CharField(max_length=60)
     guardian_mobile = models.CharField(
         max_length=10,
-        validators=[RegexValidator(r"^\d{10}$", "Enter a 10-digit guardian mobile number.")],
+        validators=[
+            RegexValidator(r"^\d{10}$", "Enter a 10-digit guardian mobile number.")
+        ],
     )
     address = models.CharField(max_length=200, blank=True)
     status = models.CharField(
@@ -47,6 +58,7 @@ class Student(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = StudentQuerySet.as_manager()
 
     class Meta:
         ordering = ["name"]
@@ -57,3 +69,19 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.student_id} - {self.name}"
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        if self.pk:
+            Student.objects.select_for_update().get(pk=self.pk)
+            if self.status == self.Status.INACTIVE:
+                from allocations.models import Allocation
+
+                if Allocation.objects.filter(
+                    student_id=self.pk, status="Active"
+                ).exists():
+                    raise ValidationError(
+                        "Release this student's active allocation before deactivation.",
+                        code="HAS_ACTIVE_ALLOCATION",
+                    )
+        return super().save(*args, **kwargs)

@@ -4,6 +4,7 @@
 {% block content %}
 <div class="container mt-4">
     <h2>Hostel Allocations</h2>
+    {% if student %}<p>History for {{ student.student_id }} — {{ student.name }}</p>{% endif %}
 
     {% if messages %}
         {% for message in messages %}
@@ -61,7 +62,10 @@
                         <td>{{ allocation.vacated_on|default:"—" }}</td>
                         <td>{{ allocation.get_status_display }}</td>
                         <td>
+                            <a href="{% url 'allocation-history' allocation.student_id %}">History</a>
                             {% if allocation.status == "Active" %}
+                                <a href="{% url 'allocation-transfer' allocation.pk %}">Transfer</a>
+                                <a href="{% url 'allocation-release' allocation.pk %}">Release with date</a>
                                 <form
                                     method="post"
                                     action="{% url 'allocation-complete' allocation.pk %}"
@@ -90,5 +94,6 @@
             </tbody>
         </table>
     </div>
+    {% if page_obj %}{% include "includes/pagination.html" %}{% endif %}
 </div>
 {% endblock %}
