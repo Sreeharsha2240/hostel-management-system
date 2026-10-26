@@ -36,6 +36,10 @@ def main():
         "%Y%m%dT%H%M%S%fZ"
     )
     output = output.resolve()
+    if output.exists() and (not output.is_dir() or any(output.iterdir())):
+        parser.error(
+            "Choose a new, empty output directory so earlier evidence is preserved."
+        )
     output.mkdir(parents=True, exist_ok=True)
     environment = os.environ.copy()
     environment.update(
@@ -68,7 +72,7 @@ def main():
 
     def run(name, arguments):
         command = [sys.executable, *arguments]
-        print(f"\nRunning {name}…", flush=True)
+        print(f"\nRunning {name}...", flush=True)
         step_started = time.monotonic()
         with (output / f"{name}.txt").open("w", encoding="utf-8") as log:
             process = subprocess.Popen(
@@ -158,7 +162,8 @@ def main():
     finally:
         evidence["completed_at"] = datetime.now(timezone.utc).isoformat()
         evidence["success"] = (
-            bool(evidence["steps"])
+            len(evidence["steps"]) == 6
+            and evidence.get("tests", {}).get("tests", 0) > 0
             and "setup_error_type" not in evidence
             and all(step["exit_code"] == 0 for step in evidence["steps"])
         )

@@ -156,5 +156,11 @@ browser/OS compatibility, backup/recovery drills and team sign-off remain #13.
 
 Merge order: allocation PR #25, then payment PR #26, then reports. Dependent PRs
 are stacked for focused review and should be retargeted to main after their
-parent merges. Issues close on merge, not on opening a PR. The complete combined
-run and CI results will be recorded after verification.
+parent merges. Issues close on merge, not on opening a PR.
+
+The combined local run on clean revision `d9406ef` passed all 136 tests with
+zero failures, errors or skips on Python 3.14.7 / MySQL 8.4.9. Coverage was
+92.02% of statements, 77.93% of branches, and 89.27% combined, above the 70%
+gate. Django/database checks and migration consistency passed. The saved run
+includes 19 JUnit files and machine-readable coverage/run metadata. CI checks
+on each PR provide the corresponding Linux/Python matrix results and artifacts.

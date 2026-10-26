@@ -133,9 +133,9 @@ Audit events cannot be edited or deleted through the application or its normal
 ORM operations. `python manage.py purge_audit_logs --dry-run` reports expired
 entries; omit `--dry-run` to remove only entries older than 366 days. The command
 rejects a shorter retention period. No cleanup is scheduled automatically.
-Future allocation, release and payment services must call
-`audit.services.record_event(...)` inside their transaction; those Sprint 2
-operations are not implemented by HMS-05.
+Allocation, transfer, release and payment services call
+`audit.services.record_event(...)` inside their business transaction, so an
+audit failure rolls back the operation.
 
 Run `python manage.py test audit accounts --noinput` for audit, session and
 lockout regression tests on the configured MySQL server.
