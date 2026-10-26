@@ -25,6 +25,7 @@
         <td><span class="badge {{ student.status }}">{{ student.status }}</span></td>
         <td><div class="actions">
           <a href="{% url 'student-update' student.pk %}">Edit</a>
+          <a href="{% url 'student-payment-status' student.pk %}">Payment status</a>
           {% if student.status == "Active" %}
           <form method="post" action="{% url 'student-deactivate' student.pk %}">{% csrf_token %}<button class="secondary" type="submit" onclick="return confirm('Deactivate this student?')">Deactivate</button></form>
           {% endif %}

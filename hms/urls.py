@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
@@ -8,6 +7,7 @@ urlpatterns = [
     path("", include("students.urls")),
     path("", include("hostels.urls")),
     path("", include("allocations.urls")),
+    path("", include("payments.urls")),
     path("", include("audit.urls")),
     path("", include("accounts.urls")),
     path(
