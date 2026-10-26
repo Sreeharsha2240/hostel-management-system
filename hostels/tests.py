@@ -5,8 +5,10 @@ from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
 from django.test import Client, TestCase
 from django.urls import reverse
+from unittest.mock import patch
 
 from accounts.models import User
+from audit.models import AuditEvent
 from allocations.models import Allocation
 from students.models import Student
 
@@ -58,6 +60,12 @@ class HostelManagementViewTests(TestCase):
         )
         self.assertRedirects(hostel_response, reverse("hostel-list"))
         created_hostel = Hostel.objects.get(name="Admin Created Hostel")
+        hostel_event = AuditEvent.objects.get(
+            action=AuditEvent.Action.CREATE,
+            record_type="hostels.hostel",
+            record_id=str(created_hostel.pk),
+        )
+        self.assertEqual(hostel_event.user, self.admin)
 
         room_response = self.client.post(
             reverse("room-create"),
@@ -70,7 +78,49 @@ class HostelManagementViewTests(TestCase):
             },
         )
         self.assertRedirects(room_response, reverse("bed-list"))
-        self.assertTrue(Room.objects.filter(hostel=created_hostel, room_number="901").exists())
+        room = Room.objects.get(hostel=created_hostel, room_number="901")
+        self.assertTrue(room)
+        room_event = AuditEvent.objects.get(
+            action=AuditEvent.Action.CREATE,
+            record_type="hostels.room",
+            record_id=str(room.pk),
+        )
+        self.assertEqual(room_event.user, self.admin)
+
+    def test_room_creation_rolls_back_if_audit_recording_fails(self):
+        with patch("hostels.views.record_event", side_effect=RuntimeError("audit failed")):
+            with self.assertRaises(RuntimeError):
+                self.client.post(
+                    reverse("room-create"),
+                    {
+                        "hostel": self.hostel.pk,
+                        "room_number": "799",
+                        "floor": 7,
+                        "room_type": Room.RoomType.SINGLE,
+                        "capacity": 1,
+                    },
+                )
+
+        self.assertFalse(Room.objects.filter(hostel=self.hostel, room_number="799").exists())
+        self.assertFalse(Bed.objects.filter(room__hostel=self.hostel, label="799-A").exists())
+
+    def test_hostel_deactivation_is_audited(self):
+        response = self.client.post(
+            reverse("hostel-update", args=[self.hostel.pk]),
+            {
+                "name": self.hostel.name,
+                "hostel_type": self.hostel.hostel_type,
+            },
+        )
+        self.assertRedirects(response, reverse("hostel-list"))
+        self.hostel.refresh_from_db()
+        self.assertFalse(self.hostel.is_active)
+        event = AuditEvent.objects.get(
+            action=AuditEvent.Action.DEACTIVATE,
+            record_type="hostels.hostel",
+            record_id=str(self.hostel.pk),
+        )
+        self.assertEqual(event.user, self.admin)
 
     def test_only_admin_can_create_or_edit_hostels_and_rooms(self):
         self.client.force_login(self.warden)

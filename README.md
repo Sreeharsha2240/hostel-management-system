@@ -110,11 +110,14 @@ admin also exposes a read-only audit list to Admin superusers.
 
 Both `/login/` and Django's `/admin/login/` use the same five-attempt, 15-minute
 lockout backend. Successful logins, failed attempts, logout and account changes
-write audit events. Events store the acting user when authenticated, action,
-affected record identifiers and timestamp; credentials, submitted usernames for
-unknown accounts, session tokens and request bodies are not stored. An attempted
-account is identified as the affected record for a failed login, not as an
-authenticated actor. Data changes and their audit entries share a transaction.
+write audit events. Student registration, updates and deactivation, hostel and
+room creation or updates, and bed-status changes are also audited through the
+management views and Django admin. Events store the acting user when
+authenticated, action, affected record type and identifier, and timestamp;
+credentials, submitted usernames for unknown accounts, session tokens, request
+bodies and changed field values are not stored. An attempted account is
+identified as the affected record for a failed login, not as an authenticated
+actor. Data changes and their audit entries share a transaction.
 
 Sessions use a rolling 15-minute expiry and HttpOnly cookies. Authenticated pages
 send `Cache-Control: no-store`. The `.env.example` explicitly allows local HTTP.

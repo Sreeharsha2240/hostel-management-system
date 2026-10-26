@@ -10,6 +10,8 @@ from django.views.decorators.http import require_http_methods
 
 from accounts.models import User
 from allocations.models import Allocation
+from audit.models import AuditEvent
+from audit.services import record_event
 from .forms import StudentForm
 from .models import Student
 
@@ -62,7 +64,13 @@ def student_create(request):
     form = StudentForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        student = form.save()
+        with transaction.atomic():
+            student = form.save()
+            record_event(
+                user=request.user,
+                action=AuditEvent.Action.CREATE,
+                record=student,
+            )
         messages.success(
             request,
             f"Student {student.student_id} registered successfully.",
@@ -91,7 +99,13 @@ def student_update(request, pk):
     form.fields.pop("status")
 
     if request.method == "POST" and form.is_valid():
-        form.save()
+        with transaction.atomic():
+            student = form.save()
+            record_event(
+                user=request.user,
+                action=AuditEvent.Action.UPDATE,
+                record=student,
+            )
         messages.success(
             request,
             f"Student {student.student_id} updated successfully.",
@@ -151,6 +165,11 @@ def student_deactivate(request, pk):
     else:
         student.status = Student.Status.INACTIVE
         student.save(update_fields=["status", "updated_at"])
+        record_event(
+            user=request.user,
+            action=AuditEvent.Action.DEACTIVATE,
+            record=student,
+        )
         messages.success(
             request,
             f"Student {student.student_id} deactivated successfully.",
