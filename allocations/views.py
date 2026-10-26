@@ -192,7 +192,9 @@ def allocation_release(request, pk):
                     allocation_id=allocation.pk, actor=request.user, **form.cleaned_data
                 )
                 if wants_json(request):
-                    return JsonResponse(serialize(completed))
+                    payload = serialize(completed)
+                    payload["status"] = "Released"
+                    return JsonResponse(payload)
                 messages.success(request, "Allocation released.")
                 return redirect("allocation-list")
             response = form_error(request, form)

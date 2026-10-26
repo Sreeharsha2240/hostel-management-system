@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
 from django.db.models import F, Q
@@ -77,6 +79,10 @@ class Allocation(models.Model):
 
     def clean(self):
         super().clean()
+        if not isinstance(self.allocated_on, date):
+            raise ValidationError({"allocated_on": "Enter a valid allocation date."})
+        if self.vacated_on is not None and not isinstance(self.vacated_on, date):
+            raise ValidationError({"vacated_on": "Enter a valid vacate date."})
         today = timezone.localdate()
         if self.allocated_on and self.allocated_on > today:
             raise ValidationError(
@@ -104,14 +110,19 @@ class Allocation(models.Model):
 
         # Lock Student, then Rooms/Beds in PK order, then Allocation.
         # Student deactivation takes the same Student lock.
-        student = Student.objects.select_for_update().get(pk=self.student_id)
-        room_id = Bed.objects.values_list("room_id", flat=True).get(pk=self.bed_id)
-        Room.objects.select_for_update().get(pk=room_id)
-        bed = (
-            Bed.objects.select_for_update()
-            .select_related("room__hostel")
-            .get(pk=self.bed_id)
-        )
+        try:
+            student = Student.objects.select_for_update().get(pk=self.student_id)
+            room_id = Bed.objects.values_list("room_id", flat=True).get(pk=self.bed_id)
+            Room.objects.select_for_update().get(pk=room_id)
+            bed = (
+                Bed.objects.select_for_update()
+                .select_related("room__hostel")
+                .get(pk=self.bed_id)
+            )
+        except (Student.DoesNotExist, Room.DoesNotExist, Bed.DoesNotExist):
+            raise ValidationError(
+                "The selected student or bed no longer exists.", code="NOT_FOUND"
+            ) from None
         previous = None
         if not self._state.adding:
             previous = Allocation.objects.select_for_update().get(pk=self.pk)
