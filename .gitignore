@@ -25,3 +25,5 @@ Thumbs.db
 
 # Office lock files created while a .docx is open
 ~$*
+
+test-evidence/issue-13/hms-backup.sql
