@@ -19,6 +19,7 @@
       <a href="{% url 'student-list' %}" {% if request.resolver_match.url_name == 'student-list' or request.resolver_match.url_name == 'student-create' or request.resolver_match.url_name == 'student-update' %}aria-current="page"{% endif %}>Students</a>
       <a href="{% url 'allocation-list' %}" {% if request.resolver_match.url_name == 'allocation-list' or request.resolver_match.url_name == 'allocation-create' %}aria-current="page"{% endif %}>Allocations</a>
       <a href="{% url 'payment-list' %}" {% if request.resolver_match.url_name == 'payment-list' or request.resolver_match.url_name == 'payment-create' or request.resolver_match.url_name == 'payment-receipt' or request.resolver_match.url_name == 'payment-adjust' or request.resolver_match.url_name == 'student-payment-status' %}aria-current="page"{% endif %}>Payments</a>
+      <a href="{% url 'occupancy-report' %}" {% if request.resolver_match.url_name == 'occupancy-report' or request.resolver_match.url_name == 'payment-status-report' %}aria-current="page"{% endif %}>Reports</a>
       {% endif %}
       {% if request.user.role == 'admin' %}
       <a href="{% url 'hostel-list' %}" {% if request.resolver_match.url_name == 'hostel-list' or request.resolver_match.url_name == 'hostel-update' or request.resolver_match.url_name == 'room-create' or request.resolver_match.url_name == 'room-update' %}aria-current="page"{% endif %}>Hostels</a>

@@ -4,16 +4,28 @@ name: Django Tests
 on:
   push:
     branches:
-      - feature/student-hostel-management
+      - main
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: django-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.14"]
 
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:8.4
         env:
           MYSQL_DATABASE: hms
           MYSQL_USER: hms
@@ -47,7 +59,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.14"
+          python-version: ${{ matrix.python-version }}
           cache: pip
 
       - name: Install MySQL build dependencies
@@ -62,30 +74,21 @@ jobs:
 
       - name: Grant MySQL test database permissions
         run: |
-          mysql -h 127.0.0.1 -uroot -proot_test_password -e "GRANT ALL PRIVILEGES ON *.* TO 'hms'@'%'"
+          mysql -h 127.0.0.1 -uroot -proot_test_password <<'SQL'
+          GRANT ALL PRIVILEGES ON `test\_hms`.* TO 'hms'@'%';
+          SQL
 
-      - name: Check Django configuration
-        run: python manage.py check
+      - name: Apply migrations to a fresh application database
+        run: python manage.py migrate --noinput
 
-      - name: Run all tests and generate JUnit report
-        run: |
-          set -o pipefail
-          python manage.py test --testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input 2>&1 | tee test-results.txt
+      - name: Check configuration, migrations, tests and branch coverage
+        run: python scripts/run_checks.py --output-dir test-results/ci
 
       - name: Save test evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sprint1-test-evidence-${{ github.sha }}
-          path: test-results.txt
-          if-no-files-found: warn
-          retention-days: 30
-
-      - name: Upload JUnit test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: django-test-results
-          path: TEST-*.xml
+          name: hms-test-evidence-py${{ matrix.python-version }}-${{ github.sha }}
+          path: test-results/ci/
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 30
