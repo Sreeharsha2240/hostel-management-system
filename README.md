@@ -106,6 +106,14 @@ development server.
 
 ## Team collaboration (HMS-03)
 
+### Student self-service (HMS-12)
+
+Admin or Warden users link a Student login account to the corresponding student
+record in the student registration or edit form. Students can use **My records**
+to see only their own current allocation, allocation history and payment
+balance/history. An unlinked login sees a prompt to contact staff; it cannot
+choose a student ID or inspect another student's records.
+
 ### Session security and audit logging (HMS-05)
 
 Run `python manage.py migrate` after updating: the audit app adds its first table.
