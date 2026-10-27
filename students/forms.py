@@ -1,9 +1,28 @@
 
 from django import forms
+from django.db.models import Q
+
+from accounts.models import User
 from .models import Student
 
 
 class StudentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        accounts = User.objects.filter(role=User.Role.STUDENT)
+        if self.instance.pk and self.instance.user_id:
+            accounts = accounts.filter(
+                Q(student_profile__isnull=True) | Q(pk=self.instance.user_id)
+            )
+        else:
+            accounts = accounts.filter(student_profile__isnull=True)
+        self.fields["user"].queryset = accounts.order_by("username")
+        self.fields["user"].label = "Linked student login"
+        self.fields["user"].required = False
+        self.fields["user"].help_text = (
+            "Only this Student account can view the profile's allocation and payment details."
+        )
+
     class Meta:
         model = Student
         fields = [
@@ -18,6 +37,7 @@ class StudentForm(forms.ModelForm):
             "guardian_name",
             "guardian_mobile",
             "address",
+            "user",
             "status",
         ]
         widgets = {

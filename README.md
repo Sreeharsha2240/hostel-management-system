@@ -104,9 +104,20 @@ remain subject to team review.
 4. Run `python manage.py migrate` to create the tables. `python manage.py showmigrations` lists what has been applied.
 
 **Working with migrations.** After changing a model, run `python manage.py makemigrations <app>` and commit the generated file in `<app>/migrations/` together with the model change. Never edit or delete a migration that is already on `main`; add a new one instead.
-For an HTTPS deployment, set `DJANGO_SESSION_COOKIE_SECURE=True` in the environment; leave it `False` for the documented local HTTP development server.
+For an HTTPS deployment, set `DJANGO_DEBUG=False`, `DJANGO_SESSION_COOKIE_SECURE=True`,
+`DJANGO_CSRF_COOKIE_SECURE=True` and `DJANGO_SECURE_SSL_REDIRECT=True` in the environment.
+Keep the secure-cookie and redirect flags `False` for the documented local HTTP
+development server.
 
 ## Team collaboration (HMS-03)
+
+### Student self-service (HMS-12)
+
+Admin or Warden users link a Student login account to the corresponding student
+record in the student registration or edit form. Students can use **My records**
+to see only their own current allocation, allocation history and payment
+balance/history. An unlinked login sees a prompt to contact staff; it cannot
+choose a student ID or inspect another student's records.
 
 ### Session security and audit logging (HMS-05)
 
@@ -117,11 +128,14 @@ admin also exposes a read-only audit list to Admin superusers.
 
 Both `/login/` and Django's `/admin/login/` use the same five-attempt, 15-minute
 lockout backend. Successful logins, failed attempts, logout and account changes
-write audit events. Events store the acting user when authenticated, action,
-affected record identifiers and timestamp; credentials, submitted usernames for
-unknown accounts, session tokens and request bodies are not stored. An attempted
-account is identified as the affected record for a failed login, not as an
-authenticated actor. Data changes and their audit entries share a transaction.
+write audit events. Student registration, updates and deactivation, hostel and
+room creation or updates, and bed-status changes are also audited through the
+management views and Django admin. Events store the acting user when
+authenticated, action, affected record type and identifier, and timestamp;
+credentials, submitted usernames for unknown accounts, session tokens, request
+bodies and changed field values are not stored. An attempted account is
+identified as the affected record for a failed login, not as an authenticated
+actor. Data changes and their audit entries share a transaction.
 
 Sessions use a rolling 15-minute expiry and HttpOnly cookies. Authenticated pages
 send `Cache-Control: no-store`. The `.env.example` explicitly allows local HTTP.
@@ -130,12 +144,12 @@ For HTTPS deployment, set `DJANGO_DEBUG=False`,
 `DJANGO_SECURE_SSL_REDIRECT=True`, and configure TLS at the web server.
 
 Audit events cannot be edited or deleted through the application or its normal
-ORM operations. `python manage.py purge_audit_logs --dry-run` reports expired
-entries; omit `--dry-run` to remove only entries older than 366 days. The command
-rejects a shorter retention period. No cleanup is scheduled automatically.
-Allocation, transfer, release and payment services call
-`audit.services.record_event(...)` inside their business transaction, so an
-audit failure rolls back the operation.
+ORM operations. Student, hostel, room, and bed changes, allocation and release,
+and payment creation and refunds write audit events in the same transaction as
+the corresponding change. `python manage.py purge_audit_logs --dry-run` reports
+expired entries; omit `--dry-run` to remove only entries older than 366 days.
+The command rejects a shorter retention period. No cleanup is scheduled
+automatically, so operators should schedule the command as a maintenance task.
 
 Run `python manage.py test audit accounts --noinput` for audit, session and
 lockout regression tests on the configured MySQL server.

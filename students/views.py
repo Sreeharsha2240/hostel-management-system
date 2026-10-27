@@ -6,12 +6,17 @@ from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_GET, require_http_methods
 
+from accounts.decorators import roles_required
 from accounts.models import User
 from allocations.models import Allocation
+from audit.models import AuditEvent
+from audit.services import record_event
 from .forms import StudentForm
 from .models import Student
+from payments.models import Payment
+from payments.services import payment_status_queryset, status_row
 
 
 def can_manage_students(user):
@@ -62,7 +67,13 @@ def student_create(request):
     form = StudentForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
-        student = form.save()
+        with transaction.atomic():
+            student = form.save()
+            record_event(
+                user=request.user,
+                action=AuditEvent.Action.CREATE,
+                record=student,
+            )
         messages.success(
             request,
             f"Student {student.student_id} registered successfully.",
@@ -91,7 +102,13 @@ def student_update(request, pk):
     form.fields.pop("status")
 
     if request.method == "POST" and form.is_valid():
-        form.save()
+        with transaction.atomic():
+            student = form.save()
+            record_event(
+                user=request.user,
+                action=AuditEvent.Action.UPDATE,
+                record=student,
+            )
         messages.success(
             request,
             f"Student {student.student_id} updated successfully.",
@@ -151,9 +168,54 @@ def student_deactivate(request, pk):
     else:
         student.status = Student.Status.INACTIVE
         student.save(update_fields=["status", "updated_at"])
+        record_event(
+            user=request.user,
+            action=AuditEvent.Action.DEACTIVATE,
+            record=student,
+        )
         messages.success(
             request,
             f"Student {student.student_id} deactivated successfully.",
         )
 
     return redirect("student-list")
+
+
+@roles_required(User.Role.STUDENT)
+@require_GET
+def my_records(request):
+    """Show only the student profile explicitly linked to this login."""
+    student = (
+        Student.objects.filter(user_id=request.user.pk)
+        .select_related("user")
+        .first()
+    )
+    if student is None:
+        return render(request, "students/my_records.html", {"student": None})
+
+    allocations = (
+        student.allocations.exclude(status=Allocation.AllocationStatus.CANCELLED)
+        .select_related("bed__room__hostel")
+        .order_by("-allocated_on", "-pk")
+    )
+    payments = (
+        Payment.objects.filter(student_id=student.pk)
+        .select_related("adjustment_of")
+        .order_by("-date", "-pk")
+    )
+    balance_student = payment_status_queryset(
+        Student.objects.filter(pk=student.pk)
+    ).get(pk=student.pk)
+    return render(
+        request,
+        "students/my_records.html",
+        {
+            "student": student,
+            "allocations": allocations,
+            "current_allocation": allocations.filter(
+                status=Allocation.AllocationStatus.ACTIVE
+            ).first(),
+            "payments": payments,
+            "payment_summary": status_row(balance_student),
+        },
+    )

@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models, transaction
 
@@ -51,6 +52,14 @@ class Student(models.Model):
         ],
     )
     address = models.CharField(max_length=200, blank=True)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="student_profile",
+        help_text="Optional Student login account allowed to view this profile.",
+    )
     status = models.CharField(
         max_length=8,
         choices=Status.choices,

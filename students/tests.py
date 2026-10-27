@@ -1,12 +1,14 @@
 
 from datetime import date
 from time import perf_counter
+from unittest.mock import patch
 
 from django.core.exceptions import ValidationError
 from django.test import TestCase, Client
 from django.urls import reverse
 
 from accounts.models import User
+from audit.models import AuditEvent
 from allocations.models import Allocation
 from hostels.models import Bed, Hostel, Room
 from students.models import Student
@@ -143,6 +145,23 @@ class StudentDeactivationViewTests(TestCase):
         self.assertTrue(
             Student.objects.filter(student_id="PES0000000001").exists()
         )
+        student = Student.objects.get(student_id="PES0000000001")
+        event = AuditEvent.objects.get(
+            action=AuditEvent.Action.CREATE,
+            record_type="students.student",
+            record_id=str(student.pk),
+        )
+        self.assertEqual(event.user, self.admin)
+
+    def test_student_creation_rolls_back_if_audit_recording_fails(self):
+        with patch("students.views.record_event", side_effect=RuntimeError("audit failed")):
+            with self.assertRaises(RuntimeError):
+                self.client.post(
+                    reverse("student-create"),
+                    self.student_payload(student_id="PES0000000003"),
+                )
+
+        self.assertFalse(Student.objects.filter(student_id="PES0000000003").exists())
 
     def test_warden_can_register_student(self):
         warden = User.objects.create_user(
@@ -257,6 +276,20 @@ class StudentDeactivationViewTests(TestCase):
         self.student.refresh_from_db()
         self.assertEqual(self.student.status, Student.Status.INACTIVE)
         self.assertTrue(Student.objects.filter(pk=self.student.pk).exists())
+        event = AuditEvent.objects.get(
+            action=AuditEvent.Action.DEACTIVATE,
+            record_type="students.student",
+            record_id=str(self.student.pk),
+        )
+        self.assertEqual(event.user, self.admin)
+
+    def test_student_deactivation_rolls_back_if_audit_recording_fails(self):
+        with patch("students.views.record_event", side_effect=RuntimeError("audit failed")):
+            with self.assertRaises(RuntimeError):
+                self.client.post(reverse("student-deactivate", args=[self.student.pk]))
+
+        self.student.refresh_from_db()
+        self.assertEqual(self.student.status, Student.Status.ACTIVE)
 
     def test_student_with_active_allocation_cannot_be_deactivated(self):
         Allocation.objects.create(
@@ -359,6 +392,12 @@ class StudentManagementViewTests(TestCase):
         self.assertRedirects(response, reverse("student-list"))
         student.refresh_from_db()
         self.assertEqual(student.name, "Updated Student")
+        event = AuditEvent.objects.get(
+            action=AuditEvent.Action.UPDATE,
+            record_type="students.student",
+            record_id=str(student.pk),
+        )
+        self.assertEqual(event.user, self.admin)
 
     def test_student_search_matches_name_and_id(self):
         self.create_student(
