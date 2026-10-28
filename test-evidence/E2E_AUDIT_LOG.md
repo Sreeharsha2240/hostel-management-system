@@ -161,3 +161,11 @@ Status legend: `DONE` = tested in current audit checkout; `IN PROGRESS` = starte
 - Committed the reviewed audit source, regression tests, documentation and evidence on local branch `codex/hms-e2e-audit`. Generated `.tmp/` test data was excluded.
 - Push to `origin` was attempted after the user authorized publication, but Git Credential Manager could not start from Git's shell. Direct helper lookup found no cached GitHub credential and Windows denied credential-store enumeration (`Access is denied`). No branch was pushed, no pull request was opened, and no fresh CI run has started.
 - Resume publication after GitHub authentication is made available to Git Credential Manager. Then push this branch, open a PR to `main` (the workflow runs on pull requests), and inspect the MySQL 8.4 / Python 3.11 and 3.14 workflow results. Do not include `.tmp/` in the PR.
+
+
+## Continuation checkpoint — 2026-10-28 (fresh MySQL CI)
+
+- Pushed in commit `57ae5a28b00f3cd9b3d7be94894bca160330e22f`. The first CI run failed on literal `\r\n` characters at the end of `hms/test_system_journey.py`, introduced during EOF whitespace cleanup; this was a test-file syntax issue and was fixed.
+- SQLite-compatible regression rerun: 153 passed, 0 failures/errors, 162 discovered; 9 MySQL-only tests excluded; 77.632 seconds.
+- Fresh GitHub Actions run #29 (`40684127245`) passed both matrix jobs using MySQL 8.4.13: Python 3.11.17 and Python 3.14. Each ran 162 tests with one expected coverage-mode skip; system checks, migrations, tests and coverage gate passed.
+- PR #35 is open from `codex/hms-e2e-audit` to `main`. Remaining Test Plan items requiring external facilities are JMeter concurrency/load and 2,000-bed volume, scheduled backup plus populated restore, deployed TLS/cookie checks, OWASP ZAP, and authenticated cross-browser usability (ledger items 12–16).
