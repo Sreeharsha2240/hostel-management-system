@@ -212,6 +212,10 @@ class ReportTests(TestCase):
             "0.00",
         )
 
+    def test_reports_landing_redirects_to_occupancy_report(self):
+        response = self.client.get(reverse("reports-home"))
+        self.assertRedirects(response, reverse("occupancy-report"))
+
     def test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats(
         self,
     ):

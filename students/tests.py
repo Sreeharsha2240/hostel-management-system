@@ -424,6 +424,28 @@ class StudentManagementViewTests(TestCase):
         self.assertContains(response, "Meera Rao")
         self.assertNotContains(response, "Aarav Sharma")
 
+    def test_student_list_escapes_script_payload_and_search_treats_sql_as_literal(self):
+        self.create_student(
+            student_id="PES3333333333",
+            name="<script>alert(1)</script>",
+            email="literal@example.com",
+        )
+        self.create_student(
+            student_id="PES4444444444",
+            name="Private Other Student",
+            email="private@example.com",
+        )
+        self.client.force_login(self.admin)
+
+        page = self.client.get(reverse("student-list"))
+        self.assertContains(page, "&lt;script&gt;alert(1)&lt;/script&gt;", html=False)
+        self.assertNotContains(page, "<script>alert(1)</script>", html=False)
+
+        injection = self.client.get(reverse("student-list"), {"q": "' OR 1=1--"})
+        self.assertEqual(injection.status_code, 200)
+        self.assertNotContains(injection, "Private Other Student")
+        self.assertNotContains(injection, "PES4444444444")
+
     def test_student_role_cannot_access_management_views(self):
         student = self.create_student()
         self.client.force_login(self.other_user)

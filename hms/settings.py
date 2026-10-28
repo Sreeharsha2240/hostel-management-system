@@ -168,6 +168,13 @@ CSRF_COOKIE_SECURE = env(
 SECURE_SSL_REDIRECT = env(
     'DJANGO_SECURE_SSL_REDIRECT', 'False' if DEBUG else 'True',
 ).lower() == 'true'
+SECURE_HSTS_SECONDS = int(env('DJANGO_SECURE_HSTS_SECONDS', '0'))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env(
+    'DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS', 'False',
+).lower() == 'true'
+SECURE_HSTS_PRELOAD = env(
+    'DJANGO_SECURE_HSTS_PRELOAD', 'False',
+).lower() == 'true'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = 'login'
@@ -192,6 +199,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

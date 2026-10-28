@@ -130,7 +130,7 @@ CSV output uses UTF-8 with a BOM, quotes commas/newlines correctly, and prefixes
 spreadsheet formula-like names with an apostrophe so they remain literal text.
 HTML escapes names normally. Both reports are read-only and staff-only.
 
-`python manage.py test reports --noinput` passed all nine report tests, covering
+`python manage.py test reports --noinput` passed all ten current report tests, covering
 calculations, history, stale flags, maintenance, empty hostels, filters, payment
 corrections, HTML/JSON/CSV agreement, CSV text handling, access and query counts.
 
@@ -158,9 +158,14 @@ Merge order: allocation PR #25, then payment PR #26, then reports. Dependent PRs
 are stacked for focused review and should be retargeted to main after their
 parent merges. Issues close on merge, not on opening a PR.
 
-The combined local run on clean revision `d9406ef` passed all 136 tests with
-zero failures, errors or skips on Python 3.14.7 / MySQL 8.4.9. Coverage was
-92.02% of statements, 77.93% of branches, and 89.27% combined, above the 70%
-gate. Django/database checks and migration consistency passed. The saved run
-includes 19 JUnit files and machine-readable coverage/run metadata. CI checks
-on each PR provide the corresponding Linux/Python matrix results and artifacts.
+Historical combined local checkpoint (revision `d9406ef`): 136 tests passed
+with zero failures, errors or skips on Python 3.14.7 / MySQL 8.4.9. Coverage
+was 92.02% of statements, 77.93% of branches, and 89.27% combined, above the
+70% gate; 19 JUnit files and machine-readable coverage/run metadata were saved.
+The newer merged base revision `5f0cd5f` passed GitHub Actions run #27 using the
+MySQL 8.4 workflow matrix on Python 3.11 and 3.14. Its exact totals and coverage
+are in that run's artifacts. The current end-to-end audit has a 153/153 uninstrumented local SQLite pass
+(9 MySQL-specific tests excluded). A separate coverage run reports 91.85%
+combined branch-aware coverage against the 70% gate (152 passed; one timing
+smoke skipped because coverage instrumentation distorts wall-clock measurement).
+The audit fixes are uncommitted and still need a CI run after publication.

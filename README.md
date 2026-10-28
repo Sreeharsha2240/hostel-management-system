@@ -106,8 +106,12 @@ remain subject to team review.
 **Working with migrations.** After changing a model, run `python manage.py makemigrations <app>` and commit the generated file in `<app>/migrations/` together with the model change. Never edit or delete a migration that is already on `main`; add a new one instead.
 For an HTTPS deployment, set `DJANGO_DEBUG=False`, `DJANGO_SESSION_COOKIE_SECURE=True`,
 `DJANGO_CSRF_COOKIE_SECURE=True` and `DJANGO_SECURE_SSL_REDIRECT=True` in the environment.
-Keep the secure-cookie and redirect flags `False` for the documented local HTTP
-development server.
+After confirming the entire site is permanently served over HTTPS, set
+`DJANGO_SECURE_HSTS_SECONDS=31536000` to enable one-year HTTP Strict Transport Security.
+Only set `DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=True` if every subdomain supports HTTPS;
+leave `DJANGO_SECURE_HSTS_PRELOAD=False` unless the domain is intentionally submitted to
+browser preload lists. Keep the secure-cookie, redirect and HSTS settings disabled for
+the documented local HTTP development server.
 
 ## Team collaboration (HMS-03)
 

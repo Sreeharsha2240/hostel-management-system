@@ -1,10 +1,14 @@
 from datetime import timedelta
+import os
+from unittest import skipIf
 from time import perf_counter
 
 from django.conf import settings
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
+
+from audit.models import AuditEvent
 
 from .models import User
 
@@ -13,6 +17,12 @@ from .models import User
 class AuthenticationTests(TestCase):
     def setUp(self):
         self.student = User.objects.create_user(username='student1', password='Validpass123', role=User.Role.STUDENT)
+
+    def test_login_page_welcomes_new_users_and_explains_account_setup(self):
+        response = self.client.get(reverse("login"))
+        self.assertContains(response, "Welcome to HMS")
+        self.assertContains(response, "New here? Ask your hostel administrator")
+        self.assertNotContains(response, "Create account")
 
     def test_login_shows_role_dashboard_and_logout_clears_session(self):
         response = self.client.post(reverse('login'), {'username': 'student1', 'password': 'Validpass123'})
@@ -46,6 +56,10 @@ class AuthenticationTests(TestCase):
                 else:
                     self.assertNotContains(response, reverse('user-management'))
 
+    @skipIf(
+        os.environ.get("COVERAGE_RUN") == "true",
+        "Wall-clock thresholds are measured without coverage instrumentation.",
+    )
     def test_login_and_role_dashboard_respond_within_two_seconds(self):
         for role in User.Role.values:
             account = self.student if role == User.Role.STUDENT else User.objects.create_user(
@@ -181,3 +195,74 @@ class AuthenticationTests(TestCase):
         target = User.objects.create_user(username='target-update', password='Validpass123', role=User.Role.WARDEN)
         self.client.force_login(self.student)
         self.assertEqual(self.client.get(reverse('user-update', args=[target.pk])).status_code, 403)
+
+
+    def test_profile_settings_save_is_audited_and_unchanged_save_is_not(self):
+        self.client.force_login(self.student)
+        data = {
+            "section": "profile",
+            "first_name": "Asha",
+            "last_name": "Student",
+            "email": "asha@example.test",
+        }
+        response = self.client.post(reverse("settings"), data)
+        self.assertRedirects(response, reverse("settings"))
+        self.student.refresh_from_db()
+        self.assertEqual(self.student.first_name, "Asha")
+        self.assertEqual(self.student.email, "asha@example.test")
+        self.assertEqual(
+            AuditEvent.objects.filter(
+                user=self.student, action=AuditEvent.Action.UPDATE,
+                record_type="accounts.user", record_id=str(self.student.pk),
+            ).count(),
+            1,
+        )
+
+        response = self.client.post(reverse("settings"), data)
+        self.assertRedirects(response, reverse("settings"))
+        self.assertEqual(
+            AuditEvent.objects.filter(
+                user=self.student, action=AuditEvent.Action.UPDATE,
+                record_type="accounts.user", record_id=str(self.student.pk),
+            ).count(),
+            1,
+        )
+
+    def test_password_settings_change_audits_without_secret_and_preserves_session(self):
+        self.client.force_login(self.student)
+        old_session_key = self.client.session.session_key
+        new_password = "Changedpass123"
+        response = self.client.post(reverse("settings"), {
+            "section": "password",
+            "old_password": "Validpass123",
+            "new_password1": new_password,
+            "new_password2": new_password,
+        })
+        self.assertRedirects(response, reverse("settings"))
+        self.assertNotEqual(self.client.session.session_key, old_session_key)
+        self.assertEqual(self.client.get(reverse("dashboard")).status_code, 200)
+        self.student.refresh_from_db()
+        self.assertTrue(self.student.check_password(new_password))
+        self.assertEqual(
+            AuditEvent.objects.filter(
+                user=self.student, action=AuditEvent.Action.UPDATE,
+                record_type="accounts.user", record_id=str(self.student.pk),
+            ).count(),
+            1,
+        )
+        self.assertNotIn(new_password, str(list(AuditEvent.objects.values())))
+
+    def test_invalid_password_settings_do_not_change_password_or_audit(self):
+        self.client.force_login(self.student)
+        response = self.client.post(reverse("settings"), {
+            "section": "password",
+            "old_password": "wrong-password",
+            "new_password1": "Changedpass123",
+            "new_password2": "Mismatchpass123",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.student.refresh_from_db()
+        self.assertTrue(self.student.check_password("Validpass123"))
+        self.assertFalse(AuditEvent.objects.filter(
+            user=self.student, action=AuditEvent.Action.UPDATE,
+        ).exists())
