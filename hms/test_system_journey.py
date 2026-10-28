@@ -116,5 +116,3 @@ class StudentHostelJourneyTests(TestCase):
     @property
     def bed(self):
         return self.room.beds.first()
-
-\r\n
