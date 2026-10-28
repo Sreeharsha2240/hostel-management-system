@@ -1,0 +1,14 @@
+Issue #13 — Test Evidence
+Date: 2026-10-26
+
+Baseline full Django test suite: 103 tests passed.
+Security tests: 9 passed.
+Student tests: 25 passed.
+Student search with 5,000 records: passed the under-2-second test.
+Database backup: created successfully; mysqldump exit code 0.
+Restore: completed in a separate test database; table existence verified.
+Record-count comparison: matched for students, beds, allocations, and accounts.
+
+Limitations:
+- Allocation and payment recovery with populated records has not been demonstrated.
+- Concurrent-user performance has not yet been measured.
