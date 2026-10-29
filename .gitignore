@@ -32,3 +32,6 @@ Thumbs.db
 ~$*
 
 test-evidence/issue-13/hms-backup.sql
+
+# Local disposable audit data, credentials, and tool downloads
+.tmp/

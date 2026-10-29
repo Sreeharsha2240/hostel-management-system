@@ -169,3 +169,9 @@ are in that run's artifacts. The current end-to-end audit has a 153/153 uninstru
 combined branch-aware coverage against the 70% gate (152 passed; one timing
 smoke skipped because coverage instrumentation distorts wall-clock measurement).
 The audit fixes are uncommitted and still need a CI run after publication.
+
+## Submission snapshot — 29 October 2026
+
+Repository history shows #8 and #9 merged on 26 October and #11 and #12 merged on 27 October. HMS-13 is partially evidenced and carries 5 of the sprint's 24 estimated points as remaining in the merge-based burndown; the sprint ends on 30 October. See `BURNDOWN.md` and `BURNDOWN_DATA.csv` for its source and method.
+
+The latest local audit run after bed-list pagination passed 154 tests, with nine MySQL-specific tests excluded by the SQLite-compatible runner. Earlier MySQL 8.4 CI passed on Python 3.11 and 3.14, but that run predates pagination. Run fresh CI on the final submission commit. Load, backup, ZAP, TLS and browser-walkthrough status is tracked in `SUBMISSION_CHECKLIST.md` and `../test-evidence/E2E_AUDIT_LOG.md`.

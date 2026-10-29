@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="t d">
+<title id="t">HMS sprint burndown through 29 October 2026</title>
+<desc id="d">Sprint 1 finished at zero remaining points. Sprint 2 has five of 24 points remaining on October 29, 2026, because issue 13 remains incomplete.</desc>
+<rect width="1100" height="620" fill="white"/>
+<text x="55" y="42" font-family="Arial,sans-serif" font-size="24" font-weight="bold" fill="#182230">HMS sprint burndown</text>
+<text x="55" y="66" font-family="Arial,sans-serif" font-size="13" fill="#596579">Story points remaining · merge-based actuals · snapshot 29 October 2026</text>
+<line x1="740" y1="42" x2="775" y2="42" stroke="#8792a2" stroke-width="3" stroke-dasharray="7 5"/><text x="784" y="47" font-family="Arial,sans-serif" font-size="13" fill="#344054">Ideal</text>
+<line x1="850" y1="42" x2="885" y2="42" stroke="#087e8b" stroke-width="3"/><circle cx="867" cy="42" r="4" fill="#087e8b"/><text x="894" y="47" font-family="Arial,sans-serif" font-size="13" fill="#344054">Actual accepted</text>
+<text x="70" y="110" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#253247">Sprint 1 · 29 SP · 19–23 Oct</text>
+<text x="600" y="110" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#253247">Sprint 2 · 24 SP · 26–30 Oct</text>
+<!-- grid lines -->
+<g stroke="#e7ebf0"><path d="M82 140H510 M82 190H510 M82 240H510 M82 290H510 M82 340H510 M82 390H510 M602 140H1030 M602 190H1030 M602 240H1030 M602 290H1030 M602 340H1030 M602 390H1030 M602 440H1030"/></g>
+<g font-family="Arial,sans-serif" font-size="11" fill="#667085" text-anchor="end"><text x="73" y="144">30</text><text x="73" y="194">24</text><text x="73" y="244">18</text><text x="73" y="294">12</text><text x="73" y="344">6</text><text x="73" y="394">0</text><text x="593" y="144">24</text><text x="593" y="194">20</text><text x="593" y="244">16</text><text x="593" y="294">12</text><text x="593" y="344">8</text><text x="593" y="394">4</text><text x="593" y="444">0</text></g>
+<g stroke="#a7b0bd" stroke-width="1.2"><path d="M82 140V390H510 M602 140V440H1030" fill="none"/></g>
+<!-- sprint 1: ideal 29 to zero over five workdays; actual by merged issue acceptance -->
+<polyline points="82,148 167.6,196 253.2,244 338.8,292 424.4,341 510,390" fill="none" stroke="#8792a2" stroke-width="3" stroke-dasharray="7 5"/>
+<polyline points="82,148 167.6,148 253.2,257 338.8,282 424.4,282 510,390" fill="none" stroke="#087e8b" stroke-width="3"/>
+<g fill="#087e8b"><circle cx="82" cy="148" r="4"/><circle cx="167.6" cy="148" r="4"/><circle cx="253.2" cy="257" r="4"/><circle cx="338.8" cy="282" r="4"/><circle cx="424.4" cy="282" r="4"/><circle cx="510" cy="390" r="4"/></g>
+<!-- sprint 2: actual known through Oct 29 only; 5 SP remain -->
+<polyline points="602,140 687.6,200 773.2,260 858.8,320 944.4,380 1030,440" fill="none" stroke="#8792a2" stroke-width="3" stroke-dasharray="7 5"/>
+<polyline points="602,140 687.6,302.5 773.2,377.5 858.8,377.5 944.4,377.5" fill="none" stroke="#087e8b" stroke-width="3"/>
+<g fill="#087e8b"><circle cx="602" cy="140" r="4"/><circle cx="687.6" cy="302.5" r="4"/><circle cx="773.2" cy="377.5" r="4"/><circle cx="858.8" cy="377.5" r="4"/><circle cx="944.4" cy="377.5" r="4"/></g>
+<g font-family="Arial,sans-serif" font-size="11" fill="#667085" text-anchor="middle"><text x="82" y="412">Start</text><text x="167.6" y="412">Oct 19</text><text x="253.2" y="412">Oct 20</text><text x="338.8" y="412">Oct 21</text><text x="424.4" y="412">Oct 22</text><text x="510" y="412">Oct 23</text><text x="602" y="462">Start</text><text x="687.6" y="462">Oct 26</text><text x="773.2" y="462">Oct 27</text><text x="858.8" y="462">Oct 28</text><text x="944.4" y="462">Oct 29</text><text x="1030" y="462">Oct 30*</text></g>
+<text x="82" y="500" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#344054">Sprint 1 closed at 0 remaining</text>
+<text x="602" y="500" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#b54708">Sprint 2: 5 SP remain (#13 incomplete)</text>
+<text x="55" y="535" font-family="Arial,sans-serif" font-size="12" fill="#344054">Sprint 1: #1–#4 merged Oct 20; #5 merged Oct 21; #6, #7, #10 merged Oct 23.</text>
+<text x="55" y="557" font-family="Arial,sans-serif" font-size="12" fill="#344054">Sprint 2: #8–#9 merged Oct 26; #11–#12 merged Oct 27; #13 acceptance is incomplete.</text>
+<text x="55" y="579" font-family="Arial,sans-serif" font-size="12" fill="#667085">* Oct 30 is the planned end; actual is blank because the chart snapshot is 29 Oct. Source values: BURNDOWN_DATA.csv.</text>
+</svg>

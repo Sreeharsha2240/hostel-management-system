@@ -171,3 +171,7 @@ lockout regression tests on the configured MySQL server.
 - Reviewers check the changed code, issue acceptance criteria, security implications, and relevant tests/checks. Request changes for defects; approve only after they are addressed.
 - Merge only after the required review and checks pass. Use the repository's configured merge method and delete the feature branch after merging.
 
+
+## Submission and sprint evidence
+
+See [`docs/SUBMISSION_CHECKLIST.md`](docs/SUBMISSION_CHECKLIST.md) for the whole-project checklist. The merge-history burndown is documented in [`docs/BURNDOWN.md`](docs/BURNDOWN.md), with its chart and source values in [`docs/burndown.svg`](docs/burndown.svg) and [`docs/BURNDOWN_DATA.csv`](docs/BURNDOWN_DATA.csv).
