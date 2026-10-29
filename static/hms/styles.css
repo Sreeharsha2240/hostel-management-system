@@ -165,3 +165,12 @@ footer { padding: 1.5rem 1rem; border-top: 1px solid var(--line); color: var(--m
   .hostel-arrival-video { min-height: 280px; }
 }
 
+
+
+.login-card { max-width: 860px; padding: clamp(2rem, 4vw, 3.25rem); }
+.login-card h1 { font-size: clamp(2.6rem, 5vw, 3.8rem); }
+.login-card > p:not(.eyebrow) { font-size: 1.08rem; }
+.login-card .form-field { margin-bottom: 1.4rem; }
+.login-card input { min-height: 54px; font-size: 1.05rem; }
+.login-card button { min-height: 50px; padding: .75rem 1.4rem; font-size: 1.05rem; }
+@media (max-width: 760px) { .login-card { padding: 1.25rem; } .login-card h1 { font-size: clamp(2.2rem, 8vw, 3rem); } }
