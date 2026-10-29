@@ -144,8 +144,11 @@ def bed_list(request):
     if status:
         beds = beds.filter(status=status)
 
+    page_obj = Paginator(beds, 50).get_page(request.GET.get("page"))
+
     return render(request, "hostels/bed_list.html", {
-        "beds": beds,
+        "beds": page_obj.object_list,
+        "page_obj": page_obj,
         "hostels": Hostel.objects.filter(is_active=True),
         "room_types": Room.RoomType.choices,
         "statuses": Bed.BedStatus.choices,

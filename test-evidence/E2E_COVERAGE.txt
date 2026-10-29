@@ -1,0 +1,67 @@
+Creating test database for alias 'default'...
+
+.................s.......................................................................................................................................
+----------------------------------------------------------------------
+Ran 153 tests in 201.153s
+
+OK (skipped=1)
+Destroying test database for alias 'default'...
+
+Found 162 test(s).
+SQLite-compatible run: 153 tests; excluded MySQL configuration/concurrency tests
+System check identified no issues (0 silenced).
+
+Coverage report (repository .coveragerc, branch coverage enabled):
+Name                                            Stmts   Miss Branch BrPart   Cover   Missing
+--------------------------------------------------------------------------------------------
+accounts\admin.py                                  23      3      0      0  86.96%   28, 31, 37
+accounts\backends.py                               36      2     12      2  91.67%   19, 34
+accounts\decorators.py                             22      0      8      0 100.00%
+accounts\forms.py                                  38      1      6      2  93.18%   19, 28->30
+accounts\middleware.py                             10      0      2      0 100.00%
+accounts\models.py                                 21      1      4      1  92.00%   32
+accounts\urls.py                                    3      0      0      0 100.00%
+accounts\validators.py                              8      0      2      0 100.00%
+accounts\views.py                                 111      4     34      8  91.72%   24, 75->90, 81->90, 125->128, 130-131, 141, 142->146
+allocations\admin.py                               12      3      0      0  75.00%   20, 23, 26
+allocations\forms.py                               12      0      0      0 100.00%
+allocations\models.py                              96     10     40      7  87.50%   83, 85, 94, 98, 102, 122-123, 138, 152, 208
+allocations\services.py                            47      1      6      1  96.23%   54
+allocations\urls.py                                 3      0      0      0 100.00%
+allocations\views.py                              133     17     46     14  81.56%   40, 53, 72, 80, 110, 123, 126->133, 150->152, 159-170, 205, 224
+audit\admin.py                                     17      4      0      0  76.47%   16, 19, 22, 25
+audit\management\commands\purge_audit_logs.py      19      0      4      0 100.00%
+audit\mixins.py                                    23      0      4      0 100.00%
+audit\models.py                                    50      2      6      1  94.64%   16, 77
+audit\services.py                                   8      0      4      0 100.00%
+audit\signals.py                                   19      0      4      2  91.30%   20->22, 30->exit
+audit\urls.py                                       3      0      0      0 100.00%
+audit\views.py                                     19      0      4      0 100.00%
+hms\decorators.py                                  15      1      2      1  88.24%   19
+hms\http.py                                        20      0      6      0 100.00%
+hms\responses.py                                   11      2      6      2  76.47%   7, 21
+hms\urls.py                                         4      0      0      0 100.00%
+hostels\admin.py                                   43      8      2      0  77.78%   25-34, 45, 56
+hostels\forms.py                                   26      1      4      1  93.33%   47
+hostels\models.py                                  93      7     26      2  90.76%   23, 43, 160-169, 175
+hostels\urls.py                                     3      0      0      0 100.00%
+hostels\views.py                                   85     11     26      4  84.68%   71, 95, 107-120, 129
+payments\admin.py                                  14      3      0      0  78.57%   14, 17, 20
+payments\forms.py                                  17      0      0      0 100.00%
+payments\models.py                                 81      6     24      2  92.38%   88, 94->96, 120, 123-124, 147-148
+payments\receipts.py                               21      0      2      0 100.00%
+payments\services.py                               25      0      0      0 100.00%
+payments\urls.py                                    3      0      0      0 100.00%
+payments\views.py                                  92      2     26      3  95.76%   43, 91->106, 105
+reports\admin.py                                    1      0      0      0 100.00%
+reports\models.py                                   1      0      0      0 100.00%
+reports\services.py                                26      0      6      0 100.00%
+reports\urls.py                                     4      0      0      0 100.00%
+reports\views.py                                   54      0     14      0 100.00%
+students\admin.py                                   9      0      0      0 100.00%
+students\forms.py                                  33      0      6      0 100.00%
+students\models.py                                 46      1      8      1  96.30%   13
+students\urls.py                                    3      0      0      0 100.00%
+students\views.py                                  87      2     20      2  96.26%   118, 167
+--------------------------------------------------------------------------------------------
+TOTAL                                            1550     92    364     56  91.85%

@@ -637,3 +637,24 @@ class BedFilteringViewTests(TestCase):
         beds = list(response.context["beds"])
 
         self.assertEqual(beds, [self.available_bed])
+
+    def test_bed_list_is_paginated_and_keeps_filters_on_next_page(self):
+        for index in range(13):
+            Room.objects.create(
+                hostel=self.hostel1,
+                room_number=f"P{index:02d}",
+                floor=3,
+                room_type=Room.RoomType.DOUBLE,
+                capacity=4,
+            )
+
+        first_page = self.client.get(reverse("bed-list"), {"status": ""})
+        second_page = self.client.get(
+            reverse("bed-list"), {"status": "", "page": "2"}
+        )
+
+        self.assertEqual(first_page.status_code, 200)
+        self.assertEqual(len(first_page.context["beds"]), 50)
+        self.assertEqual(first_page.context["page_obj"].paginator.count, 57)
+        self.assertEqual(len(second_page.context["beds"]), 7)
+        self.assertContains(second_page, "Page 2 of 2")

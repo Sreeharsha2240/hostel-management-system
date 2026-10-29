@@ -1,5 +1,6 @@
 from datetime import timedelta
 from io import StringIO
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from django.core.exceptions import ValidationError
@@ -11,7 +12,9 @@ from django.urls import reverse
 from django.utils import timezone
 
 from accounts.models import User
+from tests.factories import make_student
 
+from .mixins import AuditedAdminMixin
 from .models import AuditEvent
 from .services import record_event
 
@@ -188,3 +191,73 @@ class AuditTests(TestCase):
     def test_invalid_audit_action_is_rejected(self):
         with self.assertRaises(ValueError):
             record_event(user=self.admin, action='unknown', record=self.warden)
+
+
+class _AdminParentStub:
+    def __init__(self):
+        self.parent_log = []
+
+    def save_model(self, request, obj, form, change):
+        obj.save()
+
+    def log_addition(self, request, obj, message):
+        self.parent_log.append(("addition", obj.pk))
+
+    def log_change(self, request, obj, message):
+        self.parent_log.append(("change", obj.pk))
+
+
+class _AuditedAdminStub(AuditedAdminMixin, _AdminParentStub):
+    pass
+
+
+class AuditedAdminMixinTests(TestCase):
+    def setUp(self):
+        self.admin = User.objects.create_superuser(
+            username="admin-mixin-test", password="Strongpass123"
+        )
+        self.request = SimpleNamespace(user=self.admin)
+        self.model_admin = _AuditedAdminStub()
+
+    def test_add_update_and_deactivation_events_are_recorded_for_admin_actor(self):
+        user = User(username="mixin-created", role=User.Role.WARDEN)
+        user.set_unusable_password()
+        self.model_admin.save_model(self.request, user, form=None, change=False)
+        self.model_admin.log_addition(self.request, user, message="added")
+
+        user.first_name = "Edited"
+        self.model_admin.save_model(self.request, user, form=None, change=True)
+        self.model_admin.log_change(self.request, user, message="updated")
+
+        user.is_active = False
+        self.model_admin.save_model(self.request, user, form=None, change=True)
+        self.model_admin.log_change(self.request, user, message="deactivated")
+
+        student = make_student(number=98)
+        student.status = student.Status.INACTIVE
+        self.model_admin.save_model(self.request, student, form=None, change=True)
+        self.model_admin.log_change(self.request, student, message="deactivated")
+
+        user_events = list(
+            AuditEvent.objects.filter(record_type="accounts.user", record_id=str(user.pk))
+            .order_by("pk")
+            .values_list("user_id", "action")
+        )
+        self.assertEqual(
+            user_events,
+            [
+                (self.admin.pk, AuditEvent.Action.CREATE),
+                (self.admin.pk, AuditEvent.Action.UPDATE),
+                (self.admin.pk, AuditEvent.Action.DEACTIVATE),
+            ],
+        )
+        student_event = AuditEvent.objects.get(
+            record_type="students.student", record_id=str(student.pk)
+        )
+        self.assertEqual(student_event.user_id, self.admin.pk)
+        self.assertEqual(student_event.action, AuditEvent.Action.DEACTIVATE)
+        self.assertEqual(
+            self.model_admin.parent_log,
+            [("addition", user.pk), ("change", user.pk), ("change", user.pk), ("change", student.pk)],
+        )
+        self.assertFalse(self.model_admin.has_delete_permission(self.request, user))

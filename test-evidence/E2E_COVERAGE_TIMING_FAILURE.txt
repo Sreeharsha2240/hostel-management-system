@@ -1,0 +1,21 @@
+Creating test database for alias 'default'...
+
+.................F.......................................................................................................................................
+======================================================================
+FAIL: test_login_and_role_dashboard_respond_within_two_seconds (accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds) (role='admin')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\sreeh\Documents\Codex\2026-10-14\files-pasted-by-the-user-project\work\hms_e2e_fix\accounts\tests.py", line 70, in test_login_and_role_dashboard_respond_within_two_seconds
+    self.assertLess(login_seconds, 2.0, f'{role} login took {login_seconds:.3f} seconds')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.442643099999259 not less than 2.0 : admin login took 2.443 seconds
+
+----------------------------------------------------------------------
+Ran 153 tests in 208.941s
+
+FAILED (failures=1)
+Destroying test database for alias 'default'...
+
+Found 162 test(s).
+SQLite-compatible run: 153 tests; excluded MySQL configuration/concurrency tests
+System check identified no issues (0 silenced).

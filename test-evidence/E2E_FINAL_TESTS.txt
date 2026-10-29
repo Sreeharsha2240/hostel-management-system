@@ -1,0 +1,15 @@
+Creating test database for alias 'default'...
+
+.........................................................................................................................................................
+----------------------------------------------------------------------
+Ran 153 tests in 199.398s
+
+OK
+Destroying test database for alias 'default'...
+
+Found 162 test(s).
+SQLite-compatible run: 153 tests; excluded MySQL configuration/concurrency tests
+System check identified no issues (0 silenced).
+
+
+Latest pagination regression verification (2026-10-28): 154 passed, 0 failures/errors, 163 discovered; nine MySQL-specific tests excluded by SQLite-compatible runner. Duration 62.815s. Django system check passed.
