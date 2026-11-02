@@ -1,0 +1,1975 @@
+{
+  "schema_version": 1,
+  "issue": 40,
+  "scope": "Fresh owner-only local reverification; #42 and teammates assignments remain unchanged. Final reviewed case/build/report acceptance remains external.",
+  "assembled_at": "2026-11-02T13:00:51.796452+00:00",
+  "verified_code_commit": "8b73d3f6337aab2de109b237b781ec8bbb54ed50",
+  "previous_published_commit": "50717dff61107e786e24a9925985770fa77bf367",
+  "code_changes_sha256": {
+    "allocations/test_workflows.py": "ecb74291617e7d485d6015400c1cd7c8b0af07f8443ab4925b5cbbef1664deee",
+    "scripts/part3/backup_issue40.py": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+    "scripts/part3/test_issue40_recovery_safety.py": "062a84239551e227550183e2e08ef5606b70932271195ec1c448f08845bd6ec4"
+  },
+  "findings_fixed": [
+    {
+      "id": "RV-01",
+      "scope": "backup destination safety",
+      "prior_gap": "Repository ancestors, including the workspace parent/user profile, were accepted as output and could receive ACL changes.",
+      "fix": "Resolve/reject repository, descendants, ancestors and drive roots before mkdir/permission changes, including direct helper and error-report paths.",
+      "verification": "Old-code negative run:26 methods with7 failing assertions;32-method current safety suite passes; explicit ancestor no-ACL paths tested."
+    },
+    {
+      "id": "RV-02",
+      "scope": "backup confidentiality",
+      "prior_gap": "A broad explicit Everyone Allow rule survived inherited-ACL removal.",
+      "fix": "Reject untrusted owners/explicit Allow grants before ACL changes; remove inheritance and validate resulting grants. Support trusted Windows native OWNER RIGHTS/System/Administrators private temporary folders.",
+      "verification": "Real new empty-folder negative/positive Windows proofs retained; broad grant refused without ACL changes; native private folder and child pass; existing private backup paths pass inspection."
+    },
+    {
+      "id": "RV-03",
+      "scope": "TC-ALC-05 test completeness",
+      "prior_gap": "The old injected-save rollback test stopped before retry; earlier case-level PASS did not prove the complete retry step.",
+      "fix": "Retry the same original allocation/student/target after the injected failure ends and verify successor, both beds/history and single correctly attributed audit.",
+      "verification": "Fresh61-method focused run and186-method repository run pass the strengthened method."
+    },
+    {
+      "id": "RV-04",
+      "scope": "TC-ALC-06 test completeness",
+      "prior_gap": "Same-day history fixtures could not distinguish date order from reverse insertion order.",
+      "fix": "Add valid nonoverlapping backdated stays whose dates oppose primary-key order; verify JSON and rendered HTML order.",
+      "verification": "New test passes normally and deliberately fails with exactly one ordering assertion when only model ordering is overridden to primary-key order."
+    }
+  ],
+  "case_results": {
+    "TC-ALC-01": {
+      "status": "PASS",
+      "evidence": "functional_browser and focused_regressions"
+    },
+    "TC-ALC-02": {
+      "status": "PASS",
+      "evidence": "functional_browser and focused_regressions"
+    },
+    "TC-ALC-03": {
+      "status": "PASS",
+      "evidence": "functional_browser and focused_regressions"
+    },
+    "TC-ALC-04": {
+      "status": "PASS",
+      "evidence": "functional_browser and focused_regressions"
+    },
+    "TC-ALC-05": {
+      "status": "PASS",
+      "evidence": "Browser transfer plus strengthened test_transfer_failure_rolls_back_both_beds_and_history: actual save failure, rollback, then same-transfer successful retry"
+    },
+    "TC-ALC-06": {
+      "status": "PASS",
+      "evidence": "Browser release/date/history plus test_history_orders_backdated_records_by_allocation_date_in_json_and_html; mutation control rejects PK-only order"
+    },
+    "TC-PAY-01": {
+      "status": "PASS",
+      "evidence": "functional_browser and focused_regressions"
+    },
+    "TC-PAY-02": {
+      "status": "PASS",
+      "evidence": "functional_browser and focused_regressions"
+    },
+    "TC-RPT-01": {
+      "status": "PASS",
+      "evidence": "functional_browser and focused_regressions"
+    },
+    "TC-PERF-01": {
+      "status": "PASS",
+      "evidence": "full_load.scenarios[baseline]"
+    },
+    "TC-PERF-02": {
+      "status": "PASS",
+      "evidence": "functional_browser allocation timings/concurrency/database verification"
+    },
+    "TC-PERF-03": {
+      "status": "PASS",
+      "evidence": "full_load.scenarios[volume]"
+    },
+    "TC-OPS-01": {
+      "status": "PASS",
+      "evidence": "populated_recovery plus original natural-job evidence and installed_daily_action_recheck"
+    }
+  },
+  "functional_browser": {
+    "scope": "HMS-18 / issue #40 candidate-build execution; final acceptance requires reviewed cases and the accepted revision",
+    "browser": "Microsoft Edge",
+    "browser_version": "156.0.4314.58",
+    "node_version": "v26.8.1",
+    "playwright_version": "1.64.1",
+    "observations": [
+      {
+        "id": "TC-ALC-01",
+        "status": "PASS",
+        "actual": "Browser form saved allocation/date and displayed confirmation; a separate bed-list page showed Occupied after commit."
+      },
+      {
+        "id": "TC-ALC-02",
+        "status": "PASS",
+        "actual": "A different student using a stale form was rejected with the occupied-bed reason; no duplicate allocation."
+      },
+      {
+        "id": "TC-ALC-03",
+        "status": "PASS",
+        "actual": "Second allocation for the same student was rejected; original ID and bed unchanged."
+      },
+      {
+        "id": "TC-ALC-04",
+        "status": "PASS",
+        "actual": "Browser rejected female student / Boys hostel with a gender mismatch reason; MySQL verifies no write."
+      },
+      {
+        "id": "TC-ALC-05",
+        "status": "PARTIAL",
+        "actual": "Browser transfer preserved original and created successor; injected storage-failure rollback must be verified by the separate regression suite."
+      },
+      {
+        "id": "TC-ALC-06",
+        "status": "PASS",
+        "actual": "Browser release stored vacate date and showed newest-first preserved history; both released beds are checked in MySQL."
+      },
+      {
+        "id": "TC-PAY-01",
+        "status": "PASS",
+        "actual": "Browser recorded INR 5000 UPI payment and downloaded PDF; zero/negative submissions reached server errors without additional receipts."
+      },
+      {
+        "id": "TC-PAY-02",
+        "status": "PASS",
+        "actual": "Browser payment statuses: Pending -> Partial -> Paid; final paid INR 10000, due INR 0 checked in MySQL."
+      },
+      {
+        "id": "TC-RPT-01",
+        "status": "PASS",
+        "actual": "Browser filtered both reports by hostel and used each Download CSV button; Python independently reconciles HTML, CSV and MySQL values."
+      },
+      {
+        "id": "TC-PERF-02",
+        "status": "PASS",
+        "actual": "20 successful real HTTP allocations with durable commits; overlapping client same-bed requests returned one 201 and one 409; MySQL verifies a single winner."
+      }
+    ],
+    "allocation_ids": [
+      2,
+      3
+    ],
+    "receipts": [
+      "R00000000001",
+      "R00000000002"
+    ],
+    "reports": {
+      "occupancy": {
+        "html_rows": [
+          [
+            "Issue40 Boys",
+            "5",
+            "1",
+            "3",
+            "1",
+            "20.00%"
+          ]
+        ],
+        "csv": "\ufeffHostel Name,Total Beds,Occupied Beds,Available Beds,Beds Under Maintenance,Occupancy %,Generated On\r\nIssue40 Boys,5,1,3,1,20.00,02-11-2026 10:30:12 IST\r\n"
+      },
+      "payment": {
+        "html_rows": [
+          [
+            "PES1UG24CS101",
+            "Issue40 Student",
+            "Issue40 Boys",
+            "I402",
+            "10000.00",
+            "10000.00",
+            "0.00",
+            "Paid"
+          ],
+          [
+            "PES1UG24CS104",
+            "Sample Student 104",
+            "Issue40 Boys",
+            "I401",
+            "10000.00",
+            "0.00",
+            "10000.00",
+            "Pending"
+          ]
+        ],
+        "csv": "\ufeffStudent ID,Student Name,Hostel Name,Room,Fee Amount (INR),Amount Paid (INR),Due (INR),Payment Status,Generated On\r\nPES1UG24CS101,Issue40 Student,Issue40 Boys,I402,10000.00,10000.00,0.00,Paid,02-11-2026 10:30:13 IST\r\nPES1UG24CS104,Sample Student 104,Issue40 Boys,I401,10000.00,0.00,10000.00,Pending,02-11-2026 10:30:13 IST\r\n"
+      }
+    },
+    "payment_states": [
+      "Pending",
+      "Partial",
+      "Paid"
+    ],
+    "allocation_timings": [
+      {
+        "allocation_id": 4,
+        "student_id": "PES1UG24CS200",
+        "bed_id": 6,
+        "milliseconds": 32.56109999999899
+      },
+      {
+        "allocation_id": 5,
+        "student_id": "PES1UG24CS201",
+        "bed_id": 7,
+        "milliseconds": 27.130800000000818
+      },
+      {
+        "allocation_id": 6,
+        "student_id": "PES1UG24CS202",
+        "bed_id": 8,
+        "milliseconds": 29.399100000000544
+      },
+      {
+        "allocation_id": 7,
+        "student_id": "PES1UG24CS203",
+        "bed_id": 9,
+        "milliseconds": 27.24409999999989
+      },
+      {
+        "allocation_id": 8,
+        "student_id": "PES1UG24CS204",
+        "bed_id": 10,
+        "milliseconds": 27.16779999999926
+      },
+      {
+        "allocation_id": 9,
+        "student_id": "PES1UG24CS205",
+        "bed_id": 11,
+        "milliseconds": 28.629500000000917
+      },
+      {
+        "allocation_id": 10,
+        "student_id": "PES1UG24CS206",
+        "bed_id": 12,
+        "milliseconds": 26.19680000000153
+      },
+      {
+        "allocation_id": 11,
+        "student_id": "PES1UG24CS207",
+        "bed_id": 13,
+        "milliseconds": 26.40560000000005
+      },
+      {
+        "allocation_id": 12,
+        "student_id": "PES1UG24CS208",
+        "bed_id": 14,
+        "milliseconds": 26.58979999999974
+      },
+      {
+        "allocation_id": 13,
+        "student_id": "PES1UG24CS209",
+        "bed_id": 15,
+        "milliseconds": 27.24499999999898
+      },
+      {
+        "allocation_id": 14,
+        "student_id": "PES1UG24CS210",
+        "bed_id": 16,
+        "milliseconds": 25.858399999999165
+      },
+      {
+        "allocation_id": 15,
+        "student_id": "PES1UG24CS211",
+        "bed_id": 17,
+        "milliseconds": 25.78520000000026
+      },
+      {
+        "allocation_id": 16,
+        "student_id": "PES1UG24CS212",
+        "bed_id": 18,
+        "milliseconds": 26.613100000000486
+      },
+      {
+        "allocation_id": 17,
+        "student_id": "PES1UG24CS213",
+        "bed_id": 19,
+        "milliseconds": 26.31800000000112
+      },
+      {
+        "allocation_id": 18,
+        "student_id": "PES1UG24CS214",
+        "bed_id": 20,
+        "milliseconds": 25.790399999999863
+      },
+      {
+        "allocation_id": 19,
+        "student_id": "PES1UG24CS215",
+        "bed_id": 21,
+        "milliseconds": 26.762400000001435
+      },
+      {
+        "allocation_id": 20,
+        "student_id": "PES1UG24CS216",
+        "bed_id": 22,
+        "milliseconds": 27.075400000001537
+      },
+      {
+        "allocation_id": 21,
+        "student_id": "PES1UG24CS217",
+        "bed_id": 23,
+        "milliseconds": 25.91820000000007
+      },
+      {
+        "allocation_id": 22,
+        "student_id": "PES1UG24CS218",
+        "bed_id": 24,
+        "milliseconds": 26.689700000000812
+      },
+      {
+        "allocation_id": 23,
+        "student_id": "PES1UG24CS219",
+        "bed_id": 25,
+        "milliseconds": 27.03060000000005
+      }
+    ],
+    "concurrency_statuses": [
+      201,
+      409
+    ],
+    "concurrency_requests": [
+      {
+        "student_id": "PES1UG24CS300",
+        "status": 201,
+        "started_ms": 0.08299999999871943,
+        "completed_ms": 31.372999999999593
+      },
+      {
+        "student_id": "PES1UG24CS301",
+        "status": 409,
+        "started_ms": 0.19039999999949941,
+        "completed_ms": 35.42109999999957
+      }
+    ],
+    "concurrency_client_intervals_overlap": true,
+    "allocation_timings_passed": true,
+    "bed_state_snapshots": [
+      {
+        "checkpoint": "after allocation",
+        "states": {
+          "I401-A": "Occupied",
+          "I402-A": "Available"
+        }
+      },
+      {
+        "checkpoint": "after transfer",
+        "states": {
+          "I401-A": "Available",
+          "I402-A": "Occupied"
+        }
+      },
+      {
+        "checkpoint": "after release",
+        "states": {
+          "I401-A": "Available",
+          "I402-A": "Available"
+        }
+      }
+    ],
+    "student_allocation_payment_integration": true,
+    "browser_errors": [],
+    "receipt_pdf": {
+      "sha256": "4577009a53a6682a2c7f6d2c91b89102e76090dd75207e0d873fe77442ac26c6",
+      "verified_fields": [
+        "receipt",
+        "student ID",
+        "student name",
+        "amount",
+        "mode",
+        "reference",
+        "payment date"
+      ]
+    },
+    "database_verification": {
+      "vendor": "mysql",
+      "database": "test_hms",
+      "durable_autocommit": true,
+      "single_conflict_winner": true,
+      "receipt_counter": 2,
+      "invalid_submissions_unchanged": true,
+      "html_csv_and_database_match": true
+    },
+    "source": {
+      "commit": "8b73d3f6337aab2de109b237b781ec8bbb54ed50",
+      "git_dirty": false
+    },
+    "environment": {
+      "python": "3.14.7",
+      "django": "5.2.18",
+      "mysql": "8.4.9",
+      "started_at": "2026-11-02T05:00:02.387188+00:00",
+      "completed_at": "2026-11-02T05:00:15.674419+00:00"
+    },
+    "harness_sha256": {
+      "test_issue40_browser.py": "39fc5e3a1025b293ab500294ddab75944a7740d5a176076f57b8ae7811b3d840",
+      "issue40_browser.cjs": "553a8f740a7a00423cd8c99dc79b1a721aa4e207297e0ccd42fe859e21aa22ee",
+      "run_issue40_browser.py": "4c662c118415b5faa9fca02517915b976652cdf892f7c9571634d6d602630e10"
+    },
+    "acceptance_status": {
+      "classification": "candidate checkpoint",
+      "case_review": "pending team review",
+      "build_acceptance": "pending team acceptance",
+      "remaining_owned_cases": [
+        "TC-PERF-01",
+        "TC-PERF-03",
+        "TC-OPS-01"
+      ],
+      "ALC05_rollback": "requires companion injected-failure regression evidence"
+    }
+  },
+  "focused_regressions": {
+    "source": {
+      "commit": "8b73d3f6337aab2de109b237b781ec8bbb54ed50",
+      "git_dirty": false
+    },
+    "command": [
+      "python",
+      "manage.py",
+      "test",
+      "allocations",
+      "payments",
+      "reports",
+      "hms.test_system_journey",
+      "--noinput",
+      "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner"
+    ],
+    "exit_code": 0,
+    "tests": 61,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junit_timestamps_local": [
+      "2026-11-02T18:29:21",
+      "2026-11-02T18:29:22",
+      "2026-11-02T18:29:18",
+      "2026-11-02T18:29:18",
+      "2026-11-02T18:29:18",
+      "2026-11-02T18:29:20",
+      "2026-11-02T18:29:23",
+      "2026-11-02T18:29:19",
+      "2026-11-02T18:29:20"
+    ],
+    "timezone": "Asia/Kolkata",
+    "raw_sha256": {
+      "TEST-allocations.test_migrations.AllocationMigrationTests-20261102182917.xml": "735ab0f329e7cc14624c2111a547aa347e50bcd132f60a383770e622edca2f06",
+      "TEST-allocations.test_workflows.AllocationConcurrencyTests-20261102182917.xml": "d97f49124b1cc0ba1aa2cb2d5295a516051432b0a327477410d8968ba56a4476",
+      "TEST-allocations.test_workflows.AllocationWorkflowTests-20261102182917.xml": "9be09bd4dbf91e32761c76c3601f874e9b8a35b5d5f81cd0cba41bbcd10a32ac",
+      "TEST-allocations.tests.AllocationModelTests-20261102182917.xml": "f2193d9971e1161c3f296f9bd563a6b0c5234fe5c852676dd96188808bbf13a7",
+      "TEST-allocations.tests.AllocationViewTests-20261102182917.xml": "6a6290521998835abecfbcae095aa8610551840c36e5ea8f30d9b2c9952056d1",
+      "TEST-hms.test_system_journey.StudentHostelJourneyTests-20261102182917.xml": "619c8eebbefb843f7ae0f2f7e1c5beb3ca85a4895498f993a879e0b1a84ce72e",
+      "TEST-payments.test_workflows.PaymentConcurrencyTests-20261102182917.xml": "0532f64cd0340f4b208cdf5c6b17bac44f09c0231007007cca64831e83531479",
+      "TEST-payments.test_workflows.PaymentWorkflowTests-20261102182917.xml": "b48c87aea11b486912e5366f09beba384ca98e3db183a8da947a18976f19d030",
+      "TEST-reports.test_reports.ReportTests-20261102182917.xml": "dbcc4afb190c0a9624a6874f20a067558037a04761de06bc3aa18f71d6fd9481"
+    },
+    "results": [
+      {
+        "test": "allocations.test_migrations.AllocationMigrationTests.test_existing_active_rows_receive_unique_keys_and_bed_status",
+        "seconds": 0.463,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_migrations.AllocationMigrationTests.test_unknown_historical_vacate_date_is_not_invented",
+        "seconds": 0.481,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationConcurrencyTests.test_allocation_racing_deactivation_preserves_student_eligibility",
+        "seconds": 0.157,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationConcurrencyTests.test_cross_room_transfers_lock_rooms_in_consistent_order",
+        "seconds": 0.129,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationConcurrencyTests.test_simultaneous_same_bed_or_same_student_has_one_winner",
+        "seconds": 0.088,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_audit_failure_rolls_back_allocation_and_release",
+        "seconds": 0.048,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_database_rejects_forged_or_missing_active_keys",
+        "seconds": 0.019,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+        "seconds": 0.105,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_invalid_eligibility_gender_status_and_dates_are_rejected",
+        "seconds": 0.038,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_json_date_types_return_400_without_changing_allocations",
+        "seconds": 0.051,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_json_form_errors_preserve_reference_and_validation_status_codes",
+        "seconds": 0.03,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_json_reference_types_cannot_select_a_different_integer_key",
+        "seconds": 0.052,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions",
+        "seconds": 0.095,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_model_deactivation_and_history_cannot_bypass_guards",
+        "seconds": 0.023,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_new_write_routes_require_csrf",
+        "seconds": 0.052,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_transfer_and_release_preserve_history_and_emit_actor_audit",
+        "seconds": 0.053,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.test_workflows.AllocationWorkflowTests.test_transfer_failure_rolls_back_both_beds_and_history",
+        "seconds": 0.057,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationModelTests.test_active_allocation_occupies_bed",
+        "seconds": 0.015,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationModelTests.test_bed_cannot_have_two_active_allocations",
+        "seconds": 0.017,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationModelTests.test_completing_allocation_preserves_maintenance_status",
+        "seconds": 0.019,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationModelTests.test_completing_allocation_releases_bed",
+        "seconds": 0.019,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationModelTests.test_maintenance_bed_cannot_be_allocated",
+        "seconds": 0.01,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationModelTests.test_student_cannot_have_two_active_allocations",
+        "seconds": 0.016,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationViewTests.test_admin_can_complete_allocation",
+        "seconds": 0.042,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationViewTests.test_admin_can_create_allocation",
+        "seconds": 0.031,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationViewTests.test_admin_can_open_allocation_form",
+        "seconds": 0.019,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationViewTests.test_admin_can_view_allocation_list",
+        "seconds": 0.014,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationViewTests.test_allocation_creation_rolls_back_if_audit_event_fails",
+        "seconds": 0.023,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationViewTests.test_release_rolls_back_if_audit_event_fails",
+        "seconds": 0.031,
+        "status": "PASS"
+      },
+      {
+        "test": "allocations.tests.AllocationViewTests.test_student_cannot_manage_allocations",
+        "seconds": 0.015,
+        "status": "PASS"
+      },
+      {
+        "test": "hms.test_system_journey.StudentHostelJourneyTests.test_staff_allocation_payment_student_view_and_reports_work_together",
+        "seconds": 0.488,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentConcurrencyTests.test_competing_corrections_cannot_reverse_a_payment_twice",
+        "seconds": 0.071,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentConcurrencyTests.test_simultaneous_payments_receive_unique_sequential_numbers",
+        "seconds": 0.08,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_adjustment_cannot_predate_original",
+        "seconds": 0.022,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_adjustments_preserve_original_and_validate_their_source_and_net_amount",
+        "seconds": 0.069,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_audit_failure_rolls_back_the_payment_and_receipt_counter",
+        "seconds": 0.02,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_database_constraints_reject_nonpositive_payments_and_unknown_mode",
+        "seconds": 0.017,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+        "seconds": 0.018,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_fee_configuration_rejects_negative_values_and_preserves_legacy_form_posts",
+        "seconds": 0.023,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_form_encoded_missing_student_preserves_json_not_found_response",
+        "seconds": 0.014,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers",
+        "seconds": 0.046,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_invalid_json_fields_missing_records_and_methods",
+        "seconds": 0.058,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_json_date_types_return_400_without_consuming_receipts",
+        "seconds": 0.048,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_json_workflow_receipts_adjustments_and_real_pdf_contents",
+        "seconds": 0.073,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment",
+        "seconds": 0.042,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_numbered_payments_are_permanent_and_audited_for_the_actor",
+        "seconds": 0.021,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_payment_and_adjustment_forms_require_csrf_and_work_with_a_valid_token",
+        "seconds": 0.048,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_receipt_range_exhaustion_fails_without_overwriting_history",
+        "seconds": 0.015,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_staff_html_forms_and_all_routes_deny_students_and_anonymous_users",
+        "seconds": 0.137,
+        "status": "PASS"
+      },
+      {
+        "test": "payments.test_workflows.PaymentWorkflowTests.test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication",
+        "seconds": 0.138,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_active_allocations_override_stale_availability_and_maintenance_flags",
+        "seconds": 0.049,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+        "seconds": 0.054,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_empty_reports_and_invalid_filters_formats_and_methods",
+        "seconds": 0.101,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_numeric_hostel_filter_accepts_leading_zeros",
+        "seconds": 0.024,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_occupancy_counts_current_records_maintenance_and_empty_hostels",
+        "seconds": 0.051,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_occupancy_csv_and_html_match_json_and_preserve_filters",
+        "seconds": 0.046,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_payment_report_csv_and_html_match_json_after_corrections",
+        "seconds": 0.059,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_payment_report_sums_once_across_allocation_history_and_filters_last_room",
+        "seconds": 0.107,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_query_counts_do_not_grow_with_students_or_hostels",
+        "seconds": 0.064,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+        "seconds": 0.126,
+        "status": "PASS"
+      },
+      {
+        "test": "reports.test_reports.ReportTests.test_reports_landing_redirects_to_occupancy_report",
+        "seconds": 0.024,
+        "status": "PASS"
+      }
+    ]
+  },
+  "full_load": {
+    "scenarios": [
+      {
+        "criterion": "At least 95% of ALL HTTP sampler transactions (including login form/login and followed redirects) within 2000 ms; zero HTTP/content/controller errors; 50 users each measured for the full requested interval.",
+        "status": "PASS",
+        "smoke_checks_passed": null,
+        "requested_seconds": 600,
+        "required_acceptance_seconds": 600,
+        "volume_search_additional_criterion": null,
+        "volume_search_within_2000_ms": null,
+        "all_http": {
+          "count": 28088,
+          "errors": 0,
+          "within_2000_ms": 28088,
+          "fraction_within_2000_ms": 1.0,
+          "min_ms": 2,
+          "p50_ms": 24,
+          "p95_ms": 60,
+          "max_ms": 1427,
+          "observed_requests_per_second": 46.28506644167897
+        },
+        "measured_http_including_login": {
+          "count": 28038,
+          "errors": 0,
+          "within_2000_ms": 28038,
+          "fraction_within_2000_ms": 1.0,
+          "min_ms": 12,
+          "p50_ms": 24,
+          "p95_ms": 60,
+          "max_ms": 1427,
+          "observed_requests_per_second": 46.65271200710822
+        },
+        "per_route": {
+          "setup_login_form": {
+            "count": 50,
+            "errors": 0,
+            "within_2000_ms": 50,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 2,
+            "p50_ms": 3,
+            "p95_ms": 6,
+            "max_ms": 59,
+            "observed_requests_per_second": 10.375596596804316
+          },
+          "load_login": {
+            "count": 50,
+            "errors": 0,
+            "within_2000_ms": 50,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 473,
+            "p50_ms": 1064,
+            "p95_ms": 1421,
+            "max_ms": 1427,
+            "observed_requests_per_second": 35.0385423966363
+          },
+          "load_search": {
+            "count": 13994,
+            "errors": 0,
+            "within_2000_ms": 13994,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 12,
+            "p50_ms": 20,
+            "p95_ms": 45,
+            "max_ms": 525,
+            "observed_requests_per_second": 23.3865159038001
+          },
+          "load_beds": {
+            "count": 13994,
+            "errors": 0,
+            "within_2000_ms": 13994,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 14,
+            "p50_ms": 29,
+            "p95_ms": 69,
+            "max_ms": 410,
+            "observed_requests_per_second": 23.38893930809253
+          }
+        },
+        "all_sample_errors_including_controllers": 0,
+        "participation": {
+          "valid": true,
+          "configured_threads": 50,
+          "start_markers": 50,
+          "end_markers": 50,
+          "unique_started_threads": 50,
+          "unique_finished_threads": 50,
+          "maximum_observed_threads": 50,
+          "common_barrier_start_ms": [
+            1793595641465
+          ],
+          "minimum_thread_measured_ms": 600059,
+          "maximum_thread_measured_ms": 602017,
+          "per_thread_measured_ms": {
+            "Issue40 users 1-42": 600059,
+            "Issue40 users 1-34": 600059,
+            "Issue40 users 1-37": 600091,
+            "Issue40 users 1-12": 600172,
+            "Issue40 users 1-39": 600188,
+            "Issue40 users 1-38": 600270,
+            "Issue40 users 1-31": 600331,
+            "Issue40 users 1-7": 600438,
+            "Issue40 users 1-33": 600551,
+            "Issue40 users 1-8": 600630,
+            "Issue40 users 1-26": 600646,
+            "Issue40 users 1-11": 600646,
+            "Issue40 users 1-9": 600795,
+            "Issue40 users 1-17": 600907,
+            "Issue40 users 1-22": 600971,
+            "Issue40 users 1-24": 601012,
+            "Issue40 users 1-21": 601012,
+            "Issue40 users 1-36": 601112,
+            "Issue40 users 1-35": 601123,
+            "Issue40 users 1-25": 601220,
+            "Issue40 users 1-2": 601220,
+            "Issue40 users 1-23": 601238,
+            "Issue40 users 1-49": 601262,
+            "Issue40 users 1-30": 601262,
+            "Issue40 users 1-29": 601264,
+            "Issue40 users 1-15": 601280,
+            "Issue40 users 1-32": 601296,
+            "Issue40 users 1-43": 601296,
+            "Issue40 users 1-45": 601296,
+            "Issue40 users 1-46": 601347,
+            "Issue40 users 1-4": 601347,
+            "Issue40 users 1-10": 601369,
+            "Issue40 users 1-5": 601376,
+            "Issue40 users 1-41": 601376,
+            "Issue40 users 1-14": 601396,
+            "Issue40 users 1-13": 601417,
+            "Issue40 users 1-6": 601417,
+            "Issue40 users 1-40": 601484,
+            "Issue40 users 1-19": 601500,
+            "Issue40 users 1-16": 601532,
+            "Issue40 users 1-27": 601567,
+            "Issue40 users 1-3": 601583,
+            "Issue40 users 1-50": 601742,
+            "Issue40 users 1-20": 601789,
+            "Issue40 users 1-18": 601858,
+            "Issue40 users 1-28": 601874,
+            "Issue40 users 1-47": 601938,
+            "Issue40 users 1-1": 602001,
+            "Issue40 users 1-48": 602001,
+            "Issue40 users 1-44": 602017
+          },
+          "per_route_per_thread_samples": {
+            "setup_login_form": {
+              "Issue40 users 1-6": 1,
+              "Issue40 users 1-3": 1,
+              "Issue40 users 1-2": 1,
+              "Issue40 users 1-1": 1,
+              "Issue40 users 1-4": 1,
+              "Issue40 users 1-8": 1,
+              "Issue40 users 1-5": 1,
+              "Issue40 users 1-7": 1,
+              "Issue40 users 1-9": 1,
+              "Issue40 users 1-10": 1,
+              "Issue40 users 1-11": 1,
+              "Issue40 users 1-12": 1,
+              "Issue40 users 1-13": 1,
+              "Issue40 users 1-14": 1,
+              "Issue40 users 1-15": 1,
+              "Issue40 users 1-16": 1,
+              "Issue40 users 1-17": 1,
+              "Issue40 users 1-18": 1,
+              "Issue40 users 1-19": 1,
+              "Issue40 users 1-20": 1,
+              "Issue40 users 1-21": 1,
+              "Issue40 users 1-22": 1,
+              "Issue40 users 1-23": 1,
+              "Issue40 users 1-24": 1,
+              "Issue40 users 1-25": 1,
+              "Issue40 users 1-26": 1,
+              "Issue40 users 1-27": 1,
+              "Issue40 users 1-28": 1,
+              "Issue40 users 1-29": 1,
+              "Issue40 users 1-30": 1,
+              "Issue40 users 1-31": 1,
+              "Issue40 users 1-32": 1,
+              "Issue40 users 1-33": 1,
+              "Issue40 users 1-34": 1,
+              "Issue40 users 1-35": 1,
+              "Issue40 users 1-36": 1,
+              "Issue40 users 1-37": 1,
+              "Issue40 users 1-38": 1,
+              "Issue40 users 1-39": 1,
+              "Issue40 users 1-40": 1,
+              "Issue40 users 1-41": 1,
+              "Issue40 users 1-42": 1,
+              "Issue40 users 1-43": 1,
+              "Issue40 users 1-44": 1,
+              "Issue40 users 1-45": 1,
+              "Issue40 users 1-46": 1,
+              "Issue40 users 1-47": 1,
+              "Issue40 users 1-48": 1,
+              "Issue40 users 1-49": 1,
+              "Issue40 users 1-50": 1
+            },
+            "load_login": {
+              "Issue40 users 1-24": 1,
+              "Issue40 users 1-35": 1,
+              "Issue40 users 1-11": 1,
+              "Issue40 users 1-36": 1,
+              "Issue40 users 1-8": 1,
+              "Issue40 users 1-45": 1,
+              "Issue40 users 1-33": 1,
+              "Issue40 users 1-23": 1,
+              "Issue40 users 1-31": 1,
+              "Issue40 users 1-22": 1,
+              "Issue40 users 1-20": 1,
+              "Issue40 users 1-49": 1,
+              "Issue40 users 1-25": 1,
+              "Issue40 users 1-9": 1,
+              "Issue40 users 1-5": 1,
+              "Issue40 users 1-43": 1,
+              "Issue40 users 1-39": 1,
+              "Issue40 users 1-37": 1,
+              "Issue40 users 1-10": 1,
+              "Issue40 users 1-3": 1,
+              "Issue40 users 1-29": 1,
+              "Issue40 users 1-40": 1,
+              "Issue40 users 1-50": 1,
+              "Issue40 users 1-42": 1,
+              "Issue40 users 1-7": 1,
+              "Issue40 users 1-2": 1,
+              "Issue40 users 1-30": 1,
+              "Issue40 users 1-26": 1,
+              "Issue40 users 1-44": 1,
+              "Issue40 users 1-19": 1,
+              "Issue40 users 1-21": 1,
+              "Issue40 users 1-27": 1,
+              "Issue40 users 1-34": 1,
+              "Issue40 users 1-46": 1,
+              "Issue40 users 1-18": 1,
+              "Issue40 users 1-48": 1,
+              "Issue40 users 1-15": 1,
+              "Issue40 users 1-38": 1,
+              "Issue40 users 1-41": 1,
+              "Issue40 users 1-17": 1,
+              "Issue40 users 1-14": 1,
+              "Issue40 users 1-32": 1,
+              "Issue40 users 1-47": 1,
+              "Issue40 users 1-6": 1,
+              "Issue40 users 1-13": 1,
+              "Issue40 users 1-12": 1,
+              "Issue40 users 1-16": 1,
+              "Issue40 users 1-1": 1,
+              "Issue40 users 1-4": 1,
+              "Issue40 users 1-28": 1
+            },
+            "load_search": {
+              "Issue40 users 1-36": 280,
+              "Issue40 users 1-33": 280,
+              "Issue40 users 1-24": 280,
+              "Issue40 users 1-11": 280,
+              "Issue40 users 1-31": 280,
+              "Issue40 users 1-8": 280,
+              "Issue40 users 1-35": 280,
+              "Issue40 users 1-45": 280,
+              "Issue40 users 1-23": 280,
+              "Issue40 users 1-22": 280,
+              "Issue40 users 1-20": 280,
+              "Issue40 users 1-49": 280,
+              "Issue40 users 1-25": 280,
+              "Issue40 users 1-9": 280,
+              "Issue40 users 1-5": 280,
+              "Issue40 users 1-43": 280,
+              "Issue40 users 1-39": 279,
+              "Issue40 users 1-37": 279,
+              "Issue40 users 1-10": 280,
+              "Issue40 users 1-3": 280,
+              "Issue40 users 1-29": 280,
+              "Issue40 users 1-50": 280,
+              "Issue40 users 1-40": 280,
+              "Issue40 users 1-42": 279,
+              "Issue40 users 1-7": 280,
+              "Issue40 users 1-2": 280,
+              "Issue40 users 1-30": 280,
+              "Issue40 users 1-26": 280,
+              "Issue40 users 1-44": 280,
+              "Issue40 users 1-19": 280,
+              "Issue40 users 1-21": 280,
+              "Issue40 users 1-46": 280,
+              "Issue40 users 1-34": 279,
+              "Issue40 users 1-27": 280,
+              "Issue40 users 1-48": 280,
+              "Issue40 users 1-18": 280,
+              "Issue40 users 1-15": 280,
+              "Issue40 users 1-38": 279,
+              "Issue40 users 1-17": 280,
+              "Issue40 users 1-41": 280,
+              "Issue40 users 1-32": 280,
+              "Issue40 users 1-14": 280,
+              "Issue40 users 1-47": 280,
+              "Issue40 users 1-13": 280,
+              "Issue40 users 1-6": 280,
+              "Issue40 users 1-1": 280,
+              "Issue40 users 1-16": 280,
+              "Issue40 users 1-28": 280,
+              "Issue40 users 1-12": 279,
+              "Issue40 users 1-4": 280
+            },
+            "load_beds": {
+              "Issue40 users 1-23": 280,
+              "Issue40 users 1-24": 280,
+              "Issue40 users 1-33": 280,
+              "Issue40 users 1-45": 280,
+              "Issue40 users 1-22": 280,
+              "Issue40 users 1-11": 280,
+              "Issue40 users 1-31": 280,
+              "Issue40 users 1-36": 280,
+              "Issue40 users 1-35": 280,
+              "Issue40 users 1-8": 280,
+              "Issue40 users 1-20": 280,
+              "Issue40 users 1-25": 280,
+              "Issue40 users 1-5": 280,
+              "Issue40 users 1-49": 280,
+              "Issue40 users 1-9": 280,
+              "Issue40 users 1-43": 280,
+              "Issue40 users 1-37": 279,
+              "Issue40 users 1-39": 279,
+              "Issue40 users 1-10": 280,
+              "Issue40 users 1-3": 280,
+              "Issue40 users 1-29": 280,
+              "Issue40 users 1-40": 280,
+              "Issue40 users 1-50": 280,
+              "Issue40 users 1-42": 279,
+              "Issue40 users 1-7": 280,
+              "Issue40 users 1-2": 280,
+              "Issue40 users 1-30": 280,
+              "Issue40 users 1-44": 280,
+              "Issue40 users 1-26": 280,
+              "Issue40 users 1-19": 280,
+              "Issue40 users 1-21": 280,
+              "Issue40 users 1-46": 280,
+              "Issue40 users 1-34": 279,
+              "Issue40 users 1-27": 280,
+              "Issue40 users 1-18": 280,
+              "Issue40 users 1-48": 280,
+              "Issue40 users 1-15": 280,
+              "Issue40 users 1-17": 280,
+              "Issue40 users 1-38": 279,
+              "Issue40 users 1-41": 280,
+              "Issue40 users 1-47": 280,
+              "Issue40 users 1-32": 280,
+              "Issue40 users 1-14": 280,
+              "Issue40 users 1-6": 280,
+              "Issue40 users 1-13": 280,
+              "Issue40 users 1-16": 280,
+              "Issue40 users 1-12": 279,
+              "Issue40 users 1-1": 280,
+              "Issue40 users 1-28": 280,
+              "Issue40 users 1-4": 280
+            }
+          }
+        },
+        "failures": [],
+        "jmeter_exit_code": 0,
+        "measurement_notes": [
+          "No samples or failures are removed from overall acceptance metrics.",
+          "GET login form is measured before the 50-user barrier; login POST is measured inside the full load interval.",
+          "A one-second think time precedes every measured HTTP sampler, including login; this pacing is excluded from HTTP response latency and included in elapsed load duration.",
+          "Each login follows its redirect and asserts the authenticated Warden dashboard; search and bed assertions require authenticated navigation plus real fixture table rows.",
+          "HTTP latency includes complete followed redirects; no response/request bodies or headers are stored in CSV.",
+          "Acceptance status describes this candidate build only; team case review and build acceptance remain separate."
+        ],
+        "scenario": "baseline",
+        "case_id": "TC-PERF-01",
+        "started_at": "2026-11-02T05:00:34.959594+00:00",
+        "completed_at": "2026-11-02T05:10:45.278498+00:00",
+        "fixture_counts": {
+          "students": 100,
+          "beds": 80,
+          "rooms": 40,
+          "users": 50
+        },
+        "fixture_recipe": "Deterministic HMSP3 + 8-digit SRNs; synthetic example.test contacts; Double rooms of capacity two with exactly two Available beds; 50 distinct Warden accounts with normal hashed random password",
+        "raw_evidence_sha256": {
+          "samples.csv": "bd9fbbd55dbf6fc32441e436c7c99cf2390a5581d367b9a34f0cd9c912e9c6b3",
+          "jmeter.log": "f00fc7fd34e13fe92c08d3ddffc00d60aae5558cea990618f8e85685f884857d",
+          "console.log": "2d4da6bc293e3cf10a91583cf7410f695e24d2ac135bea1295f9615d4cfdabab"
+        },
+        "execution_failure": null
+      },
+      {
+        "criterion": "At least 95% of ALL HTTP sampler transactions (including login form/login and followed redirects) within 2000 ms; zero HTTP/content/controller errors; 50 users each measured for the full requested interval.",
+        "status": "PASS",
+        "smoke_checks_passed": null,
+        "requested_seconds": 600,
+        "required_acceptance_seconds": 600,
+        "volume_search_additional_criterion": "Every volume search HTTP sampler completes within 2000 ms",
+        "volume_search_within_2000_ms": true,
+        "all_http": {
+          "count": 29092,
+          "errors": 0,
+          "within_2000_ms": 29092,
+          "fraction_within_2000_ms": 1.0,
+          "min_ms": 2,
+          "p50_ms": 24,
+          "p95_ms": 52,
+          "max_ms": 1375,
+          "observed_requests_per_second": 47.93651525986758
+        },
+        "measured_http_including_login": {
+          "count": 29042,
+          "errors": 0,
+          "within_2000_ms": 29042,
+          "fraction_within_2000_ms": 1.0,
+          "min_ms": 18,
+          "p50_ms": 24,
+          "p95_ms": 52,
+          "max_ms": 1375,
+          "observed_requests_per_second": 48.319016649280336
+        },
+        "per_route": {
+          "setup_login_form": {
+            "count": 50,
+            "errors": 0,
+            "within_2000_ms": 50,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 2,
+            "p50_ms": 3,
+            "p95_ms": 4,
+            "max_ms": 35,
+            "observed_requests_per_second": 10.399334442595674
+          },
+          "load_login": {
+            "count": 50,
+            "errors": 0,
+            "within_2000_ms": 50,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 1063,
+            "p50_ms": 1305,
+            "p95_ms": 1374,
+            "max_ms": 1375,
+            "observed_requests_per_second": 36.36363636363637
+          },
+          "load_search": {
+            "count": 14496,
+            "errors": 0,
+            "within_2000_ms": 14496,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 19,
+            "p50_ms": 23,
+            "p95_ms": 38,
+            "max_ms": 195,
+            "observed_requests_per_second": 24.24704689836513
+          },
+          "load_beds": {
+            "count": 14496,
+            "errors": 0,
+            "within_2000_ms": 14496,
+            "fraction_within_2000_ms": 1.0,
+            "min_ms": 18,
+            "p50_ms": 26,
+            "p95_ms": 59,
+            "max_ms": 239,
+            "observed_requests_per_second": 24.247290244881572
+          }
+        },
+        "all_sample_errors_including_controllers": 0,
+        "participation": {
+          "valid": true,
+          "configured_threads": 50,
+          "start_markers": 50,
+          "end_markers": 50,
+          "unique_started_threads": 50,
+          "unique_finished_threads": 50,
+          "maximum_observed_threads": 50,
+          "common_barrier_start_ms": [
+            1793596268316
+          ],
+          "minimum_thread_measured_ms": 600029,
+          "maximum_thread_measured_ms": 602064,
+          "per_thread_measured_ms": {
+            "Issue40 users 1-12": 600029,
+            "Issue40 users 1-48": 600210,
+            "Issue40 users 1-3": 600263,
+            "Issue40 users 1-13": 600333,
+            "Issue40 users 1-8": 600367,
+            "Issue40 users 1-21": 600430,
+            "Issue40 users 1-29": 600888,
+            "Issue40 users 1-27": 601025,
+            "Issue40 users 1-4": 601042,
+            "Issue40 users 1-34": 601061,
+            "Issue40 users 1-15": 601061,
+            "Issue40 users 1-36": 601074,
+            "Issue40 users 1-49": 601186,
+            "Issue40 users 1-22": 601201,
+            "Issue40 users 1-47": 601201,
+            "Issue40 users 1-42": 601225,
+            "Issue40 users 1-20": 601225,
+            "Issue40 users 1-5": 601239,
+            "Issue40 users 1-10": 601255,
+            "Issue40 users 1-37": 601255,
+            "Issue40 users 1-31": 601271,
+            "Issue40 users 1-7": 601287,
+            "Issue40 users 1-6": 601287,
+            "Issue40 users 1-44": 601304,
+            "Issue40 users 1-24": 601325,
+            "Issue40 users 1-23": 601405,
+            "Issue40 users 1-19": 601405,
+            "Issue40 users 1-45": 601421,
+            "Issue40 users 1-14": 601425,
+            "Issue40 users 1-50": 601425,
+            "Issue40 users 1-26": 601425,
+            "Issue40 users 1-28": 601436,
+            "Issue40 users 1-40": 601436,
+            "Issue40 users 1-1": 601467,
+            "Issue40 users 1-41": 601539,
+            "Issue40 users 1-11": 601556,
+            "Issue40 users 1-17": 601603,
+            "Issue40 users 1-43": 601619,
+            "Issue40 users 1-39": 601640,
+            "Issue40 users 1-25": 601647,
+            "Issue40 users 1-9": 601663,
+            "Issue40 users 1-30": 601679,
+            "Issue40 users 1-46": 601710,
+            "Issue40 users 1-2": 601949,
+            "Issue40 users 1-18": 601997,
+            "Issue40 users 1-38": 602064,
+            "Issue40 users 1-35": 602064,
+            "Issue40 users 1-16": 602064,
+            "Issue40 users 1-33": 602064,
+            "Issue40 users 1-32": 602064
+          },
+          "per_route_per_thread_samples": {
+            "setup_login_form": {
+              "Issue40 users 1-2": 1,
+              "Issue40 users 1-5": 1,
+              "Issue40 users 1-1": 1,
+              "Issue40 users 1-6": 1,
+              "Issue40 users 1-4": 1,
+              "Issue40 users 1-8": 1,
+              "Issue40 users 1-3": 1,
+              "Issue40 users 1-7": 1,
+              "Issue40 users 1-9": 1,
+              "Issue40 users 1-10": 1,
+              "Issue40 users 1-11": 1,
+              "Issue40 users 1-12": 1,
+              "Issue40 users 1-13": 1,
+              "Issue40 users 1-14": 1,
+              "Issue40 users 1-15": 1,
+              "Issue40 users 1-16": 1,
+              "Issue40 users 1-17": 1,
+              "Issue40 users 1-18": 1,
+              "Issue40 users 1-19": 1,
+              "Issue40 users 1-20": 1,
+              "Issue40 users 1-21": 1,
+              "Issue40 users 1-22": 1,
+              "Issue40 users 1-23": 1,
+              "Issue40 users 1-24": 1,
+              "Issue40 users 1-25": 1,
+              "Issue40 users 1-26": 1,
+              "Issue40 users 1-27": 1,
+              "Issue40 users 1-28": 1,
+              "Issue40 users 1-29": 1,
+              "Issue40 users 1-30": 1,
+              "Issue40 users 1-31": 1,
+              "Issue40 users 1-32": 1,
+              "Issue40 users 1-33": 1,
+              "Issue40 users 1-34": 1,
+              "Issue40 users 1-35": 1,
+              "Issue40 users 1-36": 1,
+              "Issue40 users 1-37": 1,
+              "Issue40 users 1-38": 1,
+              "Issue40 users 1-39": 1,
+              "Issue40 users 1-40": 1,
+              "Issue40 users 1-41": 1,
+              "Issue40 users 1-42": 1,
+              "Issue40 users 1-43": 1,
+              "Issue40 users 1-44": 1,
+              "Issue40 users 1-45": 1,
+              "Issue40 users 1-46": 1,
+              "Issue40 users 1-47": 1,
+              "Issue40 users 1-48": 1,
+              "Issue40 users 1-49": 1,
+              "Issue40 users 1-50": 1
+            },
+            "load_login": {
+              "Issue40 users 1-4": 1,
+              "Issue40 users 1-29": 1,
+              "Issue40 users 1-5": 1,
+              "Issue40 users 1-27": 1,
+              "Issue40 users 1-11": 1,
+              "Issue40 users 1-36": 1,
+              "Issue40 users 1-45": 1,
+              "Issue40 users 1-37": 1,
+              "Issue40 users 1-20": 1,
+              "Issue40 users 1-15": 1,
+              "Issue40 users 1-13": 1,
+              "Issue40 users 1-50": 1,
+              "Issue40 users 1-23": 1,
+              "Issue40 users 1-19": 1,
+              "Issue40 users 1-22": 1,
+              "Issue40 users 1-28": 1,
+              "Issue40 users 1-7": 1,
+              "Issue40 users 1-10": 1,
+              "Issue40 users 1-21": 1,
+              "Issue40 users 1-42": 1,
+              "Issue40 users 1-6": 1,
+              "Issue40 users 1-2": 1,
+              "Issue40 users 1-47": 1,
+              "Issue40 users 1-40": 1,
+              "Issue40 users 1-46": 1,
+              "Issue40 users 1-12": 1,
+              "Issue40 users 1-18": 1,
+              "Issue40 users 1-3": 1,
+              "Issue40 users 1-39": 1,
+              "Issue40 users 1-30": 1,
+              "Issue40 users 1-34": 1,
+              "Issue40 users 1-38": 1,
+              "Issue40 users 1-14": 1,
+              "Issue40 users 1-26": 1,
+              "Issue40 users 1-43": 1,
+              "Issue40 users 1-35": 1,
+              "Issue40 users 1-32": 1,
+              "Issue40 users 1-44": 1,
+              "Issue40 users 1-48": 1,
+              "Issue40 users 1-41": 1,
+              "Issue40 users 1-31": 1,
+              "Issue40 users 1-49": 1,
+              "Issue40 users 1-33": 1,
+              "Issue40 users 1-25": 1,
+              "Issue40 users 1-9": 1,
+              "Issue40 users 1-17": 1,
+              "Issue40 users 1-8": 1,
+              "Issue40 users 1-16": 1,
+              "Issue40 users 1-1": 1,
+              "Issue40 users 1-24": 1
+            },
+            "load_search": {
+              "Issue40 users 1-4": 290,
+              "Issue40 users 1-5": 290,
+              "Issue40 users 1-29": 290,
+              "Issue40 users 1-27": 290,
+              "Issue40 users 1-11": 290,
+              "Issue40 users 1-36": 290,
+              "Issue40 users 1-45": 290,
+              "Issue40 users 1-37": 290,
+              "Issue40 users 1-15": 290,
+              "Issue40 users 1-13": 290,
+              "Issue40 users 1-20": 290,
+              "Issue40 users 1-21": 290,
+              "Issue40 users 1-28": 290,
+              "Issue40 users 1-23": 290,
+              "Issue40 users 1-50": 290,
+              "Issue40 users 1-7": 290,
+              "Issue40 users 1-19": 290,
+              "Issue40 users 1-22": 290,
+              "Issue40 users 1-42": 290,
+              "Issue40 users 1-6": 290,
+              "Issue40 users 1-47": 290,
+              "Issue40 users 1-26": 290,
+              "Issue40 users 1-34": 290,
+              "Issue40 users 1-40": 290,
+              "Issue40 users 1-2": 290,
+              "Issue40 users 1-3": 289,
+              "Issue40 users 1-18": 290,
+              "Issue40 users 1-12": 289,
+              "Issue40 users 1-10": 290,
+              "Issue40 users 1-38": 290,
+              "Issue40 users 1-46": 290,
+              "Issue40 users 1-49": 290,
+              "Issue40 users 1-32": 290,
+              "Issue40 users 1-17": 290,
+              "Issue40 users 1-41": 290,
+              "Issue40 users 1-43": 290,
+              "Issue40 users 1-33": 290,
+              "Issue40 users 1-35": 290,
+              "Issue40 users 1-14": 290,
+              "Issue40 users 1-39": 290,
+              "Issue40 users 1-8": 289,
+              "Issue40 users 1-24": 290,
+              "Issue40 users 1-44": 290,
+              "Issue40 users 1-31": 290,
+              "Issue40 users 1-30": 290,
+              "Issue40 users 1-48": 289,
+              "Issue40 users 1-16": 290,
+              "Issue40 users 1-9": 290,
+              "Issue40 users 1-1": 290,
+              "Issue40 users 1-25": 290
+            },
+            "load_beds": {
+              "Issue40 users 1-27": 290,
+              "Issue40 users 1-11": 290,
+              "Issue40 users 1-5": 290,
+              "Issue40 users 1-29": 290,
+              "Issue40 users 1-4": 290,
+              "Issue40 users 1-36": 290,
+              "Issue40 users 1-45": 290,
+              "Issue40 users 1-37": 290,
+              "Issue40 users 1-15": 290,
+              "Issue40 users 1-13": 290,
+              "Issue40 users 1-21": 290,
+              "Issue40 users 1-20": 290,
+              "Issue40 users 1-28": 290,
+              "Issue40 users 1-19": 290,
+              "Issue40 users 1-23": 290,
+              "Issue40 users 1-50": 290,
+              "Issue40 users 1-7": 290,
+              "Issue40 users 1-6": 290,
+              "Issue40 users 1-22": 290,
+              "Issue40 users 1-42": 290,
+              "Issue40 users 1-47": 290,
+              "Issue40 users 1-34": 290,
+              "Issue40 users 1-26": 290,
+              "Issue40 users 1-40": 290,
+              "Issue40 users 1-14": 290,
+              "Issue40 users 1-24": 290,
+              "Issue40 users 1-2": 290,
+              "Issue40 users 1-17": 290,
+              "Issue40 users 1-10": 290,
+              "Issue40 users 1-49": 290,
+              "Issue40 users 1-16": 290,
+              "Issue40 users 1-3": 289,
+              "Issue40 users 1-30": 290,
+              "Issue40 users 1-39": 290,
+              "Issue40 users 1-31": 290,
+              "Issue40 users 1-43": 290,
+              "Issue40 users 1-9": 290,
+              "Issue40 users 1-18": 290,
+              "Issue40 users 1-12": 289,
+              "Issue40 users 1-35": 290,
+              "Issue40 users 1-46": 290,
+              "Issue40 users 1-32": 290,
+              "Issue40 users 1-33": 290,
+              "Issue40 users 1-8": 289,
+              "Issue40 users 1-25": 290,
+              "Issue40 users 1-38": 290,
+              "Issue40 users 1-48": 289,
+              "Issue40 users 1-44": 290,
+              "Issue40 users 1-41": 290,
+              "Issue40 users 1-1": 290
+            }
+          }
+        },
+        "failures": [],
+        "jmeter_exit_code": 0,
+        "measurement_notes": [
+          "No samples or failures are removed from overall acceptance metrics.",
+          "GET login form is measured before the 50-user barrier; login POST is measured inside the full load interval.",
+          "A one-second think time precedes every measured HTTP sampler, including login; this pacing is excluded from HTTP response latency and included in elapsed load duration.",
+          "Each login follows its redirect and asserts the authenticated Warden dashboard; search and bed assertions require authenticated navigation plus real fixture table rows.",
+          "HTTP latency includes complete followed redirects; no response/request bodies or headers are stored in CSV.",
+          "Acceptance status describes this candidate build only; team case review and build acceptance remain separate."
+        ],
+        "scenario": "volume",
+        "case_id": "TC-PERF-03",
+        "started_at": "2026-11-02T05:10:46.015031+00:00",
+        "completed_at": "2026-11-02T05:21:12.164959+00:00",
+        "fixture_counts": {
+          "students": 5000,
+          "beds": 2000,
+          "rooms": 1000,
+          "users": 50
+        },
+        "fixture_recipe": "Deterministic HMSP3 + 8-digit SRNs; synthetic example.test contacts; Double rooms of capacity two with exactly two Available beds; 50 distinct Warden accounts with normal hashed random password",
+        "raw_evidence_sha256": {
+          "samples.csv": "127aa8c301334ba5f22316530013971e52855f23facf983976f34139b8d64206",
+          "jmeter.log": "c97a1395d3ac79fe12df2121141786febe52c9ffdd504fa80853c7d849735399",
+          "console.log": "46d9b27234aaaed20d34791463bb4221afccce05dae1c44f02fe09e13cd95cb9"
+        },
+        "execution_failure": null
+      }
+    ],
+    "scope": "TC-PERF-01 and TC-PERF-03 only; candidate-build execution",
+    "source": {
+      "commit": "8b73d3f6337aab2de109b237b781ec8bbb54ed50",
+      "git_dirty": false
+    },
+    "harness_sha256": {
+      "run_issue40_load.py": "15ecafeae3daf0f9c353a929c2e84d6356dfe838217d30ed8e036d334c2747c1",
+      "test_issue40_load.py": "80665cdb39f42908c323acd95271c4078f13c6b9023f451a3bc1b46a1c1aac1a",
+      "issue40_load.jmx": "5c8a710ac39b2a8da31f332902c6ba49e0ce5cb2cf7179328cc9089d73e4de46"
+    },
+    "environment": {
+      "python": "3.14.7",
+      "django": "5.2.18",
+      "mysql": "8.4.9",
+      "java": "openjdk version \"17.0.20\" 2026-07-21\nOpenJDK Runtime Environment Temurin-17.0.20+8 (build 17.0.20+8)\nOpenJDK 64-Bit Server VM Temurin-17.0.20+8 (build 17.0.20+8, mixed mode, sharing)",
+      "jmeter_manifest_version": [
+        "Manifest-Version: 1.0",
+        "Implementation-Version: 5.6.3"
+      ],
+      "server": "Threaded Django StaticLiveServerTestCase over loopback HTTP; disposable MySQL test_hms; normal password hasher and audit/session writes",
+      "security_overrides": "Loopback HTTP only; secure redirect/session/CSRF cookie flags disabled for this local harness",
+      "think_time_ms_per_measured_request": 1000,
+      "ramp_seconds": 5
+    }
+  },
+  "populated_recovery": {
+    "case": "TC-OPS-01",
+    "operation": "post-fix populated recovery and monitor-child cleanup rerun",
+    "started_at": "2026-11-02T12:57:14.911536+00:00",
+    "scope": "same isolated populated synthetic MySQL source and original naturally scheduled backup; existing live daily task unchanged",
+    "source_commit": "8b73d3f6337aab2de109b237b781ec8bbb54ed50",
+    "working_tree_dirty": false,
+    "source_script_sha256": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+    "runner_script_sha256": "995654f432baab0b67b28be623ce832249842369f7f3b8907250ad15c94518c5",
+    "python_version": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "sandbox_port": 58485,
+    "sandbox_bind": "127.0.0.1",
+    "live_application_database_seeded_or_restored": false,
+    "mysql_version": "8.4.9",
+    "django_version": "5.2.18",
+    "mysql_client_version": "8.4.9 for Win64 on x86_64 (MySQL Community Server - GPL)",
+    "populated_recovery": {
+      "case": "TC-OPS-01",
+      "operation": "populated separate-database restore",
+      "observed_at": "2026-11-02T12:57:21.617972+00:00",
+      "backup_completed_at": "2026-11-02T03:50:49.681093+00:00",
+      "backup_age_seconds": 32789.567,
+      "source": "hms",
+      "restore_target": "test_hms",
+      "source_unchanged": true,
+      "all_table_counts_rows_and_schema_match": true,
+      "logical_consistency": {
+        "violations": {
+          "orphan_allocation_student": 0,
+          "orphan_allocation_bed": 0,
+          "orphan_payment_student": 0,
+          "orphan_adjustment_original": 0,
+          "orphan_bed_room": 0,
+          "orphan_room_hostel": 0,
+          "orphan_student_user": 0,
+          "orphan_audit_actor": 0,
+          "duplicate_active_student": 0,
+          "duplicate_active_bed": 0,
+          "active_allocation_bed_not_occupied": 0,
+          "occupied_bed_without_active_allocation": 0,
+          "invalid_adjustment_original_student_or_date": 0,
+          "over_reversed_payment": 0,
+          "invalid_receipt_format": 0,
+          "duplicate_receipt": 0,
+          "receipt_sequence_or_gap": 0
+        },
+        "all_consistency_checks_pass": true,
+        "receipt_count": 2,
+        "last_receipt_value": 2
+      },
+      "python_version": "3.14.7",
+      "recovery_script_sha256": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+      "required_populated_tables": [
+        "students_student",
+        "hostels_bed",
+        "allocations_allocation",
+        "payments_payment",
+        "audit_auditevent"
+      ],
+      "tables": {
+        "accounts_user": {
+          "rows": 1,
+          "rows_sha256": "1a48fa6120e4abf326fbd0d788116105ecffa9ffebbef9dbe11deae9eac30516",
+          "schema_sha256": "259307f80229133c9fcd404d4fd4f7a2649409281d4b617958cf09dcb35aea44"
+        },
+        "accounts_user_groups": {
+          "rows": 0,
+          "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "schema_sha256": "35f61cab6d52a21e354b663640f63011ab5d0aa34b975c9993a2fb36c5d9cbc2"
+        },
+        "accounts_user_user_permissions": {
+          "rows": 0,
+          "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "schema_sha256": "b4007824df034588404ff1c8fe01c62ec6da83018aba876b103642c3d6dcf342"
+        },
+        "allocations_allocation": {
+          "rows": 2,
+          "rows_sha256": "b343f6bc86803c0393a2e833bd3aed1ad99e2fb09c3360271d047dd86da303b5",
+          "schema_sha256": "4bab000eade415cdfb33e5ced4ff4ae0785ac441f903378a9a2afc99b138da8a"
+        },
+        "audit_auditevent": {
+          "rows": 3,
+          "rows_sha256": "0ed86e9c713a7661538a2d73ed103a7d2c641eef6f24f6b98a05980ddb7135a1",
+          "schema_sha256": "a431df58a851e467273c1bf9ec1496d02665849157a6c1277c420ce8477965ad"
+        },
+        "auth_group": {
+          "rows": 0,
+          "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "schema_sha256": "0e08d131261d7a2411634f0ccc8dcb9d3888f0ccddbd29c28b668249086c10ac"
+        },
+        "auth_group_permissions": {
+          "rows": 0,
+          "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "schema_sha256": "448969d3c019125107f09989e34a8b2be8a5d0c9a4617e9f7d9ec066bbdb6c03"
+        },
+        "auth_permission": {
+          "rows": 56,
+          "rows_sha256": "9a5fcf43efe5a3a2ad69ed9e4db5aa9f17d60af9e37ef25077b20dafd84d3f39",
+          "schema_sha256": "7e93cfe875f894fb1311ecb1481534e440eb44912f146b41a95c333c5b93d09a"
+        },
+        "django_admin_log": {
+          "rows": 0,
+          "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "schema_sha256": "5d1370024917fc3ffea823935ae44288b0741c5c34081c78cbf6d59edaf8ee6a"
+        },
+        "django_content_type": {
+          "rows": 14,
+          "rows_sha256": "87525d5e1b92e56d7a71557c0a0c7b10eeb3d0c03f5471eaafed2fdd0d379510",
+          "schema_sha256": "a018a36838919c439bfebd036972e5510088989d21129f34db4fc5981e75e4df"
+        },
+        "django_migrations": {
+          "rows": 29,
+          "rows_sha256": "6a0e7d6b3c3d416a8c66f5622b942319072d7aa06d91b8ad613a6f1439c5ae47",
+          "schema_sha256": "aafde652bb237c58744d30886204168cacc340b2224a1db1f18d34a5a426c19d"
+        },
+        "django_session": {
+          "rows": 0,
+          "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "schema_sha256": "f01240b82cefbb1d02f49e857ffbd7d7943407fa47c0bfe85675432d77cb317d"
+        },
+        "hostels_bed": {
+          "rows": 4,
+          "rows_sha256": "9fbcf61c221ed041c0f6e9b47f67cdd59798f350d158ebb12f80f4c10d3696b9",
+          "schema_sha256": "a0c4ca013f7418f24dbd633d6208e2144242d38af5b05e566032e93dc6694128"
+        },
+        "hostels_hostel": {
+          "rows": 1,
+          "rows_sha256": "94396f7bfbee61935242e59201b19362b340828e4864d056ca2f813e6eb3285b",
+          "schema_sha256": "bf1fc03e4e259b681026ff3963dddf0aa3b2a0b3686fd521507895bca053e153"
+        },
+        "hostels_room": {
+          "rows": 1,
+          "rows_sha256": "2a56325ae548d017a54a947704d0c1318b323e866cd8f5a52582660db2cc40a9",
+          "schema_sha256": "a28fb5243fad57d798b173cb826c62e8a2fa40d8d1e502c89f57505d1debdd63"
+        },
+        "payments_payment": {
+          "rows": 2,
+          "rows_sha256": "d1ef3985333b13eebd7117f433cd01f67ccdc63acf1877f4c9733779e9dd8791",
+          "schema_sha256": "fb54843d707b2ed4e7b92b6730ae8f95c62417c1cc9b78922e0664139ff5fd25"
+        },
+        "payments_receiptsequence": {
+          "rows": 1,
+          "rows_sha256": "d2ead2313b3d9cf64dc379428ef0f591f613dfd5c84175124fbb16196ea7af44",
+          "schema_sha256": "d345383dfa2ea9157b7ef01d95264c51a1bf1ac2418feacb77ab283c2d1e7d03"
+        },
+        "students_student": {
+          "rows": 3,
+          "rows_sha256": "06094f8ce8b40584f82d948e35f38a17ffdbd2acdde1b0d557b88db84f430214",
+          "schema_sha256": "50f2af9b9bab50e18499fbae87541a422f4579140e970032d0d7e460a42da9b3"
+        }
+      },
+      "dump_sha256": "f553798669f9df11c7c13a0701d8f2df45786ebed2d6e12e2f1f80ebc09947b3",
+      "data_loss_at_comparison": "none; all rows and schema digests match the unchanged source",
+      "recovery_status": "PASS",
+      "daily_schedule_status": "requires separate real Task Scheduler evidence"
+    },
+    "live_daily_schedule": {
+      "exists": true,
+      "task_name": "HMS-Issue40-DailyBackup",
+      "state": "Ready",
+      "last_run": "2026-11-02T09:21:55.0000000+05:30",
+      "last_result": 0,
+      "next_run": "2026-11-03T09:21:55.0000000+05:30",
+      "daily_interval": "1",
+      "action_sha256": "a68620f97a62323bf85355ccf6450712876d9c737b94aa02ab09d68335d1656c"
+    },
+    "owned_restore_target_removed": true,
+    "status": "PASS",
+    "owned_sandbox_stopped": true,
+    "completed_at": "2026-11-02T12:57:25.498200+00:00"
+  },
+  "installed_daily_action_recheck": {
+    "case": "TC-OPS-01",
+    "status": "PASS",
+    "trigger_kind": "on-demand execution of the existing daily task action; original natural daily trigger remains separately documented",
+    "started_at": "2026-11-02T12:58:31.268074+00:00",
+    "completed_at": "2026-11-02T12:58:43.933291+00:00",
+    "source_commit": "8b73d3f6337aab2de109b237b781ec8bbb54ed50",
+    "git_dirty": false,
+    "task_before": {
+      "exists": true,
+      "task_name": "HMS-Issue40-DailyBackup",
+      "state": "Ready",
+      "last_run": "2026-11-02T09:21:55.0000000+05:30",
+      "last_result": 0,
+      "next_run": "2026-11-03T09:21:55.0000000+05:30",
+      "daily_interval": "1"
+    },
+    "task_after": {
+      "exists": true,
+      "task_name": "HMS-Issue40-DailyBackup",
+      "state": "Ready",
+      "last_run": "2026-11-02T18:28:32.0000000+05:30",
+      "last_result": 0,
+      "next_run": "2026-11-03T09:21:55.0000000+05:30",
+      "daily_interval": "1"
+    },
+    "action_sha256": "a68620f97a62323bf85355ccf6450712876d9c737b94aa02ab09d68335d1656c",
+    "daily_schedule_unchanged": true,
+    "backup_completed_at": "2026-11-02T12:58:42.394329+00:00",
+    "backup_age_seconds": 1.612161,
+    "dump_sha256": "ce7d6142b56ed7eb4a0ab06ec2cd91f1f4a15d437aab7452b55400df666cb12e",
+    "source_unchanged": true,
+    "table_row_counts": {
+      "accounts_user": 0,
+      "accounts_user_groups": 0,
+      "accounts_user_user_permissions": 0,
+      "allocations_allocation": 0,
+      "audit_auditevent": 0,
+      "auth_group": 0,
+      "auth_group_permissions": 0,
+      "auth_permission": 56,
+      "django_admin_log": 0,
+      "django_content_type": 14,
+      "django_migrations": 29,
+      "django_session": 1,
+      "hostels_bed": 0,
+      "hostels_hostel": 0,
+      "hostels_room": 0,
+      "payments_payment": 0,
+      "payments_receiptsequence": 1,
+      "students_student": 0
+    },
+    "backup_script_sha256": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263"
+  },
+  "recovery_safety_suite": {
+    "command": "python -S -m unittest discover -s scripts/part3 -p test_issue40_recovery_safety.py -v",
+    "tests": 32,
+    "errors": 0,
+    "failures": 0,
+    "exit_code": 0,
+    "seconds": 0.152,
+    "raw_console_sha256": "507acb0b5cfe0ad3b96372743590e719e0c1f2b7996f165d7d7d8f89e5d53f0a",
+    "harness_sha256": {
+      "backup_issue40.py": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+      "run_issue40_recovery.py": "995654f432baab0b67b28be623ce832249842369f7f3b8907250ad15c94518c5",
+      "test_issue40_recovery_safety.py": "062a84239551e227550183e2e08ef5606b70932271195ec1c448f08845bd6ec4"
+    }
+  },
+  "precommit_repository_checks": {
+    "started_at": "2026-11-02T04:58:33.886784+00:00",
+    "commit": "50717dff61107e786e24a9925985770fa77bf367",
+    "git_dirty": true,
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "steps": [
+      {
+        "name": "lint",
+        "exit_code": 0,
+        "seconds": 0.094
+      },
+      {
+        "name": "format",
+        "exit_code": 0,
+        "seconds": 0.094
+      },
+      {
+        "name": "dependencies",
+        "exit_code": 0,
+        "seconds": 0.489
+      },
+      {
+        "name": "django-checks",
+        "exit_code": 0,
+        "seconds": 0.932
+      },
+      {
+        "name": "applied-migrations",
+        "exit_code": 0,
+        "seconds": 0.954
+      },
+      {
+        "name": "migration-consistency",
+        "exit_code": 0,
+        "seconds": 0.922
+      },
+      {
+        "name": "staticfiles",
+        "exit_code": 0,
+        "seconds": 0.682
+      },
+      {
+        "name": "test-results",
+        "exit_code": 0,
+        "seconds": 38.827
+      },
+      {
+        "name": "coverage",
+        "exit_code": 0,
+        "seconds": 0.391
+      },
+      {
+        "name": "coverage-xml",
+        "exit_code": 0,
+        "seconds": 0.412
+      },
+      {
+        "name": "coverage-json",
+        "exit_code": 0,
+        "seconds": 0.442
+      },
+      {
+        "name": "timing-smoke",
+        "exit_code": 0,
+        "seconds": 6.191
+      }
+    ],
+    "dependencies": {
+      "Django": "5.2.18",
+      "mysqlclient": "2.3.0",
+      "python-dotenv": "1.2.4",
+      "reportlab": "4.5.1",
+      "pypdf": "6.21.2",
+      "coverage": "7.16.2",
+      "unittest-xml-reporting": "4.0.0",
+      "ruff": "0.17.1"
+    },
+    "mysql": "8.4.9",
+    "tests": {
+      "tests": 186,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "junit_files": 27,
+    "coverage": {
+      "covered_lines": 1566,
+      "num_statements": 1660,
+      "percent_covered": 92.724609375,
+      "percent_covered_display": "93",
+      "missing_lines": 94,
+      "excluded_lines": 0,
+      "percent_statements_covered": 94.33734939759036,
+      "percent_statements_covered_display": "94",
+      "num_branches": 388,
+      "num_partial_branches": 51,
+      "covered_branches": 333,
+      "missing_branches": 55,
+      "percent_branches_covered": 85.82474226804123,
+      "percent_branches_covered_display": "86"
+    },
+    "completed_at": "2026-11-02T04:59:25.289559+00:00",
+    "success": true,
+    "coverage_scope": "Mixed-suite routine repository verification only; no #42 coverage report or unit-attributable SRS coverage claim."
+  },
+  "repository_checks_provenance": "Original run.json retains50717df/dirty state; application tests include strengthened allocation tests. Final frozen files passed separate fresh Ruff/format checks and32 safety tests before local8b73d3f commit. Final published revision CI is checked separately.",
+  "history_order_negative_control": {
+    "probe": "Temporarily override Allocation ordering to primary-key only in isolated child; committed application source untouched",
+    "test": "allocations.test_workflows.AllocationWorkflowTests.test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+    "expected_failures": 1,
+    "observed_failures": 1,
+    "status": "PASS: regression detects incorrect date ordering"
+  },
+  "windows_acl_proofs": {
+    "before_fix": {
+      "scope": "one new empty disposable temporary folder; no credentials or database/scheduler operations",
+      "before": {
+        "explicit_everyone_allow_count": 1
+      },
+      "after_current_protect_directory": {
+        "explicit_everyone_allow_count": 1
+      },
+      "broad_explicit_grant_remains": true
+    },
+    "after_fix": {
+      "scope": "new empty disposable folders only; no credentials, database or scheduler operations",
+      "broad_explicit_grant": {
+        "refused_before_acl_changes": true,
+        "acl_unchanged": true
+      },
+      "broad_test_folder_removed": true,
+      "native_private_tempfile_acl": {
+        "accepted": true,
+        "post_acl_validation_passed": true,
+        "new_inherited_child_protected": true
+      },
+      "native_test_folder_removed": true,
+      "actual_private_directories": {
+        ".": "PASS; read-only ACL inspection",
+        "live-backups": "PASS; read-only ACL inspection",
+        "sandbox-backups": "PASS; read-only ACL inspection"
+      }
+    },
+    "raw_sha256": {
+      "issue40-explicit-acl-red.json": "3b270699d59f4b8256e828748b789ea15268f51b63a9610fd6941f8e83ee32e1",
+      "issue40-explicit-acl-green.json": "43a266242de1eb9bbf5b4545087af791dd45ace403a9ee1f0984e306831d5ae2",
+      "issue40-ancestor-guard-red.txt": "2cbdded17c0ceeca8cdc4f00f27fd7196ce0b5174dfa69d73e7d384e91bb5b6d",
+      "issue40-ancestor-guard-green.txt": "7de1fae57b93cecb11c41c676ebcf6ba79a1671607edafcdd55055da0729eaaa"
+    }
+  },
+  "raw_summaries_sha256": {
+    "browser": "310aaa8962f10d77809d826bce520c747b9c3733c70e6082de0a5dc85260c296",
+    "load": "9f6f58395ce03288fb334a8dfdecf67889c9de6f4f5df50a9a7cf73dd9f01767",
+    "recovery": "8ace4a007bb0b619f6bde88275b7653d0dec8495e7cbe663a12b69b8ec396538",
+    "live_task_recheck": "0941db7a357650a31a2cb9cb93b2a3b905b417e948c5295558bf98daed4d5c10",
+    "checks": "c8ed8a759194db81de3cbdc69bf1d2e78dd3f6c076a332ca8e1ce5524f14f191"
+  },
+  "acceptance_boundary": {
+    "owned_local_case_execution": "PASS for13 case areas on the verified code",
+    "case_register_and_tool_review": "pending #37",
+    "independent_team_build_review": "PR#36 merged during reverification; new fixes/evidence need focused follow-up PR review on the same branch.",
+    "final_accepted_build_retest": "required as agreed by team after acceptance",
+    "report_integration": "pending #38",
+    "coverage_reports": "#42 not implemented",
+    "historical_evidence": "Previous JSON preserved unchanged; earlier ALC05retry/ALC06date-order inference superseded by current explicit proof.",
+    "natural_vs_manual_trigger": "Original natural daily trigger is in completion-recovery.json; new live task action was started on-demand and is not labeled a new natural daily trigger.",
+    "daily_task_availability": "Logged-in Windows user, computer and MySQL must be available."
+  }
+}
