@@ -1,6 +1,7 @@
 """Offline safety checks: no database, scheduled task or process is mutated."""
 
 import hashlib
+import io
 import json
 import subprocess
 import sys
@@ -10,6 +11,7 @@ from contextlib import nullcontext
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import MagicMock, Mock, patch
 
 import backup_issue40 as backup
@@ -38,6 +40,151 @@ class RecoverySafetyTests(unittest.TestCase):
     def test_backup_storage_rejects_repository(self):
         with self.assertRaises(backup.SafetyError):
             backup.private_destination(backup.ROOT / "test-results")
+
+    def test_backup_storage_rejects_repository_ancestors(self):
+        for ancestor in backup.ROOT.parents:
+            with self.subTest(ancestor=ancestor), self.assertRaises(backup.SafetyError):
+                backup.private_destination(ancestor)
+
+    def test_backup_storage_allows_dedicated_sibling_directory(self):
+        sibling = backup.ROOT.parent / "issue40-private-backups"
+        self.assertEqual(backup.private_destination(sibling), sibling.resolve())
+
+    def test_direct_directory_protection_rejects_ancestor_before_filesystem_calls(self):
+        with (
+            patch.object(
+                Path, "mkdir", side_effect=AssertionError("Unexpected directory change")
+            ) as mkdir,
+            patch.object(backup.subprocess, "run") as run,
+            self.assertRaises(backup.SafetyError),
+        ):
+            backup.protect_directory(backup.ROOT.parent)
+        mkdir.assert_not_called()
+        run.assert_not_called()
+
+    def test_explicit_broad_acl_is_refused_before_permissions_are_changed(self):
+        acl = {
+            "owner": "S-1-5-21-1",
+            "inheritance_disabled": False,
+            "rules": [{"sid": "S-1-1-0", "access": "Allow", "inherited": False}],
+        }
+        with (
+            patch.object(backup, "os", SimpleNamespace(name="nt")),
+            patch.object(
+                backup.subprocess,
+                "run",
+                return_value=SimpleNamespace(stdout='"synthetic","S-1-5-21-1"\n'),
+            ) as run,
+            patch.object(backup, "powershell_json", return_value=acl),
+            self.assertRaises(backup.SafetyError),
+        ):
+            backup.protect_directory(self.private)
+        self.assertEqual(run.call_count, 1)
+        self.assertEqual(run.call_args.args[0][0], "whoami")
+
+    def test_inherited_broad_acl_is_accepted_only_before_inheritance_removal(self):
+        acl = {
+            "owner": "S-1-5-21-1",
+            "inheritance_disabled": False,
+            "rules": [{"sid": "S-1-1-0", "access": "Allow", "inherited": True}],
+        }
+        with patch.object(backup, "powershell_json", return_value=acl):
+            backup.validate_private_acl(self.private, "S-1-5-21-1", explicit_only=True)
+            with self.assertRaises(backup.SafetyError):
+                backup.validate_private_acl(
+                    self.private, "S-1-5-21-1", explicit_only=False
+                )
+
+    def test_existing_private_acl_still_supports_directory_protection(self):
+        acl = {
+            "owner": "S-1-5-21-1",
+            "inheritance_disabled": True,
+            "rules": [
+                {"sid": sid, "access": "Allow", "inherited": False}
+                for sid in ("S-1-5-21-1", "S-1-5-18")
+            ],
+        }
+        with (
+            patch.object(backup, "os", SimpleNamespace(name="nt")),
+            patch.object(
+                backup.subprocess,
+                "run",
+                return_value=SimpleNamespace(stdout='"synthetic","S-1-5-21-1"\n'),
+            ) as run,
+            patch.object(backup, "powershell_json", return_value=acl) as acl_check,
+        ):
+            backup.protect_directory(self.private)
+        self.assertEqual(run.call_count, 2)
+        self.assertEqual(run.call_args.args[0][0], "icacls")
+        self.assertEqual(acl_check.call_count, 2)
+
+    def test_native_windows_private_temp_acl_is_accepted(self):
+        acl = {
+            "owner": "S-1-5-21-1",
+            "inheritance_disabled": True,
+            "rules": [
+                {"sid": sid, "access": "Allow", "inherited": False}
+                for sid in ("S-1-3-4", "S-1-5-18", "S-1-5-32-544")
+            ],
+        }
+        with patch.object(backup, "powershell_json", return_value=acl):
+            backup.validate_private_acl(self.private, "S-1-5-21-1", explicit_only=False)
+
+    def test_owner_rights_acl_requires_a_trusted_owner(self):
+        acl = {
+            "owner": "S-1-5-21-999",
+            "inheritance_disabled": True,
+            "rules": [{"sid": "S-1-3-4", "access": "Allow", "inherited": False}],
+        }
+        with (
+            patch.object(backup, "powershell_json", return_value=acl),
+            self.assertRaises(backup.SafetyError),
+        ):
+            backup.validate_private_acl(self.private, "S-1-5-21-1", explicit_only=False)
+
+    def test_backup_rejects_ancestor_before_changing_permissions(self):
+        with (
+            patch.object(backup, "source_settings", return_value={"NAME": "hms"}),
+            patch.object(
+                backup,
+                "protect_directory",
+                side_effect=AssertionError("Unexpected permission change"),
+            ) as protect,
+            self.assertRaises(backup.SafetyError),
+        ):
+            backup.backup(backup.ROOT.parent, Path("mysqldump.exe"))
+        protect.assert_not_called()
+
+    def test_schedule_install_rejects_ancestor_before_changing_permissions(self):
+        with (
+            patch.object(backup, "os", SimpleNamespace(name="nt")),
+            patch.object(backup, "source_settings", return_value={"NAME": "hms"}),
+            patch.object(
+                backup,
+                "protect_directory",
+                side_effect=AssertionError("Unexpected permission change"),
+            ) as protect,
+            self.assertRaises(backup.SafetyError),
+        ):
+            backup.install_schedule(backup.ROOT.parent, Path("mysqldump.exe"), 1)
+        protect.assert_not_called()
+
+    def test_recovery_error_does_not_change_ancestor_permissions(self):
+        argv = ["backup_issue40.py", "recover", "--output-dir", str(backup.ROOT.parent)]
+        with (
+            patch.object(sys, "argv", argv),
+            patch.object(sys, "stdout", io.StringIO()),
+            patch.object(
+                backup,
+                "recover",
+                side_effect=backup.SafetyError("Injected recovery failure"),
+            ),
+            patch.object(backup, "protect_directory") as protect,
+            patch.object(backup, "write_json") as write,
+        ):
+            self.assertEqual(backup.main(), 1)
+        protect.assert_not_called()
+        write.assert_not_called()
 
     def test_private_connection_rejects_live_port_and_nonlocal_host(self):
         path = self.private / "connection.json"
