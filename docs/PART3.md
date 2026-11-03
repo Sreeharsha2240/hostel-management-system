@@ -110,8 +110,10 @@ confirm whether the instructor also needs PDF/DOCX exports.
 | `docs/part3/Test_Case_Document.md` | Vaishnavi; all original case owners | Revision history, retained/new case IDs, priority, requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
 | `docs/part3/Unit_Test_Report.md` | Vaishnavi; each module owner supplies unit results | Environment/SHA/commands, per-module unit scope and results, mixed-level suite classification, failures/skips, defects/retests and durable evidence |
 | `docs/part3/System_Validation_Report.md` | Sreeharsha integrates; QA consolidates; all owners execute | Entry/exit criteria, all planned functional/security/performance/recovery/quality cases, RTM, observed results, execution/pass/fail/requirement percentages, defect density/aging, blockers, deviations, readiness and actual approvals |
-| `docs/part3/Code_Coverage_Report.md` | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
-| `docs/part3/Branch_Coverage_Report.md` | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
+| [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
+| [Branch Coverage Report](part3/Branch_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
+
+The two coverage reports now have candidate measurements and [durable supporting evidence](part3/evidence/issue42/README.md) from 3 November. Their build/report acceptance and proposed isolated-unit classification remain pending independent teammate review; the measured unit subset does not establish the SRS 70% target. Other planned reports remain with their assigned owners.
 
 Keep four distinct reports. Every report names the exact tested commit/tree,
 run date, tool/environment versions, data/setup, reproducible commands/steps,

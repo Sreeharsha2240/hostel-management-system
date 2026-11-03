@@ -1,0 +1,990 @@
+{
+  "mixed": {
+    "tests": 187,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "classes": [
+      {
+        "name": "accounts.test_security.SessionAndLockoutTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_django_admin_login_enforces_five_attempt_lockout",
+            "status": "PASS"
+          },
+          {
+            "name": "test_https_session_and_csrf_cookies_have_required_flags",
+            "status": "PASS"
+          },
+          {
+            "name": "test_inactive_account_cannot_sign_in",
+            "status": "PASS"
+          },
+          {
+            "name": "test_lockout_is_shared_between_application_and_admin_logins",
+            "status": "PASS"
+          },
+          {
+            "name": "test_login_post_is_protected_by_csrf",
+            "status": "PASS"
+          },
+          {
+            "name": "test_server_session_expiry_logout_and_cache_control",
+            "status": "PASS"
+          },
+          {
+            "name": "test_success_resets_failed_attempts_and_expired_lock_starts_a_new_count",
+            "status": "PASS"
+          },
+          {
+            "name": "test_superuser_role_and_password_similarity_validation",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unknown_role_cannot_access_dashboard",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "accounts.tests.AuthenticationTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_admin_can_create_and_deactivate_accounts",
+            "status": "PASS"
+          },
+          {
+            "name": "test_admin_can_update_account",
+            "status": "PASS"
+          },
+          {
+            "name": "test_duplicate_username_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "name": "test_each_role_can_access_dashboard_and_dashboard_reflects_role",
+            "status": "PASS"
+          },
+          {
+            "name": "test_expired_session_requires_login",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_password_is_generic_and_locks_after_five_attempts",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_password_settings_do_not_change_password_or_audit",
+            "status": "PASS"
+          },
+          {
+            "name": "test_locked_account_keeps_generic_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_login_page_welcomes_new_users_and_explains_account_setup",
+            "status": "PASS"
+          },
+          {
+            "name": "test_login_shows_role_dashboard_and_logout_clears_session",
+            "status": "PASS"
+          },
+          {
+            "name": "test_non_admin_cannot_manage_accounts",
+            "status": "PASS"
+          },
+          {
+            "name": "test_non_admin_cannot_update_account",
+            "status": "PASS"
+          },
+          {
+            "name": "test_password_policy_rejects_password_without_letter_or_digit",
+            "status": "PASS"
+          },
+          {
+            "name": "test_password_settings_change_audits_without_secret_and_preserves_session",
+            "status": "PASS"
+          },
+          {
+            "name": "test_profile_settings_save_is_audited_and_unchanged_save_is_not",
+            "status": "PASS"
+          },
+          {
+            "name": "test_session_and_csrf_cookies_are_secure_when_enabled_for_deployment",
+            "status": "PASS"
+          },
+          {
+            "name": "test_session_cookie_is_http_only_and_uses_fifteen_minute_rolling_expiry",
+            "status": "PASS"
+          },
+          {
+            "name": "test_login_and_role_dashboard_respond_within_two_seconds",
+            "status": "SKIPPED"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_migrations.AllocationMigrationTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_existing_active_rows_receive_unique_keys_and_bed_status",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unknown_historical_vacate_date_is_not_invented",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_workflows.AllocationConcurrencyTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_allocation_racing_deactivation_preserves_student_eligibility",
+            "status": "PASS"
+          },
+          {
+            "name": "test_cross_room_transfers_lock_rooms_in_consistent_order",
+            "status": "PASS"
+          },
+          {
+            "name": "test_simultaneous_same_bed_or_same_student_has_one_winner",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_workflows.AllocationWorkflowTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_audit_failure_rolls_back_allocation_and_release",
+            "status": "PASS"
+          },
+          {
+            "name": "test_database_rejects_forged_or_missing_active_keys",
+            "status": "PASS"
+          },
+          {
+            "name": "test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_eligibility_gender_status_and_dates_are_rejected",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_date_types_return_400_without_changing_allocations",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_form_errors_preserve_reference_and_validation_status_codes",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_reference_types_cannot_select_a_different_integer_key",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_workflow_conflicts_validation_and_permissions",
+            "status": "PASS"
+          },
+          {
+            "name": "test_model_deactivation_and_history_cannot_bypass_guards",
+            "status": "PASS"
+          },
+          {
+            "name": "test_new_write_routes_require_csrf",
+            "status": "PASS"
+          },
+          {
+            "name": "test_transfer_and_release_preserve_history_and_emit_actor_audit",
+            "status": "PASS"
+          },
+          {
+            "name": "test_transfer_failure_rolls_back_both_beds_and_history",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.tests.AllocationModelTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_active_allocation_occupies_bed",
+            "status": "PASS"
+          },
+          {
+            "name": "test_bed_cannot_have_two_active_allocations",
+            "status": "PASS"
+          },
+          {
+            "name": "test_completing_allocation_preserves_maintenance_status",
+            "status": "PASS"
+          },
+          {
+            "name": "test_completing_allocation_releases_bed",
+            "status": "PASS"
+          },
+          {
+            "name": "test_maintenance_bed_cannot_be_allocated",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_cannot_have_two_active_allocations",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.tests.AllocationViewTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_admin_can_complete_allocation",
+            "status": "PASS"
+          },
+          {
+            "name": "test_admin_can_create_allocation",
+            "status": "PASS"
+          },
+          {
+            "name": "test_admin_can_open_allocation_form",
+            "status": "PASS"
+          },
+          {
+            "name": "test_admin_can_view_allocation_list",
+            "status": "PASS"
+          },
+          {
+            "name": "test_allocation_creation_rolls_back_if_audit_event_fails",
+            "status": "PASS"
+          },
+          {
+            "name": "test_release_rolls_back_if_audit_event_fails",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_cannot_manage_allocations",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "audit.tests.AuditedAdminMixinTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_add_update_and_deactivation_events_are_recorded_for_admin_actor",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "audit.tests.AuditTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_admin_password_changes_are_audited_without_password_contents",
+            "status": "PASS"
+          },
+          {
+            "name": "test_audit_failure_rolls_back_account_creation",
+            "status": "PASS"
+          },
+          {
+            "name": "test_audit_filter_and_pagination_keep_valid_query_links",
+            "status": "PASS"
+          },
+          {
+            "name": "test_authentication_events_include_actor_record_and_time_without_secrets",
+            "status": "PASS"
+          },
+          {
+            "name": "test_create_update_and_deactivate_accounts_record_the_admin_actor",
+            "status": "PASS"
+          },
+          {
+            "name": "test_events_cannot_be_changed_or_deleted_through_supported_orm_operations",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_audit_action_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "name": "test_only_admin_can_read_audit_log_including_direct_json_requests",
+            "status": "PASS"
+          },
+          {
+            "name": "test_retention_command_preserves_a_full_year_and_supports_dry_run",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unknown_username_failure_is_logged_without_storing_input",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.DateFieldTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unexpected_json_types_produce_validation_errors",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.ModelChoiceFieldTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_non_integer_json_keys_are_rejected_without_a_query",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_http.RequestDataTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_container_field_values_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_deeply_nested_input_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_form_encoded_data_is_returned_unchanged",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_object_preserves_finite_scalar_values",
+            "status": "PASS"
+          },
+          {
+            "name": "test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_non_object_json_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "status": "PASS"
+          },
+          {
+            "name": "test_parser_recursion_error_becomes_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unpaired_unicode_surrogates_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_navigation.DashboardNavigationSmokeTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_admin_dashboard_navigation_pages_load",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_dashboard_navigation_and_staff_route_denials",
+            "status": "PASS"
+          },
+          {
+            "name": "test_warden_dashboard_navigation_pages_load",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_responses.FormErrorResponseTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "status": "PASS"
+          },
+          {
+            "name": "test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_settings.StaticFilesConfigurationTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_collectstatic_has_a_separate_destination",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_system_journey.StudentHostelJourneyTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_staff_allocation_payment_student_view_and_reports_work_together",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.tests.DatabaseConfigurationTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_all_tables_use_innodb",
+            "status": "PASS"
+          },
+          {
+            "name": "test_connects_to_mysql_8",
+            "status": "PASS"
+          },
+          {
+            "name": "test_date_lookups_use_india_dates",
+            "status": "PASS"
+          },
+          {
+            "name": "test_sql_mode_keeps_mysql_8_safety_modes",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.BedFilteringViewTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_available_filter_excludes_occupied_and_maintenance_beds",
+            "status": "PASS"
+          },
+          {
+            "name": "test_bed_list_is_paginated_and_keeps_filters_on_next_page",
+            "status": "PASS"
+          },
+          {
+            "name": "test_combined_filters_return_only_matching_available_beds",
+            "status": "PASS"
+          },
+          {
+            "name": "test_filter_by_floor",
+            "status": "PASS"
+          },
+          {
+            "name": "test_filter_by_hostel",
+            "status": "PASS"
+          },
+          {
+            "name": "test_filter_by_room_type",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_filters_do_not_bypass_login",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_floor_is_escaped_and_other_filter_values_are_preserved",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_numeric_filters_return_400_without_bed_results",
+            "status": "PASS"
+          },
+          {
+            "name": "test_maximum_hostel_id_is_valid_and_has_no_matches",
+            "status": "PASS"
+          },
+          {
+            "name": "test_zero_and_upper_boundary_floor_filters_match_only_their_beds",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelManagementViewTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_admin_can_create_hostel_and_room",
+            "status": "PASS"
+          },
+          {
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "name": "test_empty_management_submissions_show_required_errors_without_saving",
+            "status": "PASS"
+          },
+          {
+            "name": "test_hostel_deactivation_is_audited",
+            "status": "PASS"
+          },
+          {
+            "name": "test_only_admin_can_create_or_edit_hostels_and_rooms",
+            "status": "PASS"
+          },
+          {
+            "name": "test_room_creation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelModelBehaviorTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_bed_status_can_be_changed",
+            "status": "PASS"
+          },
+          {
+            "name": "test_bulk_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "name": "test_capacity_cannot_be_reduced_below_active_allocations",
+            "status": "PASS"
+          },
+          {
+            "name": "test_create_hostel",
+            "status": "PASS"
+          },
+          {
+            "name": "test_duplicate_hostel_name_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "name": "test_queryset_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "name": "test_reducing_capacity_removes_unallocated_beds",
+            "status": "PASS"
+          },
+          {
+            "name": "test_renaming_room_updates_existing_bed_labels",
+            "status": "PASS"
+          },
+          {
+            "name": "test_room_capacity_cannot_exceed_four",
+            "status": "PASS"
+          },
+          {
+            "name": "test_room_creation_automatically_creates_beds",
+            "status": "PASS"
+          },
+          {
+            "name": "test_room_numbers_must_be_unique_within_hostel",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "payments.test_workflows.PaymentConcurrencyTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_competing_corrections_cannot_reverse_a_payment_twice",
+            "status": "PASS"
+          },
+          {
+            "name": "test_simultaneous_payments_receive_unique_sequential_numbers",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "payments.test_workflows.PaymentWorkflowTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_adjustment_cannot_predate_original",
+            "status": "PASS"
+          },
+          {
+            "name": "test_adjustments_preserve_original_and_validate_their_source_and_net_amount",
+            "status": "PASS"
+          },
+          {
+            "name": "test_audit_failure_rolls_back_the_payment_and_receipt_counter",
+            "status": "PASS"
+          },
+          {
+            "name": "test_database_constraints_reject_nonpositive_payments_and_unknown_mode",
+            "status": "PASS"
+          },
+          {
+            "name": "test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+            "status": "PASS"
+          },
+          {
+            "name": "test_fee_configuration_rejects_negative_values_and_preserves_legacy_form_posts",
+            "status": "PASS"
+          },
+          {
+            "name": "test_form_encoded_missing_student_preserves_json_not_found_response",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_json_fields_missing_records_and_methods",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_date_types_return_400_without_consuming_receipts",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_workflow_receipts_adjustments_and_real_pdf_contents",
+            "status": "PASS"
+          },
+          {
+            "name": "test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment",
+            "status": "PASS"
+          },
+          {
+            "name": "test_numbered_payments_are_permanent_and_audited_for_the_actor",
+            "status": "PASS"
+          },
+          {
+            "name": "test_payment_and_adjustment_forms_require_csrf_and_work_with_a_valid_token",
+            "status": "PASS"
+          },
+          {
+            "name": "test_receipt_range_exhaustion_fails_without_overwriting_history",
+            "status": "PASS"
+          },
+          {
+            "name": "test_staff_html_forms_and_all_routes_deny_students_and_anonymous_users",
+            "status": "PASS"
+          },
+          {
+            "name": "test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "reports.test_reports.ReportTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_active_allocations_override_stale_availability_and_maintenance_flags",
+            "status": "PASS"
+          },
+          {
+            "name": "test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+            "status": "PASS"
+          },
+          {
+            "name": "test_empty_reports_and_invalid_filters_formats_and_methods",
+            "status": "PASS"
+          },
+          {
+            "name": "test_numeric_hostel_filter_accepts_leading_zeros",
+            "status": "PASS"
+          },
+          {
+            "name": "test_occupancy_counts_current_records_maintenance_and_empty_hostels",
+            "status": "PASS"
+          },
+          {
+            "name": "test_occupancy_csv_and_html_match_json_and_preserve_filters",
+            "status": "PASS"
+          },
+          {
+            "name": "test_payment_report_csv_and_html_match_json_after_corrections",
+            "status": "PASS"
+          },
+          {
+            "name": "test_payment_report_sums_once_across_allocation_history_and_filters_last_room",
+            "status": "PASS"
+          },
+          {
+            "name": "test_query_counts_do_not_grow_with_students_or_hostels",
+            "status": "PASS"
+          },
+          {
+            "name": "test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+            "status": "PASS"
+          },
+          {
+            "name": "test_reports_landing_redirects_to_occupancy_report",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.test_self_service.StudentSelfServiceTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_dashboard_and_navigation_link_to_my_records",
+            "status": "PASS"
+          },
+          {
+            "name": "test_empty_allocation_and_payment_history_is_explained",
+            "status": "PASS"
+          },
+          {
+            "name": "test_login_is_required_for_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "name": "test_only_student_role_can_open_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_sees_only_own_allocation_and_payment_details",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unlinked_student_login_gets_helpful_empty_state",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentManagementViewTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_admin_can_register_student",
+            "status": "PASS"
+          },
+          {
+            "name": "test_admin_can_update_contact_course_and_year_but_not_student_id",
+            "status": "PASS"
+          },
+          {
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "name": "test_duplicate_registration_shows_required_message",
+            "status": "PASS"
+          },
+          {
+            "name": "test_empty_student_submissions_show_required_errors_without_saving",
+            "status": "PASS"
+          },
+          {
+            "name": "test_search_matches_student_id_partial_name_and_hostel",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_creation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_deactivation_requires_post",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_deactivation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_role_cannot_register_update_or_deactivate",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_search_handles_5000_records_within_two_seconds",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_with_active_allocation_cannot_be_deactivated",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unallocated_student_can_be_deactivated",
+            "status": "PASS"
+          },
+          {
+            "name": "test_warden_can_register_student",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentModelTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_create_student",
+            "status": "PASS"
+          },
+          {
+            "name": "test_duplicate_student_id_form_shows_exact_error_message",
+            "status": "PASS"
+          },
+          {
+            "name": "test_duplicate_student_id_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "name": "test_mobile_must_have_ten_digits",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_can_be_deactivated_without_deleting_record",
+            "status": "PASS"
+          },
+          {
+            "name": "test_student_year_must_be_between_one_and_five",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "tests.test_checks.VerificationRunnerTests-20261103174550",
+        "methods": [
+          {
+            "name": "test_failed_gate_cannot_report_success",
+            "status": "PASS"
+          },
+          {
+            "name": "test_git_status_distinguishes_clean_and_dirty_trees",
+            "status": "PASS"
+          },
+          {
+            "name": "test_missing_empty_or_failed_test_evidence_cannot_report_success",
+            "status": "PASS"
+          },
+          {
+            "name": "test_occupied_output_is_not_overwritten",
+            "status": "PASS"
+          },
+          {
+            "name": "test_setup_failure_saves_failure_without_exception_message",
+            "status": "PASS"
+          },
+          {
+            "name": "test_subprocess_failure_is_captured_in_log_and_exit_code",
+            "status": "PASS"
+          },
+          {
+            "name": "test_success_requires_all_gates_and_writes_root_relative_evidence",
+            "status": "PASS"
+          },
+          {
+            "name": "test_xml_keeps_same_named_package_files_and_only_selected_context_hits",
+            "status": "PASS"
+          }
+        ]
+      }
+    ]
+  },
+  "isolated_unit": {
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": [
+      {
+        "name": "hms.test_forms.DateFieldTests-20261103174651",
+        "methods": [
+          {
+            "name": "test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unexpected_json_types_produce_validation_errors",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.ModelChoiceFieldTests-20261103174651",
+        "methods": [
+          {
+            "name": "test_non_integer_json_keys_are_rejected_without_a_query",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_http.RequestDataTests-20261103174651",
+        "methods": [
+          {
+            "name": "test_container_field_values_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_deeply_nested_input_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_form_encoded_data_is_returned_unchanged",
+            "status": "PASS"
+          },
+          {
+            "name": "test_json_object_preserves_finite_scalar_values",
+            "status": "PASS"
+          },
+          {
+            "name": "test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_non_object_json_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "status": "PASS"
+          },
+          {
+            "name": "test_parser_recursion_error_becomes_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_unpaired_unicode_surrogates_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "name": "test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_responses.FormErrorResponseTests-20261103174651",
+        "methods": [
+          {
+            "name": "test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "status": "PASS"
+          },
+          {
+            "name": "test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "status": "PASS"
+          },
+          {
+            "name": "test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "status": "PASS"
+          }
+        ]
+      }
+    ]
+  },
+  "timing_rerun": {
+    "test": "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
+    "status": "PASS",
+    "instrumented": false
+  }
+}
