@@ -69,6 +69,7 @@ parallel with the Part 3 reporting assignments:
 | [HMS-22 / #45](https://github.com/Sreeharsha2240/hostel-management-system/issues/45) | Devansh | Payment report Bed field in HTML/JSON/CSV; correct TC-RPT-01 evidence |
 | [HMS-23 / #46](https://github.com/Sreeharsha2240/hostel-management-system/issues/46) | Devansh | Transfer/release confirmation dialogs, cancellation and acceptance checks |
 | [HMS-24 / #47](https://github.com/Sreeharsha2240/hostel-management-system/issues/47) | Devansh | DD-MM-YYYY allocation list/history dates; preserve ISO JSON |
+| [HMS-25 / #48](https://github.com/Sreeharsha2240/hostel-management-system/issues/48) | Sreeharsha | DD-MM-YYYY student self-service allocation/history/payment dates |
 
 See the [source-bound retest evidence](part3/evidence/owned-defects/README.md).
 Historical case JSON and coverage measurements are preserved. Unit-scope

@@ -1,37 +1,35 @@
 # Code Coverage Report
 
-Owner: Devansh Gupta (`DevaOnL`), [issue #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42). Measured **3 November 2026**.
+Owner: Devansh Gupta (`DevaOnL`), [issue #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42). Measured **4 November 2026**.
 
-Tested candidate commit: `bf70f53e10fecdfdc34e2e63bb33590b0990eb40`; tree: `6fa3a7a6614d3f79d6e56e70eb92c807c805f3c5`; **clean working tree at both executions**. The reports/evidence are later documentation-only additions; they do not relabel the measurement commit. The [source manifest](evidence/issue42/coverage-metrics.json) binds every tracked Python input, test, coverage configuration, requirements file and CI workflow to that tested commit. PR #44 remains awaiting independent acceptance. These are candidate measurements, not an approved submission build.
+Tested current candidate: `6e349f2c07630e72b9151a575685d462e63cbc40`; tree: `558190f7852283743ab9e20a4c9b3c9b99d0f806`; **clean working tree at all three executions**. Documentation/evidence additions follow the measurement and do not relabel its commit. Current candidate; no independent teammate approval or accepted submission build is claimed. #41 owns the broader Test Plan unit classification; both coverage reports still require independent review.
 
-Environment: Windows-11-10.0.26200-SP0, Python **3.14.7**, Django **5.2.18**, coverage.py **7.16.2**, mysqlclient **2.3.0**, MySQL **8.4.9**, unittest-xml-reporting **4.0.0**, Ruff **0.17.1**. MySQL 8.4 is a documented substitution for the original Test Plan's 8.0 baseline, pending team acceptance. Only synthetic fixtures and Django's disposable `test_hms` are used; live `hms` is neither populated nor restored by these runs.
+Environment: Windows-11-10.0.26200-SP0, Python **3.14.7**, Django **5.2.18**, coverage.py **7.16.2**, mysqlclient **2.3.0**, MySQL **8.4.9**, unittest-xml-reporting **4.0.0**, Ruff **0.17.1**. MySQL 8.4 substitutes for the Test Plan's 8.0 baseline, pending team acceptance. Tests use synthetic fixtures and disposable `test_hms`.
 
-Both reports use the **same mixed run and separately attributed unit run**. Durable [metrics/source inventory](evidence/issue42/coverage-metrics.json), [mixed run](evidence/issue42/mixed-run.json), [unit run](evidence/issue42/unit-run.json), [JUnit summary](evidence/issue42/junit-summary.json), [unit classification](evidence/issue42/unit-scope.json) and [reproduction/extraction notes](evidence/issue42/README.md) retain definitions, commands and raw-artifact hashes. Raw `.coverage`, XML, JSON and JUnit files are retained privately and reconciled before publishing sanitized evidence.
+Both reports share [complete metrics/input hashes](evidence/owned-defects/coverage-metrics.json), [mixed-run metadata](evidence/owned-defects/coverage-mixed-run.json), [strict16 metadata](evidence/owned-defects/coverage-strict16-run.json), [proposed37 metadata](evidence/owned-defects/coverage-proposed37-run.json), [JUnit outcomes](evidence/owned-defects/coverage-junit-summary.json), [scope/method inventory](evidence/owned-defects/coverage-unit-scope.json) and [reproduction notes](evidence/owned-defects/coverage-notes.md). Historical [issue42 evidence](evidence/issue42/README.md) remains available for its earlier candidate.
 
-## Result and interpretation
+## Result
 
-The mixed suite executes **1580/1674 statements (94.38%)**, leaving **94** missing. The application-only subtotal is **1501/1579 (95.06%)**.
-
-**The SRS unit-test target is not established.** Under the proposed conservative isolated-unit classification, selected tests execute **31/1579 application statements (1.96%)**, below 70%. This measured subset is not a final team-approved classification or a definitive rejection of another justified Test Plan classification. #41 must review it and obtain separately attributable evidence for any broader agreed unit scope; the high mixed-suite figure cannot substitute for that evidence.
+The mixed suite executes **1584/1674 statements (94.62%)**, with **90 missing**. The application subtotal is **1505/1579 (95.31%)**. Strict16 attributes **31/1579 (1.96%)** application statements; proposed37 attributes **144/1579 (9.12%)**. These are nonexhaustive diagnostics: the complete Test Plan unit result remains **undetermined** pending #41 classification.
 
 ## Measurement scope
 
-`.coveragerc` enables branch measurement for `accounts,allocations,audit,hms,hostels,payments,reports,scripts,students`. It omits `*/migrations/*`, `*/tests.py`, `*/test_*.py`, `*/apps.py`, `*/__init__.py`, `*/settings.py`, `*/asgi.py`, `*/wsgi.py`. These exclude generated schema history, tests, registration/bootstrap and environment configuration from this application-code measure; they do not waive testing of those behaviors. Empty `reports/admin.py` and `reports/models.py` have zero denominators and N/A rates.
+The unchanged `.coveragerc` enables branches for `accounts,allocations,audit,hms,hostels,payments,reports,scripts,students`, omitting `*/migrations/*`, `*/tests.py`, `*/test_*.py`, `*/apps.py`, `*/__init__.py`, `*/settings.py`, `*/asgi.py`, `*/wsgi.py`. These omissions do not waive testing their behavior. No coverage exclusions or threshold changes were introduced for this refresh.
 
-This issue fixes the runner's XML-only export to retain repository-relative package names. Previously, identical filenames across package source roots overwrote class rows: 17 XML entries could not represent the 49 nonempty files despite correct root totals. The corrected export has all 49 unique file rows, each reconciled to JSON. `.coveragerc` and its collection source list, omission patterns, branch setting and 70% gate are unchanged. The application denominator is unchanged; the modified verification tooling has its own measured subtotal. No application code changed.
+The configured measure contains **51 files** and **49 nonempty XML rows**. The application subtotal retains every measured file in the eight application packages, including admin/URL declarations, and removes only `scripts/run_checks.py` tooling. Empty files have zero denominators and **N/A** rates. The denominator includes declarations and is not an agreed definition of application logic. The [unmeasured Python inventory](evidence/owned-defects/coverage-metrics.json) explains absent Python files; templates/static assets, JavaScript, SQL, browser/load/recovery execution and `scripts/part3` are outside this measured Python scope.
 
-Coverage.py discovers **51 files**, including `scripts/run_checks.py` tooling. The application subtotal retains all 50 files in the eight application packages, including admin/URL declarations; only the tooling file is removed from that subtotal. The denominator is conservative and explicitly defined, not a claim that every Python declaration is business logic. `manage.py`, test factories, JavaScript/JMX, templates/static files, SQL and `scripts/part3` (not discovered by this source scan because its namespace directories lack `__init__.py`) are outside this measured scope; the full unmeasured Python inventory states why each file is absent. Browser/load/recovery evidence is separate and adds no coverage credit. No new exclusions or artificial tests were added to raise percentages.
+Fresh exports from each original `.coverage` reconcile all file statements/arcs/totals with JSON. Every nonempty XML class has a unique repository-relative path; every executed/missing line and per-file branch count agrees with JSON. Input hashes distinguish exact Windows bytes from committed Git blobs, with line-ending-only differences listed.
 
 ## Test execution
 
-The complete suite discovered **187 methods**: **186 passed**, zero failures/errors, and one intentional timing skip while tracing. The skipped login/dashboard response check then **passed separately without tracing**, contributing no additional coverage. All **12 repository gates passed**. These are mixed unit/component/integration/concurrency/system checks, not 187 unit tests or proof of all planned cases. The isolated run passed **16/16**, with no skips and no database queries. Details and expected/actual method outcomes are in the JUnit summary. No application failure was found by these runs; the XML tooling defect was fixed and actual coverage gaps remain below.
+The full suite discovered **189 methods**: **188 passed**, zero failures/errors, and one intentional timing skip under coverage. The runner then passed that timing check without tracing, adding no coverage credit. All **12 repository gates passed**. These are mixed unit/component/integration/concurrency/system checks. The separate strict16 and proposed37 runs passed **16/16** and **37/37**, respectively, without skips. Selected method IDs match JUnit, with **16** and **34** observed measured contexts respectively; startup context is excluded. A selected method can pass without executing measured application code in its method context; those methods are listed in the scope inventory and receive no inferred coverage. Passing this suite does not by itself approve all planned cases or establish absence of defects.
 
 ## Mixed-suite statement coverage by module
 
-| Module | Measured | Executed | Missing | Statement coverage |
+| Module | Measured statements | Executed | Missing | Statement coverage |
 |---|---:|---:|---:|---:|
 | accounts | 271 | 260 | 11 | 95.94% |
-| allocations | 303 | 277 | 26 | 91.42% |
+| allocations | 303 | 281 | 22 | 92.74% |
 | audit | 158 | 152 | 6 | 96.20% |
 | hms | 79 | 76 | 3 | 96.20% |
 | hostels | 255 | 236 | 19 | 92.55% |
@@ -39,12 +37,12 @@ The complete suite discovered **187 methods**: **186 passed**, zero failures/err
 | reports | 86 | 86 | 0 | 100.00% |
 | scripts | 95 | 79 | 16 | 83.16% |
 | students | 171 | 169 | 2 | 98.83% |
-| **Configured total** | 1674 | 1580 | 94 | 94.38% |
-| **Application subtotal (excludes scripts)** | 1579 | 1501 | 78 | 95.06% |
+| **Configured total** | 1674 | 1584 | 90 | 94.62% |
+| **Application subtotal (excludes scripts)** | 1579 | 1505 | 74 | 95.31% |
 
-## Per-file statements and actual gaps
+## Per-file statements and missing lines
 
-Line numbers refer to the tested commit. Missing statements are observations, not proof that paths are unreachable. Full executed/missing sets are retained in the metrics JSON.
+Line numbers refer to the tested candidate. Complete executed/missing line inventories for all three scopes are retained in the metrics JSON.
 
 | File | Measured | Executed | Missing | Statement coverage | Missing lines |
 |---|---:|---:|---:|---:|---|
@@ -62,7 +60,7 @@ Line numbers refer to the tested commit. Missing statements are observations, no
 | [allocations/models.py](../../allocations/models.py) | 96 | 86 | 10 | 89.58% | 83, 85, 94, 98, 102, 122-123, 138, 152, 212 |
 | [allocations/services.py](../../allocations/services.py) | 47 | 46 | 1 | 97.87% | 54 |
 | [allocations/urls.py](../../allocations/urls.py) | 3 | 3 | 0 | 100.00% | none |
-| [allocations/views.py](../../allocations/views.py) | 132 | 120 | 12 | 90.91% | 40, 43, 62, 70, 100, 149, 152, 154-155, 159-160, 195 |
+| [allocations/views.py](../../allocations/views.py) | 132 | 124 | 8 | 93.94% | 40, 62, 70, 100, 149, 152, 154-155 |
 | [audit/admin.py](../../audit/admin.py) | 17 | 13 | 4 | 76.47% | 16, 19, 22, 25 |
 | [audit/management/commands/purge_audit_logs.py](../../audit/management/commands/purge_audit_logs.py) | 19 | 19 | 0 | 100.00% | none |
 | [audit/mixins.py](../../audit/mixins.py) | 23 | 23 | 0 | 100.00% | none |
@@ -100,33 +98,35 @@ Line numbers refer to the tested commit. Missing statements are observations, no
 | [students/urls.py](../../students/urls.py) | 3 | 3 | 0 | 100.00% | none |
 | [students/views.py](../../students/views.py) | 86 | 85 | 1 | 98.84% | 159 |
 
-## Separately attributable unit coverage and SRS 6.4
+## Separately attributed diagnostics and SRS 6.4
 
-SRS 6.4 states: **"unit tests cover at least 70% of the application logic."** The original Test Plan names model/form/view unit testing, but the existing model/view tests use real ORM persistence, transactions and database-dependent setup. This report conservatively separates those component/integration checks from isolated units rather than classifying by filename or `TestCase` inheritance.
+SRS 6.4 states: **"unit tests cover at least 70% of the application logic."** Test Plan section 5 defines units as **"Django TestCase for models, forms and views of each module"** and integration as **"views ↔ ORM ↔ MySQL"**, for example allocation transactions and constraints. The previous report's database-free subset was narrower than the Test Plan definition; real ORM setup alone cannot exclude every model/form/view method from unit classification.
 
-| Proposed category | Methods | Included scope |
+| Diagnostic scope | Methods | Selection |
 |---|---:|---|
-| Isolated application unit | 16 | `hms.test_forms` (3), `hms.test_http` (10), `hms.test_responses` (3) |
-| Settings configuration | 1 | `hms.test_settings` |
-| Verification tooling | 8 | `tests.test_checks` |
-| Database/component/integration/concurrency/system | 162 | Other normal-suite methods; includes the intended timing skip |
+| Strict16 | 16 | Database-free `SimpleTestCase` methods in `hms.test_forms` (3), `hms.test_http` (10), `hms.test_responses` (3) |
+| Proposed37 | 37 | Strict16 plus 21 directly invoked model/form component methods; exact method IDs are in the scope inventory |
 
-Only the 16 `SimpleTestCase` methods directly exercising validation/parser/response helpers are selected. Database access is prohibited. `dynamic_context = test_function` and a test-name filter exclude the empty startup/import/setup context, while retaining the **same full-file denominator**. All 16 expected contexts are verified. Coverage of just the three exercised files is not used as the SRS denominator. Module declarations executed only at Django startup receive no unit credit.
+**Proposed37 is nonexhaustive and pending #41 review.** Additional Test Plan units may exist, including view checks; this report does not classify every remaining test as integration. The measured subsets cannot determine whether the complete agreed unit scope meets or misses 70%.
 
-| Module | Measured application statements | Unit-executed | Missing from unit execution | Unit statement coverage |
-|---|---:|---:|---:|---:|
-| accounts | 271 | 0 | 271 | 0.00% |
-| allocations | 303 | 0 | 303 | 0.00% |
-| audit | 158 | 0 | 158 | 0.00% |
-| hms | 79 | 31 | 48 | 39.24% |
-| hostels | 255 | 0 | 255 | 0.00% |
-| payments | 256 | 0 | 256 | 0.00% |
-| reports | 86 | 0 | 86 | 0.00% |
-| students | 171 | 0 | 171 | 0.00% |
-| **Application subtotal** | 1579 | 31 | 1548 | 1.96% |
+Both diagnostics use `dynamic_context = test_function`, exclude empty startup/import/setup context from their numerators, and retain the same full-file denominators as the mixed suite. Startup-only model/form/view declarations therefore remain in the denominator without subset credit. This attribution asymmetry and the definition of application logic require #41's review before any SRS verdict. The denominator is not reduced to exercised files. Diagnostic exports use `--fail-under=0` to preserve the observations; export exit 0 is not a passing unit threshold.
 
-## Gate, limitations and next review
+| Application module | Measured statements | Strict16 executed | Strict16 coverage | Proposed37 executed | Proposed37 coverage |
+|---|---:|---:|---:|---:|---:|
+| accounts | 271 | 0 | 0.00% | 16 | 5.90% |
+| allocations | 303 | 0 | 0.00% | 47 | 15.51% |
+| audit | 158 | 0 | 0.00% | 5 | 3.16% |
+| hms | 79 | 31 | 39.24% | 31 | 39.24% |
+| hostels | 255 | 0 | 0.00% | 26 | 10.20% |
+| payments | 256 | 0 | 0.00% | 0 | 0.00% |
+| reports | 86 | 0 | 0.00% | 0 | 0.00% |
+| students | 171 | 0 | 0.00% | 19 | 11.11% |
+| **Application subtotal** | 1579 | 31 | 1.96% | 144 | 9.12% |
 
-The unchanged repository `fail_under = 70` gate combines statements and branch outcomes: `(1580 + 336) / (1674 + 392) = 92.74%`. It **passed**. This is distinct from 94.38% statement coverage, 85.71% branch coverage, and the SRS unit requirement. Unit diagnostic exports explicitly use `--fail-under=0` to save low results; that extraction success is not a passing threshold.
+## Gate, limitations and review
 
-PR #36's setup baseline (94.28% statements / 85.57% branches / 92.63% combined) is historical only. These numbers come from the fresh 3 November run. Coverage measures execution, not assertion quality, requirement coverage or absence of defects. Report/build acceptance and the proposed unit scope await independent teammate review in #41/#42; final accepted-build source changes require a matching rerun. Unit Test Report (#41), System Validation Report (#38), RTM (#37) and final approvals (#43) remain with their owners. See the separate [Branch Coverage Report](Branch_Coverage_Report.md).
+The unchanged repository `fail_under = 70` gate combines statements and branch outcomes: `(1584 + 342) / (1674 + 392) = 93.22%`. It **passed**. This differs from standalone statement/branch rates and does not settle the SRS unit requirement. **The Part 3 PDF specifies no separate branch threshold.**
+
+The earlier PR #36 setup baseline and 3 November issue42 measurements are historical; current tables bind to the candidate above. Source changes require matching reruns. Coverage measures execution, not assertion quality, requirement acceptance or defect absence. #41 owns the broader unit classification and Unit Test Report; #37/#38/#43 retain RTM/system/final review ownership. Both coverage reports and the submission build still need independent acceptance.
+
+See the separate [Branch Coverage Report](Branch_Coverage_Report.md).
