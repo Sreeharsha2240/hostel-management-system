@@ -120,6 +120,72 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
         summary = json.loads(result.stdout)
         self.assertEqual(len(summary["observations"]), 10)
         original_id, successor_id = summary["allocation_ids"]
+        checks = summary["allocation_confirmation_checks"]
+        self.assertEqual([check["action"] for check in checks], ["transfer", "release"])
+        for check, allocation_id in zip(
+            checks, (original_id, successor_id), strict=True
+        ):
+            action = check["action"]
+            self.assertEqual(check["path"], f"/allocations/{allocation_id}/{action}/")
+            expected_dialog = [
+                {"type": "confirm", "message": f"{action.title()} this allocation?"}
+            ]
+            self.assertEqual(check["cancelled"]["dialogs"], expected_dialog)
+            self.assertEqual(check["accepted"]["dialogs"], expected_dialog)
+            self.assertEqual(check["cancelled"]["post_count"], 0)
+            self.assertEqual(
+                check["cancelled"]["trigger"],
+                "Enter from date field" if action == "release" else "click",
+            )
+            self.assertEqual(check["accepted"]["post_count"], 1)
+            cancelled = check["cancelled"]["unchanged_allocation_snapshot"]
+            active = [row for row in cancelled if row["status"] == "Active"]
+            self.assertEqual(len(active), 1)
+            self.assertEqual(active[0]["allocation_id"], allocation_id)
+            self.assertEqual(
+                active[0]["bed_id"],
+                old_bed.pk if action == "transfer" else target_bed.pk,
+            )
+            self.assertIsNone(active[0]["vacated_on"])
+        self.assertEqual(
+            AuditEvent.objects.filter(user=actor, action="transfer").count(), 1
+        )
+        self.assertEqual(
+            AuditEvent.objects.filter(user=actor, action="release").count(), 1
+        )
+        display_date = today.strftime("%d-%m-%Y")
+        self.assertEqual(
+            summary["allocation_date_snapshots"],
+            [
+                {
+                    "checkpoint": "active allocation list",
+                    "dates": [
+                        {
+                            "bed": old_bed.label,
+                            "allocated_on": display_date,
+                            "vacated_on": "—",
+                        }
+                    ],
+                },
+                *[
+                    {
+                        "checkpoint": checkpoint,
+                        "dates": [
+                            {
+                                "bed": bed.label,
+                                "allocated_on": display_date,
+                                "vacated_on": display_date,
+                            }
+                            for bed in (target_bed, old_bed)
+                        ],
+                    }
+                    for checkpoint in (
+                        "completed allocation list",
+                        "student allocation history",
+                    )
+                ],
+            ],
+        )
         history = list(Allocation.objects.filter(student=own))
         self.assertEqual([row.pk for row in history], [successor_id, original_id])
         self.assertTrue(all(row.status == "Completed" for row in history))
@@ -221,6 +287,7 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
             self.assertEqual(occupancy_csv[0][heading], value)
         payment_report = summary["reports"]["payment"]
         database_payment_rows = []
+        database_payment_json_rows = []
         for student in (own, resident):
             allocations = Allocation.objects.filter(student=student)
             current = allocations.filter(status="Active").first()
@@ -229,6 +296,8 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
             self.assertEqual(latest.bed.room.hostel_id, hostel.pk)
             expected_room = target_room if student == own else old_room
             self.assertEqual(latest.bed.room_id, expected_room.pk)
+            expected_bed = target_bed if student == own else occupied_bed
+            self.assertEqual(latest.bed_id, expected_bed.pk)
             fee = latest.bed.room.fee_amount
             self.assertEqual(fee, Decimal("10000.00"))
             paid = sum(
@@ -248,13 +317,34 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
                     student.name,
                     latest.bed.room.hostel.name,
                     latest.bed.room.room_number,
+                    latest.bed.label,
                     f"{fee:.2f}",
                     f"{paid:.2f}",
                     f"{due:.2f}",
                     expected_status,
                 ]
             )
+            database_payment_json_rows.append(
+                {
+                    "student_id": student.student_id,
+                    "student_name": student.name,
+                    "hostel": latest.bed.room.hostel.name,
+                    "room": latest.bed.room.room_number,
+                    "bed": latest.bed.label,
+                    "fee": f"{fee:.2f}",
+                    "paid": f"{paid:.2f}",
+                    "due": f"{due:.2f}",
+                    "status": expected_status,
+                }
+            )
         self.assertEqual(payment_report["html_rows"], database_payment_rows)
+        self.assertEqual(
+            [
+                {key: row[key] for key in database_payment_json_rows[0]}
+                for row in payment_report["json_rows"]
+            ],
+            database_payment_json_rows,
+        )
         self.assertEqual(
             payment_report["html_rows"],
             [
@@ -263,6 +353,7 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
                     own.name,
                     hostel.name,
                     target_room.room_number,
+                    target_bed.label,
                     "10000.00",
                     "10000.00",
                     "0.00",
@@ -273,6 +364,7 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
                     resident.name,
                     hostel.name,
                     old_room.room_number,
+                    occupied_bed.label,
                     "10000.00",
                     "0.00",
                     "10000.00",
@@ -280,23 +372,25 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
                 ],
             ],
         )
-        payment_csv = list(
-            csv.DictReader(StringIO(payment_report["csv"].lstrip("\ufeff")))
-        )
+        csv_reader = csv.DictReader(StringIO(payment_report["csv"].lstrip("\ufeff")))
+        payment_headings = [
+            "Student ID",
+            "Student Name",
+            "Hostel Name",
+            "Room",
+            "Bed",
+            "Fee Amount (INR)",
+            "Amount Paid (INR)",
+            "Due (INR)",
+            "Payment Status",
+        ]
+        self.assertEqual(csv_reader.fieldnames, [*payment_headings, "Generated On"])
+        payment_csv = list(csv_reader)
         self.assertEqual(len(payment_csv), 2)
         by_student = {row["Student ID"]: row for row in payment_csv}
         for row in payment_report["html_rows"]:
             for heading, value in zip(
-                [
-                    "Student ID",
-                    "Student Name",
-                    "Hostel Name",
-                    "Room",
-                    "Fee Amount (INR)",
-                    "Amount Paid (INR)",
-                    "Due (INR)",
-                    "Payment Status",
-                ],
+                payment_headings,
                 row,
                 strict=True,
             ):
@@ -318,7 +412,11 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
             "single_conflict_winner": True,
             "receipt_counter": 2,
             "invalid_submissions_unchanged": True,
+            "cancelled_confirmations_sent_no_post": True,
+            "accepted_confirmations_sent_one_post_each": True,
+            "allocation_dates_display_dd_mm_yyyy": True,
             "html_csv_and_database_match": True,
+            "html_csv_json_and_database_match": True,
         }
         project = Path(__file__).resolve().parents[2]
         summary["source"] = {

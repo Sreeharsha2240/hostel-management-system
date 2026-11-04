@@ -1,11 +1,25 @@
 # Issue #40: owned execution evidence
 
+## Requirement correction on 4 November 2026
+
+The earlier claim that all 13 case areas had complete passing evidence is
+withdrawn for TC-RPT-01: its payment-report comparison omitted the required
+Bed field (SRS REQ-23 / Appendix B). The historical JSON below is retained
+unchanged. Follow-up [#45](https://github.com/Sreeharsha2240/hostel-management-system/issues/45)
+tracks that defect; [#46](https://github.com/Sreeharsha2240/hostel-management-system/issues/46)
+and [#47](https://github.com/Sreeharsha2240/hostel-management-system/issues/47)
+track the SAD transfer/release confirmations and SRS displayed-date format.
+Current corrections and candidate retest evidence are recorded in the
+[follow-up evidence](../owned-defects/README.md). Earlier performance/recovery
+runs remain historical measurements of their stated candidates.
+
 ## Reverification on 2 November 2026
 
 The [fresh verification record](reverification.json) supersedes the earlier
-checkpoint's case-completeness conclusions. **All 13 owned case areas now have
-passing local candidate evidence**, including explicit transfer retry and
-allocation-date ordering. Team review of the case register/tools in #37,
+checkpoint's case-completeness conclusions. At that time all 13 owned case
+areas were reported passing, including explicit transfer retry and
+allocation-date ordering; the TC-RPT-01 completeness claim is corrected above.
+Team review of the case register/tools in #37,
 independent teammate acceptance of these follow-up changes/build, any agreed accepted-build
 retest and report integration in #38 remain pending. Issue #40 stays open for
 those steps. PR #36 was merged during this verification; these fixes use a

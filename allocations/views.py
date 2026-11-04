@@ -160,7 +160,12 @@ def allocation_transfer(request, pk):
     return render(
         request,
         "allocations/allocation_form.html",
-        {"form": form, "heading": "Transfer Allocation", "allocation": allocation},
+        {
+            "form": form,
+            "heading": "Transfer Allocation",
+            "allocation": allocation,
+            "confirmation_message": "Transfer this allocation?",
+        },
     )
 
 
@@ -195,7 +200,12 @@ def allocation_release(request, pk):
     return render(
         request,
         "allocations/allocation_form.html",
-        {"form": form, "heading": "Release Allocation", "allocation": allocation},
+        {
+            "form": form,
+            "heading": "Release Allocation",
+            "allocation": allocation,
+            "confirmation_message": "Release this allocation?",
+        },
     )
 
 

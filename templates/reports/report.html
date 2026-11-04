@@ -63,6 +63,7 @@
         <th scope="col">Name</th>
         <th scope="col">Hostel</th>
         <th scope="col">Room</th>
+        <th scope="col">Bed</th>
         <th scope="col">Fee (INR)</th>
         <th scope="col">Paid (INR)</th>
         <th scope="col">Due (INR)</th>
@@ -76,6 +77,7 @@
         <td>{{ row.student_name }}</td>
         <td>{{ row.hostel|default:"Unassigned" }}</td>
         <td>{{ row.room|default:"Unassigned" }}</td>
+        <td>{{ row.bed|default:"Unassigned" }}</td>
         <td>{{ row.fee }}</td>
         <td>{{ row.paid }}</td>
         <td>{{ row.due }}</td>
@@ -83,7 +85,7 @@
       </tr>
       {% empty %}
       <tr>
-        <td colspan="8">No students found for this hostel.</td>
+        <td colspan="9">No students found for this hostel.</td>
       </tr>
       {% endfor %}
     </tbody>

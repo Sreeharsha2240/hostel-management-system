@@ -1,5 +1,12 @@
 # Issue #42 coverage evidence
 
+This directory preserves the 3 November measurements of `bf70f53`. Current
+reports use the [4 November follow-up evidence](../owned-defects/README.md).
+The strict 16-method database-free subset here is a narrow diagnostic: the
+submitted Test Plan also permits model/form/view component units. Its 1.96%
+result does not classify or measure all Test Plan units. The broader
+classification and SRS target remain subject to #41/#42 review.
+
 These sanitized metrics support the separate [Code Coverage Report](../../Code_Coverage_Report.md) and [Branch Coverage Report](../../Branch_Coverage_Report.md). Both refer to clean candidate `bf70f53e10fecdfdc34e2e63bb33590b0990eb40` / tree `6fa3a7a6614d3f79d6e56e70eb92c807c805f3c5` on 3 November 2026. They are not teammate approval or an accepted submission build.
 
 - `coverage-metrics.json`: complete measured file summaries, executed/missing statements and branch arcs for both scopes; module/total/application subtotals; exact configuration; all tracked Python/configuration input hashes; unmeasured Python inventory and matching private artifact hashes.

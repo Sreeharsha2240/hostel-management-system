@@ -36,6 +36,34 @@ class AllocationWorkflowTests(TestCase):
     def create(self):
         return allocate(student=self.student, bed=self.bed, actor=self.actor)
 
+    def test_only_transfer_and_release_forms_require_submit_confirmation(self):
+        original = self.create()
+        before_audits = AuditEvent.objects.count()
+        response = self.client.get(reverse("allocation-create"))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, "onsubmit=")
+        self.assertNotContains(response, "confirm(")
+
+        for action, message in (
+            ("allocation-transfer", "Transfer this allocation?"),
+            ("allocation-release", "Release this allocation?"),
+        ):
+            path = reverse(action, args=[original.pk])
+            # Re-rendered invalid forms must retain the same form-level guard.
+            for method in (self.client.get, self.client.post):
+                with self.subTest(action=action, method=method.__name__):
+                    response = method(path)
+                    self.assertEqual(response.status_code, 200)
+                    self.assertContains(
+                        response,
+                        f'<form method="post" onsubmit="return confirm(\'{message}\')">',
+                        count=1,
+                    )
+        original.refresh_from_db()
+        self.assertEqual(original.status, "Active")
+        self.assertEqual(Allocation.objects.count(), 1)
+        self.assertEqual(AuditEvent.objects.count(), before_audits)
+
     def test_json_date_types_return_400_without_changing_allocations(self):
         values = (123, True, ["2026-10-26"], {"day": 26})
         before_audits = AuditEvent.objects.count()
@@ -281,7 +309,7 @@ class AllocationWorkflowTests(TestCase):
             actor=self.actor,
             allocated_on=today - timedelta(days=4),
         )
-        release(
+        recent = release(
             allocation_id=recent.pk,
             actor=self.actor,
             vacate_date=today - timedelta(days=3),
@@ -293,7 +321,7 @@ class AllocationWorkflowTests(TestCase):
             actor=self.actor,
             allocated_on=today - timedelta(days=10),
         )
-        release(
+        older = release(
             allocation_id=older.pk,
             actor=self.actor,
             vacate_date=today - timedelta(days=9),
@@ -322,19 +350,42 @@ class AllocationWorkflowTests(TestCase):
             [record.allocated_on.isoformat() for record in expected],
         )
         self.assertEqual(
+            [row["vacated_on"] for row in rows],
+            [
+                record.vacated_on.isoformat() if record.vacated_on else None
+                for record in expected
+            ],
+        )
+        self.assertEqual(
             [row["status"] for row in rows], ["Active", "Completed", "Completed"]
         )
 
-        response = self.client.get(path)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "allocations/allocation_list.html")
-        rendered = response.content.decode()
-        positions = []
-        for record in expected:
-            cell = f"<td>{record.bed.label}</td>"
-            self.assertContains(response, cell, count=1, html=True)
-            positions.append(rendered.index(cell))
-        self.assertEqual(positions, sorted(positions))
+        for html_path in (path, reverse("allocation-list")):
+            with self.subTest(path=html_path):
+                response = self.client.get(html_path)
+                self.assertEqual(response.status_code, 200)
+                self.assertTemplateUsed(response, "allocations/allocation_list.html")
+                rendered = response.content.decode()
+                positions = []
+                for record in expected:
+                    cell = f"<td>{record.bed.label}</td>"
+                    self.assertContains(response, cell, count=1, html=True)
+                    positions.append(rendered.index(cell))
+                    for date_value in (record.allocated_on, record.vacated_on):
+                        if date_value:
+                            self.assertContains(
+                                response,
+                                f"<td>{date_value:%d-%m-%Y}</td>",
+                                count=1,
+                                html=True,
+                            )
+                            self.assertNotContains(
+                                response,
+                                f"<td>{date_value.isoformat()}</td>",
+                                html=True,
+                            )
+                self.assertContains(response, "<td>—</td>", count=1, html=True)
+                self.assertEqual(positions, sorted(positions))
 
     def test_audit_failure_rolls_back_allocation_and_release(self):
         with (

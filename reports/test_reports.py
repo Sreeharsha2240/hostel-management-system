@@ -4,8 +4,10 @@ from io import StringIO
 
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import timezone
 
 from accounts.models import User
+from allocations.models import Allocation
 from allocations.services import allocate, release, transfer
 from hostels.models import Bed, Hostel
 from payments.models import ReceiptSequence
@@ -128,22 +130,90 @@ class ReportTests(TestCase):
         self.pay(student=unassigned, amount="25")
         rows = {row["student_id"]: row for row in self.rows("payment-status-report")}
         row = rows[self.student.student_id]
+        location = (second_room.hostel.name, second_room.room_number, current.bed.label)
+        self.assertEqual((row["hostel"], row["room"], row["bed"]), location)
         self.assertEqual(
             (row["fee"], row["paid"], row["due"], row["status"]),
             ("2000.00", "1000.00", "1000.00", "Partial"),
         )
         self.assertEqual(rows[unassigned.student_id]["status"], "Pending")
         self.assertEqual(
+            tuple(
+                rows[unassigned.student_id][key] for key in ("hostel", "room", "bed")
+            ),
+            ("", "", ""),
+        )
+        self.assertEqual(
             self.rows("payment-status-report", hostel=self.room.hostel_id), []
         )
         self.assertEqual(
             len(self.rows("payment-status-report", hostel=second_room.hostel_id)), 1
         )
-        release(allocation_id=current.pk, actor=self.actor)
+        exported = self.csv_rows("payment-status-report", hostel=second_room.hostel_id)[
+            0
+        ]
         self.assertEqual(
-            self.rows("payment-status-report", hostel=second_room.hostel_id)[0]["paid"],
-            "1000.00",
+            (exported["Hostel Name"], exported["Room"], exported["Bed"]), location
         )
+        self.assertContains(
+            self.client.get(reverse("payment-status-report")),
+            f"<td>{current.bed.label}</td>",
+            html=True,
+        )
+        release(allocation_id=current.pk, actor=self.actor)
+        historical = self.rows("payment-status-report", hostel=second_room.hostel_id)[0]
+        self.assertEqual(
+            (historical["hostel"], historical["room"], historical["bed"]), location
+        )
+        self.assertEqual(historical["paid"], "1000.00")
+        self.assertEqual(self.csv_rows("payment-status-report")[0]["Bed"], location[2])
+        self.assertContains(
+            self.client.get(reverse("payment-status-report")),
+            f"<td>{current.bed.label}</td>",
+            html=True,
+        )
+
+    def test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank(
+        self,
+    ):
+        original = self.allocate()
+        release(allocation_id=original.pk, actor=self.actor)
+        unassigned = make_student(2)
+        cancelled_room = make_room("303", fee_amount=Decimal("3000.00"))
+        for student, bed in zip(
+            (self.student, unassigned), cancelled_room.beds.all(), strict=True
+        ):
+            Allocation.objects.create(
+                student=student,
+                bed=bed,
+                status=Allocation.AllocationStatus.CANCELLED,
+                vacated_on=timezone.localdate(),
+            )
+        rows = {row["student_id"]: row for row in self.rows("payment-status-report")}
+        row = rows[self.student.student_id]
+        self.assertEqual(
+            (row["hostel"], row["room"], row["bed"], row["fee"]),
+            (
+                self.room.hostel.name,
+                self.room.room_number,
+                original.bed.label,
+                "1000.00",
+            ),
+        )
+        row = rows[unassigned.student_id]
+        self.assertEqual(
+            (row["hostel"], row["room"], row["bed"], row["fee"], row["status"]),
+            ("", "", "", "0.00", "Pending"),
+        )
+        self.assertEqual(
+            self.rows("payment-status-report", hostel=cancelled_room.hostel_id), []
+        )
+        exported = {
+            row["Student ID"]: row for row in self.csv_rows("payment-status-report")
+        }
+        self.assertEqual(exported[unassigned.student_id]["Bed"], "")
+        response = self.client.get(reverse("payment-status-report"))
+        self.assertContains(response, "<td>Unassigned</td>", count=3, html=True)
 
     def test_payment_report_csv_and_html_match_json_after_corrections(self):
         self.allocate()
@@ -156,6 +226,7 @@ class ReportTests(TestCase):
             ("Student Name", "student_name"),
             ("Hostel Name", "hostel"),
             ("Room", "room"),
+            ("Bed", "bed"),
             ("Fee Amount (INR)", "fee"),
             ("Amount Paid (INR)", "paid"),
             ("Due (INR)", "due"),
@@ -163,6 +234,8 @@ class ReportTests(TestCase):
         ):
             self.assertEqual(exported[heading], row[key])
         response = self.client.get(reverse("payment-status-report"))
+        self.assertContains(response, '<th scope="col">Bed</th>', html=True)
+        self.assertContains(response, f"<td>{self.beds[0].label}</td>", html=True)
         for expected in (self.student.student_id, "750.00", "250.00", "Partial"):
             self.assertContains(response, expected)
 

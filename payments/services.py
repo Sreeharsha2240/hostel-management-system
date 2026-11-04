@@ -53,6 +53,7 @@ def payment_status_queryset(students=None):
         billing_hostel_id=Subquery(latest.values("bed__room__hostel_id")[:1]),
         billing_hostel=Subquery(latest.values("bed__room__hostel__name")[:1]),
         billing_room=Subquery(latest.values("bed__room__room_number")[:1]),
+        billing_bed=Subquery(latest.values("bed__label")[:1]),
     )
 
 
@@ -70,6 +71,7 @@ def status_row(student):
         "hostel_id": student.billing_hostel_id,
         "hostel": student.billing_hostel or "",
         "room": student.billing_room or "",
+        "bed": student.billing_bed or "",
         "fee": f"{fee:.2f}",
         "paid": f"{paid:.2f}",
         "due": f"{max(fee - paid, Decimal('0')):.2f}",

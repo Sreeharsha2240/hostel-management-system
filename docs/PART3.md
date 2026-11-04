@@ -46,7 +46,7 @@ establish execution of all planned cases.
 
 ## Assigned backlog
 
-All seven tasks belong to the [Part 3 milestone](https://github.com/Sreeharsha2240/hostel-management-system/milestone/1). Estimates
+The seven planned tasks and subsequent defects belong to the [Part 3 milestone](https://github.com/Sreeharsha2240/hostel-management-system/milestone/1). Estimates
 are initial planning values for team review, not historical effort or an
 instructor requirement. The historical Sprint 1/2 issues stay closed.
 
@@ -59,6 +59,20 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports from the same accepted revision/run |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | Final review, publication, actual approvals and submission confirmation |
+
+The 4 November requirements audit found actual development spillover in
+Devansh's scope. These Sprint 3 defect tasks use existing PR #44 and run in
+parallel with the Part 3 reporting assignments:
+
+| Defect | Owner | Required correction |
+|---|---|---|
+| [HMS-22 / #45](https://github.com/Sreeharsha2240/hostel-management-system/issues/45) | Devansh | Payment report Bed field in HTML/JSON/CSV; correct TC-RPT-01 evidence |
+| [HMS-23 / #46](https://github.com/Sreeharsha2240/hostel-management-system/issues/46) | Devansh | Transfer/release confirmation dialogs, cancellation and acceptance checks |
+| [HMS-24 / #47](https://github.com/Sreeharsha2240/hostel-management-system/issues/47) | Devansh | DD-MM-YYYY allocation list/history dates; preserve ISO JSON |
+
+See the [source-bound retest evidence](part3/evidence/owned-defects/README.md).
+Historical case JSON and coverage measurements are preserved. Unit-scope
+clarification belongs to existing #41/#42, rather than a duplicate issue.
 
 Original execution ownership is preserved:
 
@@ -113,7 +127,7 @@ confirm whether the instructor also needs PDF/DOCX exports.
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
 | [Branch Coverage Report](part3/Branch_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
 
-The two coverage reports now have candidate measurements and [durable supporting evidence](part3/evidence/issue42/README.md) from 3 November. Their build/report acceptance and proposed isolated-unit classification remain pending independent teammate review; the measured unit subset does not establish the SRS 70% target. Other planned reports remain with their assigned owners.
+The two coverage reports have refreshed candidate measurements and [durable supporting evidence](part3/evidence/owned-defects/README.md); the [3 November measurements](part3/evidence/issue42/README.md) remain historical. Their build/report acceptance and unit classification remain pending independent teammate review. Neither the strict database-free subset nor a nonexhaustive component subset establishes the complete SRS 70% unit target. Other planned reports remain with their assigned owners.
 
 Keep four distinct reports. Every report names the exact tested commit/tree,
 run date, tool/environment versions, data/setup, reproducible commands/steps,
