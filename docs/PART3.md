@@ -55,14 +55,15 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-15 / #37](https://github.com/Sreeharsha2240/hostel-management-system/issues/37) | Vaishnavi (`VaishnaviCH6`) | 3 | Updated Test Case Document and RTM; all members contribute their cases |
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
-| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [owned execution evidence](part3/evidence/issue40/README.md); feeds System Validation Report |
+| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [current-main execution and owner appendix](part3/evidence/issue40-final/README.md), submitted for review; feeds System Validation Report |
 | [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports from the same accepted revision/run |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | Final review, publication, actual approvals and submission confirmation |
 
 The 4 November requirements audit found actual development spillover in
-Devansh's scope. These Sprint 3 defect tasks use existing PR #44 and run in
-parallel with the Part 3 reporting assignments:
+Devansh's scope. These Sprint 3 defects were fixed in merged PR #44 and
+Sreeharsha's merged PR #49; #45-#48 are closed. The Part 3 reporting
+assignments continue in parallel:
 
 | Defect | Owner | Required correction |
 |---|---|---|
@@ -74,6 +75,15 @@ parallel with the Part 3 reporting assignments:
 See the [source-bound retest evidence](part3/evidence/owned-defects/README.md).
 Historical case JSON and coverage measurements are preserved. Unit-scope
 clarification belongs to existing #41/#42, rather than a duplicate issue.
+
+Devansh's [5 November current-main execution and owner appendix](part3/evidence/issue40-final/README.md)
+provide fresh results for all 13 HMS-18 cases after PRs #44/#49 merged, including
+both full load workloads and naturally scheduled populated recovery. The first
+volume attempt failed after confirmed laptop standby; its raw metrics and the
+complete unchanged-threshold rerun are both retained. Handoff is supplied for
+#37's case document and #38's report. **#40 remains open** pending #37's
+reviewed-case/entry-criterion disposition and independent evidence PR review/merge.
+The appendix does not complete either teammate's deliverable or global readiness.
 
 Original execution ownership is preserved:
 

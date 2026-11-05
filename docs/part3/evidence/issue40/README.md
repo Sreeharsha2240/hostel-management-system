@@ -1,5 +1,22 @@
 # Issue #40: owned execution evidence
 
+## Latest execution submitted for review - 5 November 2026
+
+The [current-main results and owner case appendix](../issue40-final/README.md)
+record all 13 owned cases on clean merged `0e358b4`, including full load and fresh
+naturally scheduled populated recovery. The original interrupted volume FAIL
+and its complete rerun are both preserved. PRs #44/#49 and defects #45-#48 are
+merged/closed. This section supersedes the older pending-merge and execution
+status statements below; their measurements still describe their stated sources.
+
+**Issue #40 remains open** pending the reviewed-case/entry-criterion disposition
+under #37 and independent evidence PR review/merge. Team case-register/report
+integration and final readiness stay with #37/#38/#43. Technical execution results
+do not retrospectively establish QA approval or complete Test Plan acceptance.
+All older JSON and the historical narrative below are retained unchanged.
+
+## Historical execution records
+
 ## Requirement correction on 4 November 2026
 
 The earlier claim that all 13 case areas had complete passing evidence is

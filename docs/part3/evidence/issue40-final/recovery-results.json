@@ -1,0 +1,268 @@
+{
+  "case": "TC-OPS-01",
+  "operation": "current-code fresh naturally scheduled populated sandbox backup and separate restore",
+  "started_at": "2026-11-05T05:12:05.089969+00:00",
+  "source_commit": "0e358b4ce1fd02366184c7cb9c312b47dd093214",
+  "working_tree_dirty": false,
+  "source_script_sha256": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+  "runner_script_sha256": "995654f432baab0b67b28be623ce832249842369f7f3b8907250ad15c94518c5",
+  "helper_script_sha256": "9f8952dcdcb0c3a4ea4422f82f12f7eaa565cf06dd5ab59813393768929b05a0",
+  "python_version": "3.14.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "sandbox_bind": "127.0.0.1",
+  "sandbox_port": 58485,
+  "live_application_database_seeded_or_restored": false,
+  "database_seeding_used": false,
+  "synthetic_on_demand_task_start_used": false,
+  "original_live_daily_task_before": {
+    "exists": true,
+    "task_name": "HMS-Issue40-DailyBackup",
+    "state": "Ready",
+    "last_run": "2026-11-05T09:21:56.0000000+05:30",
+    "last_result": 0,
+    "next_run": "2026-11-06T09:21:55.0000000+05:30",
+    "daily_interval": "1",
+    "trigger_start": "2026-11-02T09:21:55+05:30",
+    "action_count": 1,
+    "definition_sha256": "50e32a69d044960c5e39c01971bbda3c3cee0477511ceac081e615096b5596e7",
+    "action_sha256": "a68620f97a62323bf85355ccf6450712876d9c737b94aa02ab09d68335d1656c"
+  },
+  "existing_live_daily_backup": {
+    "completed_at": "2026-11-05T03:52:05.895929+00:00",
+    "backup_age_seconds": 4797.441,
+    "dump_sha256": "fb09c56a73aa8782c9de024d6c70e104d229d00baf96211651e2ac9c9f3ee47c",
+    "dump_bytes": 28242,
+    "source_unchanged": true,
+    "table_row_counts": {
+      "accounts_user": 0,
+      "accounts_user_groups": 0,
+      "accounts_user_user_permissions": 0,
+      "allocations_allocation": 0,
+      "audit_auditevent": 0,
+      "auth_group": 0,
+      "auth_group_permissions": 0,
+      "auth_permission": 56,
+      "django_admin_log": 0,
+      "django_content_type": 14,
+      "django_migrations": 29,
+      "django_session": 1,
+      "hostels_bed": 0,
+      "hostels_hostel": 0,
+      "hostels_room": 0,
+      "payments_payment": 0,
+      "payments_receiptsequence": 1,
+      "students_student": 0
+    },
+    "provenance": "existing installed daily task and retained original natural-trigger observation; helper does not start or modify it",
+    "source_code_caveat": "the retained manifest has no embedded code commit; fresh synthetic trigger below binds the current backup script hash and commit"
+  },
+  "original_synthetic_artifact_hashes_before": {
+    "20261102T035048498541Z\\hms.sql": "f553798669f9df11c7c13a0701d8f2df45786ebed2d6e12e2f1f80ebc09947b3",
+    "20261102T035048498541Z\\manifest.json": "a88194eb8849a8f938ff8a6edf120273b0f06c372f0bacf04ad6b6442d2499f9",
+    "last-error.json": "c185ffc63ee448242772ff07eec691802315271b113c5cbc4f1f1f87bb56b753",
+    "latest.json": "de207f64fede96be6747484cb93a063fd606aef4f3ad3a2e2c09bc844d3c1055",
+    "recovery-results.json": "fa5d3445e4441c53b051f04a71fd3b089828d4f6dde5acffd6533f3c9cca32d4",
+    "registration-evidence.json": "0e878e6486d2dec869457ddc136269209f18af7235a7163e6234285e516d5f8c",
+    "schedule-registration.json": "0e878e6486d2dec869457ddc136269209f18af7235a7163e6234285e516d5f8c",
+    "scheduler-observation.json": "9da0aa2358f5ca15d9da3692fc3b754d60480504b4fb98afba26942f1e8e37f1"
+  },
+  "daily_schedule_limitation": "Interactive current user must be logged in and computer/MySQL available; StartWhenAvailable handles missed triggers.",
+  "mysql_version": "8.4.9",
+  "original_synthetic_source_digest_unchanged": true,
+  "original_synthetic_backup_completed_at": "2026-11-02T03:50:49.681093+00:00",
+  "django_version": "5.2.18",
+  "temporary_task_registration": {
+    "registered": true,
+    "task_name": "HMS-HMS18-Recovery-20261105T051205Z-74df77b4",
+    "frequency": "daily",
+    "first_trigger_minutes": 1,
+    "trigger_kind": "natural daily trigger; no on-demand start"
+  },
+  "sandbox_daily_schedule": {
+    "exists": true,
+    "task_name": "HMS-HMS18-Recovery-20261105T051205Z-74df77b4",
+    "state": "Ready",
+    "last_run": "2026-11-05T10:43:07.0000000+05:30",
+    "last_result": 0,
+    "next_run": "2026-11-06T10:43:07.0000000+05:30",
+    "daily_interval": "1",
+    "trigger_start": "2026-11-05T10:43:07+05:30",
+    "action_count": 1,
+    "definition_sha256": "e96ccd5b661ce29581350019aa47901d019eb03618cbd105084348944bb4f74e",
+    "action_sha256": "05b2cadf29ab2e49ea107d7ca79ec567a5370e49cee45f1d86258b9cc7674a8a",
+    "registration_observed_at": "2026-11-05T05:12:06.782662+00:00",
+    "backup_completed_at": "2026-11-05T05:13:15.073168+00:00",
+    "observed_natural_trigger": true,
+    "on_demand_start_used": false
+  },
+  "temporary_sandbox_task_removed": true,
+  "populated_recovery": {
+    "case": "TC-OPS-01",
+    "operation": "populated separate-database restore",
+    "observed_at": "2026-11-05T05:13:21.883641+00:00",
+    "backup_completed_at": "2026-11-05T05:13:15.073168+00:00",
+    "backup_age_seconds": 5.379,
+    "source": "hms",
+    "restore_target": "test_hms",
+    "source_unchanged": true,
+    "all_table_counts_rows_and_schema_match": true,
+    "logical_consistency": {
+      "violations": {
+        "orphan_allocation_student": 0,
+        "orphan_allocation_bed": 0,
+        "orphan_payment_student": 0,
+        "orphan_adjustment_original": 0,
+        "orphan_bed_room": 0,
+        "orphan_room_hostel": 0,
+        "orphan_student_user": 0,
+        "orphan_audit_actor": 0,
+        "duplicate_active_student": 0,
+        "duplicate_active_bed": 0,
+        "active_allocation_bed_not_occupied": 0,
+        "occupied_bed_without_active_allocation": 0,
+        "invalid_adjustment_original_student_or_date": 0,
+        "over_reversed_payment": 0,
+        "invalid_receipt_format": 0,
+        "duplicate_receipt": 0,
+        "receipt_sequence_or_gap": 0
+      },
+      "all_consistency_checks_pass": true,
+      "receipt_count": 2,
+      "last_receipt_value": 2
+    },
+    "python_version": "3.14.7",
+    "recovery_script_sha256": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+    "required_populated_tables": [
+      "students_student",
+      "hostels_bed",
+      "allocations_allocation",
+      "payments_payment",
+      "audit_auditevent"
+    ],
+    "tables": {
+      "accounts_user": {
+        "rows": 1,
+        "rows_sha256": "1a48fa6120e4abf326fbd0d788116105ecffa9ffebbef9dbe11deae9eac30516",
+        "schema_sha256": "259307f80229133c9fcd404d4fd4f7a2649409281d4b617958cf09dcb35aea44"
+      },
+      "accounts_user_groups": {
+        "rows": 0,
+        "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "schema_sha256": "35f61cab6d52a21e354b663640f63011ab5d0aa34b975c9993a2fb36c5d9cbc2"
+      },
+      "accounts_user_user_permissions": {
+        "rows": 0,
+        "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "schema_sha256": "b4007824df034588404ff1c8fe01c62ec6da83018aba876b103642c3d6dcf342"
+      },
+      "allocations_allocation": {
+        "rows": 2,
+        "rows_sha256": "b343f6bc86803c0393a2e833bd3aed1ad99e2fb09c3360271d047dd86da303b5",
+        "schema_sha256": "4bab000eade415cdfb33e5ced4ff4ae0785ac441f903378a9a2afc99b138da8a"
+      },
+      "audit_auditevent": {
+        "rows": 3,
+        "rows_sha256": "0ed86e9c713a7661538a2d73ed103a7d2c641eef6f24f6b98a05980ddb7135a1",
+        "schema_sha256": "a431df58a851e467273c1bf9ec1496d02665849157a6c1277c420ce8477965ad"
+      },
+      "auth_group": {
+        "rows": 0,
+        "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "schema_sha256": "0e08d131261d7a2411634f0ccc8dcb9d3888f0ccddbd29c28b668249086c10ac"
+      },
+      "auth_group_permissions": {
+        "rows": 0,
+        "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "schema_sha256": "448969d3c019125107f09989e34a8b2be8a5d0c9a4617e9f7d9ec066bbdb6c03"
+      },
+      "auth_permission": {
+        "rows": 56,
+        "rows_sha256": "9a5fcf43efe5a3a2ad69ed9e4db5aa9f17d60af9e37ef25077b20dafd84d3f39",
+        "schema_sha256": "7e93cfe875f894fb1311ecb1481534e440eb44912f146b41a95c333c5b93d09a"
+      },
+      "django_admin_log": {
+        "rows": 0,
+        "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "schema_sha256": "5d1370024917fc3ffea823935ae44288b0741c5c34081c78cbf6d59edaf8ee6a"
+      },
+      "django_content_type": {
+        "rows": 14,
+        "rows_sha256": "87525d5e1b92e56d7a71557c0a0c7b10eeb3d0c03f5471eaafed2fdd0d379510",
+        "schema_sha256": "a018a36838919c439bfebd036972e5510088989d21129f34db4fc5981e75e4df"
+      },
+      "django_migrations": {
+        "rows": 29,
+        "rows_sha256": "6a0e7d6b3c3d416a8c66f5622b942319072d7aa06d91b8ad613a6f1439c5ae47",
+        "schema_sha256": "aafde652bb237c58744d30886204168cacc340b2224a1db1f18d34a5a426c19d"
+      },
+      "django_session": {
+        "rows": 0,
+        "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "schema_sha256": "f01240b82cefbb1d02f49e857ffbd7d7943407fa47c0bfe85675432d77cb317d"
+      },
+      "hostels_bed": {
+        "rows": 4,
+        "rows_sha256": "9fbcf61c221ed041c0f6e9b47f67cdd59798f350d158ebb12f80f4c10d3696b9",
+        "schema_sha256": "a0c4ca013f7418f24dbd633d6208e2144242d38af5b05e566032e93dc6694128"
+      },
+      "hostels_hostel": {
+        "rows": 1,
+        "rows_sha256": "94396f7bfbee61935242e59201b19362b340828e4864d056ca2f813e6eb3285b",
+        "schema_sha256": "bf1fc03e4e259b681026ff3963dddf0aa3b2a0b3686fd521507895bca053e153"
+      },
+      "hostels_room": {
+        "rows": 1,
+        "rows_sha256": "2a56325ae548d017a54a947704d0c1318b323e866cd8f5a52582660db2cc40a9",
+        "schema_sha256": "a28fb5243fad57d798b173cb826c62e8a2fa40d8d1e502c89f57505d1debdd63"
+      },
+      "payments_payment": {
+        "rows": 2,
+        "rows_sha256": "d1ef3985333b13eebd7117f433cd01f67ccdc63acf1877f4c9733779e9dd8791",
+        "schema_sha256": "fb54843d707b2ed4e7b92b6730ae8f95c62417c1cc9b78922e0664139ff5fd25"
+      },
+      "payments_receiptsequence": {
+        "rows": 1,
+        "rows_sha256": "d2ead2313b3d9cf64dc379428ef0f591f613dfd5c84175124fbb16196ea7af44",
+        "schema_sha256": "d345383dfa2ea9157b7ef01d95264c51a1bf1ac2418feacb77ab283c2d1e7d03"
+      },
+      "students_student": {
+        "rows": 3,
+        "rows_sha256": "06094f8ce8b40584f82d948e35f38a17ffdbd2acdde1b0d557b88db84f430214",
+        "schema_sha256": "50f2af9b9bab50e18499fbae87541a422f4579140e970032d0d7e460a42da9b3"
+      }
+    },
+    "dump_sha256": "c471559b7efe5547f244be41789318d4557b40012dad7f04e89227d8d4591c57",
+    "data_loss_at_comparison": "none; all rows and schema digests match the unchanged source",
+    "recovery_status": "PASS",
+    "daily_schedule_status": "requires separate real Task Scheduler evidence"
+  },
+  "owned_restore_target_removed": true,
+  "status": "PASS",
+  "owned_sandbox_stopped": true,
+  "original_live_daily_task_after": {
+    "exists": true,
+    "task_name": "HMS-Issue40-DailyBackup",
+    "state": "Ready",
+    "last_run": "2026-11-05T09:21:56.0000000+05:30",
+    "last_result": 0,
+    "next_run": "2026-11-06T09:21:55.0000000+05:30",
+    "daily_interval": "1",
+    "trigger_start": "2026-11-02T09:21:55+05:30",
+    "action_count": 1,
+    "definition_sha256": "50e32a69d044960c5e39c01971bbda3c3cee0477511ceac081e615096b5596e7",
+    "action_sha256": "a68620f97a62323bf85355ccf6450712876d9c737b94aa02ab09d68335d1656c"
+  },
+  "original_live_daily_action_and_trigger_unchanged": true,
+  "original_synthetic_artifact_hashes_after": {
+    "20261102T035048498541Z\\hms.sql": "f553798669f9df11c7c13a0701d8f2df45786ebed2d6e12e2f1f80ebc09947b3",
+    "20261102T035048498541Z\\manifest.json": "a88194eb8849a8f938ff8a6edf120273b0f06c372f0bacf04ad6b6442d2499f9",
+    "last-error.json": "c185ffc63ee448242772ff07eec691802315271b113c5cbc4f1f1f87bb56b753",
+    "latest.json": "de207f64fede96be6747484cb93a063fd606aef4f3ad3a2e2c09bc844d3c1055",
+    "recovery-results.json": "fa5d3445e4441c53b051f04a71fd3b089828d4f6dde5acffd6533f3c9cca32d4",
+    "registration-evidence.json": "0e878e6486d2dec869457ddc136269209f18af7235a7163e6234285e516d5f8c",
+    "schedule-registration.json": "0e878e6486d2dec869457ddc136269209f18af7235a7163e6234285e516d5f8c",
+    "scheduler-observation.json": "9da0aa2358f5ca15d9da3692fc3b754d60480504b4fb98afba26942f1e8e37f1"
+  },
+  "original_synthetic_backup_artifacts_unchanged": true,
+  "completed_at": "2026-11-05T05:13:24.088897+00:00"
+}
