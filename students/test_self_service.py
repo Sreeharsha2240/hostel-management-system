@@ -171,8 +171,10 @@ class StudentSelfServiceTests(TestCase):
             actor=self.warden,
             allocated_on=allocated_on,
         )
-        payment = self.make_payment(
-            self.student, "400.00", payment_date=allocated_on
+        self.make_payment(
+            self.student,
+            "400.00",
+            payment_date=allocated_on,
         )
 
         response = self.client.get(reverse("student-self-service"))
