@@ -46,12 +46,12 @@ class StudentSelfServiceTests(TestCase):
         ReceiptSequence.objects.get_or_create(pk=1)
         self.client.force_login(self.student_user)
 
-    def make_payment(self, student, amount):
+    def make_payment(self, student, amount, payment_date=None):
         return record_payment(
             actor=self.warden,
             student=student,
             amount=Decimal(amount),
-            date=timezone.localdate(),
+            date=payment_date or timezone.localdate(),
             mode="UPI",
         )
 
@@ -146,3 +146,41 @@ class StudentSelfServiceTests(TestCase):
         edit_ids = set(edit_form.fields["user"].queryset.values_list("pk", flat=True))
         self.assertIn(self.student_user.pk, edit_ids)
         self.assertNotIn(self.other_user.pk, edit_ids)
+
+    def test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback(self):
+        from datetime import date
+
+        from allocations.services import release
+
+        allocated_on = date(2026, 4, 5)
+        vacated_on = date(2026, 4, 6)
+        historical = allocate(
+            student=self.student,
+            bed=self.room.beds.first(),
+            actor=self.warden,
+            allocated_on=allocated_on,
+        )
+        release(
+            allocation_id=historical.pk,
+            actor=self.warden,
+            vacate_date=vacated_on,
+        )
+        allocate(
+            student=self.student,
+            bed=self.other_room.beds.first(),
+            actor=self.warden,
+            allocated_on=allocated_on,
+        )
+        self.make_payment(
+            self.student,
+            "400.00",
+            payment_date=allocated_on,
+        )
+
+        response = self.client.get(reverse("student-self-service"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "05-04-2026")
+        self.assertContains(response, "06-04-2026")
+        self.assertContains(response, "—")
+        self.assertNotContains(response, "05 Apr 2026")
