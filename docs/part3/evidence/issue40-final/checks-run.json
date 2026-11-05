@@ -1,0 +1,180 @@
+{
+  "started_at": "2026-11-05T04:04:27.837633+00:00",
+  "commit": "0e358b4ce1fd02366184c7cb9c312b47dd093214",
+  "git_dirty": false,
+  "python": "3.14.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "steps": [
+    {
+      "name": "lint",
+      "arguments": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 0.225
+    },
+    {
+      "name": "format",
+      "arguments": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 0.13
+    },
+    {
+      "name": "dependencies",
+      "arguments": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.858
+    },
+    {
+      "name": "django-checks",
+      "arguments": [
+        "manage.py",
+        "check",
+        "--database",
+        "default"
+      ],
+      "exit_code": 0,
+      "seconds": 1.231
+    },
+    {
+      "name": "applied-migrations",
+      "arguments": [
+        "manage.py",
+        "migrate",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 1.205
+    },
+    {
+      "name": "migration-consistency",
+      "arguments": [
+        "manage.py",
+        "makemigrations",
+        "--check",
+        "--dry-run"
+      ],
+      "exit_code": 0,
+      "seconds": 1.16
+    },
+    {
+      "name": "staticfiles",
+      "arguments": [
+        "manage.py",
+        "collectstatic",
+        "--dry-run",
+        "--noinput",
+        "--verbosity",
+        "0"
+      ],
+      "exit_code": 0,
+      "seconds": 0.878
+    },
+    {
+      "name": "test-results",
+      "arguments": [
+        "-m",
+        "coverage",
+        "run",
+        "manage.py",
+        "test",
+        "--noinput",
+        "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner"
+      ],
+      "exit_code": 0,
+      "seconds": 46.414
+    },
+    {
+      "name": "coverage",
+      "arguments": [
+        "-m",
+        "coverage",
+        "report"
+      ],
+      "exit_code": 0,
+      "seconds": 0.479
+    },
+    {
+      "name": "coverage-xml",
+      "arguments": [
+        "scripts/run_checks.py",
+        "--coverage-xml",
+        "<repository>\\test-results\\hms18-finish\\20261105T040419699526Z\\checks\\coverage.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.535
+    },
+    {
+      "name": "coverage-json",
+      "arguments": [
+        "-m",
+        "coverage",
+        "json",
+        "-o",
+        "<repository>\\test-results\\hms18-finish\\20261105T040419699526Z\\checks\\coverage.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.534
+    },
+    {
+      "name": "timing-smoke",
+      "arguments": [
+        "manage.py",
+        "test",
+        "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
+        "--noinput"
+      ],
+      "exit_code": 0,
+      "seconds": 7.039
+    }
+  ],
+  "dependencies": {
+    "Django": "5.2.18",
+    "mysqlclient": "2.3.0",
+    "python-dotenv": "1.2.4",
+    "reportlab": "4.5.1",
+    "pypdf": "6.21.2",
+    "coverage": "7.16.2",
+    "unittest-xml-reporting": "4.0.0",
+    "ruff": "0.17.1"
+  },
+  "mysql": "8.4.9",
+  "tests": {
+    "tests": 190,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  "junit_files": 27,
+  "coverage": {
+    "covered_lines": 1584,
+    "num_statements": 1674,
+    "percent_covered": 93.22362052274927,
+    "percent_covered_display": "93",
+    "missing_lines": 90,
+    "excluded_lines": 0,
+    "percent_statements_covered": 94.6236559139785,
+    "percent_statements_covered_display": "95",
+    "num_branches": 392,
+    "num_partial_branches": 46,
+    "covered_branches": 342,
+    "missing_branches": 50,
+    "percent_branches_covered": 87.24489795918367,
+    "percent_branches_covered_display": "87"
+  },
+  "completed_at": "2026-11-05T04:05:29.682494+00:00",
+  "success": true
+}

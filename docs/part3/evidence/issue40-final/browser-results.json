@@ -1,0 +1,529 @@
+{
+  "scope": "HMS-18 / issue #40 candidate-build execution; final acceptance requires reviewed cases and the accepted revision",
+  "browser": "Microsoft Edge",
+  "browser_version": "156.0.4314.58",
+  "node_version": "v26.8.1",
+  "playwright_version": "1.64.1",
+  "observations": [
+    {
+      "id": "TC-ALC-01",
+      "status": "PASS",
+      "actual": "Browser form saved allocation/date and displayed confirmation; a separate bed-list page showed Occupied after commit."
+    },
+    {
+      "id": "TC-ALC-02",
+      "status": "PASS",
+      "actual": "A different student using a stale form was rejected with the occupied-bed reason; no duplicate allocation."
+    },
+    {
+      "id": "TC-ALC-03",
+      "status": "PASS",
+      "actual": "Second allocation for the same student was rejected; original ID and bed unchanged."
+    },
+    {
+      "id": "TC-ALC-04",
+      "status": "PASS",
+      "actual": "Browser rejected female student / Boys hostel with a gender mismatch reason; MySQL verifies no write."
+    },
+    {
+      "id": "TC-ALC-05",
+      "status": "PARTIAL",
+      "actual": "Transfer confirmation was cancelled with zero POSTs and unchanged allocation/bed states, then accepted once to preserve original and create successor; storage-failure rollback requires the companion regression."
+    },
+    {
+      "id": "TC-ALC-06",
+      "status": "PASS",
+      "actual": "Release confirmation was cancelled with zero POSTs and unchanged allocation/bed states, then accepted once; list/history show DD-MM-YYYY while JSON retains ISO dates."
+    },
+    {
+      "id": "TC-PAY-01",
+      "status": "PASS",
+      "actual": "Browser recorded INR 5000 UPI payment and downloaded PDF; zero/negative submissions reached server errors without additional receipts."
+    },
+    {
+      "id": "TC-PAY-02",
+      "status": "PASS",
+      "actual": "Browser payment statuses: Pending -> Partial -> Paid; final paid INR 10000, due INR 0 checked in MySQL."
+    },
+    {
+      "id": "TC-RPT-01",
+      "status": "PASS",
+      "actual": "Browser filtered both reports and downloaded CSV; payment HTML/JSON identify the latest historical Bed after Room, with Python reconciling HTML/CSV/JSON against MySQL."
+    },
+    {
+      "id": "TC-PERF-02",
+      "status": "PASS",
+      "actual": "20 successful real HTTP allocations with durable commits; overlapping client same-bed requests returned one 201 and one 409; MySQL verifies a single winner."
+    }
+  ],
+  "allocation_ids": [
+    2,
+    3
+  ],
+  "receipts": [
+    "R00000000001",
+    "R00000000002"
+  ],
+  "reports": {
+    "occupancy": {
+      "html_headings": [
+        "Hostel",
+        "Total beds",
+        "Occupied",
+        "Available",
+        "Under maintenance",
+        "Occupancy %"
+      ],
+      "html_rows": [
+        [
+          "Issue40 Boys",
+          "5",
+          "1",
+          "3",
+          "1",
+          "20.00%"
+        ]
+      ],
+      "json_rows": [
+        {
+          "hostel_id": 1,
+          "hostel": "Issue40 Boys",
+          "total_beds": 5,
+          "occupied_beds": 1,
+          "available_beds": 3,
+          "maintenance_beds": 1,
+          "occupancy_percent": "20.00"
+        }
+      ],
+      "csv": "\ufeffHostel Name,Total Beds,Occupied Beds,Available Beds,Beds Under Maintenance,Occupancy %,Generated On\r\nIssue40 Boys,5,1,3,1,20.00,05-11-2026 09:36:05 IST\r\n"
+    },
+    "payment": {
+      "html_headings": [
+        "Student ID",
+        "Name",
+        "Hostel",
+        "Room",
+        "Bed",
+        "Fee (INR)",
+        "Paid (INR)",
+        "Due (INR)",
+        "Status"
+      ],
+      "html_rows": [
+        [
+          "PES1UG24CS101",
+          "Issue40 Student",
+          "Issue40 Boys",
+          "I402",
+          "I402-A",
+          "10000.00",
+          "10000.00",
+          "0.00",
+          "Paid"
+        ],
+        [
+          "PES1UG24CS104",
+          "Sample Student 104",
+          "Issue40 Boys",
+          "I401",
+          "I401-C",
+          "10000.00",
+          "0.00",
+          "10000.00",
+          "Pending"
+        ]
+      ],
+      "json_rows": [
+        {
+          "student_id": "PES1UG24CS101",
+          "student_name": "Issue40 Student",
+          "hostel_id": 1,
+          "hostel": "Issue40 Boys",
+          "room": "I402",
+          "bed": "I402-A",
+          "fee": "10000.00",
+          "paid": "10000.00",
+          "due": "0.00",
+          "status": "Paid",
+          "fee_configured": true
+        },
+        {
+          "student_id": "PES1UG24CS104",
+          "student_name": "Sample Student 104",
+          "hostel_id": 1,
+          "hostel": "Issue40 Boys",
+          "room": "I401",
+          "bed": "I401-C",
+          "fee": "10000.00",
+          "paid": "0.00",
+          "due": "10000.00",
+          "status": "Pending",
+          "fee_configured": true
+        }
+      ],
+      "csv": "\ufeffStudent ID,Student Name,Hostel Name,Room,Bed,Fee Amount (INR),Amount Paid (INR),Due (INR),Payment Status,Generated On\r\nPES1UG24CS101,Issue40 Student,Issue40 Boys,I402,I402-A,10000.00,10000.00,0.00,Paid,05-11-2026 09:36:06 IST\r\nPES1UG24CS104,Sample Student 104,Issue40 Boys,I401,I401-C,10000.00,0.00,10000.00,Pending,05-11-2026 09:36:06 IST\r\n"
+    }
+  },
+  "payment_states": [
+    "Pending",
+    "Partial",
+    "Paid"
+  ],
+  "allocation_timings": [
+    {
+      "allocation_id": 4,
+      "student_id": "PES1UG24CS200",
+      "bed_id": 6,
+      "milliseconds": 42.3755000000001
+    },
+    {
+      "allocation_id": 5,
+      "student_id": "PES1UG24CS201",
+      "bed_id": 7,
+      "milliseconds": 38.472999999999956
+    },
+    {
+      "allocation_id": 6,
+      "student_id": "PES1UG24CS202",
+      "bed_id": 8,
+      "milliseconds": 34.09940000000097
+    },
+    {
+      "allocation_id": 7,
+      "student_id": "PES1UG24CS203",
+      "bed_id": 9,
+      "milliseconds": 32.820300000001225
+    },
+    {
+      "allocation_id": 8,
+      "student_id": "PES1UG24CS204",
+      "bed_id": 10,
+      "milliseconds": 41.32599999999911
+    },
+    {
+      "allocation_id": 9,
+      "student_id": "PES1UG24CS205",
+      "bed_id": 11,
+      "milliseconds": 36.78679999999986
+    },
+    {
+      "allocation_id": 10,
+      "student_id": "PES1UG24CS206",
+      "bed_id": 12,
+      "milliseconds": 38.33980000000156
+    },
+    {
+      "allocation_id": 11,
+      "student_id": "PES1UG24CS207",
+      "bed_id": 13,
+      "milliseconds": 35.71060000000034
+    },
+    {
+      "allocation_id": 12,
+      "student_id": "PES1UG24CS208",
+      "bed_id": 14,
+      "milliseconds": 33.5630000000001
+    },
+    {
+      "allocation_id": 13,
+      "student_id": "PES1UG24CS209",
+      "bed_id": 15,
+      "milliseconds": 35.115200000000186
+    },
+    {
+      "allocation_id": 14,
+      "student_id": "PES1UG24CS210",
+      "bed_id": 16,
+      "milliseconds": 40.05630000000019
+    },
+    {
+      "allocation_id": 15,
+      "student_id": "PES1UG24CS211",
+      "bed_id": 17,
+      "milliseconds": 33.53930000000037
+    },
+    {
+      "allocation_id": 16,
+      "student_id": "PES1UG24CS212",
+      "bed_id": 18,
+      "milliseconds": 37.044599999999264
+    },
+    {
+      "allocation_id": 17,
+      "student_id": "PES1UG24CS213",
+      "bed_id": 19,
+      "milliseconds": 33.878600000000006
+    },
+    {
+      "allocation_id": 18,
+      "student_id": "PES1UG24CS214",
+      "bed_id": 20,
+      "milliseconds": 37.18260000000009
+    },
+    {
+      "allocation_id": 19,
+      "student_id": "PES1UG24CS215",
+      "bed_id": 21,
+      "milliseconds": 35.998499999999694
+    },
+    {
+      "allocation_id": 20,
+      "student_id": "PES1UG24CS216",
+      "bed_id": 22,
+      "milliseconds": 37.45520000000033
+    },
+    {
+      "allocation_id": 21,
+      "student_id": "PES1UG24CS217",
+      "bed_id": 23,
+      "milliseconds": 32.197299999999814
+    },
+    {
+      "allocation_id": 22,
+      "student_id": "PES1UG24CS218",
+      "bed_id": 24,
+      "milliseconds": 35.06500000000051
+    },
+    {
+      "allocation_id": 23,
+      "student_id": "PES1UG24CS219",
+      "bed_id": 25,
+      "milliseconds": 35.86159999999836
+    }
+  ],
+  "concurrency_statuses": [
+    201,
+    409
+  ],
+  "concurrency_requests": [
+    {
+      "student_id": "PES1UG24CS300",
+      "status": 201,
+      "started_ms": 0.0841999999993277,
+      "completed_ms": 36.30319999999847
+    },
+    {
+      "student_id": "PES1UG24CS301",
+      "status": 409,
+      "started_ms": 0.19239999999990687,
+      "completed_ms": 41.2591999999986
+    }
+  ],
+  "concurrency_client_intervals_overlap": true,
+  "allocation_timings_passed": true,
+  "bed_state_snapshots": [
+    {
+      "checkpoint": "after allocation",
+      "states": {
+        "I401-A": "Occupied",
+        "I402-A": "Available"
+      }
+    },
+    {
+      "checkpoint": "after transfer cancellation",
+      "states": {
+        "I401-A": "Occupied",
+        "I402-A": "Available"
+      }
+    },
+    {
+      "checkpoint": "after transfer",
+      "states": {
+        "I401-A": "Available",
+        "I402-A": "Occupied"
+      }
+    },
+    {
+      "checkpoint": "after release cancellation",
+      "states": {
+        "I401-A": "Available",
+        "I402-A": "Occupied"
+      }
+    },
+    {
+      "checkpoint": "after release",
+      "states": {
+        "I401-A": "Available",
+        "I402-A": "Available"
+      }
+    }
+  ],
+  "allocation_confirmation_checks": [
+    {
+      "action": "transfer",
+      "path": "/allocations/2/transfer/",
+      "cancelled": {
+        "trigger": "click",
+        "dialogs": [
+          {
+            "type": "confirm",
+            "message": "Transfer this allocation?"
+          }
+        ],
+        "post_count": 0,
+        "unchanged_allocation_snapshot": [
+          {
+            "allocation_id": 2,
+            "student_id": "PES1UG24CS101",
+            "bed_id": 1,
+            "bed": "I401-A",
+            "hostel": "Issue40 Boys",
+            "status": "Active",
+            "allocated_on": "2026-11-05",
+            "vacated_on": null
+          }
+        ]
+      },
+      "accepted": {
+        "dialogs": [
+          {
+            "type": "confirm",
+            "message": "Transfer this allocation?"
+          }
+        ],
+        "post_count": 1
+      }
+    },
+    {
+      "action": "release",
+      "path": "/allocations/3/release/",
+      "cancelled": {
+        "trigger": "Enter from date field",
+        "dialogs": [
+          {
+            "type": "confirm",
+            "message": "Release this allocation?"
+          }
+        ],
+        "post_count": 0,
+        "unchanged_allocation_snapshot": [
+          {
+            "allocation_id": 3,
+            "student_id": "PES1UG24CS101",
+            "bed_id": 4,
+            "bed": "I402-A",
+            "hostel": "Issue40 Boys",
+            "status": "Active",
+            "allocated_on": "2026-11-05",
+            "vacated_on": null
+          },
+          {
+            "allocation_id": 2,
+            "student_id": "PES1UG24CS101",
+            "bed_id": 1,
+            "bed": "I401-A",
+            "hostel": "Issue40 Boys",
+            "status": "Completed",
+            "allocated_on": "2026-11-05",
+            "vacated_on": "2026-11-05"
+          }
+        ]
+      },
+      "accepted": {
+        "dialogs": [
+          {
+            "type": "confirm",
+            "message": "Release this allocation?"
+          }
+        ],
+        "post_count": 1
+      }
+    }
+  ],
+  "allocation_date_snapshots": [
+    {
+      "checkpoint": "active allocation list",
+      "dates": [
+        {
+          "bed": "I401-A",
+          "allocated_on": "05-11-2026",
+          "vacated_on": "\u2014"
+        }
+      ]
+    },
+    {
+      "checkpoint": "completed allocation list",
+      "dates": [
+        {
+          "bed": "I402-A",
+          "allocated_on": "05-11-2026",
+          "vacated_on": "05-11-2026"
+        },
+        {
+          "bed": "I401-A",
+          "allocated_on": "05-11-2026",
+          "vacated_on": "05-11-2026"
+        }
+      ]
+    },
+    {
+      "checkpoint": "student allocation history",
+      "dates": [
+        {
+          "bed": "I402-A",
+          "allocated_on": "05-11-2026",
+          "vacated_on": "05-11-2026"
+        },
+        {
+          "bed": "I401-A",
+          "allocated_on": "05-11-2026",
+          "vacated_on": "05-11-2026"
+        }
+      ]
+    }
+  ],
+  "student_allocation_payment_integration": true,
+  "browser_errors": [],
+  "receipt_pdf": {
+    "sha256": "b3b36d1d9d6dcc531c7437ce86b210b85280933805b6c3a2a1cc22591814e818",
+    "verified_fields": [
+      "receipt",
+      "student ID",
+      "student name",
+      "amount",
+      "mode",
+      "reference",
+      "payment date"
+    ]
+  },
+  "database_verification": {
+    "vendor": "mysql",
+    "database": "test_hms",
+    "durable_autocommit": true,
+    "single_conflict_winner": true,
+    "receipt_counter": 2,
+    "invalid_submissions_unchanged": true,
+    "cancelled_confirmations_sent_no_post": true,
+    "accepted_confirmations_sent_one_post_each": true,
+    "allocation_dates_display_dd_mm_yyyy": true,
+    "html_csv_and_database_match": true,
+    "html_csv_json_and_database_match": true
+  },
+  "source": {
+    "commit": "0e358b4ce1fd02366184c7cb9c312b47dd093214",
+    "git_dirty": false
+  },
+  "environment": {
+    "python": "3.14.7",
+    "django": "5.2.18",
+    "mysql": "8.4.9",
+    "started_at": "2026-11-05T04:05:53.394803+00:00",
+    "completed_at": "2026-11-05T04:06:08.653966+00:00"
+  },
+  "harness_sha256": {
+    "test_issue40_browser.py": "be6d1d56a6077d28189b309bc0d86baf4a47482f099490b8e4ecafff75bce1b1",
+    "issue40_browser.cjs": "00f9a9022d5c33f725254a9ac737873bb30a45ab0b76f86d7b5e8f04c13362af",
+    "run_issue40_browser.py": "4c662c118415b5faa9fca02517915b976652cdf892f7c9571634d6d602630e10"
+  },
+  "acceptance_status": {
+    "classification": "candidate checkpoint",
+    "case_review": "pending team review",
+    "build_acceptance": "pending team acceptance",
+    "remaining_owned_cases": [
+      "TC-PERF-01",
+      "TC-PERF-03",
+      "TC-OPS-01"
+    ],
+    "ALC05_rollback": "requires companion injected-failure regression evidence"
+  }
+}
