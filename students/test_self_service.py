@@ -46,12 +46,12 @@ class StudentSelfServiceTests(TestCase):
         ReceiptSequence.objects.get_or_create(pk=1)
         self.client.force_login(self.student_user)
 
-    def make_payment(self, student, amount):
+    def make_payment(self, student, amount, payment_date=None):
         return record_payment(
             actor=self.warden,
             student=student,
             amount=Decimal(amount),
-            date=timezone.localdate(),
+            date=payment_date or timezone.localdate(),
             mode="UPI",
         )
 
@@ -171,9 +171,9 @@ class StudentSelfServiceTests(TestCase):
             actor=self.warden,
             allocated_on=allocated_on,
         )
-        payment = self.make_payment(self.student, "400.00")
-        payment.date = allocated_on
-        payment.save(update_fields=["date"])
+        payment = self.make_payment(
+            self.student, "400.00", payment_date=allocated_on
+        )
 
         response = self.client.get(reverse("student-self-service"))
 
