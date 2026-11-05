@@ -48,7 +48,7 @@
     <dt>Bed</dt>
     <dd>{{ current_allocation.bed.label }}</dd>
     <dt>Allocated on</dt>
-    <dd>{{ current_allocation.allocated_on|date:"d M Y" }}</dd>
+    <dd>{{ current_allocation.allocated_on|date:"d-m-Y" }}</dd>
   </dl>
   {% else %}
   <p>You do not have an active room allocation.</p>
@@ -75,8 +75,8 @@
           <td>{{ allocation.bed.room.hostel.name }}</td>
           <td>{{ allocation.bed.room.room_number }}</td>
           <td>{{ allocation.bed.label }}</td>
-          <td>{{ allocation.allocated_on|date:"d M Y" }}</td>
-          <td>{{ allocation.vacated_on|date:"d M Y"|default:"—" }}</td>
+          <td>{{ allocation.allocated_on|date:"d-m-Y" }}</td>
+          <td>{{ allocation.vacated_on|date:"d-m-Y"|default:"—" }}</td>
           <td>{{ allocation.get_status_display }}</td>
         </tr>
         {% empty %}
@@ -106,7 +106,7 @@
         {% for payment in payments %}
         <tr>
           <td>{{ payment.receipt_no }}</td>
-          <td>{{ payment.date|date:"d M Y" }}</td>
+          <td>{{ payment.date|date:"d-m-Y" }}</td>
           <td>₹{{ payment.amount|floatformat:2 }}</td>
           <td>{{ payment.mode }}</td>
           <td>{% if payment.adjustment_of_id %}Adjustment to {{ payment.adjustment_of.receipt_no }}{% else %}Payment{% endif %}</td>
