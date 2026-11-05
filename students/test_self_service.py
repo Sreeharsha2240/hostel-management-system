@@ -146,3 +146,39 @@ class StudentSelfServiceTests(TestCase):
         edit_ids = set(edit_form.fields["user"].queryset.values_list("pk", flat=True))
         self.assertIn(self.student_user.pk, edit_ids)
         self.assertNotIn(self.other_user.pk, edit_ids)
+
+    def test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback(self):
+        from datetime import date
+
+        from allocations.services import release
+
+        allocated_on = date(2026, 4, 5)
+        vacated_on = date(2026, 4, 6)
+        historical = allocate(
+            student=self.student,
+            bed=self.room.beds.first(),
+            actor=self.warden,
+            allocated_on=allocated_on,
+        )
+        release(
+            allocation_id=historical.pk,
+            actor=self.warden,
+            vacate_date=vacated_on,
+        )
+        allocate(
+            student=self.student,
+            bed=self.other_room.beds.first(),
+            actor=self.warden,
+            allocated_on=allocated_on,
+        )
+        payment = self.make_payment(self.student, "400.00")
+        payment.date = allocated_on
+        payment.save(update_fields=["date"])
+
+        response = self.client.get(reverse("student-self-service"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "05-04-2026")
+        self.assertContains(response, "06-04-2026")
+        self.assertContains(response, "—")
+        self.assertNotContains(response, "05 Apr 2026")
