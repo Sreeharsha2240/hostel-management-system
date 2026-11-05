@@ -73,7 +73,7 @@ class VerificationRunnerTests(SimpleTestCase):
         self.assertTrue(all("COVERAGE_RUN" not in env for env in environments))
         self.assertTrue(
             all(
-                env["HMS_TEST_OUTPUT_DIR"] == str(self.output / "junit")
+                env["HMS_TEST_OUTPUT_DIR"] == str((self.output / "junit").resolve())
                 for env in environments
             )
         )
