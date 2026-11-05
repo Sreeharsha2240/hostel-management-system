@@ -1,66 +1,54 @@
 # System Validation Report — HMS-16
 
-**Readiness: NOT READY against the submitted Test Plan.** This report records the available Sreeharsha authentication/security evidence and current team handoffs as of 5 November 2026. It does not claim that the 12 assigned system cases have passed on an accepted final build, that deployment security checks are complete, or that whole-project approval has been granted.
+**HMS-16 owner-case execution: 11 PASS, 1 PARTIAL. Whole-plan readiness: NOT READY.** This update records testing on current `main` (`8322b4c20c067d512c4bb439fdedd19d4fa27223`) using synthetic data and a disposable local MySQL 8.0.46 instance. It applies the mini-project scope set by the project owner. It does not claim a deployed HTTPS endpoint, complete whole-plan acceptance, or team approvals.
 
-## Current source and team handoffs
-
-- HMS-15 Test Case Document and RTM are merged through PR #51, merge commit d981c1b. It preserves 33 original case IDs, adds 10 Sprint 1/2 regression cases, and maps 24 functional plus 12 non-functional requirements. The 12 assigned HMS-16 case rows (TC-AUTH-01..04, TC-USR-01, TC-SEC-01..07) remain NOT RUN in that document. Its original Test Plan does not establish per-case priority values; QA still needs to record its entry review.
-- HMS-18 owner evidence is merged through PR #50, merge commit 8d60e83. It supplies current-source execution evidence and the 13-case owner appendix. Its limitations remain: QA review and whole-plan acceptance are pending; the browser transfer fault-injection step is partial with companion regression evidence; load evidence is local-host specific; prior failed load results remain failed.
-- HMS-17 (#39) is still open. Its owner evidence is not integrated here.
-- The application source referenced by HMS-18 is 0e358b4ce1fd02366184c7cb9c312b47dd093214. The local audit checkout used for prior HMS-16 automated testing is branch codex/hms-e2e-audit, commit 7f8cd0281b383342843e1018aea27fbf6cbf6040, with pre-existing modified and untracked files. It is not a clean checkout of current main; its results are supporting historical evidence only.
-
-## HMS-16 automated evidence available
-
-The retained local run .tmp/hms16-security-tests.log records:
+## HMS-16 execution environment and results
 
 | Field | Result |
 |---|---|
-| Command | python manage.py test accounts audit students.test_self_service --noinput -v 1 --settings=test_settings_sqlite |
-| Result | 45 passed, 0 failures, 0 errors; 31.269 seconds |
-| Database | Isolated in-memory SQLite; synthetic fixtures |
-| Source | Local dirty snapshot 7f8cd0281b383342843e1018aea27fbf6cbf6040 |
+| Tested source | `8322b4c20c067d512c4bb439fdedd19d4fa27223` (`main`, fetched 5 November 2026) |
+| Environment | Windows 11; Python 3.14.0; Django 5.2.19; mysqlclient 2.3.0; MySQL 8.0.46 |
+| Database | New disposable local MySQL instance on loopback; Django test database created and destroyed by the test runner; synthetic fixtures only |
+| Focused command | `python manage.py test accounts.tests accounts.test_security audit.tests students.test_self_service students.tests.StudentManagementViewTests.test_student_list_escapes_script_payload_and_search_treats_sql_as_literal --noinput -v 1` |
+| Focused result | **47 passed, 0 failures, 0 errors; 104.605 seconds** |
+| Deployment-settings check | `python manage.py check --deploy --database default`: passed with secure-cookie, HTTPS-redirect and HSTS settings enabled; no warnings |
+| Migration checks | `python manage.py migrate --check` and `python manage.py makemigrations --check --dry-run`: passed after applying migrations to the disposable base database |
 
-This provides supporting automated coverage for login and generic failure behavior, five-attempt lockout, role gates and account administration, session expiry/logout, cookie flags when enabled by settings, student self-record isolation, audit attribution/secret minimization, audit immutability/retention and audit rollback. It is not a per-case system execution record and does not establish a pass for any of the 12 case IDs on current main.
+The focused suite exercises login and role redirects, generic invalid-credential responses, five-failure lockout and expired-lock recovery, session timeout/logout, administrator account create/update/deactivate and non-admin denial, student self-record isolation, password hashing/policy, CSRF rejection, injection handling and audit actor/integrity behavior.
 
-A separate MySQL attempt is retained in .tmp/hms16-security-mysql-tests.log; it stopped before test execution because the configured account could not create test_hms_audit (MySQL error 1044). The local test app/database were not listening when checked during this update. No fresh MySQL-backed HMS-16 suite was run.
+A separate full-runner attempt on the same source discovered **190 tests: 189 passed, 1 skipped, 1 failed**. The skip is the expected wall-clock timing test under coverage. The single failure was the verification-harness test `tests.test_checks.VerificationRunnerTests.test_xml_keeps_same_named_package_files_and_only_selected_context_hits`: on this Windows run, generated Cobertura XML reported 0 covered lines instead of 4 while the test fixture was under the restricted AppContainer temporary path. The root cause is not confirmed. It is not an HMS authentication or security-flow failure, but the full verification run is **not green** until the helper failure is resolved or independently cleared by CI/retest. The run measured 93.22% branch-aware coverage; this result is informational because the run failed. Its initial `migrate --check` also ran before the new local application database had been migrated; the check passed after migrations were applied.
 
-The earlier interim report records manage.py check --deploy as passing under temporary production-style settings. That is a settings check only, not deployed-host verification. No current staging URL or test window was supplied. No live TLS 1.2+, HTTPS redirect, secure-cookie exchange, or OWASP ZAP baseline result is available. No ZAP report was found in the retained local evidence.
+## HMS-16 case outcomes
 
-## Assigned cases and current disposition
+The test-case register statuses below reflect the focused MySQL execution. Method names are from the current-source automated suite; the full command and environment are recorded above.
 
-The merged HMS-15 document contains the authoritative case names and expected results. Until cases are run and evidenced on the accepted build, retain their case-level status as NOT RUN; matching automated methods below are supporting evidence only.
-
-| Case | Supporting automated evidence in the local run | Case-level status / remaining work |
+| Case | Result and evidence | Status |
 |---|---|---|
-| TC-AUTH-01 — valid login | accounts.tests.test_login_shows_role_dashboard_and_logout_clears_session; role dashboard test | NOT RUN on accepted build; verify real login and role redirect. |
-| TC-AUTH-02 — invalid login | Generic invalid-password and locked-account tests | NOT RUN on accepted build; record generic response for invalid credentials. |
-| TC-AUTH-03 — five failures / 15-minute lockout | Lockout tests exercise five failures and active lockout | NOT RUN on accepted build; record lock and expiry/recovery behavior against case steps. |
-| TC-AUTH-04 — logout / session timeout | Logout clears session; expired session requires login; rolling expiry/cookie test | NOT RUN on accepted build; include protected-page and browser-back behavior. |
-| TC-USR-01 — user administration | Admin create/update/deactivate and non-admin denial tests | NOT RUN on accepted build; execute authorized and unauthorized account operations. |
-| TC-SEC-01 — role access control | Role dashboard, non-admin account and audit endpoint access tests | NOT RUN on accepted build; exercise direct requests for each role. |
-| TC-SEC-02 — student record isolation | Self-service test checks the authenticated student's allocation/payment view | NOT RUN on accepted build; attempt direct access to another student's records and capture denial. |
-| TC-SEC-03 — SQL/script injection | Related escaping/literal-search test exists in students/tests.py, outside the prior focused command | NOT RUN; run reviewed inputs and record safe rendering/no unauthorized results. |
-| TC-SEC-04 — password storage/policy | Account creation verifies check_password; password policy tests | NOT RUN on accepted build; record encoded storage and policy rejection. |
-| TC-SEC-05 — CSRF | Existing CSRF regression tests are supporting evidence only | NOT RUN on accepted build; submit an invalid-token write request and capture rejection. |
-| TC-SEC-06 — HTTPS/session cookies | Automated tests assert flags when secure settings are enabled | BLOCKED for deployed acceptance; no agreed HTTPS host to verify redirect, TLS and actual cookies. |
-| TC-SEC-07 — administrative audit | Actor attribution, immutable events, retention and rollback tests | NOT RUN on accepted build; perform and inspect the reviewed admin operations. |
+| TC-AUTH-01 — valid login | `AuthenticationTests.test_login_shows_role_dashboard_and_logout_clears_session`; `test_each_role_can_access_dashboard_and_dashboard_reflects_role` | PASS |
+| TC-AUTH-02 — invalid login | `AuthenticationTests.test_invalid_password_is_generic_and_locks_after_five_attempts`; locked-account generic-response check | PASS |
+| TC-AUTH-03 — five failures / lockout | Five failed attempts activate the lock; expired-lock recovery and reset are exercised. The application policy is 15 minutes. | PASS |
+| TC-AUTH-04 — logout / timeout | `AuthenticationTests.test_expired_session_requires_login`; `SessionAndLockoutTests.test_server_session_expiry_logout_and_cache_control` | PASS |
+| TC-USR-01 — user administration | Admin create/update/deactivate and Warden/Student denial tests; password is stored as a hash and weak passwords are rejected | PASS |
+| TC-SEC-01 — role access | Role dashboards, account-management denial and audit endpoint role checks | PASS |
+| TC-SEC-02 — student data isolation | `StudentSelfServiceTests.test_student_sees_only_own_allocation_and_payment_details` | PASS |
+| TC-SEC-03 — injection handling | `StudentManagementViewTests.test_student_list_escapes_script_payload_and_search_treats_sql_as_literal` | PASS |
+| TC-SEC-04 — password storage/policy | Account creation verifies `check_password`; weak and similar passwords are rejected | PASS |
+| TC-SEC-05 — CSRF | `SessionAndLockoutTests.test_login_post_is_protected_by_csrf` rejects a tokenless POST with HTTP 403 | PASS |
+| TC-SEC-06 — HTTPS/cookies | Secure/HttpOnly session and CSRF cookie flags pass in the Django test client; production-style `check --deploy` passes. No real TLS endpoint or HTTP-to-HTTPS exchange was tested. | PARTIAL |
+| TC-SEC-07 — administrative audit | Admin actor attribution, create/update/deactivate events, secret minimization and immutable audit-event tests | PASS |
 
-No defects were indicated by the 45-test SQLite run. It is not a complete severity-ranked defect inventory, so the zero open critical/high defects criterion remains unverified.
+TC-SEC-06 is partial because the mini-project runs locally and has no deployed HTTPS host. I did not label a test-client HTTPS request as evidence of a real TLS handshake. If the submission rubric requires deployed transport validation, this case needs an approved test host; otherwise record the mini-project scope deviation with the instructor/team.
 
-## Test Plan exit criteria
+## Integrated report and exit criteria
 
-| Original exit criterion | Current outcome |
+HMS-18/#40 evidence is present on `main` in `docs/part3/evidence/issue40-final/`; it still awaits independent review and the reviewed-case/entry-criteria disposition assigned to HMS-15/#37. HMS-17/#39 remains open and its owner evidence is not present in this report. Accordingly:
+
+| Whole-plan criterion | Current status |
 |---|---|
-| 100% of planned cases executed | NOT MET / unverified. HMS-15 still lists the 12 assigned cases as NOT RUN; team-wide statuses must be reconciled. |
-| All high-priority cases passed | UNVERIFIED. The original plan and current case document do not establish per-case priority values. QA must confirm priority mapping. |
-| Zero open critical/high defects | UNVERIFIED. No complete severity-ranked defect inventory was provided. |
-| Every RTM requirement covered by at least one passed case | UNVERIFIED. The RTM is merged, but statuses and evidence are incomplete for all cases. |
-| Independent QA/Dev/PO approvals and project-guide walkthrough | PENDING; no approval or walkthrough is inferred. |
+| All original cases executed | NOT MET: HMS-16 has 11 PASS / 1 PARTIAL; HMS-17 evidence is outstanding; the other owner register entries must be reconciled. |
+| High-priority cases passed | UNVERIFIED until QA assigns/reviews priorities; the original plan has no priority values. |
+| Zero open critical/high defects | UNVERIFIED: no complete severity-ranked whole-project defect inventory is available; one local verification-harness failure is recorded above. |
+| RTM requirements covered by passed cases | PARTIAL; this report supplies current HMS-16 evidence, while team-wide statuses remain outstanding. |
+| Independent QA/Dev/PO approvals and project-guide walkthrough | PENDING; no approval is inferred. |
 
-## Blockers and next actions
-
-1. Use the merged HMS-15 register to execute all 12 HMS-16 cases individually on the accepted current application build; capture expected/actual result, environment, exact source SHA and sanitized evidence for each.
-2. Obtain the agreed reachable test deployment, account/access and test window. Then run the sanitized ZAP baseline and verify TLS 1.2+, HTTPS redirection and actual Secure/HttpOnly cookie attributes. Keep credentials and raw scans out of Git.
-3. Obtain current MySQL test permission or an approved disposable database, then rerun the focused security suite on the accepted build. The earlier local MySQL attempt failed before tests because CREATE DATABASE was denied.
-4. Integrate HMS-17 evidence after its owner submits it; retain the merged HMS-18 evidence and its stated limitations.
-5. Reconcile severity-ranked defects, all original exit criteria, independent approvals and the required project-guide walkthrough. Preserve NOT READY until each original criterion is met or an instructor-approved change is separately recorded.
+**Disposition:** HMS-16 owner testing is substantially complete for the mini-project scope. Keep the integrated System Validation Report and issue #38 open until the team reconciles TC-SEC-06 against the rubric, resolves/reviews the verification-harness failure, incorporates HMS-17 evidence, and records real QA/Dev/PO review. No application authentication/security defect was exposed by the 47 focused tests; no application-code change was indicated.

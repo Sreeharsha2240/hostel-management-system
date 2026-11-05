@@ -117,6 +117,7 @@ The run summary recorded `success: true`, with zero failures and zero errors.
 | PASS | Actual result matches the expected result. |
 | FAIL | Actual result differs from the expected result. |
 | BLOCKED | Execution cannot proceed due to an identified blocker. |
+| PARTIAL | Some expected behavior passed, but an identified portion remains unverified. |
 
 
 ## 7. Detailed Test Cases
@@ -125,11 +126,11 @@ The run summary recorded `success: true`, with zero failures and zero errors.
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-AUTH-01 | REQ-1 | Login using valid credentials. | User is authenticated and redirected to the appropriate dashboard. | Sreeharsha | NOT RUN |
-| TC-AUTH-02 | REQ-2 | Login using invalid credentials. | Login is rejected and a generic error message is displayed. | Sreeharsha | NOT RUN |
-| TC-AUTH-03 | REQ-2, NFR-12 | Enter an incorrect password five consecutive times. | Account is temporarily locked. Login becomes available again after 15 minutes. | Sreeharsha | NOT RUN |
-| TC-AUTH-04 | REQ-3, NFR-9 | Logout and test session timeout. | User session ends and protected pages cannot be accessed without authentication. | Sreeharsha | NOT RUN |
-| TC-USR-01 | REQ-4 | Administrator creates, updates and manages user accounts. | Only authorized administrators can perform user-management operations. | Sreeharsha | NOT RUN |
+| TC-AUTH-01 | REQ-1 | Login using valid credentials. | User is authenticated and redirected to the appropriate dashboard. | Sreeharsha | PASS |
+| TC-AUTH-02 | REQ-2 | Login using invalid credentials. | Login is rejected and a generic error message is displayed. | Sreeharsha | PASS |
+| TC-AUTH-03 | REQ-2, NFR-12 | Enter an incorrect password five consecutive times. | Account is temporarily locked. Login becomes available again after 15 minutes. | Sreeharsha | PASS |
+| TC-AUTH-04 | REQ-3, NFR-9 | Logout and test session timeout. | User session ends and protected pages cannot be accessed without authentication. | Sreeharsha | PASS |
+| TC-USR-01 | REQ-4 | Administrator creates, updates and manages user accounts. | Only authorized administrators can perform user-management operations. | Sreeharsha | PASS |
 
 ### 7.2 Student Management
 
@@ -173,13 +174,13 @@ The run summary recorded `success: true`, with zero failures and zero errors.
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-SEC-01 | REQ-4, NFR-7 | Attempt to access restricted functions using different user roles. | Users can access only functions permitted by their assigned roles. | Sreeharsha | NOT RUN |
-| TC-SEC-02 | REQ-24, NFR-8 | Login as a student and attempt to view another student's information. | Student can access only their own permitted information. | Sreeharsha | NOT RUN |
-| TC-SEC-03 | NFR-10 | Submit SQL injection and script injection inputs. | Malicious input is safely handled and does not execute. | Sreeharsha | NOT RUN |
-| TC-SEC-04 | NFR-6 | Inspect password storage and password policy enforcement. | Passwords are stored securely and policy requirements are enforced. | Sreeharsha | NOT RUN |
-| TC-SEC-05 | NFR-10 | Submit a request without valid CSRF protection. | The request is rejected. | Sreeharsha | NOT RUN |
-| TC-SEC-06 | NFR-12, NFR-9 | Check HTTPS and secure session-cookie configuration. | Secure transport and cookie settings meet deployment requirements. | Sreeharsha | NOT RUN |
-| TC-SEC-07 | NFR-11 | Perform important administrative operations and inspect audit logs. | Relevant actions are recorded in audit logs. | Sreeharsha | NOT RUN |
+| TC-SEC-01 | REQ-4, NFR-7 | Attempt to access restricted functions using different user roles. | Users can access only functions permitted by their assigned roles. | Sreeharsha | PASS |
+| TC-SEC-02 | REQ-24, NFR-8 | Login as a student and attempt to view another student's information. | Student can access only their own permitted information. | Sreeharsha | PASS |
+| TC-SEC-03 | NFR-10 | Submit SQL injection and script injection inputs. | Malicious input is safely handled and does not execute. | Sreeharsha | PASS |
+| TC-SEC-04 | NFR-6 | Inspect password storage and password policy enforcement. | Passwords are stored securely and policy requirements are enforced. | Sreeharsha | PASS |
+| TC-SEC-05 | NFR-10 | Submit a request without valid CSRF protection. | The request is rejected. | Sreeharsha | PASS |
+| TC-SEC-06 | NFR-12, NFR-9 | Check HTTPS and secure session-cookie configuration. | Secure transport and cookie settings meet deployment requirements. | Sreeharsha | PARTIAL |
+| TC-SEC-07 | NFR-11 | Perform important administrative operations and inspect audit logs. | Relevant actions are recorded in audit logs. | Sreeharsha | PASS |
 
 ### 7.7 Performance Testing
 
