@@ -1,0 +1,66 @@
+{
+  "started_at": "2026-11-03T12:16:49.739420+00:00",
+  "commit": "bf70f53e10fecdfdc34e2e63bb33590b0990eb40",
+  "tree": "6fa3a7a6614d3f79d6e56e70eb92c807c805f3c5",
+  "git_dirty": false,
+  "context_filter": "^hms\\.test_(forms|http|responses)\\..*\\.test_",
+  "commands": [
+    {
+      "arguments": [
+        "-m",
+        "coverage",
+        "run",
+        "--rcfile",
+        "<repository>\\test-results\\issue42\\20261103T121538608463Z\\unit-context\\unit.coveragerc",
+        "manage.py",
+        "test",
+        "hms.test_forms",
+        "hms.test_http",
+        "hms.test_responses",
+        "--noinput",
+        "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "-m",
+        "coverage",
+        "json",
+        "--rcfile",
+        "<repository>\\test-results\\issue42\\20261103T121538608463Z\\unit-context\\unit.coveragerc",
+        "--show-contexts",
+        "--fail-under=0",
+        "-o",
+        "<repository>\\test-results\\issue42\\20261103T121538608463Z\\unit-context\\coverage.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "scripts/run_checks.py",
+        "--coverage-xml",
+        "<repository>\\test-results\\issue42\\20261103T121538608463Z\\unit-context\\coverage.xml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "-m",
+        "coverage",
+        "report",
+        "--rcfile",
+        "<repository>\\test-results\\issue42\\20261103T121538608463Z\\unit-context\\unit.coveragerc",
+        "--fail-under=0"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "xml_export_method": "Runner --coverage-xml helper applies explicit data query contexts and repository-relative XML paths after loading original scope; every file reconciles to JSON.",
+  "prior_diagnostics_sha256": {
+    "test-results/issue42/20261103T120109683498Z/unit/step-3.txt": "dea9b5b1e92915bdfdb5b89c51409ebb85357a63e77ee8654f68584fd876cbac",
+    "test-results/issue42/20261103T120109683498Z/unit-context/xml-cli-startup-included.xml": "28fa48defae5b0b465ae7888d21f2f54e14b222d446db93b9021bfc11d1ef808",
+    "test-results/issue42/20261103T120109683498Z/unit-context/coverage.xml": "eb0db74f57d926bd186e89d0aff9a191190ad59585e615eb779923456da73b88"
+  },
+  "completed_at": "2026-11-03T12:16:53.437418+00:00"
+}

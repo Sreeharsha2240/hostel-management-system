@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "issues": [
+    45,
+    46,
+    47
+  ],
+  "tested_commit": "6e349f2c07630e72b9151a575685d462e63cbc40",
+  "tested_tree": "558190f7852283743ab9e20a4c9b3c9b99d0f806",
+  "measured_at": "2026-11-04T03:24:53.262174+00:00",
+  "clean_at_full_unit_browser_runs": true,
+  "requirements": {
+    "45": "SRS REQ-23 PDF p14 / Appendix B p21: Hostel / Room / Bed in payment status report",
+    "46": "SAD 4.5 PDF p19: confirmation dialogs for transfer and release",
+    "47": "SRS section7 PDF p18: DD-MM-YYYY human-visible dates on staff allocation list/history"
+  },
+  "separate_teammate_followup": {
+    "issue": 48,
+    "owner": "harsha2240",
+    "status": "OPEN: student self-service current/history/payment dates still use d M Y; implementation remains with the existing HMS-12 owner"
+  },
+  "negative_controls": {
+    "original_production_commit": "7d2f1d4f9afa5d53e80ae4f0db420d1f4da05c74",
+    "method": "Temporarily restore original production files, retain new regression assertions, expect specific failures, restore candidate in finally and require green. Original source restored before subsequent focused/clean runs.",
+    "results": {
+      "report": {
+        "labels": [
+          "reports.test_reports.ReportTests.test_payment_report_csv_and_html_match_json_after_corrections",
+          "reports.test_reports.ReportTests.test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank",
+          "reports.test_reports.ReportTests.test_payment_report_sums_once_across_allocation_history_and_filters_last_room"
+        ],
+        "red_exit": 1,
+        "red_expected_errors": [
+          "KeyError: 'Bed'",
+          "KeyError: 'bed'"
+        ],
+        "green_exit": 0
+      },
+      "ui": {
+        "labels": [
+          "allocations.test_workflows.AllocationWorkflowTests.test_only_transfer_and_release_forms_require_submit_confirmation",
+          "allocations.test_workflows.AllocationWorkflowTests.test_history_orders_backdated_records_by_allocation_date_in_json_and_html"
+        ],
+        "red_exit": 1,
+        "red_expected_failures": [
+          "missing submit confirmation",
+          "missing DD-MM-YYYY rendered date"
+        ],
+        "green_exit": 0
+      }
+    }
+  },
+  "fresh_checks": {
+    "focused": {
+      "tests": 63,
+      "failures": 0,
+      "errors": 0,
+      "command": "python manage.py test allocations payments reports hms.test_system_journey --noinput -v 1"
+    },
+    "full": {
+      "gates": 12,
+      "tests": {
+        "tests": 189,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "timing_rerun": "PASS without coverage"
+    },
+    "recovery_safety": {
+      "tests": 32,
+      "failures": 0,
+      "errors": 0
+    },
+    "browser": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "native_confirmation_cancel_accept": "PASS for transfer and release; cancel sends0POST, accept sends1POST; release cancel triggered by Enter from date field",
+      "payment_report": "HTML/JSON/CSV/MySQL agree including Bed; separate Django regressions cover cancelled/unassigned/history",
+      "date_format": "list/history DD-MM-YYYY, missing vacated fallback and ISO JSON preserved"
+    }
+  },
+  "case_correction": {
+    "TC-RPT-01": "Earlier complete-PASS claim omitted Bed and is superseded by current report schema/output checks. Historical JSON unchanged.",
+    "TC-ALC-05": "Browser evidence remains PARTIAL for injected-storage failure; current full/focused test_transfer_failure_rolls_back_both_beds_and_history supplies rollback and same-transfer retry.",
+    "older_performance_recovery": "TC-PERF-01,TC-PERF-03,TC-OPS-01 retain prior source-bound evidence only; no current-candidate full load or populated restore is claimed. Their students/beds load routes and backup tooling are unchanged."
+  },
+  "verification_invocation_corrections": [
+    "An initial focused command used nonexistent tests.test_journeys; corrected to hms.test_system_journey and all63 passed.",
+    "Initial optional Playwright preflight failed before DB setup because private NODE_PATH pointed to tools rather than browser-verification; corrected tools path, same clean source, new execution."
+  ],
+  "artifact_sha256": {
+    "checks/run.json": "d50e0b3159928738a96b139f0f9f0023a2465a643b29cf2081a759ab28f0ee58",
+    "browser/browser-results.json": "af365464fa0303431dd788ca01c7b5be82e1e669a3a4f821bdddcee507481fcb",
+    "browser-corrected-tools.txt": "6509dc093cbf1b8ffd89e0d280bd6808e07d1be598541db7fad13c061cda8d70",
+    "recovery-safety.txt": "53b04a48a0dc8c9bcd00b8653cb177e242ce09f2313e086a80920d96b0faecb6"
+  },
+  "negative_control_raw_sha256": {
+    "report-red.txt": "d5ea9ef5de54473877cc6caa964c537e30a12282fe5100cd70096b59627279fa",
+    "report-green.txt": "2a570c16013ec6ce1008b0a86d1cad467f88ed4649784a155938bc13680c1d1c",
+    "ui-red.txt": "1b10e9525460c948f11cf4d3b6fadfff396b2aa0a1207db14d053c389c0793ce",
+    "ui-green.txt": "d279396ac7bbc7d5589150da2ec40daab08fb8a4679acf799eb7441ab68a9226"
+  },
+  "acceptance": "Candidate implemented and locally verified; PR44 actual independent teammate review and accepted-build/report integration remain pending. No teammate approval or merge is inferred."
+}

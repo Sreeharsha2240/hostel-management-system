@@ -36,6 +36,34 @@ class AllocationWorkflowTests(TestCase):
     def create(self):
         return allocate(student=self.student, bed=self.bed, actor=self.actor)
 
+    def test_only_transfer_and_release_forms_require_submit_confirmation(self):
+        original = self.create()
+        before_audits = AuditEvent.objects.count()
+        response = self.client.get(reverse("allocation-create"))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, "onsubmit=")
+        self.assertNotContains(response, "confirm(")
+
+        for action, message in (
+            ("allocation-transfer", "Transfer this allocation?"),
+            ("allocation-release", "Release this allocation?"),
+        ):
+            path = reverse(action, args=[original.pk])
+            # Re-rendered invalid forms must retain the same form-level guard.
+            for method in (self.client.get, self.client.post):
+                with self.subTest(action=action, method=method.__name__):
+                    response = method(path)
+                    self.assertEqual(response.status_code, 200)
+                    self.assertContains(
+                        response,
+                        f'<form method="post" onsubmit="return confirm(\'{message}\')">',
+                        count=1,
+                    )
+        original.refresh_from_db()
+        self.assertEqual(original.status, "Active")
+        self.assertEqual(Allocation.objects.count(), 1)
+        self.assertEqual(AuditEvent.objects.count(), before_audits)
+
     def test_json_date_types_return_400_without_changing_allocations(self):
         values = (123, True, ["2026-10-26"], {"day": 26})
         before_audits = AuditEvent.objects.count()
@@ -205,6 +233,8 @@ class AllocationWorkflowTests(TestCase):
 
     def test_transfer_failure_rolls_back_both_beds_and_history(self):
         original = self.create()
+        original_date = original.allocated_on
+        audits_before = AuditEvent.objects.count()
         save = Bed.save
 
         def fail_target(bed, *args, **kwargs):
@@ -225,7 +255,137 @@ class AllocationWorkflowTests(TestCase):
             ("Active", "Occupied", "Available"),
         )
         self.assertEqual(Allocation.objects.count(), 1)
+        self.assertEqual(
+            (
+                original.student_id,
+                original.bed_id,
+                original.allocated_on,
+                original.vacated_on,
+            ),
+            (self.student.pk, self.bed.pk, original_date, None),
+        )
+        self.assertEqual(AuditEvent.objects.count(), audits_before)
         self.assertFalse(AuditEvent.objects.filter(action="transfer").exists())
+
+        # Retry the same transfer after the transient failure is removed.
+        successor = transfer(
+            allocation_id=original.pk, new_bed=self.other, actor=self.actor
+        )
+        original.refresh_from_db()
+        self.bed.refresh_from_db()
+        self.other.refresh_from_db()
+        self.assertNotEqual(successor.pk, original.pk)
+        self.assertEqual(successor.student_id, self.student.pk)
+        self.assertEqual(successor.bed_id, self.other.pk)
+        self.assertEqual(original.allocated_on, original_date)
+        self.assertEqual(original.vacated_on, timezone.localdate())
+        self.assertEqual(
+            (original.status, self.bed.status, self.other.status),
+            ("Completed", "Available", "Occupied"),
+        )
+        self.assertEqual(
+            list(
+                Allocation.objects.filter(student=self.student).values_list(
+                    "pk", "bed_id", "status"
+                )
+            ),
+            [
+                (successor.pk, self.other.pk, "Active"),
+                (original.pk, self.bed.pk, "Completed"),
+            ],
+        )
+        self.assertEqual(AuditEvent.objects.count(), audits_before + 1)
+        event = AuditEvent.objects.get(action="transfer")
+        self.assertEqual(
+            (event.user_id, event.record_type, event.record_id),
+            (self.actor.pk, "allocations.allocation", str(successor.pk)),
+        )
+
+    def test_history_orders_backdated_records_by_allocation_date_in_json_and_html(self):
+        today = timezone.localdate()
+        recent = allocate(
+            student=self.student,
+            bed=self.bed,
+            actor=self.actor,
+            allocated_on=today - timedelta(days=4),
+        )
+        recent = release(
+            allocation_id=recent.pk,
+            actor=self.actor,
+            vacate_date=today - timedelta(days=3),
+        )
+        # Enter an older, nonoverlapping stay later so PK order opposes date order.
+        older = allocate(
+            student=self.student,
+            bed=self.other,
+            actor=self.actor,
+            allocated_on=today - timedelta(days=10),
+        )
+        older = release(
+            allocation_id=older.pk,
+            actor=self.actor,
+            vacate_date=today - timedelta(days=9),
+        )
+        current_bed = make_room(
+            "202", hostel=self.room.hostel, room_type="Single", capacity=1
+        ).beds.get()
+        current = allocate(
+            student=self.student,
+            bed=current_bed,
+            actor=self.actor,
+            allocated_on=today - timedelta(days=1),
+        )
+        self.assertLess(recent.pk, older.pk)
+        self.assertLess(older.allocated_on, recent.allocated_on)
+        expected = [current, recent, older]
+        path = reverse("allocation-history", args=[self.student.pk])
+        response = self.client.get(path, HTTP_ACCEPT="application/json")
+        self.assertEqual(response.status_code, 200)
+        rows = response.json()["allocations"]
+        self.assertEqual(
+            [row["allocation_id"] for row in rows], [record.pk for record in expected]
+        )
+        self.assertEqual(
+            [row["allocated_on"] for row in rows],
+            [record.allocated_on.isoformat() for record in expected],
+        )
+        self.assertEqual(
+            [row["vacated_on"] for row in rows],
+            [
+                record.vacated_on.isoformat() if record.vacated_on else None
+                for record in expected
+            ],
+        )
+        self.assertEqual(
+            [row["status"] for row in rows], ["Active", "Completed", "Completed"]
+        )
+
+        for html_path in (path, reverse("allocation-list")):
+            with self.subTest(path=html_path):
+                response = self.client.get(html_path)
+                self.assertEqual(response.status_code, 200)
+                self.assertTemplateUsed(response, "allocations/allocation_list.html")
+                rendered = response.content.decode()
+                positions = []
+                for record in expected:
+                    cell = f"<td>{record.bed.label}</td>"
+                    self.assertContains(response, cell, count=1, html=True)
+                    positions.append(rendered.index(cell))
+                    for date_value in (record.allocated_on, record.vacated_on):
+                        if date_value:
+                            self.assertContains(
+                                response,
+                                f"<td>{date_value:%d-%m-%Y}</td>",
+                                count=1,
+                                html=True,
+                            )
+                            self.assertNotContains(
+                                response,
+                                f"<td>{date_value.isoformat()}</td>",
+                                html=True,
+                            )
+                self.assertContains(response, "<td>—</td>", count=1, html=True)
+                self.assertEqual(positions, sorted(positions))
 
     def test_audit_failure_rolls_back_allocation_and_release(self):
         with (

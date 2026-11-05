@@ -7,7 +7,9 @@ import tempfile
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
+from xml.etree import ElementTree
 
+from coverage import CoverageData
 from django.test import SimpleTestCase
 
 from scripts import run_checks
@@ -143,3 +145,58 @@ class VerificationRunnerTests(SimpleTestCase):
         self.assertIn(
             "diagnostic", (self.output / "example.txt").read_text(encoding="utf-8")
         )
+
+    def test_xml_keeps_same_named_package_files_and_only_selected_context_hits(self):
+        files = {}
+        for package in ("alpha", "beta"):
+            directory = self.root / package
+            directory.mkdir()
+            (directory / "__init__.py").write_text("", encoding="utf-8")
+            path = directory / "models.py"
+            path.write_text(
+                'def classify(value):\n    if value:\n        return "yes"\n    return "no"\n',
+                encoding="utf-8",
+            )
+            files[package] = str(path)
+        data_file = self.root / ".coverage"
+        data = CoverageData(basename=str(data_file))
+        data.set_context("startup")
+        data.add_arcs({path: [(-1, 1), (1, -1)] for path in files.values()})
+        data.set_context("chosen.test_example")
+        data.add_arcs(
+            {
+                files["alpha"]: [(-1, 2), (2, 3), (3, -1)],
+                files["beta"]: [(-1, 2), (2, 4), (4, -1)],
+            }
+        )
+        data.write()
+        config = self.root / "coverage.ini"
+        config.write_text(
+            "[run]\nbranch = True\nsource = "
+            + ",".join(str(self.root / name) for name in files)
+            + "\n[report]\ncontexts = ^chosen\\.test_example$\n",
+            encoding="utf-8",
+        )
+        output = self.root / "coverage.xml"
+        with (
+            patch.dict(
+                os.environ,
+                {"COVERAGE_FILE": str(data_file), "COVERAGE_RCFILE": str(config)},
+            ),
+            redirect_stdout(io.StringIO()),
+        ):
+            self.assertEqual(run_checks.main(["--coverage-xml", str(output)]), 0)
+        report = ElementTree.parse(output).getroot()
+        self.assertEqual(int(report.get("lines-valid")), 8)
+        self.assertEqual(int(report.get("lines-covered")), 4)
+        self.assertEqual(int(report.get("branches-valid")), 4)
+        self.assertEqual(int(report.get("branches-covered")), 2)
+        covered = {
+            item.get("filename"): {
+                int(line.get("number"))
+                for line in item.findall("lines/line")
+                if int(line.get("hits"))
+            }
+            for item in report.iter("class")
+        }
+        self.assertEqual(covered, {"alpha/models.py": {2, 3}, "beta/models.py": {2, 4}})

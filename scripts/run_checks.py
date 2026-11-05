@@ -94,7 +94,10 @@ def verification_steps(output):
             ],
         ),
         ("coverage", ["-m", "coverage", "report"]),
-        ("coverage-xml", ["-m", "coverage", "xml", "-o", str(output / "coverage.xml")]),
+        (
+            "coverage-xml",
+            ["scripts/run_checks.py", "--coverage-xml", str(output / "coverage.xml")],
+        ),
         (
             "coverage-json",
             ["-m", "coverage", "json", "-o", str(output / "coverage.json")],
@@ -149,10 +152,35 @@ def read_test_results(output):
     return totals, len(suites)
 
 
+def export_coverage_xml(output):
+    """Export matching data without merging same-named package files in XML."""
+    from coverage import Coverage
+
+    measured = Coverage()
+    measured.load()
+    contexts = measured.get_option("report:contexts")
+    if contexts:
+        # XML reporting otherwise retains statement hits from startup contexts.
+        measured.get_data().set_query_contexts(contexts)
+    # Change XML path roots only after loading the original collection scope.
+    # Each package's models.py must retain its package prefix in Cobertura XML.
+    measured.set_option("run:source", [str(ROOT)])
+    measured.xml_report(
+        morfs=sorted(measured.get_data().measured_files()), outfile=str(output)
+    )
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--output-dir", type=Path)
+    mode.add_argument(
+        "--coverage-xml", type=Path, help="Export the matching coverage data only."
+    )
     args = parser.parse_args(argv)
+    if args.coverage_xml is not None:
+        export_coverage_xml(args.coverage_xml)
+        return 0
     started = datetime.now(UTC)
     output = args.output_dir or Path("test-results") / started.strftime(
         "%Y%m%dT%H%M%S%fZ"

@@ -19,6 +19,9 @@ async function run() {
   const errors = [];
   const observations = [];
   const bedSnapshots = [];
+  const confirmationChecks = [];
+  const dateSnapshots = [];
+  const displayDate = config.today.split('-').reverse().join('-');
   const absolute = path => new URL(path, config.base_url).href;
   const observe = (id, actual, status = 'PASS') => observations.push({ id, status, actual });
   try {
@@ -43,14 +46,32 @@ async function run() {
       await target.locator('#id_bed').selectOption(String(bed));
       await target.locator('#id_allocated_on').fill(config.today);
     }
-    async function confirm(target, path, redirect) {
-      const pending = target.waitForResponse(response =>
-        response.request().method() === 'POST' && new URL(response.url()).pathname === path);
-      await target.getByRole('button', { name: 'Confirm', exact: true }).click();
-      const response = await pending;
-      assert.equal(response.status(), redirect ? 302 : 200);
-      if (redirect) await target.waitForURL(absolute('/allocations/'));
-      return response;
+    async function confirm(target, path, redirect, expectedDialog = null) {
+      const dialogs = [];
+      let posts = 0;
+      const onDialog = async dialog => {
+        dialogs.push({ type: dialog.type(), message: dialog.message() });
+        await dialog.accept();
+      };
+      const onRequest = request => {
+        if (request.method() === 'POST' && new URL(request.url()).pathname === path) posts += 1;
+      };
+      target.on('dialog', onDialog);
+      target.on('request', onRequest);
+      try {
+        const pending = target.waitForResponse(response =>
+          response.request().method() === 'POST' && new URL(response.url()).pathname === path);
+        await target.getByRole('button', { name: 'Confirm', exact: true }).click();
+        const response = await pending;
+        assert.equal(response.status(), redirect ? 302 : 200);
+        if (redirect) await target.waitForURL(absolute('/allocations/'));
+        assert.deepEqual(dialogs, expectedDialog ? [{ type: 'confirm', message: expectedDialog }] : []);
+        assert.equal(posts, 1);
+        return { dialogs, post_count: posts };
+      } finally {
+        target.off('dialog', onDialog);
+        target.off('request', onRequest);
+      }
     }
     async function allocations() {
       const response = await context.request.get(absolute(`/allocations/?q=${config.student.student_id}`), {
@@ -58,6 +79,46 @@ async function run() {
       });
       assert.equal(response.status(), 200);
       return (await response.json()).results;
+    }
+    async function cancelAllocation(target, path, message, trigger = 'click') {
+      const before = await allocations();
+      const dialogs = [];
+      let posts = 0;
+      const onDialog = async dialog => {
+        dialogs.push({ type: dialog.type(), message: dialog.message() });
+        await dialog.dismiss();
+      };
+      const onRequest = request => {
+        if (request.method() === 'POST' && new URL(request.url()).pathname === path) posts += 1;
+      };
+      target.on('dialog', onDialog);
+      target.on('request', onRequest);
+      try {
+        const submit = target.getByRole('button', { name: 'Confirm', exact: true });
+        if (trigger === 'Enter from date field') await target.locator('#id_vacate_date').press('Enter');
+        else await submit.click();
+        assert.deepEqual(dialogs, [{ type: 'confirm', message }]);
+        assert.equal(target.url(), absolute(path));
+        const after = await allocations();
+        assert.deepEqual(after, before);
+        assert.equal(posts, 0);
+        return { trigger, dialogs, post_count: posts, unchanged_allocation_snapshot: after };
+      } finally {
+        target.off('dialog', onDialog);
+        target.off('request', onRequest);
+      }
+    }
+    async function allocationRows() {
+      return page.locator('main tbody tr').evaluateAll(nodes =>
+        nodes.map(node => [...node.querySelectorAll('td')].map(cell => cell.textContent.trim())));
+    }
+    function allocationDates(checkpoint, rows, beds, vacated) {
+      const ownRows = rows.filter(row => row[0] === config.student.student_id);
+      assert.deepEqual(ownRows.map(row => row[4]), beds);
+      assert(ownRows.every(row => row[5] === displayDate && row[6] === vacated));
+      dateSnapshots.push({ checkpoint, dates: ownRows.map(row => ({
+        bed: row[4], allocated_on: row[5], vacated_on: row[6],
+      })) });
     }
     async function bedStates(checkpoint, expected) {
       const bedPage = await context.newPage();
@@ -117,6 +178,10 @@ async function run() {
       await page.getByRole('heading', { name: heading, exact: true }).waitFor();
       const rows = await page.locator('main tbody tr').evaluateAll(nodes =>
         nodes.map(node => [...node.querySelectorAll('td')].map(cell => cell.textContent.trim())));
+      const headings = await page.locator('main thead th').allTextContents();
+      const jsonResponse = await context.request.get(page.url(), { headers: { Accept: 'application/json' } });
+      assert.equal(jsonResponse.status(), 200);
+      const jsonRows = (await jsonResponse.json()).rows;
       const downloadPromise = page.waitForEvent('download');
       await page.getByRole('button', { name: 'Download CSV', exact: true }).click();
       const download = await downloadPromise;
@@ -124,7 +189,8 @@ async function run() {
       const stream = await download.createReadStream();
       const chunks = [];
       for await (const chunk of stream) chunks.push(chunk);
-      return { html_rows: rows, csv: Buffer.concat(chunks).toString('utf8') };
+      return { html_headings: headings.map(value => value.trim()), html_rows: rows,
+        json_rows: jsonRows, csv: Buffer.concat(chunks).toString('utf8') };
     }
 
     phase = 'staff login and stale allocation forms';
@@ -145,6 +211,7 @@ async function run() {
     assert.equal(history[0].bed_id, config.old_bed);
     assert.equal(history[0].allocated_on, config.today);
     const original = history[0].allocation_id;
+    allocationDates('active allocation list', await allocationRows(), [config.old_bed_label], '—');
     await bedStates('after allocation', { [config.old_bed_label]: 'Occupied', [config.target_bed_label]: 'Available' });
     observe(phase, 'Browser form saved allocation/date and displayed confirmation; a separate bed-list page showed Occupied after commit.');
 
@@ -173,7 +240,12 @@ async function run() {
     phase = 'TC-ALC-05';
     await page.goto(absolute(`/allocations/${original}/transfer/`));
     await page.locator('#id_new_bed').selectOption(String(config.target_bed));
-    await confirm(page, `/allocations/${original}/transfer/`, true);
+    const transferPath = `/allocations/${original}/transfer/`;
+    const transferMessage = 'Transfer this allocation?';
+    const transferCancelled = await cancelAllocation(page, transferPath, transferMessage);
+    await bedStates('after transfer cancellation', { [config.old_bed_label]: 'Occupied', [config.target_bed_label]: 'Available' });
+    const transferAccepted = await confirm(page, transferPath, true, transferMessage);
+    confirmationChecks.push({ action: 'transfer', path: transferPath, cancelled: transferCancelled, accepted: transferAccepted });
     assert.match(await page.getByRole('status').innerText(), /history is preserved/);
     history = await allocations();
     assert.equal(history.length, 2);
@@ -182,23 +254,29 @@ async function run() {
     assert.notEqual(successor.allocation_id, original);
     assert.equal(history.find(row => row.allocation_id === original).status, 'Completed');
     await bedStates('after transfer', { [config.old_bed_label]: 'Available', [config.target_bed_label]: 'Occupied' });
-    observe(phase, 'Browser transfer preserved original and created successor; injected storage-failure rollback must be verified by the separate regression suite.', 'PARTIAL');
+    observe(phase, 'Transfer confirmation was cancelled with zero POSTs and unchanged allocation/bed states, then accepted once to preserve original and create successor; storage-failure rollback requires the companion regression.', 'PARTIAL');
 
     phase = 'TC-ALC-06';
     await page.goto(absolute(`/allocations/${successor.allocation_id}/release/`));
     await page.locator('#id_vacate_date').fill(config.today);
-    await confirm(page, `/allocations/${successor.allocation_id}/release/`, true);
+    const releasePath = `/allocations/${successor.allocation_id}/release/`;
+    const releaseMessage = 'Release this allocation?';
+    const releaseCancelled = await cancelAllocation(page, releasePath, releaseMessage, 'Enter from date field');
+    await bedStates('after release cancellation', { [config.old_bed_label]: 'Available', [config.target_bed_label]: 'Occupied' });
+    const releaseAccepted = await confirm(page, releasePath, true, releaseMessage);
+    confirmationChecks.push({ action: 'release', path: releasePath, cancelled: releaseCancelled, accepted: releaseAccepted });
     assert.equal(await page.getByRole('status').innerText(), 'Allocation released.');
+    allocationDates('completed allocation list', await allocationRows(), [config.target_bed_label, config.old_bed_label], displayDate);
     await page.goto(absolute(`/students/${config.student.pk}/allocations/`));
-    const historyRows = await page.locator('main tbody tr').evaluateAll(nodes =>
-      nodes.map(node => [...node.querySelectorAll('td')].map(cell => cell.textContent.trim())));
+    const historyRows = await allocationRows();
+    allocationDates('student allocation history', historyRows, [config.target_bed_label, config.old_bed_label], displayDate);
     assert.deepEqual(historyRows.map(row => row[4]), [config.target_bed_label, config.old_bed_label]);
     assert(historyRows.every(row => row[7] === 'Completed' && row[6] !== '—'));
     history = await allocations();
     assert.deepEqual(history.map(row => row.allocation_id), [successor.allocation_id, original]);
     assert(history.every(row => row.vacated_on === config.today && row.status === 'Completed'));
     await bedStates('after release', { [config.old_bed_label]: 'Available', [config.target_bed_label]: 'Available' });
-    observe(phase, 'Browser release stored vacate date and showed newest-first preserved history; both released beds are checked in MySQL.');
+    observe(phase, 'Release confirmation was cancelled with zero POSTs and unchanged allocation/bed states, then accepted once; list/history show DD-MM-YYYY while JSON retains ISO dates.');
 
     phase = 'TC-PAY-02 pending';
     const states = [await paymentStatus('Pending')];
@@ -227,7 +305,12 @@ async function run() {
       occupancy: await report('/reports/occupancy/', 'Occupancy'),
       payment: await report('/reports/payment-status/', 'Payment status'),
     };
-    observe(phase, 'Browser filtered both reports by hostel and used each Download CSV button; Python independently reconciles HTML, CSV and MySQL values.');
+    assert.deepEqual(reports.payment.html_headings, [
+      'Student ID', 'Name', 'Hostel', 'Room', 'Bed', 'Fee (INR)', 'Paid (INR)', 'Due (INR)', 'Status',
+    ]);
+    assert.equal(reports.payment.html_rows.find(row => row[0] === config.student.student_id)[4], config.target_bed_label);
+    assert.equal(reports.payment.json_rows.find(row => row.student_id === config.student.student_id).bed, config.target_bed_label);
+    observe(phase, 'Browser filtered both reports and downloaded CSV; payment HTML/JSON identify the latest historical Bed after Room, with Python reconciling HTML/CSV/JSON against MySQL.');
 
     phase = 'TC-PERF-02 twenty committed HTTP allocations';
     const cookies = await context.cookies(config.base_url);
@@ -286,6 +369,7 @@ async function run() {
       concurrency_statuses: conflictStatuses, concurrency_requests: conflict,
       concurrency_client_intervals_overlap: conflictOverlap, allocation_timings_passed: allocationTimingsPassed,
       bed_state_snapshots: bedSnapshots,
+      allocation_confirmation_checks: confirmationChecks, allocation_date_snapshots: dateSnapshots,
       student_allocation_payment_integration: true, browser_errors: errors,
     }) + '\n');
   } finally {

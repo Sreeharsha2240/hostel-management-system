@@ -1,12 +1,133 @@
 # Issue #40: owned execution evidence
 
+## Requirement correction on 4 November 2026
+
+The earlier claim that all 13 case areas had complete passing evidence is
+withdrawn for TC-RPT-01: its payment-report comparison omitted the required
+Bed field (SRS REQ-23 / Appendix B). The historical JSON below is retained
+unchanged. Follow-up [#45](https://github.com/Sreeharsha2240/hostel-management-system/issues/45)
+tracks that defect; [#46](https://github.com/Sreeharsha2240/hostel-management-system/issues/46)
+and [#47](https://github.com/Sreeharsha2240/hostel-management-system/issues/47)
+track the SAD transfer/release confirmations and SRS displayed-date format.
+Current corrections and candidate retest evidence are recorded in the
+[follow-up evidence](../owned-defects/README.md). Earlier performance/recovery
+runs remain historical measurements of their stated candidates.
+
+## Reverification on 2 November 2026
+
+The [fresh verification record](reverification.json) supersedes the earlier
+checkpoint's case-completeness conclusions. At that time all 13 owned case
+areas were reported passing, including explicit transfer retry and
+allocation-date ordering; the TC-RPT-01 completeness claim is corrected above.
+Team review of the case register/tools in #37,
+independent teammate acceptance of these follow-up changes/build, any agreed accepted-build
+retest and report integration in #38 remain pending. Issue #40 stays open for
+those steps. PR #36 was merged during this verification; these fixes use a
+focused follow-up PR on the same branch. #42 and other contributors' assignments
+remain unchanged.
+
+The second audit found and fixed four concrete gaps in local code commit
+`8b73d3f6337aab2de109b237b781ec8bbb54ed50`:
+
+- Backup output accepted repository ancestors, so an accidental parent/home
+  path could receive permission changes. Resolved ancestors and repository
+  paths are now rejected before directory/ACL changes, including helper and
+  error-report paths. Old-code negative tests demonstrate the gap.
+- Removing inherited Windows access did not remove a pre-existing explicit
+  Everyone-read grant. The guard now refuses unrelated explicit access and
+  untrusted owners before ACL changes and validates the protected result.
+  It supports Windows' native private Owner Rights/System/Administrators
+  temporary-directory permissions. Actual empty-folder tests prove broad
+  grants are refused without changing their ACL; private folders/children pass.
+- TC-ALC-05's earlier injected-failure test proved rollback but omitted retry.
+  The strengthened test retries the **same** allocation/student/target and
+  verifies successor, both beds, preserved history and one attributed audit.
+- TC-ALC-06's earlier same-day fixtures could not prove allocation-date order.
+  A new valid backdated fixture opposes date and primary-key order and checks
+  JSON plus rendered HTML. A deliberate primary-key-only ordering override
+  makes that test fail at the expected ordering assertion; normal execution passes.
+
+These are corrections to the earlier verification. Historical JSON remains
+unchanged; its ALC-05/ALC-06 observations alone do not prove the complete original
+steps. The new companion tests supply that proof.
+
+## Repeated execution results
+
+| Check | Fresh observed result |
+|---|---|
+| Focused allocation/payment/report/journey regressions | **61 passed**, including same-transfer retry and counterordered-date history |
+| Repository verification | **12 gates passed**, **186 methods**, zero errors/failures; one intended coverage timing skip followed by a separate passing timing run |
+| Offline recovery safety suite | **32 passed**, with site packages disabled; new ancestor/explicit-ACL/native-Windows cases included |
+| Edge forms, reports, PDF and integration | Passed; raw browser ALC-05 remains PARTIAL for its own injection step, supplied by the strengthened regression |
+| TC-PERF-02 | **20** committed HTTP allocations, 25.79 to 32.56 ms (median 26.73 ms); overlapping conflict returns 201/409 and one active row |
+| Populated recovery | **18 tables** match all counts/row/schema digests; **17 checks** have zero violations; no observed loss, source unchanged, restore database and private server removed |
+| Existing live backup action | On-demand check passed, new dump hash matches, source unchanged, task Ready/result 0; daily action and next trigger unchanged |
+
+| Full JMeter workload | Users / measured duration | HTTP samples | Errors | Within 2 s | HTTP p95 | Search maximum |
+|---|---|---:|---:|---:|---:|---:|
+| 100 students / 80 beds | 50 / at least 600.059 s each | 28,088 | 0 | 100% | 60 ms | 525 ms |
+| 5,000 students / 2,000 beds | 50 / at least 600.029 s each | 29,092 | 0 | 100% | 52 ms | 195 ms |
+
+All 50 users appear on every route with shared start and complete end markers.
+Login/form latency and every sampler/controller error remain included. The
+volume gate requires every search within two seconds. The committed LF JMeter
+plan now matches the repeated run **byte for byte**; this run needs no line-ending
+normalization exception. Raw sample hashes, per-route/per-thread results,
+synthetic counts and all 13 case mappings are in the fresh JSON.
+
+## Source, environment and limits
+
+Browser, both full 600-second load runs, populated recovery, the existing live
+task action and the final focused run used clean local code commit `8b73d3f`.
+The full repository runner was executed before that local commit and truthfully
+records `50717df` plus dirty changes. Its application tests include the new
+history case. The frozen files passed fresh lint/format checks and all 32
+safety tests before committing; final-head CI is checked separately. Existing
+application runtime, migrations and templates were unchanged by these fixes.
+Only the allocation tests and backup guard/safety tests changed.
+
+Environment remains Windows, Python 3.14.7, Django 5.2.18, MySQL 8.4.9,
+Edge/Playwright, JMeter 5.6.3 and Temurin 17.0.20+8. This is a threaded loopback
+Django server, 50 real Warden sessions, normal password hashing/audit writes,
+five-second ramp/shared barrier and one-second think time per measured request.
+The original Selenium/MySQL 8.0 substitutions and local HTTP security flags
+remain documented for team review. Results describe this candidate/test host.
+Routine mixed-suite coverage does not prepare #42's reports or establish the
+SRS unit-attributable coverage target.
+
+The populated restore uses the original **naturally scheduled** synthetic backup
+on a separate private MySQL instance. At this repeated restore it was
+**32789.567 seconds old**, within 24 hours;
+all digests matched its unchanged source. The live source still has no domain
+records and was never seeded or restored. The additional live-task check is
+explicitly **on-demand**, not another natural daily trigger. The existing daily
+schedule/action remains unchanged, next **3 November 2026 at 09:21:55 IST**.
+Windows, MySQL and the logged-in user session must be available.
+
+Reproduction commands and original tool provenance remain below. Use fresh
+ignored evidence directories and a dedicated private backup directory outside
+the repository and its ancestors. A broad explicit Windows grant is refused;
+the guard does not rewrite another principal's permissions. Credentials,
+SQL dumps, connection files, raw load results and ACL development logs stay
+private. Independent reviews reconcile the fresh artifacts against their raw
+results; no teammate or QA/PO approval is inferred.
+
+## Prior published checkpoint: 50717df
+
+The following section preserves the earlier checkpoint and its recorded source,
+metrics and commands. Its earlier case-level completeness inference for
+ALC-05 retry and ALC-06 date ordering is corrected above. Current guard hashes,
+new test counts and repeated results are in `reverification.json`; do not treat
+historical statements about unchanged regression source/current harness hashes
+as claims about the later fixes.
+
 Owner: Devansh Gupta (`DevaOnL`). Executed **2 November 2026**.
 [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40)
 is the only execution assignment handled here. This supplies evidence for
 [Part 3](../../../PART3.md); other contributors' cases/reports and #42 remain
 with their assigned owners.
 
-## Latest execution and acceptance boundary
+### Latest execution and acceptance boundary
 
 **All 13 owned case areas passed on the local candidate build.** The reviewed
 case register/RTM and tool substitution in #37, independent teammate review and
@@ -40,7 +161,7 @@ The browser JSON predates the full load/recovery runs, so its per-run
 The later load/recovery and 60-method regression artifacts supply that evidence;
 those earlier fields are not the aggregate status above.
 
-## Performance results
+### Performance results
 
 | Workload | HTTP samples | Errors | Within 2 s | HTTP p95 | Search max | Observed HTTP requests/s |
 |---|---:|---:|---:|---:|---:|---:|
@@ -81,7 +202,7 @@ Each measurement includes a real POST through receipt of the response after
 commit, outside a transaction-wrapped test. Raw browser intervals and database
 verification establish the simultaneous-conflict result.
 
-## Backup, recovery and retests
+### Backup, recovery and retests
 
 The live `hms` source had no populated domain records. A separate private
 MySQL 8.4.9 instance, bound to a distinct loopback port with its own datadir,
@@ -118,7 +239,7 @@ The execution history preserves three harness failures and their retests:
 Original failures, tested harness hashes and actual rerun outcomes remain in the
 linked JSON. A passing final result does not rewrite those observations.
 
-## Verification and reproduction
+### Verification and reproduction
 
 Fresh verification passed **60 focused methods**, the explicit Edge/HTTP
 workflows, **21 offline recovery safety methods**, and all **12 repository gates**.
@@ -177,14 +298,14 @@ The installed task already exists on the execution machine, so a new initial
 run will safely refuse it. Review/sanitize evidence before publishing; never
 commit credentials, raw properties/logs or SQL dumps.
 
-## Historical first checkpoint
+### Historical first checkpoint
 
 Owner: Devansh Gupta (`DevaOnL`). Date: 2 November 2026.
 Scope: [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40)
 only. This contributes owned execution evidence to the [Part 3 plan](../../../PART3.md);
 the Unit, System Validation and Coverage reports remain their assigned work.
 
-### Status and tested source
+#### Status and tested source
 
 **Candidate checkpoint; final case/build acceptance is pending.** The updated
 case register in #37 and PR #36 were still awaiting team acceptance at this run.
@@ -208,7 +329,7 @@ threaded Django test server on loopback with a fresh disposable `test_hms`, real
 HTTP requests and real commits, outside coverage instrumentation. This is a local
 test-host observation, not deployed/concurrent-load acceptance.
 
-### Evidence and original case mapping
+#### Evidence and original case mapping
 
 - [Focused regression results](candidate-regressions.json): 60 unique methods,
   all passed, no errors/failures/skips. Includes MySQL concurrency/constraints,
@@ -253,7 +374,7 @@ available, one under maintenance, and 20.00% occupancy. The two student rows
 showed one fully paid student and one pending resident. Other timing fixtures
 used a separate hostel so they did not contaminate this filter's totals.
 
-### Reproduce serially
+#### Reproduce serially
 
 Follow the repository's documented MySQL setup. Run only one Django/MySQL suite
 at a time; do not point this harness at an application or recovery database.

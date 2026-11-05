@@ -1,0 +1,52 @@
+{
+  "status": "Proposed conservative isolated application-unit classification; pending #41 teammate acceptance",
+  "selected_test_contexts": [
+    "hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior",
+    "hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors",
+    "hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query",
+    "hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error",
+    "hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error",
+    "hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged",
+    "hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values",
+    "hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error",
+    "hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error",
+    "hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+    "hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error",
+    "hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error",
+    "hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+    "hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+    "hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found",
+    "hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests"
+  ],
+  "classification": [
+    {
+      "category": "isolated application unit",
+      "methods": 16,
+      "scope": "hms.test_forms (3), hms.test_http (10), hms.test_responses (3); SimpleTestCase forbids DB access; directly invokes helpers"
+    },
+    {
+      "category": "configuration",
+      "methods": 1,
+      "scope": "hms.test_settings"
+    },
+    {
+      "category": "verification tooling",
+      "methods": 8,
+      "scope": "tests.test_checks"
+    },
+    {
+      "category": "database/component/integration/concurrency/system",
+      "methods": 162,
+      "scope": "remaining normal-suite methods; real ORM/persistence in test or setup; includes the one intended timing skip"
+    }
+  ],
+  "application_denominator": "All measured Python under accounts, allocations, audit, hms, hostels, payments, reports, students, including admin/URL declarations; omit only unchanged .coveragerc patterns. Exclude scripts/run_checks.py tooling subtotal only.",
+  "startup": "Dynamic test_function contexts; empty import/setup context excluded from numerator. Statement denominator retains every measured file.",
+  "srs_assessment": {
+    "criterion": "SRS 6.4: unit tests cover at least 70% of application logic",
+    "measured_statements": 1579,
+    "unit_executed_statements": 31,
+    "percent": 1.9632678910702976,
+    "observed_result": "Below 70% under this proposed conservative definition; SRS target not established. Final classification/acceptance remains with #41 and independent teammate review."
+  }
+}

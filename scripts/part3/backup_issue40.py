@@ -38,9 +38,13 @@ class SafetyError(Exception):
 
 def private_destination(value):
     path = Path(value).resolve()
-    if path.is_relative_to(ROOT) or path == Path(path.anchor):
+    if (
+        path.is_relative_to(ROOT)
+        or ROOT.is_relative_to(path)
+        or path == Path(path.anchor)
+    ):
         raise SafetyError(
-            "Backup storage must be a private directory outside the repository."
+            "Backup storage cannot be the repository, its contents, an ancestor directory, or a drive root."
         )
     return path
 
@@ -99,7 +103,35 @@ def source_settings(connection_file=None):
     return validate_source(settings.DATABASES["default"])
 
 
+def validate_private_acl(path, sid, *, explicit_only):
+    """Refuse unrelated explicit access rather than replacing someone else's ACL."""
+    acl = powershell_json(f"""$ErrorActionPreference='Stop'
+$acl=Get-Acl -LiteralPath {ps_literal(path)}
+$rules=@($acl.Access|ForEach-Object {{[ordered]@{{sid=$_.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value;access=[string]$_.AccessControlType;inherited=$_.IsInherited}}}})
+[ordered]@{{owner=$acl.GetOwner([System.Security.Principal.SecurityIdentifier]).Value;inheritance_disabled=$acl.AreAccessRulesProtected;rules=$rules}}|ConvertTo-Json -Compress -Depth 3
+""")
+    # Windows Python's mode0700 temporary directories grant OWNER RIGHTS and
+    # local Administrators as well as SYSTEM. OWNER RIGHTS is private only when
+    # the owner is trusted; administrators can already take Windows ownership.
+    allowed = {sid, "S-1-5-18", "S-1-5-32-544"}
+    if acl["owner"] not in allowed:
+        raise SafetyError("The backup directory belongs to another Windows principal.")
+    allowed.add("S-1-3-4")
+    for rule in acl["rules"]:
+        if (
+            rule["access"] == "Allow"
+            and (not explicit_only or not rule["inherited"])
+            and rule["sid"] not in allowed
+        ):
+            raise SafetyError(
+                "The backup directory explicitly grants access to another Windows principal; choose a private directory."
+            )
+    if not explicit_only and not acl["inheritance_disabled"]:
+        raise SafetyError("The backup directory still inherits Windows permissions.")
+
+
 def protect_directory(path):
+    path = private_destination(path)
     path.mkdir(parents=True, exist_ok=True)
     if os.name == "nt":
         result = subprocess.run(
@@ -112,6 +144,7 @@ def protect_directory(path):
         sid = identity[-1]
         if not re.fullmatch(r"S-\d+(?:-\d+)+", sid):
             raise SafetyError("The current Windows identity could not be validated.")
+        validate_private_acl(path, sid, explicit_only=True)
         subprocess.run(
             [
                 "icacls",
@@ -125,6 +158,7 @@ def protect_directory(path):
             check=True,
             capture_output=True,
         )
+        validate_private_acl(path, sid, explicit_only=False)
     else:
         path.chmod(0o700)
 

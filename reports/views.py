@@ -26,6 +26,7 @@ PAYMENT_COLUMNS = (
     ("Student Name", "student_name"),
     ("Hostel Name", "hostel"),
     ("Room", "room"),
+    ("Bed", "bed"),
     ("Fee Amount (INR)", "fee"),
     ("Amount Paid (INR)", "paid"),
     ("Due (INR)", "due"),

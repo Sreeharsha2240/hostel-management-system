@@ -54,8 +54,8 @@
           <td>{{ allocation.bed.room.hostel.name }}</td>
           <td>{{ allocation.bed.room.room_number }}</td>
           <td>{{ allocation.bed.label }}</td>
-          <td>{{ allocation.allocated_on }}</td>
-          <td>{{ allocation.vacated_on|default:"—" }}</td>
+          <td>{{ allocation.allocated_on|date:"d-m-Y" }}</td>
+          <td>{{ allocation.vacated_on|date:"d-m-Y"|default:"—" }}</td>
           <td>{{ allocation.get_status_display }}</td>
           <td>
             <a href="{% url 'allocation-history' allocation.student_id %}">History</a>
