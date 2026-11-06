@@ -116,8 +116,18 @@ separate local databases each need their own run, while clones configured to
 share one MySQL database need only one run. Accounts are database records, not
 Git files. It only runs with `DJANGO_DEBUG=True`; rerunning it resets passwords
 for the reserved `hms_demo_admin`, `hms_demo_warden` and `hms_demo_student`
-accounts. These are login accounts only; create/link any demo student profile
-and sample records separately if the presentation needs them.
+accounts. The sample-data command links the Student login to its demo profile.
+After creating the demo logins, seed hostels, rooms, students, allocations and
+payments with:
+
+```sh
+python manage.py create_demo_data
+```
+
+This command requires `DJANGO_DEBUG=True`, expects the demo Admin and Student
+logins to exist, and can be rerun without deleting existing data or duplicating
+its sample payments. It adds two demo hostels, four rooms, six clearly named
+demo student profiles, up to four allocations, and three example payments.
 
 ### Database setup (MySQL)
 
