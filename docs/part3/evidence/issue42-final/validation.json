@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "junit_identity_and_status_reconciliation": true,
+  "expected_timing_skip_and_separate_pass": true,
+  "source_working_bytes_and_committed_content_match": true,
+  "all_scopes_keep_full_file_line_and_branch_denominators": true,
+  "raw_coverage_immutable_after_reexports": true,
+  "json_lines_arcs_totals_reconcile": true,
+  "unique_xml_file_rows_and_per_line_branch_destinations_reconcile": true,
+  "exact_anchored_contexts_exclude_startup": true,
+  "exhaustive_method_inventory_matches_current_junit": true,
+  "classification_sha256": "67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7",
+  "original_pre_export_classification_sha256": "4bb5ccd486ea2da7c64029f484de923ea40846c8a9bf8d337dfe75688549ffe3",
+  "selection_core_sha256": "654020d1bb897ed83e4d2dfc4a265e25d41932af0e6f3778d69e0ddcbbaf5679",
+  "selection_core_frozen_at": "2026-11-06T03:27:27.875258+00:00",
+  "selection_core_frozen_before_unit_rates": true,
+  "selection_core_frozen_before_subset_export": true,
+  "post_export_index_repair": {
+    "performed_at": "2026-11-06T03:30:23.647384+00:00",
+    "original_pre_export_artifact_sha256": "4bb5ccd486ea2da7c64029f484de923ea40846c8a9bf8d337dfe75688549ffe3",
+    "selection_core_sha256": "654020d1bb897ed83e4d2dfc4a265e25d41932af0e6f3778d69e0ddcbbaf5679",
+    "selection_frozen_at": "2026-11-06T03:27:27.875258+00:00",
+    "choices_and_reasons_unchanged": true,
+    "reason": "Rebuilt redundant borderline_method_ids from the unchanged 24 flagged method rows. Exact conservative76 and sensitivity100 selections, all categories, flags and reasons are unchanged; no new coverage-blind selection is claimed after observing rates."
+  }
+}

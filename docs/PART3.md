@@ -55,9 +55,9 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-15 / #37](https://github.com/Sreeharsha2240/hostel-management-system/issues/37) | Vaishnavi (`VaishnaviCH6`) | 3 | Updated Test Case Document and RTM; all members contribute their cases |
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
-| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [current-main execution and owner appendix](part3/evidence/issue40-final/README.md), submitted for review; feeds System Validation Report |
+| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with QA acceptance pending; feeds System Validation Report |
 | [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
-| [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports from the same accepted revision/run |
+| [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports; [6 November measurements and proposed unit attribution](part3/evidence/issue42-final/README.md), pending independent review |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | Final review, publication, actual approvals and submission confirmation |
 
 The 4 November requirements audit found actual development spillover in
@@ -81,8 +81,11 @@ provide fresh results for all 13 HMS-18 cases after PRs #44/#49 merged, includin
 both full load workloads and naturally scheduled populated recovery. The first
 volume attempt failed after confirmed laptop standby; its raw metrics and the
 complete unchanged-threshold rerun are both retained. Handoff is supplied for
-#37's case document and #38's report. **#40 remains open** pending #37's
-reviewed-case/entry-criterion disposition and independent evidence PR review/merge.
+#37's case document and #38's report. PR #50 was merged by `harsha2240` on
+5 November; no formal APPROVED review is recorded. The [shared case register](part3/Test_Case_Document.md#53-hms-18-owner-execution-and-evidence-reconciliation)
+now links Devansh's 13 original results as OWNER PASS, with QA acceptance pending.
+**#40 remains open** pending #37's reviewed-case/entry-criterion disposition and
+actual independent evidence acceptance.
 The appendix does not complete either teammate's deliverable or global readiness.
 
 Original execution ownership is preserved:
@@ -138,7 +141,7 @@ confirm whether the instructor also needs PDF/DOCX exports.
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
 | [Branch Coverage Report](part3/Branch_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
 
-The two coverage reports have refreshed candidate measurements and [durable supporting evidence](part3/evidence/owned-defects/README.md); the [3 November measurements](part3/evidence/issue42/README.md) remain historical. Their build/report acceptance and unit classification remain pending independent teammate review. Neither the strict database-free subset nor a nonexhaustive component subset establishes the complete SRS 70% unit target. Other planned reports remain with their assigned owners.
+The two coverage reports now use [6 November current-main measurements](part3/evidence/issue42-final/README.md) on clean `9a0f814`: all 12 gates passed, with 190 methods (189 PASS, one expected timing skip followed by a separate timing PASS). Mixed coverage is 94.62% statements and 87.24% branches. An exhaustive proposal classifies the 190 ordinary Django methods before subset-rate extraction; separately attributed conservative and sensitivity scopes cover 25.65% and 39.84% of the retained application-statement denominator. The [startup/shared-setup diagnostic](part3/evidence/issue42-final/startup-context-diagnostic.json) shows that even all 181 observed method contexts cover only 792/1579 statements (50.16%): 713 executed statements occur exclusively outside method contexts. This bounds the current proxy; it does not establish inadequate unit tests or a formal SRS failure. The SRS unit-coverage criterion remains unproven pending joint #41/#42 classification, attribution and denominator review. The [earlier diagnostic measurements](part3/evidence/owned-defects/coverage-notes.md) and [3 November evidence](part3/evidence/issue42/README.md) remain historical. Independent report/build acceptance and teammates' deliverables remain with their assigned owners.
 
 Keep four distinct reports. Every report names the exact tested commit/tree,
 run date, tool/environment versions, data/setup, reproducible commands/steps,
@@ -187,8 +190,9 @@ The assigned execution issues explicitly cover these acceptance areas:
 - Performance: 50 concurrent users for 10 minutes, at least 95% of page requests
   within 2 seconds with no errors in the normal workload; 20 allocation timings under 3 seconds including save and
   concurrent-conflict correctness; 5,000 students/2,000 beds and search within
-  2 seconds. Repeat the post-pagination load comparison; earlier failed/blocked
-  attempts remain evidence pending a current rerun.
+  2 seconds. The completed post-pagination comparison and full volume rerun are
+  linked in the HMS-18 evidence above; earlier failed/blocked attempts remain
+  historical evidence alongside those recorded passing results.
 - Recovery: actual daily backup execution, a last-24-hour backup, populated
   restore into a separate database, completeness/consistency and at most
   24 hours of data loss. A one-off dump does not demonstrate scheduling.

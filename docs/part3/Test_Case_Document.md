@@ -109,12 +109,31 @@ The run summary recorded `success: true`, with zero failures and zero errors.
 
 **Important:** These automated test results do not establish that all 33 original test cases have individually passed. Individual test case statuses must be updated only when corresponding execution evidence is available. One automated test was skipped and is not counted as passed.
 
+### 5.3 HMS-18 owner execution and evidence reconciliation
+
+Devansh Gupta's contribution, reconciled **6 November 2026**, supplies the 13 original allocation, payment, report, performance and recovery case results. The linked observations were executed **5 November** on clean `0e358b4ce1fd02366184c7cb9c312b47dd093214` (tree `c6b74da5cc6987d9c38945f35c9ce0e43c42dfe0`). [PR #50](https://github.com/Sreeharsha2240/hostel-management-system/pull/50) published this evidence and was merged by `harsha2240` on **5 November at 06:31:28 UTC** as `8d60e83f1ce57ad99a2b2a22b3b5878f1390995b`. No formal `APPROVED` review is recorded.
+
+The 13 linked **OWNER PASS** statuses below replace their stale NOT RUN entries. They record observed owner execution against the submitted Test Plan, with **independent QA review of the case batch, priorities, method mappings, entry criteria and environment deviations still pending**. This update does not retroactively approve those entry criteria or accept the final submission build. Cases and statuses supplied by other owners are unchanged.
+
+| Owned evidence | Observed result | Durable reference |
+|---|---|---|
+| Full mixed suite and focused checks | 190 methods: 189 PASS, one expected timing skip followed by a separate timing PASS; 71 focused methods and 32 recovery safety methods passed. These counts are not original cases or unit-only tests. | [Commands, environment and hashes](evidence/issue40-final/summary.json); [JUnit outcomes](evidence/issue40-final/junit-summary.json); [focused methods](evidence/issue40-final/focused-methods.json) |
+| TC-ALC-01..06, TC-PAY-01..02, TC-RPT-01, TC-PERF-02 | Browser/HTTP/MySQL results include allocation, eligibility, transfer/release/history, payment receipts, required Bed and matching report formats; 20 committed allocations take 32.20–42.38 ms and overlapping conflicts preserve one winner. | [Browser observations](evidence/issue40-final/browser-results.json); [per-case actual results and defect/retest links](evidence/issue40-final/owner-cases.md) |
+| TC-PERF-01 | 100 students / 80 beds; 50 users, each at least 600.106 seconds; 28,696 samples, zero errors, 99.99303% within two seconds. | [Full workload and retained failed attempt](evidence/issue40-final/load-results.json) |
+| TC-PERF-03 | 5,000 students / 2,000 beds; 50 users, each at least 600.083 seconds; 29,096 samples, zero errors, every sample and search within two seconds. | [Full volume workload](evidence/issue40-final/load-results.json) |
+| TC-OPS-01 | Naturally triggered daily sandbox backup, 5.379 seconds old; all 18 table counts/row/schema digests match after a separate populated restore. Live source and its installed daily task were preserved; owned resources were cleaned up. | [Recovery and cleanup](evidence/issue40-final/recovery-results.json); [reproduction](evidence/issue40-final/README.md) |
+
+TC-ALC-05's raw browser result remains **PARTIAL** for fault injection; its linked, passing automated companion proves rollback and retry of the same transfer. The combined owner result records that qualification. The first volume attempt remains **FAIL** with 75 errors in 21,650 samples; the final volume result uses the complete unchanged-threshold rerun, not removal or relabelling of failed samples.
+
+The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original prerequisites, steps, expected and actual results, 14 SRS requirement mappings, source hashes and #45–#48 defect/retest references. The original plan has no per-case priorities; QA must review them rather than infer High-priority acceptance. Edge/Playwright in place of Selenium, MySQL 8.4.9 in place of 8.0, and loopback HTTP test flags remain declared deviations requiring review. Load and recovery figures describe their recorded source and host; they are not new measurements on this document's revision. All historical JSON remains unchanged. Whole-plan entry/exit criteria, integrated reporting and actual QA/Dev/PO approvals remain pending with #37/#38/#43.
+
 ## 6. Test Case Status Definitions
 
 | Status | Meaning |
 |---|---|
 | NOT RUN | Test has not been individually executed or verified. |
 | PASS | Actual result matches the expected result. |
+| OWNER PASS | The owner observed the expected behavior on the linked recorded source; independent QA case/scope/entry acceptance is pending. |
 | FAIL | Actual result differs from the expected result. |
 | BLOCKED | Execution cannot proceed due to an identified blocker. |
 | PARTIAL | Some expected behavior passed, but an identified portion remains unverified. |
@@ -154,20 +173,20 @@ The run summary recorded `success: true`, with zero failures and zero errors.
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-ALC-01 | REQ-14 | Allocate an available bed to an eligible student. | Allocation is completed successfully. | Devansh | NOT RUN |
-| TC-ALC-02 | REQ-15 | Attempt to allocate an already occupied bed. | The system rejects the allocation. | Devansh | NOT RUN |
-| TC-ALC-03 | REQ-15 | Attempt a second active allocation for the same student. | The system prevents duplicate active allocations. | Devansh | NOT RUN |
-| TC-ALC-04 | REQ-16 | Allocate a student to an incompatible hostel type. | The system rejects the invalid allocation. | Devansh | NOT RUN |
-| TC-ALC-05 | REQ-17 | Transfer a student from one allocation to another. | Transfer is processed correctly and allocation records remain consistent. | Devansh | NOT RUN |
-| TC-ALC-06 | REQ-18, REQ-19 | Release a student's allocation. | Bed availability is updated and allocation history is retained. | Devansh | NOT RUN |
+| TC-ALC-01 | REQ-14 | Allocate an available bed to an eligible student. | Allocation is completed successfully. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-alc-01--allocate-available-bed) |
+| TC-ALC-02 | REQ-15 | Attempt to allocate an already occupied bed. | The system rejects the allocation. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-alc-02--block-allocation-of-occupied-bed) |
+| TC-ALC-03 | REQ-15 | Attempt a second active allocation for the same student. | The system prevents duplicate active allocations. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-alc-03--block-second-allocation-for-a-student) |
+| TC-ALC-04 | REQ-16 | Allocate a student to an incompatible hostel type. | The system rejects the invalid allocation. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-alc-04--gender-and-hostel-type-mismatch) |
+| TC-ALC-05 | REQ-17 | Transfer a student from one allocation to another. | Transfer is processed correctly and allocation records remain consistent. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-alc-05--transfer-student) |
+| TC-ALC-06 | REQ-18, REQ-19 | Release a student's allocation. | Bed availability is updated and allocation history is retained. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-alc-06--release-allocation-and-history) |
 
 ### 7.5 Payment and Reporting
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-PAY-01 | REQ-20, REQ-21 | Record a valid payment. | Payment record is saved and the appropriate receipt is generated. | Devansh | NOT RUN |
-| TC-PAY-02 | REQ-22 | Check the payment status of a student. | Correct payment status is displayed. | Devansh | NOT RUN |
-| TC-RPT-01 | REQ-23 | Generate occupancy and payment-status reports. | Reports display accurate information. | Devansh | NOT RUN |
+| TC-PAY-01 | REQ-20, REQ-21 | Record a valid payment. | Payment record is saved and the appropriate receipt is generated. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-pay-01--record-payment-and-receipt) |
+| TC-PAY-02 | REQ-22 | Check the payment status of a student. | Correct payment status is displayed. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-pay-02--payment-status) |
+| TC-RPT-01 | REQ-23 | Generate occupancy and payment-status reports. | Reports display accurate information. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-rpt-01--occupancy-report) |
 
 
 ### 7.6 Security Testing
@@ -186,15 +205,15 @@ The run summary recorded `success: true`, with zero failures and zero errors.
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-PERF-01 | NFR-1 | Measure application response time under the planned load. | Response time meets the defined performance target. | Devansh | NOT RUN |
-| TC-PERF-02 | NFR-2 | Measure allocation processing time and test concurrent allocation requests. | Allocation remains correct and consistent under concurrent requests. | Devansh | NOT RUN |
-| TC-PERF-03 | NFR-3 | Test the application using the planned large dataset. | Application handles the planned data volume correctly. | Devansh | NOT RUN |
+| TC-PERF-01 | NFR-1 | Measure application response time under the planned load. | Response time meets the defined performance target. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-perf-01--response-time-under-load) |
+| TC-PERF-02 | NFR-2 | Measure allocation processing time and test concurrent allocation requests. | Allocation remains correct and consistent under concurrent requests. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-perf-02--allocation-time-and-concurrency) |
+| TC-PERF-03 | NFR-3 | Test the application using the planned large dataset. | Application handles the planned data volume correctly. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-perf-03--data-volume) |
 
 ### 7.8 Backup and Recovery
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-OPS-01 | NFR-4 | Create a database backup and restore it in a test environment. | Restored database contains the expected data and records. | Devansh | NOT RUN |
+| TC-OPS-01 | NFR-4 | Create a database backup and restore it in a test environment. | Restored database contains the expected data and records. | Devansh | [OWNER PASS](evidence/issue40-final/owner-cases.md#tc-ops-01--backup-and-restore) |
 
 ### 7.9 Compatibility and Usability
 
@@ -393,6 +412,8 @@ The exit criteria must be evaluated using actual execution evidence.
 6. The 56-test Students and Hostels result is a focused execution result, not proof that the entire application has passed.
 7. The System Validation Report and combined project report are separate deliverables.
 8. The full automated verification run reported 185 tests, with 184 passed, 1 skipped and 0 failures or errors. Overall coverage was 92.63%.
+
+9. On 6 November, Devansh reconciled only his 13 original HMS-18 cases to linked OWNER PASS evidence from 5 November and recorded the actual PR #50 merge. Original case IDs, other owners' rows, priorities and RTM mappings are preserved; QA acceptance is pending.
 
 ---
 **End of Test Case Document**
