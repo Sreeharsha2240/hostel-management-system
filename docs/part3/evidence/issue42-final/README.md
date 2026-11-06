@@ -9,6 +9,7 @@ Measured **2026-11-06**, clean candidate `9a0f814e403a6f83535e80a68db4150197eba7
 - `junit-summary.json`: every mixed/context method outcome and separate uninstrumented timing result.
 - `method-classification.json`: exhaustive method inventory with behavior-based rationale. Current corrected SHA-256: `67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7`. Selection chronology and index-only repair are recorded below.
 - `attribution.json`: proposed selections, observed contexts, methods without measured application contexts, fixed classification reference and interpretation limits.
+- `startup-context-diagnostic.json`: later read-only analysis of all nonempty method contexts versus empty startup/shared setup, with per-file counts/overlap and the current proxy's statement ceiling; no selectors or collection data changed.
 
 Earlier `evidence/issue42` and `evidence/owned-defects` metrics remain historical and unchanged. Raw `.coverage`, JSON/XML/JUnit and logs remain in ignored test outputs; publish only sanitized source paths, synthetic method names, relevant metadata and hashes. No credentials, real student data, connection secrets or database dumps belong here.
 
@@ -40,7 +41,13 @@ Mixed: **190 methods: 189 PASS, 0 failures, 0 errors, 1 skipped**. Full context 
 
 All environment versions are in `checks-run.json`; the context collection uses the same software/database setup, with deliberate coverage/output environment overrides described in `context-run.json`. Source manifest inputs: **158**; original raw artifact SHA-256 entries: **80**; read-only JSON/XML reexport hashes: **8**. The measured normal and context datasets are preserved unchanged by read-only reexports.
 
+The manifest retains the measured versions of `docs/PART3.md` and `docs/part3/Test_Case_Document.md`; both have subsequent documentation edits. Runtime, test and configuration inputs remain unchanged from the measured candidate. The original frozen artifact remains in private raw evidence under its recorded hash for teammate inspection; the repository artifact is the corrected version, and its serialized bytes are not claimed to predate the rates.
+
 The method decisions and exact 76/100 selections were frozen at **2026-11-06T03:27:27.875258+00:00**, before subset exports or unit-rate extraction. Original pre-export artifact SHA-256: `4bb5ccd486ea2da7c64029f484de923ea40846c8a9bf8d337dfe75688549ffe3`. A redundant borderline summary index was repaired afterward at **2026-11-06T03:30:23.647384+00:00** (21 cached IDs versus 24 unchanged flagged method rows). All categories, reasons, flags and selections remained unchanged; the corrected serialized artifact postdates the rates. Unchanged selection-core SHA-256: `654020d1bb897ed83e4d2dfc4a265e25d41932af0e6f3778d69e0ddcbbaf5679`. Of 85 primary component methods, 9 borderline cases are excluded from conservative76; sensitivity100 adds all24 borderline cases to conservative76. This correction does not claim a new coverage-blind selection after seeing results.
+
+The [startup/shared-setup diagnostic](startup-context-diagnostic.json) quantifies a limit of this proxy: **all 181 recorded nonempty test-method contexts together** cover only **792/1579 application statements (50.16%)**, and **328/378 branch outcomes (86.77%)**. These contexts include integration, system and tooling checks as well as proposed units. Their union is an upper bound for any selection of the existing observed methods, not a unit result.
+
+The empty context executes **735 statements**: **713 exclusively** there and **22 also within methods**. It mixes imports, declarations and shared setup. Thus reclassification alone cannot demonstrate 70% with this recorded method-only/full-file proxy. The 25.65%/39.84% figures do not establish inadequate unit tests or a formal SRS failure. QA must agree on application logic and appropriate attribution/instrumentation; this diagnostic does not credit shared setup to units or remove it from the denominator. Different execution, future tests or a reviewed denominator may differ. This later read-only analysis preserves the original data, frozen decisions and 76/100 selections; it is not a new unit run.
 
 ## Reproduction
 

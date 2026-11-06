@@ -2,11 +2,13 @@
 
 The mixed suite executes **1584/1674 statements (94.62%)**, with **90 missing**. The application subtotal is **1505/1579 (95.31%)**. Unit-attributed application coverage remains a reviewed-scope dependency, as detailed below.
 
-Separately attributed application statements: **405/1579 (25.65%)** for the conservative component proposal, and **629/1579 (39.84%)** for its broader sensitivity scope. Both observations are below 70% on this retained full-file proxy. The formal SRS unit-coverage criterion remains **UNPROVEN**, pending joint QA review of the classification and application-logic denominator.
+Separately attributed application statements: **405/1579 (25.65%)** for the conservative component proposal, and **629/1579 (39.84%)** for its broader sensitivity scope. Both observations are below 70% on this retained full-file proxy, whose all-method-context statement ceiling is **50.16% for this recorded dataset**, as quantified below. The formal SRS unit-coverage criterion remains **UNPROVEN**, pending joint QA review of the classification and application-logic denominator.
 
 Owner: Devansh Gupta (`DevaOnL`), [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42). Measured **2026-11-06**.
 
 Tested candidate: `9a0f814e403a6f83535e80a68db4150197eba74b`; tree: `c916feba77b7a2aad4d75626ddab4326948d6851`. The normal verification run records a **clean working tree**. Evidence and report additions follow measurement and do not relabel its SHA. **Candidate evidence; accepted submission revision, independent teammate review and joint #41 scope acceptance remain pending.**
+
+After measurement, `docs/PART3.md` and `docs/part3/Test_Case_Document.md` received documentation updates. Their original measured hashes remain in the manifest; runtime, test and configuration inputs remain unchanged from this tested candidate.
 
 Both coverage reports use [the same durable metrics](evidence/issue42-final/coverage-metrics.json), [normal verification metadata](evidence/issue42-final/checks-run.json), [context-run metadata](evidence/issue42-final/context-run.json), [JUnit outcomes](evidence/issue42-final/junit-summary.json), [exhaustive proposed classification](evidence/issue42-final/method-classification.json), [context attribution](evidence/issue42-final/attribution.json) and [reconciliation checks](evidence/issue42-final/validation.json). [Reproduction and limits](evidence/issue42-final/README.md) accompany them. Earlier `issue42` and `owned-defects` JSON remain historical and unchanged.
 
@@ -83,6 +85,10 @@ The **85** primary component methods include **9** borderline cases excluded fro
 | context_all | 1505/1579 | 95.31% | 330/378 | 87.30% |
 | component_proposal | 405/1579 | 25.65% | 173/378 | 45.77% |
 | component_sensitivity | 629/1579 | 39.84% | 261/378 | 69.05% |
+
+The [startup/shared-setup diagnostic](evidence/issue42-final/startup-context-diagnostic.json) quantifies a limit of this proxy: **all 181 recorded nonempty test-method contexts together** cover only **792/1579 application statements (50.16%)**, and **328/378 branch outcomes (86.77%)**. These contexts include integration, system and tooling checks as well as proposed units. Their union is an upper bound for any selection of the existing observed methods, not a unit result.
+
+The empty context executes **735 statements**: **713 exclusively** there and **22 also within methods**. It mixes imports, declarations and shared setup. Thus reclassification alone cannot demonstrate 70% with this recorded method-only/full-file proxy. The 25.65%/39.84% figures do not establish inadequate unit tests or a formal SRS failure. QA must agree on application logic and appropriate attribution/instrumentation; this diagnostic does not credit shared setup to units or remove it from the denominator. Different execution, future tests or a reviewed denominator may differ. This later read-only analysis preserves the original data, frozen decisions and 76/100 selections; it is not a new unit run.
 
 The submitted Test Plan §5 permits **Django TestCase for models, forms and views of each module**; it separately identifies views ↔ ORM ↔ MySQL interaction checks as integration. ORM fixture setup alone does not settle classification. The newly merged [Test Case Document](Test_Case_Document.md) supplies case references, but its merge does not establish QA review of this method classification or denominator. #41 owns the Unit Test Report; #42 provides coverage evidence and a proposed scope for their joint review.
 

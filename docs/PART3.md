@@ -141,7 +141,7 @@ confirm whether the instructor also needs PDF/DOCX exports.
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
 | [Branch Coverage Report](part3/Branch_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
 
-The two coverage reports now use [6 November current-main measurements](part3/evidence/issue42-final/README.md) on clean `9a0f814`: all 12 gates passed, with 190 methods (189 PASS, one expected timing skip followed by a separate timing PASS). Mixed coverage is 94.62% statements and 87.24% branches. An exhaustive proposal classifies the 190 ordinary Django methods before subset-rate extraction; separately attributed conservative and sensitivity scopes cover 25.65% and 39.84% of the retained application-statement denominator. Both observations are below 70% on that proxy; the SRS unit-coverage criterion remains unproven pending joint #41/#42 classification/denominator review. The [earlier diagnostic measurements](part3/evidence/owned-defects/coverage-notes.md) and [3 November evidence](part3/evidence/issue42/README.md) remain historical. Independent report/build acceptance and teammates' deliverables remain with their assigned owners.
+The two coverage reports now use [6 November current-main measurements](part3/evidence/issue42-final/README.md) on clean `9a0f814`: all 12 gates passed, with 190 methods (189 PASS, one expected timing skip followed by a separate timing PASS). Mixed coverage is 94.62% statements and 87.24% branches. An exhaustive proposal classifies the 190 ordinary Django methods before subset-rate extraction; separately attributed conservative and sensitivity scopes cover 25.65% and 39.84% of the retained application-statement denominator. The [startup/shared-setup diagnostic](part3/evidence/issue42-final/startup-context-diagnostic.json) shows that even all 181 observed method contexts cover only 792/1579 statements (50.16%): 713 executed statements occur exclusively outside method contexts. This bounds the current proxy; it does not establish inadequate unit tests or a formal SRS failure. The SRS unit-coverage criterion remains unproven pending joint #41/#42 classification, attribution and denominator review. The [earlier diagnostic measurements](part3/evidence/owned-defects/coverage-notes.md) and [3 November evidence](part3/evidence/issue42/README.md) remain historical. Independent report/build acceptance and teammates' deliverables remain with their assigned owners.
 
 Keep four distinct reports. Every report names the exact tested commit/tree,
 run date, tool/environment versions, data/setup, reproducible commands/steps,
@@ -190,8 +190,9 @@ The assigned execution issues explicitly cover these acceptance areas:
 - Performance: 50 concurrent users for 10 minutes, at least 95% of page requests
   within 2 seconds with no errors in the normal workload; 20 allocation timings under 3 seconds including save and
   concurrent-conflict correctness; 5,000 students/2,000 beds and search within
-  2 seconds. Repeat the post-pagination load comparison; earlier failed/blocked
-  attempts remain evidence pending a current rerun.
+  2 seconds. The completed post-pagination comparison and full volume rerun are
+  linked in the HMS-18 evidence above; earlier failed/blocked attempts remain
+  historical evidence alongside those recorded passing results.
 - Recovery: actual daily backup execution, a last-24-hour backup, populated
   restore into a separate database, completeness/consistency and at most
   24 hours of data loss. A one-off dump does not demonstrate scheduling.
