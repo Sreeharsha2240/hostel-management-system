@@ -1,0 +1,66 @@
+{
+  "source_commit": "9a0f814e403a6f83535e80a68db4150197eba74b",
+  "git_dirty": false,
+  "configuration": "[run]\ndynamic_context = test_function\nbranch = True\nsource = accounts,allocations,audit,hms,hostels,payments,reports,scripts,students\nomit =\n    */migrations/*\n    */tests.py\n    */test_*.py\n    */apps.py\n    */__init__.py\n    */settings.py\n    */asgi.py\n    */wsgi.py\n\n[report]\nfail_under = 70\nshow_missing = True\nskip_empty = True\n",
+  "collection_difference_from_tracked_config": "Only dynamic_context = test_function added; no report contexts at collection",
+  "commands": [
+    {
+      "name": "context-preflight",
+      "started_at": "2026-11-06T03:21:23.424526+00:00",
+      "arguments": [
+        "-c",
+        "import os;os.environ.setdefault('DJANGO_SETTINGS_MODULE','hms.settings');import django;django.setup();from django.db import connection;assert connection.vendor=='mysql' and connection.settings_dict['NAME']=='hms';c=connection.cursor();c.execute(\"SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='test_hms'\");assert c.fetchone() is None,'test_hms exists; identify its owner';connection.close();print('MySQL hms configuration verified; disposable test_hms absent')"
+      ],
+      "exit_code": 0,
+      "completed_at": "2026-11-06T03:21:24.102847+00:00"
+    },
+    {
+      "name": "context-tests",
+      "started_at": "2026-11-06T03:21:24.156775+00:00",
+      "arguments": [
+        "-m",
+        "coverage",
+        "run",
+        "manage.py",
+        "test",
+        "--noinput",
+        "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner"
+      ],
+      "exit_code": 0,
+      "completed_at": "2026-11-06T03:22:08.311733+00:00"
+    },
+    {
+      "name": "context-json",
+      "started_at": "2026-11-06T03:22:08.365227+00:00",
+      "arguments": [
+        "-m",
+        "coverage",
+        "json",
+        "--show-contexts",
+        "-o",
+        "<repository>\\test-results\\hms20-finish\\20261106T032022197510Z\\contexts\\coverage.json"
+      ],
+      "exit_code": 0,
+      "completed_at": "2026-11-06T03:22:09.221477+00:00"
+    },
+    {
+      "name": "context-xml",
+      "started_at": "2026-11-06T03:22:09.274148+00:00",
+      "arguments": [
+        "scripts/run_checks.py",
+        "--coverage-xml",
+        "<repository>\\test-results\\hms20-finish\\20261106T032022197510Z\\contexts\\coverage.xml"
+      ],
+      "exit_code": 0,
+      "completed_at": "2026-11-06T03:22:09.738967+00:00"
+    }
+  ],
+  "same_software_database_setup_as_full_checks": true,
+  "environment_scope": "Same Python/dependencies and MySQL setup; COVERAGE_FILE, COVERAGE_RCFILE, HMS_TEST_OUTPUT_DIR and PYTHONUNBUFFERED intentionally differ for context collection/output. Not byte-identical process environments.",
+  "test_outcomes": {
+    "tests": 190,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  }
+}
