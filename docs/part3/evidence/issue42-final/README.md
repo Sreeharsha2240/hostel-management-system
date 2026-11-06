@@ -67,9 +67,14 @@ This executes the **entire mixed suite**, not a standalone unit suite. Freeze th
 ```python
 import json, re
 from pathlib import Path
+
 root = Path("test-results/<new-run>/contexts")
 base = (root / ".coveragerc").read_text(encoding="utf-8")
-attribution = json.loads(Path("docs/part3/evidence/issue42-final/attribution.json").read_text(encoding="utf-8"))
+attribution = json.loads(
+    Path("docs/part3/evidence/issue42-final/attribution.json").read_text(
+        encoding="utf-8"
+    )
+)
 for scope in ("component_proposal", "component_sensitivity"):
     ids = attribution["scopes"][scope]["selected_methods"]
     expression = "^(?:" + "|".join(re.escape(value) for value in ids) + ")$"
