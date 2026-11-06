@@ -55,7 +55,7 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-15 / #37](https://github.com/Sreeharsha2240/hostel-management-system/issues/37) | Vaishnavi (`VaishnaviCH6`) | 3 | Updated Test Case Document and RTM; all members contribute their cases |
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
-| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [current-main execution and owner appendix](part3/evidence/issue40-final/README.md), submitted for review; feeds System Validation Report |
+| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with QA acceptance pending; feeds System Validation Report |
 | [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports; [6 November measurements and proposed unit attribution](part3/evidence/issue42-final/README.md), pending independent review |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | Final review, publication, actual approvals and submission confirmation |
@@ -81,8 +81,11 @@ provide fresh results for all 13 HMS-18 cases after PRs #44/#49 merged, includin
 both full load workloads and naturally scheduled populated recovery. The first
 volume attempt failed after confirmed laptop standby; its raw metrics and the
 complete unchanged-threshold rerun are both retained. Handoff is supplied for
-#37's case document and #38's report. **#40 remains open** pending #37's
-reviewed-case/entry-criterion disposition and independent evidence PR review/merge.
+#37's case document and #38's report. PR #50 was merged by `harsha2240` on
+5 November; no formal APPROVED review is recorded. The [shared case register](part3/Test_Case_Document.md#53-hms-18-owner-execution-and-evidence-reconciliation)
+now links Devansh's 13 original results as OWNER PASS, with QA acceptance pending.
+**#40 remains open** pending #37's reviewed-case/entry-criterion disposition and
+actual independent evidence acceptance.
 The appendix does not complete either teammate's deliverable or global readiness.
 
 Original execution ownership is preserved:
