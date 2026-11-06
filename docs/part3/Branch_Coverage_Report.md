@@ -1,16 +1,12 @@
 # Branch Coverage Report
 
-The mixed suite covers **342/392 branch outcomes (87.24%)**, with **50 missing**, including **46 partial missing outcomes**. The application subtotal is **330/378 (87.30%)**. Partial outcomes are already included in missing outcomes, not added to them. A branch is a measured source-to-destination outcome; `exit@N` denotes a negative code-object exit destination.
+Mixed statements: **1584/1772 (89.39%)**; mixed branches: **342/424 (80.66%)**. Application statements: **1505/1677 (89.74%)**; branches: **330/410 (80.49%)**.
 
-Separately attributed application statements: **405/1579 (25.65%)** for the conservative component proposal, and **629/1579 (39.84%)** for its broader sensitivity scope. Both observations are below 70% on this retained full-file proxy, whose all-method-context statement ceiling is **50.16% for this recorded dataset**, as quantified below. The formal SRS unit-coverage criterion remains **UNPROVEN**, pending joint QA review of the classification and application-logic denominator.
+The previously frozen **76 proposed component methods now also execute as a standalone suite**: 76 methods: 76 PASS, 0 failures, 0 errors, 0 skipped. Its complete coverage includes imports and shared fixture execution; method-only and empty-context observations are reported separately. **Formal SRS section 6.4 unit70 remains UNPROVEN** pending joint #41/#42 scope and application-logic agreement.
 
-Owner: Devansh Gupta (`DevaOnL`), [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42). Measured **2026-11-06**.
+Owner: Devansh Gupta (`DevaOnL`), [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42). Measured **2026-11-06** on clean current main `b936e4d8ef7efd37dd66fde022efcb44e5b386ee`, tree `1191cfa0aed5201d3529e2f63120c5b99a29e781`. This is a measured candidate; the team retains the accepted final submission-build decision. The source manifest retains the measured `docs/PART3.md` hash as its pre-publication documentation snapshot; its later owner index update does not relabel the measured SHA. `Test_Case_Document.md` remains unchanged in this refresh.
 
-Tested candidate: `9a0f814e403a6f83535e80a68db4150197eba74b`; tree: `c916feba77b7a2aad4d75626ddab4326948d6851`. The normal verification run records a **clean working tree**. Evidence and report additions follow measurement and do not relabel its SHA. **Candidate evidence; accepted submission revision, independent teammate review and joint #41 scope acceptance remain pending.**
-
-After measurement, `docs/PART3.md` and `docs/part3/Test_Case_Document.md` received documentation updates. Their original measured hashes remain in the manifest; runtime, test and configuration inputs remain unchanged from this tested candidate.
-
-Both coverage reports use [the same durable metrics](evidence/issue42-final/coverage-metrics.json), [normal verification metadata](evidence/issue42-final/checks-run.json), [context-run metadata](evidence/issue42-final/context-run.json), [JUnit outcomes](evidence/issue42-final/junit-summary.json), [exhaustive proposed classification](evidence/issue42-final/method-classification.json), [context attribution](evidence/issue42-final/attribution.json) and [reconciliation checks](evidence/issue42-final/validation.json). [Reproduction and limits](evidence/issue42-final/README.md) accompany them. Earlier `issue42` and `owned-defects` JSON remain historical and unchanged.
+Both reports use [current source metrics](evidence/issue42-main/coverage-metrics.json), [normal verification](evidence/issue42-main/checks-run.json), [serial collection commands](evidence/issue42-main/collection-run.json), [all JUnit outcomes](evidence/issue42-main/junit-summary.json), [attribution and frozen selection](evidence/issue42-main/attribution.json), [startup/setup partition](evidence/issue42-main/startup-context-diagnostic.json) and [reconciliation](evidence/issue42-main/validation.json). [Reproduction and limits](evidence/issue42-main/README.md) accompany them. All earlier evidence JSON, including `issue42-final`, is preserved unchanged.
 
 ## Environment and execution
 
@@ -28,15 +24,11 @@ Both coverage reports use [the same durable metrics](evidence/issue42-final/cove
 | ruff | 0.17.1 |
 | unittest-xml-reporting | 4.0.0 |
 
-MySQL 8.4 is the recorded substitution for the original Test Plan's MySQL 8.0 baseline; it still needs team acceptance. Tests use synthetic fixtures and disposable `test_hms`. Django/MySQL suites run serially.
+MySQL 8.4 remains the recorded substitution for the Test Plan's MySQL 8.0 baseline, pending team acceptance. Synthetic fixtures and disposable `test_hms` are used, with suites executed serially and preflight/postflight ownership checks.
 
-- Normal `python scripts/run_checks.py`: **190 methods: 189 PASS, 0 failures, 0 errors, 1 skipped**, with all **12 gates recording exit 0**. The intentional traced timing skip is followed by a separate **uninstrumented PASS**, which adds no coverage credit.
-- Context-instrumented **full mixed-suite** collection: **190 methods: 189 PASS, 0 failures, 0 errors, 1 skipped**. Proposed component percentages are filtered attribution from this full run, **not separate standalone unit-suite executions**.
-- The XML helper regression `tests.test_checks.VerificationRunnerTests.test_xml_keeps_same_named_package_files_and_only_selected_context_hits` is PASS in both current runs in this normal Windows environment. The restricted AppContainer failure previously documented for #38 was **not reproduced here**. These runs do not establish its root cause or that the other environment is fixed.
+Normal checks pass **all 12 gates**. Normal full suite: 190 methods: 189 PASS, 0 failures, 0 errors, 1 skipped. Context full suite: 190 methods: 189 PASS, 0 failures, 0 errors, 1 skipped. The single timing skip is expected under tracing; its separate uninstrumented rerun passes without adding coverage credit. Standalone76 contains no timing test and no skips. Application, test and configuration sources are unchanged by this coverage/reporting refresh.
 
-## Measurement scope and attribution
-
-The unchanged collection configuration is:
+The unchanged collection/report configuration is:
 
 ```ini
 [run]
@@ -58,46 +50,24 @@ show_missing = True
 skip_empty = True
 ```
 
-This measures **51 Python files**, with **49 nonempty XML rows**. The application subtotal retains measured application packages, including admin and URL declarations, and excludes only `scripts/run_checks.py` tooling. Empty denominators receive **N/A**. Templates, static assets/JavaScript, SQL, browser/load/recovery activity and `scripts/part3` are outside this Python measurement; omitted files' behavior is not waived. No new product tests, denominator exclusions or threshold changes were introduced for this coverage refresh.
+The context and standalone collections add only `dynamic_context = test_function`. All observations retain the complete current file/line/arc denominator, including declarations. The application subtotal excludes only runner tooling under `scripts/`; it remains a full-file proxy, not a reviewed definition of application logic. Missing-context methods receive no inferred credit.
 
-Every scope preserves the same measured file, statement and branch-outcome denominators. Unit attribution uses anchored, escaped exact method-context selections and excludes empty startup/import/shared setup context. Consequently, declarations and shared setup may remain in the full-file denominator without selected-method credit. This is a conservative attribution limitation, not a reviewed definition of application logic; do not credit shared startup execution to units or shrink the denominator to exercised files. Selected methods without measured runtime contexts receive no inferred coverage.
+## Current source gaps
 
-| Proposed scope | Selected methods | Observed measured method contexts | Without measured method context |
-|---|---|---|---|
-| component_proposal | 76 | 73 | 3 |
-| component_sensitivity | 100 | 97 | 3 |
+Main incorporated the seed/demo-data commands after the earlier `9a0f814` measurement. They remain measured at zero executed statements in this run; the denominator includes them. No percentage-driven tests or exclusions were added, and the commands were not invoked against the application database.
 
-The exhaustive proposed classification inventories **190 methods** and records individual rationale. The **method decisions and selections** were frozen at `2026-11-06T03:27:27.875258+00:00`, before subset exports or unit-rate extraction. Original pre-export artifact SHA-256: `4bb5ccd486ea2da7c64029f484de923ea40846c8a9bf8d337dfe75688549ffe3`. At `2026-11-06T03:30:23.647384+00:00`, independent checking found and repaired a redundant summary index: the cached borderline list had 21 entries while its unchanged method rows flagged 24. Categories, reasons, flags and both selected method lists were unchanged. Current corrected artifact SHA-256: `67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7`; unchanged selection-core SHA-256: `654020d1bb897ed83e4d2dfc4a265e25d41932af0e6f3778d69e0ddcbbaf5679`. The corrected serialized artifact was produced after viewing rates; its selection core predates them.
-
-The **85** primary component methods include **9** borderline cases excluded from the **76** conservative selections. The sensitivity selection adds **all 24** borderline cases (including those 9 and 15 cases with other primary categories) to produce **100** methods. This broader scope is reported transparently and does not replace the proposal to reach a target.
-
-| Proposed class | Methods |
-|---|---|
-| component-unit | 85 |
-| concurrency | 5 |
-| integration | 87 |
-| system | 4 |
-| tooling | 9 |
-
-| Application scope | Executed/measured statements | Statement coverage | Covered/measured outcomes | Branch coverage |
+| New measured file since issue42-final | Statements | Executed | Branch outcomes | Covered |
 |---|---|---|---|---|
-| mixed | 1505/1579 | 95.31% | 330/378 | 87.30% |
-| context_all | 1505/1579 | 95.31% | 330/378 | 87.30% |
-| component_proposal | 405/1579 | 25.65% | 173/378 | 45.77% |
-| component_sensitivity | 629/1579 | 39.84% | 261/378 | 69.05% |
+| accounts/management/commands/create_demo_accounts.py | 43 | 0 | 10 | 0 |
+| accounts/management/commands/create_demo_data.py | 55 | 0 | 22 | 0 |
 
-The [startup/shared-setup diagnostic](evidence/issue42-final/startup-context-diagnostic.json) quantifies a limit of this proxy: **all 181 recorded nonempty test-method contexts together** cover only **792/1579 application statements (50.16%)**, and **328/378 branch outcomes (86.77%)**. These contexts include integration, system and tooling checks as well as proposed units. Their union is an upper bound for any selection of the existing observed methods, not a unit result.
-
-The empty context executes **735 statements**: **713 exclusively** there and **22 also within methods**. It mixes imports, declarations and shared setup. Thus reclassification alone cannot demonstrate 70% with this recorded method-only/full-file proxy. The 25.65%/39.84% figures do not establish inadequate unit tests or a formal SRS failure. QA must agree on application logic and appropriate attribution/instrumentation; this diagnostic does not credit shared setup to units or remove it from the denominator. Different execution, future tests or a reviewed denominator may differ. This later read-only analysis preserves the original data, frozen decisions and 76/100 selections; it is not a new unit run.
-
-The submitted Test Plan §5 permits **Django TestCase for models, forms and views of each module**; it separately identifies views ↔ ORM ↔ MySQL interaction checks as integration. ORM fixture setup alone does not settle classification. The newly merged [Test Case Document](Test_Case_Document.md) supplies case references, but its merge does not establish QA review of this method classification or denominator. #41 owns the Unit Test Report; #42 provides coverage evidence and a proposed scope for their joint review.
-
+Historical October/PR #36 values (94.28% statements, 85.57% branches, 92.63% combined) and the earlier 6 November 1,674/392 configured denominator are baselines only. The current configured denominator is **1772 statements / 424 outcomes**; application denominator is **1677 / 410**. All actual missing paths remain visible below.
 
 ## Mixed-suite branch coverage by module
 
 | Module | Measured outcomes | Covered | Missing | Partial missing outcomes | Branch coverage |
 |---|---|---|---|---|---|
-| accounts | 68 | 55 | 13 | 13 | 80.88% |
+| accounts | 100 | 55 | 45 | 13 | 55.00% |
 | allocations | 92 | 78 | 14 | 14 | 84.78% |
 | audit | 26 | 23 | 3 | 3 | 88.46% |
 | hms | 26 | 23 | 3 | 3 | 88.46% |
@@ -106,12 +76,12 @@ The submitted Test Plan §5 permits **Django TestCase for models, forms and view
 | reports | 20 | 20 | 0 | 0 | 100.00% |
 | scripts | 14 | 12 | 2 | 2 | 85.71% |
 | students | 34 | 32 | 2 | 2 | 94.12% |
-| **Configured total** | 392 | 342 | 50 | 46 | 87.24% |
-| **Application subtotal (excludes scripts)** | 378 | 330 | 48 | 44 | 87.30% |
+| **Configured total** | 424 | 342 | 82 | 46 | 80.66% |
+| **Application subtotal (excludes scripts)** | 410 | 330 | 80 | 44 | 80.49% |
 
 ## Per-file branch coverage and missing paths
 
-Line/arc numbers refer to the exact tested candidate. Complete executed/missing inventories for all four scopes remain in the durable metrics JSON. Manual/browser evidence adds no Python coverage credit.
+Line/arc numbers refer to this exact tested revision. Partial missing outcomes are already included in missing branches; `exit@N` is a negative code-object exit destination. Complete inventories for every scope are in the durable JSON; browser/manual evidence adds no Python coverage credit.
 
 | File | Measured | Covered | Missing | Partial | Branch coverage | Missing arcs |
 |---|---|---|---|---|---|---|
@@ -119,6 +89,8 @@ Line/arc numbers refer to the exact tested candidate. Complete executed/missing 
 | [accounts/backends.py](../../accounts/backends.py) | 12 | 10 | 2 | 2 | 83.33% | 18 -> 19; 33 -> 34 |
 | [accounts/decorators.py](../../accounts/decorators.py) | 8 | 8 | 0 | 0 | 100.00% | none |
 | [accounts/forms.py](../../accounts/forms.py) | 6 | 4 | 2 | 2 | 66.67% | 18 -> 19; 28 -> 30 |
+| [accounts/management/commands/create_demo_accounts.py](../../accounts/management/commands/create_demo_accounts.py) | 10 | 0 | 10 | 0 | 0.00% | 24 -> 25; 24 -> 29; 30 -> 31; 30 -> 51; 35 -> 36; 35 -> 40; 43 -> 44; 43 -> 45; 52 -> 53; 52 -> 64 |
+| [accounts/management/commands/create_demo_data.py](../../accounts/management/commands/create_demo_data.py) | 22 | 0 | 22 | 0 | 0.00% | 33 -> 34; 33 -> 36; 38 -> 39; 38 -> 44; 53 -> 69; 53 -> 83; 69 -> 53; 69 -> 70; 85 -> 88; 85 -> 106; 108 -> 109; 108 -> 112; 118 -> 119; 118 -> 142; 120 -> 123; 120 -> 124; 133 -> 134; 133 -> 140; 162 -> 163; 162 -> 174; 163 -> 164; 163 -> 165 |
 | [accounts/middleware.py](../../accounts/middleware.py) | 2 | 2 | 0 | 0 | 100.00% | none |
 | [accounts/models.py](../../accounts/models.py) | 4 | 3 | 1 | 1 | 75.00% | 29 -> 30 |
 | [accounts/urls.py](../../accounts/urls.py) | 0 | 0 | 0 | 0 | N/A | none |
@@ -167,29 +139,45 @@ Line/arc numbers refer to the exact tested candidate. Complete executed/missing 
 | [students/urls.py](../../students/urls.py) | 0 | 0 | 0 | 0 | N/A | none |
 | [students/views.py](../../students/views.py) | 20 | 19 | 1 | 1 | 95.00% | 158 -> 159 |
 
-## Proposed component attribution and sensitivity
+## Proposed component scope and standalone evidence
 
-These are selected contexts from the full instrumented mixed-suite run. They do not claim independent standalone component execution or accepted classification.
+The original behavior-based classification remains [unchanged](evidence/issue42-final/method-classification.json) at source `9a0f814e403a6f83535e80a68db4150197eba74b`. All **19** referenced test-source hashes match the current measured source. Its method choices and exact 76/100 lists were frozen at `2026-11-06T03:27:27.875258+00:00` before the original subset rates. This execution reuses that proposal; it does not claim a new blind classification after seeing previous rates.
 
-| Application module | Measured outcomes | Proposal covered | Proposal coverage | Sensitivity covered | Sensitivity coverage |
+Classification SHA-256: `67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7`. Unchanged selection-core SHA-256: `654020d1bb897ed83e4d2dfc4a265e25d41932af0e6f3778d69e0ddcbbaf5679`. The historical borderline-index repair changed no method category, rationale, flag or selected list; its original/current hashes and chronology are retained in current attribution. Conservative76 excludes all nine primary-component borderlines; sensitivity100 adds all 24 flagged methods. No scope choice was revised to improve a percentage.
+
+| Proposed observation | Selected methods | Observed contexts | Without runtime context |
+|---|---|---|---|
+| component_proposal | 76 | 73 | 3 |
+| component_sensitivity | 100 | 97 | 3 |
+| standalone76_methods | 76 | 73 | 3 |
+
+| Application scope | Executed/measured statements | Statements | Covered/measured outcomes | Branches |
+|---|---|---|---|---|
+| Normal full mixed suite | 1505/1677 | 89.74% | 330/410 | 80.49% |
+| Context full mixed suite | 1505/1677 | 89.74% | 330/410 | 80.49% |
+| Mixed-run conservative76 method contexts | 405/1677 | 24.15% | 173/410 | 42.20% |
+| Mixed-run sensitivity100 method contexts | 629/1677 | 37.51% | 261/410 | 63.66% |
+| Standalone76 including startup/shared setup | 1127/1677 | 67.20% | 175/410 | 42.68% |
+| Standalone76 method contexts only | 414/1677 | 24.69% | 173/410 | 42.20% |
+| Standalone76 empty startup/shared-setup context | 735/1677 | 43.83% | 13/410 | 3.17% |
+
+The first two component selections are filtered from the full mixed run. The final three observations come from a separate process executing exactly the frozen76 IDs, reconciled against its exact JUnit identity set. Standalone aggregate coverage includes imports, declarations and startup/shared fixtures. The empty context also includes framework/database setup and teardown: this instrumentation cannot separate those causes or assign them to unit assertions. Method and empty counts overlap and must not be added without subtracting overlap.
+
+| Execution | Observed method contexts | Method statements | Empty-context statements | Empty-only statements | Overlap statements |
 |---|---|---|---|---|---|
-| accounts | 68 | 21 | 30.88% | 38 | 55.88% |
-| allocations | 92 | 34 | 36.96% | 62 | 67.39% |
-| audit | 26 | 10 | 38.46% | 21 | 80.77% |
-| hms | 26 | 22 | 84.62% | 22 | 84.62% |
-| hostels | 58 | 30 | 51.72% | 43 | 74.14% |
-| payments | 54 | 16 | 29.63% | 31 | 57.41% |
-| reports | 20 | 20 | 100.00% | 20 | 100.00% |
-| students | 34 | 20 | 58.82% | 24 | 70.59% |
-| **Application subtotal** | 378 | 173 | 45.77% | 261 | 69.05% |
+| mixed | 181 | 792 | 735 | 713 | 22 |
+| standalone76 | 73 | 414 | 735 | 713 | 22 |
 
-## Gate, SRS assessment and acceptance limits
+Standalone76 method attribution executes 414 application statements versus 405 for the same76 selected from the full mixed run. All nine additional lines are imports/class/function declarations in `accounts/backends.py` (3, 5, 6, 7, 8, 11, 12, 13, 15). Their context differs with import timing and test order; no additional tested behavior is inferred. The method-context percentage is an execution observation, not a comparison of assertion strength.
 
-The unchanged repository gate combines statement and branch outcomes: `(1584 + 342) / (1674 + 392) = 93.22%` against `fail_under = 70`. The normal verification run records the gate as passed. This is different from the separate statement and branch rates. The Part 3 instructions do not define a separate branch percentage threshold.
+The submitted Test Plan permits Django model/form/view component unit tests and separately describes ORM/MySQL interaction integration checks. ORM fixtures alone do not settle classification. Persistent fixture execution is disclosed, not treated as independent scope acceptance. #41 retains the Unit Test Report and case mapping; #42 provides these owner coverage inputs.
 
-SRS §6.4 states that **unit tests cover at least 70% of application logic**. **UNPROVEN pending joint #41 scope/denominator review and independent acceptance.** The component proposal and sensitivity values are measured observations under proposed classifications. Neither the mixed-suite score nor a proposed percentage establishes a final SRS PASS or FAIL. Diagnostic `--fail-under=0` permits export of observations and does not pass or change a unit threshold.
+## Gate and acceptance limits
 
-Reports preserve actual missing lines/arcs and classification uncertainty. Coverage measures execution, not assertion quality, all-case execution, RTM acceptance, absence of defects or system readiness. #37/#38/#41/#43 retain their assigned deliverables and approvals. Both coverage reports and the final accepted revision require actual independent teammate review. Final source/test changes require matching evidence; previous results remain historical.
+The unchanged configured gate combines statements and branch outcomes: `(1584 + 342) / (1772 + 424) = 87.70%` against `fail_under = 70`. Normal verification passes this combined gate. It is a different metric from statement coverage, branch coverage and SRS unit70. No separate Part 3 branch threshold is specified. Diagnostic exports use `fail_under = 0` only to preserve observations, without changing the normal gate.
 
+**SRS section 6.4 unit-test application-logic coverage of at least 70%: UNPROVEN.** Neither a startup-inclusive standalone percentage nor a mixed-suite percentage establishes its PASS or FAIL. The proposed classification and full-file denominator require joint independent #41/#42 review.
+
+PR #54 received an actual independent approval from `harsha2240` and merged on 6 November at `af3da3af513e8d413093132486ff1206c0d1f312`. That review accepted the previous documentation/evidence reconciliation while preserving the unit70 and QA acceptance limitations. **These refreshed current-main reports and new standalone evidence require fresh independent review.** Earlier review and CI do not approve the new evidence, select the final submission build or complete the Unit/System reports. Source/test/configuration changes require refreshed affected evidence. Coverage does not establish assertion quality, RTM completion or whole-system readiness.
 
 See the separate [Code Coverage Report](Code_Coverage_Report.md).
