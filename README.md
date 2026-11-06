@@ -104,6 +104,21 @@ remain subject to team review.
 - Sessions expire after 15 minutes of inactivity. For HTTPS, set `DJANGO_SESSION_COOKIE_SECURE=True` as described below.
 - Verify authentication behavior with `python manage.py test accounts.tests`. That suite includes a local test-client timing check requiring login and each role's dashboard to respond in under two seconds; production response times depend on the deployment environment.
 
+For a local presentation, create the three demo logins after applying migrations:
+
+```sh
+python manage.py create_demo_accounts
+```
+
+The command prompts for each password without displaying it and validates it
+against the configured password policy. Run it once per database: clones with
+separate local databases each need their own run, while clones configured to
+share one MySQL database need only one run. Accounts are database records, not
+Git files. It only runs with `DJANGO_DEBUG=True`; rerunning it resets passwords
+for the reserved `hms_demo_admin`, `hms_demo_warden` and `hms_demo_student`
+accounts. These are login accounts only; create/link any demo student profile
+and sample records separately if the presentation needs them.
+
 ### Database setup (MySQL)
 
 1. Install MySQL Server 8 (Windows: `winget install Oracle.MySQL`, then run MySQL Configurator from the Start menu; Ubuntu: `sudo apt install mysql-server`) and make sure the server is running on port 3306.
