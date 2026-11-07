@@ -1,4 +1,4 @@
-﻿# HMS-17 Student and Hostel Validation Evidence
+# HMS-17 Student and Hostel Validation Evidence
 
 GitHub issue: #39  
 Branch: `test/HMS-17-system-validation`
@@ -61,25 +61,21 @@ The automated verification metadata records `git_dirty: true`. Therefore, this r
 
 ## 4. Manual browser testing – HMS-17
 
-Eight assigned test cases were manually executed through the application interface on 7 November 2026.
+The owner execution record says eight assigned cases were exercised on 7 November. The source manual record is retained unchanged. This table separates that owner-reported result from the case-level evidence disposition used by the Test Case Document.
 
-| Test Case | Description | Result |
+| Test Case | Owner-reported result | QA evidence disposition |
 |---|---|---|
-| TC-STU-01 | Student Registration | PASS |
-| TC-STU-02 | Student Validation | PASS |
-| TC-STU-03 | Student Search | PASS |
-| TC-STU-04 | Update Student Details | PASS |
-| TC-STU-05 | Student Deactivation | PASS |
-| TC-HST-01 | Hostel and Room Creation | PASS |
-| TC-HST-02 | Bed Availability and Filtering | PASS |
-| TC-QUAL-01 | Warden Usability | PARTIAL |
-| **Total** | **8 test cases** | **7 PASS, 1 PARTIAL** |
+| TC-STU-01 — Student Registration | PASS | NOT RUN: no case-specific registration result or screenshot was located in the reviewed evidence. The owner summary is preserved as an unverified report. |
+| TC-STU-02 — Student Validation | PASS | OWNER PASS: duplicate-ID and mandatory-field screenshots are present; broader persistence checks still require case review. |
+| TC-STU-03 — Student Search | PASS | OWNER PASS: full ID, partial name and hostel search screenshots are present. |
+| TC-STU-04 — Update Student Details | PASS | OWNER PASS: update screenshot is present; the current-source automated companion asserts Student ID immutability. |
+| TC-STU-05 — Student Deactivation | PASS | OWNER PASS: blocked-active-allocation and successful deactivation screenshots are present. |
+| TC-HST-01 — Hostel and Room Creation | PASS | OWNER PASS (reported): no named case screenshot was found in the listed evidence. |
+| TC-HST-02 — Bed Availability and Filtering | PASS | OWNER PASS: available-bed and filter screenshots are present. |
+| TC-QUAL-01 — Warden Usability | PASS | PARTIAL: dashboard/navigation/Students/Beds page checks in Firefox and Edge are reported; the guide-based new-Warden task and five-minute timing are not recorded. |
+| **Total** | **8 owner-reported cases** | **6 OWNER PASS, 1 PARTIAL, 1 NOT RUN** |
 
-The tests covered student registration, validation, search, updates, deactivation, hostel and room creation, bed availability filtering, and Warden interface usability.
-
-For student deactivation, the system correctly prevented deactivation while an active bed allocation existed. Deactivation succeeded after the allocation was completed.
-
-Warden usability checks covered the dashboard, module navigation, Students page and Beds page in Firefox and Edge. A timed walkthrough by a new warden using the one-page guide, including the five-minute target, was not recorded; TC-QUAL-01 is therefore PARTIAL.
+The OWNER PASS labels preserve the executor's observations and do not mean the entire Test Plan cases were independently accepted. Browser versions, exact participant experience, portability and SRS office-hours availability are not established by these runs.
 
 ## 5. Screenshot evidence
 

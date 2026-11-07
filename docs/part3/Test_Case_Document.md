@@ -152,7 +152,7 @@ This was a local Windows/MySQL run. It does not establish the full Test Plan com
 
 | Test Case ID | Test Scenario | Actual Result | Status |
 |---|---|---|---|
-| TC-STU-01 | Student Registration | Student record was created successfully using valid information. | PASS |
+| TC-STU-01 | Student Registration | No case-specific saved result or screenshot is available in the reviewed evidence; retain the owner report as unverified. | NOT RUN |
 | TC-STU-02 | Student Validation | Duplicate Student ID and missing mandatory fields were correctly rejected with validation messages. | PASS |
 | TC-STU-03 | Student Search | Full Student ID, partial name and hostel searches returned matching records. | PASS |
 | TC-STU-04 | Update Student Details | Student contact information was updated and saved successfully. | PASS |
@@ -231,7 +231,7 @@ Seven assigned cases met their recorded manual expectations. TC-QUAL-01 is PARTI
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-STU-01 | REQ-5 | Register a student using valid information. | Student record is created successfully. | Vaishnavi | PASS |
+| TC-STU-01 | REQ-5 | Register a student using valid information. | Student record is created successfully. | Vaishnavi | NOT RUN (owner summary reports a pass; case-level evidence was not located) |
 | TC-STU-02 | REQ-5, REQ-6 | Submit invalid or duplicate student information. | Invalid or duplicate records are rejected with validation messages. | Vaishnavi | PASS |
 | TC-STU-03 | REQ-7 | Search students using student ID or supported search fields. | Matching student records are displayed. | Vaishnavi | PASS |
 | TC-STU-04 | REQ-8 | Update an existing student's information. | Changes are saved correctly and the student ID remains unchanged. | Vaishnavi | PASS |
@@ -493,7 +493,7 @@ The exit criteria must be evaluated using actual execution evidence.
 
 ## 13. HMS-17 Evidence Revision – 7 November 2026
 
-Vaishnavi supplied the manual HMS-17 execution record and screenshots for TC-STU-01..05, TC-HST-01..02 and TC-QUAL-01. This revision records the seven fully observed cases as PASS and TC-QUAL-01 as PARTIAL because no new-warden participant, one-page-guide walkthrough or measured five-minute result was recorded. The manual run is bound to application commit `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`; compatibility beyond the recorded Firefox and Edge sessions and the SRS availability target remain unverified. No other owner's status or approval is inferred.
+Vaishnavi supplied the manual HMS-17 execution record and screenshots for TC-STU-01..05, TC-HST-01..02 and TC-QUAL-01. This revision records six cases as OWNER PASS, TC-STU-01 as NOT RUN because its case-specific registration result/evidence was not located, and TC-QUAL-01 as PARTIAL because no new-warden participant, one-page-guide walkthrough or measured five-minute result was recorded. The owner source manual record continues to report eight cases exercised; this register preserves that report without treating unsupported detail as accepted case evidence. The manual run is bound to application commit `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`; compatibility beyond the recorded Firefox and Edge sessions and the SRS availability target remain unverified. No other owner's status or approval is inferred.
 
 ---
 **End of Test Case Document**
