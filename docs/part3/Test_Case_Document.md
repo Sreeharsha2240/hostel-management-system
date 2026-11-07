@@ -142,9 +142,11 @@ Manual functional and usability testing for HMS-17 was performed on **7 November
 | Database | MySQL 8.0 |
 | Test Data | Synthetic demo data |
 | Accounts Used | Admin, Warden and Student demo accounts |
-| Tested Commit | [Record verified commit hash] |
+| Tested Commit | `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a` |
 
 Firefox was used to capture the retained functional screenshots. The application was also accessed and tested in Microsoft Edge, with additional browser evidence captured separately. All three demo accounts (Admin, Warden and Student) were used during the testing process.
+
+This was a local Windows/MySQL run. It does not establish the full Test Plan compatibility matrix (latest two Chrome, Firefox and Edge versions, Linux server portability, and a real mobile client) or the 99% availability target; those were not measured here.
 
 #### 5.4.2 Manual Test Execution Results
 
@@ -157,7 +159,7 @@ Firefox was used to capture the retained functional screenshots. The application
 | TC-STU-05 | Student Deactivation | Deactivation was blocked while an active allocation existed. After completing the allocation, deactivation succeeded. | PASS |
 | TC-HST-01 | Hostel and Room Creation | Hostel and room creation succeeded. Duplicate rooms and invalid capacities were rejected, and beds were generated automatically. | PASS |
 | TC-HST-02 | Bed Availability and Filtering | Bed availability and filters for hostel, floor, room type and status were verified. | PASS |
-| TC-QUAL-01 | Warden Usability | Dashboard, navigation, Students page and Beds page were checked for clarity and ease of use in Firefox and Edge. | PASS |
+| TC-QUAL-01 | Warden Usability | Dashboard, navigation, Students page and Beds page were checked in Firefox and Edge. A timed first-use walkthrough by a new warden using the one-page guide was not recorded, so the five-minute usability criterion remains unverified. | PARTIAL |
 
 #### 5.4.3 Screenshot Evidence
 
@@ -191,14 +193,15 @@ Screenshots are retained in the repository's `Screenshot/` directory.
 | Result | Count |
 |---|---:|
 | Total Test Cases | 8 |
-| Passed | 8 |
+| Passed | 7 |
+| Partial | 1 |
 | Failed | 0 |
 | Blocked | 0 |
 | Not Run | 0 |
 
-**Overall Result: PASS**
+**Overall Result: PARTIAL**
 
-All eight assigned HMS-17 test cases passed manual execution. The results are documented separately from the historical automated test results in Sections 5.1 and 5.2. Supporting screenshots are retained in the `Screenshot/` directory.
+Seven assigned cases met their recorded manual expectations. TC-QUAL-01 is PARTIAL: the observed page checks do not establish the required timed new-warden walkthrough. Results are documented separately from the historical automated test results in Sections 5.1 and 5.2. Supporting screenshots are retained in the `Screenshot/` directory.
 
 ## 6. Test Case Status Definitions
 
@@ -292,7 +295,7 @@ All eight assigned HMS-17 test cases passed manual execution. The results are do
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-QUAL-01 | Quality attributes | Access the application using supported browsers and check basic usability. | Application functions correctly across supported browsers and remains usable. | Vaishnavi | PASS |
+| TC-QUAL-01 | Quality attributes | Access the application using supported browsers and check basic usability. | Application functions correctly across supported browsers and remains usable. | Vaishnavi | PARTIAL |
 
 ### 7.10 Sprint 1 and Sprint 2 Regression Test Cases
 
@@ -487,6 +490,10 @@ The exit criteria must be evaluated using actual execution evidence.
 8. The full automated verification run reported 185 tests, with 184 passed, 1 skipped and 0 failures or errors. Overall coverage was 92.63%.
 
 9. On 6 November, Devansh reconciled only his 13 original HMS-18 cases to linked OWNER PASS evidence from 5 November and recorded the actual PR #50 merge. Original case IDs, other owners' rows, priorities and RTM mappings are preserved; QA acceptance is pending.
+
+## 13. HMS-17 Evidence Revision – 7 November 2026
+
+Vaishnavi supplied the manual HMS-17 execution record and screenshots for TC-STU-01..05, TC-HST-01..02 and TC-QUAL-01. This revision records the seven fully observed cases as PASS and TC-QUAL-01 as PARTIAL because no new-warden participant, one-page-guide walkthrough or measured five-minute result was recorded. The manual run is bound to application commit `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`; compatibility beyond the recorded Firefox and Edge sessions and the SRS availability target remain unverified. No other owner's status or approval is inferred.
 
 ---
 **End of Test Case Document**

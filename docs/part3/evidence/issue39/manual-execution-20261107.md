@@ -19,7 +19,7 @@
 | TC-STU-05 | Student Deactivation | PASS |
 | TC-HST-01 | Hostel and Room Creation | PASS |
 | TC-HST-02 | Bed Availability and Filtering | PASS |
-| TC-QUAL-01 | Warden Usability | PASS |
+| TC-QUAL-01 | Warden Usability | PARTIAL |
 
 ## 2. Screenshot Evidence
 
@@ -32,6 +32,8 @@ Screenshots are stored in the repository's `Screenshot/` directory.
 
 ## 3. Overall Result
 
-**8 test cases executed – 8 passed, 0 failed, 0 blocked.**
+**8 test cases exercised – 7 passed, 1 partial, 0 failed, 0 blocked.**
 
-**Final Status: PASS**
+TC-QUAL-01 is partial because no timed first-use walkthrough by a new warden using the one-page guide was recorded. The Firefox/Edge page checks do not establish the five-minute criterion or the broader browser/platform/availability matrix.
+
+**Final Status: PARTIAL**

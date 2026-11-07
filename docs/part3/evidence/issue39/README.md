@@ -24,7 +24,8 @@ All 57 tests passed with no failures, errors or skips.
 A full verification run completed successfully on 5 November 2026.
 
 - Verification gates: 12 passed.
-- Tests discovered: 190.
+- Test methods discovered: 190.
+- Passed: 189.
 - Failures: 0.
 - Errors: 0.
 - Skipped under coverage instrumentation: 1.
@@ -71,14 +72,14 @@ Eight assigned test cases were manually executed through the application interfa
 | TC-STU-05 | Student Deactivation | PASS |
 | TC-HST-01 | Hostel and Room Creation | PASS |
 | TC-HST-02 | Bed Availability and Filtering | PASS |
-| TC-QUAL-01 | Warden Usability | PASS |
-| **Total** | **8 test cases** | **8 PASS** |
+| TC-QUAL-01 | Warden Usability | PARTIAL |
+| **Total** | **8 test cases** | **7 PASS, 1 PARTIAL** |
 
 The tests covered student registration, validation, search, updates, deactivation, hostel and room creation, bed availability filtering, and Warden interface usability.
 
 For student deactivation, the system correctly prevented deactivation while an active bed allocation existed. Deactivation succeeded after the allocation was completed.
 
-Warden usability checks covered the dashboard, module navigation, Students page and Beds page. The usability checks were performed in Firefox and Edge.
+Warden usability checks covered the dashboard, module navigation, Students page and Beds page in Firefox and Edge. A timed walkthrough by a new warden using the one-page guide, including the five-minute target, was not recorded; TC-QUAL-01 is therefore PARTIAL.
 
 ## 5. Screenshot evidence
 
@@ -121,8 +122,8 @@ The original full verification output is retained locally under:
 The automated and manual results provide separate evidence for HMS-17.
 
 - Automated evidence covers the Student and Hostel test suites and repository verification.
-- Manual evidence covers all eight assigned HMS-17 test cases.
+- Manual execution evidence covers all eight assigned HMS-17 case IDs: seven met their recorded expectations and TC-QUAL-01 is PARTIAL as described above.
 - Browser usability checks were performed in Mozilla Firefox and Microsoft Edge.
-- No Chrome or mobile-client testing is claimed in this evidence.
+- No testing of the latest two versions of Chrome/Firefox/Edge as a compatibility matrix, Linux server portability, a real mobile client, or the SRS 99% availability target is claimed. These remain outside the evidence collected for this local miniproject run and must not be inferred from the Firefox/Edge checks.
 
 Test-case statuses are recorded individually against their expected results and supporting execution evidence. HMS-15 review and approval status remains separate from HMS-17 execution status.
