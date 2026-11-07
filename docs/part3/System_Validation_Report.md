@@ -1,6 +1,6 @@
 # System Validation Report — HMS-16
 
-**HMS-16 owner-case execution: 11 PASS, 1 PARTIAL. Whole-plan readiness: NOT READY.** This update records testing on current `main` (`8322b4c20c067d512c4bb439fdedd19d4fa27223`) using synthetic data and a disposable local MySQL 8.0.46 instance. It applies the mini-project scope set by the project owner. It does not claim a deployed HTTPS endpoint, complete whole-plan acceptance, or team approvals.
+**HMS-16 owner-case execution: 11 PASS, 1 PARTIAL. Whole-plan readiness: NOT READY.** The historical focused run tested the 5 November `main` revision `8322b4c20c067d512c4bb439fdedd19d4fa27223` using synthetic data and a disposable local MySQL 8.0.46 instance. It does not claim a deployed HTTPS endpoint, complete whole-plan acceptance, or team approvals.
 
 ## HMS-16 execution environment and results
 
@@ -37,7 +37,7 @@ The test-case register statuses below reflect the focused MySQL execution. Metho
 | TC-SEC-06 — HTTPS/cookies | Secure/HttpOnly session and CSRF cookie flags pass in the Django test client; production-style `check --deploy` passes. No real TLS endpoint or HTTP-to-HTTPS exchange was tested. | PARTIAL |
 | TC-SEC-07 — administrative audit | Admin actor attribution, create/update/deactivate events, secret minimization and immutable audit-event tests | PASS |
 
-TC-SEC-06 is partial because the mini-project runs locally and has no deployed HTTPS host. I did not label a test-client HTTPS request as evidence of a real TLS handshake. If the submission rubric requires deployed transport validation, this case needs an approved test host; otherwise record the mini-project scope deviation with the instructor/team.
+TC-SEC-06 remains PARTIAL until actual HTTP-to-HTTPS redirection, TLS protocol validation and authenticated Secure/HttpOnly session-cookie inspection are recorded. The submitted Test Plan explicitly requires these checks and separately requires an OWASP ZAP baseline (TC-SEC-08 in the updated register). A real isolated HTTPS test endpoint is sufficient; public hosting is unnecessary. Test-client flags and deployment-settings checks do not prove a network TLS handshake. Any authorized change to the original criteria must be recorded separately, preserving the unmet original outcome.
 
 ## Integrated HMS-17 evidence — 7 November 2026
 
@@ -45,7 +45,7 @@ PR #58 merged to `main` as `896b4f343e1e3f467155352820124f5931d12c3d`. Its teste
 
 The manual HMS-17 run remains bound to application commit `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`, not the current submission tree. The owner record reports eight case IDs exercised. The reviewed evidence disposition is **6 OWNER PASS, TC-STU-01 NOT RUN** (no case-specific registration result or screenshot located), and **TC-QUAL-01 PARTIAL** (no timed first-use walkthrough by a new Warden using the one-page guide). Firefox and Edge page checks are recorded; they do not establish the full compatibility, platform, mobile or availability requirements. See the [HMS-17 evidence index](evidence/issue39/README.md), [manual record](evidence/issue39/manual-execution-20261107.md), and the [case register](Test_Case_Document.md#54-manual-browser-testing--hms-17).
 
-HMS-18/#40 owner evidence for 13 cases is present under `docs/part3/evidence/issue40-final/`; recorded cases include the TC-ALC-05 browser PARTIAL, retained failed load attempt and passing unchanged-threshold rerun, and populated recovery result. QA still needs to disposition the reviewed-case/entry criteria, priorities and environment/tool deviations. HMS-15/#37's new local reconciliation branch has not been published; the shared case register and QA acceptance remain incomplete. HMS-19/#41's Unit Test Report is not present. HMS-20/#42 coverage reports are published and the issue is closed as a reporting task, while formal SRS unit70 remains UNPROVEN.
+HMS-18/#40 owner evidence for 13 cases is present under `docs/part3/evidence/issue40-final/`; recorded cases include the TC-ALC-05 browser PARTIAL, retained failed load attempt and passing unchanged-threshold rerun, and populated recovery result. QA still needs to disposition the reviewed-case/entry criteria, priorities and environment/tool deviations. The [HMS-15 case document](Test_Case_Document.md) now supplies complete case records, 61 planned IDs and the preserved 36-requirement RTM; this documentation delivery does not approve historical entry criteria or final case acceptance. Section 6 distinguishes original-case metrics from the expanded design denominator and current method evidence. HMS-19/#41's Unit Test Report is not present. HMS-20/#42 coverage reports are published and the issue is closed as a reporting task, while formal SRS unit70 remains UNPROVEN.
 
 ## Integrated report and exit criteria
 

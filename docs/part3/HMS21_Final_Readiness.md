@@ -1,27 +1,27 @@
 # HMS-21 Final Readiness Checkpoint
 
 **Checked:** 7 November 2026
-**Published main revision checked:** `896b4f343e1e3f467155352820124f5931d12c3d`
+**Published main revision used for this update:** `70c9fe20e462eb0b052e15434f19b347a793afa1`
 **Readiness:** **NOT READY**. This checkpoint records verified deliverables and blockers; it is not an approval or submission receipt.
 
 ## Required Part 3 deliverables
 
 | Deliverable | Current state | Remaining work |
 |---|---|---|
-| Test Case Document and RTM (#37) | Present on main; it retains case IDs and includes owner evidence through PR #58. | The latest HMS-15 reconciliation branch is local and unpublished. QA and case owners still need to review priorities, entry criteria, case evidence and RTM coverage. |
+| Test Case Document and RTM (#37) | This revision delivers the complete 61-case design/register and all 36 core RTM rows, preserving original IDs and evidence. | Devansh authorized this documentation delivery without additional teammate messages. Actual case execution, priority agreement, historical entry/deviation acceptance and final QA/Dev/PO approvals remain distinct pending work. |
 | Unit Test Report (#41) | **Missing** at `docs/part3/Unit_Test_Report.md`. | Vaishnavi and module owners must publish the current run, unit-level classification, scope/coverage disposition and evidence. Formal SRS unit70 remains unproven. |
-| System Validation Report (#38) | Present on main; this branch updates it to include PR #58 and current owner dispositions. | Publish this update. TC-SEC-06 remains PARTIAL without a live TLS endpoint or ZAP baseline; whole-plan readiness is NOT READY and approvals are pending. |
+| System Validation Report (#38) | Published through merged PR #59, with HMS-17/HMS-18 owner dispositions. | Integrate the expanded case register and metrics as execution progresses. TC-SEC-06 remains PARTIAL without real TLS evidence; the separate ZAP baseline is NOT RUN. Whole-plan readiness is NOT READY and approvals are pending. |
 | Code Coverage Report (#42) | Published on main; PR #57 was independently reviewed and merged. | The reporting issue is closed, but unit70 interpretation remains unproven pending #41's scope/attribution agreement. |
 | Branch Coverage Report (#42) | Published on main; PR #57 was independently reviewed and merged. | Same unit-scope limitation as the Code Coverage Report. |
 
-The latest HMS-17 PR #58 merged as `896b4f3`; its tested tree is the same as the merge tree. Both exact-head CI jobs passed on Python 3.11 and 3.14. The corrected PR description preserves #39 as open. The linked [System Validation Report](System_Validation_Report.md) records the owner evidence boundaries and remaining whole-plan criteria.
+The latest HMS-17 PR #58 merged as `896b4f3`; its tested tree is the same as the merge tree. Both CI jobs on that identical tree passed on Python 3.11 and 3.14. PR #59 then merged as `70c9fe2`, whose two main-branch CI jobs also passed. The corrected HMS-17 PR description preserves #39 as open. The linked [System Validation Report](System_Validation_Report.md) records the owner evidence boundaries and remaining whole-plan criteria.
 
 ## Current issue dependencies
 
 | Issue | State | Remaining readiness dependency |
 |---|---|---|
-| #37 HMS-15 | Open | Publish the current local reconciliation and obtain teammate/QA review of priorities, entry criteria and the shared case register. |
-| #38 HMS-16 | Open | Publish this report update, resolve or formally disposition TC-SEC-06 and the old Windows harness-run count discrepancy, and obtain independent review and real QA/Dev/PO decisions. |
+| #37 HMS-15 | Documentation delivery in this revision | Complete records, mappings and evidence reconciliation are delivered under Devansh's explicit instruction. The document retains execution gaps and proposed-priority/acceptance limits; closing this delivery does not complete the whole Test Plan. |
+| #38 HMS-16 | Open | PR #59 is merged. Obtain the missing TLS/ZAP evidence or an actual authorized criterion change, integrate remaining case results/metrics, and record real QA/Dev/PO decisions. The old Windows failure/count remains honestly recorded as unreconciled historical evidence. |
 | #39 HMS-17 | Open | PR #58 is merged; TC-STU-01 is NOT RUN for lack of case-specific evidence, TC-QUAL-01 is PARTIAL without a timed new-Warden guide walkthrough, and other issue-level SRS coverage remains outstanding. |
 | #40 HMS-18 | Open | Owner evidence is published; QA still needs reviewed-case/entry disposition, priority review and environment/tool-deviation acceptance. TC-ALC-05's browser case remains PARTIAL. |
 | #41 HMS-19 | Open | Publish the missing Unit Test Report; classify unit versus integration/system tests and disposition the formal unit70 target. |
@@ -38,4 +38,4 @@ The latest HMS-17 PR #58 merged as `896b4f3`; its tested tree is the same as the
 
 ## Decision
 
-Keep HMS-21 open and the submission marked **NOT READY**. The practical next dependencies are to publish the HMS-15 and HMS-16 documentation updates, obtain the missing Unit Test Report, reconcile remaining case evidence and priorities, record actual team/instructor decisions, and then complete the final package and submission checks. No teammate work or approval is inferred by this checkpoint.
+Keep HMS-21 open and the submission marked **NOT READY**. HMS-15's case-document delivery and PR #59's report publication do not supply missing execution or approvals. Obtain the Unit Test Report, execute/dispose the remaining cases and priorities, update consolidated metrics, record actual team/instructor decisions, and then complete the final package and submission checks. No teammate approval is inferred by this checkpoint.
