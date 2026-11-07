@@ -1,0 +1,2665 @@
+{
+  "mixed": {
+    "tests": 190,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "classes": [
+      {
+        "name": "accounts.test_security.SessionAndLockoutTests-20261106220025",
+        "methods": [
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_django_admin_login_enforces_five_attempt_lockout",
+            "name": "test_django_admin_login_enforces_five_attempt_lockout",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_https_session_and_csrf_cookies_have_required_flags",
+            "name": "test_https_session_and_csrf_cookies_have_required_flags",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_inactive_account_cannot_sign_in",
+            "name": "test_inactive_account_cannot_sign_in",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_lockout_is_shared_between_application_and_admin_logins",
+            "name": "test_lockout_is_shared_between_application_and_admin_logins",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_login_post_is_protected_by_csrf",
+            "name": "test_login_post_is_protected_by_csrf",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_server_session_expiry_logout_and_cache_control",
+            "name": "test_server_session_expiry_logout_and_cache_control",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_success_resets_failed_attempts_and_expired_lock_starts_a_new_count",
+            "name": "test_success_resets_failed_attempts_and_expired_lock_starts_a_new_count",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_superuser_role_and_password_similarity_validation",
+            "name": "test_superuser_role_and_password_similarity_validation",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_unknown_role_cannot_access_dashboard",
+            "name": "test_unknown_role_cannot_access_dashboard",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "accounts.tests.AuthenticationTests-20261106220025",
+        "methods": [
+          {
+            "id": "accounts.tests.AuthenticationTests.test_admin_can_create_and_deactivate_accounts",
+            "name": "test_admin_can_create_and_deactivate_accounts",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_admin_can_update_account",
+            "name": "test_admin_can_update_account",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_duplicate_username_is_rejected",
+            "name": "test_duplicate_username_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_each_role_can_access_dashboard_and_dashboard_reflects_role",
+            "name": "test_each_role_can_access_dashboard_and_dashboard_reflects_role",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_expired_session_requires_login",
+            "name": "test_expired_session_requires_login",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_invalid_password_is_generic_and_locks_after_five_attempts",
+            "name": "test_invalid_password_is_generic_and_locks_after_five_attempts",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_invalid_password_settings_do_not_change_password_or_audit",
+            "name": "test_invalid_password_settings_do_not_change_password_or_audit",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_locked_account_keeps_generic_error",
+            "name": "test_locked_account_keeps_generic_error",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_login_page_welcomes_new_users_and_explains_account_setup",
+            "name": "test_login_page_welcomes_new_users_and_explains_account_setup",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_login_shows_role_dashboard_and_logout_clears_session",
+            "name": "test_login_shows_role_dashboard_and_logout_clears_session",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_non_admin_cannot_manage_accounts",
+            "name": "test_non_admin_cannot_manage_accounts",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_non_admin_cannot_update_account",
+            "name": "test_non_admin_cannot_update_account",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_password_policy_rejects_password_without_letter_or_digit",
+            "name": "test_password_policy_rejects_password_without_letter_or_digit",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_password_settings_change_audits_without_secret_and_preserves_session",
+            "name": "test_password_settings_change_audits_without_secret_and_preserves_session",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_profile_settings_save_is_audited_and_unchanged_save_is_not",
+            "name": "test_profile_settings_save_is_audited_and_unchanged_save_is_not",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_session_and_csrf_cookies_are_secure_when_enabled_for_deployment",
+            "name": "test_session_and_csrf_cookies_are_secure_when_enabled_for_deployment",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_session_cookie_is_http_only_and_uses_fifteen_minute_rolling_expiry",
+            "name": "test_session_cookie_is_http_only_and_uses_fifteen_minute_rolling_expiry",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
+            "name": "test_login_and_role_dashboard_respond_within_two_seconds",
+            "status": "SKIPPED"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_migrations.AllocationMigrationTests-20261106220025",
+        "methods": [
+          {
+            "id": "allocations.test_migrations.AllocationMigrationTests.test_existing_active_rows_receive_unique_keys_and_bed_status",
+            "name": "test_existing_active_rows_receive_unique_keys_and_bed_status",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_migrations.AllocationMigrationTests.test_unknown_historical_vacate_date_is_not_invented",
+            "name": "test_unknown_historical_vacate_date_is_not_invented",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_workflows.AllocationConcurrencyTests-20261106220025",
+        "methods": [
+          {
+            "id": "allocations.test_workflows.AllocationConcurrencyTests.test_allocation_racing_deactivation_preserves_student_eligibility",
+            "name": "test_allocation_racing_deactivation_preserves_student_eligibility",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationConcurrencyTests.test_cross_room_transfers_lock_rooms_in_consistent_order",
+            "name": "test_cross_room_transfers_lock_rooms_in_consistent_order",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationConcurrencyTests.test_simultaneous_same_bed_or_same_student_has_one_winner",
+            "name": "test_simultaneous_same_bed_or_same_student_has_one_winner",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_workflows.AllocationWorkflowTests-20261106220025",
+        "methods": [
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_audit_failure_rolls_back_allocation_and_release",
+            "name": "test_audit_failure_rolls_back_allocation_and_release",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_database_rejects_forged_or_missing_active_keys",
+            "name": "test_database_rejects_forged_or_missing_active_keys",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+            "name": "test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_invalid_eligibility_gender_status_and_dates_are_rejected",
+            "name": "test_invalid_eligibility_gender_status_and_dates_are_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_date_types_return_400_without_changing_allocations",
+            "name": "test_json_date_types_return_400_without_changing_allocations",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_form_errors_preserve_reference_and_validation_status_codes",
+            "name": "test_json_form_errors_preserve_reference_and_validation_status_codes",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_reference_types_cannot_select_a_different_integer_key",
+            "name": "test_json_reference_types_cannot_select_a_different_integer_key",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions",
+            "name": "test_json_workflow_conflicts_validation_and_permissions",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_model_deactivation_and_history_cannot_bypass_guards",
+            "name": "test_model_deactivation_and_history_cannot_bypass_guards",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_new_write_routes_require_csrf",
+            "name": "test_new_write_routes_require_csrf",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_only_transfer_and_release_forms_require_submit_confirmation",
+            "name": "test_only_transfer_and_release_forms_require_submit_confirmation",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_transfer_and_release_preserve_history_and_emit_actor_audit",
+            "name": "test_transfer_and_release_preserve_history_and_emit_actor_audit",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_transfer_failure_rolls_back_both_beds_and_history",
+            "name": "test_transfer_failure_rolls_back_both_beds_and_history",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.tests.AllocationModelTests-20261106220025",
+        "methods": [
+          {
+            "id": "allocations.tests.AllocationModelTests.test_active_allocation_occupies_bed",
+            "name": "test_active_allocation_occupies_bed",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_bed_cannot_have_two_active_allocations",
+            "name": "test_bed_cannot_have_two_active_allocations",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_completing_allocation_preserves_maintenance_status",
+            "name": "test_completing_allocation_preserves_maintenance_status",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_completing_allocation_releases_bed",
+            "name": "test_completing_allocation_releases_bed",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_maintenance_bed_cannot_be_allocated",
+            "name": "test_maintenance_bed_cannot_be_allocated",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_student_cannot_have_two_active_allocations",
+            "name": "test_student_cannot_have_two_active_allocations",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.tests.AllocationViewTests-20261106220025",
+        "methods": [
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_complete_allocation",
+            "name": "test_admin_can_complete_allocation",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_create_allocation",
+            "name": "test_admin_can_create_allocation",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_open_allocation_form",
+            "name": "test_admin_can_open_allocation_form",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_view_allocation_list",
+            "name": "test_admin_can_view_allocation_list",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_allocation_creation_rolls_back_if_audit_event_fails",
+            "name": "test_allocation_creation_rolls_back_if_audit_event_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_release_rolls_back_if_audit_event_fails",
+            "name": "test_release_rolls_back_if_audit_event_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_student_cannot_manage_allocations",
+            "name": "test_student_cannot_manage_allocations",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "audit.tests.AuditedAdminMixinTests-20261106220025",
+        "methods": [
+          {
+            "id": "audit.tests.AuditedAdminMixinTests.test_add_update_and_deactivation_events_are_recorded_for_admin_actor",
+            "name": "test_add_update_and_deactivation_events_are_recorded_for_admin_actor",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "audit.tests.AuditTests-20261106220025",
+        "methods": [
+          {
+            "id": "audit.tests.AuditTests.test_admin_password_changes_are_audited_without_password_contents",
+            "name": "test_admin_password_changes_are_audited_without_password_contents",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_audit_failure_rolls_back_account_creation",
+            "name": "test_audit_failure_rolls_back_account_creation",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_audit_filter_and_pagination_keep_valid_query_links",
+            "name": "test_audit_filter_and_pagination_keep_valid_query_links",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_authentication_events_include_actor_record_and_time_without_secrets",
+            "name": "test_authentication_events_include_actor_record_and_time_without_secrets",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_create_update_and_deactivate_accounts_record_the_admin_actor",
+            "name": "test_create_update_and_deactivate_accounts_record_the_admin_actor",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_events_cannot_be_changed_or_deleted_through_supported_orm_operations",
+            "name": "test_events_cannot_be_changed_or_deleted_through_supported_orm_operations",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_invalid_audit_action_is_rejected",
+            "name": "test_invalid_audit_action_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_only_admin_can_read_audit_log_including_direct_json_requests",
+            "name": "test_only_admin_can_read_audit_log_including_direct_json_requests",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_retention_command_preserves_a_full_year_and_supports_dry_run",
+            "name": "test_retention_command_preserves_a_full_year_and_supports_dry_run",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_unknown_username_failure_is_logged_without_storing_input",
+            "name": "test_unknown_username_failure_is_logged_without_storing_input",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.DateFieldTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "name": "test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors",
+            "name": "test_unexpected_json_types_produce_validation_errors",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.ModelChoiceFieldTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query",
+            "name": "test_non_integer_json_keys_are_rejected_without_a_query",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_http.RequestDataTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error",
+            "name": "test_container_field_values_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error",
+            "name": "test_deeply_nested_input_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged",
+            "name": "test_form_encoded_data_is_returned_unchanged",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values",
+            "name": "test_json_object_preserves_finite_scalar_values",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "name": "test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error",
+            "name": "test_non_object_json_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "name": "test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error",
+            "name": "test_parser_recursion_error_becomes_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error",
+            "name": "test_unpaired_unicode_surrogates_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "name": "test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_navigation.DashboardNavigationSmokeTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.test_navigation.DashboardNavigationSmokeTests.test_admin_dashboard_navigation_pages_load",
+            "name": "test_admin_dashboard_navigation_pages_load",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_navigation.DashboardNavigationSmokeTests.test_student_dashboard_navigation_and_staff_route_denials",
+            "name": "test_student_dashboard_navigation_and_staff_route_denials",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_navigation.DashboardNavigationSmokeTests.test_warden_dashboard_navigation_pages_load",
+            "name": "test_warden_dashboard_navigation_pages_load",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_responses.FormErrorResponseTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "name": "test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "name": "test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "name": "test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_settings.StaticFilesConfigurationTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.test_settings.StaticFilesConfigurationTests.test_collectstatic_has_a_separate_destination",
+            "name": "test_collectstatic_has_a_separate_destination",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_system_journey.StudentHostelJourneyTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.test_system_journey.StudentHostelJourneyTests.test_staff_allocation_payment_student_view_and_reports_work_together",
+            "name": "test_staff_allocation_payment_student_view_and_reports_work_together",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.tests.DatabaseConfigurationTests-20261106220025",
+        "methods": [
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_all_tables_use_innodb",
+            "name": "test_all_tables_use_innodb",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_connects_to_mysql_8",
+            "name": "test_connects_to_mysql_8",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_date_lookups_use_india_dates",
+            "name": "test_date_lookups_use_india_dates",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_sql_mode_keeps_mysql_8_safety_modes",
+            "name": "test_sql_mode_keeps_mysql_8_safety_modes",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.BedFilteringViewTests-20261106220025",
+        "methods": [
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_available_filter_excludes_occupied_and_maintenance_beds",
+            "name": "test_available_filter_excludes_occupied_and_maintenance_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_bed_list_is_paginated_and_keeps_filters_on_next_page",
+            "name": "test_bed_list_is_paginated_and_keeps_filters_on_next_page",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_combined_filters_return_only_matching_available_beds",
+            "name": "test_combined_filters_return_only_matching_available_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_floor",
+            "name": "test_filter_by_floor",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_hostel",
+            "name": "test_filter_by_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_room_type",
+            "name": "test_filter_by_room_type",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_filters_do_not_bypass_login",
+            "name": "test_invalid_filters_do_not_bypass_login",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_floor_is_escaped_and_other_filter_values_are_preserved",
+            "name": "test_invalid_floor_is_escaped_and_other_filter_values_are_preserved",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_numeric_filters_return_400_without_bed_results",
+            "name": "test_invalid_numeric_filters_return_400_without_bed_results",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_maximum_hostel_id_is_valid_and_has_no_matches",
+            "name": "test_maximum_hostel_id_is_valid_and_has_no_matches",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_zero_and_upper_boundary_floor_filters_match_only_their_beds",
+            "name": "test_zero_and_upper_boundary_floor_filters_match_only_their_beds",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelManagementViewTests-20261106220025",
+        "methods": [
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_admin_can_create_hostel_and_room",
+            "name": "test_admin_can_create_hostel_and_room",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_anonymous_user_is_redirected_to_login",
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_empty_management_submissions_show_required_errors_without_saving",
+            "name": "test_empty_management_submissions_show_required_errors_without_saving",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_hostel_deactivation_is_audited",
+            "name": "test_hostel_deactivation_is_audited",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_only_admin_can_create_or_edit_hostels_and_rooms",
+            "name": "test_only_admin_can_create_or_edit_hostels_and_rooms",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_room_creation_rolls_back_if_audit_recording_fails",
+            "name": "test_room_creation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelModelBehaviorTests-20261106220025",
+        "methods": [
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_bed_status_can_be_changed",
+            "name": "test_bed_status_can_be_changed",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_bulk_update_rejects_capacity_and_room_number",
+            "name": "test_bulk_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_capacity_cannot_be_reduced_below_active_allocations",
+            "name": "test_capacity_cannot_be_reduced_below_active_allocations",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_create_hostel",
+            "name": "test_create_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_duplicate_hostel_name_is_rejected",
+            "name": "test_duplicate_hostel_name_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_queryset_update_rejects_capacity_and_room_number",
+            "name": "test_queryset_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_reducing_capacity_removes_unallocated_beds",
+            "name": "test_reducing_capacity_removes_unallocated_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_renaming_room_updates_existing_bed_labels",
+            "name": "test_renaming_room_updates_existing_bed_labels",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_capacity_cannot_exceed_four",
+            "name": "test_room_capacity_cannot_exceed_four",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_creation_automatically_creates_beds",
+            "name": "test_room_creation_automatically_creates_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_numbers_must_be_unique_within_hostel",
+            "name": "test_room_numbers_must_be_unique_within_hostel",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "payments.test_workflows.PaymentConcurrencyTests-20261106220025",
+        "methods": [
+          {
+            "id": "payments.test_workflows.PaymentConcurrencyTests.test_competing_corrections_cannot_reverse_a_payment_twice",
+            "name": "test_competing_corrections_cannot_reverse_a_payment_twice",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentConcurrencyTests.test_simultaneous_payments_receive_unique_sequential_numbers",
+            "name": "test_simultaneous_payments_receive_unique_sequential_numbers",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "payments.test_workflows.PaymentWorkflowTests-20261106220025",
+        "methods": [
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_adjustment_cannot_predate_original",
+            "name": "test_adjustment_cannot_predate_original",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_adjustments_preserve_original_and_validate_their_source_and_net_amount",
+            "name": "test_adjustments_preserve_original_and_validate_their_source_and_net_amount",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_audit_failure_rolls_back_the_payment_and_receipt_counter",
+            "name": "test_audit_failure_rolls_back_the_payment_and_receipt_counter",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_database_constraints_reject_nonpositive_payments_and_unknown_mode",
+            "name": "test_database_constraints_reject_nonpositive_payments_and_unknown_mode",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+            "name": "test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_fee_configuration_rejects_negative_values_and_preserves_legacy_form_posts",
+            "name": "test_fee_configuration_rejects_negative_values_and_preserves_legacy_form_posts",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_form_encoded_missing_student_preserves_json_not_found_response",
+            "name": "test_form_encoded_missing_student_preserves_json_not_found_response",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers",
+            "name": "test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_invalid_json_fields_missing_records_and_methods",
+            "name": "test_invalid_json_fields_missing_records_and_methods",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_json_date_types_return_400_without_consuming_receipts",
+            "name": "test_json_date_types_return_400_without_consuming_receipts",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_json_workflow_receipts_adjustments_and_real_pdf_contents",
+            "name": "test_json_workflow_receipts_adjustments_and_real_pdf_contents",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment",
+            "name": "test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_numbered_payments_are_permanent_and_audited_for_the_actor",
+            "name": "test_numbered_payments_are_permanent_and_audited_for_the_actor",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_payment_and_adjustment_forms_require_csrf_and_work_with_a_valid_token",
+            "name": "test_payment_and_adjustment_forms_require_csrf_and_work_with_a_valid_token",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_receipt_range_exhaustion_fails_without_overwriting_history",
+            "name": "test_receipt_range_exhaustion_fails_without_overwriting_history",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_staff_html_forms_and_all_routes_deny_students_and_anonymous_users",
+            "name": "test_staff_html_forms_and_all_routes_deny_students_and_anonymous_users",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication",
+            "name": "test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "reports.test_reports.ReportTests-20261106220025",
+        "methods": [
+          {
+            "id": "reports.test_reports.ReportTests.test_active_allocations_override_stale_availability_and_maintenance_flags",
+            "name": "test_active_allocations_override_stale_availability_and_maintenance_flags",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+            "name": "test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_empty_reports_and_invalid_filters_formats_and_methods",
+            "name": "test_empty_reports_and_invalid_filters_formats_and_methods",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_numeric_hostel_filter_accepts_leading_zeros",
+            "name": "test_numeric_hostel_filter_accepts_leading_zeros",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_occupancy_counts_current_records_maintenance_and_empty_hostels",
+            "name": "test_occupancy_counts_current_records_maintenance_and_empty_hostels",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_occupancy_csv_and_html_match_json_and_preserve_filters",
+            "name": "test_occupancy_csv_and_html_match_json_and_preserve_filters",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_payment_report_csv_and_html_match_json_after_corrections",
+            "name": "test_payment_report_csv_and_html_match_json_after_corrections",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank",
+            "name": "test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_payment_report_sums_once_across_allocation_history_and_filters_last_room",
+            "name": "test_payment_report_sums_once_across_allocation_history_and_filters_last_room",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_query_counts_do_not_grow_with_students_or_hostels",
+            "name": "test_query_counts_do_not_grow_with_students_or_hostels",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+            "name": "test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_reports_landing_redirects_to_occupancy_report",
+            "name": "test_reports_landing_redirects_to_occupancy_report",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.test_self_service.StudentSelfServiceTests-20261106220025",
+        "methods": [
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_dashboard_and_navigation_link_to_my_records",
+            "name": "test_dashboard_and_navigation_link_to_my_records",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_empty_allocation_and_payment_history_is_explained",
+            "name": "test_empty_allocation_and_payment_history_is_explained",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_login_is_required_for_self_service_page",
+            "name": "test_login_is_required_for_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_only_student_role_can_open_self_service_page",
+            "name": "test_only_student_role_can_open_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+            "name": "test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback",
+            "name": "test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_sees_only_own_allocation_and_payment_details",
+            "name": "test_student_sees_only_own_allocation_and_payment_details",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_unlinked_student_login_gets_helpful_empty_state",
+            "name": "test_unlinked_student_login_gets_helpful_empty_state",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentManagementViewTests-20261106220025",
+        "methods": [
+          {
+            "id": "students.tests.StudentManagementViewTests.test_admin_can_register_student",
+            "name": "test_admin_can_register_student",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_admin_can_update_contact_course_and_year_but_not_student_id",
+            "name": "test_admin_can_update_contact_course_and_year_but_not_student_id",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_anonymous_user_is_redirected_to_login",
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_duplicate_registration_shows_required_message",
+            "name": "test_duplicate_registration_shows_required_message",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_empty_student_submissions_show_required_errors_without_saving",
+            "name": "test_empty_student_submissions_show_required_errors_without_saving",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_search_matches_student_id_partial_name_and_hostel",
+            "name": "test_search_matches_student_id_partial_name_and_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_creation_rolls_back_if_audit_recording_fails",
+            "name": "test_student_creation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_deactivation_requires_post",
+            "name": "test_student_deactivation_requires_post",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_deactivation_rolls_back_if_audit_recording_fails",
+            "name": "test_student_deactivation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+            "name": "test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_role_cannot_register_update_or_deactivate",
+            "name": "test_student_role_cannot_register_update_or_deactivate",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_search_handles_5000_records_within_two_seconds",
+            "name": "test_student_search_handles_5000_records_within_two_seconds",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_with_active_allocation_cannot_be_deactivated",
+            "name": "test_student_with_active_allocation_cannot_be_deactivated",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_unallocated_student_can_be_deactivated",
+            "name": "test_unallocated_student_can_be_deactivated",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_warden_can_register_student",
+            "name": "test_warden_can_register_student",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentModelTests-20261106220025",
+        "methods": [
+          {
+            "id": "students.tests.StudentModelTests.test_create_student",
+            "name": "test_create_student",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_duplicate_student_id_form_shows_exact_error_message",
+            "name": "test_duplicate_student_id_form_shows_exact_error_message",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_duplicate_student_id_is_rejected",
+            "name": "test_duplicate_student_id_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_mobile_must_have_ten_digits",
+            "name": "test_mobile_must_have_ten_digits",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_student_can_be_deactivated_without_deleting_record",
+            "name": "test_student_can_be_deactivated_without_deleting_record",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_student_year_must_be_between_one_and_five",
+            "name": "test_student_year_must_be_between_one_and_five",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "tests.test_checks.VerificationRunnerTests-20261106220025",
+        "methods": [
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_failed_gate_cannot_report_success",
+            "name": "test_failed_gate_cannot_report_success",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_git_status_distinguishes_clean_and_dirty_trees",
+            "name": "test_git_status_distinguishes_clean_and_dirty_trees",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_missing_empty_or_failed_test_evidence_cannot_report_success",
+            "name": "test_missing_empty_or_failed_test_evidence_cannot_report_success",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_occupied_output_is_not_overwritten",
+            "name": "test_occupied_output_is_not_overwritten",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_setup_failure_saves_failure_without_exception_message",
+            "name": "test_setup_failure_saves_failure_without_exception_message",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_subprocess_failure_is_captured_in_log_and_exit_code",
+            "name": "test_subprocess_failure_is_captured_in_log_and_exit_code",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_success_requires_all_gates_and_writes_root_relative_evidence",
+            "name": "test_success_requires_all_gates_and_writes_root_relative_evidence",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_xml_keeps_same_named_package_files_and_only_selected_context_hits",
+            "name": "test_xml_keeps_same_named_package_files_and_only_selected_context_hits",
+            "status": "PASS"
+          }
+        ]
+      }
+    ]
+  },
+  "context_all": {
+    "tests": 190,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "classes": [
+      {
+        "name": "accounts.test_security.SessionAndLockoutTests-20261106220134",
+        "methods": [
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_django_admin_login_enforces_five_attempt_lockout",
+            "name": "test_django_admin_login_enforces_five_attempt_lockout",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_https_session_and_csrf_cookies_have_required_flags",
+            "name": "test_https_session_and_csrf_cookies_have_required_flags",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_inactive_account_cannot_sign_in",
+            "name": "test_inactive_account_cannot_sign_in",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_lockout_is_shared_between_application_and_admin_logins",
+            "name": "test_lockout_is_shared_between_application_and_admin_logins",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_login_post_is_protected_by_csrf",
+            "name": "test_login_post_is_protected_by_csrf",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_server_session_expiry_logout_and_cache_control",
+            "name": "test_server_session_expiry_logout_and_cache_control",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_success_resets_failed_attempts_and_expired_lock_starts_a_new_count",
+            "name": "test_success_resets_failed_attempts_and_expired_lock_starts_a_new_count",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_superuser_role_and_password_similarity_validation",
+            "name": "test_superuser_role_and_password_similarity_validation",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_unknown_role_cannot_access_dashboard",
+            "name": "test_unknown_role_cannot_access_dashboard",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "accounts.tests.AuthenticationTests-20261106220134",
+        "methods": [
+          {
+            "id": "accounts.tests.AuthenticationTests.test_admin_can_create_and_deactivate_accounts",
+            "name": "test_admin_can_create_and_deactivate_accounts",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_admin_can_update_account",
+            "name": "test_admin_can_update_account",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_duplicate_username_is_rejected",
+            "name": "test_duplicate_username_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_each_role_can_access_dashboard_and_dashboard_reflects_role",
+            "name": "test_each_role_can_access_dashboard_and_dashboard_reflects_role",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_expired_session_requires_login",
+            "name": "test_expired_session_requires_login",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_invalid_password_is_generic_and_locks_after_five_attempts",
+            "name": "test_invalid_password_is_generic_and_locks_after_five_attempts",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_invalid_password_settings_do_not_change_password_or_audit",
+            "name": "test_invalid_password_settings_do_not_change_password_or_audit",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_locked_account_keeps_generic_error",
+            "name": "test_locked_account_keeps_generic_error",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_login_page_welcomes_new_users_and_explains_account_setup",
+            "name": "test_login_page_welcomes_new_users_and_explains_account_setup",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_login_shows_role_dashboard_and_logout_clears_session",
+            "name": "test_login_shows_role_dashboard_and_logout_clears_session",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_non_admin_cannot_manage_accounts",
+            "name": "test_non_admin_cannot_manage_accounts",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_non_admin_cannot_update_account",
+            "name": "test_non_admin_cannot_update_account",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_password_policy_rejects_password_without_letter_or_digit",
+            "name": "test_password_policy_rejects_password_without_letter_or_digit",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_password_settings_change_audits_without_secret_and_preserves_session",
+            "name": "test_password_settings_change_audits_without_secret_and_preserves_session",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_profile_settings_save_is_audited_and_unchanged_save_is_not",
+            "name": "test_profile_settings_save_is_audited_and_unchanged_save_is_not",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_session_and_csrf_cookies_are_secure_when_enabled_for_deployment",
+            "name": "test_session_and_csrf_cookies_are_secure_when_enabled_for_deployment",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_session_cookie_is_http_only_and_uses_fifteen_minute_rolling_expiry",
+            "name": "test_session_cookie_is_http_only_and_uses_fifteen_minute_rolling_expiry",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
+            "name": "test_login_and_role_dashboard_respond_within_two_seconds",
+            "status": "SKIPPED"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_migrations.AllocationMigrationTests-20261106220134",
+        "methods": [
+          {
+            "id": "allocations.test_migrations.AllocationMigrationTests.test_existing_active_rows_receive_unique_keys_and_bed_status",
+            "name": "test_existing_active_rows_receive_unique_keys_and_bed_status",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_migrations.AllocationMigrationTests.test_unknown_historical_vacate_date_is_not_invented",
+            "name": "test_unknown_historical_vacate_date_is_not_invented",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_workflows.AllocationConcurrencyTests-20261106220134",
+        "methods": [
+          {
+            "id": "allocations.test_workflows.AllocationConcurrencyTests.test_allocation_racing_deactivation_preserves_student_eligibility",
+            "name": "test_allocation_racing_deactivation_preserves_student_eligibility",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationConcurrencyTests.test_cross_room_transfers_lock_rooms_in_consistent_order",
+            "name": "test_cross_room_transfers_lock_rooms_in_consistent_order",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationConcurrencyTests.test_simultaneous_same_bed_or_same_student_has_one_winner",
+            "name": "test_simultaneous_same_bed_or_same_student_has_one_winner",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_workflows.AllocationWorkflowTests-20261106220134",
+        "methods": [
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_audit_failure_rolls_back_allocation_and_release",
+            "name": "test_audit_failure_rolls_back_allocation_and_release",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_database_rejects_forged_or_missing_active_keys",
+            "name": "test_database_rejects_forged_or_missing_active_keys",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+            "name": "test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_invalid_eligibility_gender_status_and_dates_are_rejected",
+            "name": "test_invalid_eligibility_gender_status_and_dates_are_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_date_types_return_400_without_changing_allocations",
+            "name": "test_json_date_types_return_400_without_changing_allocations",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_form_errors_preserve_reference_and_validation_status_codes",
+            "name": "test_json_form_errors_preserve_reference_and_validation_status_codes",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_reference_types_cannot_select_a_different_integer_key",
+            "name": "test_json_reference_types_cannot_select_a_different_integer_key",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions",
+            "name": "test_json_workflow_conflicts_validation_and_permissions",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_model_deactivation_and_history_cannot_bypass_guards",
+            "name": "test_model_deactivation_and_history_cannot_bypass_guards",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_new_write_routes_require_csrf",
+            "name": "test_new_write_routes_require_csrf",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_only_transfer_and_release_forms_require_submit_confirmation",
+            "name": "test_only_transfer_and_release_forms_require_submit_confirmation",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_transfer_and_release_preserve_history_and_emit_actor_audit",
+            "name": "test_transfer_and_release_preserve_history_and_emit_actor_audit",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_transfer_failure_rolls_back_both_beds_and_history",
+            "name": "test_transfer_failure_rolls_back_both_beds_and_history",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.tests.AllocationModelTests-20261106220134",
+        "methods": [
+          {
+            "id": "allocations.tests.AllocationModelTests.test_active_allocation_occupies_bed",
+            "name": "test_active_allocation_occupies_bed",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_bed_cannot_have_two_active_allocations",
+            "name": "test_bed_cannot_have_two_active_allocations",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_completing_allocation_preserves_maintenance_status",
+            "name": "test_completing_allocation_preserves_maintenance_status",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_completing_allocation_releases_bed",
+            "name": "test_completing_allocation_releases_bed",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_maintenance_bed_cannot_be_allocated",
+            "name": "test_maintenance_bed_cannot_be_allocated",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationModelTests.test_student_cannot_have_two_active_allocations",
+            "name": "test_student_cannot_have_two_active_allocations",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.tests.AllocationViewTests-20261106220134",
+        "methods": [
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_complete_allocation",
+            "name": "test_admin_can_complete_allocation",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_create_allocation",
+            "name": "test_admin_can_create_allocation",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_open_allocation_form",
+            "name": "test_admin_can_open_allocation_form",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_view_allocation_list",
+            "name": "test_admin_can_view_allocation_list",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_allocation_creation_rolls_back_if_audit_event_fails",
+            "name": "test_allocation_creation_rolls_back_if_audit_event_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_release_rolls_back_if_audit_event_fails",
+            "name": "test_release_rolls_back_if_audit_event_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_student_cannot_manage_allocations",
+            "name": "test_student_cannot_manage_allocations",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "audit.tests.AuditedAdminMixinTests-20261106220134",
+        "methods": [
+          {
+            "id": "audit.tests.AuditedAdminMixinTests.test_add_update_and_deactivation_events_are_recorded_for_admin_actor",
+            "name": "test_add_update_and_deactivation_events_are_recorded_for_admin_actor",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "audit.tests.AuditTests-20261106220134",
+        "methods": [
+          {
+            "id": "audit.tests.AuditTests.test_admin_password_changes_are_audited_without_password_contents",
+            "name": "test_admin_password_changes_are_audited_without_password_contents",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_audit_failure_rolls_back_account_creation",
+            "name": "test_audit_failure_rolls_back_account_creation",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_audit_filter_and_pagination_keep_valid_query_links",
+            "name": "test_audit_filter_and_pagination_keep_valid_query_links",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_authentication_events_include_actor_record_and_time_without_secrets",
+            "name": "test_authentication_events_include_actor_record_and_time_without_secrets",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_create_update_and_deactivate_accounts_record_the_admin_actor",
+            "name": "test_create_update_and_deactivate_accounts_record_the_admin_actor",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_events_cannot_be_changed_or_deleted_through_supported_orm_operations",
+            "name": "test_events_cannot_be_changed_or_deleted_through_supported_orm_operations",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_invalid_audit_action_is_rejected",
+            "name": "test_invalid_audit_action_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_only_admin_can_read_audit_log_including_direct_json_requests",
+            "name": "test_only_admin_can_read_audit_log_including_direct_json_requests",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_retention_command_preserves_a_full_year_and_supports_dry_run",
+            "name": "test_retention_command_preserves_a_full_year_and_supports_dry_run",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_unknown_username_failure_is_logged_without_storing_input",
+            "name": "test_unknown_username_failure_is_logged_without_storing_input",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.DateFieldTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "name": "test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors",
+            "name": "test_unexpected_json_types_produce_validation_errors",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.ModelChoiceFieldTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query",
+            "name": "test_non_integer_json_keys_are_rejected_without_a_query",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_http.RequestDataTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error",
+            "name": "test_container_field_values_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error",
+            "name": "test_deeply_nested_input_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged",
+            "name": "test_form_encoded_data_is_returned_unchanged",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values",
+            "name": "test_json_object_preserves_finite_scalar_values",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "name": "test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error",
+            "name": "test_non_object_json_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "name": "test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error",
+            "name": "test_parser_recursion_error_becomes_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error",
+            "name": "test_unpaired_unicode_surrogates_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "name": "test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_navigation.DashboardNavigationSmokeTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.test_navigation.DashboardNavigationSmokeTests.test_admin_dashboard_navigation_pages_load",
+            "name": "test_admin_dashboard_navigation_pages_load",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_navigation.DashboardNavigationSmokeTests.test_student_dashboard_navigation_and_staff_route_denials",
+            "name": "test_student_dashboard_navigation_and_staff_route_denials",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_navigation.DashboardNavigationSmokeTests.test_warden_dashboard_navigation_pages_load",
+            "name": "test_warden_dashboard_navigation_pages_load",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_responses.FormErrorResponseTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "name": "test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "name": "test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "name": "test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_settings.StaticFilesConfigurationTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.test_settings.StaticFilesConfigurationTests.test_collectstatic_has_a_separate_destination",
+            "name": "test_collectstatic_has_a_separate_destination",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_system_journey.StudentHostelJourneyTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.test_system_journey.StudentHostelJourneyTests.test_staff_allocation_payment_student_view_and_reports_work_together",
+            "name": "test_staff_allocation_payment_student_view_and_reports_work_together",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.tests.DatabaseConfigurationTests-20261106220134",
+        "methods": [
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_all_tables_use_innodb",
+            "name": "test_all_tables_use_innodb",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_connects_to_mysql_8",
+            "name": "test_connects_to_mysql_8",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_date_lookups_use_india_dates",
+            "name": "test_date_lookups_use_india_dates",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.tests.DatabaseConfigurationTests.test_sql_mode_keeps_mysql_8_safety_modes",
+            "name": "test_sql_mode_keeps_mysql_8_safety_modes",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.BedFilteringViewTests-20261106220134",
+        "methods": [
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_available_filter_excludes_occupied_and_maintenance_beds",
+            "name": "test_available_filter_excludes_occupied_and_maintenance_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_bed_list_is_paginated_and_keeps_filters_on_next_page",
+            "name": "test_bed_list_is_paginated_and_keeps_filters_on_next_page",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_combined_filters_return_only_matching_available_beds",
+            "name": "test_combined_filters_return_only_matching_available_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_floor",
+            "name": "test_filter_by_floor",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_hostel",
+            "name": "test_filter_by_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_room_type",
+            "name": "test_filter_by_room_type",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_filters_do_not_bypass_login",
+            "name": "test_invalid_filters_do_not_bypass_login",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_floor_is_escaped_and_other_filter_values_are_preserved",
+            "name": "test_invalid_floor_is_escaped_and_other_filter_values_are_preserved",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_numeric_filters_return_400_without_bed_results",
+            "name": "test_invalid_numeric_filters_return_400_without_bed_results",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_maximum_hostel_id_is_valid_and_has_no_matches",
+            "name": "test_maximum_hostel_id_is_valid_and_has_no_matches",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_zero_and_upper_boundary_floor_filters_match_only_their_beds",
+            "name": "test_zero_and_upper_boundary_floor_filters_match_only_their_beds",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelManagementViewTests-20261106220134",
+        "methods": [
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_admin_can_create_hostel_and_room",
+            "name": "test_admin_can_create_hostel_and_room",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_anonymous_user_is_redirected_to_login",
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_empty_management_submissions_show_required_errors_without_saving",
+            "name": "test_empty_management_submissions_show_required_errors_without_saving",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_hostel_deactivation_is_audited",
+            "name": "test_hostel_deactivation_is_audited",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_only_admin_can_create_or_edit_hostels_and_rooms",
+            "name": "test_only_admin_can_create_or_edit_hostels_and_rooms",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_room_creation_rolls_back_if_audit_recording_fails",
+            "name": "test_room_creation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelModelBehaviorTests-20261106220134",
+        "methods": [
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_bed_status_can_be_changed",
+            "name": "test_bed_status_can_be_changed",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_bulk_update_rejects_capacity_and_room_number",
+            "name": "test_bulk_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_capacity_cannot_be_reduced_below_active_allocations",
+            "name": "test_capacity_cannot_be_reduced_below_active_allocations",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_create_hostel",
+            "name": "test_create_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_duplicate_hostel_name_is_rejected",
+            "name": "test_duplicate_hostel_name_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_queryset_update_rejects_capacity_and_room_number",
+            "name": "test_queryset_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_reducing_capacity_removes_unallocated_beds",
+            "name": "test_reducing_capacity_removes_unallocated_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_renaming_room_updates_existing_bed_labels",
+            "name": "test_renaming_room_updates_existing_bed_labels",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_capacity_cannot_exceed_four",
+            "name": "test_room_capacity_cannot_exceed_four",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_creation_automatically_creates_beds",
+            "name": "test_room_creation_automatically_creates_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_numbers_must_be_unique_within_hostel",
+            "name": "test_room_numbers_must_be_unique_within_hostel",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "payments.test_workflows.PaymentConcurrencyTests-20261106220134",
+        "methods": [
+          {
+            "id": "payments.test_workflows.PaymentConcurrencyTests.test_competing_corrections_cannot_reverse_a_payment_twice",
+            "name": "test_competing_corrections_cannot_reverse_a_payment_twice",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentConcurrencyTests.test_simultaneous_payments_receive_unique_sequential_numbers",
+            "name": "test_simultaneous_payments_receive_unique_sequential_numbers",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "payments.test_workflows.PaymentWorkflowTests-20261106220134",
+        "methods": [
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_adjustment_cannot_predate_original",
+            "name": "test_adjustment_cannot_predate_original",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_adjustments_preserve_original_and_validate_their_source_and_net_amount",
+            "name": "test_adjustments_preserve_original_and_validate_their_source_and_net_amount",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_audit_failure_rolls_back_the_payment_and_receipt_counter",
+            "name": "test_audit_failure_rolls_back_the_payment_and_receipt_counter",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_database_constraints_reject_nonpositive_payments_and_unknown_mode",
+            "name": "test_database_constraints_reject_nonpositive_payments_and_unknown_mode",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+            "name": "test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_fee_configuration_rejects_negative_values_and_preserves_legacy_form_posts",
+            "name": "test_fee_configuration_rejects_negative_values_and_preserves_legacy_form_posts",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_form_encoded_missing_student_preserves_json_not_found_response",
+            "name": "test_form_encoded_missing_student_preserves_json_not_found_response",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers",
+            "name": "test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_invalid_json_fields_missing_records_and_methods",
+            "name": "test_invalid_json_fields_missing_records_and_methods",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_json_date_types_return_400_without_consuming_receipts",
+            "name": "test_json_date_types_return_400_without_consuming_receipts",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_json_workflow_receipts_adjustments_and_real_pdf_contents",
+            "name": "test_json_workflow_receipts_adjustments_and_real_pdf_contents",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment",
+            "name": "test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_numbered_payments_are_permanent_and_audited_for_the_actor",
+            "name": "test_numbered_payments_are_permanent_and_audited_for_the_actor",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_payment_and_adjustment_forms_require_csrf_and_work_with_a_valid_token",
+            "name": "test_payment_and_adjustment_forms_require_csrf_and_work_with_a_valid_token",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_receipt_range_exhaustion_fails_without_overwriting_history",
+            "name": "test_receipt_range_exhaustion_fails_without_overwriting_history",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_staff_html_forms_and_all_routes_deny_students_and_anonymous_users",
+            "name": "test_staff_html_forms_and_all_routes_deny_students_and_anonymous_users",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication",
+            "name": "test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "reports.test_reports.ReportTests-20261106220134",
+        "methods": [
+          {
+            "id": "reports.test_reports.ReportTests.test_active_allocations_override_stale_availability_and_maintenance_flags",
+            "name": "test_active_allocations_override_stale_availability_and_maintenance_flags",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+            "name": "test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_empty_reports_and_invalid_filters_formats_and_methods",
+            "name": "test_empty_reports_and_invalid_filters_formats_and_methods",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_numeric_hostel_filter_accepts_leading_zeros",
+            "name": "test_numeric_hostel_filter_accepts_leading_zeros",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_occupancy_counts_current_records_maintenance_and_empty_hostels",
+            "name": "test_occupancy_counts_current_records_maintenance_and_empty_hostels",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_occupancy_csv_and_html_match_json_and_preserve_filters",
+            "name": "test_occupancy_csv_and_html_match_json_and_preserve_filters",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_payment_report_csv_and_html_match_json_after_corrections",
+            "name": "test_payment_report_csv_and_html_match_json_after_corrections",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank",
+            "name": "test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_payment_report_sums_once_across_allocation_history_and_filters_last_room",
+            "name": "test_payment_report_sums_once_across_allocation_history_and_filters_last_room",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_query_counts_do_not_grow_with_students_or_hostels",
+            "name": "test_query_counts_do_not_grow_with_students_or_hostels",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+            "name": "test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_reports_landing_redirects_to_occupancy_report",
+            "name": "test_reports_landing_redirects_to_occupancy_report",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.test_self_service.StudentSelfServiceTests-20261106220134",
+        "methods": [
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_dashboard_and_navigation_link_to_my_records",
+            "name": "test_dashboard_and_navigation_link_to_my_records",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_empty_allocation_and_payment_history_is_explained",
+            "name": "test_empty_allocation_and_payment_history_is_explained",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_login_is_required_for_self_service_page",
+            "name": "test_login_is_required_for_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_only_student_role_can_open_self_service_page",
+            "name": "test_only_student_role_can_open_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+            "name": "test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback",
+            "name": "test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_sees_only_own_allocation_and_payment_details",
+            "name": "test_student_sees_only_own_allocation_and_payment_details",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_unlinked_student_login_gets_helpful_empty_state",
+            "name": "test_unlinked_student_login_gets_helpful_empty_state",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentManagementViewTests-20261106220134",
+        "methods": [
+          {
+            "id": "students.tests.StudentManagementViewTests.test_admin_can_register_student",
+            "name": "test_admin_can_register_student",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_admin_can_update_contact_course_and_year_but_not_student_id",
+            "name": "test_admin_can_update_contact_course_and_year_but_not_student_id",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_anonymous_user_is_redirected_to_login",
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_duplicate_registration_shows_required_message",
+            "name": "test_duplicate_registration_shows_required_message",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_empty_student_submissions_show_required_errors_without_saving",
+            "name": "test_empty_student_submissions_show_required_errors_without_saving",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_search_matches_student_id_partial_name_and_hostel",
+            "name": "test_search_matches_student_id_partial_name_and_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_creation_rolls_back_if_audit_recording_fails",
+            "name": "test_student_creation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_deactivation_requires_post",
+            "name": "test_student_deactivation_requires_post",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_deactivation_rolls_back_if_audit_recording_fails",
+            "name": "test_student_deactivation_rolls_back_if_audit_recording_fails",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+            "name": "test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_role_cannot_register_update_or_deactivate",
+            "name": "test_student_role_cannot_register_update_or_deactivate",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_search_handles_5000_records_within_two_seconds",
+            "name": "test_student_search_handles_5000_records_within_two_seconds",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_with_active_allocation_cannot_be_deactivated",
+            "name": "test_student_with_active_allocation_cannot_be_deactivated",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_unallocated_student_can_be_deactivated",
+            "name": "test_unallocated_student_can_be_deactivated",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_warden_can_register_student",
+            "name": "test_warden_can_register_student",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentModelTests-20261106220134",
+        "methods": [
+          {
+            "id": "students.tests.StudentModelTests.test_create_student",
+            "name": "test_create_student",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_duplicate_student_id_form_shows_exact_error_message",
+            "name": "test_duplicate_student_id_form_shows_exact_error_message",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_duplicate_student_id_is_rejected",
+            "name": "test_duplicate_student_id_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_mobile_must_have_ten_digits",
+            "name": "test_mobile_must_have_ten_digits",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_student_can_be_deactivated_without_deleting_record",
+            "name": "test_student_can_be_deactivated_without_deleting_record",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_student_year_must_be_between_one_and_five",
+            "name": "test_student_year_must_be_between_one_and_five",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "tests.test_checks.VerificationRunnerTests-20261106220134",
+        "methods": [
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_failed_gate_cannot_report_success",
+            "name": "test_failed_gate_cannot_report_success",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_git_status_distinguishes_clean_and_dirty_trees",
+            "name": "test_git_status_distinguishes_clean_and_dirty_trees",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_missing_empty_or_failed_test_evidence_cannot_report_success",
+            "name": "test_missing_empty_or_failed_test_evidence_cannot_report_success",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_occupied_output_is_not_overwritten",
+            "name": "test_occupied_output_is_not_overwritten",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_setup_failure_saves_failure_without_exception_message",
+            "name": "test_setup_failure_saves_failure_without_exception_message",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_subprocess_failure_is_captured_in_log_and_exit_code",
+            "name": "test_subprocess_failure_is_captured_in_log_and_exit_code",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_success_requires_all_gates_and_writes_root_relative_evidence",
+            "name": "test_success_requires_all_gates_and_writes_root_relative_evidence",
+            "status": "PASS"
+          },
+          {
+            "id": "tests.test_checks.VerificationRunnerTests.test_xml_keeps_same_named_package_files_and_only_selected_context_hits",
+            "name": "test_xml_keeps_same_named_package_files_and_only_selected_context_hits",
+            "status": "PASS"
+          }
+        ]
+      }
+    ]
+  },
+  "standalone76": {
+    "tests": 76,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": [
+      {
+        "name": "accounts.test_security.SessionAndLockoutTests-20261106220254",
+        "methods": [
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_superuser_role_and_password_similarity_validation",
+            "name": "test_superuser_role_and_password_similarity_validation",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.test_security.SessionAndLockoutTests.test_unknown_role_cannot_access_dashboard",
+            "name": "test_unknown_role_cannot_access_dashboard",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "accounts.tests.AuthenticationTests-20261106220254",
+        "methods": [
+          {
+            "id": "accounts.tests.AuthenticationTests.test_duplicate_username_is_rejected",
+            "name": "test_duplicate_username_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_each_role_can_access_dashboard_and_dashboard_reflects_role",
+            "name": "test_each_role_can_access_dashboard_and_dashboard_reflects_role",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_login_page_welcomes_new_users_and_explains_account_setup",
+            "name": "test_login_page_welcomes_new_users_and_explains_account_setup",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_non_admin_cannot_manage_accounts",
+            "name": "test_non_admin_cannot_manage_accounts",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_non_admin_cannot_update_account",
+            "name": "test_non_admin_cannot_update_account",
+            "status": "PASS"
+          },
+          {
+            "id": "accounts.tests.AuthenticationTests.test_password_policy_rejects_password_without_letter_or_digit",
+            "name": "test_password_policy_rejects_password_without_letter_or_digit",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.test_workflows.AllocationWorkflowTests-20261106220254",
+        "methods": [
+          {
+            "id": "allocations.test_workflows.AllocationWorkflowTests.test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+            "name": "test_history_orders_backdated_records_by_allocation_date_in_json_and_html",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "allocations.tests.AllocationViewTests-20261106220254",
+        "methods": [
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_open_allocation_form",
+            "name": "test_admin_can_open_allocation_form",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_admin_can_view_allocation_list",
+            "name": "test_admin_can_view_allocation_list",
+            "status": "PASS"
+          },
+          {
+            "id": "allocations.tests.AllocationViewTests.test_student_cannot_manage_allocations",
+            "name": "test_student_cannot_manage_allocations",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "audit.tests.AuditTests-20261106220254",
+        "methods": [
+          {
+            "id": "audit.tests.AuditTests.test_audit_filter_and_pagination_keep_valid_query_links",
+            "name": "test_audit_filter_and_pagination_keep_valid_query_links",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_invalid_audit_action_is_rejected",
+            "name": "test_invalid_audit_action_is_rejected",
+            "status": "PASS"
+          },
+          {
+            "id": "audit.tests.AuditTests.test_only_admin_can_read_audit_log_including_direct_json_requests",
+            "name": "test_only_admin_can_read_audit_log_including_direct_json_requests",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.DateFieldTests-20261106220254",
+        "methods": [
+          {
+            "id": "hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "name": "test_dates_text_and_optional_empty_values_keep_standard_behavior",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors",
+            "name": "test_unexpected_json_types_produce_validation_errors",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_forms.ModelChoiceFieldTests-20261106220254",
+        "methods": [
+          {
+            "id": "hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query",
+            "name": "test_non_integer_json_keys_are_rejected_without_a_query",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_http.RequestDataTests-20261106220254",
+        "methods": [
+          {
+            "id": "hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error",
+            "name": "test_container_field_values_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error",
+            "name": "test_deeply_nested_input_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged",
+            "name": "test_form_encoded_data_is_returned_unchanged",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values",
+            "name": "test_json_object_preserves_finite_scalar_values",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "name": "test_malformed_json_and_invalid_utf8_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error",
+            "name": "test_non_object_json_raises_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "name": "test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error",
+            "name": "test_parser_recursion_error_becomes_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error",
+            "name": "test_unpaired_unicode_surrogates_raise_validation_error",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "name": "test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hms.test_responses.FormErrorResponseTests-20261106220254",
+        "methods": [
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "name": "test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "name": "test_invalid_reference_preserves_field_errors_and_returns_not_found",
+            "status": "PASS"
+          },
+          {
+            "id": "hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "name": "test_other_invalid_choices_and_required_references_remain_bad_requests",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.BedFilteringViewTests-20261106220254",
+        "methods": [
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_available_filter_excludes_occupied_and_maintenance_beds",
+            "name": "test_available_filter_excludes_occupied_and_maintenance_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_bed_list_is_paginated_and_keeps_filters_on_next_page",
+            "name": "test_bed_list_is_paginated_and_keeps_filters_on_next_page",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_combined_filters_return_only_matching_available_beds",
+            "name": "test_combined_filters_return_only_matching_available_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_floor",
+            "name": "test_filter_by_floor",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_hostel",
+            "name": "test_filter_by_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_filter_by_room_type",
+            "name": "test_filter_by_room_type",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_filters_do_not_bypass_login",
+            "name": "test_invalid_filters_do_not_bypass_login",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_floor_is_escaped_and_other_filter_values_are_preserved",
+            "name": "test_invalid_floor_is_escaped_and_other_filter_values_are_preserved",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_invalid_numeric_filters_return_400_without_bed_results",
+            "name": "test_invalid_numeric_filters_return_400_without_bed_results",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_maximum_hostel_id_is_valid_and_has_no_matches",
+            "name": "test_maximum_hostel_id_is_valid_and_has_no_matches",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.BedFilteringViewTests.test_zero_and_upper_boundary_floor_filters_match_only_their_beds",
+            "name": "test_zero_and_upper_boundary_floor_filters_match_only_their_beds",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelManagementViewTests-20261106220254",
+        "methods": [
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_anonymous_user_is_redirected_to_login",
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelManagementViewTests.test_only_admin_can_create_or_edit_hostels_and_rooms",
+            "name": "test_only_admin_can_create_or_edit_hostels_and_rooms",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "hostels.tests.HostelModelBehaviorTests-20261106220254",
+        "methods": [
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_bed_status_can_be_changed",
+            "name": "test_bed_status_can_be_changed",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_bulk_update_rejects_capacity_and_room_number",
+            "name": "test_bulk_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_create_hostel",
+            "name": "test_create_hostel",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_queryset_update_rejects_capacity_and_room_number",
+            "name": "test_queryset_update_rejects_capacity_and_room_number",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_reducing_capacity_removes_unallocated_beds",
+            "name": "test_reducing_capacity_removes_unallocated_beds",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_renaming_room_updates_existing_bed_labels",
+            "name": "test_renaming_room_updates_existing_bed_labels",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_capacity_cannot_exceed_four",
+            "name": "test_room_capacity_cannot_exceed_four",
+            "status": "PASS"
+          },
+          {
+            "id": "hostels.tests.HostelModelBehaviorTests.test_room_creation_automatically_creates_beds",
+            "name": "test_room_creation_automatically_creates_beds",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "payments.test_workflows.PaymentWorkflowTests-20261106220254",
+        "methods": [
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+            "name": "test_edit_delete_bulk_and_primary_key_replay_are_blocked",
+            "status": "PASS"
+          },
+          {
+            "id": "payments.test_workflows.PaymentWorkflowTests.test_form_encoded_missing_student_preserves_json_not_found_response",
+            "name": "test_form_encoded_missing_student_preserves_json_not_found_response",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "reports.test_reports.ReportTests-20261106220254",
+        "methods": [
+          {
+            "id": "reports.test_reports.ReportTests.test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+            "name": "test_csv_quotes_unicode_and_formula_text_and_html_escapes_names",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_empty_reports_and_invalid_filters_formats_and_methods",
+            "name": "test_empty_reports_and_invalid_filters_formats_and_methods",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_numeric_hostel_filter_accepts_leading_zeros",
+            "name": "test_numeric_hostel_filter_accepts_leading_zeros",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+            "name": "test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats",
+            "status": "PASS"
+          },
+          {
+            "id": "reports.test_reports.ReportTests.test_reports_landing_redirects_to_occupancy_report",
+            "name": "test_reports_landing_redirects_to_occupancy_report",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.test_self_service.StudentSelfServiceTests-20261106220254",
+        "methods": [
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_dashboard_and_navigation_link_to_my_records",
+            "name": "test_dashboard_and_navigation_link_to_my_records",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_empty_allocation_and_payment_history_is_explained",
+            "name": "test_empty_allocation_and_payment_history_is_explained",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_login_is_required_for_self_service_page",
+            "name": "test_login_is_required_for_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_only_student_role_can_open_self_service_page",
+            "name": "test_only_student_role_can_open_self_service_page",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+            "name": "test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback",
+            "name": "test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback",
+            "status": "PASS"
+          },
+          {
+            "id": "students.test_self_service.StudentSelfServiceTests.test_unlinked_student_login_gets_helpful_empty_state",
+            "name": "test_unlinked_student_login_gets_helpful_empty_state",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentManagementViewTests-20261106220254",
+        "methods": [
+          {
+            "id": "students.tests.StudentManagementViewTests.test_anonymous_user_is_redirected_to_login",
+            "name": "test_anonymous_user_is_redirected_to_login",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_duplicate_registration_shows_required_message",
+            "name": "test_duplicate_registration_shows_required_message",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_deactivation_requires_post",
+            "name": "test_student_deactivation_requires_post",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+            "name": "test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentManagementViewTests.test_student_role_cannot_register_update_or_deactivate",
+            "name": "test_student_role_cannot_register_update_or_deactivate",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "name": "students.tests.StudentModelTests-20261106220254",
+        "methods": [
+          {
+            "id": "students.tests.StudentModelTests.test_create_student",
+            "name": "test_create_student",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_duplicate_student_id_form_shows_exact_error_message",
+            "name": "test_duplicate_student_id_form_shows_exact_error_message",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_mobile_must_have_ten_digits",
+            "name": "test_mobile_must_have_ten_digits",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_student_can_be_deactivated_without_deleting_record",
+            "name": "test_student_can_be_deactivated_without_deleting_record",
+            "status": "PASS"
+          },
+          {
+            "id": "students.tests.StudentModelTests.test_student_year_must_be_between_one_and_five",
+            "name": "test_student_year_must_be_between_one_and_five",
+            "status": "PASS"
+          }
+        ]
+      }
+    ]
+  },
+  "timing_rerun": {
+    "status": "PASS",
+    "instrumented": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "normal_12_gates_pass": true,
+  "full_junit_identity_and_outcome_reconciliation": true,
+  "standalone_junit_exactly_frozen76": true,
+  "expected_timing_skip_and_separate_pass": true,
+  "historical_classification_and_test_source_hashes_unchanged": true,
+  "all_scopes_keep_current_full_file_line_and_branch_denominators": true,
+  "raw_artifacts_immutable_during_exports": true,
+  "json_xml_lines_arcs_totals_reconcile": true,
+  "method_and_empty_partitions_reconcile": true,
+  "prior_evidence_unchanged": true,
+  "historical_json_files": 36,
+  "classification_sha256": "67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7",
+  "selection_core_sha256": "654020d1bb897ed83e4d2dfc4a265e25d41932af0e6f3778d69e0ddcbbaf5679",
+  "formal_srs_unit70": "UNPROVEN",
+  "accepted_submission_build": "PENDING_TEAM_DECISION"
+}
