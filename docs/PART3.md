@@ -57,8 +57,8 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
 | [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with QA acceptance pending; feeds System Validation Report |
 | [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
-| [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports; [current-main measurements and standalone proposed-unit evidence](part3/evidence/issue42-main/README.md), pending review of this refresh and joint scope acceptance |
-| [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | Final review, publication, actual approvals and submission confirmation |
+| [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports are published and the reporting issue is closed; formal unit70 remains UNPROVEN pending #41/#42 scope agreement |
+| [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | [Final readiness checkpoint](part3/HMS21_Final_Readiness.md); final review, required approvals and submission confirmation remain open |
 
 The 4 November requirements audit found actual development spillover in
 Devansh's scope. These Sprint 3 defects were fixed in merged PR #44 and
@@ -91,6 +91,14 @@ criterion; it does not approve the reviewed-case entry criterion retrospectively
 **#40 remains open** pending #37's reviewed-case/entry-criterion disposition and
 actual independent evidence acceptance.
 The appendix does not complete either teammate's deliverable or global readiness.
+
+The current status after the 7 November HMS-17 merge is recorded in the
+[HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.md). PR #58 is
+merged, but issue #39 remains open: its evidence disposition includes one
+NOT RUN case and one PARTIAL quality case. HMS-16's report now incorporates
+that evidence without claiming team-wide acceptance. The required Unit Test
+Report is still absent, so the four-report package is incomplete and the
+submission remains NOT READY.
 
 Original execution ownership is preserved:
 
