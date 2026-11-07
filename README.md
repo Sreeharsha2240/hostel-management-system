@@ -28,6 +28,7 @@ review. Sprint 3 is conditional on actual development spillover.
 - `SRS_Hostel_Management_System.docx` — Software Requirements Specification
 - `SAD_Hostel_Management_System.docx` — Software Architecture and Design Specification
 - `Test_Plan_Hostel_Management_System.docx` — Software Test Plan (33 test cases, RTM)
+- [Part 3 Test Case Document and RTM](docs/part3/Test_Case_Document.md) - updated cases, source-bound evidence and execution limits
 - `HMS_Part1_Work_Distribution.docx` — responsibility matrix for the three members
 - `HMS_Part1_Sprint_Backlog.docx` — sprint goal, backlog, deliverables, definition of done
 - `Design_README.md` — design deliverables overview

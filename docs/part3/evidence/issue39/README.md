@@ -107,7 +107,7 @@ Additional Edge browser evidence is retained separately in the same screenshot d
 
 ## 6. Automated evidence files
 
-The six JUnit XML reports in this directory provide detailed automated results for the Student and Hostel suites.
+No JUnit XML files are committed in this directory. The six-suite 5 November result remains an owner-reported summary with the dirty-tree limitation above. The separate [retained 7 November CI extraction](../issue37/ci-methods.json) supplies exact method outcomes on `70c9fe2`, with source JUnit hashes and job links; it is not the missing historical raw XML or a new manual run.
 
 The original full verification output is retained locally under:
 
@@ -118,7 +118,7 @@ The original full verification output is retained locally under:
 The automated and manual results provide separate evidence for HMS-17.
 
 - Automated evidence covers the Student and Hostel test suites and repository verification.
-- Manual execution evidence covers all eight assigned HMS-17 case IDs: seven met their recorded expectations and TC-QUAL-01 is PARTIAL as described above.
+- The owner manual record names all eight assigned HMS-17 case IDs. Reviewed disposition is six OWNER PASS, TC-STU-01 NOT RUN for missing case-specific evidence, and TC-QUAL-01 PARTIAL. The unchanged owner summary's seven-pass count is not additional accepted evidence.
 - Browser usability checks were performed in Mozilla Firefox and Microsoft Edge.
 - No testing of the latest two versions of Chrome/Firefox/Edge as a compatibility matrix, Linux server portability, a real mobile client, or the SRS 99% availability target is claimed. These remain outside the evidence collected for this local miniproject run and must not be inferred from the Firefox/Edge checks.
 
