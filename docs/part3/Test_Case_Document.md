@@ -127,6 +127,82 @@ TC-ALC-05's raw browser result remains **PARTIAL** for fault injection; its link
 
 The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original prerequisites, steps, expected and actual results, 14 SRS requirement mappings, source hashes and #45–#48 defect/retest references. The original plan has no per-case priorities; QA must review them rather than infer High-priority acceptance. Edge/Playwright in place of Selenium, MySQL 8.4.9 in place of 8.0, and loopback HTTP test flags remain declared deviations requiring review. Load and recovery figures describe their recorded source and host; they are not new measurements on this document's revision. All historical JSON remains unchanged. Whole-plan entry/exit criteria, integrated reporting and actual QA/Dev/PO approvals remain pending with #37/#38/#43.
 
+### 5.4 Manual Browser Testing – HMS-17
+
+Manual functional and usability testing for HMS-17 was performed on **7 November 2026** using the locally deployed Hostel Management System.
+
+#### 5.4.1 Test Environment
+
+| Field | Details |
+|---|---|
+| Execution Type | Manual Functional and Usability Testing |
+| Application URL | http://127.0.0.1:8022/ |
+| Operating System | Windows |
+| Browsers | Mozilla Firefox and Microsoft Edge |
+| Database | MySQL 8.0 |
+| Test Data | Synthetic demo data |
+| Accounts Used | Admin, Warden and Student demo accounts |
+| Tested Commit | `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a` |
+
+Firefox was used to capture the retained functional screenshots. The application was also accessed and tested in Microsoft Edge, with additional browser evidence captured separately. All three demo accounts (Admin, Warden and Student) were used during the testing process.
+
+This was a local Windows/MySQL run. It does not establish the full Test Plan compatibility matrix (latest two Chrome, Firefox and Edge versions, Linux server portability, and a real mobile client) or the 99% availability target; those were not measured here.
+
+#### 5.4.2 Manual Test Execution Results
+
+| Test Case ID | Test Scenario | Actual Result | Status |
+|---|---|---|---|
+| TC-STU-01 | Student Registration | No case-specific saved result or screenshot is available in the reviewed evidence; retain the owner report as unverified. | NOT RUN |
+| TC-STU-02 | Student Validation | Duplicate Student ID and missing mandatory fields were correctly rejected with validation messages. | PASS |
+| TC-STU-03 | Student Search | Full Student ID, partial name and hostel searches returned matching records. | PASS |
+| TC-STU-04 | Update Student Details | Student contact information was updated and saved successfully. | PASS |
+| TC-STU-05 | Student Deactivation | Deactivation was blocked while an active allocation existed. After completing the allocation, deactivation succeeded. | PASS |
+| TC-HST-01 | Hostel and Room Creation | Hostel and room creation succeeded. Duplicate rooms and invalid capacities were rejected, and beds were generated automatically. | PASS |
+| TC-HST-02 | Bed Availability and Filtering | Bed availability and filters for hostel, floor, room type and status were verified. | PASS |
+| TC-QUAL-01 | Warden Usability | Dashboard, navigation, Students page and Beds page were checked in Firefox and Edge. A timed first-use walkthrough by a new warden using the one-page guide was not recorded, so the five-minute usability criterion remains unverified. | PARTIAL |
+
+#### 5.4.3 Screenshot Evidence
+
+Screenshots are retained in the repository's `Screenshot/` directory.
+
+**Student Management**
+
+- TC-STU-02: `TC-STU-02-duplicate-id-validation.png`
+- TC-STU-02: `TC-STU-02-mandatory-field-validation.png`
+- TC-STU-03: `TC-STU-03-search-by-full-student-ID.png`
+- TC-STU-03: `TC-STU-03-search-by-partial-name.png`
+- TC-STU-03: `TC-STU-03-search-by-hostel.png`
+- TC-STU-04: `TC-STU-04-update-student-details.png`
+- TC-STU-05: `TC-STU-05_deactivation_blocked_active_allocation.png`
+- TC-STU-05: `TC-STU-05_student_deactivation_success.png`
+
+**Hostel and Bed Management**
+
+- TC-HST-02: `TC-HST-02_available-beds-default.png`
+- TC-HST-02: `TC-HST-02-hostel-floor-filter.png`
+- TC-HST-02: `TC-HST-02_bed_filters.png`
+
+**Usability and Browser Evidence**
+
+- TC-QUAL-01: `TC-QUAL-01_Warden_Student_List.png`
+- TC-QUAL-01: `TC-QUAL-01_Warden_Student_Search.png`
+- TC-QUAL-01: `TC-QUAL-01_Edge_Student_Dashboard.png`
+
+#### 5.4.4 Overall Execution Summary
+
+| Result | Count |
+|---|---:|
+| Total Test Cases | 8 |
+| Passed | 7 |
+| Partial | 1 |
+| Failed | 0 |
+| Blocked | 0 |
+| Not Run | 0 |
+
+**Overall Result: PARTIAL**
+
+Seven assigned cases met their recorded manual expectations. TC-QUAL-01 is PARTIAL: the observed page checks do not establish the required timed new-warden walkthrough. Results are documented separately from the historical automated test results in Sections 5.1 and 5.2. Supporting screenshots are retained in the `Screenshot/` directory.
+
 ## 6. Test Case Status Definitions
 
 | Status | Meaning |
@@ -155,19 +231,19 @@ The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original p
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-STU-01 | REQ-5 | Register a student using valid information. | Student record is created successfully. | Vaishnavi | NOT RUN |
-| TC-STU-02 | REQ-5, REQ-6 | Submit invalid or duplicate student information. | Invalid or duplicate records are rejected with validation messages. | Vaishnavi | NOT RUN |
-| TC-STU-03 | REQ-7 | Search students using student ID or supported search fields. | Matching student records are displayed. | Vaishnavi | NOT RUN |
-| TC-STU-04 | REQ-8 | Update an existing student's information. | Changes are saved correctly and the student ID remains unchanged. | Vaishnavi | NOT RUN |
-| TC-STU-05 | REQ-9, NFR-5 | Deactivate an existing student. | Student is deactivated while the existing record is retained. | Vaishnavi | NOT RUN |
+| TC-STU-01 | REQ-5 | Register a student using valid information. | Student record is created successfully. | Vaishnavi | NOT RUN (owner summary reports a pass; case-level evidence was not located) |
+| TC-STU-02 | REQ-5, REQ-6 | Submit invalid or duplicate student information. | Invalid or duplicate records are rejected with validation messages. | Vaishnavi | PASS |
+| TC-STU-03 | REQ-7 | Search students using student ID or supported search fields. | Matching student records are displayed. | Vaishnavi | PASS |
+| TC-STU-04 | REQ-8 | Update an existing student's information. | Changes are saved correctly and the student ID remains unchanged. | Vaishnavi | PASS |
+| TC-STU-05 | REQ-9, NFR-5 | Deactivate an existing student. | Student is deactivated while the existing record is retained. | Vaishnavi | PASS |
 
 
 ### 7.3 Hostel and Room Management
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-HST-01 | REQ-10, REQ-11 | Add a hostel and create rooms with valid details. | Hostel and room records are created successfully. Invalid details are rejected. | Vaishnavi | NOT RUN |
-| TC-HST-02 | REQ-12, REQ-13 | Create beds and view bed availability. | Beds are created correctly and availability excludes occupied or unavailable beds. | Vaishnavi | NOT RUN |
+| TC-HST-01 | REQ-10, REQ-11 | Add a hostel and create rooms with valid details. | Hostel and room records are created successfully. Invalid details are rejected. | Vaishnavi | PASS |
+| TC-HST-02 | REQ-12, REQ-13 | Create beds and view bed availability. | Beds are created correctly and availability excludes occupied or unavailable beds. | Vaishnavi | PASS |
 
 ### 7.4 Allocation Management
 
@@ -219,7 +295,7 @@ The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original p
 
 | Test Case ID | Requirement | Test Scenario | Expected Result | Owner | Status |
 |---|---|---|---|---|---|
-| TC-QUAL-01 | Quality attributes | Access the application using supported browsers and check basic usability. | Application functions correctly across supported browsers and remains usable. | Vaishnavi | NOT RUN |
+| TC-QUAL-01 | Quality attributes | Access the application using supported browsers and check basic usability. | Application functions correctly across supported browsers and remains usable. | Vaishnavi | PARTIAL |
 
 ### 7.10 Sprint 1 and Sprint 2 Regression Test Cases
 
@@ -414,6 +490,10 @@ The exit criteria must be evaluated using actual execution evidence.
 8. The full automated verification run reported 185 tests, with 184 passed, 1 skipped and 0 failures or errors. Overall coverage was 92.63%.
 
 9. On 6 November, Devansh reconciled only his 13 original HMS-18 cases to linked OWNER PASS evidence from 5 November and recorded the actual PR #50 merge. Original case IDs, other owners' rows, priorities and RTM mappings are preserved; QA acceptance is pending.
+
+## 13. HMS-17 Evidence Revision – 7 November 2026
+
+Vaishnavi supplied the manual HMS-17 execution record and screenshots for TC-STU-01..05, TC-HST-01..02 and TC-QUAL-01. This revision records six cases as OWNER PASS, TC-STU-01 as NOT RUN because its case-specific registration result/evidence was not located, and TC-QUAL-01 as PARTIAL because no new-warden participant, one-page-guide walkthrough or measured five-minute result was recorded. The owner source manual record continues to report eight cases exercised; this register preserves that report without treating unsupported detail as accepted case evidence. The manual run is bound to application commit `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`; compatibility beyond the recorded Firefox and Edge sessions and the SRS availability target remain unverified. No other owner's status or approval is inferred.
 
 ---
 **End of Test Case Document**
