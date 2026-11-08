@@ -1,0 +1,67 @@
+{
+  "verified_utc": "2026-11-08T09:41:41.144316+00:00",
+  "reviewed_main": "cae69ea2192838b7874ad5be240def842f5aab5e",
+  "reviewed_tree": "4f81f4a5e100f6a3f22505acfa05b4dd0ff9bb1f",
+  "verification_scope": "Static source/evidence and fresh remote CI reconciliation; no new local Django/database/coverage execution",
+  "ast_and_frozen_and_current_ci_method_ids": 190,
+  "frozen_test_source_hashes_verified": 19,
+  "measured_application_test_config_sources_equivalent": 115,
+  "frozen_counts": {
+    "integration": 87,
+    "component-unit": 85,
+    "concurrency": 5,
+    "system": 4,
+    "tooling": 9
+  },
+  "conservative_count": 76,
+  "sensitivity_count": 100,
+  "owned_mixed_count": 62,
+  "owned_conservative_count": 11,
+  "proposal_sha256": "67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7",
+  "coverage_metrics_sha256": "695dba923d5ae7aee0b54988e0de638631c3c30af89bc6cbfb6836fd570f4485",
+  "classification_supplement_sha256": "e00bbb5ec404f6ce3fb20d56b9bcde5985c6e252744e012950736531c9b2fc1b",
+  "relative_file_and_anchor_links_checked": 108,
+  "ci_run": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42461981682",
+  "ci_jobs": [
+    {
+      "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42461981682/job/128673040523",
+      "python": "3.11.18",
+      "core_counts": {
+        "PASS": 189,
+        "SKIP": 1
+      },
+      "gates": 12,
+      "timing": "PASS",
+      "recovery_safety": 32,
+      "runner_safety": 7,
+      "expanded_cases": 9,
+      "source_hashes_verified": 162,
+      "raw_hashes_verified": 14,
+      "core_run_sha256": "aa14a93c29bb8c08113527f72191d4e90de45cf527f9aa70fccdcc2eddb91aa5",
+      "expanded_run_sha256": "8d801077fc8e448850be038ac0b6dbc5dce319ebdea243513d7966ea349a4cbf",
+      "freshly_retrieved_job_log_sha256": "22c65e777fd834ea77f839e5947b89086e8110f6139d055c233daf2c7ff91290"
+    },
+    {
+      "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42461981682/job/128673040344",
+      "python": "3.14.10",
+      "core_counts": {
+        "PASS": 189,
+        "SKIP": 1
+      },
+      "gates": 12,
+      "timing": "PASS",
+      "recovery_safety": 32,
+      "runner_safety": 7,
+      "expanded_cases": 9,
+      "source_hashes_verified": 162,
+      "raw_hashes_verified": 14,
+      "core_run_sha256": "641e87b4797b1f73a88efd8b1277e9568cfef3db8b090d0955567575e230e43a",
+      "expanded_run_sha256": "68b9230183e729fdadf5ae56054185aeb0079d4a3c7cf33c72d230946315b908",
+      "freshly_retrieved_job_log_sha256": "20c029b5ff74d3f07910747e8acbc31e5f25c250d73c7f226fd78936527b1efd"
+    }
+  ],
+  "preserved_existing_evidence": true,
+  "unit_report_present": false,
+  "unit70": "UNPROVEN",
+  "final_development_acceptance": "HOLD"
+}

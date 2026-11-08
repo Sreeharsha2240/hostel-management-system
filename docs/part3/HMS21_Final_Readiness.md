@@ -4,6 +4,8 @@
 **Reviewed main revision:** `b523d4c7abb77072bea48ac059be7f72396e8a79` (tree `56f7fb4307bc2ce4f3595aebfd5915ce301c3fb7`). Accepted final submission revision: **PENDING**.
 **Readiness:** **NOT READY**. This checkpoint records verified deliverables and blockers; it is not an approval or submission receipt.
 
+**Current-main development addendum — 8 November 2026:** [Development review and #41 classification handoff](Development_Review_20261108.md) reviews `cae69ea2192838b7874ad5be240def842f5aab5e` (tree `4f81f4a5e100f6a3f22505acfa05b4dd0ff9bb1f`). PR #64 and [exact-main CI 42461981682](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42461981682) are successful; #40 and #63 are CLOSED. Final development acceptance remains **HOLD** pending the remaining evidence and final package. The earlier review revision and historical measurements below are preserved.
+
 ## Required Part 3 deliverables
 
 | Deliverable | Current state | Remaining work |
@@ -23,11 +25,11 @@ The latest HMS-17 PR #58 merged as `896b4f3`; its tested tree is the same as the
 | #37 HMS-15 | Closed — documentation delivered through PR #60 | Complete records, mappings and evidence reconciliation are delivered under Devansh's explicit instruction. The document retains execution gaps and proposed-priority/acceptance limits; closing this delivery does not complete the whole Test Plan. |
 | #38 HMS-16 | Open | PR #59 is merged. Obtain the missing TLS/ZAP evidence or an actual authorized criterion change, integrate remaining case results/metrics, and record real QA/Dev/PO decisions. The old Windows failure/count remains honestly recorded as unreconciled historical evidence. |
 | #39 HMS-17 | Open | PR #58 is merged; TC-STU-01 is NOT RUN for lack of case-specific evidence, TC-QUAL-01 is PARTIAL without a timed new-Warden guide walkthrough, and other issue-level SRS coverage remains outstanding. |
-| #40 HMS-18 | Technical delivery accepted for closure | [8 November independent AI QA](evidence/issue40-final/qa-review-20261108.md), expressly authorized by Devansh, accepts the original 13 cases with current-priority, late-entry and bounded tool/environment dispositions. That #40 review preserved OWNER PASS observations, raw browser PARTIAL and expanded-case statuses; the separate #63 follow-up below subsequently executes nine expanded recipes. Actual named human final approvals and whole-plan acceptance remain pending. |
+| #40 HMS-18 | CLOSED — scoped technical delivery accepted | [8 November independent AI QA](evidence/issue40-final/qa-review-20261108.md), expressly authorized by Devansh, accepts the original 13 cases with current-priority, late-entry and bounded tool/environment dispositions. That #40 review preserved OWNER PASS observations, raw browser PARTIAL and expanded-case statuses; the separate #63 follow-up below subsequently executes nine expanded recipes. Actual named human final approvals and whole-plan acceptance remain pending. |
 | #41 HMS-19 | Open | Publish the missing Unit Test Report; classify unit versus integration/system tests and disposition the formal unit70 target. |
 | #42 HMS-20 | Closed | Coverage reports are published and the reporting task is complete; the separate unit70 result is still UNPROVEN. |
-| #63 HMS-26 | Owner execution delivered; publication verification tracked in #63 | [Nine remaining Devansh-owned recipes](evidence/issue63/README.md) passed on clean `6636098cb728aa17c2abf5e42c358a5d400261e7` after independent pre-execution review. Other owners and final acceptance remain separate. |
-| #43 HMS-21 | Open | Final submission cannot be approved until required reports, case reviews, entry/exit criteria, actual approvals and submission instructions/receipt are resolved. |
+| #63 HMS-26 | CLOSED — PR #64 merged and exact-main CI verified | [Nine remaining Devansh-owned recipes](evidence/issue63/README.md) passed on clean `6636098cb728aa17c2abf5e42c358a5d400261e7` after independent pre-execution review, then in both Python jobs of main CI 42461981682 at `cae69ea`. Other owners and final acceptance remain separate. |
+| #43 HMS-21 | Open | Before submission, resolve required reports, case reviews, entry/exit criteria, actual approvals and instructor instructions. Record the genuine receipt after submission to complete #43; the receipt is not a prerequisite for reviewing the package. |
 
 ## Team review and pending decisions — 8 November 2026
 
