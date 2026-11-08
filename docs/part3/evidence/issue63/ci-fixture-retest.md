@@ -16,7 +16,7 @@ run. The extra metadata call was mistaken for a launched test child.
 
 The correction isolates `platform.platform()` inside this offline fixture and
 asserts the exact sole `git check-ignore` call. Database refusal still must
-preserve failure metadata and must never start Django. No production code,
+preserve failure metadata and must never launch the Django test child. No production code,
 execution runner, case recipe, threshold or expected result changes. A blind
 reviewer independently traced the stdlib path and accepted this fixture-only
 correction.
