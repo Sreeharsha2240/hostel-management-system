@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="accounts.tests.AuthenticationTests-20261107163712" tests="18" file="accounts/tests.py" time="14.164" timestamp="2026-11-07T16:37:32" failures="0" errors="0" skipped="1">
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_admin_can_create_and_deactivate_accounts" time="1.288" timestamp="2026-11-07T16:37:19" file="accounts/tests.py" line="165"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_admin_can_update_account" time="1.019" timestamp="2026-11-07T16:37:20" file="accounts/tests.py" line="241"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_duplicate_username_is_rejected" time="0.644" timestamp="2026-11-07T16:37:21" file="accounts/tests.py" line="225"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_each_role_can_access_dashboard_and_dashboard_reflects_role" time="1.288" timestamp="2026-11-07T16:37:22" file="accounts/tests.py" line="44"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_expired_session_requires_login" time="0.327" timestamp="2026-11-07T16:37:22" file="accounts/tests.py" line="155"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_invalid_password_is_generic_and_locks_after_five_attempts" time="1.881" timestamp="2026-11-07T16:37:24" file="accounts/tests.py" line="133"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_invalid_password_settings_do_not_change_password_or_audit" time="0.949" timestamp="2026-11-07T16:37:25" file="accounts/tests.py" line="338"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_locked_account_keeps_generic_error" time="0.636" timestamp="2026-11-07T16:37:26" file="accounts/tests.py" line="147"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_login_page_welcomes_new_users_and_explains_account_setup" time="0.311" timestamp="2026-11-07T16:37:26" file="accounts/tests.py" line="22"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_login_shows_role_dashboard_and_logout_clears_session" time="0.654" timestamp="2026-11-07T16:37:27" file="accounts/tests.py" line="28"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_non_admin_cannot_manage_accounts" time="0.969" timestamp="2026-11-07T16:37:28" file="accounts/tests.py" line="185"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_non_admin_cannot_update_account" time="0.634" timestamp="2026-11-07T16:37:28" file="accounts/tests.py" line="265"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_password_policy_rejects_password_without_letter_or_digit" time="0.648" timestamp="2026-11-07T16:37:29" file="accounts/tests.py" line="209"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_password_settings_change_audits_without_secret_and_preserves_session" time="1.280" timestamp="2026-11-07T16:37:30" file="accounts/tests.py" line="309"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_profile_settings_save_is_audited_and_unchanged_save_is_not" time="0.366" timestamp="2026-11-07T16:37:31" file="accounts/tests.py" line="274"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_session_and_csrf_cookies_are_secure_when_enabled_for_deployment" time="0.637" timestamp="2026-11-07T16:37:31" file="accounts/tests.py" line="119"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_session_cookie_is_http_only_and_uses_fifteen_minute_rolling_expiry" time="0.631" timestamp="2026-11-07T16:37:32" file="accounts/tests.py" line="108"/>
+	<testcase classname="accounts.tests.AuthenticationTests" name="test_login_and_role_dashboard_respond_within_two_seconds" time="0.002" timestamp="2026-11-07T16:37:26" file="accounts/tests.py" line="70">
+		<skipped type="skip" message="Wall-clock thresholds are measured without coverage instrumentation."/>
+	</testcase>
+</testsuite>

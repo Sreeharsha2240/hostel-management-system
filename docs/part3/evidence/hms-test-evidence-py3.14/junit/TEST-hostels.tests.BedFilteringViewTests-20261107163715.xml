@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hostels.tests.BedFilteringViewTests-20261107163715" tests="11" file="hostels/tests.py" time="3.818" timestamp="2026-11-07T16:37:43" failures="0" errors="0" skipped="0">
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_available_filter_excludes_occupied_and_maintenance_beds" time="0.325" timestamp="2026-11-07T16:37:39" file="hostels/tests.py" line="447"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_bed_list_is_paginated_and_keeps_filters_on_next_page" time="0.483" timestamp="2026-11-07T16:37:40" file="hostels/tests.py" line="590"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_combined_filters_return_only_matching_available_beds" time="0.326" timestamp="2026-11-07T16:37:40" file="hostels/tests.py" line="489"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_filter_by_floor" time="0.324" timestamp="2026-11-07T16:37:40" file="hostels/tests.py" line="467"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_filter_by_hostel" time="0.323" timestamp="2026-11-07T16:37:41" file="hostels/tests.py" line="456"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_filter_by_room_type" time="0.327" timestamp="2026-11-07T16:37:41" file="hostels/tests.py" line="478"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_invalid_filters_do_not_bypass_login" time="0.320" timestamp="2026-11-07T16:37:41" file="hostels/tests.py" line="579"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_invalid_floor_is_escaped_and_other_filter_values_are_preserved" time="0.324" timestamp="2026-11-07T16:37:42" file="hostels/tests.py" line="527"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_invalid_numeric_filters_return_400_without_bed_results" time="0.395" timestamp="2026-11-07T16:37:42" file="hostels/tests.py" line="503"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_maximum_hostel_id_is_valid_and_has_no_matches" time="0.326" timestamp="2026-11-07T16:37:42" file="hostels/tests.py" line="572"/>
+	<testcase classname="hostels.tests.BedFilteringViewTests" name="test_zero_and_upper_boundary_floor_filters_match_only_their_beds" time="0.345" timestamp="2026-11-07T16:37:43" file="hostels/tests.py" line="549"/>
+</testsuite>

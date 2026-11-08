@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="audit.tests.AuditTests-20261107163715" tests="10" file="audit/tests.py" time="1.910" timestamp="2026-11-07T16:37:37" failures="0" errors="0" skipped="0">
+	<testcase classname="audit.tests.AuditTests" name="test_admin_password_changes_are_audited_without_password_contents" time="0.310" timestamp="2026-11-07T16:37:36" file="audit/tests.py" line="233"/>
+	<testcase classname="audit.tests.AuditTests" name="test_audit_failure_rolls_back_account_creation" time="0.303" timestamp="2026-11-07T16:37:36" file="audit/tests.py" line="106"/>
+	<testcase classname="audit.tests.AuditTests" name="test_audit_filter_and_pagination_keep_valid_query_links" time="0.036" timestamp="2026-11-07T16:37:36" file="audit/tests.py" line="151"/>
+	<testcase classname="audit.tests.AuditTests" name="test_authentication_events_include_actor_record_and_time_without_secrets" time="0.602" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="35"/>
+	<testcase classname="audit.tests.AuditTests" name="test_create_update_and_deactivate_accounts_record_the_admin_actor" time="0.316" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="76"/>
+	<testcase classname="audit.tests.AuditTests" name="test_events_cannot_be_changed_or_deleted_through_supported_orm_operations" time="0.003" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="172"/>
+	<testcase classname="audit.tests.AuditTests" name="test_invalid_audit_action_is_rejected" time="0.000" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="249"/>
+	<testcase classname="audit.tests.AuditTests" name="test_only_admin_can_read_audit_log_including_direct_json_requests" time="0.034" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="122"/>
+	<testcase classname="audit.tests.AuditTests" name="test_retention_command_preserves_a_full_year_and_supports_dry_run" time="0.009" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="204"/>
+	<testcase classname="audit.tests.AuditTests" name="test_unknown_username_failure_is_logged_without_storing_input" time="0.295" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="68"/>
+</testsuite>

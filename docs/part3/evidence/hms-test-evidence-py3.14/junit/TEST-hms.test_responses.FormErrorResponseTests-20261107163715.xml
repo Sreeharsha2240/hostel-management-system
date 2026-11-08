@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_responses.FormErrorResponseTests-20261107163715" tests="3" file="hms/test_responses.py" time="0.002" timestamp="2026-11-07T16:38:02" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_responses.FormErrorResponseTests" name="test_invalid_choices_require_an_explicit_reference_field_to_return_404" time="0.001" timestamp="2026-11-07T16:38:02" file="hms/test_responses.py" line="46"/>
+	<testcase classname="hms.test_responses.FormErrorResponseTests" name="test_invalid_reference_preserves_field_errors_and_returns_not_found" time="0.000" timestamp="2026-11-07T16:38:02" file="hms/test_responses.py" line="14"/>
+	<testcase classname="hms.test_responses.FormErrorResponseTests" name="test_other_invalid_choices_and_required_references_remain_bad_requests" time="0.001" timestamp="2026-11-07T16:38:02" file="hms/test_responses.py" line="31"/>
+</testsuite>

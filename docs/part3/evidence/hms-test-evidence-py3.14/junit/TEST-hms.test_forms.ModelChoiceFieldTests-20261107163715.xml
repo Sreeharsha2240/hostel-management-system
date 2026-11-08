@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_forms.ModelChoiceFieldTests-20261107163715" tests="1" file="hms/test_forms.py" time="0.000" timestamp="2026-11-07T16:38:02" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_forms.ModelChoiceFieldTests" name="test_non_integer_json_keys_are_rejected_without_a_query" time="0.000" timestamp="2026-11-07T16:38:02" file="hms/test_forms.py" line="29"/>
+</testsuite>

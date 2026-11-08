@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="allocations.tests.AllocationModelTests-20261107163715" tests="6" file="allocations/tests.py" time="0.146" timestamp="2026-11-07T16:37:35" failures="0" errors="0" skipped="0">
+	<testcase classname="allocations.tests.AllocationModelTests" name="test_active_allocation_occupies_bed" time="0.022" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="21"/>
+	<testcase classname="allocations.tests.AllocationModelTests" name="test_bed_cannot_have_two_active_allocations" time="0.025" timestamp="2026-11-07T16:37:35" file="allocations/tests.py" line="48"/>
+	<testcase classname="allocations.tests.AllocationModelTests" name="test_completing_allocation_preserves_maintenance_status" time="0.030" timestamp="2026-11-07T16:37:35" file="allocations/tests.py" line="85"/>
+	<testcase classname="allocations.tests.AllocationModelTests" name="test_completing_allocation_releases_bed" time="0.029" timestamp="2026-11-07T16:37:35" file="allocations/tests.py" line="70"/>
+	<testcase classname="allocations.tests.AllocationModelTests" name="test_maintenance_bed_cannot_be_allocated" time="0.015" timestamp="2026-11-07T16:37:35" file="allocations/tests.py" line="60"/>
+	<testcase classname="allocations.tests.AllocationModelTests" name="test_student_cannot_have_two_active_allocations" time="0.025" timestamp="2026-11-07T16:37:35" file="allocations/tests.py" line="36"/>
+</testsuite>

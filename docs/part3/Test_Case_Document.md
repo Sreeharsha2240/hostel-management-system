@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
-| Revision | Part 3 reconciliation, 7 November 2026 |
+| Revision | Part 3 reconciliation, 8 November 2026 |
 | Code baseline inspected | `70c9fe20e462eb0b052e15434f19b347a793afa1` |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
 | Requirements | All original REQ-1..24 and NFR-1..12; separate SRS quality, BR and SO mapping |
@@ -132,7 +132,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-AUTH-03](#case-tc-auth-03) - Account lockout after failed attempts | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-AUTH-04](#case-tc-auth-04) - Logout and session timeout | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-USR-01](#case-tc-usr-01) - Admin manages user accounts | Sreeharsha | High (proposed) | OWNER PASS |
-| [TC-STU-01](#case-tc-stu-01) - Register student (valid data) | Vaishnavi | Medium (proposed) | NOT RUN |
+| [TC-STU-01](#case-tc-stu-01) - Register student (valid data) | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-02](#case-tc-stu-02) - Register student (invalid / duplicate) | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-03](#case-tc-stu-03) - Search students | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-04](#case-tc-stu-04) - Update student details | Vaishnavi | Medium (proposed) | OWNER PASS |
@@ -170,11 +170,11 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S2-03](#case-tc-reg-s2-03) - Concurrent payments receive unique sequential receipts | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-04](#case-tc-reg-s2-04) - Adjustments preserve original and validate net amount | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-05](#case-tc-reg-s2-05) - Occupancy HTML/CSV/JSON match with filter | Devansh | Medium (proposed) | OWNER PASS |
-| [TC-REG-S1-06](#case-tc-reg-s1-06) - Empty student/hostel/room submissions are rejected | Vaishnavi | Medium (proposed) | NOT RUN |
-| [TC-REG-S1-07](#case-tc-reg-s1-07) - Numeric bed-filter boundaries and escaped errors | Vaishnavi | Medium (proposed) | NOT RUN |
-| [TC-REG-S1-08](#case-tc-reg-s1-08) - Student/room changes roll back on audit failure | Vaishnavi | High (proposed) | NOT RUN |
-| [TC-REG-S2-06](#case-tc-reg-s2-06) - Explicit Student login link scopes My Records | Sreeharsha / Vaishnavi | High (proposed) | NOT RUN |
-| [TC-REG-S2-07](#case-tc-reg-s2-07) - My Records empty/access/navigation/date behavior | Sreeharsha | Medium (proposed) | NOT RUN |
+| [TC-REG-S1-06](#case-tc-reg-s1-06) - Empty student/hostel/room submissions are rejected | Vaishnavi | Medium (proposed) | OWNER PASS |
+| [TC-REG-S1-07](#case-tc-reg-s1-07) - Numeric bed-filter boundaries and escaped errors | Vaishnavi | Medium (proposed) | OWNER PASS |
+| [TC-REG-S1-08](#case-tc-reg-s1-08) - Student/room changes roll back on audit failure | Vaishnavi | High (proposed) | OWNER PASS |
+| [TC-REG-S2-06](#case-tc-reg-s2-06) - Explicit Student login link scopes My Records | Sreeharsha / Vaishnavi | High (proposed) | OWNER PASS |
+| [TC-REG-S2-07](#case-tc-reg-s2-07) - My Records empty/access/navigation/date behavior | Sreeharsha | Medium (proposed) | OWNER PASS |
 | [TC-REG-S2-08](#case-tc-reg-s2-08) - Allocation/release/transfer rollback and retry | Devansh | High (proposed) | NOT RUN |
 | [TC-REG-S2-09](#case-tc-reg-s2-09) - Payments and original receipts are permanent | Devansh | High (proposed) | NOT RUN |
 | [TC-REG-S2-10](#case-tc-reg-s2-10) - Rejected/failed payments preserve receipt counter | Devansh | High (proposed) | NOT RUN |
@@ -186,7 +186,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S2-16](#case-tc-reg-s2-16) - Typed JSON dates/references keep correct errors and state | Devansh | High (proposed) | NOT RUN |
 | [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | NOT RUN |
 | [TC-QUAL-02](#case-tc-qual-02) - Working-hours service availability | Sreeharsha | Medium (proposed) | NOT RUN |
-| [TC-QUAL-03](#case-tc-qual-03) - SRS portability and real mobile coverage | Vaishnavi | Medium (proposed) | NOT RUN |
+| [TC-QUAL-03](#case-tc-qual-03) - SRS portability and real mobile coverage | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-QUAL-04](#case-tc-qual-04) - Application-logic unit coverage and maintainability | Vaishnavi (QA), Devansh (coverage evidence), Sreeharsha (PO review) | Medium (proposed) | BLOCKED |
 
 ## 8. Requirements Traceability Matrix (RTM)

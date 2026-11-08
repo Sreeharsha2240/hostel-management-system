@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_system_journey.StudentHostelJourneyTests-20261107163715" tests="1" file="hms/test_system_journey.py" time="0.704" timestamp="2026-11-07T16:37:39" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_system_journey.StudentHostelJourneyTests" name="test_staff_allocation_payment_student_view_and_reports_work_together" time="0.704" timestamp="2026-11-07T16:37:39" file="hms/test_system_journey.py" line="42"/>
+</testsuite>

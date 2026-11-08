@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="accounts.test_security.SessionAndLockoutTests-20261107163715" tests="9" file="accounts/test_security.py" time="5.260" timestamp="2026-11-07T16:37:20" failures="0" errors="0" skipped="0">
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_django_admin_login_enforces_five_attempt_lockout" time="2.161" timestamp="2026-11-07T16:37:17" file="accounts/test_security.py" line="22"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_https_session_and_csrf_cookies_have_required_flags" time="0.304" timestamp="2026-11-07T16:37:17" file="accounts/test_security.py" line="118"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_inactive_account_cannot_sign_in" time="0.328" timestamp="2026-11-07T16:37:18" file="accounts/test_security.py" line="91"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_lockout_is_shared_between_application_and_admin_logins" time="1.807" timestamp="2026-11-07T16:37:19" file="accounts/test_security.py" line="55"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_login_post_is_protected_by_csrf" time="0.014" timestamp="2026-11-07T16:37:19" file="accounts/test_security.py" line="133"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_server_session_expiry_logout_and_cache_control" time="0.028" timestamp="2026-11-07T16:37:19" file="accounts/test_security.py" line="103"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_success_resets_failed_attempts_and_expired_lock_starts_a_new_count" time="0.595" timestamp="2026-11-07T16:37:20" file="accounts/test_security.py" line="71"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_superuser_role_and_password_similarity_validation" time="0.012" timestamp="2026-11-07T16:37:20" file="accounts/test_security.py" line="152"/>
+	<testcase classname="accounts.test_security.SessionAndLockoutTests" name="test_unknown_role_cannot_access_dashboard" time="0.012" timestamp="2026-11-07T16:37:20" file="accounts/test_security.py" line="145"/>
+</testsuite>

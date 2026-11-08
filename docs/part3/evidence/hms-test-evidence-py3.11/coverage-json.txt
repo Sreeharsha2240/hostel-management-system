@@ -1,0 +1,1 @@
+Wrote JSON report to /home/runner/work/hostel-management-system/hostel-management-system/test-results/ci/coverage.json

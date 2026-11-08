@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.tests.DatabaseConfigurationTests-20261107163715" tests="4" file="hms/tests.py" time="0.004" timestamp="2026-11-07T16:37:39" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.tests.DatabaseConfigurationTests" name="test_all_tables_use_innodb" time="0.001" timestamp="2026-11-07T16:37:39" file="hms/tests.py" line="33"/>
+	<testcase classname="hms.tests.DatabaseConfigurationTests" name="test_connects_to_mysql_8" time="0.000" timestamp="2026-11-07T16:37:39" file="hms/tests.py" line="16"/>
+	<testcase classname="hms.tests.DatabaseConfigurationTests" name="test_date_lookups_use_india_dates" time="0.002" timestamp="2026-11-07T16:37:39" file="hms/tests.py" line="41"/>
+	<testcase classname="hms.tests.DatabaseConfigurationTests" name="test_sql_mode_keeps_mysql_8_safety_modes" time="0.001" timestamp="2026-11-07T16:37:39" file="hms/tests.py" line="21"/>
+</testsuite>
