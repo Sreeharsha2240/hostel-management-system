@@ -1,0 +1,11 @@
+# HMS-16 local execution follow-up — 9 November 2026
+
+This record explains the earlier **53.14%** diagnostic. That figure came from the selected `students hostels` suite, not the full configured check. On Windows 11 / Python 3.14.0 / Django 5.2.19 / MySQL 8.0.46, `scripts/run_checks.py` passed all 12 gates on candidate source commit `7556822df38b23d4f302cf68d857bb35b963ff10`, source tree `781dd5195e1b6da718fe602ae67cdb04f495acd4`, with only the supplemental test module and runner uncommitted. The exact sanitized run is [execution-summary.json](execution-summary.json); raw JUnit, logs and coverage artifacts remain ignored under `test-results/`.
+
+The run discovered **207 test methods: 206 passed, 0 failed, 0 errored, 1 expected timing skip**. The unchanged repository gate is **70%**; combined project coverage was **88.25%** (1,590/1,772 statements and 348/424 branch outcomes, 82.08% branch coverage). The seven supplemental HMS-16 cases also passed in their isolated focused run. These are project-wide mixed tests and do not prove the SRS unit-only 70% target.
+
+The full runner's checks included Ruff lint/format, dependency check, Django checks, applied migration and migration consistency checks, static collection, tests/JUnit, coverage reports and timing smoke. All returned exit code 0. An initial Windows attempt had one XML-fixture failure while temp files used a restricted location. The root cause was not established. After redirecting temp files to a writable isolated folder, the fixture and full check passed. The earlier failed attempt is preserved in ignored artifacts and is not represented as a pass.
+
+A local authenticated HTTPS/TLS probe could not be completed: after the disposable database process ended, restarting it failed because MySQL could not write its isolated `ibdata1`, even after the filesystem access grant. No network TLS result is claimed. **TC-SEC-06 remains PARTIAL.** Per the user's request, OWASP ZAP was skipped; **TC-SEC-08 remains NOT RUN**. No criteria waiver or team/instructor approval is inferred.
+
+The report therefore corrects the partial-suite coverage interpretation but does not close HMS-16 or certify whole-plan readiness. The Unit Test Report owner must still determine and evidence the formal unit-only denominator under #41.
