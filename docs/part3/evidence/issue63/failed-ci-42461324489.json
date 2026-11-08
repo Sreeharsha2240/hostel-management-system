@@ -1,0 +1,37 @@
+{
+  "run_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42461324489",
+  "head": "f3ae4618bcb26a04e714a07b667f2ad5445dee50",
+  "conclusion": "FAILURE",
+  "failure_step": "Check owned-case runner safety without database operations",
+  "failure": "AssertionError: 2 != 1",
+  "offline_safety_result": "6 PASS / 1 FAIL in each job",
+  "owned_case_execution": "SKIPPED",
+  "owned_artifact": "NOT CREATED",
+  "core_results": [
+    {
+      "python": "3.11.18",
+      "checkout": "f07e7eb385726690409f18f40bf3a2b327080649",
+      "core_gates_passed": 12,
+      "core_counts": {
+        "tests": 190,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "core_run_sha256": "9caa15fef83b91fac70f4ce6229c674b709b9e97d61e299de3f2c07d637242c6"
+    },
+    {
+      "python": "3.14.10",
+      "checkout": "f07e7eb385726690409f18f40bf3a2b327080649",
+      "core_gates_passed": 12,
+      "core_counts": {
+        "tests": 190,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "core_run_sha256": "d457b155ad94f085a805acf95a3a68ffd61416dc4fca7d1b84db347cd545caab"
+    }
+  ],
+  "scope": "Retained failed CI; never a nine-case PASS"
+}

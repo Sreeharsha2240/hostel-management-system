@@ -150,6 +150,11 @@ class OwnedRunnerSafetyTests(unittest.TestCase):
                     ),
                 ),
                 patch.object(runner, "version", return_value="test-version"),
+                # Linux platform.platform() may launch uname through subprocess;
+                # isolate metadata collection from this child-launch assertion.
+                patch.object(
+                    runner.platform, "platform", return_value="offline-test-platform"
+                ),
                 patch.object(
                     runner, "check_database", side_effect=ValueError("refuse")
                 ),
@@ -165,7 +170,17 @@ class OwnedRunnerSafetyTests(unittest.TestCase):
                 self.assertEqual(result["failure_stage"], "database-preflight")
                 self.assertEqual(result["failure_type"], "ValueError")
                 self.assertEqual(result["case_counts"], {"NOT RUN": 9})
-                self.assertEqual(child.call_count, 1)  # Git ignore check only.
+                child.assert_called_once_with(
+                    [
+                        "git",
+                        "check-ignore",
+                        "--quiet",
+                        str(output / "private-evidence-check"),
+                    ],
+                    cwd=root,
+                    capture_output=True,
+                    check=False,
+                )
 
 
 if __name__ == "__main__":

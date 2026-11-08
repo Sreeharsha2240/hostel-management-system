@@ -38,7 +38,7 @@ The parent independently checked that exactly nine case bodies changed, the
 other 52 remain identical, prerequisites/requirements/steps/expected results
 are preserved, the 36-row RTM is unchanged, and all 27 exclusively Devansh-owned
 records have OWNER PASS observations. The retained [delivery validation](delivery-validation.json)
-reconciles totals and 581 local links. Staged raw blobs were checked against
+reconciles totals and 586 local links. Staged raw blobs were checked against
 all 57 manifest hashes, so publishing preserves exact evidence bytes.
 
 The clean measured source passed all 12 repository gates, 190 mixed methods
@@ -53,3 +53,9 @@ follow-up. It supplies no named human final approval, historical entry approval,
 instructor extension, TLS/browser execution or unit70 result. Shared QUAL-04
 and other owners' evidence remain pending. Whole-plan readiness remains
 **NOT READY**.
+
+After this clean-run review, the first publication CI exposed the separate
+[Linux offline fixture problem](ci-fixture-retest.md). Its correction changes
+only that safety test's metadata mock and subprocess assertion. The earlier
+execution source/hashes remain preserved; replacement CI is required before
+merge. No case observation or prior failure is erased.

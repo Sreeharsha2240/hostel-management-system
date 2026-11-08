@@ -1,5 +1,5 @@
 {
-  "verified_at": "2026-11-08T08:03:36.541379+00:00",
+  "verified_at": "2026-11-08T08:08:27.089283+00:00",
   "changed_case_ids": [
     "TC-REG-S2-08",
     "TC-REG-S2-09",
@@ -21,8 +21,13 @@
   "exclusively_owned_pass_records": 27,
   "rtm_unchanged": true,
   "raw_hashes_verified": 14,
-  "source_hashes_checked": 161,
-  "local_links_checked": 581,
+  "historical_source_hashes_verified": 162,
+  "unchanged_current_source_hashes_checked": 160,
+  "documented_post_measurement_changes": [
+    "docs/part3/Test_Case_Document.md",
+    "scripts/part3/test_owned_runner_safety.py"
+  ],
+  "local_links_checked": 586,
   "core_counts": {
     "PASS": 189,
     "SKIP": 1

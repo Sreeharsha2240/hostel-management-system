@@ -99,3 +99,8 @@ recorded separately from this execution source.
 The [final technical review](final-technical-review.md) records the independent
 clean-run checks and preservation audit. Publication CI and merge results are
 tracked on the linked issue and pull request.
+
+The first publication CI exposed an offline fixture's Linux platform-probe
+counting error. Its [failure and correction](ci-fixture-retest.md) are retained;
+that failed run did not execute the nine cases. The earlier clean local evidence
+is unchanged, and replacement CI must pass before merge.
