@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="scripts.part3.test_owned_transactions.OwnedPaymentCorrectionConcurrency-20261108132349" tests="1" file="scripts/part3/test_owned_transactions.py" time="0.077" timestamp="2026-11-08T13:23:50" failures="0" errors="0" skipped="0">
+	<testcase classname="scripts.part3.test_owned_transactions.OwnedPaymentCorrectionConcurrency" name="test_tc_reg_s2_11_competing_corrections" time="0.077" timestamp="2026-11-08T13:23:50" file="scripts\part3\test_owned_transactions.py" line="530"/>
+</testsuite>

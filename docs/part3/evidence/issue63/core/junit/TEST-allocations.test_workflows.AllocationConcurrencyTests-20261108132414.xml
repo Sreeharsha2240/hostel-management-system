@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="allocations.test_workflows.AllocationConcurrencyTests-20261108132414" tests="3" file="allocations/test_workflows.py" time="0.254" timestamp="2026-11-08T13:24:47" failures="0" errors="0" skipped="0">
+	<testcase classname="allocations.test_workflows.AllocationConcurrencyTests" name="test_allocation_racing_deactivation_preserves_student_eligibility" time="0.052" timestamp="2026-11-08T13:24:47" file="allocations\test_workflows.py" line="576"/>
+	<testcase classname="allocations.test_workflows.AllocationConcurrencyTests" name="test_cross_room_transfers_lock_rooms_in_consistent_order" time="0.117" timestamp="2026-11-08T13:24:47" file="allocations\test_workflows.py" line="594"/>
+	<testcase classname="allocations.test_workflows.AllocationConcurrencyTests" name="test_simultaneous_same_bed_or_same_student_has_one_winner" time="0.085" timestamp="2026-11-08T13:24:47" file="allocations\test_workflows.py" line="555"/>
+</testsuite>

@@ -1,0 +1,295 @@
+{
+  "case_id": "TC-REG-S2-12",
+  "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_12_report_history_balances_and_locations",
+  "started_at": "2026-11-08T07:53:51.355167+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1",
+      "expected": "Transfer/release preserve latest Bed and fee; two payments total 1000 once; old/new hostel filters follow location",
+      "actual": {
+        "after_transfer": {
+          "json": {
+            "student_id": "PES1UG24CS001",
+            "student_name": "Sample Student 1",
+            "hostel_id": 3,
+            "hostel": "Boys 202",
+            "room": "202",
+            "bed": "202-A",
+            "fee": "2000.00",
+            "paid": "1000.00",
+            "due": "1000.00",
+            "status": "Partial",
+            "fee_configured": true
+          },
+          "csv": {
+            "Student ID": "PES1UG24CS001",
+            "Student Name": "Sample Student 1",
+            "Hostel Name": "Boys 202",
+            "Room": "202",
+            "Bed": "202-A",
+            "Fee Amount (INR)": "2000.00",
+            "Amount Paid (INR)": "1000.00",
+            "Due (INR)": "1000.00",
+            "Payment Status": "Partial",
+            "Generated On": "08-11-2026 13:23:51 IST"
+          },
+          "html_cells": [
+            "PES1UG24CS001",
+            "Sample Student 1",
+            "Boys 202",
+            "202",
+            "202-A",
+            "2000.00",
+            "1000.00",
+            "1000.00",
+            "Partial"
+          ]
+        },
+        "after_release": {
+          "json": {
+            "student_id": "PES1UG24CS001",
+            "student_name": "Sample Student 1",
+            "hostel_id": 3,
+            "hostel": "Boys 202",
+            "room": "202",
+            "bed": "202-A",
+            "fee": "2000.00",
+            "paid": "1000.00",
+            "due": "1000.00",
+            "status": "Partial",
+            "fee_configured": true
+          },
+          "csv": {
+            "Student ID": "PES1UG24CS001",
+            "Student Name": "Sample Student 1",
+            "Hostel Name": "Boys 202",
+            "Room": "202",
+            "Bed": "202-A",
+            "Fee Amount (INR)": "2000.00",
+            "Amount Paid (INR)": "1000.00",
+            "Due (INR)": "1000.00",
+            "Payment Status": "Partial",
+            "Generated On": "08-11-2026 13:23:51 IST"
+          },
+          "html_cells": [
+            "PES1UG24CS001",
+            "Sample Student 1",
+            "Boys 202",
+            "202",
+            "202-A",
+            "2000.00",
+            "1000.00",
+            "1000.00",
+            "Partial"
+          ]
+        },
+        "old_hostel_rows": [],
+        "new_hostel_row_count": 1
+      }
+    },
+    {
+      "step": "2",
+      "expected": "1000 less 250 gives paid 750/due 250/Partial with matching HTML/CSV/JSON and Bed",
+      "actual": {
+        "json": {
+          "student_id": "PES1UG24CS003",
+          "student_name": "Sample Student 3",
+          "hostel_id": 4,
+          "hostel": "Boys 404",
+          "room": "404",
+          "bed": "404-A",
+          "fee": "1000.00",
+          "paid": "750.00",
+          "due": "250.00",
+          "status": "Partial",
+          "fee_configured": true
+        },
+        "csv": {
+          "Student ID": "PES1UG24CS003",
+          "Student Name": "Sample Student 3",
+          "Hostel Name": "Boys 404",
+          "Room": "404",
+          "Bed": "404-A",
+          "Fee Amount (INR)": "1000.00",
+          "Amount Paid (INR)": "750.00",
+          "Due (INR)": "250.00",
+          "Payment Status": "Partial",
+          "Generated On": "08-11-2026 13:23:51 IST"
+        },
+        "html_cells": [
+          "PES1UG24CS003",
+          "Sample Student 3",
+          "Boys 404",
+          "404",
+          "404-A",
+          "1000.00",
+          "750.00",
+          "250.00",
+          "Partial"
+        ]
+      }
+    },
+    {
+      "step": "3",
+      "expected": "Cancelled locations ignored; cancelled-only location blank/Unassigned; advance with zero fee remains Pending",
+      "actual": {
+        "retained_history": {
+          "json": {
+            "student_id": "PES1UG24CS001",
+            "student_name": "Sample Student 1",
+            "hostel_id": 3,
+            "hostel": "Boys 202",
+            "room": "202",
+            "bed": "202-A",
+            "fee": "2000.00",
+            "paid": "1000.00",
+            "due": "1000.00",
+            "status": "Partial",
+            "fee_configured": true
+          },
+          "csv": {
+            "Student ID": "PES1UG24CS001",
+            "Student Name": "Sample Student 1",
+            "Hostel Name": "Boys 202",
+            "Room": "202",
+            "Bed": "202-A",
+            "Fee Amount (INR)": "2000.00",
+            "Amount Paid (INR)": "1000.00",
+            "Due (INR)": "1000.00",
+            "Payment Status": "Partial",
+            "Generated On": "08-11-2026 13:23:51 IST"
+          },
+          "html_cells": [
+            "PES1UG24CS001",
+            "Sample Student 1",
+            "Boys 202",
+            "202",
+            "202-A",
+            "2000.00",
+            "1000.00",
+            "1000.00",
+            "Partial"
+          ]
+        },
+        "never_assigned": {
+          "json": {
+            "student_id": "PES1UG24CS002",
+            "student_name": "Sample Student 2",
+            "hostel_id": null,
+            "hostel": "",
+            "room": "",
+            "bed": "",
+            "fee": "0.00",
+            "paid": "25.00",
+            "due": "0.00",
+            "status": "Pending",
+            "fee_configured": false
+          },
+          "csv": {
+            "Student ID": "PES1UG24CS002",
+            "Student Name": "Sample Student 2",
+            "Hostel Name": "",
+            "Room": "",
+            "Bed": "",
+            "Fee Amount (INR)": "0.00",
+            "Amount Paid (INR)": "25.00",
+            "Due (INR)": "0.00",
+            "Payment Status": "Pending",
+            "Generated On": "08-11-2026 13:23:51 IST"
+          },
+          "html_cells": [
+            "PES1UG24CS002",
+            "Sample Student 2",
+            "Unassigned",
+            "Unassigned",
+            "Unassigned",
+            "0.00",
+            "25.00",
+            "0.00",
+            "Pending"
+          ]
+        },
+        "cancelled_only": {
+          "json": {
+            "student_id": "PES1UG24CS002",
+            "student_name": "Sample Student 2",
+            "hostel_id": null,
+            "hostel": "",
+            "room": "",
+            "bed": "",
+            "fee": "0.00",
+            "paid": "25.00",
+            "due": "0.00",
+            "status": "Pending",
+            "fee_configured": false
+          },
+          "csv": {
+            "Student ID": "PES1UG24CS002",
+            "Student Name": "Sample Student 2",
+            "Hostel Name": "",
+            "Room": "",
+            "Bed": "",
+            "Fee Amount (INR)": "0.00",
+            "Amount Paid (INR)": "25.00",
+            "Due (INR)": "0.00",
+            "Payment Status": "Pending",
+            "Generated On": "08-11-2026 13:23:51 IST"
+          },
+          "html_cells": [
+            "PES1UG24CS002",
+            "Sample Student 2",
+            "Unassigned",
+            "Unassigned",
+            "Unassigned",
+            "0.00",
+            "25.00",
+            "0.00",
+            "Pending"
+          ]
+        },
+        "zero_fee": {
+          "json": {
+            "student_id": "PES1UG24CS004",
+            "student_name": "Sample Student 4",
+            "hostel_id": 6,
+            "hostel": "Boys 505",
+            "room": "505",
+            "bed": "505-A",
+            "fee": "0.00",
+            "paid": "1500.00",
+            "due": "0.00",
+            "status": "Pending",
+            "fee_configured": false
+          },
+          "csv": {
+            "Student ID": "PES1UG24CS004",
+            "Student Name": "Sample Student 4",
+            "Hostel Name": "Boys 505",
+            "Room": "505",
+            "Bed": "505-A",
+            "Fee Amount (INR)": "0.00",
+            "Amount Paid (INR)": "1500.00",
+            "Due (INR)": "0.00",
+            "Payment Status": "Pending",
+            "Generated On": "08-11-2026 13:23:51 IST"
+          },
+          "html_cells": [
+            "PES1UG24CS004",
+            "Sample Student 4",
+            "Boys 505",
+            "505",
+            "505-A",
+            "0.00",
+            "1500.00",
+            "0.00",
+            "Pending"
+          ]
+        },
+        "cancelled_hostel_rows": []
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:51.986889+00:00"
+}

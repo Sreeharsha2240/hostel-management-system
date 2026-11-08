@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="allocations.test_workflows.AllocationWorkflowTests-20261108132414" tests="13" file="allocations/test_workflows.py" time="0.639" timestamp="2026-11-08T13:24:28" failures="0" errors="0" skipped="0">
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_audit_failure_rolls_back_allocation_and_release" time="0.045" timestamp="2026-11-08T13:24:27" file="allocations\test_workflows.py" line="390"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_database_rejects_forged_or_missing_active_keys" time="0.018" timestamp="2026-11-08T13:24:27" file="allocations\test_workflows.py" line="220"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_history_orders_backdated_records_by_allocation_date_in_json_and_html" time="0.116" timestamp="2026-11-08T13:24:27" file="allocations\test_workflows.py" line="304"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_invalid_eligibility_gender_status_and_dates_are_rejected" time="0.035" timestamp="2026-11-08T13:24:27" file="allocations\test_workflows.py" line="174"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_json_date_types_return_400_without_changing_allocations" time="0.048" timestamp="2026-11-08T13:24:27" file="allocations\test_workflows.py" line="67"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_json_form_errors_preserve_reference_and_validation_status_codes" time="0.032" timestamp="2026-11-08T13:24:27" file="allocations\test_workflows.py" line="494"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_json_reference_types_cannot_select_a_different_integer_key" time="0.048" timestamp="2026-11-08T13:24:27" file="allocations\test_workflows.py" line="111"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_json_workflow_conflicts_validation_and_permissions" time="0.090" timestamp="2026-11-08T13:24:28" file="allocations\test_workflows.py" line="415"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_model_deactivation_and_history_cannot_bypass_guards" time="0.020" timestamp="2026-11-08T13:24:28" file="allocations\test_workflows.py" line="199"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_new_write_routes_require_csrf" time="0.038" timestamp="2026-11-08T13:24:28" file="allocations\test_workflows.py" line="473"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_only_transfer_and_release_forms_require_submit_confirmation" time="0.045" timestamp="2026-11-08T13:24:28" file="allocations\test_workflows.py" line="39"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_transfer_and_release_preserve_history_and_emit_actor_audit" time="0.050" timestamp="2026-11-08T13:24:28" file="allocations\test_workflows.py" line="142"/>
+	<testcase classname="allocations.test_workflows.AllocationWorkflowTests" name="test_transfer_failure_rolls_back_both_beds_and_history" time="0.054" timestamp="2026-11-08T13:24:28" file="allocations\test_workflows.py" line="234"/>
+</testsuite>

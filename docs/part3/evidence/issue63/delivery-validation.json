@@ -1,0 +1,35 @@
+{
+  "verified_at": "2026-11-08T08:03:36.541379+00:00",
+  "changed_case_ids": [
+    "TC-REG-S2-08",
+    "TC-REG-S2-09",
+    "TC-REG-S2-10",
+    "TC-REG-S2-11",
+    "TC-REG-S2-12",
+    "TC-REG-S2-13",
+    "TC-REG-S2-14",
+    "TC-REG-S2-15",
+    "TC-REG-S2-16"
+  ],
+  "unchanged_other_case_records": 52,
+  "counts": {
+    "OWNER PASS": 48,
+    "NOT RUN": 9,
+    "PARTIAL": 3,
+    "BLOCKED": 1
+  },
+  "exclusively_owned_pass_records": 27,
+  "rtm_unchanged": true,
+  "raw_hashes_verified": 14,
+  "source_hashes_checked": 161,
+  "local_links_checked": 581,
+  "core_counts": {
+    "PASS": 189,
+    "SKIP": 1
+  },
+  "case_counts": {
+    "PASS": 9
+  },
+  "whole_plan_readiness": "NOT READY",
+  "formal_unit70": "UNPROVEN"
+}

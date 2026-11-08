@@ -5,8 +5,9 @@
 | Field | Value |
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
-| Revision | Part 3 reconciliation, 7 November 2026 |
+| Revision | Part 3 reconciliation, 7 November; owner execution update 8 November 2026 |
 | Code baseline inspected | `70c9fe20e462eb0b052e15434f19b347a793afa1` |
+| Nine-case owner follow-up tested baseline | `6636098cb728aa17c2abf5e42c358a5d400261e7`; see section 5.6 |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
 | Requirements | All original REQ-1..24 and NFR-1..12; separate SRS quality, BR and SO mapping |
 | Data | Synthetic only; planned fixtures are distinguished from observed historical fixtures |
@@ -18,7 +19,8 @@
 | 5 November, PR #51 / `610ec1b` | Vaishnavi | Initial Part 3 document, original 33 and ten sprint regression IDs; retained historical 56/185-method summaries |
 | 6 November, PR #54 | Devansh | Reconciled the 13 HMS-18 owner results and preserved raw partial/failure/retest evidence |
 | 7 November, PR #58 | Vaishnavi | Published HMS-17 screenshots/manual record; reconciled six OWNER PASS, one NOT RUN and one PARTIAL |
-| 7 November, this revision | Devansh, with independent automated source/evidence reviews | Complete case fields, restored original steps/expectations, sprint additions, bidirectional RTM, source-bound evidence and explicit limitations |
+| 7 November, case-document reconciliation | Devansh, with independent automated source/evidence reviews | Complete case fields, restored original steps/expectations, sprint additions, bidirectional RTM, source-bound evidence and explicit limitations |
+| 8 November, HMS-26 / #63 | Devansh, with three independent automated reviewers | Executed nine remaining owned regression recipes on a clean reviewed commit; updated only their statuses and derived counts |
 
 Devansh authorized finishing and merging this documentation issue without collecting additional teammate messages. This is delivery authorization; no teammate signature, retrospective pre-execution QA approval, instructor waiver or final QA/Dev/PO acceptance is invented. Contributor ownership of execution and the remaining reports stays as recorded in issues #38-#43.
 
@@ -104,6 +106,20 @@ The [owner report](System_Validation_Report.md) and [focused evidence](evidence/
 
 TC-SEC-06 requires a real HTTP-to-HTTPS exchange, TLS scan accepting only TLS 1.2+, and actual authenticated Secure/HttpOnly session cookies. A real isolated HTTPS endpoint is sufficient; public hosting is unnecessary. Test-client `secure=True` and `check --deploy` do not prove transport. Test Plan section 5.1 separately requires a ZAP baseline, made explicit as TC-SEC-08.
 
+### 5.6 HMS-26 remaining Devansh-owned regression execution
+
+On 8 November, [#63 owner evidence](evidence/issue63/README.md) records the clean
+`6636098cb728aa17c2abf5e42c358a5d400261e7` / tree `0faea77304a30ceb436e1411a2c513dd1f3c6f44` run of TC-REG-S2-08..16:
+**nine PASS** with complete case-specific observations. The
+[pre-execution technical review](evidence/issue63/pre-execution-review.md)
+preceded this committed execution. A separate same-commit core run passed all
+12 gates and 190 mixed methods (189 PASS, one expected timing SKIP), with a
+separate timing PASS. Seven runner-safety and 32 recovery-safety checks passed.
+These explicit integration cases do not change ordinary discovery or unit70.
+Review/execution is late against the original 2–6 November window. Historical
+entry approval, original environment targets and final human decisions remain
+unproven; the original browser/load/recovery evidence is not relabelled.
+
 ## 6. Counts, metrics and defect/retest interpretation
 
 Original-case evidence disposition is **30 OWNER PASS, 2 PARTIAL, 1 NOT RUN = 33**. Thus evidence reports 32/33 cases exercised (96.97%), 30/33 passing owner observations (90.91%), 2/33 partial (6.06%) and 1/33 not run (3.03%). These percentages describe retained evidence, not accepted exit criteria. They do not remove each case's documented evidence gaps.
@@ -112,18 +128,18 @@ Expanded register (61-case design denominator; case-level status distinct from m
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 39 | 63.93% |
+| OWNER PASS | 48 | 78.69% |
 | PARTIAL | 3 | 4.92% |
-| NOT RUN | 18 | 29.51% |
+| NOT RUN | 9 | 14.75% |
 | BLOCKED | 1 | 1.64% |
 
-The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap is now PARTIAL with passing method support. Fourteen new regression case recipes have passing method companions, but their separate reviewed case-execution records remain NOT RUN. New scan/quality cases likewise retain their actual missing/blocked evidence. Do not silently retain the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap is now PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases now have complete reviewed execution records and OWNER PASS; five other-owner recipes remain NOT RUN. Expanded any-exercise count is 51/61 (83.61%), including PARTIAL; owner-pass observations are 48/61 (78.69%). New scan/quality cases likewise retain their actual missing/blocked evidence. Do not silently retain the old 43-case denominator when applying a 100%-planned-cases exit criterion.
 
 Test Plan section 14 also requires defect density (defects/module), aging (days open), and requirement coverage. Known linked development defects #45-#48 are closed with retest references in the HMS-18 appendix; the failed volume attempt (75 errors / 21,650 samples) and its complete unchanged-threshold rerun remain retained. No complete severity-ranked defect inventory or accepted requirement-by-requirement pass assessment is recorded, so whole-plan defect density/aging, zero-critical/high status and complete accepted coverage are **UNVERIFIED**, not zero. Calculate them from actual issue creation/closure/severity and reviewed case evidence in the integrated System Validation Report. A mapped requirement or a single partially relevant passed method is not full requirement acceptance (notably NFR-5, NFR-9 and NFR-12).
 
 ## 7. Detailed test case index
 
-Every original and existing regression ID links to its complete source-bound record in section 13. Proposed priorities are planning values dated 7 November; original per-case priorities were unspecified and are not retrospectively approved.
+Every original and existing regression ID links to its complete source-bound record in section 13. Priority proposals originate on 7 November; original per-case priorities were unspecified and are not retrospectively approved. The nine #63 entries identify the later scoped technical review; its dispositions do not supply whole-team acceptance.
 
 | Case | Owner | Proposed priority | Disposition |
 |---|---|---|---|
@@ -175,15 +191,15 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S1-08](#case-tc-reg-s1-08) - Student/room changes roll back on audit failure | Vaishnavi | High (proposed) | NOT RUN |
 | [TC-REG-S2-06](#case-tc-reg-s2-06) - Explicit Student login link scopes My Records | Sreeharsha / Vaishnavi | High (proposed) | NOT RUN |
 | [TC-REG-S2-07](#case-tc-reg-s2-07) - My Records empty/access/navigation/date behavior | Sreeharsha | Medium (proposed) | NOT RUN |
-| [TC-REG-S2-08](#case-tc-reg-s2-08) - Allocation/release/transfer rollback and retry | Devansh | High (proposed) | NOT RUN |
-| [TC-REG-S2-09](#case-tc-reg-s2-09) - Payments and original receipts are permanent | Devansh | High (proposed) | NOT RUN |
-| [TC-REG-S2-10](#case-tc-reg-s2-10) - Rejected/failed payments preserve receipt counter | Devansh | High (proposed) | NOT RUN |
-| [TC-REG-S2-11](#case-tc-reg-s2-11) - Competing corrections cannot over-reverse | Devansh | High (proposed) | NOT RUN |
-| [TC-REG-S2-12](#case-tc-reg-s2-12) - Payment reports use correct totals, Bed and latest valid location | Devansh | Medium (proposed) | NOT RUN |
-| [TC-REG-S2-13](#case-tc-reg-s2-13) - CSV text stays literal and report HTML escapes labels | Devansh | Medium (proposed) | NOT RUN |
-| [TC-REG-S2-14](#case-tc-reg-s2-14) - Report empty/filter/format/method boundaries | Devansh | Medium (proposed) | NOT RUN |
-| [TC-REG-S2-15](#case-tc-reg-s2-15) - Malformed JSON is a safe validation error | Devansh | High (proposed) | NOT RUN |
-| [TC-REG-S2-16](#case-tc-reg-s2-16) - Typed JSON dates/references keep correct errors and state | Devansh | High (proposed) | NOT RUN |
+| [TC-REG-S2-08](#case-tc-reg-s2-08) - Allocation/release/transfer rollback and retry | Devansh | High (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-09](#case-tc-reg-s2-09) - Payments and original receipts are permanent | Devansh | High (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-10](#case-tc-reg-s2-10) - Rejected/failed payments preserve receipt counter | Devansh | High (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-11](#case-tc-reg-s2-11) - Competing corrections cannot over-reverse | Devansh | High (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-12](#case-tc-reg-s2-12) - Payment reports use correct totals, Bed and latest valid location | Devansh | Medium (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-13](#case-tc-reg-s2-13) - CSV text stays literal and report HTML escapes labels | Devansh | Medium (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-14](#case-tc-reg-s2-14) - Report empty/filter/format/method boundaries | Devansh | Medium (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-15](#case-tc-reg-s2-15) - Malformed JSON is a safe validation error | Devansh | High (#63 technical review) | OWNER PASS |
+| [TC-REG-S2-16](#case-tc-reg-s2-16) - Typed JSON dates/references keep correct errors and state | Devansh | High (#63 technical review) | OWNER PASS |
 | [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | NOT RUN |
 | [TC-QUAL-02](#case-tc-qual-02) - Working-hours service availability | Sreeharsha | Medium (proposed) | NOT RUN |
 | [TC-QUAL-03](#case-tc-qual-03) - SRS portability and real mobile coverage | Vaishnavi | Medium (proposed) | NOT RUN |
@@ -258,6 +274,8 @@ Allocation permanence additionally has `allocations.test_workflows.AllocationWor
 
 ## 9. Test strategy and review disposition
 
+The separate [#63 pre-execution review](evidence/issue63/pre-execution-review.md) accepts six High/three Medium priorities for the nine current automated recipes; their clean execution is in section 5.6. This does not resolve whole-plan High-priority acceptance.
+
 The [8 November HMS-18 review](evidence/issue40-final/qa-review-20261108.md) adds issue-specific independent AI technical acceptance for the original 13 cases under Devansh's explicit authorization. Its current-priority, late-entry and environment decisions are bounded to #40; it does not execute separately specified regressions, change the status counts or supply named final approvals.
 
 Original cases are system/browser or operational cases. Automated companions are model, form, view, integration/concurrency or parser checks as indicated in their records; the mixed suite is not all unit tests. Planned cases may be refined after implementation per Test Plan section 11, with IDs/history retained. Run affected checks after defects; preserve failed attempts and use isolated synthetic data.
@@ -299,6 +317,8 @@ The complete mapping below is checked against Python AST identities and the reta
 | TC-REG-S2-15 | `hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error`; `hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error`; `hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error`; `hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error`; `hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow`; `hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error`; `hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error`; `hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values`; `hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved`; `hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged`; `allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions`; `payments.test_workflows.PaymentWorkflowTests.test_invalid_json_fields_missing_records_and_methods` | Parser unit checks plus API integration |
 | TC-REG-S2-16 | `allocations.test_workflows.AllocationWorkflowTests.test_json_date_types_return_400_without_changing_allocations`; `allocations.test_workflows.AllocationWorkflowTests.test_json_reference_types_cannot_select_a_different_integer_key`; `allocations.test_workflows.AllocationWorkflowTests.test_json_form_errors_preserve_reference_and_validation_status_codes`; `payments.test_workflows.PaymentWorkflowTests.test_json_date_types_return_400_without_consuming_receipts`; `payments.test_workflows.PaymentWorkflowTests.test_form_encoded_missing_student_preserves_json_not_found_response`; `hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors`; `hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior`; `hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query`; `hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found`; `hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests`; `hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404` | Form unit checks plus API/database integration |
 
+For the nine case-specific executions, run `python scripts/part3/run_owned_regressions.py --output-dir test-results/NEW-owned-cases` serially, after the offline safety checks; see [reproduction and evidence](evidence/issue63/README.md). Each changed case record links its exact explicit method; the table above retains historical companions.
+
 Run `python scripts/run_checks.py` for repository checks, full mixed suite, coverage and separate uninstrumented timing. Run focused Django suites as needed. Preserve exact code SHA/tree, clean/dirty state, versions, commands, expected/actual results and evidence. The current extraction links the GitHub jobs and hashes the downloaded original inputs; it creates no fictitious local run. The Plan's JMeter, ZAP, actual browser/guide and populated-recovery work retain their distinct operational evidence requirements.
 
 ## 11. Entry and exit criteria
@@ -322,7 +342,7 @@ Actual QA/Dev/PO approvals (Plan section 15) and the project-guide acceptance wa
 
 All 33 original IDs, ten existing sprint IDs and original 36-requirement mappings are preserved. This revision restores full original inputs/expectations, documents AUTH-03's wording resolution, supplies every case's owner/priority/type/level/setup/data/steps/expected/actual/status/SHA/evidence/defect fields, adds sprint/quality coverage and corrects the contradictory HMS-17 totals. The original owner manual record, historical JSON, failed load attempt, successful full rerun and raw transfer PARTIAL are preserved unchanged.
 
-Issue #37 is the case-document/traceability delivery. This document does not complete #38's security/integrated report, #39's missing UI/quality evidence, #40's QA disposition, #41's Unit Test Report or #43's real final approvals/submission. #42's reporting delivery stays closed with formal unit70 UNPROVEN. Original Test Plan/SRS/SAD DOCX/PDF baselines remain intact. The publication date and review scope are explicit.
+Issue #37 is the case-document/traceability delivery. This document does not complete #38's security/integrated report, #39's missing UI/quality evidence, #41's Unit Test Report or #43's real final approvals/submission. #40's separate technical QA delivery and #42's reporting delivery are closed; formal unit70 remains UNPROVEN. Original Test Plan/SRS/SAD DOCX/PDF baselines remain intact. The publication date and review scope are explicit.
 
 ## 13. Complete case records
 
@@ -2609,9 +2629,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-14, REQ-17, REQ-18, REQ-19, NFR-11
 
@@ -2630,25 +2650,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Failed allocate leaves no allocation and Available bed; failed release leaves Active/Occupied; failed transfer leaves original fields/history unchanged, source Occupied, target Available and no transfer audit. Retry produces one successor, completes original and records one actor transfer event.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Audit failures rolled back allocation and release; failed target-bed storage preserved both beds, original history/dates and audits; the same transfer retry created exactly one successor and actor event. 4 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-08.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-08.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`allocations.test_workflows.AllocationWorkflowTests.test_audit_failure_rolls_back_allocation_and_release`](../../allocations/test_workflows.py#L390); [`allocations.test_workflows.AllocationWorkflowTests.test_transfer_failure_rolls_back_both_beds_and_history`](../../allocations/test_workflows.py#L234)
+**Automation:** [`scripts.part3.test_owned_transactions.OwnedAllocationTransactions.test_tc_reg_s2_08_rollback_and_retry`](../../scripts/part3/test_owned_transactions.py#L82); retained historical companions: [`allocations.test_workflows.AllocationWorkflowTests.test_audit_failure_rolls_back_allocation_and_release`](../../allocations/test_workflows.py#L390); [`allocations.test_workflows.AllocationWorkflowTests.test_transfer_failure_rolls_back_both_beds_and_history`](../../allocations/test_workflows.py#L234)
 
-**Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** This is automated companion evidence for original TC-ALC05 forced-failure/retry; preserve raw browser PARTIAL and combined-scope qualification.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): This is automated companion evidence for original TC-ALC05 forced-failure/retry; preserve raw browser PARTIAL and combined-scope qualification.
 
 ### TC-REG-S2-09: Payments and original receipts are permanent
 
@@ -2658,9 +2678,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-20, REQ-21, NFR-5, NFR-11
 
@@ -2678,25 +2698,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Payments retain original amount/identity; guarded mutations reject; genuine payments have sequential unique receipts and actor audit; correction uses new adjusting entry.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Two original sequential receipts and actor audits were preserved through ten prohibited ORM mutations; a real adjusting entry created the next receipt and left original records unchanged. 13 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-09.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-09.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`payments.test_workflows.PaymentWorkflowTests.test_numbered_payments_are_permanent_and_audited_for_the_actor`](../../payments/test_workflows.py#L79); [`payments.test_workflows.PaymentWorkflowTests.test_edit_delete_bulk_and_primary_key_replay_are_blocked`](../../payments/test_workflows.py#L116)
+**Automation:** [`scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_09_payment_permanence`](../../scripts/part3/test_owned_transactions.py#L294); retained historical companions: [`payments.test_workflows.PaymentWorkflowTests.test_numbered_payments_are_permanent_and_audited_for_the_actor`](../../payments/test_workflows.py#L79); [`payments.test_workflows.PaymentWorkflowTests.test_edit_delete_bulk_and_primary_key_replay_are_blocked`](../../payments/test_workflows.py#L116)
 
-**Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Application ORM protection is verified; not a claim of privileged raw SQL immutability.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Application ORM protection is verified; not a claim of privileged raw SQL immutability.
 
 ### TC-REG-S2-10: Rejected/failed payments preserve receipt counter
 
@@ -2706,9 +2726,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-20, REQ-21, NFR-10, NFR-11
 
@@ -2727,25 +2747,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Invalid/faulted attempts create no payment and consume no receipt; fresh retry gets R00000000001; exhausted range rejects without overwriting history.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Thirteen invalid inputs, controlled audit failure and sequence exhaustion preserved payment/counter/audit state; retry used the next receipt; exhausted history remained intact. 16 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-10.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-10.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`payments.test_workflows.PaymentWorkflowTests.test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers`](../../payments/test_workflows.py#L91); [`payments.test_workflows.PaymentWorkflowTests.test_audit_failure_rolls_back_the_payment_and_receipt_counter`](../../payments/test_workflows.py#L205); [`payments.test_workflows.PaymentWorkflowTests.test_receipt_range_exhaustion_fails_without_overwriting_history`](../../payments/test_workflows.py#L283)
+**Automation:** [`scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_10_rejected_failed_and_exhausted_receipts`](../../scripts/part3/test_owned_transactions.py#L412); retained historical companions: [`payments.test_workflows.PaymentWorkflowTests.test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers`](../../payments/test_workflows.py#L91); [`payments.test_workflows.PaymentWorkflowTests.test_audit_failure_rolls_back_the_payment_and_receipt_counter`](../../payments/test_workflows.py#L205); [`payments.test_workflows.PaymentWorkflowTests.test_receipt_range_exhaustion_fails_without_overwriting_history`](../../payments/test_workflows.py#L283)
 
-**Current companion outcomes:** 3 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 3 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
 
 ### TC-REG-S2-11: Competing corrections cannot over-reverse
 
@@ -2755,9 +2775,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-20, REQ-21, REQ-22
 
@@ -2774,25 +2794,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** One correction succeeds with R00000000002; other rejects; two rows/counter2 and net20 remain.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Distinct connections executed overlapping real service calls at the Student locking query. One correction succeeded, one over-reversal was rejected; receipt counter 2, net INR20 and exactly two actor audits remained. 2 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-11.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-11.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`payments.test_workflows.PaymentConcurrencyTests.test_competing_corrections_cannot_reverse_a_payment_twice`](../../payments/test_workflows.py#L562)
+**Automation:** [`scripts.part3.test_owned_transactions.OwnedPaymentCorrectionConcurrency.test_tc_reg_s2_11_competing_corrections`](../../scripts/part3/test_owned_transactions.py#L530); retained historical companions: [`payments.test_workflows.PaymentConcurrencyTests.test_competing_corrections_cannot_reverse_a_payment_twice`](../../payments/test_workflows.py#L562)
 
-**Current companion outcomes:** 1 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 1 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
 
 ### TC-REG-S2-12: Payment reports use correct totals, Bed and latest valid location
 
@@ -2802,9 +2822,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
+**Priority:** Unspecified in original plan; Medium (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-19, REQ-22, REQ-23
 
@@ -2822,25 +2842,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Payments counted once despite history; current otherwise latest noncancelled allocation provides location/fee. Cancelled location excluded. Unassigned location blank in JSON/CSV and Unassigned in HTML; Bed present in all formats.1000 less250 gives paid750/due250/Partial. Unconfigured fee remains Pending even with advance.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** JSON/CSV/HTML reconciled payment totals, required Bed and current/latest valid location after transfer/release/correction; never-assigned and cancelled-only states were tested separately; zero-fee advance remained Pending. 3 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-12.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-12.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`reports.test_reports.ReportTests.test_payment_report_sums_once_across_allocation_history_and_filters_last_room`](../../reports/test_reports.py#L117); [`reports.test_reports.ReportTests.test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank`](../../reports/test_reports.py#L176); [`reports.test_reports.ReportTests.test_payment_report_csv_and_html_match_json_after_corrections`](../../reports/test_reports.py#L218); [`payments.test_workflows.PaymentWorkflowTests.test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication`](../../payments/test_workflows.py#L218); [`payments.test_workflows.PaymentWorkflowTests.test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment`](../../payments/test_workflows.py#L253)
+**Automation:** [`scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_12_report_history_balances_and_locations`](../../scripts/part3/test_owned_reports_inputs.py#L238); retained historical companions: [`reports.test_reports.ReportTests.test_payment_report_sums_once_across_allocation_history_and_filters_last_room`](../../reports/test_reports.py#L117); [`reports.test_reports.ReportTests.test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank`](../../reports/test_reports.py#L176); [`reports.test_reports.ReportTests.test_payment_report_csv_and_html_match_json_after_corrections`](../../reports/test_reports.py#L218); [`payments.test_workflows.PaymentWorkflowTests.test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication`](../../payments/test_workflows.py#L218); [`payments.test_workflows.PaymentWorkflowTests.test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment`](../../payments/test_workflows.py#L253)
 
-**Current companion outcomes:** 5 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 5 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
 
 ### TC-REG-S2-13: CSV text stays literal and report HTML escapes labels
 
@@ -2850,9 +2870,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
+**Priority:** Unspecified in original plan; Medium (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-23, NFR-10
 
@@ -2870,25 +2890,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** CSV valid quoting preserves labels; apostrophe makes formula-shaped text literal; HTML user markup escaped.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Nine CSV/HTML vectors preserved Unicode, quotes and newlines, neutralized each dangerous prefix and displayed escaped literal labels without an injected element. 9 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-13.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-13.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`reports.test_reports.ReportTests.test_csv_quotes_unicode_and_formula_text_and_html_escapes_names`](../../reports/test_reports.py#L242)
+**Automation:** [`scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_13_csv_literals_unicode_and_html`](../../scripts/part3/test_owned_reports_inputs.py#L357); retained historical companions: [`reports.test_reports.ReportTests.test_csv_quotes_unicode_and_formula_text_and_html_escapes_names`](../../reports/test_reports.py#L242)
 
-**Current companion outcomes:** 1 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 1 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Method tests whitespace+= and @ formulas plus quote/comma/newline/Unicode/HTML; source's +,-,leading tab/CR/LF branches are not each exercised.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Method tests whitespace+= and @ formulas plus quote/comma/newline/Unicode/HTML; source's +,-,leading tab/CR/LF branches are not each exercised.
 
 ### TC-REG-S2-14: Report empty/filter/format/method boundaries
 
@@ -2898,9 +2918,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
+**Priority:** Unspecified in original plan; Medium (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-23, NFR-10
 
@@ -2919,25 +2939,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Empty payment rows; zero-bed occupancy0.00%; invalid value400; absent well-formed ID404; unsupported format400; POST405. Leading zeros resolve to correct known hostel.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Both report routes passed empty, invalid/missing-hostel, populated leading-zero, unsupported-format and method-boundary checks; populated filter results matched the exact expected hostel/student/Bed. 7 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-14.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-14.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`reports.test_reports.ReportTests.test_empty_reports_and_invalid_filters_formats_and_methods`](../../reports/test_reports.py#L259); [`reports.test_reports.ReportTests.test_numeric_hostel_filter_accepts_leading_zeros`](../../reports/test_reports.py#L297)
+**Automation:** [`scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_14_report_boundaries`](../../scripts/part3/test_owned_reports_inputs.py#L404); retained historical companions: [`reports.test_reports.ReportTests.test_empty_reports_and_invalid_filters_formats_and_methods`](../../reports/test_reports.py#L259); [`reports.test_reports.ReportTests.test_numeric_hostel_filter_accepts_leading_zeros`](../../reports/test_reports.py#L297)
 
-**Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Reports return complete filtered result set. Report pagination is neither implemented nor asserted.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Reports return complete filtered result set. Report pagination is neither implemented nor asserted.
 
 ### TC-REG-S2-15: Malformed JSON is a safe validation error
 
@@ -2947,9 +2967,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-14, REQ-17, REQ-18, REQ-20, NFR-10
 
@@ -2967,25 +2987,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Bad parser shapes raise generic ValidationError; API companion returns400 instead of unhandled error. Valid finite scalars/Unicode preserved; form data returned unchanged.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Documented malformed JSON categories were rejected with generic errors through parser and representative real endpoints; every rejected request preserved business-state hashes; valid scalar/Unicode/form controls passed. 64 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-15.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-15.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error`](../../hms/test_http.py#L45); [`hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error`](../../hms/test_http.py#L53); [`hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error`](../../hms/test_http.py#L61); [`hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error`](../../hms/test_http.py#L78); [`hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow`](../../hms/test_http.py#L92); [`hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error`](../../hms/test_http.py#L103); [`hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error`](../../hms/test_http.py#L111); [`hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values`](../../hms/test_http.py#L16); [`hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved`](../../hms/test_http.py#L69); [`hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged`](../../hms/test_http.py#L34); [`allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions`](../../allocations/test_workflows.py#L415); [`payments.test_workflows.PaymentWorkflowTests.test_invalid_json_fields_missing_records_and_methods`](../../payments/test_workflows.py#L377)
+**Automation:** [`scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_15_malformed_json_and_controls`](../../scripts/part3/test_owned_reports_inputs.py#L508); retained historical companions: [`hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error`](../../hms/test_http.py#L45); [`hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error`](../../hms/test_http.py#L53); [`hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error`](../../hms/test_http.py#L61); [`hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error`](../../hms/test_http.py#L78); [`hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow`](../../hms/test_http.py#L92); [`hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error`](../../hms/test_http.py#L103); [`hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error`](../../hms/test_http.py#L111); [`hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values`](../../hms/test_http.py#L16); [`hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved`](../../hms/test_http.py#L69); [`hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged`](../../hms/test_http.py#L34); [`allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions`](../../allocations/test_workflows.py#L415); [`payments.test_workflows.PaymentWorkflowTests.test_invalid_json_fields_missing_records_and_methods`](../../payments/test_workflows.py#L377)
 
-**Current companion outcomes:** 12 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 12 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Parser methods are SimpleTestCase; endpoint methods cover representative shapes, not every parser vector at every route. Does not replace original UI SQL/XSS/CSRF execution.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Parser methods are SimpleTestCase; endpoint methods cover representative shapes, not every parser vector at every route. Does not replace original UI SQL/XSS/CSRF execution.
 
 ### TC-REG-S2-16: Typed JSON dates/references keep correct errors and state
 
@@ -2995,9 +3015,9 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #63 technical review 8 November). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Current priority accepted for this scoped automated technical review on 8 November; see [pre-execution review](evidence/issue63/pre-execution-review.md). Historical entry and whole-team exit acceptance remain separate.
 
 **Requirements:** REQ-14, REQ-17, REQ-18, REQ-20, REQ-21, NFR-10
 
@@ -3016,25 +3036,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Integer/bool dates return 400 with field code invalid and unchanged state/receipt counter/audit. Containers may be rejected earlier by the shared parser. Float/bool bed references cannot select integer keys and return 404/NOT_FOUND. Supplied invalid/nonexistent form references return 404 with field errors; omitted required form references, ordinary invalid choices and missing required dates return 400/VALIDATION_ERROR. JSON allocation/payment create has a separate missing student_id lookup returning 404 without form field errors.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Typed dates/references and required/missing-reference requests returned the specified 400/404 error contracts without changing business state/counters/audits; valid optional-date controls passed. 65 recorded observations completed; exact expected/actual values are in [the case record](evidence/issue63/execution/TC-REG-S2-16.json).
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 6636098cb728aa17c2abf5e42c358a5d400261e7 (clean execution; tree 0faea77304a30ceb436e1411a2c513dd1f3c6f44). Historical companion commit: 70c9fe20e462eb0b052e15434f19b347a793afa1.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 8 November 2026, Windows-11-10.0.26200-SP0, Python 3.14.7, Django 5.2.18, MySQL 8.4.9; synthetic disposable test_hms, Django HTTP test client/service/ORM. [Exact command/settings/versions](evidence/issue63/execution/run.json). Earlier 7 November Linux companion observations retain their separate provenance below.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Case observations](evidence/issue63/execution/TC-REG-S2-16.json); [execution/JUnit/hash index](evidence/issue63/README.md); historical [companion extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Three independent automated reviewers checked the recipe, assertions and candidate evidence before the clean committed run; current scoped technical review found no remaining blocker. Final actual human approval and whole-plan entry/exit acceptance are not supplied.
 
-**Automation:** [`allocations.test_workflows.AllocationWorkflowTests.test_json_date_types_return_400_without_changing_allocations`](../../allocations/test_workflows.py#L67); [`allocations.test_workflows.AllocationWorkflowTests.test_json_reference_types_cannot_select_a_different_integer_key`](../../allocations/test_workflows.py#L111); [`allocations.test_workflows.AllocationWorkflowTests.test_json_form_errors_preserve_reference_and_validation_status_codes`](../../allocations/test_workflows.py#L494); [`payments.test_workflows.PaymentWorkflowTests.test_json_date_types_return_400_without_consuming_receipts`](../../payments/test_workflows.py#L53); [`payments.test_workflows.PaymentWorkflowTests.test_form_encoded_missing_student_preserves_json_not_found_response`](../../payments/test_workflows.py#L471); [`hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors`](../../hms/test_forms.py#L20); [`hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior`](../../hms/test_forms.py#L12); [`hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query`](../../hms/test_forms.py#L29); [`hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found`](../../hms/test_responses.py#L14); [`hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests`](../../hms/test_responses.py#L31); [`hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404`](../../hms/test_responses.py#L46)
+**Automation:** [`scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_16_typed_dates_references_and_contracts`](../../scripts/part3/test_owned_reports_inputs.py#L651); retained historical companions: [`allocations.test_workflows.AllocationWorkflowTests.test_json_date_types_return_400_without_changing_allocations`](../../allocations/test_workflows.py#L67); [`allocations.test_workflows.AllocationWorkflowTests.test_json_reference_types_cannot_select_a_different_integer_key`](../../allocations/test_workflows.py#L111); [`allocations.test_workflows.AllocationWorkflowTests.test_json_form_errors_preserve_reference_and_validation_status_codes`](../../allocations/test_workflows.py#L494); [`payments.test_workflows.PaymentWorkflowTests.test_json_date_types_return_400_without_consuming_receipts`](../../payments/test_workflows.py#L53); [`payments.test_workflows.PaymentWorkflowTests.test_form_encoded_missing_student_preserves_json_not_found_response`](../../payments/test_workflows.py#L471); [`hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors`](../../hms/test_forms.py#L20); [`hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior`](../../hms/test_forms.py#L12); [`hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query`](../../hms/test_forms.py#L29); [`hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found`](../../hms/test_responses.py#L14); [`hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests`](../../hms/test_responses.py#L31); [`hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404`](../../hms/test_responses.py#L46)
 
-**Current companion outcomes:** 11 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Historical companion outcomes (7 November):** 11 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Containers can fail shared parser before field validation; code invalid field assertions specifically apply integer/bool date values.
+**Evidence limits:** Current execution is synthetic integration evidence with explicit late-entry, MySQL8.4 and HTTP test-flag limits; no new browser/TLS or unit-only claim. Whole-team acceptance remains pending. Historical companion limitation (not the new execution): Containers can fail shared parser before field validation; code invalid field assertions specifically apply integer/bool date values.
 
 ### TC-SEC-08: OWASP ZAP baseline on the running application
 

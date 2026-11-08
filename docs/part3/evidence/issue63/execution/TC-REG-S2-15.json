@@ -1,0 +1,995 @@
+{
+  "case_id": "TC-REG-S2-15",
+  "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_15_malformed_json_and_controls",
+  "started_at": "2026-11-08T07:53:53.996149+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1+3.allocation-list.incomplete",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.incomplete",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.missing-value",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.missing-value",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.invalid-utf8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.invalid-utf8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.invalid-string-utf8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.invalid-string-utf8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.array",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.array",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.number",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.number",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.null",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.null",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.string",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.string",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.boolean",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.boolean",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.field-array",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.field-array",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.field-object",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.field-object",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.mode-array",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.mode-array",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.high-surrogate",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.high-surrogate",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.low-surrogate",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.low-surrogate",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.surrogate-key",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.surrogate-key",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.low-surrogate-key",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.low-surrogate-key",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.surrogate-text",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.surrogate-text",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.NaN",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.NaN",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.NaN-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.NaN-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.Infinity",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.Infinity",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.Infinity-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.Infinity-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.-Infinity",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.-Infinity",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.-Infinity-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.-Infinity-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.1e999",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.1e999",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.1e999-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.1e999-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.-1e999",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.-1e999",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.-1e999-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.-1e999-nested",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.depth-1500",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.depth-1500",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.allocation-list.depth-20000",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "1+3.payment-list.depth-20000",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "3.allocation-transfer",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/transfer/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "3.allocation-release",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "3.payment-adjust",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23",
+        "state_after_sha256": "eb0b2af2584bc79a66bb5f62c5f63f8f770e28d17b49c2918ad56c6c14460a23"
+      }
+    },
+    {
+      "step": "2",
+      "expected": "Finite scalar types and paired Unicode preserved; non-JSON POST returned unchanged; valid HTTP controls succeed",
+      "actual": {
+        "parser_control": {
+          "student_id": "TEST123",
+          "bed_id": 12,
+          "amount": 1.25,
+          "enabled": true,
+          "empty": null,
+          "\u0928\u093e\u092e": "\u0928\u092e\u0938\u094d\u0924\u0947",
+          "symbol": "\ud83d\ude00"
+        },
+        "form_identity_preserved": true,
+        "allocation": {
+          "allocation_id": 2,
+          "student_id": "PES1UG24CS002",
+          "bed_id": 2,
+          "bed": "101-B",
+          "hostel": "Boys 101",
+          "status": "Active",
+          "allocated_on": "2026-11-08",
+          "vacated_on": null
+        },
+        "payment": {
+          "receipt_no": "R00000000002",
+          "student_id": "PES1UG24CS002",
+          "amount": "1.25",
+          "date": "2026-11-08",
+          "mode": "Cash",
+          "reference": "",
+          "adjustment_of": null,
+          "adjustment_reason": ""
+        },
+        "unicode_adjustment": {
+          "receipt_no": "R00000000003",
+          "student_id": "PES1UG24CS001",
+          "amount": "1.25",
+          "date": "2026-11-08",
+          "mode": "Cash",
+          "reference": "",
+          "adjustment_of": "R00000000001",
+          "adjustment_reason": "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00"
+        }
+      }
+    },
+    {
+      "step": "3.no-raw-payload",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "bf15d9e3f9aeabc1eecba4aaa0d29afc0c1753c593904e4df3df3e531fa252c7",
+        "state_after_sha256": "bf15d9e3f9aeabc1eecba4aaa0d29afc0c1753c593904e4df3df3e531fa252c7"
+      }
+    },
+    {
+      "step": "3.log-check",
+      "expected": "Rejected synthetic raw payload absent from captured django.request log messages and no audit writes",
+      "actual": {
+        "logger": "django.request",
+        "captured_messages": "Bad Request: /payments/\n",
+        "raw_payload_marker_present": false
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:55.059608+00:00"
+}

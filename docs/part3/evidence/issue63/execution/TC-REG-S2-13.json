@@ -1,0 +1,217 @@
+{
+  "case_id": "TC-REG-S2-13",
+  "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_13_csv_literals_unicode_and_html",
+  "started_at": "2026-11-08T07:53:52.387992+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1-3.vector-1",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "  =2+2, \"North\"\nWing",
+        "input_student": "  =2+2, \"North\"\nWing <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "'  =2+2, \"North\"\nWing",
+        "payment_csv_hostel": "'  =2+2, \"North\"\nWing",
+        "payment_csv_student": "'  =2+2, \"North\"\nWing <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "  =2+2, \"North\"\nWing <b>\u00c9l\u00e8ve</b>",
+          "  =2+2, \"North\"\nWing",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-2",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "+SUM(1,2)",
+        "input_student": "+SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "'+SUM(1,2)",
+        "payment_csv_hostel": "'+SUM(1,2)",
+        "payment_csv_student": "'+SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "+SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+          "+SUM(1,2)",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-3",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "-2+3",
+        "input_student": "-2+3 <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "'-2+3",
+        "payment_csv_hostel": "'-2+3",
+        "payment_csv_student": "'-2+3 <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "-2+3 <b>\u00c9l\u00e8ve</b>",
+          "-2+3",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-4",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "@SUM(1,2)",
+        "input_student": "@SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "'@SUM(1,2)",
+        "payment_csv_hostel": "'@SUM(1,2)",
+        "payment_csv_student": "'@SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "@SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+          "@SUM(1,2)",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-5",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": " \t+SUM(1,2)",
+        "input_student": " \t+SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "' \t+SUM(1,2)",
+        "payment_csv_hostel": "' \t+SUM(1,2)",
+        "payment_csv_student": "' \t+SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          " \t+SUM(1,2) <b>\u00c9l\u00e8ve</b>",
+          " \t+SUM(1,2)",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-6",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "\ttext",
+        "input_student": "\ttext <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "'\ttext",
+        "payment_csv_hostel": "'\ttext",
+        "payment_csv_student": "'\ttext <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "\ttext <b>\u00c9l\u00e8ve</b>",
+          "\ttext",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-7",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "\rtext",
+        "input_student": "\rtext <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "'\rtext",
+        "payment_csv_hostel": "'\rtext",
+        "payment_csv_student": "'\rtext <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "\rtext <b>\u00c9l\u00e8ve</b>",
+          "\rtext",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-8",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "\ntext",
+        "input_student": "\ntext <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "'\ntext",
+        "payment_csv_hostel": "'\ntext",
+        "payment_csv_student": "'\ntext <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "\ntext <b>\u00c9l\u00e8ve</b>",
+          "\ntext",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    },
+    {
+      "step": "1-3.vector-9",
+      "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+      "actual": {
+        "input_hostel": "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00, \"\u00c9l\u00e8ve\"\nWing",
+        "input_student": "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00, \"\u00c9l\u00e8ve\"\nWing <b>\u00c9l\u00e8ve</b>",
+        "occupancy_csv_hostel": "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00, \"\u00c9l\u00e8ve\"\nWing",
+        "payment_csv_hostel": "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00, \"\u00c9l\u00e8ve\"\nWing",
+        "payment_csv_student": "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00, \"\u00c9l\u00e8ve\"\nWing <b>\u00c9l\u00e8ve</b>",
+        "html_cells": [
+          "PES1UG24CS001",
+          "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00, \"\u00c9l\u00e8ve\"\nWing <b>\u00c9l\u00e8ve</b>",
+          "\u0928\u092e\u0938\u094d\u0924\u0947 \ud83d\ude00, \"\u00c9l\u00e8ve\"\nWing",
+          "101",
+          "101-A",
+          "1000.00",
+          "0.00",
+          "1000.00",
+          "Pending"
+        ],
+        "injected_b_elements": 0
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:52.931401+00:00"
+}

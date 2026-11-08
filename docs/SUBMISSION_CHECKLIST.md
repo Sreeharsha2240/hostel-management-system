@@ -20,6 +20,7 @@ dispositions without claiming new application execution or human acceptance.
 - [ ] Update the existing GitHub Project with the Part 3 tasks/estimates/iteration when access is available; the current token lacks `read:project`, so board synchronization remains blocked.
 - [x] Publish the updated 61-case Test Case Document and 36-requirement RTM, preserving all 33 original IDs and mappings; merged PR #60 closed #37 for authorized documentation delivery.
 - [x] Complete the authorized independent AI technical QA review of HMS-18's original 13 cases, scoped priorities and late-entry/tool/environment dispositions; see the [8 November review](part3/evidence/issue40-final/qa-review-20261108.md). This supplies no named human final approval.
+- [x] Execute Devansh's nine remaining expanded regression recipes (HMS-26/#63) after independent technical review, with [clean-commit per-step evidence](part3/evidence/issue63/README.md); all nine passed. Other owners and final acceptance remain separate.
 - [ ] Obtain remaining actual team case/priority/RTM and historical entry/deviation acceptance; scoped #40 closure does not execute expanded regression recipes or complete whole-plan acceptance.
 - [ ] Complete each member's functional, security, performance/recovery and quality execution with current evidence, defects and retests (#38-#40).
 - [x] Publish the System Validation checkpoint (#38), Code Coverage Report and Branch Coverage Report (#42) under `docs/part3/`, with source-bound evidence. Their publication is distinct from complete plan acceptance.

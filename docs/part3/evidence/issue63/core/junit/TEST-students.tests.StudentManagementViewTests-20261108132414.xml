@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="students.tests.StudentManagementViewTests-20261108132414" tests="15" file="students/tests.py" time="4.263" timestamp="2026-11-08T13:24:46" failures="0" errors="0" skipped="0">
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_admin_can_register_student" time="0.219" timestamp="2026-11-08T13:24:41" file="students\tests.py" line="132"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_admin_can_update_contact_course_and_year_but_not_student_id" time="0.221" timestamp="2026-11-08T13:24:42" file="students\tests.py" line="209"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_anonymous_user_is_redirected_to_login" time="0.211" timestamp="2026-11-08T13:24:42" file="students\tests.py" line="366"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_duplicate_registration_shows_required_message" time="0.219" timestamp="2026-11-08T13:24:42" file="students\tests.py" line="235"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_empty_student_submissions_show_required_errors_without_saving" time="0.224" timestamp="2026-11-08T13:24:42" file="students\tests.py" line="148"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_search_matches_student_id_partial_name_and_hostel" time="0.235" timestamp="2026-11-08T13:24:42" file="students\tests.py" line="245"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_student_creation_rolls_back_if_audit_recording_fails" time="0.218" timestamp="2026-11-08T13:24:43" file="students\tests.py" line="165"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_student_deactivation_requires_post" time="0.210" timestamp="2026-11-08T13:24:43" file="students\tests.py" line="333"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_student_deactivation_rolls_back_if_audit_recording_fails" time="0.215" timestamp="2026-11-08T13:24:43" file="students\tests.py" line="307"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_student_list_escapes_script_payload_and_search_treats_sql_as_literal" time="0.219" timestamp="2026-11-08T13:24:43" file="students\tests.py" line="342"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_student_role_cannot_register_update_or_deactivate" time="0.418" timestamp="2026-11-08T13:24:44" file="students\tests.py" line="192"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_student_search_handles_5000_records_within_two_seconds" time="0.797" timestamp="2026-11-08T13:24:45" file="students\tests.py" line="262"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_student_with_active_allocation_cannot_be_deactivated" time="0.226" timestamp="2026-11-08T13:24:45" file="students\tests.py" line="317"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_unallocated_student_can_be_deactivated" time="0.216" timestamp="2026-11-08T13:24:45" file="students\tests.py" line="291"/>
+	<testcase classname="students.tests.StudentManagementViewTests" name="test_warden_can_register_student" time="0.415" timestamp="2026-11-08T13:24:46" file="students\tests.py" line="177"/>
+</testsuite>
