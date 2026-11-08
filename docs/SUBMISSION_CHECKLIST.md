@@ -12,13 +12,17 @@ repository.
 Follow the [Part 3 team plan](PART3.md) and the instructor PDF linked there.
 Its 2-6 November testing window and the submitted Test Plan govern current
 acceptance; historical test totals and scope exclusions below remain context.
+The 8 November technical review uses main `b523d4c`; it updates evidence/status
+dispositions without claiming new application execution or human acceptance.
 
 - [x] Published Part 3 issues #37-#43 with original case ownership, initial estimates, dependencies, acceptance criteria and the 6 November milestone date.
 - [x] Added the instructor Part 3 PDF and a team plan defining the Test Case Document and four distinct report destinations under `docs/part3/`.
 - [ ] Update the existing GitHub Project with the Part 3 tasks/estimates/iteration when access is available; the current token lacks `read:project`, so board synchronization remains blocked.
-- [ ] Complete the updated Test Case Document and 36-requirement RTM, preserving all 33 original case IDs and adding sprint regressions (#37).
+- [x] Publish the updated 61-case Test Case Document and 36-requirement RTM, preserving all 33 original IDs and mappings; merged PR #60 closed #37 for authorized documentation delivery.
+- [ ] Obtain actual case/priority/RTM and historical entry/deviation review; documentation delivery does not supply QA acceptance or execute the remaining cases.
 - [ ] Complete each member's functional, security, performance/recovery and quality execution with current evidence, defects and retests (#38-#40).
-- [ ] Publish the Unit Test Report (#41), System Validation Report (#38), Code Coverage Report and Branch Coverage Report (#42) under `docs/part3/`, with sanitized durable evidence.
+- [x] Publish the System Validation checkpoint (#38), Code Coverage Report and Branch Coverage Report (#42) under `docs/part3/`, with source-bound evidence. Their publication is distinct from complete plan acceptance.
+- [ ] Vaishnavi publishes and obtains review of the missing Unit Test Report (#41), using genuine module-owner results and reviewed unit/application-logic attribution. Devansh's [module-owner input](part3/Code_Coverage_Report.md#hms-19-module-owner-input--8-november-2026) is supplied; formal unit70 remains UNPROVEN.
 - [ ] Meet the Test Plan exit criteria and record actual QA/Dev/PO approvals and the project-guide acceptance walkthrough; retain failed/blocked criteria and explicit deviations (#43).
 - [ ] Verify the one-minute Sprint 1 and two-minute Sprint 2 outcome videos from Part 2 are genuinely available, and confirm submission channel, exact cutoff and export requirements (#43).
 - [ ] Publish the final accepted revision and complete the agreed submission; use Sprint 3 only for actual owned development spillover while testing/reporting continue (#43).
@@ -52,12 +56,12 @@ acceptance; historical test totals and scope exclusions below remain context.
 - [ ] Run `python scripts/run_checks.py` on the final revision and inspect all gates, test totals and coverage in `test-results/<run>/run.json`. CI runs the same command on MySQL 8.4 with Python 3.11 and 3.14; download the matching commit's `hms-test-evidence-*` artifacts.
 - [x] Historical 29 October SQLite-compatible audit: 154 passed, 0 failures/errors; 163 discovered, with 9 MySQL-specific tests excluded. See `test-evidence/E2E_FINAL_TESTS.txt`. This is not the current MySQL verification result.
 - [x] Historical CI run #29 passed MySQL 8.4 on Python 3.11 and 3.14; that run predates pagination. Board/issue status lists HMS-13 Done/closed, but PR #33 review explicitly called it partial and asked to keep it open until populated recovery and concurrent performance evidence. The later local audit supplied a populated restore and 50-user run, but the performance target was exceeded and the post-pagination comparison was blocked.
-- [ ] Resolve the HMS-13 evidence/acceptance discrepancy with the team before final acceptance; later unit/integration CI does not establish concurrent load performance.
+- [ ] Resolve historical entry and QA evidence/environment acceptance with the team before final acceptance. The original HMS-13 follow-up now has the separate 5 November owner load/recovery evidence linked below; ordinary unit/integration CI does not replace it.
 - [x] Before pagination, a 50-user/10-minute-peak local JMeter run completed with no failed samples. The 2,000-bed listing averaged 12.2 seconds (p95 29.6 seconds, maximum 46.8 seconds), which prompted pagination.
-- [ ] Repeat the JMeter smoke/full load after pagination. A post-change attempt was blocked by loopback socket access and is recorded as invalid, not a pass.
+- [x] Supply post-pagination owner load evidence: [5 November normal and volume workloads](part3/evidence/issue40-final/README.md), each 50 users for at least 600 seconds, with passing unchanged-threshold results. Retain the earlier blocked post-change attempt and the failed first volume run as history; QA/environment acceptance remains pending.
 - [x] A populated local MySQL dump restore to a separate database had matching table counts; a manual timestamped backup ZIP passed integrity validation.
-- [ ] If daily backup automation is required, arrange a permitted Task Scheduler job and capture a fresh backup/restore record; local scheduling was blocked by Windows task/CIM permissions.
-- [ ] If security scanning/live deployment is required, run ZAP and verify TLS/Secure cookies against the actual demo host. Django production-profile settings validation alone is not live deployment evidence.
+- [x] Supply the required daily-backup owner observation: [naturally scheduled populated recovery](part3/evidence/issue40-final/recovery-results.json), preserving all 18 table digests/counts and the live source/task. Earlier scheduling/permission blockers remain historical; original environment/entry and independent QA acceptance remain pending.
+- [ ] Obtain required actual HTTP-to-HTTPS, TLS 1.2+ and authenticated Secure/HttpOnly session-cookie evidence (TC-SEC-06 PARTIAL), plus the separate Test Plan §5.1 ZAP baseline (TC-SEC-08 NOT RUN). An isolated real HTTPS endpoint suffices; settings checks alone do not. Record any actual instructor-approved criterion change separately while preserving original outcomes.
 - [ ] Walk through Admin, Warden and Student accounts on the final demo host and save only rubric-requested screenshots. Local automated checks do not establish browser/OS compatibility on that host.
 
 ## Final packaging
