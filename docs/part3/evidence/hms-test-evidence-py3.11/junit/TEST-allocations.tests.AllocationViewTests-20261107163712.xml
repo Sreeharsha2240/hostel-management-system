@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="allocations.tests.AllocationViewTests-20261107163712" tests="7" file="allocations/tests.py" time="0.358" timestamp="2026-11-07T16:37:34" failures="0" errors="0" skipped="0">
+	<testcase classname="allocations.tests.AllocationViewTests" name="test_admin_can_complete_allocation" time="0.080" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="218"/>
+	<testcase classname="allocations.tests.AllocationViewTests" name="test_admin_can_create_allocation" time="0.063" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="146"/>
+	<testcase classname="allocations.tests.AllocationViewTests" name="test_admin_can_open_allocation_form" time="0.041" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="125"/>
+	<testcase classname="allocations.tests.AllocationViewTests" name="test_admin_can_view_allocation_list" time="0.031" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="117"/>
+	<testcase classname="allocations.tests.AllocationViewTests" name="test_allocation_creation_rolls_back_if_audit_event_fails" time="0.046" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="176"/>
+	<testcase classname="allocations.tests.AllocationViewTests" name="test_release_rolls_back_if_audit_event_fails" time="0.063" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="195"/>
+	<testcase classname="allocations.tests.AllocationViewTests" name="test_student_cannot_manage_allocations" time="0.034" timestamp="2026-11-07T16:37:34" file="allocations/tests.py" line="134"/>
+</testsuite>

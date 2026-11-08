@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="audit.tests.AuditedAdminMixinTests-20261107163712" tests="1" file="audit/tests.py" time="0.326" timestamp="2026-11-07T16:37:37" failures="0" errors="0" skipped="0">
+	<testcase classname="audit.tests.AuditedAdminMixinTests" name="test_add_update_and_deactivation_events_are_recorded_for_admin_actor" time="0.326" timestamp="2026-11-07T16:37:37" file="audit/tests.py" line="280"/>
+</testsuite>

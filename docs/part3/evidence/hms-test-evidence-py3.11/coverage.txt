@@ -1,0 +1,57 @@
+Name                                                   Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------------------------------------------
+accounts/admin.py                                         23      3      0      0    87%   26, 29, 35
+accounts/backends.py                                      36      2     12      2    92%   19, 34
+accounts/decorators.py                                    22      0      8      0   100%
+accounts/forms.py                                         38      1      6      2    93%   19, 28->30
+accounts/management/commands/create_demo_accounts.py      43     43     10      0     0%   3-64
+accounts/management/commands/create_demo_data.py          55     55     22      0     0%   3-174
+accounts/middleware.py                                    10      0      2      0   100%
+accounts/models.py                                        20      1      4      1    92%   30
+accounts/urls.py                                           3      0      0      0   100%
+accounts/validators.py                                     8      0      2      0   100%
+accounts/views.py                                        111      4     34      8    92%   24, 77->96, 87->96, 139->144, 146-147, 159, 160->166
+allocations/admin.py                                      12      3      0      0    75%   20, 23, 26
+allocations/forms.py                                      13      0      0      0   100%
+allocations/models.py                                     96     10     40      7    88%   83, 85, 94, 98, 102, 122-123, 138, 152, 212
+allocations/services.py                                   47      1      6      1    96%   54
+allocations/urls.py                                        3      0      0      0   100%
+allocations/views.py                                     132      8     46      6    92%   40, 62, 70, 100, 116->123, 149-152, 154-155
+audit/admin.py                                            17      4      0      0    76%   16, 19, 22, 25
+audit/management/commands/purge_audit_logs.py             19      0      4      0   100%
+audit/mixins.py                                           23      0      4      0   100%
+audit/models.py                                           50      2      6      1    95%   21, 92
+audit/services.py                                          8      0      4      0   100%
+audit/signals.py                                          19      0      4      2    91%   22->24, 34->exit
+audit/urls.py                                              3      0      0      0   100%
+audit/views.py                                            19      0      4      0   100%
+hms/decorators.py                                         15      1      2      1    88%   19
+hms/forms.py                                              13      0      4      0   100%
+hms/http.py                                               32      0     14      0   100%
+hms/responses.py                                          15      2      6      2    81%   23, 37
+hms/urls.py                                                4      0      0      0   100%
+hostels/admin.py                                          42      8      2      0    77%   25-32, 43, 54
+hostels/forms.py                                          29      1      4      1    94%   53
+hostels/models.py                                         92      6     26      2    92%   43, 158-167, 173
+hostels/urls.py                                            3      0      0      0   100%
+hostels/views.py                                          89      4     26      1    96%   124-131
+payments/admin.py                                         14      3      0      0    79%   14, 17, 20
+payments/forms.py                                         18      0      0      0   100%
+payments/models.py                                        80      6     22      2    92%   88, 94->96, 123, 126-127, 150-151
+payments/receipts.py                                      21      0      2      0   100%
+payments/services.py                                      29      0      4      0   100%
+payments/urls.py                                           3      0      0      0   100%
+payments/views.py                                         91      2     26      3    96%   43, 91->97, 96
+reports/services.py                                       26      0      6      0   100%
+reports/urls.py                                            4      0      0      0   100%
+reports/views.py                                          56      0     14      0   100%
+scripts/run_checks.py                                     95     16     14      2    83%   35-41, 46-58, 162->167, 250
+students/admin.py                                          9      0      0      0   100%
+students/forms.py                                         27      0      6      0   100%
+students/models.py                                        46      1      8      1    96%   13
+students/urls.py                                           3      0      0      0   100%
+students/views.py                                         86      1     20      1    98%   159
+--------------------------------------------------------------------------------------------------
+TOTAL                                                   1772    188    424     46    88%
+
+2 empty files skipped.

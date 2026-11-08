@@ -123,3 +123,9 @@ The automated and manual results provide separate evidence for HMS-17.
 - No testing of the latest two versions of Chrome/Firefox/Edge as a compatibility matrix, Linux server portability, a real mobile client, or the SRS 99% availability target is claimed. These remain outside the evidence collected for this local miniproject run and must not be inferred from the Firefox/Edge checks.
 
 Test-case statuses are recorded individually against their expected results and supporting execution evidence. HMS-15 review and approval status remains separate from HMS-17 execution status.
+
+## 8. Follow-up publication and technical review — 8 November 2026
+
+The [PR #66 follow-up](followup-20261108.md) indexes seven additional screenshot observations and the complete original PR #58 CI artifacts with [source-bound raw hashes](followup-20261108.json). The historical sections above retain their original dates/revisions. The new Edge-labelled registration image is a student-list result; the allocation image shows a success message and Active row. Desktop Chrome dashboard/student/bed pages are now present. Capture date/build/exact browser versions are unrecorded. No timed new-Warden guide task, latest-two browser coverage, deployed Windows/Linux main-flow record, real mobile run or office-hours availability measurement is supplied.
+
+The same technical review accepts S1-07 and S2-07 for their historical automated integration scope, using raw 7 November execution and unchanged relevant source, without requiring an artificial new run. Original HMS-17 dispositions remain six OWNER PASS / one PARTIAL / one NOT RUN. #39 remains OPEN; the new captures do not complete the original registration/guide/quality requirements.

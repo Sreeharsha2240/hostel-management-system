@@ -1,0 +1,980 @@
+{
+  "schema_version": 1,
+  "purpose": "Source and file-byte provenance review of historical automated CI companions supplied with the HMS-17 follow-up. Existing original artifacts are retained; this review performs no new application, database, browser, mobile, load, security scan or recovery execution.",
+  "review": {
+    "reviewed_at_utc": "2026-11-08T15:41:36Z",
+    "reviewer_kind": "Automated repository and GitHub artifact audit",
+    "operations": [
+      "Read original PR head/base and historical CI metadata and job logs.",
+      "Downloaded the two original CI artifacts and compared every retained byte.",
+      "Restored the original coverage.xml and test-results.txt bytes omitted from each PR bundle.",
+      "Aggregated JUnit identities/outcomes and reconciled run.json/coverage.json totals.",
+      "Compared the exact application/test/template/static/configuration paths listed below."
+    ],
+    "new_test_execution": false
+  },
+  "submitted_source": {
+    "repository_url": "https://github.com/Sreeharsha2240/hostel-management-system",
+    "pull_request": 66,
+    "pull_request_url": "https://github.com/Sreeharsha2240/hostel-management-system/pull/66",
+    "branch": "test/HMS-17-followup",
+    "reviewed_head_commit": "702bbbc90cb2baea2c22eeef16cee64047a367ae",
+    "reviewed_base_commit": "d283baef40c91e2684cd2dd412d10ed93ce4c2eb",
+    "reviewed_head_tree": "1e6161f8fffd1e567ea8918c25b88b9e282d7346"
+  },
+  "historical_ci": {
+    "workflow": "Django Tests",
+    "run_id": 42366747331,
+    "run_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42366747331",
+    "event": "pull_request",
+    "source_pull_request": 58,
+    "run_created_at_utc": "2026-11-07T11:06:14Z",
+    "run_completed_at_utc": "2026-11-07T11:08:14Z",
+    "run_head_branch": "test/HMS-17-system-validation",
+    "run_head_sha": "5e875aacbf60349a772b4d35d9f9068a2218c602",
+    "checked_out_merge_ref": "refs/pull/58/merge",
+    "tested_commit": "32e6f563335a1ed20e2c6f619ba7e82de56dbd1f",
+    "tested_tree": "ffe3ba2c0be6cf1d895b750ff184a40c0fb59295",
+    "tested_merge_parents": [
+      "c9f30a48c6dc54ccaec799156f3e52fe7bc8666a",
+      "5e875aacbf60349a772b4d35d9f9068a2218c602"
+    ],
+    "head_sha_explanation": "The Actions run identifies the PR head SHA, while actions/checkout tested the generated PR merge commit. Job checkout logs and both run.json files identify 32e6f563335a1ed20e2c6f619ba7e82de56dbd1f.",
+    "relation_to_pr66": "These bundles originate from 7 November PR #58 CI. They are not outputs of PR #66 CI or an 8 November application test execution."
+  },
+  "scoped_source_equivalence": {
+    "from_tested_commit": "32e6f563335a1ed20e2c6f619ba7e82de56dbd1f",
+    "to_reviewed_pr_head": "702bbbc90cb2baea2c22eeef16cee64047a367ae",
+    "paths": [
+      "accounts",
+      "allocations",
+      "audit",
+      "hms",
+      "hostels",
+      "payments",
+      "reports",
+      "students",
+      "templates",
+      "static",
+      "tests",
+      "manage.py",
+      ".coveragerc",
+      ".env.example",
+      "ruff.toml",
+      "scripts/run_checks.py",
+      "requirements.txt",
+      "requirements-dev.txt"
+    ],
+    "command_argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "32e6f563335a1ed20e2c6f619ba7e82de56dbd1f",
+      "702bbbc90cb2baea2c22eeef16cee64047a367ae",
+      "--",
+      "accounts",
+      "allocations",
+      "audit",
+      "hms",
+      "hostels",
+      "payments",
+      "reports",
+      "students",
+      "templates",
+      "static",
+      "tests",
+      "manage.py",
+      ".coveragerc",
+      ".env.example",
+      "ruff.toml",
+      "scripts/run_checks.py",
+      "requirements.txt",
+      "requirements-dev.txt"
+    ],
+    "exit_code": 0,
+    "diff_stdout_bytes": 0,
+    "diff_stderr_bytes": 0,
+    "equal": true,
+    "meaning": "Application source, tests, templates, static files and the explicitly listed application/test configuration are byte-equivalent in the compared Git trees. This permits historical automated methods to serve as source-matched companions, without creating new execution or full manual-case acceptance.",
+    "full_tree_equivalence_claimed": false,
+    "workflow_equivalence_claimed": false,
+    "known_workflow_difference": ".github/workflows/django.yml differs between the historical tested commit and the reviewed PR head."
+  },
+  "bundles": [
+    {
+      "directory": "docs/part3/evidence/hms-test-evidence-py3.11",
+      "artifact": {
+        "name": "hms-test-evidence-py3.11-32e6f563335a1ed20e2c6f619ba7e82de56dbd1f",
+        "id": 13572131023,
+        "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42366747331/artifacts/13572131023",
+        "job_id": 128386292558,
+        "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42366747331/job/128386292558",
+        "created_at_utc": "2026-11-07T11:08:11Z",
+        "archive_size_bytes_from_github_metadata": 42637,
+        "archive_sha256_from_github_metadata": "a8f4c4e352dd5d7d0cca5ae6a13a792d6b6180034f73d112f900b7b99ad29772",
+        "archive_digest_note": "Recorded from the GitHub artifact API; extracted file bytes were independently compared. The archive digest was not recomputed from a downloaded ZIP."
+      },
+      "environment": {
+        "python": "3.11.18",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "mysql": "8.4.13",
+        "dependencies": {
+          "Django": "5.2.19",
+          "mysqlclient": "2.3.0",
+          "python-dotenv": "1.2.4",
+          "reportlab": "4.5.1",
+          "pypdf": "6.21.2",
+          "coverage": "7.16.2",
+          "unittest-xml-reporting": "4.0.0",
+          "ruff": "0.17.1"
+        },
+        "git_dirty": false
+      },
+      "historical_execution": {
+        "started_at": "2026-11-07T11:07:07.846330+00:00",
+        "completed_at": "2026-11-07T11:08:10.371818+00:00",
+        "success": true,
+        "check_command": "python scripts/run_checks.py --output-dir test-results/ci",
+        "check_steps": [
+          {
+            "name": "lint",
+            "exit_code": 0
+          },
+          {
+            "name": "format",
+            "exit_code": 0
+          },
+          {
+            "name": "dependencies",
+            "exit_code": 0
+          },
+          {
+            "name": "django-checks",
+            "exit_code": 0
+          },
+          {
+            "name": "applied-migrations",
+            "exit_code": 0
+          },
+          {
+            "name": "migration-consistency",
+            "exit_code": 0
+          },
+          {
+            "name": "staticfiles",
+            "exit_code": 0
+          },
+          {
+            "name": "test-results",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-xml",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-json",
+            "exit_code": 0
+          },
+          {
+            "name": "timing-smoke",
+            "exit_code": 0
+          }
+        ]
+      },
+      "mixed_suite": {
+        "junit_files": 27,
+        "methods": 190,
+        "passed": 189,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1,
+        "unique_method_identities": 190,
+        "duplicate_method_identities": 0,
+        "sorted_method_identities_utf8_lf_sha256": "a2de6cd215d115d8519cbe4984b0bc6dd4067c2c68e382b4b41f24c4fefd9379",
+        "identity_hash_encoding": "Sorted classname.method identities, each followed by LF, encoded as UTF-8.",
+        "skipped_methods": [
+          {
+            "classname": "accounts.tests.AuthenticationTests",
+            "method": "test_login_and_role_dashboard_respond_within_two_seconds",
+            "reason": "Wall-clock thresholds are measured without coverage instrumentation."
+          }
+        ],
+        "separate_uninstrumented_timing_test": "PASS; the same timing method was run separately without coverage instrumentation. Overall test durations were 1.922 s on Python 3.11 and 1.817 s on Python 3.14.",
+        "classification_note": "Mixed Django helper, model, service, HTTP, migration, concurrency and journey methods. These counts are not original manual case counts and do not establish unit-only coverage."
+      },
+      "junit_timestamps": {
+        "first_testcase_unzoned": "2026-11-07T16:37:14",
+        "last_testcase_unzoned": "2026-11-07T16:38:05",
+        "application_time_zone": "Asia/Kolkata",
+        "utc_offset_on_execution_date": "+05:30",
+        "explanation": "JUnit timestamps do not contain an offset. Application settings use Asia/Kolkata; subtracting 05:30 reconciles their 16:37-16:38 clock times with the run.json and GitHub 11:07-11:08 UTC execution window."
+      },
+      "coverage": {
+        "covered_statements": 1584,
+        "statements": 1772,
+        "statement_percent": 89.39051918735892,
+        "covered_branches": 342,
+        "branches": 424,
+        "branch_percent": 80.66037735849056,
+        "combined_covered_items": 1926,
+        "combined_items": 2196,
+        "combined_percent": 87.70491803278688,
+        "missing_statements": 188,
+        "missing_branches": 82,
+        "partial_branches": 46,
+        "coverage_json_totals_equal_run_json": true,
+        "scope_note": "Configured mixed-suite coverage at the historical tested commit. Statement, branch and combined percentages use different denominators; 88% displayed coverage is the rounded combined figure."
+      },
+      "original_artifact_file_count": 42,
+      "original_pr_retained_file_count": 40,
+      "restored_original_files": [
+        "coverage.xml",
+        "test-results.txt"
+      ],
+      "all_42_retained_files_equal_original_artifact_bytes": true,
+      "all_40_original_pr_files_equal_original_artifact_bytes": true,
+      "raw_file_inventory": [
+        {
+          "path": "applied-migrations.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage-json.txt",
+          "bytes": 119,
+          "sha256": "c1f86dfd25c6233bd0c87b5f43a9fe41ee97d659a7f396d36a77c8d0a555db26",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage-xml.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage.json",
+          "bytes": 247038,
+          "sha256": "724d49724742ef16a8652a7a27f52c9846cb4adfa05d17cc7f4ec019b64987aa",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage.txt",
+          "bytes": 5385,
+          "sha256": "0f24bdee1aa798b0a68201b701c438e207c74a616659202544ebf744e0036130",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage.xml",
+          "bytes": 83696,
+          "sha256": "3e0fec0ed460eafd4df86a8f64234ee114043f5404bcff6b040d2fac6cc86fb2",
+          "present_in_original_pr_head": false,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "dependencies.txt",
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "django-checks.txt",
+          "bytes": 48,
+          "sha256": "1e3e63f221bde88816c4a4ef7367691607b20cc1d194028a02ec9ae0586cf9b1",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "format.txt",
+          "bytes": 28,
+          "sha256": "f4d457398bc028782f539b5ebf8cdff3be54a8797b443d5c17d259f8ffa88d8c",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-accounts.test_security.SessionAndLockoutTests-20261107163712.xml",
+          "bytes": 2220,
+          "sha256": "727700e18028885726427edac47c947a90cd7a7c3aa7a734cad743a0574fba50",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-accounts.tests.AuthenticationTests-20261107163712.xml",
+          "bytes": 3986,
+          "sha256": "f3770bce6b04dbc5a2c21103404a36947970333d1ded9bb21bb5d93d6ad3258d",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.test_migrations.AllocationMigrationTests-20261107163712.xml",
+          "bytes": 737,
+          "sha256": "85401bb9d8665c4db70e2f350c8a31fd8c62da69a4b2480c09554eb72be963a4",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.test_workflows.AllocationConcurrencyTests-20261107163712.xml",
+          "bytes": 986,
+          "sha256": "6bc6a2167490a2f19ca209da40617db18d6901f69c1a7d8262eb2e050f26473a",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.test_workflows.AllocationWorkflowTests-20261107163712.xml",
+          "bytes": 3319,
+          "sha256": "73c1e2edb42b2539d1d123465f9a92571b83ed55d919b1304f57eda7a8b13f57",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.tests.AllocationModelTests-20261107163712.xml",
+          "bytes": 1433,
+          "sha256": "c2b3cc2b5556eaa2b865cf64c41febe4923c6c3b5c9291704583fcac723824c2",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.tests.AllocationViewTests-20261107163712.xml",
+          "bytes": 1602,
+          "sha256": "fc459984070df2cc7a7399228b7558685ab6165324993e8241ab72ad22fb0872",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-audit.tests.AuditedAdminMixinTests-20261107163712.xml",
+          "bytes": 448,
+          "sha256": "587890d7fd34b140ee930455f33b999951e370ae4c6402b7ee247449d8418a28",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-audit.tests.AuditTests-20261107163712.xml",
+          "bytes": 2164,
+          "sha256": "e286e2f78693b288c1a7f51d485a5c82ea5c94b53b63e6856fb70bc5aad99a03",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_forms.DateFieldTests-20261107163712.xml",
+          "bytes": 634,
+          "sha256": "fdc52c8492fd4bcc54989a2bc1b3176144214a953bca5fb8894de01a9128ca31",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_forms.ModelChoiceFieldTests-20261107163712.xml",
+          "bytes": 444,
+          "sha256": "5728e1a7214a46cb95629705e81c3c139bbffb3e4ef1af6ec3bd05dbfa5f6fb9",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_http.RequestDataTests-20261107163712.xml",
+          "bytes": 2187,
+          "sha256": "b6f8f2d005f47274b8d4b8edd66cc441ee056f932b25c0f1c28cc96a720bf945",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_navigation.DashboardNavigationSmokeTests-20261107163712.xml",
+          "bytes": 903,
+          "sha256": "8489888a37c54cec120d6ae95293e15cc9bbd7998b2fc84a8f0502dba73ed7a7",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_responses.FormErrorResponseTests-20261107163712.xml",
+          "bytes": 932,
+          "sha256": "30b3fce036b8bb1d003d4072b639c77e7c17b0960cce5a17a383e0e8ac170416",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_settings.StaticFilesConfigurationTests-20261107163712.xml",
+          "bytes": 461,
+          "sha256": "4cf043d0f48b34b4430d5252a15b285dd060ca311400f95670e68bc375b16f86",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_system_journey.StudentHostelJourneyTests-20261107163712.xml",
+          "bytes": 501,
+          "sha256": "9eb12d0606b8eaf5126288b3cee57402eafcd3b753d58b52f7e83e8f5942ddb6",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.tests.DatabaseConfigurationTests-20261107163712.xml",
+          "bytes": 937,
+          "sha256": "9cfa63a5eab953fcb4c201cb4499e9c6084c5b3b9f258b29f814b44e05262452",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hostels.tests.BedFilteringViewTests-20261107163712.xml",
+          "bytes": 2396,
+          "sha256": "bf072d205817aa90f22117d5afbd72701e81458a040786f20c2a30bfd7219c21",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hostels.tests.HostelManagementViewTests-20261107163712.xml",
+          "bytes": 1446,
+          "sha256": "7e12f0cf1f0bbd5736e4b42676552c7b27971812a3d1fd2444ea0806fe0edd63",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hostels.tests.HostelModelBehaviorTests-20261107163712.xml",
+          "bytes": 2378,
+          "sha256": "8297044ae4d4e86b54217993499a1ff11575db0a267dd6a02d59230195661e5c",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-payments.test_workflows.PaymentConcurrencyTests-20261107163712.xml",
+          "bytes": 718,
+          "sha256": "faaee8c1c514265290e530a6afd858053c761cd0a688d5234e3d7c324e753c57",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-payments.test_workflows.PaymentWorkflowTests-20261107163712.xml",
+          "bytes": 4224,
+          "sha256": "bfbf9c267cacdd4c1fc63989aba0ebb9000e2f7f404cbfd959fc545b397d0d9b",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-reports.test_reports.ReportTests-20261107163712.xml",
+          "bytes": 2839,
+          "sha256": "e0f439ff66b3dc46ffb5ebbd498e59946904f11ceb3e017f8d71ad042e3918a1",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-students.test_self_service.StudentSelfServiceTests-20261107163712.xml",
+          "bytes": 2113,
+          "sha256": "c37ad9cfe4d00fc66e0ff1a7cdc0b92ce0fa84a7b2472ebc2d8ee830f8d27ea8",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-students.tests.StudentManagementViewTests-20261107163712.xml",
+          "bytes": 3367,
+          "sha256": "f82ace0b6f10ddeb525b1b759d9084e2f6b2756e22e1d01a51881118f2ec4d5b",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-students.tests.StudentModelTests-20261107163712.xml",
+          "bytes": 1356,
+          "sha256": "e5e137d014239c942ebd5dd1e3e22e6cd2ec34e6453baf7f1f8f94d61f07bf65",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-tests.test_checks.VerificationRunnerTests-20261107163712.xml",
+          "bytes": 1956,
+          "sha256": "87b170790c40815130ca626ff9f8430a6a6a457171a56b22b0d36b3eed66f1eb",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "lint.txt",
+          "bytes": 19,
+          "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "migration-consistency.txt",
+          "bytes": 20,
+          "sha256": "a2bfa7b376c38062f77ce2b1e703876aaa04662f96355cdf5dc9d0d075302b05",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "run.json",
+          "bytes": 3865,
+          "sha256": "6d7122bbfd04610b66b84e4bc56ffd0b50fd901ce6048b4190da0e568353b517",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "staticfiles.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "test-results.txt",
+          "bytes": 580,
+          "sha256": "7f7d845fce9ac247a0c76e9536f2da993fae0bc7c2dbf7298dafb6b706755f18",
+          "present_in_original_pr_head": false,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "timing-smoke.txt",
+          "bytes": 257,
+          "sha256": "9de629c2fd30017526c9d01fd6338623def712559959e4661efec4b5f912943a",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        }
+      ]
+    },
+    {
+      "directory": "docs/part3/evidence/hms-test-evidence-py3.14",
+      "artifact": {
+        "name": "hms-test-evidence-py3.14-32e6f563335a1ed20e2c6f619ba7e82de56dbd1f",
+        "id": 13571882536,
+        "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42366747331/artifacts/13571882536",
+        "job_id": 128386292789,
+        "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42366747331/job/128386292789",
+        "created_at_utc": "2026-11-07T11:08:08Z",
+        "archive_size_bytes_from_github_metadata": 42573,
+        "archive_sha256_from_github_metadata": "02d9aebdb7ce1b11b8f91009817f0851d17ec868f3b8707e9425f1f7bbeec7c8",
+        "archive_digest_note": "Recorded from the GitHub artifact API; extracted file bytes were independently compared. The archive digest was not recomputed from a downloaded ZIP."
+      },
+      "environment": {
+        "python": "3.14.10",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "mysql": "8.4.13",
+        "dependencies": {
+          "Django": "5.2.19",
+          "mysqlclient": "2.3.0",
+          "python-dotenv": "1.2.4",
+          "reportlab": "4.5.1",
+          "pypdf": "6.21.2",
+          "coverage": "7.16.2",
+          "unittest-xml-reporting": "4.0.0",
+          "ruff": "0.17.1"
+        },
+        "git_dirty": false
+      },
+      "historical_execution": {
+        "started_at": "2026-11-07T11:07:10.230718+00:00",
+        "completed_at": "2026-11-07T11:08:07.265536+00:00",
+        "success": true,
+        "check_command": "python scripts/run_checks.py --output-dir test-results/ci",
+        "check_steps": [
+          {
+            "name": "lint",
+            "exit_code": 0
+          },
+          {
+            "name": "format",
+            "exit_code": 0
+          },
+          {
+            "name": "dependencies",
+            "exit_code": 0
+          },
+          {
+            "name": "django-checks",
+            "exit_code": 0
+          },
+          {
+            "name": "applied-migrations",
+            "exit_code": 0
+          },
+          {
+            "name": "migration-consistency",
+            "exit_code": 0
+          },
+          {
+            "name": "staticfiles",
+            "exit_code": 0
+          },
+          {
+            "name": "test-results",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-xml",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-json",
+            "exit_code": 0
+          },
+          {
+            "name": "timing-smoke",
+            "exit_code": 0
+          }
+        ]
+      },
+      "mixed_suite": {
+        "junit_files": 27,
+        "methods": 190,
+        "passed": 189,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1,
+        "unique_method_identities": 190,
+        "duplicate_method_identities": 0,
+        "sorted_method_identities_utf8_lf_sha256": "a2de6cd215d115d8519cbe4984b0bc6dd4067c2c68e382b4b41f24c4fefd9379",
+        "identity_hash_encoding": "Sorted classname.method identities, each followed by LF, encoded as UTF-8.",
+        "skipped_methods": [
+          {
+            "classname": "accounts.tests.AuthenticationTests",
+            "method": "test_login_and_role_dashboard_respond_within_two_seconds",
+            "reason": "Wall-clock thresholds are measured without coverage instrumentation."
+          }
+        ],
+        "separate_uninstrumented_timing_test": "PASS; the same timing method was run separately without coverage instrumentation. Overall test durations were 1.922 s on Python 3.11 and 1.817 s on Python 3.14.",
+        "classification_note": "Mixed Django helper, model, service, HTTP, migration, concurrency and journey methods. These counts are not original manual case counts and do not establish unit-only coverage."
+      },
+      "junit_timestamps": {
+        "first_testcase_unzoned": "2026-11-07T16:37:17",
+        "last_testcase_unzoned": "2026-11-07T16:38:02",
+        "application_time_zone": "Asia/Kolkata",
+        "utc_offset_on_execution_date": "+05:30",
+        "explanation": "JUnit timestamps do not contain an offset. Application settings use Asia/Kolkata; subtracting 05:30 reconciles their 16:37-16:38 clock times with the run.json and GitHub 11:07-11:08 UTC execution window."
+      },
+      "coverage": {
+        "covered_statements": 1584,
+        "statements": 1772,
+        "statement_percent": 89.39051918735892,
+        "covered_branches": 342,
+        "branches": 424,
+        "branch_percent": 80.66037735849056,
+        "combined_covered_items": 1926,
+        "combined_items": 2196,
+        "combined_percent": 87.70491803278688,
+        "missing_statements": 188,
+        "missing_branches": 82,
+        "partial_branches": 46,
+        "coverage_json_totals_equal_run_json": true,
+        "scope_note": "Configured mixed-suite coverage at the historical tested commit. Statement, branch and combined percentages use different denominators; 88% displayed coverage is the rounded combined figure."
+      },
+      "original_artifact_file_count": 42,
+      "original_pr_retained_file_count": 40,
+      "restored_original_files": [
+        "coverage.xml",
+        "test-results.txt"
+      ],
+      "all_42_retained_files_equal_original_artifact_bytes": true,
+      "all_40_original_pr_files_equal_original_artifact_bytes": true,
+      "raw_file_inventory": [
+        {
+          "path": "applied-migrations.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage-json.txt",
+          "bytes": 119,
+          "sha256": "c1f86dfd25c6233bd0c87b5f43a9fe41ee97d659a7f396d36a77c8d0a555db26",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage-xml.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage.json",
+          "bytes": 247038,
+          "sha256": "b8637e0419c3ae3e6ab51aa481ac33a6f133e9cb570c1db665f19f564668d6fd",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage.txt",
+          "bytes": 5385,
+          "sha256": "0f24bdee1aa798b0a68201b701c438e207c74a616659202544ebf744e0036130",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "coverage.xml",
+          "bytes": 83696,
+          "sha256": "d1bab18ce10267ff835f195c92b8327baaefa3e2900bf216b8ae20952de83f2f",
+          "present_in_original_pr_head": false,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "dependencies.txt",
+          "bytes": 30,
+          "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "django-checks.txt",
+          "bytes": 48,
+          "sha256": "1e3e63f221bde88816c4a4ef7367691607b20cc1d194028a02ec9ae0586cf9b1",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "format.txt",
+          "bytes": 28,
+          "sha256": "f4d457398bc028782f539b5ebf8cdff3be54a8797b443d5c17d259f8ffa88d8c",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-accounts.test_security.SessionAndLockoutTests-20261107163715.xml",
+          "bytes": 2220,
+          "sha256": "5b194f417ab8ad6d9b3eee6d5bf36ea8addab218db7441f5561f8d1bf1c8b8f0",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-accounts.tests.AuthenticationTests-20261107163715.xml",
+          "bytes": 3986,
+          "sha256": "ee762cd0f2d6c44264fae229475d6a0d6a5963ccd81281f4bb5e208763065930",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.test_migrations.AllocationMigrationTests-20261107163715.xml",
+          "bytes": 737,
+          "sha256": "795bb9225fa7dac45fb389d736ec2c01bdd4b3256e2a0ebdd7ab27c35e01c1e6",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.test_workflows.AllocationConcurrencyTests-20261107163715.xml",
+          "bytes": 986,
+          "sha256": "67d6acc80fcf8e89155a6f773ca9838f34c23c058c7b8f51237c70792cd70a1a",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.test_workflows.AllocationWorkflowTests-20261107163715.xml",
+          "bytes": 3319,
+          "sha256": "4904d7afaf4a56f1d66fbe32e74b95f4edd7c91ee28640e29be7ca0c66416a5c",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.tests.AllocationModelTests-20261107163715.xml",
+          "bytes": 1433,
+          "sha256": "bf0d352c2bebceb49ed228a6c926c8bfb6c5d53c65cba9051da9c30607159347",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-allocations.tests.AllocationViewTests-20261107163715.xml",
+          "bytes": 1602,
+          "sha256": "c8e347672f5bd83c7875c58e7249984d727579eb467c6f007c8854074b713613",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-audit.tests.AuditedAdminMixinTests-20261107163715.xml",
+          "bytes": 448,
+          "sha256": "232e268f9cbb229988ee28380b8a0d64cea3c79a7e94a0596ce91711f9ac0636",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-audit.tests.AuditTests-20261107163715.xml",
+          "bytes": 2164,
+          "sha256": "f26d31680db0217075000f8c7e8cf66c86037db9c57ff7d41bf3a3a1d4b62cab",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_forms.DateFieldTests-20261107163715.xml",
+          "bytes": 634,
+          "sha256": "cfd969a06f6de0ee1ff6842d7fc2669c45022e39c54d130b39aaf0b72a5b3277",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_forms.ModelChoiceFieldTests-20261107163715.xml",
+          "bytes": 444,
+          "sha256": "1f6dfff940d2fe5323525b9280fa4a9f66bdd24c340bc374349caf2e1b53d50b",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_http.RequestDataTests-20261107163715.xml",
+          "bytes": 2187,
+          "sha256": "fd4efa9d294313c78dc000d237322fc87f576ce5feaeed24c6fbe2578ba2ca3f",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_navigation.DashboardNavigationSmokeTests-20261107163715.xml",
+          "bytes": 903,
+          "sha256": "13d8fa7b0f9295d42975b1019dc83d313c70d5e2b71549d027baf392a30139cb",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_responses.FormErrorResponseTests-20261107163715.xml",
+          "bytes": 932,
+          "sha256": "4300ccc7d53a6277673e0fc88d7a40c6a29fb4aaf5ccb2ac8dcceb7f386df278",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_settings.StaticFilesConfigurationTests-20261107163715.xml",
+          "bytes": 461,
+          "sha256": "de47177f5a62aec6b94fbbc26c52fb35b228f1a704cae63a3bbea72593cbd086",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.test_system_journey.StudentHostelJourneyTests-20261107163715.xml",
+          "bytes": 501,
+          "sha256": "a5e0bda3ab0ad049ff6ce8818e1ab6aa9284cc01754bb821575b1cecf90990f7",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hms.tests.DatabaseConfigurationTests-20261107163715.xml",
+          "bytes": 937,
+          "sha256": "2d9f3a38959cd6fedc864d95d41ac2d2dc65a9bbaabb9290f53d429fff51f06c",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hostels.tests.BedFilteringViewTests-20261107163715.xml",
+          "bytes": 2396,
+          "sha256": "b1b252ca4525da9f8bbdf717a229868fe9240b72aa55cd64c078fa1abf238eb0",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hostels.tests.HostelManagementViewTests-20261107163715.xml",
+          "bytes": 1446,
+          "sha256": "7cb7381a80941620caa2eebab81dcb07bf5bd5495fde9db22e90b526d3f0e691",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-hostels.tests.HostelModelBehaviorTests-20261107163715.xml",
+          "bytes": 2378,
+          "sha256": "631e70865a4f33672a7d0fd9aee121ed7dfb4064080a4da7bef3857e13b31971",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-payments.test_workflows.PaymentConcurrencyTests-20261107163715.xml",
+          "bytes": 718,
+          "sha256": "48c5c9bc6c3e835e10db602947663297bfe1758dae8df8345b9ec53199b2eeb4",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-payments.test_workflows.PaymentWorkflowTests-20261107163715.xml",
+          "bytes": 4224,
+          "sha256": "35426699396e29c429e7f5fc96d91ae08d17e45de9ebbaf2c82af3b740505ab2",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-reports.test_reports.ReportTests-20261107163715.xml",
+          "bytes": 2839,
+          "sha256": "1955e6d46708fd0e7110365521387c9421e239ede70fc05e40b7574187a2eebc",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-students.test_self_service.StudentSelfServiceTests-20261107163715.xml",
+          "bytes": 2113,
+          "sha256": "0eef3ce16ce4dcb0162d6a0b8a32abcb86a3361a8b21674baafcdf09b40a870a",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-students.tests.StudentManagementViewTests-20261107163715.xml",
+          "bytes": 3367,
+          "sha256": "ae97395d8f3f4a97234407699568d3f52273409c79b44533fd95cf4effc89000",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-students.tests.StudentModelTests-20261107163715.xml",
+          "bytes": 1356,
+          "sha256": "d3d6c67f675a4f955bcfe9badd3a095a5fee39a73a8ce18fc8f5cdca42cace7c",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "junit/TEST-tests.test_checks.VerificationRunnerTests-20261107163715.xml",
+          "bytes": 1956,
+          "sha256": "93ebc7b4f767f2977102119a663622424f01e5d28ef35996ee06046ede4ff287",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "lint.txt",
+          "bytes": 19,
+          "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "migration-consistency.txt",
+          "bytes": 20,
+          "sha256": "a2bfa7b376c38062f77ce2b1e703876aaa04662f96355cdf5dc9d0d075302b05",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "run.json",
+          "bytes": 3867,
+          "sha256": "dba157dee6d8a1d11a4ed86c9acdea8aab22b408e9bc6485b4be7c1a80f3ebdc",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "staticfiles.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "test-results.txt",
+          "bytes": 580,
+          "sha256": "d98274e31af785e2cc8157be8011ead86be321e89aa557bcaa3241ece0c4f2ec",
+          "present_in_original_pr_head": false,
+          "retained_bytes_equal_original_artifact": true
+        },
+        {
+          "path": "timing-smoke.txt",
+          "bytes": 257,
+          "sha256": "1a64c7a378daf24cc4635f4651aa8b8952948f1eaa244ebd682613a438bf92ae",
+          "present_in_original_pr_head": true,
+          "retained_bytes_equal_original_artifact": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Both Python jobs run the same 190 method identities; they do not represent 380 distinct tests. Matching coverage counts across Python versions are preserved from their separate original artifacts.",
+    "Automated method outcomes support only their asserted behavior; case-specific browser steps, portability versions, real mobile coverage and human owner observations require their own evidence.",
+    "The historical CI environment is Linux with MySQL 8.4.13, Python 3.11.18/3.14.10 and Django 5.2.19; it does not prove the submitted MySQL 8.0 or browser/mobile environment.",
+    "The configured coverage report is mixed-suite evidence; it does not resolve unit/integration classification or application-logic coverage acceptance.",
+    "This provenance review supplies no final human QA/Dev/PO approval or whole-plan entry/exit acceptance."
+  ]
+}

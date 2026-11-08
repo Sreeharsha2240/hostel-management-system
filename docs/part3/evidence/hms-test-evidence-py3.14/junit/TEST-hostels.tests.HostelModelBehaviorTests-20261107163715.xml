@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hostels.tests.HostelModelBehaviorTests-20261107163715" tests="11" file="hostels/tests.py" time="0.129" timestamp="2026-11-07T16:37:47" failures="0" errors="0" skipped="0">
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_bed_status_can_be_changed" time="0.007" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="258"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_bulk_update_rejects_capacity_and_room_number" time="0.012" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="363"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_capacity_cannot_be_reduced_below_active_allocations" time="0.039" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="310"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_create_hostel" time="0.001" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="196"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_duplicate_hostel_name_is_rejected" time="0.002" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="200"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_queryset_update_rejects_capacity_and_room_number" time="0.012" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="334"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_reducing_capacity_removes_unallocated_beds" time="0.018" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="292"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_renaming_room_updates_existing_bed_labels" time="0.018" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="274"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_room_capacity_cannot_exceed_four" time="0.004" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="227"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_room_creation_automatically_creates_beds" time="0.010" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="208"/>
+	<testcase classname="hostels.tests.HostelModelBehaviorTests" name="test_room_numbers_must_be_unique_within_hostel" time="0.006" timestamp="2026-11-07T16:37:47" file="hostels/tests.py" line="239"/>
+</testsuite>
