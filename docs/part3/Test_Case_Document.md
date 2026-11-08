@@ -21,6 +21,7 @@
 | 7 November, PR #58 | Vaishnavi | Published HMS-17 screenshots/manual record; reconciled six OWNER PASS, one NOT RUN and one PARTIAL |
 | 7 November, case-document reconciliation | Devansh, with independent automated source/evidence reviews | Complete case fields, restored original steps/expectations, sprint additions, bidirectional RTM, source-bound evidence and explicit limitations |
 | 8 November, HMS-26 / #63 | Devansh, with three independent automated reviewers | Executed nine remaining owned regression recipes on a clean reviewed commit; updated only their statuses and derived counts |
+| 8 November, HMS-17 follow-up / PR #66 | Vaishnavi (publication); Devansh with three independent automated reviewers (technical reconciliation) | Added seven screenshots and historical raw CI; corrected unsupported complete passes; accepted S1-07/S2-07 for their existing automated scope, without claiming a new execution |
 
 Devansh authorized finishing and merging this documentation issue without collecting additional teammate messages. This is delivery authorization; no teammate signature, retrospective pre-execution QA approval, instructor waiver or final QA/Dev/PO acceptance is invented. Contributor ownership of execution and the remaining reports stays as recorded in issues #38-#43.
 
@@ -98,7 +99,7 @@ The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original p
 
 The [owner manual record](evidence/issue39/manual-execution-20261107.md) reports eight case IDs exercised on 7 November, bound to application `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`, Windows/MySQL 8.0, Firefox and Edge, synthetic data. The [evidence index](evidence/issue39/README.md) and retained screenshots support the reviewed disposition: **6 OWNER PASS, 1 PARTIAL (TC-QUAL-01), 1 NOT RUN (TC-STU-01)**. The raw owner record remains unchanged and its different seven-pass summary is an unverified owner report for STU-01, not an accepted additional pass.
 
-No case-specific saved registration record/screenshot establishes STU-01. No timed new-warden guide task establishes QUAL-01. Functional page observations do not prove latest-browser main flows, exact versions, the SRS portability matrix or a real mobile device. The per-case records retain further screenshot/assertion limits, including HST-01's reported result without a named case screenshot.
+The later [PR #66 follow-up](evidence/issue39/followup-20261108.md) adds a visible student-list result, allocation-success result, bed/filter observations and three desktop Chrome pages. Their capture date/build/version are unrecorded; they are not silently assigned the historical metadata above. STU-01 still lacks its registration submission/success sequence; QUAL-01 still lacks the timed new-warden guide task and complete latest-browser main flows. The SRS latest-two/browser/server targets and real-mobile execution remain incomplete. HST-01 retains its historical reported result without a named case screenshot.
 
 ### 5.5 HMS-16 authentication/security handoff
 
@@ -120,6 +121,10 @@ Review/execution is late against the original 2–6 November window. Historical
 entry approval, original environment targets and final human decisions remain
 unproven; the original browser/load/recovery evidence is not relabelled.
 
+### 5.7 HMS-17 follow-up and historical automated-scope reconciliation
+
+The [8 November follow-up review](evidence/issue39/followup-20261108.md) links seven new screenshot observations and the complete original PR #58 CI bundles. The clean tested source is `32e6f563335a1ed20e2c6f619ba7e82de56dbd1f`, executed 7 November; it is not a fresh PR #66 browser run. Source and raw JUnit reconciliation establish S1-07 (five methods) and S2-07 (six methods) for their automated integration scope in both Python jobs. Their case records now bind actual steps/results to that historical execution. A separately named rerun is not required merely because the recipe was specified later. S1-07 uses the observed Student fixture; S2-07 navigation means rendered link presence, with response-wide date assertions. No complete original browser/portability case or whole-plan acceptance is inferred. Other proposed complete-pass changes lack sufficient scoped evidence and retain NOT RUN. #39 remains OPEN.
+
 ## 6. Counts, metrics and defect/retest interpretation
 
 Original-case evidence disposition is **30 OWNER PASS, 2 PARTIAL, 1 NOT RUN = 33**. Thus evidence reports 32/33 cases exercised (96.97%), 30/33 passing owner observations (90.91%), 2/33 partial (6.06%) and 1/33 not run (3.03%). These percentages describe retained evidence, not accepted exit criteria. They do not remove each case's documented evidence gaps.
@@ -128,12 +133,12 @@ Expanded register (61-case design denominator; case-level status distinct from m
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 48 | 78.69% |
+| OWNER PASS | 50 | 81.97% |
 | PARTIAL | 3 | 4.92% |
-| NOT RUN | 9 | 14.75% |
+| NOT RUN | 7 | 11.48% |
 | BLOCKED | 1 | 1.64% |
 
-The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap is now PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases now have complete reviewed execution records and OWNER PASS; five other-owner recipes remain NOT RUN. Expanded any-exercise count is 51/61 (83.61%), including PARTIAL; owner-pass observations are 48/61 (78.69%). New scan/quality cases likewise retain their actual missing/blocked evidence. Do not silently retain the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap is now PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS; the later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution, while three other-owner recipes remain NOT RUN. Expanded any-exercise count is 53/61 (86.89%), including PARTIAL; owner-pass observations are 50/61 (81.97%). New scan/quality cases likewise retain their actual missing/blocked evidence. Do not silently retain the old 43-case denominator when applying a 100%-planned-cases exit criterion.
 
 Test Plan section 14 also requires defect density (defects/module), aging (days open), and requirement coverage. Known linked development defects #45-#48 are closed with retest references in the HMS-18 appendix; the failed volume attempt (75 errors / 21,650 samples) and its complete unchanged-threshold rerun remain retained. No complete severity-ranked defect inventory or accepted requirement-by-requirement pass assessment is recorded, so whole-plan defect density/aging, zero-critical/high status and complete accepted coverage are **UNVERIFIED**, not zero. Calculate them from actual issue creation/closure/severity and reviewed case evidence in the integrated System Validation Report. A mapped requirement or a single partially relevant passed method is not full requirement acceptance (notably NFR-5, NFR-9 and NFR-12).
 
@@ -148,7 +153,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-AUTH-03](#case-tc-auth-03) - Account lockout after failed attempts | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-AUTH-04](#case-tc-auth-04) - Logout and session timeout | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-USR-01](#case-tc-usr-01) - Admin manages user accounts | Sreeharsha | High (proposed) | OWNER PASS |
-| [TC-STU-01](#case-tc-stu-01) - Register student (valid data) | Vaishnavi | Medium (proposed) | OWNER PASS |
+| [TC-STU-01](#case-tc-stu-01) - Register student (valid data) | Vaishnavi | Medium (proposed) | NOT RUN |
 | [TC-STU-02](#case-tc-stu-02) - Register student (invalid / duplicate) | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-03](#case-tc-stu-03) - Search students | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-04](#case-tc-stu-04) - Update student details | Vaishnavi | Medium (proposed) | OWNER PASS |
@@ -186,10 +191,10 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S2-03](#case-tc-reg-s2-03) - Concurrent payments receive unique sequential receipts | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-04](#case-tc-reg-s2-04) - Adjustments preserve original and validate net amount | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-05](#case-tc-reg-s2-05) - Occupancy HTML/CSV/JSON match with filter | Devansh | Medium (proposed) | OWNER PASS |
-| [TC-REG-S1-06](#case-tc-reg-s1-06) - Empty student/hostel/room submissions are rejected | Vaishnavi | Medium (proposed) | OWNER PASS |
+| [TC-REG-S1-06](#case-tc-reg-s1-06) - Empty student/hostel/room submissions are rejected | Vaishnavi | Medium (proposed) | NOT RUN |
 | [TC-REG-S1-07](#case-tc-reg-s1-07) - Numeric bed-filter boundaries and escaped errors | Vaishnavi | Medium (proposed) | OWNER PASS |
-| [TC-REG-S1-08](#case-tc-reg-s1-08) - Student/room changes roll back on audit failure | Vaishnavi | High (proposed) | OWNER PASS |
-| [TC-REG-S2-06](#case-tc-reg-s2-06) - Explicit Student login link scopes My Records | Sreeharsha / Vaishnavi | High (proposed) | OWNER PASS |
+| [TC-REG-S1-08](#case-tc-reg-s1-08) - Student/room changes roll back on audit failure | Vaishnavi | High (proposed) | NOT RUN |
+| [TC-REG-S2-06](#case-tc-reg-s2-06) - Explicit Student login link scopes My Records | Sreeharsha / Vaishnavi | High (proposed) | NOT RUN |
 | [TC-REG-S2-07](#case-tc-reg-s2-07) - My Records empty/access/navigation/date behavior | Sreeharsha | Medium (proposed) | OWNER PASS |
 | [TC-REG-S2-08](#case-tc-reg-s2-08) - Allocation/release/transfer rollback and retry | Devansh | High (#63 technical review) | OWNER PASS |
 | [TC-REG-S2-09](#case-tc-reg-s2-09) - Payments and original receipts are permanent | Devansh | High (#63 technical review) | OWNER PASS |
@@ -202,7 +207,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S2-16](#case-tc-reg-s2-16) - Typed JSON dates/references keep correct errors and state | Devansh | High (#63 technical review) | OWNER PASS |
 | [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | NOT RUN |
 | [TC-QUAL-02](#case-tc-qual-02) - Working-hours service availability | Sreeharsha | Medium (proposed) | NOT RUN |
-| [TC-QUAL-03](#case-tc-qual-03) - SRS portability and real mobile coverage | Vaishnavi | Medium (proposed) | OWNER PASS |
+| [TC-QUAL-03](#case-tc-qual-03) - SRS portability and real mobile coverage | Vaishnavi | Medium (proposed) | NOT RUN |
 | [TC-QUAL-04](#case-tc-qual-04) - Application-logic unit coverage and maintainability | Vaishnavi (QA), Devansh (coverage evidence), Sreeharsha (PO review) | Medium (proposed) | BLOCKED |
 
 ## 8. Requirements Traceability Matrix (RTM)
@@ -615,7 +620,7 @@ Pre: Warden account exists.
 
 **Expected:** Student saved; success message shown; student appears in student list.
 
-**Actual:** Owner summary reports registration PASS but no case-specific saved result/screenshot located; retain as unverified. Archived automated registration companions passed separately and do not change manual-case status.
+**Actual:** Historical owner summary reports registration PASS. The new PR #66 screenshot shows the demo student in a Warden list/search result, but no registration submission or success message. Automated POST/redirect/persisted-row companions pass separately; the complete original manual sequence remains unverified.
 
 **Execution status:** NOT RUN
 
@@ -623,7 +628,7 @@ Pre: Warden account exists.
 
 **Execution date and environment:** Manual owner report on 7 November 2026: Windows, Firefox and Microsoft Edge (versions unrecorded), http://127.0.0.1:8022/, MySQL 8.0, synthetic demo data, Admin/Warden/Student accounts. The separate 5 November automated owner report names commit 8d60e83f1ce57ad99a2b2a22b3b5878f1390995b with git_dirty: true. Six claimed JUnit XML reports are absent from the published issue39 directory; 57/57 and the full 190-method (189 PASS, one SKIP, separate timing PASS) results remain published owner summaries.
 
-**Evidence:** [evidence/issue39/README.md](evidence/issue39/README.md); [evidence/issue39/manual-execution-20261107.md](evidence/issue39/manual-execution-20261107.md); [evidence/issue40-final/junit-summary.json](evidence/issue40-final/junit-summary.json)
+**Evidence:** [Historical evidence index](evidence/issue39/README.md); [8 November follow-up review](evidence/issue39/followup-20261108.md); [student-list observation](../../Screenshot/TC-QUAL-01_Edge_Warden_Student_Registration.png).
 
 **Defects and retests:** No case-specific application defect reported; independent case review remains pending.
 
@@ -633,7 +638,7 @@ Pre: Warden account exists.
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Missing original manual sequence:Warden submits all mandatory AppendixB fields, record persists, success message shown and student appears in list. Case-specific execution evidence required.
+**Evidence limits:** Missing original manual sequence: Warden submits all mandatory Appendix B fields, record persists, success message shown and student appears in list. The added list image establishes only its visible result; its capture revision/date are not recorded. Retain NOT RUN until sufficiently scoped case evidence is supplied.
 
 ### TC-STU-02: Register student (invalid / duplicate)
 
@@ -1883,7 +1888,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** All flows work on the three browsers. The task is completed within 5 minutes.
 
-**Actual:** Owner reports dashboard/navigation/Students/Beds checks in Firefox/Edge; screenshots show Warden list/search and Edge Student dashboard. No timed first-use new-Warden guide task recorded.
+**Actual:** Historical Firefox/Edge page observations are supplemented by PR #66 static desktop Chrome dashboard/student/bed pages and a Warden allocation-success message with Active row. No timed first-use new-Warden guide task or complete latest-browser main-flow execution is recorded.
 
 **Execution status:** PARTIAL
 
@@ -1891,7 +1896,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Execution date and environment:** Manual owner report on 7 November 2026: Windows, Firefox and Microsoft Edge (versions unrecorded), http://127.0.0.1:8022/, MySQL 8.0, synthetic demo data, Admin/Warden/Student accounts. The separate 5 November automated owner report names commit 8d60e83f1ce57ad99a2b2a22b3b5878f1390995b with git_dirty: true. Six claimed JUnit XML reports are absent from the published issue39 directory; 57/57 and the full 190-method (189 PASS, one SKIP, separate timing PASS) results remain published owner summaries.
 
-**Evidence:** [evidence/issue39/README.md](evidence/issue39/README.md); [evidence/issue39/manual-execution-20261107.md](evidence/issue39/manual-execution-20261107.md); [../../Screenshot/TC-QUAL-01_Warden_Student_List.png](../../Screenshot/TC-QUAL-01_Warden_Student_List.png); [../../Screenshot/TC-QUAL-01_Warden_Student_Search.png](../../Screenshot/TC-QUAL-01_Warden_Student_Search.png); [../../Screenshot/TC-QUAL-01_Edge_Student_Dashboard.png](../../Screenshot/TC-QUAL-01_Edge_Student_Dashboard.png)
+**Evidence:** [Historical manual record](evidence/issue39/manual-execution-20261107.md); [8 November follow-up review](evidence/issue39/followup-20261108.md).
 
 **Defects and retests:** No case-specific application defect reported; independent case review remains pending.
 
@@ -1899,7 +1904,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** Original main flows on latest Chrome, Firefox, Edge are not fully established:Chrome and exact versions missing. New participant, one-page guide, complete registration/allocation task and measured&lt;=5minutes missing. Broader SRS latest-two-version/platform/mobile matrix and99%office-hours availability are also unverified requirement limits, not fabricated original steps.
+**Evidence limits:** Chrome static page evidence is now present; complete main flows on latest Chrome/Firefox/Edge and exact versions remain unestablished. New participant, one-page guide use, complete registration/allocation task and measured <=5 minutes are missing. New capture date/build/version are unrecorded. The SRS latest-two/server targets, real mobile client and working-hours availability remain separate broader limitations.
 
 ### TC-REG-S1-01: Search 5,000 student records
 
@@ -2444,7 +2449,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Type:** Regression / boundaries / input safety
 
-**Prerequisites and data:** Staff; rooms on floors0/65535. Use the exact synthetic setup/values in the linked method sources; isolate each method in the Django-created test database. Shared design fixtures below are examples for future UI execution, not replacements for archived run fixtures.
+**Prerequisites and data:** Observed authenticated Student fixture (hostels/tests.py setup), synthetic rooms/beds; separate floors 0/65535 are created by the boundary method. Methods execute independently in the Django test database. The previous Staff label was not the actual fixture and is corrected; no staff/browser execution is claimed.
 
 **Steps:**
 
@@ -2455,25 +2460,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Bad filters return400, field errors and no beds; submitted script escaped and other selections retained. Valid floor bounds match only own beds; unmatched valid hostel returns200 empty; authentication remains required.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** All four automated recipe steps are represented by five passing historical methods in both Python jobs: invalid filters/empty results/errors, escaped payload/preserved selectors, valid numeric bounds/unmatched hostel and logged-out redirect. The actual authenticated fixture is Student. Accepted for this declared integration scope by the 8 November technical reconciliation; no new browser run.
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 32e6f563335a1ed20e2c6f619ba7e82de56dbd1f (historical PR #58 merge checkout); reviewed application/test/template/configuration scope is source-equivalent to initial PR #66.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 7 November 2026 around 11:07–11:08 UTC; Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13, synthetic Django test DB. Reviewed 8 November; no new local/browser execution.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [8 November follow-up review](evidence/issue39/followup-20261108.md); [original bundle metadata and hashes](evidence/issue39/followup-20261108.json); [Python 3.11 raw JUnit](evidence/hms-test-evidence-py3.11/junit); [Python 3.14 raw JUnit](evidence/hms-test-evidence-py3.14/junit).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for the stated historical automated recipe scope in Devansh's authorized AI-assisted technical reconciliation with independent reviewers. Priorities remain proposals; this is not historical entry approval, a named human signature or whole-plan acceptance.
 
 **Automation:** [`hostels.tests.BedFilteringViewTests.test_invalid_numeric_filters_return_400_without_bed_results`](../../hostels/tests.py#L503); [`hostels.tests.BedFilteringViewTests.test_invalid_floor_is_escaped_and_other_filter_values_are_preserved`](../../hostels/tests.py#L527); [`hostels.tests.BedFilteringViewTests.test_zero_and_upper_boundary_floor_filters_match_only_their_beds`](../../hostels/tests.py#L549); [`hostels.tests.BedFilteringViewTests.test_maximum_hostel_id_is_valid_and_has_no_matches`](../../hostels/tests.py#L572); [`hostels.tests.BedFilteringViewTests.test_invalid_filters_do_not_bypass_login`](../../hostels/tests.py#L579)
 
-**Current companion outcomes:** 5 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Current companion outcomes:** Five PASS, zero failures/errors/skips in each retained 32e6f563 bundle. These historical method outcomes support the reviewed automated recipe; no new execution or unit-only claim.
 
-**Evidence limits:** Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
+**Evidence limits:** Historical automated integration scope uses authenticated Student, not Staff, followed by a logged-out request. It proves the listed filter/HTML assertions, not browser execution, all staff-role behavior or complete original TC-HST-02 acceptance.
 
 ### TC-REG-S1-08: Student/room changes roll back on audit failure
 
@@ -2601,25 +2606,25 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** Unlinked message directs to staff and exposes no other profile; empty state explains no active allocation/history/payments and Pending. Dashboard links portal; dates DD-MM-YYYY and active vacate date em dash. Admin/Warden403; anonymous browser login redirect.
 
-**Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
+**Actual:** Six historical methods PASS in both Python jobs: linked-empty/unlinked messages, dashboard portal link, populated DD-MM-YYYY dates/em-dash fallback, Admin/Warden denial and anonymous redirect. Accepted for the declared View/HTML integration scope by the 8 November technical reconciliation; no new browser run.
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
-**Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
+**Tested commit:** 32e6f563335a1ed20e2c6f619ba7e82de56dbd1f (historical PR #58 merge checkout); reviewed application/test/template/configuration scope is source-equivalent to initial PR #66.
 
-**Execution date and environment:** 7 November 2026 CI: Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13; exact versions/commands and method outcomes retained below. This is not a fresh local UI run.
+**Execution date and environment:** 7 November 2026 around 11:07–11:08 UTC; Linux, Python 3.11.18 / 3.14.10, Django 5.2.19, MySQL 8.4.13, synthetic Django test DB. Reviewed 8 November; no new local/browser execution.
 
-**Evidence:** [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [8 November follow-up review](evidence/issue39/followup-20261108.md); [original bundle metadata and hashes](evidence/issue39/followup-20261108.json); [Python 3.11 raw JUnit](evidence/hms-test-evidence-py3.11/junit); [Python 3.14 raw JUnit](evidence/hms-test-evidence-py3.14/junit).
 
 **Defects and retests:** #45 (payment-report Bed), #46 (allocation confirmation), #47 (allocation dates), #48 (self-service dates) are retained in the source/evidence chronology where relevant; no new defect is inferred solely from adding a case.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for the stated historical automated recipe scope in Devansh's authorized AI-assisted technical reconciliation with independent reviewers. Priorities remain proposals; this is not historical entry approval, a named human signature or whole-plan acceptance.
 
 **Automation:** [`students.test_self_service.StudentSelfServiceTests.test_empty_allocation_and_payment_history_is_explained`](../../students/test_self_service.py#L84); [`students.test_self_service.StudentSelfServiceTests.test_unlinked_student_login_gets_helpful_empty_state`](../../students/test_self_service.py#L93); [`students.test_self_service.StudentSelfServiceTests.test_dashboard_and_navigation_link_to_my_records`](../../students/test_self_service.py#L126); [`students.test_self_service.StudentSelfServiceTests.test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback`](../../students/test_self_service.py#L150); [`students.test_self_service.StudentSelfServiceTests.test_only_student_role_can_open_self_service_page`](../../students/test_self_service.py#L106); [`students.test_self_service.StudentSelfServiceTests.test_login_is_required_for_self_service_page`](../../students/test_self_service.py#L118)
 
-**Current companion outcomes:** 6 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
+**Current companion outcomes:** Six PASS, zero failures/errors/skips in each retained 32e6f563 bundle. These historical method outcomes support the reviewed automated recipe; no new execution or unit-only claim.
 
-**Evidence limits:** Shared source, owner-observation and pending acceptance limits above still apply; no additional case-specific limit is recorded.
+**Evidence limits:** Navigation evidence is rendered dashboard-link presence, not a browser click. Date assertions are response-wide rather than individually targeted to every cell; static template review corroborates date formatting/fallback. This bounded integration result does not establish complete original REQ-24 or whole-plan acceptance.
 
 ### TC-REG-S2-08: Allocation/release/transfer rollback and retry
 
@@ -3176,7 +3181,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** SRS portability target (Windows/Linux and latest two Chrome/Firefox/Edge versions) and the Test Plan's real-mobile environment are evidenced. Original TC-QUAL-01 still separately covers the latest-browser main flows and timed new-warden guide task.
 
-**Actual:** Windows Firefox/Edge page observations exist in HMS-17 and Linux CI exists; their versions/flows/device coverage do not establish this complete matrix.
+**Actual:** Historical Windows Firefox/Edge pages, three new desktop Chrome page captures and historical Linux CI are supporting observations. They do not establish the latest-two browser targets, Windows/Linux deployed workflows or actual mobile execution. The new screenshots have no recorded capture build/date/version.
 
 **Execution status:** NOT RUN
 
@@ -3184,7 +3189,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Execution date and environment:** No complete case run recorded.
 
-**Evidence:** [evidence/issue39/README.md](evidence/issue39/README.md); [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Historical HMS-17 index](evidence/issue39/README.md); [8 November follow-up review](evidence/issue39/followup-20261108.md); [retained earlier CI extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** No result or severity is inferred; record genuine findings/retests when execution occurs.
 
@@ -3192,7 +3197,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and asks for latest Chrome/Firefox/Edge; the broader Windows AND Linux/latest-two matrix comes from SRS section 6.4. These are explicitly distinguished, not substituted.
+**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and latest Chrome/Firefox/Edge; SRS section 6.4 separately requires Windows AND Linux/latest-two targets, and the Plan includes a real mobile phone. No full Cartesian product is imposed. Current supporting pages/CI do not supply a scoped complete execution of this case.
 
 ### TC-QUAL-04: Application-logic unit coverage and maintainability
 
