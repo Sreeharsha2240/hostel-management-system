@@ -3,7 +3,7 @@
 This is the team work plan for **2-6 November 2026**. The assigned contributors
 execute their cases and prepare their own evidence. At the 8 November review,
 #37's case-document delivery and #42's coverage-reporting task are closed;
-#38-#41 and #43 remain open. Vaishnavi coordinates QA, Devansh leads
+#38/#39/#41/#43 retain outstanding work; the later [HMS-18 scoped AI QA review](part3/evidence/issue40-final/qa-review-20261108.md) accepts #40 for technical closure. Vaishnavi coordinates QA, Devansh leads
 development/coverage, and Sreeharsha coordinates integration and final readiness.
 
 ## Instructions and baseline
@@ -58,7 +58,7 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-15 / #37](https://github.com/Sreeharsha2240/hostel-management-system/issues/37) | Vaishnavi (`VaishnaviCH6`); Devansh completed reconciliation | 3 | [Complete case document and RTM](part3/Test_Case_Document.md): 33 original IDs, ten retained regression IDs, 18 explicit additions, source-bound results and remaining execution gaps |
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
-| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with QA acceptance pending; feeds System Validation Report |
+| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with [authorized scoped AI QA acceptance](part3/evidence/issue40-final/qa-review-20261108.md); feeds System Validation Report, with actual final human approvals separate |
 | [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports are published and the reporting issue is closed; formal unit70 remains UNPROVEN pending #41/#42 scope agreement |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | [Final readiness checkpoint](part3/HMS21_Final_Readiness.md); final review, required approvals and submission confirmation remain open |
@@ -86,15 +86,17 @@ volume attempt failed after confirmed laptop standby; its raw metrics and the
 complete unchanged-threshold rerun are both retained. Handoff is supplied for
 #37's case document and #38's report. PR #50 was merged by `harsha2240` on
 5 November; no formal APPROVED review is recorded. The [shared case register](part3/Test_Case_Document.md#53-hms-18-owner-execution-and-evidence-reconciliation)
-now links Devansh's 13 original results as OWNER PASS, with QA acceptance pending.
+links Devansh's 13 original results as OWNER PASS; their scoped AI technical acceptance is now recorded in the later review.
 Sreeharsha approved and merged [PR #54](https://github.com/Sreeharsha2240/hostel-management-system/pull/54)
 on 6 November. That review accepts the documentation/evidence reconciliation
 while explicitly preserving the open QA acceptance and unproven unit-coverage
 criterion; it does not approve the reviewed-case entry criterion retrospectively.
-**#40 remains open** pending actual reviewed-case/entry-criterion disposition,
-priority/environment review and independent evidence acceptance. #37's case
-document was delivered through merged PR #60 and closed; that documentation
-delivery does not supply those QA decisions or retroactively approve entry.
+At that checkpoint, #40 remained open for reviewed-case/entry, priority and
+environment/evidence dispositions. The later [authorized independent AI QA review](part3/evidence/issue40-final/qa-review-20261108.md)
+resolves those technical dispositions for #40 closure, with nine High/four Medium
+priorities and explicit historical-entry/environment limits. #37's documentation
+delivery and this scoped review do not supply actual final human approvals or
+retroactively establish pre-execution entry compliance.
 The appendix does not complete either teammate's deliverable or global readiness.
 
 The 8 November technical review of main `b523d4c` is recorded in the

@@ -76,7 +76,7 @@ For the inspected `70c9fe2` tree, [main CI run 42397043317](https://github.com/S
 
 Devansh Gupta's contribution, reconciled **6 November 2026**, supplies the 13 original allocation, payment, report, performance and recovery case results. The linked observations were executed **5 November** on clean `0e358b4ce1fd02366184c7cb9c312b47dd093214` (tree `c6b74da5cc6987d9c38945f35c9ce0e43c42dfe0`). [PR #50](https://github.com/Sreeharsha2240/hostel-management-system/pull/50) published this evidence and was merged by `harsha2240` on **5 November at 06:31:28 UTC** as `8d60e83f1ce57ad99a2b2a22b3b5878f1390995b`. No formal `APPROVED` review is recorded.
 
-The 13 linked **OWNER PASS** statuses below replace their stale NOT RUN entries. They record observed owner execution against the submitted Test Plan, with **independent QA review of the case batch, priorities, method mappings, entry criteria and environment deviations still pending**. This update does not retroactively approve those entry criteria or accept the final submission build. Cases and statuses supplied by other owners are unchanged.
+The 13 linked **OWNER PASS** statuses below replace their stale NOT RUN entries. They record observed owner execution against the submitted Test Plan, with the originally pending technical QA dispositions now recorded in the [8 November scoped AI review](evidence/issue40-final/qa-review-20261108.md). Actual final human approvals remain pending. This update does not retroactively approve those entry criteria or accept the final submission build. Cases and statuses supplied by other owners are unchanged.
 
 | Owned evidence | Observed result | Durable reference |
 |---|---|---|
@@ -88,7 +88,7 @@ The 13 linked **OWNER PASS** statuses below replace their stale NOT RUN entries.
 
 TC-ALC-05's raw browser result remains **PARTIAL** for fault injection; its linked, passing automated companion proves rollback and retry of the same transfer. The combined owner result records that qualification. The first volume attempt remains **FAIL** with 75 errors in 21,650 samples; the final volume result uses the complete unchanged-threshold rerun, not removal or relabelling of failed samples.
 
-The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original prerequisites, steps, expected and actual results, 14 SRS requirement mappings, source hashes and #45–#48 defect/retest references. The original plan has no per-case priorities; QA must review them rather than infer High-priority acceptance. Edge/Playwright in place of Selenium, MySQL 8.4.9 in place of 8.0, and loopback HTTP test flags remain declared deviations requiring review. Load and recovery figures describe their recorded source and host; they are not new measurements on this document's revision. All historical JSON remains unchanged. Whole-plan entry/exit criteria, integrated reporting and actual QA/Dev/PO approvals remain pending with #37/#38/#43.
+The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original prerequisites, steps, expected and actual results, 14 SRS requirement mappings, source hashes and #45–#48 defect/retest references. The original plan has no per-case priorities; the 8 November AI review adopts nine High/four Medium for #40 only, without inferring historical or whole-team High-priority acceptance. Edge/Playwright in place of Selenium, MySQL 8.4.9 in place of 8.0, and loopback HTTP test flags are explicitly dispositioned as bounded #40 technical evidence in that review; original environment targets and whole-plan acceptance remain unchanged. Load and recovery figures describe their recorded source and host; they are not new measurements on this document's revision. All historical JSON remains unchanged. Whole-plan entry/exit criteria, integrated reporting and actual QA/Dev/PO approvals remain pending with #37/#38/#43.
 
 <a id="54-manual-browser-testing--hms-17"></a>
 
@@ -257,6 +257,8 @@ Exact targets below come from SRS sections 6.3-6.5. They remain separate from th
 Allocation permanence additionally has `allocations.test_workflows.AllocationWorkflowTests.test_model_deactivation_and_history_cannot_bypass_guards` as a passing companion; payment permanence is explicit in TC-REG-S2-09. Original NFR-5-to-STU-05 is retained for historical traceability, with allocation/payment permanence now added rather than inferred from student soft deletion.
 
 ## 9. Test strategy and review disposition
+
+The [8 November HMS-18 review](evidence/issue40-final/qa-review-20261108.md) adds issue-specific independent AI technical acceptance for the original 13 cases under Devansh's explicit authorization. Its current-priority, late-entry and environment decisions are bounded to #40; it does not execute separately specified regressions, change the status counts or supply named final approvals.
 
 Original cases are system/browser or operational cases. Automated companions are model, form, view, integration/concurrency or parser checks as indicated in their records; the mixed suite is not all unit tests. Planned cases may be refined after implementation per Test Plan section 11, with IDs/history retained. Run affected checks after defects; preserve failed attempts and use isolated synthetic data.
 
@@ -907,9 +909,9 @@ Search by (a) full Student ID, (b) partial name, (c) hostel.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-14
 
@@ -937,13 +939,13 @@ Select an active male student and an available bed in the Boys hostel; confirm.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`allocations.tests.AllocationViewTests.test_admin_can_create_allocation`](../../allocations/tests.py#L146); [`allocations.tests.AllocationModelTests.test_active_allocation_occupies_bed`](../../allocations/tests.py#L21); [`allocations.tests.AllocationViewTests.test_allocation_creation_rolls_back_if_audit_event_fails`](../../allocations/tests.py#L176)
 
 **Current companion outcomes:** 3 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-ALC-02: Block allocation of occupied bed
 
@@ -953,9 +955,9 @@ Select an active male student and an available bed in the Boys hostel; confirm.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-15
 
@@ -983,13 +985,13 @@ Try to allocate an already occupied bed to another student.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions`](../../allocations/test_workflows.py#L415); [`allocations.tests.AllocationModelTests.test_bed_cannot_have_two_active_allocations`](../../allocations/tests.py#L48)
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-ALC-03: Block second allocation for a student
 
@@ -999,9 +1001,9 @@ Try to allocate an already occupied bed to another student.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-15
 
@@ -1029,13 +1031,13 @@ Try to allocate a second bed to a student who already has an active allocation.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`allocations.test_workflows.AllocationWorkflowTests.test_json_workflow_conflicts_validation_and_permissions`](../../allocations/test_workflows.py#L415); [`allocations.tests.AllocationModelTests.test_student_cannot_have_two_active_allocations`](../../allocations/tests.py#L36)
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-ALC-04: Gender and hostel type mismatch
 
@@ -1045,9 +1047,9 @@ Try to allocate a second bed to a student who already has an active allocation.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-16
 
@@ -1075,13 +1077,13 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`allocations.test_workflows.AllocationWorkflowTests.test_invalid_eligibility_gender_status_and_dates_are_rejected`](../../allocations/test_workflows.py#L174)
 
 **Current companion outcomes:** 1 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-ALC-05: Transfer student
 
@@ -1091,9 +1093,9 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-17
 
@@ -1122,13 +1124,13 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff. RV03 earlier fault proof omitted retry; corrected focused companion checks rollback, retry, both beds/history and exactly one attributed audit.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`allocations.test_workflows.AllocationWorkflowTests.test_transfer_and_release_preserve_history_and_emit_actor_audit`](../../allocations/test_workflows.py#L142); [`allocations.test_workflows.AllocationWorkflowTests.test_transfer_failure_rolls_back_both_beds_and_history`](../../allocations/test_workflows.py#L234); [`allocations.test_workflows.AllocationWorkflowTests.test_only_transfer_and_release_forms_require_submit_confirmation`](../../allocations/test_workflows.py#L39)
 
 **Current companion outcomes:** 3 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements. Raw browser status remains PARTIAL for fault injection; combined OWNER PASS uses passing same-transfer failure/rollback/retry companion; do not relabel raw artifact.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements. Raw browser status remains PARTIAL for fault injection; combined OWNER PASS uses passing same-transfer failure/rollback/retry companion; do not relabel raw artifact.
 
 ### TC-ALC-06: Release allocation and history
 
@@ -1138,9 +1140,9 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-18, REQ-19, NFR-5 (NFR-5 is supplemental; original REQ-18/REQ-19 mapping retained).
 
@@ -1169,13 +1171,13 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff. RV04 counterordered-date JSON/HTML method replaces incomplete same-day order inference; #46 confirmation/#47date-format fixes retested.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`allocations.test_workflows.AllocationWorkflowTests.test_transfer_and_release_preserve_history_and_emit_actor_audit`](../../allocations/test_workflows.py#L142); [`allocations.test_workflows.AllocationWorkflowTests.test_history_orders_backdated_records_by_allocation_date_in_json_and_html`](../../allocations/test_workflows.py#L304)
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-PAY-01: Record payment and receipt
 
@@ -1185,9 +1187,9 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: incorrect money or receipt history can corrupt the financial record.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: incorrect money or receipt history can corrupt the financial record.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-20, REQ-21
 
@@ -1205,7 +1207,7 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Expected:** Step 1 saved with a unique sequential receipt number. Step 2 rejected. Step 3 gives a PDF receipt with correct details.
 
-**Actual:** Browser recorded INR 5000 UPI payment and downloaded PDF; zero/negative submissions reached server errors without additional receipts.
+**Actual:** Browser recorded INR 5000 UPI payment and downloaded PDF; zero/negative submissions displayed server-side form-validation errors (HTTP 200), without additional receipts.
 
 **Execution status:** OWNER PASS
 
@@ -1217,13 +1219,13 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`payments.test_workflows.PaymentWorkflowTests.test_invalid_amounts_modes_dates_and_references_do_not_consume_numbers`](../../payments/test_workflows.py#L91); [`payments.test_workflows.PaymentWorkflowTests.test_json_workflow_receipts_adjustments_and_real_pdf_contents`](../../payments/test_workflows.py#L311); [`payments.test_workflows.PaymentConcurrencyTests.test_simultaneous_payments_receive_unique_sequential_numbers`](../../payments/test_workflows.py#L549)
 
 **Current companion outcomes:** 3 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-PAY-02: Payment status
 
@@ -1233,9 +1235,9 @@ Try to allocate a female student to a bed in a Boys hostel.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: incorrect money or receipt history can corrupt the financial record.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: incorrect money or receipt history can corrupt the financial record.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-22
 
@@ -1263,13 +1265,13 @@ Record no payment, then partial payment, then full payment for a student.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`payments.test_workflows.PaymentWorkflowTests.test_status_tracks_pending_partial_paid_and_adjustments_without_join_multiplication`](../../payments/test_workflows.py#L218); [`payments.test_workflows.PaymentWorkflowTests.test_no_allocation_or_unconfigured_fee_remains_pending_with_advance_payment`](../../payments/test_workflows.py#L253)
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-RPT-01: Occupancy report
 
@@ -1279,9 +1281,9 @@ Record no payment, then partial payment, then full payment for a student.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
+**Priority:** Unspecified in original plan; Medium (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Medium accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** REQ-23
 
@@ -1311,13 +1313,13 @@ Open the occupancy report and the payment status report for a hostel with known 
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff. #45missing required Bed corrected; current HTML/CSV/JSON/MySQL reconciliation supersedes incomplete earlier PASS; closed through PR44.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`reports.test_reports.ReportTests.test_occupancy_counts_current_records_maintenance_and_empty_hostels`](../../reports/test_reports.py#L56); [`reports.test_reports.ReportTests.test_occupancy_csv_and_html_match_json_and_preserve_filters`](../../reports/test_reports.py#L93); [`reports.test_reports.ReportTests.test_payment_report_sums_once_across_allocation_history_and_filters_last_room`](../../reports/test_reports.py#L117); [`reports.test_reports.ReportTests.test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank`](../../reports/test_reports.py#L176); [`reports.test_reports.ReportTests.test_payment_report_csv_and_html_match_json_after_corrections`](../../reports/test_reports.py#L218)
 
 **Current companion outcomes:** 5 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-SEC-01: Role-based access control
 
@@ -1657,9 +1659,9 @@ Perform login, failed login, student add, allocation, release and payment; open 
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
+**Priority:** Unspecified in original plan; Medium (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Medium accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** NFR-1
 
@@ -1687,13 +1689,13 @@ JMeter: 50 concurrent users for 10 minutes doing login, student search and avail
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_load.Issue40LoadExecution.test_baseline_and_volume_jmeter`](../../scripts/part3/test_issue40_load.py#L178)
 
 **Current companion outcomes:** 0 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_load.Issue40LoadExecution.test_baseline_and_volume_jmeter. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-PERF-02: Allocation time and concurrency
 
@@ -1703,9 +1705,9 @@ JMeter: 50 concurrent users for 10 minutes doing login, student search and avail
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
+**Priority:** Unspecified in original plan; Medium (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Medium accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** NFR-2
 
@@ -1734,13 +1736,13 @@ JMeter: 50 concurrent users for 10 minutes doing login, student search and avail
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing`](../../scripts/part3/test_issue40_browser.py#L45); [`allocations.test_workflows.AllocationConcurrencyTests.test_simultaneous_same_bed_or_same_student_has_one_winner`](../../allocations/test_workflows.py#L555)
 
 **Current companion outcomes:** 1 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_browser.Issue40BrowserExecution.test_candidate_functional_cases_and_committed_allocation_timing. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements.
 
 ### TC-PERF-03: Data volume
 
@@ -1750,9 +1752,9 @@ JMeter: 50 concurrent users for 10 minutes doing login, student search and avail
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
+**Priority:** Unspecified in original plan; Medium (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Medium accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** NFR-3
 
@@ -1780,13 +1782,13 @@ Load 5,000 students and 2,000 beds; repeat TC-PERF-01 and student search.
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff. First volume attempt retained FAIL:75errors/21, 650samples around confirmed Windows Modern Standby/resume. Complete600second rerun on same source/harness/fixtures/thresholds PASS. Session-expiry cause remains unproven:raw response bodies not retained.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_load.Issue40LoadExecution.test_baseline_and_volume_jmeter`](../../scripts/part3/test_issue40_load.py#L178)
 
 **Current companion outcomes:** 0 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_load.Issue40LoadExecution.test_baseline_and_volume_jmeter. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements. Keep failed previous_attempts and complete passing rerun visible; no failed-sample removal or proven-root-cause claim.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements. Keep failed previous_attempts and complete passing rerun visible; no failed-sample removal or proven-root-cause claim.
 
 ### TC-OPS-01: Backup and restore
 
@@ -1796,9 +1798,9 @@ Load 5,000 students and 2,000 beds; repeat TC-PERF-01 and student search.
 
 **Owner:** Devansh
 
-**Priority:** Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
+**Priority:** Unspecified in original plan; High (proposed 7 November; adopted for scoped #40 technical review 8 November). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** High accepted for #40's [8 November AI technical review](evidence/issue40-final/qa-review-20261108.md); original priorities were unspecified. Whole-team exit approval is separate.
 
 **Requirements:** NFR-4
 
@@ -1826,13 +1828,13 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Defects and retests:** RV01/RV02 safety corrections and #45-#48 provenance retained in owner appendix/evidence/owned-defects/retest.json. PR44/49/50 merges establish integration, not formal APPROVED reviews or QA/PO signoff.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Accepted for scoped #40 technical closure by the [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), including explicit late-entry/tool/environment limits. No retrospective entry or human final approval is claimed.
 
 **Automation:** [`scripts.part3.test_issue40_recovery_safety.RecoverySafetyTests.test_existing_restore_target_is_never_overwritten_or_dropped`](../../scripts/part3/test_issue40_recovery_safety.py#L451); [`scripts.part3.test_issue40_recovery_safety.RecoverySafetyTests.test_tampered_dump_is_refused_before_target_connection`](../../scripts/part3/test_issue40_recovery_safety.py#L505); [`scripts.part3.test_issue40_recovery_safety.RecoverySafetyTests.test_recovery_fails_on_logical_inconsistency_and_still_drops_owned_target`](../../scripts/part3/test_issue40_recovery_safety.py#L517)
 
 **Current companion outcomes:** 0 PASS and 0 expected timing SKIP in each current CI bundle; outside this CI selection: scripts.part3.test_issue40_recovery_safety.RecoverySafetyTests.test_existing_restore_target_is_never_overwritten_or_dropped, scripts.part3.test_issue40_recovery_safety.RecoverySafetyTests.test_tampered_dump_is_refused_before_target_connection, scripts.part3.test_issue40_recovery_safety.RecoverySafetyTests.test_recovery_fails_on_logical_inconsistency_and_still_drops_owned_target. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Independent original-case/entry, priority, environment/tool-deviation review and team acceptance pending; original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements. Synthetic populated restore and original installed-daily-task observations are distinct. Safety tests alone do not prove scheduler/restore. Interactive user must be logged in and computer/MySQL available; no production RPO/availability claim.
+**Evidence limits:** The 8 November independent AI review accepts this original case, scoped priority and bounded environment/tool evidence for #40. Historical approved-SRS/pre-execution case review is not established; actual whole-team acceptance remains pending. Original plan provides no per-case priority. Edge/Playwright for Selenium, MySQL8.4.9 for8.0, and loopbackHTTP/test-only disabled secure redirect/cookie flags are declared deviations. Historical observations are not new current-tree measurements. Synthetic populated restore and original installed-daily-task observations are distinct. Safety tests alone do not prove scheduler/restore. Interactive user must be logged in and computer/MySQL available; no production RPO/availability claim.
 
 ### TC-QUAL-01: Browser compatibility and usability
 
