@@ -1,9 +1,10 @@
 # Part 3: testing, reports and team delivery
 
 This is the team work plan for **2-6 November 2026**. The assigned contributors
-execute their cases and prepare their own evidence; their assignments remain
-open. Vaishnavi coordinates QA, Devansh leads development/coverage, and Sreeharsha
-coordinates integration and final readiness.
+execute their cases and prepare their own evidence. At the 8 November review,
+#37's case-document delivery and #42's coverage-reporting task are closed;
+#38-#41 and #43 remain open. Vaishnavi coordinates QA, Devansh leads
+development/coverage, and Sreeharsha coordinates integration and final readiness.
 
 ## Instructions and baseline
 
@@ -31,9 +32,11 @@ The original Test Plan contains **33 planned case IDs** and an RTM for
 **36 requirements** (REQ-1 through REQ-24, NFR-1 through NFR-12), plus quality
 attributes. The updated Test Case Document must retain these IDs, explain
 revisions, add sprint regression cases and map automated methods to them.
-Priorities need review because the original case table lacks priority fields.
-Resolve the old TC-AUTH-03 lockout-message wording against SRS REQ-2's generic
-credential-error requirement while preserving the five-attempt/15-minute test.
+The delivered register preserves the original IDs/mappings and contains 61
+complete records. Its High/Medium priorities are proposals requiring QA review
+because the original case table lacks priority fields. The register reconciles
+TC-AUTH-03's old lockout-message wording with SRS REQ-2's generic credential-error
+requirement while retaining the original wording and five-attempt/15-minute test.
 
 [PR #36](https://github.com/Sreeharsha2240/hostel-management-system/pull/36)
 was still open at setup on 2 November; `main` was `0abb29a` and the verified code
@@ -88,17 +91,25 @@ Sreeharsha approved and merged [PR #54](https://github.com/Sreeharsha2240/hostel
 on 6 November. That review accepts the documentation/evidence reconciliation
 while explicitly preserving the open QA acceptance and unproven unit-coverage
 criterion; it does not approve the reviewed-case entry criterion retrospectively.
-**#40 remains open** pending #37's reviewed-case/entry-criterion disposition and
-actual independent evidence acceptance.
+**#40 remains open** pending actual reviewed-case/entry-criterion disposition,
+priority/environment review and independent evidence acceptance. #37's case
+document was delivered through merged PR #60 and closed; that documentation
+delivery does not supply those QA decisions or retroactively approve entry.
 The appendix does not complete either teammate's deliverable or global readiness.
 
-The current status after the 7 November HMS-17 merge is recorded in the
+The 8 November technical review of main `b523d4c` is recorded in the
 [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.md). PR #58 is
 merged, but issue #39 remains open: its evidence disposition includes one
 NOT RUN case and one PARTIAL quality case. HMS-16's report now incorporates
 that evidence without claiming team-wide acceptance. The required Unit Test
 Report is still absent, so the four-report package is incomplete and the
-submission remains NOT READY.
+submission remains NOT READY. The [independent report review](part3/System_Validation_Report.md#independent-evidence-review-and-current-build)
+adds source-bound CI/case/defect metrics, original security subcondition limits
+and explicit owner actions. Devansh's [module-owner inputs for #41](part3/Code_Coverage_Report.md#hms-19-module-owner-input--8-november-2026)
+reuse published classifications/results without claiming accepted unit70 or
+writing Vaishnavi's report. Development recommends retaining the original TLS/ZAP
+criteria and collecting isolated real evidence; no team/instructor criterion
+change or final QA/Dev/PO approval is recorded by that technical review.
 
 Original execution ownership is preserved:
 

@@ -11,9 +11,11 @@ Part 1 requirements, design and test-plan documents, with revision histories.
 The [Part 3 team plan](docs/PART3.md) links the instructor instructions,
 assigned issues, case ownership, report destinations and acceptance checks.
 The [Part 3 milestone](https://github.com/Sreeharsha2240/hostel-management-system/milestone/1)
-contains issues #37-#43 for all three contributors. Test cases and four reports
-are assigned work; final acceptance depends on current execution evidence and
-review. Sprint 3 is conditional on actual development spillover.
+contains issues #37-#43 for all three contributors. The 61-case Test Case
+Document/RTM and three reports are published; the Unit Test Report remains
+missing. [Final readiness](docs/part3/HMS21_Final_Readiness.md) is **NOT READY**
+pending execution acceptance, remaining evidence and actual approvals. Sprint 3
+is conditional on actual development spillover.
 
 ## Team and roles
 

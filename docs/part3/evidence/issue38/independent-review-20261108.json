@@ -1,0 +1,1104 @@
+{
+  "reviewed_at_utc": "2026-11-08T07:08:03.908342+00:00",
+  "review_type": "AI-assisted independent technical review under Devansh's instruction; not a human QA/Dev/PO signature or criterion waiver",
+  "reviewed_commit": "b523d4c7abb77072bea48ac059be7f72396e8a79",
+  "reviewed_tree": "56f7fb4307bc2ce4f3595aebfd5915ce301c3fb7",
+  "purpose": "Review existing owner evidence, reconcile report metrics and supply module-owner inputs; no new application/TLS/ZAP/browser/load/recovery execution",
+  "source_sha256": {
+    "docs/part3/Test_Case_Document.md": "850bd4e0551c493dcd329fe15ff56957d3f84cfe7b2181c38f3fa35b29a0fe5a",
+    "Test_Plan_Hostel_Management_System.docx": "fec6b15aab87d2c91029937a4116a9fb26fd966ba26a4a3eec0d96cf158c78b3",
+    "SRS_Hostel_Management_System.docx": "505b53c2cc66c631412db8bef9954ad49bf8c05ce3298db8699bcc781e5d311c",
+    "SAD_Hostel_Management_System.docx": "9e320f9a636840c1799e5146d495d62decd7be5ad61ab12df21b7d3e4ed55429",
+    "docs/part3/SE_Mini_Project_Delivereables_Part-3.pdf": "eedf79d6cb1e59799f8c11474acd11f6e5ac43053525ac810d15e75ed12bcbb8",
+    "docs/part3/evidence/issue42-final/method-classification.json": "67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7",
+    "docs/part3/evidence/issue42-main/attribution.json": "37dd7d37e35f3efbb1388eababc1a65a7631c70b7dbbe80b90b31c113b41d8a5",
+    "docs/part3/evidence/issue42-main/coverage-metrics.json": "695dba923d5ae7aee0b54988e0de638631c3c30af89bc6cbfb6836fd570f4485"
+  },
+  "original_cases": {
+    "planned": 33,
+    "counts": {
+      "OWNER PASS": 30,
+      "NOT RUN": 1,
+      "PARTIAL": 2
+    },
+    "percent_of_planned": {
+      "OWNER PASS": 90.91,
+      "NOT RUN": 3.03,
+      "PARTIAL": 6.06
+    },
+    "exercised_including_partial": 32,
+    "exercised_percent": 96.97,
+    "latest_case_failures": 0,
+    "latest_case_errors": 0,
+    "qa_accepted_pass_percent": null
+  },
+  "expanded_cases": {
+    "planned": 61,
+    "counts": {
+      "OWNER PASS": 39,
+      "NOT RUN": 18,
+      "PARTIAL": 3,
+      "BLOCKED": 1
+    },
+    "percent_of_planned": {
+      "OWNER PASS": 63.93,
+      "NOT RUN": 29.51,
+      "PARTIAL": 4.92,
+      "BLOCKED": 1.64
+    },
+    "exercised_including_partial": 42,
+    "exercised_percent": 68.85,
+    "latest_case_failures": 0,
+    "latest_case_errors": 0,
+    "qa_accepted_pass_percent": null
+  },
+  "case_rows": {
+    "TC-AUTH-01": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-AUTH-02": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-AUTH-03": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-AUTH-04": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-USR-01": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-STU-01": {
+      "status": "NOT RUN",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-STU-02": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-STU-03": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-STU-04": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-STU-05": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-HST-01": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-HST-02": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-ALC-01": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-ALC-02": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-ALC-03": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-ALC-04": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-ALC-05": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-ALC-06": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-PAY-01": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: incorrect money or receipt history can corrupt the financial record.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-PAY-02": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: incorrect money or receipt history can corrupt the financial record.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-RPT-01": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-SEC-01": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-SEC-02": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-SEC-03": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-SEC-04": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-SEC-05": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-SEC-06": {
+      "status": "PARTIAL",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-SEC-07": {
+      "status": "OWNER PASS",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-PERF-01": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-PERF-02": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-PERF-03": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-OPS-01": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: allocation inconsistency or unrecoverable data can corrupt live hostel records.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-QUAL-01": {
+      "status": "PARTIAL",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": true
+    },
+    "TC-REG-S1-01": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S1-02": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S1-03": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S1-04": {
+      "status": "OWNER PASS",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S1-05": {
+      "status": "PARTIAL",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-01": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-02": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-03": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-04": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-05": {
+      "status": "OWNER PASS",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S1-06": {
+      "status": "NOT RUN",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S1-07": {
+      "status": "NOT RUN",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S1-08": {
+      "status": "NOT RUN",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; High (proposed). Risk: partial audited writes can leave the database inconsistent.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-06": {
+      "status": "NOT RUN",
+      "owner": "Sreeharsha / Vaishnavi",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-07": {
+      "status": "NOT RUN",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-08": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-09": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-10": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-11": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-12": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-13": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-14": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-15": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-REG-S2-16": {
+      "status": "NOT RUN",
+      "owner": "Devansh",
+      "priority": "Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-SEC-08": {
+      "status": "NOT RUN",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-QUAL-02": {
+      "status": "NOT RUN",
+      "owner": "Sreeharsha",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-QUAL-03": {
+      "status": "NOT RUN",
+      "owner": "Vaishnavi",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    },
+    "TC-QUAL-04": {
+      "status": "BLOCKED",
+      "owner": "Vaishnavi (QA), Devansh (coverage evidence), Sreeharsha (PO review)",
+      "priority": "Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.",
+      "priority_review": "Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.",
+      "original": false
+    }
+  },
+  "core_rtm": {
+    "denominator": 36,
+    "mapped": 36,
+    "rows_with_any_owner_pass_mapping": 36,
+    "accepted_passed_case_numerator": null,
+    "accepted_passed_case_percent": null,
+    "complete_requirement_acceptance_percent": null,
+    "reason": "Owner mappings are not actual QA case acceptance or complete-condition requirement assessment",
+    "rows": {
+      "REQ-1": [
+        "TC-AUTH-01"
+      ],
+      "REQ-2": [
+        "TC-AUTH-02",
+        "TC-AUTH-03"
+      ],
+      "REQ-3": [
+        "TC-AUTH-04"
+      ],
+      "REQ-4": [
+        "TC-USR-01",
+        "TC-SEC-01"
+      ],
+      "REQ-5": [
+        "TC-STU-01",
+        "TC-STU-02",
+        "TC-REG-S1-06",
+        "TC-REG-S1-08",
+        "TC-REG-S2-06"
+      ],
+      "REQ-6": [
+        "TC-STU-02"
+      ],
+      "REQ-7": [
+        "TC-STU-03",
+        "TC-REG-S1-01"
+      ],
+      "REQ-8": [
+        "TC-STU-04",
+        "TC-REG-S1-02",
+        "TC-REG-S2-06"
+      ],
+      "REQ-9": [
+        "TC-STU-05",
+        "TC-REG-S1-08"
+      ],
+      "REQ-10": [
+        "TC-HST-01",
+        "TC-REG-S1-06"
+      ],
+      "REQ-11": [
+        "TC-HST-01",
+        "TC-REG-S1-03",
+        "TC-REG-S1-06",
+        "TC-REG-S1-08"
+      ],
+      "REQ-12": [
+        "TC-HST-02",
+        "TC-REG-S1-03",
+        "TC-REG-S1-04"
+      ],
+      "REQ-13": [
+        "TC-HST-02",
+        "TC-REG-S1-04",
+        "TC-REG-S1-05",
+        "TC-REG-S1-07"
+      ],
+      "REQ-14": [
+        "TC-ALC-01",
+        "TC-REG-S2-08",
+        "TC-REG-S2-15",
+        "TC-REG-S2-16"
+      ],
+      "REQ-15": [
+        "TC-ALC-02",
+        "TC-ALC-03",
+        "TC-REG-S1-04",
+        "TC-REG-S2-02"
+      ],
+      "REQ-16": [
+        "TC-ALC-04"
+      ],
+      "REQ-17": [
+        "TC-ALC-05",
+        "TC-REG-S2-01",
+        "TC-REG-S2-08",
+        "TC-REG-S2-15",
+        "TC-REG-S2-16"
+      ],
+      "REQ-18": [
+        "TC-ALC-06",
+        "TC-REG-S2-01",
+        "TC-REG-S2-08",
+        "TC-REG-S2-15",
+        "TC-REG-S2-16"
+      ],
+      "REQ-19": [
+        "TC-ALC-06",
+        "TC-REG-S2-01",
+        "TC-REG-S2-08",
+        "TC-REG-S2-12"
+      ],
+      "REQ-20": [
+        "TC-PAY-01",
+        "TC-REG-S2-03",
+        "TC-REG-S2-04",
+        "TC-REG-S2-09",
+        "TC-REG-S2-10",
+        "TC-REG-S2-11",
+        "TC-REG-S2-15",
+        "TC-REG-S2-16"
+      ],
+      "REQ-21": [
+        "TC-PAY-01",
+        "TC-REG-S2-03",
+        "TC-REG-S2-04",
+        "TC-REG-S2-09",
+        "TC-REG-S2-10",
+        "TC-REG-S2-11",
+        "TC-REG-S2-16"
+      ],
+      "REQ-22": [
+        "TC-PAY-02",
+        "TC-REG-S2-04",
+        "TC-REG-S2-11",
+        "TC-REG-S2-12"
+      ],
+      "REQ-23": [
+        "TC-RPT-01",
+        "TC-REG-S2-05",
+        "TC-REG-S2-12",
+        "TC-REG-S2-13",
+        "TC-REG-S2-14"
+      ],
+      "REQ-24": [
+        "TC-SEC-02",
+        "TC-REG-S2-06",
+        "TC-REG-S2-07"
+      ],
+      "NFR-1": [
+        "TC-PERF-01",
+        "TC-REG-S1-01"
+      ],
+      "NFR-2": [
+        "TC-PERF-02",
+        "TC-REG-S2-02"
+      ],
+      "NFR-3": [
+        "TC-PERF-03"
+      ],
+      "NFR-4": [
+        "TC-OPS-01"
+      ],
+      "NFR-5": [
+        "TC-STU-05",
+        "TC-ALC-06",
+        "TC-REG-S2-01",
+        "TC-REG-S2-04",
+        "TC-REG-S2-09"
+      ],
+      "NFR-6": [
+        "TC-SEC-04"
+      ],
+      "NFR-7": [
+        "TC-SEC-01",
+        "TC-REG-S2-07",
+        "TC-SEC-08"
+      ],
+      "NFR-8": [
+        "TC-SEC-02",
+        "TC-REG-S2-06",
+        "TC-REG-S2-07"
+      ],
+      "NFR-9": [
+        "TC-AUTH-04",
+        "TC-SEC-06"
+      ],
+      "NFR-10": [
+        "TC-SEC-03",
+        "TC-SEC-05",
+        "TC-REG-S1-06",
+        "TC-REG-S1-07",
+        "TC-REG-S2-10",
+        "TC-REG-S2-13",
+        "TC-REG-S2-14",
+        "TC-REG-S2-15",
+        "TC-REG-S2-16",
+        "TC-SEC-08"
+      ],
+      "NFR-11": [
+        "TC-SEC-07",
+        "TC-REG-S1-02",
+        "TC-REG-S2-01",
+        "TC-REG-S1-08",
+        "TC-REG-S2-08",
+        "TC-REG-S2-09",
+        "TC-REG-S2-10"
+      ],
+      "NFR-12": [
+        "TC-AUTH-03",
+        "TC-SEC-06",
+        "TC-SEC-08"
+      ]
+    }
+  },
+  "ci": {
+    "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42399172513",
+    "tested_commit": "b523d4c7abb77072bea48ac059be7f72396e8a79",
+    "jobs": [
+      {
+        "python": "3.11.18",
+        "django": "5.2.19",
+        "mysql": "8.4.13",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "started_at": "2026-11-07T18:02:19.253488+00:00",
+        "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42399172513/job/128483015670",
+        "counts": {
+          "PASS": 189,
+          "SKIP": 1
+        },
+        "successful_gates": 12,
+        "timing_smoke_exit": 0,
+        "run_json_sha256": "9211a72178a6919c937efa76c7ccd00f8890ebfe8ffce51a3e23fc455fb4690b",
+        "junit_inputs": [
+          {
+            "path": "junit/TEST-accounts.test_security.SessionAndLockoutTests-20261107233222.xml",
+            "sha256": "59fe840aa949bdccacc6f53385001341c29e27c0ed06b4d48c964ab0d433b591"
+          },
+          {
+            "path": "junit/TEST-accounts.tests.AuthenticationTests-20261107233222.xml",
+            "sha256": "942b903b45ce6446df88949ccc9873b56025d1d92ff3e89d583a34c9162a8d0f"
+          },
+          {
+            "path": "junit/TEST-allocations.test_migrations.AllocationMigrationTests-20261107233222.xml",
+            "sha256": "86e7fa92a07b0c53a2c67726256b1045955bd5c077f22fd11281125e00d47e2d"
+          },
+          {
+            "path": "junit/TEST-allocations.test_workflows.AllocationConcurrencyTests-20261107233222.xml",
+            "sha256": "0227a9544ba1629182291cead18b5515cdd21a93386762c7404c74c4bbc89413"
+          },
+          {
+            "path": "junit/TEST-allocations.test_workflows.AllocationWorkflowTests-20261107233222.xml",
+            "sha256": "1885f7be8f36ace499ff6606f3195c8ba8a97de194ed1704ee6dc9dfe6c1abf8"
+          },
+          {
+            "path": "junit/TEST-allocations.tests.AllocationModelTests-20261107233222.xml",
+            "sha256": "02776b5c805160c1950f2dd4c74ee7a4b9dcc7df1ab71cb13c5c3dc3709f8170"
+          },
+          {
+            "path": "junit/TEST-allocations.tests.AllocationViewTests-20261107233222.xml",
+            "sha256": "971fa8e1e2a806b4dcd725dee39b7e1b751fd89aa1f9570deddc9af15fa7c458"
+          },
+          {
+            "path": "junit/TEST-audit.tests.AuditedAdminMixinTests-20261107233222.xml",
+            "sha256": "f140e01ccbdb36071296cb3e9710d3efca6a9903d7cfde490b579cae8d1a55fa"
+          },
+          {
+            "path": "junit/TEST-audit.tests.AuditTests-20261107233222.xml",
+            "sha256": "e7bb90f1c201462707a61c2b8fda10cde2d1bef05a693615d46fda263dd0aaf3"
+          },
+          {
+            "path": "junit/TEST-hms.test_forms.DateFieldTests-20261107233222.xml",
+            "sha256": "dd173694f7f6780dccc9748a8cfbc1e98f29a43a5bcc2e4b9360fd12691ccef7"
+          },
+          {
+            "path": "junit/TEST-hms.test_forms.ModelChoiceFieldTests-20261107233222.xml",
+            "sha256": "5e22ee517abd8cd33b4f65ba2ba36d3aafe3267db85b29aeed8e944e32758275"
+          },
+          {
+            "path": "junit/TEST-hms.test_http.RequestDataTests-20261107233222.xml",
+            "sha256": "9f20a5afcec006f6d5f27f604477c4040ae7fbedf8fe430280eee53fcb02984c"
+          },
+          {
+            "path": "junit/TEST-hms.test_navigation.DashboardNavigationSmokeTests-20261107233222.xml",
+            "sha256": "6cbca612a03dc4800403818859a1bbac87bfc80379535b1e73f1328f2e9dfc55"
+          },
+          {
+            "path": "junit/TEST-hms.test_responses.FormErrorResponseTests-20261107233222.xml",
+            "sha256": "fc6eeec3dacf7fd93e8ec5225d2118341b3f55893a0152b5a11d0a131e0672b6"
+          },
+          {
+            "path": "junit/TEST-hms.test_settings.StaticFilesConfigurationTests-20261107233222.xml",
+            "sha256": "21462185b725273085bc1c11dde5738c93bc8d563cde08901d4c47562ec847ac"
+          },
+          {
+            "path": "junit/TEST-hms.test_system_journey.StudentHostelJourneyTests-20261107233222.xml",
+            "sha256": "b27d356884d9e0bf1970b6c5c8d23a59727ad9ace23c1f95a413f566b6e1efd1"
+          },
+          {
+            "path": "junit/TEST-hms.tests.DatabaseConfigurationTests-20261107233222.xml",
+            "sha256": "a7c8be1d76f0f5cf43f2de277d895476758c03ca75910f06f1e930f7391a2465"
+          },
+          {
+            "path": "junit/TEST-hostels.tests.BedFilteringViewTests-20261107233222.xml",
+            "sha256": "7b3ec5eae0d33451150f532b9c1cd33c1fd66188f4a28f36ddadb38186b09be6"
+          },
+          {
+            "path": "junit/TEST-hostels.tests.HostelManagementViewTests-20261107233222.xml",
+            "sha256": "bb934f2e9c1c3e041cdb488b332170b2a17d5de419ef1d43434561404d3b05e9"
+          },
+          {
+            "path": "junit/TEST-hostels.tests.HostelModelBehaviorTests-20261107233222.xml",
+            "sha256": "3e75a846e92c71e1fe1692b140c3a9b9c1d1cfd0dfd5c87165ea51ac68635de4"
+          },
+          {
+            "path": "junit/TEST-payments.test_workflows.PaymentConcurrencyTests-20261107233222.xml",
+            "sha256": "fc761027d0a1ca089dadd9533509ea20b30c417d3e2062a048065d4ea51536eb"
+          },
+          {
+            "path": "junit/TEST-payments.test_workflows.PaymentWorkflowTests-20261107233222.xml",
+            "sha256": "a2568cc0128f780f6965936c411349ee65cde6f81303b0e12531e2a7a21ceaa1"
+          },
+          {
+            "path": "junit/TEST-reports.test_reports.ReportTests-20261107233222.xml",
+            "sha256": "4552650877a42e642ae9ebf8ed34c28ce814488b3a74c8373d826e5e580a0081"
+          },
+          {
+            "path": "junit/TEST-students.test_self_service.StudentSelfServiceTests-20261107233222.xml",
+            "sha256": "504cb4dd4cb2ba1cb6eff8560a580dacd359fdc34290a105ac8ddc0277ef5b1b"
+          },
+          {
+            "path": "junit/TEST-students.tests.StudentManagementViewTests-20261107233222.xml",
+            "sha256": "cdb9cd03c4c6c32c61f01d09d1666e1154e7eb6cef872ae45661c25cc3aa9ebe"
+          },
+          {
+            "path": "junit/TEST-students.tests.StudentModelTests-20261107233222.xml",
+            "sha256": "e838b96a1449024530187cadd95cbce680a992407e851ee01c1b6f833cc736c7"
+          },
+          {
+            "path": "junit/TEST-tests.test_checks.VerificationRunnerTests-20261107233222.xml",
+            "sha256": "0eb43f2d8bafcbed6a0da0a8e8d200995168e7aa8cee0b9c2911f690a8bea185"
+          }
+        ],
+        "recovery_safety_step": "success; step metadata, no new populated restore"
+      },
+      {
+        "python": "3.14.10",
+        "django": "5.2.19",
+        "mysql": "8.4.13",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "started_at": "2026-11-07T18:02:29.800903+00:00",
+        "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42399172513/job/128483015622",
+        "counts": {
+          "PASS": 189,
+          "SKIP": 1
+        },
+        "successful_gates": 12,
+        "timing_smoke_exit": 0,
+        "run_json_sha256": "f8a8a7cdd5f9ec428a97a2d3e1bf05b317872eff5006f7733186eb2506af6eb4",
+        "junit_inputs": [
+          {
+            "path": "junit/TEST-accounts.test_security.SessionAndLockoutTests-20261107233235.xml",
+            "sha256": "e5354122643bd22628d0d45f608d9b9b69f26daeabf3cf32f63c3251b665c9c5"
+          },
+          {
+            "path": "junit/TEST-accounts.tests.AuthenticationTests-20261107233235.xml",
+            "sha256": "6d23ec4bb1eb5fad2b790f74c82f9dd36bfdc6cf16e18574091046220227cf2b"
+          },
+          {
+            "path": "junit/TEST-allocations.test_migrations.AllocationMigrationTests-20261107233235.xml",
+            "sha256": "06c43e0030b0adc854ae814adf1b07c60ea1246f7d1a930fb7328f896634fb5a"
+          },
+          {
+            "path": "junit/TEST-allocations.test_workflows.AllocationConcurrencyTests-20261107233235.xml",
+            "sha256": "339fbce366db72c4af059fa5ab8cc2cc6d6f4c31d343b6e6f39cf041e9638ba9"
+          },
+          {
+            "path": "junit/TEST-allocations.test_workflows.AllocationWorkflowTests-20261107233235.xml",
+            "sha256": "d9ad7795d7c96a68902c373e882a5b2c416a38550767498fb6e9a6ca42afbb85"
+          },
+          {
+            "path": "junit/TEST-allocations.tests.AllocationModelTests-20261107233235.xml",
+            "sha256": "08914b3358be8aa8d2c257566f9c4512ae8ea9dd7214537e37c0229a965c6be2"
+          },
+          {
+            "path": "junit/TEST-allocations.tests.AllocationViewTests-20261107233235.xml",
+            "sha256": "b3dfa458042e3017bc7c9c4dcb2753aab94a12b3202ee7672d0dc9c8a790d541"
+          },
+          {
+            "path": "junit/TEST-audit.tests.AuditedAdminMixinTests-20261107233235.xml",
+            "sha256": "7715757d991ea44775cff18f815bafa750cd046e656bd78fb58420307abe14b0"
+          },
+          {
+            "path": "junit/TEST-audit.tests.AuditTests-20261107233235.xml",
+            "sha256": "4596b89308e9f6399a0ff2874c0da82e2404c1d09a01aebf74498abfb6936201"
+          },
+          {
+            "path": "junit/TEST-hms.test_forms.DateFieldTests-20261107233235.xml",
+            "sha256": "c3d39f86d63a7436e18ef3ecacf135441bd734b4c9a8c0c7f5dfec98b6b0f489"
+          },
+          {
+            "path": "junit/TEST-hms.test_forms.ModelChoiceFieldTests-20261107233235.xml",
+            "sha256": "a17ac20fd9ea90b33b67fbc6f9ca6078b519c3147cabd191f832562514712137"
+          },
+          {
+            "path": "junit/TEST-hms.test_http.RequestDataTests-20261107233235.xml",
+            "sha256": "7963747d32bff4e597d2abdfb1016f949edeacdf126ab2f75dc8c16acd21ec34"
+          },
+          {
+            "path": "junit/TEST-hms.test_navigation.DashboardNavigationSmokeTests-20261107233235.xml",
+            "sha256": "5feb2157a29854a0278c57ae16b02a29273a728c564c2c087ec516e9f051ff1e"
+          },
+          {
+            "path": "junit/TEST-hms.test_responses.FormErrorResponseTests-20261107233235.xml",
+            "sha256": "197e2246340fc00239204abc3cd12c48a38d04469f3249367285646e0e25a72f"
+          },
+          {
+            "path": "junit/TEST-hms.test_settings.StaticFilesConfigurationTests-20261107233235.xml",
+            "sha256": "c21e636b7d84ed66b06eef717ea81bb62d3c3c92649aa5a586c1c20d5c96688d"
+          },
+          {
+            "path": "junit/TEST-hms.test_system_journey.StudentHostelJourneyTests-20261107233235.xml",
+            "sha256": "3f0bc0b158f19a9e62a794b1ba7a90046d0459dbe5ce8c217b46ab502ba7a817"
+          },
+          {
+            "path": "junit/TEST-hms.tests.DatabaseConfigurationTests-20261107233235.xml",
+            "sha256": "288a9ae5c48c9a91718c3545f308a0510a7b341251b00bb736d62c75bee91947"
+          },
+          {
+            "path": "junit/TEST-hostels.tests.BedFilteringViewTests-20261107233235.xml",
+            "sha256": "695f2deaeb7d301ff134d5cc384d1b74c9cf30adb2ec3cf44cfb7f3c85cab806"
+          },
+          {
+            "path": "junit/TEST-hostels.tests.HostelManagementViewTests-20261107233235.xml",
+            "sha256": "5d03dfd77d3ea508ba80208267b40e838b6f0147e750ca666809098ea563c728"
+          },
+          {
+            "path": "junit/TEST-hostels.tests.HostelModelBehaviorTests-20261107233235.xml",
+            "sha256": "4b22a4df852a737d8c4e21c19f4f99d6f408fe82734b9684496a214b27823ad9"
+          },
+          {
+            "path": "junit/TEST-payments.test_workflows.PaymentConcurrencyTests-20261107233235.xml",
+            "sha256": "202495d62440339a6e3b8d7cd2e747acd0d3bbe4ceded51ee8c3f147b122645b"
+          },
+          {
+            "path": "junit/TEST-payments.test_workflows.PaymentWorkflowTests-20261107233235.xml",
+            "sha256": "47eccc2b2f4af1bec32e611d1a323199dfd280ca354a62feb1df3593a4ba1642"
+          },
+          {
+            "path": "junit/TEST-reports.test_reports.ReportTests-20261107233235.xml",
+            "sha256": "0119472bbc556435ea0c45e49441427207cbe62b71e0c89a83d533281064acef"
+          },
+          {
+            "path": "junit/TEST-students.test_self_service.StudentSelfServiceTests-20261107233235.xml",
+            "sha256": "be0553d8c24090bb06ed8d5f29c469c91c4eb4064b338f8ddcd0ff9e4086e42d"
+          },
+          {
+            "path": "junit/TEST-students.tests.StudentManagementViewTests-20261107233235.xml",
+            "sha256": "703dc97313b530c69fcc8d4ef2606ede963f57acf9926d8f727151c332642579"
+          },
+          {
+            "path": "junit/TEST-students.tests.StudentModelTests-20261107233235.xml",
+            "sha256": "164827d7de501c11286b23d9cc7d9ba964db63b2f7b50350f1bae2e43204e2b7"
+          },
+          {
+            "path": "junit/TEST-tests.test_checks.VerificationRunnerTests-20261107233235.xml",
+            "sha256": "776a651c64d80f516c5eea18e3595733c4322f12bb429352ec92c835609668fa"
+          }
+        ],
+        "recovery_safety_step": "success; step metadata, no new populated restore"
+      }
+    ]
+  },
+  "defects": {
+    "selection": "Every non-PR issue labelled bug from full paginated public issue snapshot",
+    "rows": [
+      {
+        "number": 45,
+        "title": "HMS-22: Include the required bed in payment-status HTML, JSON and CSV",
+        "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/45",
+        "state": "closed",
+        "created_at": "2026-11-04T03:18:56Z",
+        "closed_at": "2026-11-05T03:23:05Z",
+        "severity_labels": [],
+        "severity": "UNKNOWN",
+        "module_technical_classification": "reports",
+        "age_days": 1.002882
+      },
+      {
+        "number": 46,
+        "title": "HMS-23: Confirm allocation transfer and release before submission",
+        "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/46",
+        "state": "closed",
+        "created_at": "2026-11-04T03:19:00Z",
+        "closed_at": "2026-11-05T03:23:08Z",
+        "severity_labels": [],
+        "severity": "UNKNOWN",
+        "module_technical_classification": "allocations",
+        "age_days": 1.00287
+      },
+      {
+        "number": 47,
+        "title": "HMS-24: Display allocation and history dates as DD-MM-YYYY",
+        "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/47",
+        "state": "closed",
+        "created_at": "2026-11-04T03:19:04Z",
+        "closed_at": "2026-11-05T03:23:10Z",
+        "severity_labels": [],
+        "severity": "UNKNOWN",
+        "module_technical_classification": "allocations",
+        "age_days": 1.002847
+      },
+      {
+        "number": 48,
+        "title": "HMS-25: Format student self-service dates as DD-MM-YYYY",
+        "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/48",
+        "state": "closed",
+        "created_at": "2026-11-04T03:27:18Z",
+        "closed_at": "2026-11-05T03:55:40Z",
+        "severity_labels": [],
+        "severity": "UNKNOWN",
+        "module_technical_classification": "student self-service",
+        "age_days": 1.019699
+      }
+    ],
+    "known_counts_by_module": {
+      "reports": 1,
+      "allocations": 2,
+      "student self-service": 1
+    },
+    "open_in_labelled_inventory": 0,
+    "whole_project_inventory_complete": null,
+    "zero_open_critical_high": null
+  },
+  "issues": [
+    {
+      "number": 43,
+      "state": "open",
+      "assignees": [
+        "harsha2240"
+      ],
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/43"
+    },
+    {
+      "number": 42,
+      "state": "closed",
+      "assignees": [
+        "DevaOnL"
+      ],
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/42"
+    },
+    {
+      "number": 41,
+      "state": "open",
+      "assignees": [
+        "VaishnaviCH6"
+      ],
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/41"
+    },
+    {
+      "number": 40,
+      "state": "open",
+      "assignees": [
+        "DevaOnL"
+      ],
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/40"
+    },
+    {
+      "number": 39,
+      "state": "open",
+      "assignees": [
+        "VaishnaviCH6"
+      ],
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/39"
+    },
+    {
+      "number": 38,
+      "state": "open",
+      "assignees": [
+        "harsha2240"
+      ],
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/38"
+    },
+    {
+      "number": 37,
+      "state": "closed",
+      "assignees": [
+        "VaishnaviCH6"
+      ],
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/issues/37"
+    }
+  ],
+  "coverage_publication_review": {
+    "headRefOid": "f7958015f933f3cf88d0d0adabe8bcd83d2146c8",
+    "mergeCommit": {
+      "oid": "c9f30a48c6dc54ccaec799156f3e52fe7bc8666a"
+    },
+    "mergedAt": "2026-11-07T04:10:53Z",
+    "number": 57,
+    "reviews": [
+      {
+        "id": "PRR_kwDOU_IN888AAAABWk2U9w",
+        "author": {
+          "login": "harsha2240"
+        },
+        "authorAssociation": "MEMBER",
+        "body": "",
+        "submittedAt": "2026-11-07T04:10:33Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "f7958015f933f3cf88d0d0adabe8bcd83d2146c8"
+        }
+      }
+    ],
+    "url": "https://github.com/Sreeharsha2240/hostel-management-system/pull/57"
+  },
+  "security_position": {
+    "technical_recommendation": "Retain original criteria; collect isolated real HTTPS/TLS/cookie and separate ZAP evidence",
+    "team_criteria_change": "PENDING: no authentic approved change supplied",
+    "TC-SEC-06": "PARTIAL",
+    "TC-SEC-08": "NOT RUN"
+  },
+  "approvals": {
+    "qa": "PENDING",
+    "dev_final_human_attestation": "PENDING",
+    "po": "PENDING",
+    "guide_walkthrough": "PENDING"
+  }
+}
