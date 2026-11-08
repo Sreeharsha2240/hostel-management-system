@@ -1,0 +1,593 @@
+{
+  "schema_version": 1,
+  "issue": 40,
+  "reviewed_at_utc": "2026-11-08T07:31:38.660225+00:00",
+  "decision": "ACCEPT original 13 cases for scoped technical closure under explicit owner authorization",
+  "review_kind": "Independent AI technical QA; not a named human teammate signature",
+  "reviewed_commit": "a16c23bff88a20b254d7299da4a91227590f0e85",
+  "reviewed_tree": "d2d4627df43f4e3a0a715297427dac8e87028d84",
+  "original_operational_execution_commit": "0e358b4ce1fd02366184c7cb9c312b47dd093214",
+  "original_operational_execution_date": "2026-11-05",
+  "new_operational_browser_load_or_populated_restore_run": false,
+  "reviewers": {
+    "hms18_blind_requirements": "Exact submitted case/expected-result fidelity; 13/13; no scoped closure authority blocker",
+    "hms18_blind_functional": "Nine functional cases accepted; raw artifact/source/JUnit/focused reconciliation",
+    "hms18_blind_load_recovery": "Four performance/recovery cases accepted; raw JTL, failed attempt, trigger/dump/digests/cleanup reconciliation"
+  },
+  "original_source_and_evidence_sha256": {
+    "Test_Plan_Hostel_Management_System.docx": "fec6b15aab87d2c91029937a4116a9fb26fd966ba26a4a3eec0d96cf158c78b3",
+    "SRS_Hostel_Management_System.docx": "505b53c2cc66c631412db8bef9954ad49bf8c05ce3298db8699bcc781e5d311c",
+    "SAD_Hostel_Management_System.docx": "9e320f9a636840c1799e5146d495d62decd7be5ad61ab12df21b7d3e4ed55429",
+    "docs/part3/SE_Mini_Project_Delivereables_Part-3.pdf": "eedf79d6cb1e59799f8c11474acd11f6e5ac43053525ac810d15e75ed12bcbb8",
+    "docs/part3/evidence/issue40-final/browser-results.json": "0d3221acad5816d6536a3758864ec16314bc6a9a04fcb1ebed7b9c1e15c612b6",
+    "docs/part3/evidence/issue40-final/checks-run.json": "107e1052840ba11f9a9135a9541e74ac812c63bc7ff44df5eeffedaab09e056c",
+    "docs/part3/evidence/issue40-final/focused-methods.json": "22dfd2e85adf97dcbe3ad21d17d95d1fa978c6205486c1f9911dfde87326eacf",
+    "docs/part3/evidence/issue40-final/junit-summary.json": "47f5b9647ec3e7930cd9ed2c5f6dbe7b1b3f634cd606be82568f6693a5510a3c",
+    "docs/part3/evidence/issue40-final/load-results.json": "e055d025f8cd85bca4949609f3dca2c45b896122b8d2af38394f65e4646432e9",
+    "docs/part3/evidence/issue40-final/recovery-results.json": "bac79dc4582a347b7ca4497e82c62099f4ae418521bf0d576e0be89489298049",
+    "docs/part3/evidence/issue40-final/summary.json": "ab4adf563b5cd24a48a2994f56af2e9e3897ea7d2e9a92911e34edf7f50304b9"
+  },
+  "original_manifest_entries_verified": 151,
+  "changed_original_manifest_files": [
+    "tests/test_checks.py"
+  ],
+  "source_change_disposition": "Only resolved-path expectation in tooling test changed; added demo management commands require explicit invocation. Exercised production code and operational harnesses unchanged.",
+  "original_case_fields": [
+    {
+      "id": "TC-ALC-01",
+      "source_req": "REQ-14",
+      "register_req": "REQ-14",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-ALC-02",
+      "source_req": "REQ-15",
+      "register_req": "REQ-15",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-ALC-03",
+      "source_req": "REQ-15",
+      "register_req": "REQ-15",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-ALC-04",
+      "source_req": "REQ-16",
+      "register_req": "REQ-16",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-ALC-05",
+      "source_req": "REQ-17",
+      "register_req": "REQ-17",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-ALC-06",
+      "source_req": "REQ-18, REQ-19",
+      "register_req": "REQ-18, REQ-19, NFR-5 (NFR-5 is supplemental; original REQ-18/REQ-19 mapping retained).",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-PAY-01",
+      "source_req": "REQ-20, REQ-21",
+      "register_req": "REQ-20, REQ-21",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-PAY-02",
+      "source_req": "REQ-22",
+      "register_req": "REQ-22",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-RPT-01",
+      "source_req": "REQ-23",
+      "register_req": "REQ-23",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-PERF-01",
+      "source_req": "NFR-1",
+      "register_req": "NFR-1",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-PERF-02",
+      "source_req": "NFR-2",
+      "register_req": "NFR-2",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-PERF-03",
+      "source_req": "NFR-3",
+      "register_req": "NFR-3",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    },
+    {
+      "id": "TC-OPS-01",
+      "source_req": "NFR-4",
+      "register_req": "NFR-4",
+      "steps_exact_normalized": true,
+      "expected_exact_normalized": true
+    }
+  ],
+  "case_decisions": {
+    "TC-ALC-01": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-ALC-02": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-ALC-03": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-ALC-04": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-ALC-05": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Combined browser PARTIAL plus passing injected-failure rollback/same-transfer-retry companion"
+    },
+    "TC-ALC-06": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-PAY-01": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-PAY-02": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-RPT-01": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "Medium",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-PERF-01": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "Medium",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-PERF-02": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "Medium",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-PERF-03": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "Medium",
+      "qualification": "Recorded source/environment; see linked review"
+    },
+    "TC-OPS-01": {
+      "technical_qa": "ACCEPT",
+      "current_review_priority": "High",
+      "qualification": "Recorded source/environment; see linked review"
+    }
+  },
+  "retained_functional_verification": {
+    "raw_hashes": {
+      "checks/run.json": {
+        "exists": true,
+        "hash_match": true
+      },
+      "checks/coverage.json": {
+        "exists": true,
+        "hash_match": true
+      },
+      "checks/coverage.xml": {
+        "exists": true,
+        "hash_match": true
+      },
+      "checks/.coverage": {
+        "exists": true,
+        "hash_match": true
+      },
+      "browser/browser-results.json": {
+        "exists": true,
+        "hash_match": true
+      },
+      "focused.txt": {
+        "exists": true,
+        "hash_match": true
+      },
+      "recovery-safety.txt": {
+        "exists": true,
+        "hash_match": true
+      },
+      "browser.txt": {
+        "exists": true,
+        "hash_match": true
+      }
+    },
+    "raw_junit_exact_match": true,
+    "focused_contexts_reconciled": 71,
+    "functional_case_decisions": {
+      "TC-ALC-01": {
+        "decision": "ACCEPT",
+        "priority": "High proposed accepted for owner scope",
+        "criteria": [
+          "active male/Boys/available fixture",
+          "allocation saved with date",
+          "bed Occupied",
+          "success confirmation",
+          "allocation/audit transaction rollback companion"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:205",
+          "scripts/part3/test_issue40_browser.py:45",
+          "allocations/tests.py:176",
+          "allocations/services.py:13"
+        ]
+      },
+      "TC-ALC-02": {
+        "decision": "ACCEPT",
+        "priority": "High proposed accepted for owner scope",
+        "criteria": [
+          "different student submits stale occupied-bed form",
+          "visible reason",
+          "no duplicate active allocation",
+          "same-bed concurrency one winner"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:218",
+          "scripts/part3/test_issue40_browser.py:201",
+          "allocations/test_workflows.py:555",
+          "allocations/models.py:175"
+        ]
+      },
+      "TC-ALC-03": {
+        "decision": "ACCEPT",
+        "priority": "High proposed accepted for owner scope",
+        "criteria": [
+          "same student submits stale second-bed form",
+          "visible reason",
+          "original allocation unchanged",
+          "same-student concurrency one winner"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:225",
+          "allocations/test_workflows.py:565",
+          "allocations/models.py:164"
+        ]
+      },
+      "TC-ALC-04": {
+        "decision": "ACCEPT",
+        "priority": "High proposed accepted for owner scope",
+        "criteria": [
+          "female/Boys target",
+          "gender mismatch reason",
+          "no write"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:234",
+          "scripts/part3/test_issue40_browser.py:201",
+          "allocations/models.py:155"
+        ]
+      },
+      "TC-ALC-05": {
+        "decision": "ACCEPT combined evidence, browser PARTIAL retained",
+        "priority": "High proposed accepted for owner scope",
+        "criteria": [
+          "old bed Available/new bed Occupied",
+          "source history preserved",
+          "target Bed.save injected failure rolls back old allocation/both beds/history/audit",
+          "same transfer retry succeeds with one attributed audit",
+          "native confirmation cancel zero POSTs, accept one"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:240",
+          "allocations/test_workflows.py:234",
+          "allocations/services.py:50",
+          "docs/part3/evidence/issue40-final/browser-results.json:29",
+          "test-results/hms18-finish/20261105T040419699526Z/focused.txt:51"
+        ]
+      },
+      "TC-ALC-06": {
+        "decision": "ACCEPT",
+        "priority": "High proposed accepted for owner scope",
+        "criteria": [
+          "entered vacate date persisted",
+          "bed Available",
+          "all historical/current records date-ordered using counterordered dates",
+          "DD-MM-YYYY HTML/ISO JSON/fallback",
+          "native confirmation cancel zero POSTs, accept one",
+          "already-inactive release rejected"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:259",
+          "allocations/test_workflows.py:304",
+          "allocations/test_workflows.py:448",
+          "allocations/services.py:33",
+          "test-results/hms18-finish/20261105T040419699526Z/focused.txt:41"
+        ]
+      },
+      "TC-PAY-01": {
+        "decision": "ACCEPT",
+        "priority": "High proposed accepted for owner scope; distinct from original SRS module Medium",
+        "criteria": [
+          "5000 UPI/date/reference recorded",
+          "zero and negative rejected without added rows/counter consumption",
+          "two consecutive receipts",
+          "real PDF correct receipt/student/amount/mode/reference/date",
+          "unique concurrent receipts",
+          "audit failure rolls back payment/counter and retry reuses first number",
+          "immutable originals/reasoned adjustments/net validation/competing correction locks"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:281",
+          "scripts/part3/test_issue40_browser.py:208",
+          "scripts/part3/test_issue40_browser.py:225",
+          "payments/test_workflows.py:146",
+          "payments/test_workflows.py:205",
+          "payments/test_workflows.py:549",
+          "payments/test_workflows.py:562"
+        ]
+      },
+      "TC-PAY-02": {
+        "decision": "ACCEPT",
+        "priority": "High proposed accepted for owner scope",
+        "criteria": [
+          "Pending then Partial then Paid",
+          "room fee and sums used",
+          "transfer to changed fee and adjustments reflected without join multiplication",
+          "no-allocation/unconfigured fee remain Pending"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:296",
+          "payments/test_workflows.py:218",
+          "payments/test_workflows.py:253",
+          "payments/services.py:23"
+        ]
+      },
+      "TC-RPT-01": {
+        "decision": "ACCEPT original + requirement-derived fields",
+        "priority": "Medium proposed accepted for owner scope",
+        "criteria": [
+          "both reports filtered for known hostel",
+          "both CSV downloads",
+          "occupancy counts/maintenance/percentage match MySQL and rendered fields",
+          "payment identity/Hostel Room Bed/fee/paid/due/status match MySQL HTML JSON CSV",
+          "released history/latest valid location and cancelled/unassigned edge cases",
+          "adjustments counted once",
+          "report name/Generated On/filter shown in source; retained CSV generation timestamp correct"
+        ],
+        "sources": [
+          "scripts/part3/issue40_browser.cjs:171",
+          "scripts/part3/test_issue40_browser.py:251",
+          "reports/test_reports.py:56",
+          "reports/test_reports.py:117",
+          "reports/test_reports.py:176",
+          "reports/test_reports.py:218",
+          "templates/reports/report.html:9",
+          "templates/reports/report.html:26"
+        ]
+      }
+    }
+  },
+  "local_current_source_verification": {
+    "command": "python scripts/run_checks.py --output-dir test-results/hms18-qa-20261108-current",
+    "started_at": "2026-11-08T07:27:46.189999+00:00",
+    "completed_at": "2026-11-08T07:28:42.390297+00:00",
+    "commit": "a16c23bff88a20b254d7299da4a91227590f0e85",
+    "git_dirty": false,
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "mysql": "8.4.9",
+    "dependencies": {
+      "Django": "5.2.18",
+      "mysqlclient": "2.3.0",
+      "python-dotenv": "1.2.4",
+      "reportlab": "4.5.1",
+      "pypdf": "6.21.2",
+      "coverage": "7.16.2",
+      "unittest-xml-reporting": "4.0.0",
+      "ruff": "0.17.1"
+    },
+    "gates": [
+      {
+        "name": "lint",
+        "exit_code": 0,
+        "seconds": 0.109
+      },
+      {
+        "name": "format",
+        "exit_code": 0,
+        "seconds": 0.097
+      },
+      {
+        "name": "dependencies",
+        "exit_code": 0,
+        "seconds": 0.792
+      },
+      {
+        "name": "django-checks",
+        "exit_code": 0,
+        "seconds": 1.128
+      },
+      {
+        "name": "applied-migrations",
+        "exit_code": 0,
+        "seconds": 1.285
+      },
+      {
+        "name": "migration-consistency",
+        "exit_code": 0,
+        "seconds": 1.007
+      },
+      {
+        "name": "staticfiles",
+        "exit_code": 0,
+        "seconds": 0.72
+      },
+      {
+        "name": "test-results",
+        "exit_code": 0,
+        "seconds": 41.929
+      },
+      {
+        "name": "coverage",
+        "exit_code": 0,
+        "seconds": 0.466
+      },
+      {
+        "name": "coverage-xml",
+        "exit_code": 0,
+        "seconds": 0.543
+      },
+      {
+        "name": "coverage-json",
+        "exit_code": 0,
+        "seconds": 0.505
+      },
+      {
+        "name": "timing-smoke",
+        "exit_code": 0,
+        "seconds": 6.571
+      }
+    ],
+    "counts": {
+      "PASS": 189,
+      "SKIP": 1
+    },
+    "skipped_methods": [
+      "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds"
+    ],
+    "separate_uninstrumented_timing": {
+      "tests": 1,
+      "outcome": "PASS"
+    },
+    "raw_artifact_sha256": {
+      "run.json": "e04db9ff42ac5c97d47322d7d9ecb61a9864337ecc65703764be2d6786633f41",
+      "coverage.json": "193c68bb78058a992fb9bb18ad49eb06b60b9608afa48667144f43c70b265e30",
+      "coverage.xml": "e45b8ea25de3db17f76dc1093cdf64c68fdd4c43223d020e811eae8e2dff3e87",
+      "test-results.txt": "f8de33d08f0f0c56baff767fbad05bc7f83bafce1b5cb0338db50415972fb408",
+      "timing-smoke.txt": "2b13eac45781a5c2d85c39c6881ed817622f36de8a980e52f10915706a92ca42"
+    },
+    "junit_sha256": {
+      "TEST-accounts.test_security.SessionAndLockoutTests-20261108125758.xml": "586f18da672706e1e226dbd5c47a67d23bb197d8ca355ceb55812ebf48e36188",
+      "TEST-accounts.tests.AuthenticationTests-20261108125758.xml": "b9546ca7f1b71dc013c5591277971ae7a44233a6c8656722785af09efe38b224",
+      "TEST-allocations.test_migrations.AllocationMigrationTests-20261108125758.xml": "640064b3d2088855e852ed57fb90b03001561b4fd8c4548f5c70997fa058df7c",
+      "TEST-allocations.test_workflows.AllocationConcurrencyTests-20261108125758.xml": "3452c942c38b3f50956ea1f13722b9f2cf051f5a1482f4367c1e7ca0e98a158d",
+      "TEST-allocations.test_workflows.AllocationWorkflowTests-20261108125758.xml": "75255eaaadc4c689950bd1fe518d373ee819bbf0631dcadc6fd45d1da5832b33",
+      "TEST-allocations.tests.AllocationModelTests-20261108125758.xml": "b7b3658b17c4b09b738971c9e4d9bf5e78de17d4da3297223b167dfc80a1ffbf",
+      "TEST-allocations.tests.AllocationViewTests-20261108125758.xml": "238bb3b0d7daaa3db02f72f37e9f40a8299372dc47d10e97deebc83865f76c10",
+      "TEST-audit.tests.AuditedAdminMixinTests-20261108125758.xml": "9211950ef6749697490646b0f8904988d7acd5a00351e05badd3d28361a4a5c2",
+      "TEST-audit.tests.AuditTests-20261108125758.xml": "002d459ef63ea7baed0dd204b0576ff49df5705f4584fdf46db040dc445e29e0",
+      "TEST-hms.test_forms.DateFieldTests-20261108125758.xml": "11adcf6f9a2c16ca6481376b16dc7c11f3208f42932478bc29d5cacb2112b7bb",
+      "TEST-hms.test_forms.ModelChoiceFieldTests-20261108125758.xml": "3e1a2dc79b25bd8f9e186bfe22ce5d35cd4e43fa510e12ad852dc5476072d2e6",
+      "TEST-hms.test_http.RequestDataTests-20261108125758.xml": "39fb83e6ee6e7ad54bde3ff0bf3abd0cb3a144a9e701a04712083c87827ab68d",
+      "TEST-hms.test_navigation.DashboardNavigationSmokeTests-20261108125758.xml": "6077992568e6f873d665b978ff871a39b7d8601855119c287ba83267ae1120f1",
+      "TEST-hms.test_responses.FormErrorResponseTests-20261108125758.xml": "5e7852dde53b0ee3e99a4c98cc64b342463d73e74803e04b1e427338226874c3",
+      "TEST-hms.test_settings.StaticFilesConfigurationTests-20261108125758.xml": "e58da32108835c4642aa5e29eae2fe4c013fd0fc72cec3fb215d38acaaf1f681",
+      "TEST-hms.test_system_journey.StudentHostelJourneyTests-20261108125758.xml": "8449b83d215cfb43ae980a3faee2424493ba2fa8f9832833201877fba04ecb42",
+      "TEST-hms.tests.DatabaseConfigurationTests-20261108125758.xml": "e92ba2a86034dc65dfd8b492adb5f47aa3b01cede8ef1d87ca170437168db354",
+      "TEST-hostels.tests.BedFilteringViewTests-20261108125758.xml": "731b859578755f76ba35b25328bf793b52326de4007602d71e103b0dc8e3a63b",
+      "TEST-hostels.tests.HostelManagementViewTests-20261108125758.xml": "b54b565afdbe019f264d7ed2cd0a9c62c1c5be4adc61d6033451a2ecd5bcbb44",
+      "TEST-hostels.tests.HostelModelBehaviorTests-20261108125758.xml": "9ad74fb310f53b90fdcfc026d4ec743e7fb02989c32474f0c5ffb7a96dbcc7f7",
+      "TEST-payments.test_workflows.PaymentConcurrencyTests-20261108125758.xml": "cde5edaf0faf9c5a9ce825afe1fa34169d5af8617e5638c4514db2ab999e670a",
+      "TEST-payments.test_workflows.PaymentWorkflowTests-20261108125758.xml": "4393decb5f55199deec5cf97c4b2c1dcf8976887c0f3b7c57fb67bb7f38ebcd9",
+      "TEST-reports.test_reports.ReportTests-20261108125758.xml": "667a02503488da68df083d4caff15a31ecbab623e8c4e178fc7102f6f0e4dd99",
+      "TEST-students.test_self_service.StudentSelfServiceTests-20261108125758.xml": "d446f857001c17abbc2198b1c0c3acd0b95946d5feaa132b61ac3c8493887df4",
+      "TEST-students.tests.StudentManagementViewTests-20261108125758.xml": "1ce2ced2314089975dfe2c9ab6032e16a2682d00ef19be01eeac912c4f438a26",
+      "TEST-students.tests.StudentModelTests-20261108125758.xml": "9834542e710d03ab3b6d22b7d9cd5c6af556634573efd95ed2320026001e6096",
+      "TEST-tests.test_checks.VerificationRunnerTests-20261108125758.xml": "aae2cd68e232b0bc8f8cd367965ec811d2c48878fcb47052f46b5308b6bbbca2"
+    },
+    "coverage": {
+      "covered_lines": 1584,
+      "num_statements": 1772,
+      "percent_covered": 87.70491803278688,
+      "percent_covered_display": "88",
+      "missing_lines": 188,
+      "excluded_lines": 0,
+      "percent_statements_covered": 89.39051918735892,
+      "percent_statements_covered_display": "89",
+      "num_branches": 424,
+      "num_partial_branches": 46,
+      "covered_branches": 342,
+      "missing_branches": 82,
+      "percent_branches_covered": 80.66037735849056,
+      "percent_branches_covered_display": "81"
+    },
+    "coverage_interpretation": "Mixed-suite diagnostic only; does not establish formal unit70 or replace published coverage reports",
+    "offline_recovery_safety": {
+      "command": "python -S -m unittest discover -s scripts/part3 -p test_issue40_recovery_safety.py -v",
+      "tests": 32,
+      "outcome": "PASS"
+    }
+  },
+  "reviewed_main_ci": {
+    "revision": "a16c23bff88a20b254d7299da4a91227590f0e85",
+    "run_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42458388658",
+    "jobs": [
+      {
+        "python": "3.11.18",
+        "mysql": "8.4.13",
+        "checkout": "a16c23bff88a20b254d7299da4a91227590f0e85",
+        "checkout_tree": "d2d4627df43f4e3a0a715297427dac8e87028d84",
+        "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42458388658/job/128662181653",
+        "counts": {
+          "PASS": 189,
+          "SKIP": 1
+        },
+        "successful_gates": 12,
+        "separate_timing_exit": 0,
+        "recovery_safety_methods": 32,
+        "run_json_sha256": "7b5531aeca9f6b8d92e49774196f529c40e4559143b5a26df2ad8062594763ff"
+      },
+      {
+        "python": "3.14.10",
+        "mysql": "8.4.13",
+        "checkout": "a16c23bff88a20b254d7299da4a91227590f0e85",
+        "checkout_tree": "d2d4627df43f4e3a0a715297427dac8e87028d84",
+        "job_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42458388658/job/128662181456",
+        "counts": {
+          "PASS": 189,
+          "SKIP": 1
+        },
+        "successful_gates": 12,
+        "separate_timing_exit": 0,
+        "recovery_safety_methods": 32,
+        "run_json_sha256": "37dc4fce5008bc33dc575aabe407edbd7221ca7c958b46d4e1f19a6e67ec3e2c"
+      }
+    ]
+  },
+  "entry_disposition": "Late current technical review accepted for #40 delivery; approved-SRS/pre-execution reviewed-case records remain unestablished, not retrospectively satisfied or waived",
+  "environment_disposition": "Accept bounded Edge/Playwright/live HTTP/MySQL8.4/loopback observations for #40. No Selenium/Postman execution, MySQL8.0, production HTTPS, broad browser/mobile/platform or uptime claim. Accepted load: one initial login per user, then fixed synthetic student-ID search and first filtered available-bed page; five-second ramp, one-second think time on login/search/bed, setup login form has no think-time timer; its HTTP latency remains measured and included. No every-query/page, browser-rendering/static-asset-load or WAN-capacity claim.",
+  "whole_plan_readiness": "NOT READY",
+  "human_final_approvals": {
+    "qa_vaishnavi": "PENDING",
+    "dev_devansh": "PENDING",
+    "po_sreeharsha": "PENDING",
+    "guide_walkthrough": "PENDING"
+  },
+  "expanded_case_statuses_changed": false,
+  "historical_evidence_changed": false
+}
