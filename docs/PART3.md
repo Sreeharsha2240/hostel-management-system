@@ -1,9 +1,10 @@
 # Part 3: testing, reports and team delivery
 
 This is the team work plan for **2-6 November 2026**. The assigned contributors
-execute their cases and prepare their own evidence; their assignments remain
-open. Vaishnavi coordinates QA, Devansh leads development/coverage, and Sreeharsha
-coordinates integration and final readiness.
+execute their cases and prepare their own evidence. At the 8 November review,
+#37's case-document delivery and #42's coverage-reporting task are closed;
+#38/#39/#41/#43 retain outstanding work; the later [HMS-18 scoped AI QA review](part3/evidence/issue40-final/qa-review-20261108.md) accepts #40 for technical closure. Vaishnavi coordinates QA, Devansh leads
+development/coverage, and Sreeharsha coordinates integration and final readiness.
 
 ## Instructions and baseline
 
@@ -31,9 +32,11 @@ The original Test Plan contains **33 planned case IDs** and an RTM for
 **36 requirements** (REQ-1 through REQ-24, NFR-1 through NFR-12), plus quality
 attributes. The updated Test Case Document must retain these IDs, explain
 revisions, add sprint regression cases and map automated methods to them.
-Priorities need review because the original case table lacks priority fields.
-Resolve the old TC-AUTH-03 lockout-message wording against SRS REQ-2's generic
-credential-error requirement while preserving the five-attempt/15-minute test.
+The delivered register preserves the original IDs/mappings and contains 61
+complete records. Its High/Medium priorities are proposals requiring QA review
+because the original case table lacks priority fields. The register reconciles
+TC-AUTH-03's old lockout-message wording with SRS REQ-2's generic credential-error
+requirement while retaining the original wording and five-attempt/15-minute test.
 
 [PR #36](https://github.com/Sreeharsha2240/hostel-management-system/pull/36)
 was still open at setup on 2 November; `main` was `0abb29a` and the verified code
@@ -55,7 +58,7 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-15 / #37](https://github.com/Sreeharsha2240/hostel-management-system/issues/37) | Vaishnavi (`VaishnaviCH6`); Devansh completed reconciliation | 3 | [Complete case document and RTM](part3/Test_Case_Document.md): 33 original IDs, ten retained regression IDs, 18 explicit additions, source-bound results and remaining execution gaps |
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
-| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with QA acceptance pending; feeds System Validation Report |
+| [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with [authorized scoped AI QA acceptance](part3/evidence/issue40-final/qa-review-20261108.md); feeds System Validation Report, with actual final human approvals separate |
 | [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports are published and the reporting issue is closed; formal unit70 remains UNPROVEN pending #41/#42 scope agreement |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | [Final readiness checkpoint](part3/HMS21_Final_Readiness.md); final review, required approvals and submission confirmation remain open |
@@ -83,22 +86,32 @@ volume attempt failed after confirmed laptop standby; its raw metrics and the
 complete unchanged-threshold rerun are both retained. Handoff is supplied for
 #37's case document and #38's report. PR #50 was merged by `harsha2240` on
 5 November; no formal APPROVED review is recorded. The [shared case register](part3/Test_Case_Document.md#53-hms-18-owner-execution-and-evidence-reconciliation)
-now links Devansh's 13 original results as OWNER PASS, with QA acceptance pending.
+links Devansh's 13 original results as OWNER PASS; their scoped AI technical acceptance is now recorded in the later review.
 Sreeharsha approved and merged [PR #54](https://github.com/Sreeharsha2240/hostel-management-system/pull/54)
 on 6 November. That review accepts the documentation/evidence reconciliation
 while explicitly preserving the open QA acceptance and unproven unit-coverage
 criterion; it does not approve the reviewed-case entry criterion retrospectively.
-**#40 remains open** pending #37's reviewed-case/entry-criterion disposition and
-actual independent evidence acceptance.
+At that checkpoint, #40 remained open for reviewed-case/entry, priority and
+environment/evidence dispositions. The later [authorized independent AI QA review](part3/evidence/issue40-final/qa-review-20261108.md)
+resolves those technical dispositions for #40 closure, with nine High/four Medium
+priorities and explicit historical-entry/environment limits. #37's documentation
+delivery and this scoped review do not supply actual final human approvals or
+retroactively establish pre-execution entry compliance.
 The appendix does not complete either teammate's deliverable or global readiness.
 
-The current status after the 7 November HMS-17 merge is recorded in the
+The 8 November technical review of main `b523d4c` is recorded in the
 [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.md). PR #58 is
 merged, but issue #39 remains open: its evidence disposition includes one
 NOT RUN case and one PARTIAL quality case. HMS-16's report now incorporates
 that evidence without claiming team-wide acceptance. The required Unit Test
 Report is still absent, so the four-report package is incomplete and the
-submission remains NOT READY.
+submission remains NOT READY. The [independent report review](part3/System_Validation_Report.md#independent-evidence-review-and-current-build)
+adds source-bound CI/case/defect metrics, original security subcondition limits
+and explicit owner actions. Devansh's [module-owner inputs for #41](part3/Code_Coverage_Report.md#hms-19-module-owner-input--8-november-2026)
+reuse published classifications/results without claiming accepted unit70 or
+writing Vaishnavi's report. Development recommends retaining the original TLS/ZAP
+criteria and collecting isolated real evidence; no team/instructor criterion
+change or final QA/Dev/PO approval is recorded by that technical review.
 
 Original execution ownership is preserved:
 
@@ -233,3 +246,16 @@ one-minute Sprint 1 and two-minute Sprint 2 outcome videos were not found in
 tracked files at setup. Locate/publish genuine recordings or record the gap.
 Keep the original documents, diagrams, historical charts and evidence intact;
 record changes and confirm DOCX/PDF pairs and any final instructor packaging rules.
+
+## 8 November owner follow-up
+
+[HMS-26 / #63](https://github.com/Sreeharsha2240/hostel-management-system/issues/63)
+tracks Devansh's nine remaining expanded recipes S2-08..16 (initial estimate:
+3 points, Part 3 milestone). The [clean owner execution](part3/evidence/issue63/README.md)
+records nine PASS after independent technical review, completing all 27
+exclusively Devansh-owned case observations. Expanded totals are 48 OWNER PASS /
+3 PARTIAL / 9 NOT RUN / 1 BLOCKED; original 33 remain 30/2/1. The nine cases are
+separate from the 190 mixed core methods and do not establish unit70.
+Review/execution on 8 November is late against the original window; no waiver
+is implied. Existing teammate issues and actual final approvals/submission
+remain pending; whole-plan readiness stays NOT READY.

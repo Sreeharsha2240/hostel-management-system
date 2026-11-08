@@ -87,11 +87,26 @@ jobs:
       - name: Check backup and recovery safety without external operations
         run: python -m unittest discover -s scripts/part3 -p test_issue40_recovery_safety.py -v
 
+      - name: Check owned-case runner safety without database operations
+        run: python -S -m unittest discover -s scripts/part3 -p test_owned_runner_safety.py -v
+
+      - name: Execute the nine owned expanded regression cases
+        run: python scripts/part3/run_owned_regressions.py --output-dir test-results/owned-regressions
+
       - name: Save test evidence
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
           name: hms-test-evidence-py${{ matrix.python-version }}-${{ github.sha }}
           path: test-results/ci/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Save owned regression case evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: hms-owned-regressions-py${{ matrix.python-version }}-${{ github.sha }}
+          path: test-results/owned-regressions/
           if-no-files-found: error
           retention-days: 30

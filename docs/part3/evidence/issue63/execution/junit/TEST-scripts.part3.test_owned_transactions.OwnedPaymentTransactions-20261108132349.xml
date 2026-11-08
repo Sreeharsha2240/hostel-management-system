@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="scripts.part3.test_owned_transactions.OwnedPaymentTransactions-20261108132349" tests="2" file="scripts/part3/test_owned_transactions.py" time="0.208" timestamp="2026-11-08T13:23:50" failures="0" errors="0" skipped="0">
+	<testcase classname="scripts.part3.test_owned_transactions.OwnedPaymentTransactions" name="test_tc_reg_s2_09_payment_permanence" time="0.088" timestamp="2026-11-08T13:23:50" file="scripts\part3\test_owned_transactions.py" line="294"/>
+	<testcase classname="scripts.part3.test_owned_transactions.OwnedPaymentTransactions" name="test_tc_reg_s2_10_rejected_failed_and_exhausted_receipts" time="0.121" timestamp="2026-11-08T13:23:50" file="scripts\part3\test_owned_transactions.py" line="412"/>
+</testsuite>

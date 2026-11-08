@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_settings.StaticFilesConfigurationTests-20261108132414" tests="1" file="hms/test_settings.py" time="0.001" timestamp="2026-11-08T13:24:47" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_settings.StaticFilesConfigurationTests" name="test_collectstatic_has_a_separate_destination" time="0.001" timestamp="2026-11-08T13:24:47" file="hms\test_settings.py" line="8"/>
+</testsuite>

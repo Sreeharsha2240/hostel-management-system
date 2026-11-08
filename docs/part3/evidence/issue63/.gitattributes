@@ -1,0 +1,7 @@
+# Keep raw evidence byte-for-byte so recorded SHA-256 values survive checkout.
+core/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+execution/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*-safety.txt -text
+# Raw console output includes progress carriage returns and final blank lines.
+core/*.txt -whitespace
+execution/*.txt -whitespace

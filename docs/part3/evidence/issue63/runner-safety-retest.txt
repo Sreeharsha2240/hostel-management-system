@@ -1,0 +1,14 @@
+test_absent_test_database_preflight_only_reads_metadata (test_owned_runner_safety.OwnedRunnerSafetyTests.test_absent_test_database_preflight_only_reads_metadata) ... ok
+test_custom_live_or_mirrored_database_is_refused_without_a_query (test_owned_runner_safety.OwnedRunnerSafetyTests.test_custom_live_or_mirrored_database_is_refused_without_a_query) ... ok
+test_existing_test_database_is_refused_and_connection_closed (test_owned_runner_safety.OwnedRunnerSafetyTests.test_existing_test_database_is_refused_and_connection_closed) ... ok
+test_failed_subtest_is_fail_even_without_a_case_record (test_owned_runner_safety.OwnedRunnerSafetyTests.test_failed_subtest_is_fail_even_without_a_case_record) ... ok
+test_passing_method_without_completed_steps_is_not_a_case_pass (test_owned_runner_safety.OwnedRunnerSafetyTests.test_passing_method_without_completed_steps_is_not_a_case_pass) ... ok
+test_refused_database_keeps_failure_evidence_and_never_starts_child (test_owned_runner_safety.OwnedRunnerSafetyTests.test_refused_database_keeps_failure_evidence_and_never_starts_child) ... ok
+test_setup_error_and_skip_are_not_relabelled_not_run (test_owned_runner_safety.OwnedRunnerSafetyTests.test_setup_error_and_skip_are_not_relabelled_not_run) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.046s
+
+OK
+Owned case execution could not complete during database-preflight (ValueError).
+Case counts: {'NOT RUN': 9}; evidence: C:\Users\Deva\AppData\Local\Temp\tmpj5cy7ch1\evidence

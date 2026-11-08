@@ -1,0 +1,1 @@
+Wrote JSON report to C:\Users\Deva\Downloads\SE_Mini_Project\hostel-management-system\test-results\owned-regressions-20261108\full-final\coverage.json

@@ -1,0 +1,3 @@
+# Intentionally published, synthetic reviewed evidence; retain ordinary ignores elsewhere.
+!TEST-*.xml
+!test-results.txt

@@ -1,0 +1,339 @@
+{
+  "case_id": "TC-REG-S2-10",
+  "test_id": "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_10_rejected_failed_and_exhausted_receipts",
+  "started_at": "2026-11-08T07:53:50.861330+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1.amount_1",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "0"
+        },
+        "error_messages": [
+          "Enter a positive payment or a nonzero adjustment."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.amount_2",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "-1"
+        },
+        "error_messages": [
+          "Enter a positive payment or a nonzero adjustment."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.amount_3",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "NaN"
+        },
+        "error_messages": [
+          "\u201cNaN\u201d value must be a decimal number."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.amount_4",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "Infinity"
+        },
+        "error_messages": [
+          "\u201cInfinity\u201d value must be a decimal number."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.amount_5",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "-Infinity"
+        },
+        "error_messages": [
+          "\u201c-Infinity\u201d value must be a decimal number."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.amount_6",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "1.001"
+        },
+        "error_messages": [
+          "Ensure that there are no more than 2 decimal places."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.amount_7",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "100000000"
+        },
+        "error_messages": [
+          "Ensure that there are no more than 8 digits before the decimal point."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.amount_8",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "amount": "text"
+        },
+        "error_messages": [
+          "\u201ctext\u201d value must be a decimal number."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.unsupported_mode",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "mode": "Card"
+        },
+        "error_messages": [
+          "Value 'Card' is not a valid choice."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.future_date",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "date": "2026-11-09"
+        },
+        "error_messages": [
+          "Payment date cannot be in the future."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.invalid_date",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "date": "invalid"
+        },
+        "error_messages": [
+          "\u201cinvalid\u201d value has an invalid date format. It must be in YYYY-MM-DD format."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.overlength_reference",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "reference": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "error_messages": [
+          "Ensure this value has at most 30 characters (it has 31)."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "1.invalid_reference",
+      "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+      "actual": {
+        "input_overrides": {
+          "reference": "invalid/ref"
+        },
+        "error_messages": [
+          "Use letters and numbers only."
+        ],
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "2",
+      "expected": "Valid payment with failed audit rolls back payment and counter together.",
+      "actual": {
+        "fault": "controlled payment audit failure",
+        "audit_call_count": 1,
+        "after": {
+          "payments": [],
+          "receipt_counter": 0,
+          "audits": []
+        }
+      }
+    },
+    {
+      "step": "3",
+      "expected": "Fresh valid retry after removing fault receives R00000000001 and one actor payment audit.",
+      "actual": {
+        "payments": [
+          {
+            "id": 2,
+            "student_id": 1,
+            "receipt_no": "R00000000001",
+            "amount": "400.00",
+            "date": "2026-11-08",
+            "mode": "UPI",
+            "reference": "TEST123",
+            "adjustment_of_id": null,
+            "adjustment_reason": "",
+            "created_at": "2026-11-08T13:23:50.929+05:30"
+          }
+        ],
+        "receipt_counter": 1,
+        "audits": [
+          {
+            "id": 1,
+            "user_id": 1,
+            "action": "payment",
+            "record_type": "payments.payment",
+            "record_id": "2",
+            "timestamp": "2026-11-08T13:23:50.930+05:30"
+          }
+        ]
+      }
+    },
+    {
+      "step": "4",
+      "expected": "Exhausted range rejects without overwriting existing payment/receipt history, audits or maximum counter.",
+      "actual": {
+        "counter_fixture": 99999999999,
+        "error_messages": [
+          "The receipt number range is exhausted."
+        ],
+        "before": {
+          "payments": [
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.929+05:30"
+            }
+          ],
+          "receipt_counter": 99999999999,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.930+05:30"
+            }
+          ]
+        },
+        "after": {
+          "payments": [
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.929+05:30"
+            }
+          ],
+          "receipt_counter": 99999999999,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.930+05:30"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:50.951150+00:00"
+}

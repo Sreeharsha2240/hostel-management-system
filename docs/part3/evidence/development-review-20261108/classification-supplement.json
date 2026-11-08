@@ -1,0 +1,722 @@
+{
+  "schema_version": 1,
+  "status": "Supplemental development classification review; QA disposition pending; historical categories and exact selections unchanged.",
+  "reviewed_utc": "2026-11-08T09:39:10.278182+00:00",
+  "reviewed_source": {
+    "head": "cae69ea2192838b7874ad5be240def842f5aab5e",
+    "tree": "4f81f4a5e100f6a3f22505acfa05b4dd0ff9bb1f",
+    "source_binding": "All 19 frozen test-source files match raw bytes at this reviewed HEAD. Listed supporting repository sources match HEAD content, with Python-only CRLF-to-LF normalization disclosed per file where raw bytes differ. The new artifact is a worktree supplement to that snapshot.",
+    "supporting_repository_source_sha256": {
+      "Test_Plan_Hostel_Management_System.docx": {
+        "reviewed_worktree_sha256": "fec6b15aab87d2c91029937a4116a9fb26fd966ba26a4a3eec0d96cf158c78b3",
+        "reviewed_head_sha256": "fec6b15aab87d2c91029937a4116a9fb26fd966ba26a4a3eec0d96cf158c78b3",
+        "raw_bytes_match_head": true,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "fec6b15aab87d2c91029937a4116a9fb26fd966ba26a4a3eec0d96cf158c78b3"
+      },
+      "SRS_Hostel_Management_System.docx": {
+        "reviewed_worktree_sha256": "505b53c2cc66c631412db8bef9954ad49bf8c05ce3298db8699bcc781e5d311c",
+        "reviewed_head_sha256": "505b53c2cc66c631412db8bef9954ad49bf8c05ce3298db8699bcc781e5d311c",
+        "raw_bytes_match_head": true,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "505b53c2cc66c631412db8bef9954ad49bf8c05ce3298db8699bcc781e5d311c"
+      },
+      "accounts/forms.py": {
+        "reviewed_worktree_sha256": "36a16c399d45c57d3bf4bfe1394c3e9e2002152a2adfd2209f4ae4c8da87e2ec",
+        "reviewed_head_sha256": "36a16c399d45c57d3bf4bfe1394c3e9e2002152a2adfd2209f4ae4c8da87e2ec",
+        "raw_bytes_match_head": true,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "36a16c399d45c57d3bf4bfe1394c3e9e2002152a2adfd2209f4ae4c8da87e2ec"
+      },
+      "accounts/views.py": {
+        "reviewed_worktree_sha256": "b632e024369f088586e997b281297a81f368cd1ba4c84b0c86989c4e31fcc2f5",
+        "reviewed_head_sha256": "b632e024369f088586e997b281297a81f368cd1ba4c84b0c86989c4e31fcc2f5",
+        "raw_bytes_match_head": true,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "b632e024369f088586e997b281297a81f368cd1ba4c84b0c86989c4e31fcc2f5"
+      },
+      "students/models.py": {
+        "reviewed_worktree_sha256": "eac78363a2ab76eb0e9e65a4c5f45e86c4593d418828bc989d57aacf9cf1ce25",
+        "reviewed_head_sha256": "6890361e98a59267fa8650a0619e334451d305f5387bcef2258cd9fcec09bbe6",
+        "raw_bytes_match_head": false,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "6890361e98a59267fa8650a0619e334451d305f5387bcef2258cd9fcec09bbe6"
+      },
+      "students/forms.py": {
+        "reviewed_worktree_sha256": "9945a8af77e90451a2a4547360b0594130576594b276a27b691ff799392c0278",
+        "reviewed_head_sha256": "9945a8af77e90451a2a4547360b0594130576594b276a27b691ff799392c0278",
+        "raw_bytes_match_head": true,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "9945a8af77e90451a2a4547360b0594130576594b276a27b691ff799392c0278"
+      },
+      "students/views.py": {
+        "reviewed_worktree_sha256": "171130210cd2c94138bc224c03c350f8ffdf24048b0a2c70c73a7b5c6f1a3ba7",
+        "reviewed_head_sha256": "171130210cd2c94138bc224c03c350f8ffdf24048b0a2c70c73a7b5c6f1a3ba7",
+        "raw_bytes_match_head": true,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "171130210cd2c94138bc224c03c350f8ffdf24048b0a2c70c73a7b5c6f1a3ba7"
+      },
+      "hostels/models.py": {
+        "reviewed_worktree_sha256": "c6450f084392a77a503febd96ef0a191ca3c131442f596bf739df8e563a9a367",
+        "reviewed_head_sha256": "dc541eed354c5343b1ac355763137cda48eae0e0a4c083518c16a7853b667b6e",
+        "raw_bytes_match_head": false,
+        "content_matches_head_after_crlf_to_lf_for_python_only": true,
+        "eol_normalized_sha256": "dc541eed354c5343b1ac355763137cda48eae0e0a4c083518c16a7853b667b6e"
+      }
+    }
+  },
+  "authorship_and_authority": {
+    "role": "Dev technical input for Vaishnavi QA issue #41 and owner classification/coverage handoff.",
+    "qa_disposition": "PENDING",
+    "formal_human_signature": false,
+    "statement": "Prepared through the development review workflow. This artifact does not sign Vaishnavi's report, record human QA acceptance, select a final submission build, or claim a fresh blind classification after published coverage rates."
+  },
+  "review_scope": {
+    "static_only": true,
+    "new_190_method_classification": false,
+    "new_execution_or_coverage_measurement": false,
+    "historical_categories_changed": false,
+    "historical_borderline_flags_changed": false,
+    "historical_conservative76_or_sensitivity100_changed": false,
+    "operations": "Read repository/framework sources and retained evidence; inspect Git identities; compute hashes; parse Python ASTs; write only this supplemental JSON. No tests, Django setup, database operations, commit, push or external posting."
+  },
+  "requirements_basis": {
+    "test_plan": {
+      "path": "Test_Plan_Hostel_Management_System.docx",
+      "section": "5. Test Approach / Strategy",
+      "unit": "Django TestCase for models, forms and views of each module",
+      "integration": "views ↔ ORM ↔ MySQL, for example allocation transaction and constraints",
+      "system": "end-to-end flows from the browser using the test cases in Section 13"
+    },
+    "srs": {
+      "path": "SRS_Hostel_Management_System.docx",
+      "section": "6.4 Software Quality Attributes / Maintainability",
+      "requirement": "Code follows PEP 8 and is split into separate Django apps per module; unit tests cover at least 70% of the application logic."
+    },
+    "interpretation": "The original plan permits Django model/form/view components; it does not impose a universal no-database unit rule. Database fixtures, class names, test base classes, HTTP usage and transaction wrappers alone do not settle the asserted contract. Disclose actual dependencies separately."
+  },
+  "historical_classification": {
+    "path": "docs/part3/evidence/issue42-final/method-classification.json",
+    "sha256": "67a5dc896137bf370f8060ff02b86effbb9218e1177eb85b428346e87242d2f7",
+    "source_head": "9a0f814e403a6f83535e80a68db4150197eba74b",
+    "frozen_utc": "2026-11-06T03:27:27.875258+00:00",
+    "source_scope_verbatim": "All 190 methods discovered by the ordinary Django suite, across 19 test modules. Optional scripts/part3 browser/load/recovery harnesses are separately scoped and do not receive application-unit credit.",
+    "primary_category_counts": {
+      "component-unit": 85,
+      "concurrency": 5,
+      "integration": 87,
+      "system": 4,
+      "tooling": 9
+    },
+    "source_method_count": 190,
+    "borderline_method_count": 24,
+    "primary_component_borderline_count": 9,
+    "selection_core_sha256_as_recorded_in_original": "654020d1bb897ed83e4d2dfc4a265e25d41932af0e6f3778d69e0ddcbbaf5679",
+    "selection_core_hash_note": "Retained original provenance value, not a newly invented serialization of the selection core. The two list hashes below are recomputed with their explicitly documented encoding.",
+    "selections": {
+      "conservative_component_methods": {
+        "count": 76,
+        "exact_ids_reference": "docs/part3/evidence/issue42-final/method-classification.json#/conservative_component_methods",
+        "sha256_sorted_ids_lf_terminated_utf8": "245aba9af3cbac7ea3335019b812061afe69ca7df7c5075b3ece90eb8ece608f",
+        "hash_encoding": "Sort exact method IDs lexicographically, join with LF, append one final LF, encode UTF-8 without BOM; hash those bytes.",
+        "membership_and_original_order_changed": false
+      },
+      "sensitivity_component_methods": {
+        "count": 100,
+        "exact_ids_reference": "docs/part3/evidence/issue42-final/method-classification.json#/sensitivity_component_methods",
+        "sha256_sorted_ids_lf_terminated_utf8": "bd7c5d312765cc07aee7a68b590cfd5bd196e9be15cea2e4832ffc794a208f38",
+        "hash_encoding": "Sort exact method IDs lexicographically, join with LF, append one final LF, encode UTF-8 without BOM; hash those bytes.",
+        "membership_and_original_order_changed": false
+      }
+    },
+    "source_file_sha256_confirmation": {
+      "accounts/test_security.py": {
+        "frozen_sha256": "f122b71615c21f24503e144d1e885a20f458f95a2ce477994efd9d42deb7bcda",
+        "reviewed_worktree_sha256": "f122b71615c21f24503e144d1e885a20f458f95a2ce477994efd9d42deb7bcda",
+        "reviewed_head_sha256": "f122b71615c21f24503e144d1e885a20f458f95a2ce477994efd9d42deb7bcda",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "accounts/tests.py": {
+        "frozen_sha256": "4a78477a901a9bb802985f3ea0028b58a653fdbd58dab75d917d3296c5adfcd0",
+        "reviewed_worktree_sha256": "4a78477a901a9bb802985f3ea0028b58a653fdbd58dab75d917d3296c5adfcd0",
+        "reviewed_head_sha256": "4a78477a901a9bb802985f3ea0028b58a653fdbd58dab75d917d3296c5adfcd0",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "allocations/test_migrations.py": {
+        "frozen_sha256": "f7af22824abe3d453692a52fb984bfafbf5da171e518daefe562a04e9aef191a",
+        "reviewed_worktree_sha256": "f7af22824abe3d453692a52fb984bfafbf5da171e518daefe562a04e9aef191a",
+        "reviewed_head_sha256": "f7af22824abe3d453692a52fb984bfafbf5da171e518daefe562a04e9aef191a",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "allocations/test_workflows.py": {
+        "frozen_sha256": "9fef4dcb92495948a3be05ea255b9261cc3720191de8bc8412c31ef6e087f572",
+        "reviewed_worktree_sha256": "9fef4dcb92495948a3be05ea255b9261cc3720191de8bc8412c31ef6e087f572",
+        "reviewed_head_sha256": "9fef4dcb92495948a3be05ea255b9261cc3720191de8bc8412c31ef6e087f572",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "allocations/tests.py": {
+        "frozen_sha256": "ac759ac5051f4c00628059bca35974b258dafd08b339b765fb74bc947998d24a",
+        "reviewed_worktree_sha256": "ac759ac5051f4c00628059bca35974b258dafd08b339b765fb74bc947998d24a",
+        "reviewed_head_sha256": "ac759ac5051f4c00628059bca35974b258dafd08b339b765fb74bc947998d24a",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "audit/tests.py": {
+        "frozen_sha256": "b22e1e60d698ef9a655cfd126dd6bfe9af86cf59c859203a8766bf27650c67cd",
+        "reviewed_worktree_sha256": "b22e1e60d698ef9a655cfd126dd6bfe9af86cf59c859203a8766bf27650c67cd",
+        "reviewed_head_sha256": "b22e1e60d698ef9a655cfd126dd6bfe9af86cf59c859203a8766bf27650c67cd",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hms/test_forms.py": {
+        "frozen_sha256": "338d3f4b6e9ba4438581a26d867918fa2bdd16eaa959fb4612afc9b5c949dbf5",
+        "reviewed_worktree_sha256": "338d3f4b6e9ba4438581a26d867918fa2bdd16eaa959fb4612afc9b5c949dbf5",
+        "reviewed_head_sha256": "338d3f4b6e9ba4438581a26d867918fa2bdd16eaa959fb4612afc9b5c949dbf5",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hms/test_http.py": {
+        "frozen_sha256": "263eea316721e3f85e46f80987cce6677aea39ccb28fdaefad103d080512ae46",
+        "reviewed_worktree_sha256": "263eea316721e3f85e46f80987cce6677aea39ccb28fdaefad103d080512ae46",
+        "reviewed_head_sha256": "263eea316721e3f85e46f80987cce6677aea39ccb28fdaefad103d080512ae46",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hms/test_navigation.py": {
+        "frozen_sha256": "775e907b363e212dd81e73f0b8631288133bab447507a5fa6d2beeb005ee0230",
+        "reviewed_worktree_sha256": "775e907b363e212dd81e73f0b8631288133bab447507a5fa6d2beeb005ee0230",
+        "reviewed_head_sha256": "775e907b363e212dd81e73f0b8631288133bab447507a5fa6d2beeb005ee0230",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hms/test_responses.py": {
+        "frozen_sha256": "7eed893af8ed9275cca95dbded0c1a93c36c7a65ec0927c7534a958767f2f218",
+        "reviewed_worktree_sha256": "7eed893af8ed9275cca95dbded0c1a93c36c7a65ec0927c7534a958767f2f218",
+        "reviewed_head_sha256": "7eed893af8ed9275cca95dbded0c1a93c36c7a65ec0927c7534a958767f2f218",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hms/test_settings.py": {
+        "frozen_sha256": "2c17be0bb0725550b237c6dc93945c99ea9641a167361e1b25ba76d73de460ec",
+        "reviewed_worktree_sha256": "2c17be0bb0725550b237c6dc93945c99ea9641a167361e1b25ba76d73de460ec",
+        "reviewed_head_sha256": "2c17be0bb0725550b237c6dc93945c99ea9641a167361e1b25ba76d73de460ec",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hms/test_system_journey.py": {
+        "frozen_sha256": "27715a5a400e751a5ca487118f21272e0a21c8ae2e03448cfc5c2bfb5b0de74e",
+        "reviewed_worktree_sha256": "27715a5a400e751a5ca487118f21272e0a21c8ae2e03448cfc5c2bfb5b0de74e",
+        "reviewed_head_sha256": "27715a5a400e751a5ca487118f21272e0a21c8ae2e03448cfc5c2bfb5b0de74e",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hms/tests.py": {
+        "frozen_sha256": "5ce0cbb8dbaf935afd133b98124586de6e64a08f3e0d7056b56592ede1750c21",
+        "reviewed_worktree_sha256": "5ce0cbb8dbaf935afd133b98124586de6e64a08f3e0d7056b56592ede1750c21",
+        "reviewed_head_sha256": "5ce0cbb8dbaf935afd133b98124586de6e64a08f3e0d7056b56592ede1750c21",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "hostels/tests.py": {
+        "frozen_sha256": "9a327e0bb6561b92e4ea46a4dbffaf0a880dccee2bed29f6d210c81ea6044635",
+        "reviewed_worktree_sha256": "9a327e0bb6561b92e4ea46a4dbffaf0a880dccee2bed29f6d210c81ea6044635",
+        "reviewed_head_sha256": "9a327e0bb6561b92e4ea46a4dbffaf0a880dccee2bed29f6d210c81ea6044635",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "payments/test_workflows.py": {
+        "frozen_sha256": "f8c05aa3305c10d7b4c0d1a9fa400dcf8a25ea7c6ec8cb4810cbc1deb1445a40",
+        "reviewed_worktree_sha256": "f8c05aa3305c10d7b4c0d1a9fa400dcf8a25ea7c6ec8cb4810cbc1deb1445a40",
+        "reviewed_head_sha256": "f8c05aa3305c10d7b4c0d1a9fa400dcf8a25ea7c6ec8cb4810cbc1deb1445a40",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "reports/test_reports.py": {
+        "frozen_sha256": "c8cc1082a255c0628d59154fd009a983e9b6c6d4c62a5fd75629ab6c35a16b01",
+        "reviewed_worktree_sha256": "c8cc1082a255c0628d59154fd009a983e9b6c6d4c62a5fd75629ab6c35a16b01",
+        "reviewed_head_sha256": "c8cc1082a255c0628d59154fd009a983e9b6c6d4c62a5fd75629ab6c35a16b01",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "students/test_self_service.py": {
+        "frozen_sha256": "9d4bc9d01e25b917ae67f2f24f6d8d1e0bf15df9462cb969c555f966bd5d0f02",
+        "reviewed_worktree_sha256": "9d4bc9d01e25b917ae67f2f24f6d8d1e0bf15df9462cb969c555f966bd5d0f02",
+        "reviewed_head_sha256": "9d4bc9d01e25b917ae67f2f24f6d8d1e0bf15df9462cb969c555f966bd5d0f02",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "students/tests.py": {
+        "frozen_sha256": "d1d7f5604014f05e239fceb5a6a1149ee9e8485dd11cbecbff3d99170ecba62d",
+        "reviewed_worktree_sha256": "d1d7f5604014f05e239fceb5a6a1149ee9e8485dd11cbecbff3d99170ecba62d",
+        "reviewed_head_sha256": "d1d7f5604014f05e239fceb5a6a1149ee9e8485dd11cbecbff3d99170ecba62d",
+        "matches_frozen_and_reviewed_head": true
+      },
+      "tests/test_checks.py": {
+        "frozen_sha256": "658fdfd3302da9566510fd29c1456ab621287ac46a11ff458e64ba3282a67b9b",
+        "reviewed_worktree_sha256": "658fdfd3302da9566510fd29c1456ab621287ac46a11ff458e64ba3282a67b9b",
+        "reviewed_head_sha256": "658fdfd3302da9566510fd29c1456ab621287ac46a11ff458e64ba3282a67b9b",
+        "matches_frozen_and_reviewed_head": true
+      }
+    }
+  },
+  "supplemental_scope_tags": {
+    "isolated_application_helper": "A focused helper contract exercised without database access; the exact HMS group below uses SimpleTestCase with no database opt-in.",
+    "model_or_form_and_database": "Direct model/form component contract with persistent fixtures, ORM validation or query evaluation; eligible for the original broad component interpretation, with dependencies disclosed.",
+    "view_and_database": "A focused route/form/view contract using Django request, authentication, ORM or template machinery; distinguish its asserted contract from all executed wiring.",
+    "integration": "An asserted persisted lifecycle, cross-component business reconciliation, audit integration, actual database constraint or rollback coordination. Existing historical labels are retained.",
+    "concurrency": "Parallel database operations with a race/locking outcome asserted; preserved as a separate historical category.",
+    "system": "Broad cross-module navigation/journey; disclose Django-client surrogate versus actual browser execution.",
+    "tooling": "Verification-runner and deployment/configuration checks outside the application-unit numerator.",
+    "usage": "These are explanatory tags for this targeted supplement, not a replacement classification of all 190 methods or an accepted unit selection."
+  },
+  "isolated_hms_helper_group": {
+    "count": 16,
+    "method_ids": [
+      "hms.test_forms.DateFieldTests.test_dates_text_and_optional_empty_values_keep_standard_behavior",
+      "hms.test_forms.DateFieldTests.test_unexpected_json_types_produce_validation_errors",
+      "hms.test_forms.ModelChoiceFieldTests.test_non_integer_json_keys_are_rejected_without_a_query",
+      "hms.test_http.RequestDataTests.test_container_field_values_raise_validation_error",
+      "hms.test_http.RequestDataTests.test_deeply_nested_input_raises_validation_error",
+      "hms.test_http.RequestDataTests.test_form_encoded_data_is_returned_unchanged",
+      "hms.test_http.RequestDataTests.test_json_object_preserves_finite_scalar_values",
+      "hms.test_http.RequestDataTests.test_malformed_json_and_invalid_utf8_raise_validation_error",
+      "hms.test_http.RequestDataTests.test_non_object_json_raises_validation_error",
+      "hms.test_http.RequestDataTests.test_nonfinite_numbers_are_rejected_including_exponent_overflow",
+      "hms.test_http.RequestDataTests.test_parser_recursion_error_becomes_validation_error",
+      "hms.test_http.RequestDataTests.test_unpaired_unicode_surrogates_raise_validation_error",
+      "hms.test_http.RequestDataTests.test_valid_unicode_strings_and_surrogate_pairs_are_preserved",
+      "hms.test_responses.FormErrorResponseTests.test_invalid_choices_require_an_explicit_reference_field_to_return_404",
+      "hms.test_responses.FormErrorResponseTests.test_invalid_reference_preserves_field_errors_and_returns_not_found",
+      "hms.test_responses.FormErrorResponseTests.test_other_invalid_choices_and_required_references_remain_bad_requests"
+    ],
+    "source_paths": [
+      "hms/test_forms.py",
+      "hms/test_http.py",
+      "hms/test_responses.py"
+    ],
+    "static_basis": "Each relevant top-level test class directly subclasses django.test.SimpleTestCase and has no databases opt-in; methods invoke parser, form-field or response helpers. Source/module totals are three form-field, ten request-parser and three response-helper methods.",
+    "historical_primary_category": "component-unit",
+    "new_test_pass_or_coverage_claim": false,
+    "limit": "Identifies a concrete isolated helper group; it does not assert that these are the only possible isolated units in the full repository or that all 85 historical components are isolated."
+  },
+  "rationale_corrections": [
+    {
+      "method_id": "accounts.tests.AuthenticationTests.test_admin_can_update_account",
+      "path": "accounts/tests.py",
+      "line": 241,
+      "historical_primary_category": "integration",
+      "historical_borderline": false,
+      "historical_rationale_verbatim": "Successful account form/view update persists user data through an audited transaction.",
+      "supplemental_asserted_scope_rationale": "Successful account-update request checks the redirect and persisted first_name and role. The method does not assert AuditEvent contents or transaction rollback.",
+      "execution_disclosure": "accounts/views.py update_user is transaction.atomic and calls record_event after a changed form saves. That executed audit path differs from audit behavior explicitly asserted by this method.",
+      "supplemental_scope_tag": "view-and-database",
+      "new_qa_boundary_candidate": true,
+      "historical_category_changed": false
+    },
+    {
+      "method_id": "students.tests.StudentManagementViewTests.test_warden_can_register_student",
+      "path": "students/tests.py",
+      "line": 177,
+      "historical_primary_category": "integration",
+      "historical_borderline": false,
+      "historical_rationale_verbatim": "Successful staff HTTP registration persists a student through the audited form/view transaction.",
+      "supplemental_asserted_scope_rationale": "A force-authenticated warden submits student registration; assertions check the redirect and existence of the created Student. The method does not assert AuditEvent contents or transaction rollback.",
+      "execution_disclosure": "students/views.py student_create saves the Student and records an AuditEvent inside transaction.atomic. Auditing executes on the successful path but is not explicitly asserted here.",
+      "supplemental_scope_tag": "view-and-database",
+      "new_qa_boundary_candidate": true,
+      "historical_category_changed": false
+    },
+    {
+      "method_id": "accounts.tests.AuthenticationTests.test_admin_can_create_and_deactivate_accounts",
+      "path": "accounts/tests.py",
+      "line": 165,
+      "historical_primary_category": "integration",
+      "historical_borderline": false,
+      "historical_rationale_verbatim": "Two successful management writes perform hashed-password account creation and deactivation through audited view transactions.",
+      "supplemental_asserted_scope_rationale": "Successful account creation checks the redirect and hashed-password verification; a subsequent deactivation request is followed by a persisted is_active assertion. AuditEvent contents and rollback are not asserted.",
+      "execution_disclosure": "accounts/views.py user_management and deactivate_user execute audited transactions. The creation/deactivation lifecycle supports retaining the historical integration interpretation without describing audit behavior as asserted.",
+      "supplemental_scope_tag": "persisted-account-lifecycle",
+      "new_qa_boundary_candidate": false,
+      "historical_category_changed": false
+    }
+  ],
+  "new_qa_boundary_candidates": [
+    {
+      "method_id": "accounts.tests.AuthenticationTests.test_admin_can_update_account",
+      "path": "accounts/tests.py",
+      "line": 241,
+      "historical_primary_category": "integration",
+      "historical_borderline": false,
+      "candidate_interpretation": "A coherent view-and-database component under the original Test Plan.",
+      "reason_for_review": "The historical integration rationale relies on executed audited transaction wiring; this method explicitly asserts only the focused domain write/redirect contract.",
+      "recommended_qa_action": "Record whether the plan's broad view-component boundary admits this method; assess its actual assertions and dependencies consistently with other view components. Keep historical integration and frozen selection membership until a separately versioned QA decision.",
+      "qa_disposition": "PENDING",
+      "new_unit_credit_awarded": false
+    },
+    {
+      "method_id": "students.tests.StudentManagementViewTests.test_warden_can_register_student",
+      "path": "students/tests.py",
+      "line": 177,
+      "historical_primary_category": "integration",
+      "historical_borderline": false,
+      "candidate_interpretation": "A coherent view-and-database component under the original Test Plan.",
+      "reason_for_review": "The historical integration rationale relies on executed audited transaction wiring; this method explicitly asserts only the focused domain write/redirect contract.",
+      "recommended_qa_action": "Record whether the plan's broad view-component boundary admits this method; assess its actual assertions and dependencies consistently with other view components. Keep historical integration and frozen selection membership until a separately versioned QA decision.",
+      "qa_disposition": "PENDING",
+      "new_unit_credit_awarded": false
+    }
+  ],
+  "other_execution_disclosures": [
+    {
+      "topic": "Student model deactivation consults Allocation even without an allocation fixture",
+      "methods": [
+        {
+          "method_id": "students.tests.StudentModelTests.test_student_can_be_deactivated_without_deleting_record",
+          "path": "students/tests.py",
+          "line": 58,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "Student.save locks the existing Student row and checks for an active Allocation before saving inactive status. No active-allocation fixture does not establish absence of allocation interaction.",
+      "supplemental_scope_tag": "model-and-database-with-allocation-guard",
+      "recommendation": "Retain the historical component proposal as a coherent Student model contract; disclose the allocation query. This is not a new QA boundary candidate or a DB-free unit claim.",
+      "implementation_sources": [
+        "students/models.py"
+      ]
+    },
+    {
+      "topic": "Room and owned Bed synchronization uses transactions and allocation-history relationships",
+      "methods": [
+        {
+          "method_id": "hostels.tests.HostelModelBehaviorTests.test_room_creation_automatically_creates_beds",
+          "path": "hostels/tests.py",
+          "line": 208,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hostels.tests.HostelModelBehaviorTests.test_renaming_room_updates_existing_bed_labels",
+          "path": "hostels/tests.py",
+          "line": 274,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hostels.tests.HostelModelBehaviorTests.test_reducing_capacity_removes_unallocated_beds",
+          "path": "hostels/tests.py",
+          "line": 292,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hostels.tests.HostelModelBehaviorTests.test_queryset_update_rejects_capacity_and_room_number",
+          "path": "hostels/tests.py",
+          "line": 334,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hostels.tests.HostelModelBehaviorTests.test_bulk_update_rejects_capacity_and_room_number",
+          "path": "hostels/tests.py",
+          "line": 363,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "These methods persist/query Room and Bed rows. Room.save is atomic and synchronizes its owned Bed collection; its capacity-reduction path excludes beds with allocation history, even where the test creates no allocation fixture.",
+      "supplemental_scope_tag": "hostels-model-aggregate-and-database",
+      "recommendation": "Retain the historical hostels aggregate interpretation. State database/relationship execution facts; transaction use alone differs from an asserted rollback or concurrency contract.",
+      "implementation_sources": [
+        "hostels/models.py"
+      ]
+    },
+    {
+      "topic": "The student account picker asserts a real relational queryset",
+      "methods": [
+        {
+          "method_id": "students.test_self_service.StudentSelfServiceTests.test_student_account_picker_excludes_staff_and_accounts_linked_elsewhere",
+          "path": "students/test_self_service.py",
+          "line": 130,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "StudentForm account choices are evaluated through User querysets and the linked student_profile relationship for create/edit fixtures.",
+      "supplemental_scope_tag": "form-and-database-with-accounts-students-relation",
+      "recommendation": "Retain the coherent form-component proposal under the original plan; do not describe it as isolated form logic.",
+      "implementation_sources": [
+        "students/forms.py"
+      ]
+    },
+    {
+      "topic": "Date-presentation method contexts include inline service fixture execution",
+      "methods": [
+        {
+          "method_id": "students.test_self_service.StudentSelfServiceTests.test_student_dates_are_dd_mm_yyyy_and_keep_vacated_fallback",
+          "path": "students/test_self_service.py",
+          "line": 150,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "The method calls allocate, release, allocate and record_payment before requesting the self-service page and asserting rendered dates and the vacated-date fallback.",
+      "supplemental_scope_tag": "view-and-database-presentation-with-inline-service-fixtures",
+      "recommendation": "Retain the presentation-component proposal. Service calls used as fixtures do not alone settle the asserted scope; their executed application lines remain inside the method context and cannot all be attributed to date assertions.",
+      "implementation_sources": [
+        "students/test_self_service.py"
+      ]
+    },
+    {
+      "topic": "Unsaved Model.full_clean is not evidence of DB-free validation",
+      "methods": [
+        {
+          "method_id": "students.tests.StudentModelTests.test_student_year_must_be_between_one_and_five",
+          "path": "students/tests.py",
+          "line": 67,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "students.tests.StudentModelTests.test_mobile_must_have_ten_digits",
+          "path": "students/tests.py",
+          "line": 72,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hostels.tests.HostelModelBehaviorTests.test_room_capacity_cannot_exceed_four",
+          "path": "hostels/tests.py",
+          "line": 227,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "These methods call full model validation. The local Django Model.full_clean API defaults validate_unique=True and validate_constraints=True and continues eligible checks after field errors. An unsaved model or a field ValidationError does not establish that database validation was forbidden.",
+      "supplemental_scope_tag": "direct-model-validation-component-with-database-validation-possible",
+      "recommendation": "Retain the direct model-component interpretation. Do not infer database-free execution or an application coverage contribution from the test names.",
+      "framework_reference": {
+        "path": ".venv/Lib/site-packages/django/db/models/base.py",
+        "line": 1634,
+        "sha256": "ce0ede738855ed6477e5dd5b5d4e1d1a083271d51df7c18d8c497480f350dcfd",
+        "provenance": "Local framework source inspected read-only; not part of the reviewed Git tree. No framework code was imported or executed for this review."
+      }
+    },
+    {
+      "topic": "Account form invocation is not automatically isolated",
+      "methods": [
+        {
+          "method_id": "accounts.test_security.SessionAndLockoutTests.test_superuser_role_and_password_similarity_validation",
+          "path": "accounts/test_security.py",
+          "line": 152,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "students.tests.StudentModelTests.test_duplicate_student_id_form_shows_exact_error_message",
+          "path": "students/tests.py",
+          "line": 47,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "These direct ModelForm checks use real model instances or existing rows; form/model uniqueness checks can consult the database. StudentForm explicitly queries existing student IDs.",
+      "supplemental_scope_tag": "direct-form-component-with-database-validation",
+      "recommendation": "Retain the form-component proposal; distinguish it from the isolated HMS helper group.",
+      "implementation_sources": [
+        "accounts/forms.py",
+        "students/forms.py"
+      ]
+    },
+    {
+      "topic": "Rejected writes and audit non-effects already have disclosed alternatives",
+      "methods": [
+        {
+          "method_id": "students.tests.StudentManagementViewTests.test_empty_student_submissions_show_required_errors_without_saving",
+          "path": "students/tests.py",
+          "line": 148,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": true
+        },
+        {
+          "method_id": "hostels.tests.HostelManagementViewTests.test_empty_management_submissions_show_required_errors_without_saving",
+          "path": "hostels/tests.py",
+          "line": 81,
+          "historical_primary_category": "component-unit",
+          "historical_borderline": true
+        },
+        {
+          "method_id": "accounts.tests.AuthenticationTests.test_invalid_password_settings_do_not_change_password_or_audit",
+          "path": "accounts/tests.py",
+          "line": 338,
+          "historical_primary_category": "integration",
+          "historical_borderline": true
+        }
+      ],
+      "fact": "These methods assert rejection/validation behavior and stored state or absence of audit updates. The first two are historical borderline primary components; the password-settings method is historical borderline integration.",
+      "supplemental_scope_tag": "rejected-view-write-with-persisted-non-effect-assertions",
+      "recommendation": "Keep all historical flags, categories and selections. Apply one explicit QA boundary rule to these alternatives; no new borderline flag or selection is introduced here."
+    },
+    {
+      "topic": "Application retention and audited admin persistence remain application checks",
+      "methods": [
+        {
+          "method_id": "audit.tests.AuditTests.test_retention_command_preserves_a_full_year_and_supports_dry_run",
+          "path": "audit/tests.py",
+          "line": 204,
+          "historical_primary_category": "integration",
+          "historical_borderline": true
+        },
+        {
+          "method_id": "audit.tests.AuditedAdminMixinTests.test_add_update_and_deactivation_events_are_recorded_for_admin_actor",
+          "path": "audit/tests.py",
+          "line": 280,
+          "historical_primary_category": "integration",
+          "historical_borderline": true
+        }
+      ],
+      "fact": "Retention asserts actual eligible/retained AuditEvent rows and dry-run behavior. The admin-mixin method stubs the admin parent but persists User/Student objects and asserts actor/action AuditEvent rows.",
+      "supplemental_scope_tag": "application-persistence-integration-with-existing-component-alternative",
+      "recommendation": "Retain historical integration and existing borderline alternatives. A management-command entry point does not turn retention into tooling, and a stubbed parent does not remove the real cross-component persistence asserted by the mixin method."
+    },
+    {
+      "topic": "HMS system labels describe Django-client surrogates",
+      "methods": [
+        {
+          "method_id": "hms.test_navigation.DashboardNavigationSmokeTests.test_admin_dashboard_navigation_pages_load",
+          "path": "hms/test_navigation.py",
+          "line": 29,
+          "historical_primary_category": "system",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hms.test_navigation.DashboardNavigationSmokeTests.test_student_dashboard_navigation_and_staff_route_denials",
+          "path": "hms/test_navigation.py",
+          "line": 60,
+          "historical_primary_category": "system",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hms.test_navigation.DashboardNavigationSmokeTests.test_warden_dashboard_navigation_pages_load",
+          "path": "hms/test_navigation.py",
+          "line": 45,
+          "historical_primary_category": "system",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hms.test_system_journey.StudentHostelJourneyTests.test_staff_allocation_payment_student_view_and_reports_work_together",
+          "path": "hms/test_system_journey.py",
+          "line": 42,
+          "historical_primary_category": "system",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "The three dashboard navigation methods and the allocation/payment/student/report journey use Django test clients; they do not launch a browser.",
+      "supplemental_scope_tag": "system-smoke-or-journey-django-client-surrogate",
+      "recommendation": "Retain the four historical system categories. Cite separately scoped browser evidence for the original plan browser-system requirement."
+    },
+    {
+      "topic": "Database environment checks and tooling are not isolated application units",
+      "methods": [
+        {
+          "method_id": "hms.tests.DatabaseConfigurationTests.test_all_tables_use_innodb",
+          "path": "hms/tests.py",
+          "line": 33,
+          "historical_primary_category": "integration",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hms.tests.DatabaseConfigurationTests.test_connects_to_mysql_8",
+          "path": "hms/tests.py",
+          "line": 16,
+          "historical_primary_category": "integration",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hms.tests.DatabaseConfigurationTests.test_date_lookups_use_india_dates",
+          "path": "hms/tests.py",
+          "line": 41,
+          "historical_primary_category": "integration",
+          "historical_borderline": false
+        },
+        {
+          "method_id": "hms.tests.DatabaseConfigurationTests.test_sql_mode_keeps_mysql_8_safety_modes",
+          "path": "hms/tests.py",
+          "line": 21,
+          "historical_primary_category": "integration",
+          "historical_borderline": false
+        }
+      ],
+      "fact": "The four DatabaseConfigurationTests inspect the connected MySQL backend, session SQL modes, storage engines or ORM timezone lookup. The frozen tooling total separately consists of eight verification-runner methods plus one static-files configuration method.",
+      "supplemental_scope_tag": "database-and-environment-integration",
+      "recommendation": "Retain historical categories; passing infrastructure/configuration checks alone establish no unit application-logic coverage. The pure static-files test remains tooling despite using SimpleTestCase."
+    }
+  ],
+  "unit70": {
+    "status": "UNPROVEN",
+    "new_measurement": false,
+    "existing_attribution_reference": "docs/part3/evidence/issue42-main/attribution.json",
+    "existing_attribution_sha256": "37dd7d37e35f3efbb1388eababc1a65a7631c70b7dbbe80b90b31c113b41d8a5",
+    "existing_attribution_selected_methods_without_measured_application_context": [
+      "hostels.tests.HostelModelBehaviorTests.test_create_hostel",
+      "students.tests.StudentModelTests.test_mobile_must_have_ten_digits",
+      "students.tests.StudentModelTests.test_student_year_must_be_between_one_and_five"
+    ],
+    "limits": [
+      "The 70% requirement concerns reviewed application logic, not the percentage or number of methods labeled unit/component.",
+      "Published full-file application coverage remains a proxy until QA/owners agree the application-logic denominator and attribution method.",
+      "Startup-inclusive standalone coverage mixes imports, declarations, shared fixtures, framework/database setup and teardown; it is not all credit for unit assertions.",
+      "Method contexts can include inline service/fixture work and import-order effects. Context execution does not establish which assertions validate every executed line.",
+      "Method and empty-context coverage overlap; do not add their counts without subtracting overlap.",
+      "Methods without measured application contexts retain their historical JUnit results but receive no inferred application coverage credit.",
+      "Neither existing mixed-suite rates nor the proposed standalone selection establish formal unit70 PASS or FAIL. No new unit passes, denominator change or coverage credit is claimed here."
+    ]
+  },
+  "qa_handoff": {
+    "recommended_matrix_columns": [
+      "method_id",
+      "historical_primary_category",
+      "asserted_contract",
+      "actual_execution_dependencies",
+      "supplemental_scope_tag",
+      "boundary_recommendation",
+      "qa_disposition"
+    ],
+    "action": "Retain the coherent Django component interpretation allowed by the original plan, disclose database/request execution and inline fixtures, and decide the two new candidates plus existing historical borderlines using one recorded boundary rule.",
+    "later_changes": "If QA accepts a different method boundary, publish a separately versioned decision and exact selected IDs with source/run/environment provenance. Do not overwrite the frozen proposal or reuse its measured subsets as measurements of a changed selection."
+  },
+  "static_verification": {
+    "performed_utc": "2026-11-08T09:39:10.278471+00:00",
+    "python_ast_only_no_imports": true,
+    "tracked_non_scripts_test_filename_candidates": [
+      "accounts/test_security.py",
+      "accounts/tests.py",
+      "allocations/test_migrations.py",
+      "allocations/test_workflows.py",
+      "allocations/tests.py",
+      "audit/tests.py",
+      "hms/test_forms.py",
+      "hms/test_http.py",
+      "hms/test_navigation.py",
+      "hms/test_responses.py",
+      "hms/test_settings.py",
+      "hms/test_system_journey.py",
+      "hms/tests.py",
+      "hostels/tests.py",
+      "payments/test_workflows.py",
+      "reports/test_reports.py",
+      "students/test_self_service.py",
+      "students/tests.py",
+      "tests/test_checks.py"
+    ],
+    "candidate_filename_rule": "Tracked Python files whose basename starts with test, excluding scripts/; all 19 match the original test-source path set. This is a static source check, not Django runtime discovery.",
+    "candidate_path_set_matches_frozen19": true,
+    "frozen_source_hashes_checked": 19,
+    "source_hash_mismatches": [],
+    "reviewed_head_test_source_hash_mismatches": [],
+    "supporting_repository_source_count": 8,
+    "supporting_sources_with_eol_only_raw_byte_differences": [
+      "students/models.py",
+      "hostels/models.py"
+    ],
+    "ast_identity_rule": "Top-level class direct test_ methods form module.class.method IDs; parse all 19 frozen source files without importing project/framework code.",
+    "ast_method_count": 190,
+    "ast_unique_method_count": 190,
+    "frozen_method_count": 190,
+    "ast_only_method_ids": [],
+    "frozen_only_method_ids": [],
+    "category_counts_recomputed_match_original": true,
+    "exact_76_and_100_ids_match_existing_attribution": true,
+    "isolated_hms_helper_count_checked": 16,
+    "new_qa_boundary_candidate_count_checked": 2,
+    "rationale_correction_count_checked": 3,
+    "runtime_results_inferred": false
+  }
+}
