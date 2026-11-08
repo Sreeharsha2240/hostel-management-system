@@ -1,0 +1,19 @@
+{
+  "scope": "Controlled simulation of incidental Linux platform subprocess; no database or real external operation",
+  "results": [
+    {
+      "stage": "before",
+      "tests_run": 1,
+      "failures": 1,
+      "errors": 0,
+      "success": false
+    },
+    {
+      "stage": "after",
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 0,
+      "success": true
+    }
+  ]
+}

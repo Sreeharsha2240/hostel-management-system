@@ -1,0 +1,308 @@
+{
+  "case_id": "TC-REG-S2-14",
+  "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_14_report_boundaries",
+  "started_at": "2026-11-08T07:53:53.324770+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1",
+      "expected": "Empty filtered payment rows; zero-bed occupancy 0.00 percent without division error",
+      "actual": {
+        "payment_rows": [],
+        "zero_bed_csv": {
+          "Hostel Name": "Empty hostel",
+          "Total Beds": "0",
+          "Occupied Beds": "0",
+          "Available Beds": "0",
+          "Beds Under Maintenance": "0",
+          "Occupancy %": "0.00",
+          "Generated On": "08-11-2026 13:23:53 IST"
+        }
+      }
+    },
+    {
+      "step": "2.occupancy-report",
+      "expected": "Malformed, zero, negative, fractional, non-ASCII and extreme hostel IDs return 400",
+      "actual": {
+        "results": [
+          {
+            "vector": 1,
+            "length": 3,
+            "prefix": "bad",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 2,
+            "length": 2,
+            "prefix": "-1",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 3,
+            "length": 1,
+            "prefix": "0",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 4,
+            "length": 3,
+            "prefix": "1.5",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 5,
+            "length": 100,
+            "prefix": "99999999999999999999",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 6,
+            "length": 5000,
+            "prefix": "99999999999999999999",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 7,
+            "length": 5000,
+            "prefix": "00000000000000000000",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 8,
+            "length": 1,
+            "prefix": "\u0661",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 9,
+            "length": 19,
+            "prefix": "9223372036854775808",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "step": "3.occupancy-report",
+      "expected": "Absent well-formed hostel 404; unsupported format 400; POST 405 with Allow GET",
+      "actual": {
+        "missing": {
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Record not found."
+          }
+        },
+        "missing_status": 404,
+        "format": {
+          "error": {
+            "code": "VALIDATION_ERROR",
+            "message": "Choose html, json or csv as the report format."
+          }
+        },
+        "format_status": 400,
+        "post_status": 405,
+        "allow": "GET"
+      }
+    },
+    {
+      "step": "4.occupancy-report",
+      "expected": "5000 leading zeros select exactly the known hostel",
+      "actual": {
+        "leading_zero_count": 5000,
+        "rows": [
+          {
+            "hostel_id": 1,
+            "hostel": "Boys 101",
+            "total_beds": 4,
+            "occupied_beds": 1,
+            "available_beds": 3,
+            "maintenance_beds": 0,
+            "occupancy_percent": "25.00"
+          }
+        ],
+        "matches_canonical_filter": true
+      }
+    },
+    {
+      "step": "2.payment-status-report",
+      "expected": "Malformed, zero, negative, fractional, non-ASCII and extreme hostel IDs return 400",
+      "actual": {
+        "results": [
+          {
+            "vector": 1,
+            "length": 3,
+            "prefix": "bad",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 2,
+            "length": 2,
+            "prefix": "-1",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 3,
+            "length": 1,
+            "prefix": "0",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 4,
+            "length": 3,
+            "prefix": "1.5",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 5,
+            "length": 100,
+            "prefix": "99999999999999999999",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 6,
+            "length": 5000,
+            "prefix": "99999999999999999999",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 7,
+            "length": 5000,
+            "prefix": "00000000000000000000",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 8,
+            "length": 1,
+            "prefix": "\u0661",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          },
+          {
+            "vector": 9,
+            "length": 19,
+            "prefix": "9223372036854775808",
+            "status": 400,
+            "error": {
+              "code": "VALIDATION_ERROR",
+              "message": "Choose a valid hostel ID."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "step": "3.payment-status-report",
+      "expected": "Absent well-formed hostel 404; unsupported format 400; POST 405 with Allow GET",
+      "actual": {
+        "missing": {
+          "error": {
+            "code": "NOT_FOUND",
+            "message": "Record not found."
+          }
+        },
+        "missing_status": 404,
+        "format": {
+          "error": {
+            "code": "VALIDATION_ERROR",
+            "message": "Choose html, json or csv as the report format."
+          }
+        },
+        "format_status": 400,
+        "post_status": 405,
+        "allow": "GET"
+      }
+    },
+    {
+      "step": "4.payment-status-report",
+      "expected": "5000 leading zeros select exactly the known hostel",
+      "actual": {
+        "leading_zero_count": 5000,
+        "rows": [
+          {
+            "student_id": "PES1UG24CS001",
+            "student_name": "Sample Student 1",
+            "hostel_id": 1,
+            "hostel": "Boys 101",
+            "room": "101",
+            "bed": "101-A",
+            "fee": "1000.00",
+            "paid": "0.00",
+            "due": "1000.00",
+            "status": "Pending",
+            "fee_configured": true
+          }
+        ],
+        "matches_canonical_filter": true
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:53.600465+00:00"
+}

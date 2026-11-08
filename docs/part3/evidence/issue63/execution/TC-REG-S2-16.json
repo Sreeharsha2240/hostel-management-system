@@ -1,0 +1,1350 @@
+{
+  "case_id": "TC-REG-S2-16",
+  "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_16_typed_dates_references_and_contracts",
+  "started_at": "2026-11-08T07:53:55.462140+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1.allocation-list.type-1",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "allocated_on": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-1",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "vacate_date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-1",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-1",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-2",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "allocated_on": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-2",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "vacate_date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-2",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-2",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-3",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "allocated_on": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-3",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "vacate_date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-3",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-3",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-4",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "allocated_on": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-4",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "vacate_date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-4",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-4",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-5",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "allocated_on": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-5",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "vacate_date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-5",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-5",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "Enter a valid date.",
+                "code": "invalid"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-6",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-6",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-6",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-6",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-7",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-7",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-7",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-7",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-8",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-list.type-9",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.allocation-release.type-9",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-list.type-9",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "1.payment-adjust.type-9",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Enter a valid JSON object."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-list.type-1",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-list.type-2",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-list.type-3",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-list.type-4",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-transfer.type-1",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/transfer/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "new_bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-transfer.type-2",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/transfer/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "new_bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-transfer.type-3",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/transfer/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "new_bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "2.allocation-transfer.type-4",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/transfer/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "new_bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.missing-bed",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "bed": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.missing-new-bed",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/transfer/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "new_bed": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.unknown-bed",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.unknown-new-bed",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/transfer/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "new_bed": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.form-missing-student-allocation",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/create/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "student": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.form-missing-bed",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/create/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "bed": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.form-missing-student-payment",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/create/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "student": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.form-unknown-student-allocation",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "student": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.form-unknown-student-payment",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "student": [
+              {
+                "message": "Select a valid choice. That choice is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.required-release-date",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/1/release/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "vacate_date": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.required-payment-date",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/create/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.required-adjustment-date",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/R00000000001/adjust/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "date": [
+              {
+                "message": "This field is required.",
+                "code": "required"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.non-reference-choice",
+      "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/create/",
+        "status": 400,
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "Please correct the highlighted fields.",
+          "fields": {
+            "mode": [
+              {
+                "message": "Select a valid choice. Card is not one of the available choices.",
+                "code": "invalid_choice"
+              }
+            ]
+          }
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.allocation-create.student-omitted",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Student not found."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.allocation-create.student-unknown",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Student not found."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.allocation-create.student-boolean",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/allocations/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Student not found."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.payment-create.student-omitted",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Student not found."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.payment-create.student-unknown",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Student not found."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "3.payment-create.student-boolean",
+      "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+      "actual": {
+        "route": "/payments/create/",
+        "status": 404,
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Student not found."
+        },
+        "state_unchanged": true,
+        "state_before_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30",
+        "state_after_sha256": "8ab492875db3072aeec8bcc5a8d3c3760fdf4ca750f46e79e2fd2f1009e84a30"
+      }
+    },
+    {
+      "step": "4",
+      "expected": "Every rejected vector preserves allocations, Bed flags, history, all payments/receipts, receipt counter, student/hostel/room values and audits",
+      "actual": {
+        "snapshot_models": [
+          "students.student",
+          "hostels.hostel",
+          "hostels.room",
+          "hostels.bed",
+          "allocations.allocation",
+          "payments.payment",
+          "payments.receiptsequence",
+          "audit.auditevent"
+        ],
+        "snapshot_comparison": "full ordered rows before and after every rejected request"
+      }
+    },
+    {
+      "step": "3.optional-date-controls",
+      "expected": "Allocation allocated_on is optional; omitted, null and empty dates use today successfully",
+      "actual": {
+        "controls": [
+          {
+            "optional_date": "omitted",
+            "status": 201,
+            "allocation": {
+              "allocation_id": 2,
+              "student_id": "PES1UG24CS002",
+              "bed_id": 2,
+              "bed": "101-B",
+              "hostel": "Boys 101",
+              "status": "Active",
+              "allocated_on": "2026-11-08",
+              "vacated_on": null
+            }
+          },
+          {
+            "optional_date": null,
+            "status": 201,
+            "allocation": {
+              "allocation_id": 3,
+              "student_id": "PES1UG24CS003",
+              "bed_id": 3,
+              "bed": "101-C",
+              "hostel": "Boys 101",
+              "status": "Active",
+              "allocated_on": "2026-11-08",
+              "vacated_on": null
+            }
+          },
+          {
+            "optional_date": "",
+            "status": 201,
+            "allocation": {
+              "allocation_id": 4,
+              "student_id": "PES1UG24CS004",
+              "bed_id": 4,
+              "bed": "101-D",
+              "hostel": "Boys 101",
+              "status": "Active",
+              "allocated_on": "2026-11-08",
+              "vacated_on": null
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:56.590252+00:00"
+}

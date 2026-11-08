@@ -1,0 +1,180 @@
+{
+  "started_at": "2026-11-08T07:54:04.634678+00:00",
+  "commit": "6636098cb728aa17c2abf5e42c358a5d400261e7",
+  "git_dirty": false,
+  "python": "3.14.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "steps": [
+    {
+      "name": "lint",
+      "arguments": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 0.094
+    },
+    {
+      "name": "format",
+      "arguments": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 0.096
+    },
+    {
+      "name": "dependencies",
+      "arguments": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.434
+    },
+    {
+      "name": "django-checks",
+      "arguments": [
+        "manage.py",
+        "check",
+        "--database",
+        "default"
+      ],
+      "exit_code": 0,
+      "seconds": 0.865
+    },
+    {
+      "name": "applied-migrations",
+      "arguments": [
+        "manage.py",
+        "migrate",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.971
+    },
+    {
+      "name": "migration-consistency",
+      "arguments": [
+        "manage.py",
+        "makemigrations",
+        "--check",
+        "--dry-run"
+      ],
+      "exit_code": 0,
+      "seconds": 1.001
+    },
+    {
+      "name": "staticfiles",
+      "arguments": [
+        "manage.py",
+        "collectstatic",
+        "--dry-run",
+        "--noinput",
+        "--verbosity",
+        "0"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7
+    },
+    {
+      "name": "test-results",
+      "arguments": [
+        "-m",
+        "coverage",
+        "run",
+        "manage.py",
+        "test",
+        "--noinput",
+        "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner"
+      ],
+      "exit_code": 0,
+      "seconds": 39.839
+    },
+    {
+      "name": "coverage",
+      "arguments": [
+        "-m",
+        "coverage",
+        "report"
+      ],
+      "exit_code": 0,
+      "seconds": 0.397
+    },
+    {
+      "name": "coverage-xml",
+      "arguments": [
+        "scripts/run_checks.py",
+        "--coverage-xml",
+        "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\hostel-management-system\\test-results\\owned-regressions-20261108\\full-final\\coverage.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.474
+    },
+    {
+      "name": "coverage-json",
+      "arguments": [
+        "-m",
+        "coverage",
+        "json",
+        "-o",
+        "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\hostel-management-system\\test-results\\owned-regressions-20261108\\full-final\\coverage.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.464
+    },
+    {
+      "name": "timing-smoke",
+      "arguments": [
+        "manage.py",
+        "test",
+        "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
+        "--noinput"
+      ],
+      "exit_code": 0,
+      "seconds": 6.304
+    }
+  ],
+  "dependencies": {
+    "Django": "5.2.18",
+    "mysqlclient": "2.3.0",
+    "python-dotenv": "1.2.4",
+    "reportlab": "4.5.1",
+    "pypdf": "6.21.2",
+    "coverage": "7.16.2",
+    "unittest-xml-reporting": "4.0.0",
+    "ruff": "0.17.1"
+  },
+  "mysql": "8.4.9",
+  "tests": {
+    "tests": 190,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  "junit_files": 27,
+  "coverage": {
+    "covered_lines": 1584,
+    "num_statements": 1772,
+    "percent_covered": 87.70491803278688,
+    "percent_covered_display": "88",
+    "missing_lines": 188,
+    "excluded_lines": 0,
+    "percent_statements_covered": 89.39051918735892,
+    "percent_statements_covered_display": "89",
+    "num_branches": 424,
+    "num_partial_branches": 46,
+    "covered_branches": 342,
+    "missing_branches": 82,
+    "percent_branches_covered": 80.66037735849056,
+    "percent_branches_covered_display": "81"
+  },
+  "completed_at": "2026-11-08T07:54:57.095420+00:00",
+  "success": true
+}

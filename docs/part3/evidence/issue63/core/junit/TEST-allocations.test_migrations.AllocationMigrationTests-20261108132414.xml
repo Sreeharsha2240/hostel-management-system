@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="allocations.test_migrations.AllocationMigrationTests-20261108132414" tests="2" file="allocations/test_migrations.py" time="0.919" timestamp="2026-11-08T13:24:47" failures="0" errors="0" skipped="0">
+	<testcase classname="allocations.test_migrations.AllocationMigrationTests" name="test_existing_active_rows_receive_unique_keys_and_bed_status" time="0.445" timestamp="2026-11-08T13:24:46" file="allocations\test_migrations.py" line="38"/>
+	<testcase classname="allocations.test_migrations.AllocationMigrationTests" name="test_unknown_historical_vacate_date_is_not_invented" time="0.473" timestamp="2026-11-08T13:24:47" file="allocations\test_migrations.py" line="48"/>
+</testsuite>

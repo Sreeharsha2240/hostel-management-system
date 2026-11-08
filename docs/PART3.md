@@ -246,3 +246,16 @@ one-minute Sprint 1 and two-minute Sprint 2 outcome videos were not found in
 tracked files at setup. Locate/publish genuine recordings or record the gap.
 Keep the original documents, diagrams, historical charts and evidence intact;
 record changes and confirm DOCX/PDF pairs and any final instructor packaging rules.
+
+## 8 November owner follow-up
+
+[HMS-26 / #63](https://github.com/Sreeharsha2240/hostel-management-system/issues/63)
+tracks Devansh's nine remaining expanded recipes S2-08..16 (initial estimate:
+3 points, Part 3 milestone). The [clean owner execution](part3/evidence/issue63/README.md)
+records nine PASS after independent technical review, completing all 27
+exclusively Devansh-owned case observations. Expanded totals are 48 OWNER PASS /
+3 PARTIAL / 9 NOT RUN / 1 BLOCKED; original 33 remain 30/2/1. The nine cases are
+separate from the 190 mixed core methods and do not establish unit70.
+Review/execution on 8 November is late against the original window; no waiver
+is implied. Existing teammate issues and actual final approvals/submission
+remain pending; whole-plan readiness stays NOT READY.

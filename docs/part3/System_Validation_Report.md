@@ -83,19 +83,19 @@ HMS-18/#40 owner evidence for 13 cases is present under `docs/part3/evidence/iss
 
 ## Consolidated case, requirement and defect metrics — 8 November 2026
 
-Counts are recalculated from all complete records and cross-checked against the index and original RTM. They preserve original and expanded denominators. No case status, proposed priority or owner execution is changed by this review.
+Counts are recalculated from all complete records and cross-checked against the index and original RTM. They preserve original and expanded denominators. The earlier consolidated review changed no case status. The separately dated #63 execution below changes only S2-08..16 and their derived totals.
 
 | Recorded status / metric | Original 33 | Expanded 61 |
 |---|---:|---:|
-| OWNER PASS | 30 / 33 = 90.91% | 39 / 61 = 63.93% |
+| OWNER PASS | 30 / 33 = 90.91% | 48 / 61 = 78.69% |
 | PARTIAL | 2 / 33 = 6.06% | 3 / 61 = 4.92% |
-| NOT RUN | 1 / 33 = 3.03% | 18 / 61 = 29.51% |
+| NOT RUN | 1 / 33 = 3.03% | 9 / 61 = 14.75% |
 | BLOCKED | 0 / 33 = 0% | 1 / 61 = 1.64% |
 | Latest recorded case FAIL / ERROR | 0 / 33 each | 0 / 61 each |
-| Any exercise: OWNER PASS + PARTIAL | 32 / 33 = 96.97% | 42 / 61 = 68.85% |
+| Any exercise: OWNER PASS + PARTIAL | 32 / 33 = 96.97% | 51 / 61 = 83.61% |
 | QA-accepted execution/pass percentage | UNVERIFIED | UNVERIFIED |
 
-The exercised numerator includes partial work and is not the 100%-completed exit gate. Zero latest case FAIL/ERROR does not erase the historical failed load/harness attempts or establish accepted passes. Partial cases are TC-SEC-06, TC-QUAL-01 and TC-REG-S1-05; TC-QUAL-04 is BLOCKED. The 18 NOT RUN records include STU-01, the 14 separately specified new regressions, SEC-08 and QUAL-02/03. Passing automated companions do not silently execute those separate records. Original priorities remain proposals: 21 High/12 Medium; expanded priorities are 34 High/27 Medium. QA must review the priority rationale and actual evidence; no High-priority gate is approved here.
+The exercised numerator includes partial work and is not the 100%-completed exit gate. Zero latest case FAIL/ERROR does not erase the historical failed load/harness attempts or establish accepted passes. Partial cases are TC-SEC-06, TC-QUAL-01 and TC-REG-S1-05; TC-QUAL-04 is BLOCKED. The nine NOT RUN records are STU-01, S1-06/07/08, S2-06/07, SEC-08 and QUAL-02/03. Nine other new regressions (S2-08..16) now have complete separate #63 execution records. Passing automated companions do not silently execute those separate records. Original priorities remain proposals: 21 High/12 Medium; expanded priorities are 34 High/27 Medium. QA must review the priority rationale and actual evidence; no High-priority gate is approved here.
 
 | Requirement metric | Result / meaning |
 |---|---|
@@ -129,7 +129,7 @@ Accordingly:
 
 | Whole-plan criterion | Current status |
 |---|---|
-| 100% planned cases executed | NOT MET: original 33 retain 30 OWNER PASS / 2 PARTIAL / 1 NOT RUN; expanded 61 retain 39 OWNER PASS / 3 PARTIAL / 18 NOT RUN / 1 BLOCKED. Original subcondition/entry acceptance remains pending. |
+| 100% planned cases executed | NOT MET: original 33 retain 30 OWNER PASS / 2 PARTIAL / 1 NOT RUN; expanded 61 retain 48 OWNER PASS / 3 PARTIAL / 9 NOT RUN / 1 BLOCKED. Original subcondition/entry acceptance remains pending. |
 | High-priority cases passed | UNVERIFIED until QA assigns/reviews priorities; the original plan has no priority values. |
 | Zero open critical/high defects | UNVERIFIED: no complete severity-ranked whole-project defect inventory is available; one local verification-harness failure is recorded above. |
 | Every RTM requirement backed by a passed case | UNVERIFIED: the 36 rows and closed #37 document delivery are present, but accepted case/requirement evidence remains pending. Design mapping and owner-pass proxies are insufficient. |
@@ -147,3 +147,26 @@ Accordingly:
 | Guide acceptance and submission | Actual guide walkthrough; Sreeharsha coordinates instructor channel/cutoff/format, genuine videos, accepted package and actual receipt through #43. | PENDING; no submission receipt recorded. |
 
 **Disposition:** historical HMS-16 observations remain 11 OWNER PASS / one PARTIAL with the original-subcondition limits above. TC-SEC-06 remains PARTIAL because actual redirect, TLS and live authenticated session-cookie evidence is unrecorded. The separately required ZAP baseline, TC-SEC-08, remains NOT RUN. Keep #38/#43 OPEN and whole-plan **NOT READY**. The technical recommendation is to obtain the required isolated HTTPS/ZAP evidence, not waive it; no team/instructor change or final QA/Dev/PO approval is invented. The 47 focused methods did not report an application security failure, but their pass summary does not establish all original conditions or complete security acceptance.
+
+## HMS-26 owner follow-up — 8 November 2026
+
+[#63 execution evidence](evidence/issue63/README.md) records nine reviewed
+Devansh-owned integration cases (S2-08..16), all PASS on clean
+`6636098cb728aa17c2abf5e42c358a5d400261e7` (tree `0faea77304a30ceb436e1411a2c513dd1f3c6f44`).
+Three independent automated reviewers checked the recipes/assertions and
+candidate evidence before the committed execution. Per-step observations,
+JUnit, commands, versions and source/raw hashes are published. The same clean
+commit passed all 12 core gates, 190 mixed methods (189 PASS/one expected SKIP)
+and separate timing PASS; seven owned-runner and 32 recovery-safety checks passed.
+This is separate from the earlier exact-main and historical companion runs.
+
+Only these nine current case statuses and derived counts change: expanded
+48 OWNER PASS / 3 PARTIAL / 9 NOT RUN / 1 BLOCKED; 51/61 (83.61%) have some
+exercise and 48/61 (78.69%) owner-pass observations. Original 33 and the 36 RTM
+rows remain unchanged. All 27 exclusively Devansh-owned records have OWNER PASS
+observations; shared QUAL-04 remains BLOCKED. This integration execution supplies
+no unit-only coverage, new browser/load/recovery/TLS evidence, retrospective
+entry approval, instructor extension or named human final approval. The
+8 November date, MySQL 8.4 difference and test-only HTTP settings are explicit
+limits. #38/#39/#41/#43 retain their actual remaining work; unit70 stays
+**UNPROVEN** and whole-plan readiness **NOT READY**.

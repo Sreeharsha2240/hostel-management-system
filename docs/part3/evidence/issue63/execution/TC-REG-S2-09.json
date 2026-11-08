@@ -1,0 +1,766 @@
+{
+  "case_id": "TC-REG-S2-09",
+  "test_id": "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_09_payment_permanence",
+  "started_at": "2026-11-08T07:53:50.449208+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1",
+      "expected": "Two genuine payments have distinct sequential receipts, counter 2 and one actor audit per payment.",
+      "actual": {
+        "payments": [
+          {
+            "id": 1,
+            "student_id": 1,
+            "receipt_no": "R00000000001",
+            "amount": "400.00",
+            "date": "2026-11-08",
+            "mode": "UPI",
+            "reference": "TEST123",
+            "adjustment_of_id": null,
+            "adjustment_reason": "",
+            "created_at": "2026-11-08T13:23:50.453+05:30"
+          },
+          {
+            "id": 2,
+            "student_id": 1,
+            "receipt_no": "R00000000002",
+            "amount": "400.00",
+            "date": "2026-11-08",
+            "mode": "Bank Transfer",
+            "reference": "TEST123",
+            "adjustment_of_id": null,
+            "adjustment_reason": "",
+            "created_at": "2026-11-08T13:23:50.462+05:30"
+          }
+        ],
+        "receipt_counter": 2,
+        "audits": [
+          {
+            "id": 1,
+            "user_id": 1,
+            "action": "payment",
+            "record_type": "payments.payment",
+            "record_id": "1",
+            "timestamp": "2026-11-08T13:23:50.453+05:30"
+          },
+          {
+            "id": 2,
+            "user_id": 1,
+            "action": "payment",
+            "record_type": "payments.payment",
+            "record_id": "2",
+            "timestamp": "2026-11-08T13:23:50.463+05:30"
+          }
+        ]
+      }
+    },
+    {
+      "step": "2.unchanged_save",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "unchanged_save",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments cannot be edited. Record a new adjusting entry."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.edited_save",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "edited_save",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments cannot be edited. Record a new adjusting entry."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.partial_save",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "partial_save",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments cannot be edited. Record a new adjusting entry."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.instance_delete",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "instance_delete",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments cannot be deleted. Record a new adjusting entry."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.queryset_delete",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "queryset_delete",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments are permanent. Record a new adjusting entry to make a correction."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.queryset_update",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "queryset_update",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments are permanent. Record a new adjusting entry to make a correction."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.bulk_update",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "bulk_update",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments are permanent. Record a new adjusting entry to make a correction."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.bulk_create",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "bulk_create",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments are permanent. Record a new adjusting entry to make a correction."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.primary_key_replay",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "primary_key_replay",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments cannot be edited. Record a new adjusting entry."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "2.receipt_reuse",
+      "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+      "actual": {
+        "mutation": "receipt_reuse",
+        "error_code": "IMMUTABLE_FIELD",
+        "error_messages": [
+          "Payments cannot be edited. Record a new adjusting entry."
+        ],
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "step": "3",
+      "expected": "Reloaded originals retain complete amount, identity, receipt and creation history.",
+      "actual": {
+        "payments": [
+          {
+            "id": 1,
+            "student_id": 1,
+            "receipt_no": "R00000000001",
+            "amount": "400.00",
+            "date": "2026-11-08",
+            "mode": "UPI",
+            "reference": "TEST123",
+            "adjustment_of_id": null,
+            "adjustment_reason": "",
+            "created_at": "2026-11-08T13:23:50.453+05:30"
+          },
+          {
+            "id": 2,
+            "student_id": 1,
+            "receipt_no": "R00000000002",
+            "amount": "400.00",
+            "date": "2026-11-08",
+            "mode": "Bank Transfer",
+            "reference": "TEST123",
+            "adjustment_of_id": null,
+            "adjustment_reason": "",
+            "created_at": "2026-11-08T13:23:50.462+05:30"
+          }
+        ],
+        "receipt_counter": 2,
+        "audits": [
+          {
+            "id": 1,
+            "user_id": 1,
+            "action": "payment",
+            "record_type": "payments.payment",
+            "record_id": "1",
+            "timestamp": "2026-11-08T13:23:50.453+05:30"
+          },
+          {
+            "id": 2,
+            "user_id": 1,
+            "action": "payment",
+            "record_type": "payments.payment",
+            "record_id": "2",
+            "timestamp": "2026-11-08T13:23:50.463+05:30"
+          }
+        ]
+      }
+    },
+    {
+      "step": "expected.adjusting_entry",
+      "expected": "Correction is a new linked adjusting entry with its own sequential receipt/audit; originals remain unchanged.",
+      "actual": {
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "400.00",
+              "date": "2026-11-08",
+              "mode": "Bank Transfer",
+              "reference": "TEST123",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.462+05:30"
+            },
+            {
+              "id": 3,
+              "student_id": 1,
+              "receipt_no": "R00000000003",
+              "amount": "-100.00",
+              "date": "2026-11-08",
+              "mode": "UPI",
+              "reference": "TEST123",
+              "adjustment_of_id": 1,
+              "adjustment_reason": "Duplicate part of entry",
+              "created_at": "2026-11-08T13:23:50.496+05:30"
+            }
+          ],
+          "receipt_counter": 3,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.453+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.463+05:30"
+            },
+            {
+              "id": 3,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "3",
+              "timestamp": "2026-11-08T13:23:50.496+05:30"
+            }
+          ]
+        },
+        "net_amount": "700.00"
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:50.505408+00:00"
+}

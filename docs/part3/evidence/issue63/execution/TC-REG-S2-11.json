@@ -1,0 +1,142 @@
+{
+  "case_id": "TC-REG-S2-11",
+  "test_id": "scripts.part3.test_owned_transactions.OwnedPaymentCorrectionConcurrency.test_tc_reg_s2_11_competing_corrections",
+  "started_at": "2026-11-08T07:53:50.045775+00:00",
+  "execution_status": "ASSERTIONS_COMPLETED",
+  "steps": [
+    {
+      "step": "1",
+      "expected": "Two barrier-synchronized corrections on distinct MySQL connections produce one new receipt and one over-reversal rejection.",
+      "actual": {
+        "original": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "100.00",
+              "date": "2026-11-08",
+              "mode": "Cash",
+              "reference": "",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.050+05:30"
+            }
+          ],
+          "receipt_counter": 1,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.051+05:30"
+            }
+          ]
+        },
+        "correction_amount": "-80.00",
+        "barrier_parties": 2,
+        "attempt_intervals_include_initial_barrier_wait": false,
+        "both_services_synchronized_at_student_lock_query": true,
+        "database_lock_wait_duration_measured": false,
+        "outcomes": [
+          {
+            "worker": 0,
+            "connection_id": 140,
+            "attempt_started_monotonic": 3065.8811465,
+            "attempt_finished_monotonic": 3065.8966208,
+            "locking_query_entries_monotonic": [
+              3065.8816933
+            ],
+            "result": "rejected",
+            "error_messages": [
+              "Adjustments cannot reverse more than the recorded amount."
+            ]
+          },
+          {
+            "worker": 1,
+            "connection_id": 141,
+            "attempt_started_monotonic": 3065.8811851,
+            "attempt_finished_monotonic": 3065.892512,
+            "locking_query_entries_monotonic": [
+              3065.8819318
+            ],
+            "result": "created",
+            "payment_id": 2,
+            "receipt_no": "R00000000002"
+          }
+        ]
+      }
+    },
+    {
+      "step": "2",
+      "expected": "Exactly two unchanged-original/correction rows, receipts 1/2, counter 2, two actor audits and net INR20 remain.",
+      "actual": {
+        "after": {
+          "payments": [
+            {
+              "id": 1,
+              "student_id": 1,
+              "receipt_no": "R00000000001",
+              "amount": "100.00",
+              "date": "2026-11-08",
+              "mode": "Cash",
+              "reference": "",
+              "adjustment_of_id": null,
+              "adjustment_reason": "",
+              "created_at": "2026-11-08T13:23:50.050+05:30"
+            },
+            {
+              "id": 2,
+              "student_id": 1,
+              "receipt_no": "R00000000002",
+              "amount": "-80.00",
+              "date": "2026-11-08",
+              "mode": "Cash",
+              "reference": "",
+              "adjustment_of_id": 1,
+              "adjustment_reason": "Correction",
+              "created_at": "2026-11-08T13:23:50.069+05:30"
+            }
+          ],
+          "receipt_counter": 2,
+          "audits": [
+            {
+              "id": 1,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "1",
+              "timestamp": "2026-11-08T13:23:50.051+05:30"
+            },
+            {
+              "id": 2,
+              "user_id": 1,
+              "action": "payment",
+              "record_type": "payments.payment",
+              "record_id": "2",
+              "timestamp": "2026-11-08T13:23:50.069+05:30"
+            }
+          ]
+        },
+        "net_amount": "20.00",
+        "status": {
+          "student_id": "PES1UG24CS001",
+          "student_name": "Sample Student 1",
+          "hostel_id": null,
+          "hostel": "",
+          "room": "",
+          "bed": "",
+          "fee": "0.00",
+          "paid": "20.00",
+          "due": "0.00",
+          "status": "Pending",
+          "fee_configured": false
+        }
+      }
+    }
+  ],
+  "scope": "Synthetic integration case on disposable MySQL test_hms",
+  "completed_at": "2026-11-08T07:53:50.089063+00:00"
+}
