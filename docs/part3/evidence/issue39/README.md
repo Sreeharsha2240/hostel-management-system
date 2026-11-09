@@ -1,7 +1,7 @@
 # HMS-17 Student and Hostel Validation Evidence
 
 GitHub issue: #39  
-Branch: `test/HMS-17-system-validation`
+Evidence scope: Student management, hostel management, Warden usability, Linux runtime and responsive mobile-viewport checks.
 
 ## 1. Automated test execution
 
@@ -61,7 +61,7 @@ The automated verification metadata records `git_dirty: true`. Therefore, this r
 
 ## 4. Manual browser testing – HMS-17
 
-The owner execution record says eight assigned cases were exercised on 7 November. The source manual record is retained unchanged. This table separates that owner-reported result from the case-level evidence disposition used by the Test Case Document.
+The owner execution record says eight assigned cases were exercised on 7 November. The source manual record is retained in the manual execution record. This table separates that owner-reported result from the case-level evidence disposition.
 
 | Test Case | Owner-reported result | QA evidence disposition |
 |---|---|---|
@@ -98,12 +98,12 @@ Manual execution screenshots are retained in the repository's `Screenshot/` dire
 - `TC-HST-02-hostel-floor-filter.png`
 - `TC-HST-02_bed_filters.png`
 
-### Warden Usability
+### Warden Usability – Existing Evidence
 
 - `TC-QUAL-01_Warden_Student_List.png`
 - `TC-QUAL-01_Warden_Student_Search.png`
 
-Additional Edge browser evidence is retained separately in the same screenshot directory.
+Additional Edge and Chrome desktop evidence is retained separately in the same screenshot directory.
 
 ## 6. Automated evidence files
 
@@ -113,19 +113,105 @@ The original full verification output is retained locally under:
 
 `test-results/20261105T084741151581Z/`
 
-## 7. Scope and limitations
+## 7. Follow-up publication and technical review – 8 November 2026
 
-The automated and manual results provide separate evidence for HMS-17.
+The [PR #66 follow-up](followup-20261108.md) indexes additional screenshot observations and the complete original PR #58 CI artifacts with [source-bound raw hashes](followup-20261108.json).
+
+The historical sections above retain their original dates and revisions. The new Edge-labelled registration image is a student-list result; the allocation image shows a success message and Active row. Desktop Chrome dashboard/student/bed pages are also present. Capture date/build/exact browser versions were not recorded for those earlier screenshots.
+
+The same technical review accepts S1-07 and S2-07 for their historical automated integration scope, using raw 7 November execution and unchanged relevant source, without requiring an artificial new run. Original HMS-17 dispositions remain six OWNER PASS / one PARTIAL / one NOT RUN. #39 remains OPEN; the earlier captures do not complete the original registration/guide/quality requirements.
+
+## 8. Linux runtime and Warden walkthrough – 9 November 2026
+
+A Linux runtime walkthrough was performed using Ubuntu under WSL2 on Windows.
+
+### Environment
+
+- Operating system: Ubuntu 26.04.1 LTS under WSL2.
+- Python: 3.14.4.
+- Django: 5.2.18.
+- Database: MySQL 8.4.11.
+- Application URL used locally: `http://127.0.0.1:8000/`.
+- Browser: Mozilla Firefox.
+- Account role: Warden.
+- Warden account used: `linux_warden`.
+- Test data: Synthetic Linux demonstration data.
+
+The application was started inside Ubuntu using Django's development server bound to `0.0.0.0:8000`. The application responded successfully inside WSL2. This evidence demonstrates a local Linux/WSL2 runtime check; it does not establish deployment on a separate production Linux server.
+
+### Captured screenshots
+
+The following screenshots are retained in `Screenshot/`:
+
+- `TC-LINUX-01_Login_Page_Firefox.png`
+- `TC-LINUX-02_Admin_Dashboard_Firefox.png`
+- `TC-LINUX-03_Student_List_Firefox.png`
+- `TC-LINUX-04_Bed_Availability_Firefox.png`
+- `TC-QUAL-01_Linux_Warden_Dashboard.png`
+- `TC-QUAL-01_Linux_Warden_Student_List.png`
+- `TC-QUAL-01_Linux_Warden_Bed_Availability.png`
+
+### Recorded Warden walkthrough
+
+The video walkthrough is retained at:
+
+`docs/part3/evidence/issue39/recording/TC-QUAL-01_Linux_Warden_Walkthrough.mp4`
+
+The recording shows the Warden dashboard, student list, allocations, payments, occupancy report and bed availability. It also shows changing the bed availability filter from Available to Occupied and viewing the filtered results.
+
+The allocation and payment records had been created before recording began. The recording demonstrates viewing those records and navigating the corresponding pages; it does not show their original creation steps.
+
+This walkthrough is supplementary interface evidence. It does not establish the timed first-use task by a new Warden using the one-page guide.
+
+## 9. Responsive mobile-viewport testing – 9 November 2026
+
+Responsive layout checks were performed using Chrome DevTools Device Mode with the iPhone 14 device profile.
+
+### Test configuration
+
+- Browser: Google Chrome on Windows.
+- Testing method: Chrome DevTools mobile-device emulation.
+- Device profile: iPhone 14.
+- Viewport: 390 × 844.
+- Orientation: Portrait.
+- Application: Linux-hosted Warden application accessed through Windows localhost forwarding.
+- Account role: Warden.
+
+This is responsive mobile-viewport testing, not testing on a physical iPhone or a real mobile browser.
+
+### Screenshots
+
+The following screenshots are retained in `Screenshot/`:
+
+- `TC-QUAL-01_Mobile_Warden_Dashboard.png`
+- `TC-QUAL-01_Mobile_Warden_Student_List.png`
+- `TC-QUAL-01_Mobile_Bed_Availability_Filters.png`
+
+### Observed results
+
+| Page | Result | Observation |
+|---|---|---|
+| Warden Dashboard | PASS | Navigation wraps into multiple rows and dashboard cards stack vertically within the mobile viewport. |
+| Student List | PASS | Search controls are visible and the table columns can be accessed using the horizontal scrollbar. |
+| Bed Availability | PASS | Filter controls stack vertically and remain visible and usable in the mobile viewport. |
+
+The horizontal scrollbar on the Student List is intentional: it allows access to table columns that do not fit within the narrow viewport. It is not recorded as a defect.
+
+These results apply only to the three pages and viewport configuration listed above. They do not establish complete mobile functionality, physical-device compatibility or the full SRS browser portability matrix.
+
+## 10. Current scope and limitations
+
+The collected evidence provides separate automated, manual browser, Linux runtime and responsive viewport observations.
 
 - Automated evidence covers the Student and Hostel test suites and repository verification.
-- The owner manual record names all eight assigned HMS-17 case IDs. Reviewed disposition is six OWNER PASS, TC-STU-01 NOT RUN for missing case-specific evidence, and TC-QUAL-01 PARTIAL. The unchanged owner summary's seven-pass count is not additional accepted evidence.
-- Browser usability checks were performed in Mozilla Firefox and Microsoft Edge.
-- No testing of the latest two versions of Chrome/Firefox/Edge as a compatibility matrix, Linux server portability, a real mobile client, or the SRS 99% availability target is claimed. These remain outside the evidence collected for this local miniproject run and must not be inferred from the Firefox/Edge checks.
+- The original manual case dispositions remain six OWNER PASS, one PARTIAL and one NOT RUN.
+- Linux evidence demonstrates local WSL2 Ubuntu runtime operation and Warden page navigation.
+- Responsive evidence demonstrates the dashboard, student list and bed availability pages at the iPhone 14 emulated viewport.
+- The recording shows existing allocation/payment records and the related pages; it does not show the creation of those records.
+- The new Warden guide-based task and five-minute timing are not established.
+- The complete latest-two-version Chrome/Firefox/Edge compatibility matrix is not established.
+- A physical mobile device/browser test is not established.
+- A separate production Linux server deployment is not established.
+- The SRS 99% availability target during 08:00–20:00 working hours has not been measured.
 
-Test-case statuses are recorded individually against their expected results and supporting execution evidence. HMS-15 review and approval status remains separate from HMS-17 execution status.
-
-## 8. Follow-up publication and technical review — 8 November 2026
-
-The [PR #66 follow-up](followup-20261108.md) indexes seven additional screenshot observations and the complete original PR #58 CI artifacts with [source-bound raw hashes](followup-20261108.json). The historical sections above retain their original dates/revisions. The new Edge-labelled registration image is a student-list result; the allocation image shows a success message and Active row. Desktop Chrome dashboard/student/bed pages are now present. Capture date/build/exact browser versions are unrecorded. No timed new-Warden guide task, latest-two browser coverage, deployed Windows/Linux main-flow record, real mobile run or office-hours availability measurement is supplied.
-
-The same technical review accepts S1-07 and S2-07 for their historical automated integration scope, using raw 7 November execution and unchanged relevant source, without requiring an artificial new run. Original HMS-17 dispositions remain six OWNER PASS / one PARTIAL / one NOT RUN. #39 remains OPEN; the new captures do not complete the original registration/guide/quality requirements.
+These observations must not be interpreted as whole-plan acceptance or final HMS-17 approval. Issue #39 remains OPEN until its outstanding acceptance conditions and reviews are addressed.
