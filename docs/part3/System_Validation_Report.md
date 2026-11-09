@@ -70,8 +70,8 @@ These are evidence gaps requiring owner execution or actual QA disposition, rath
 
 | Obligation | Original outcome retained | Owner / next action | Actual change decision |
 |---|---|---|---|
-| TC-SEC-06: redirect, TLS 1.2+, actual authenticated Secure/HttpOnly session cookie | PARTIAL | Sreeharsha #38: record endpoint/proxy configuration, tested revision, actual network output, versions/date/commands and cookie attributes with values removed. | PENDING; none approved in this review. |
-| Test Plan §5.1 ZAP baseline, explicit TC-SEC-08 | NOT RUN | Sreeharsha #38: run against the agreed running synthetic application, preserve sanitized findings/coverage/exit status, triage alerts and link actual defects/retests. | PENDING; none approved in this review. |
+| TC-SEC-06: redirect, TLS 1.2+, actual authenticated Secure/HttpOnly session cookie | PARTIAL | Local HTTPS probe evidence is recorded; QA must decide whether loopback satisfies the submitted deployed-candidate prerequisite or obtain agreed staging evidence. | Network observations PASS; QA/scope disposition pending. |
+| Test Plan §5.1 ZAP baseline, explicit TC-SEC-08 | PARTIAL | Passive loopback baseline and two remaining observations are documented; QA must disposition them and decide whether defect records/retests are needed. | Scan executed; QA alert disposition pending. |
 
 A baseline need not have zero alerts. The original final exit gate is zero open critical/high defects, requiring a complete reviewed severity inventory. If the instructor approves a criterion change, preserve the original outcome and add the exact changed criterion, actual authority/source/date/rationale and affected cases; do not relabel unexecuted tests PASS.
 
@@ -90,14 +90,14 @@ Counts are recalculated from all complete records and cross-checked against the 
 | Recorded status / metric | Original 33 | Expanded 61 |
 |---|---:|---:|
 | OWNER PASS | 30 / 33 = 90.91% | 50 / 61 = 81.97% |
-| PARTIAL | 2 / 33 = 6.06% | 3 / 61 = 4.92% |
-| NOT RUN | 1 / 33 = 3.03% | 7 / 61 = 11.48% |
+| PARTIAL | 2 / 33 = 6.06% | 4 / 61 = 6.56% |
+| NOT RUN | 1 / 33 = 3.03% | 6 / 61 = 9.84% |
 | BLOCKED | 0 / 33 = 0% | 1 / 61 = 1.64% |
 | Latest recorded case FAIL / ERROR | 0 / 33 each | 0 / 61 each |
-| Any exercise: OWNER PASS + PARTIAL | 32 / 33 = 96.97% | 53 / 61 = 86.89% |
+| Any exercise: OWNER PASS + PARTIAL | 32 / 33 = 96.97% | 54 / 61 = 88.52% |
 | QA-accepted execution/pass percentage | UNVERIFIED | UNVERIFIED |
 
-The exercised numerator includes partial work and is not the 100%-completed exit gate. Zero latest case FAIL/ERROR does not erase the historical failed load/harness attempts or establish accepted passes. Partial cases are TC-SEC-06, TC-QUAL-01 and TC-REG-S1-05; TC-QUAL-04 is BLOCKED. The seven NOT RUN records are STU-01, S1-06/08, S2-06, SEC-08 and QUAL-02/03. The later [PR #66 reconciliation](evidence/issue39/followup-20261108.md) accepts S1-07/S2-07 for their historical automated scope; it is a review of 7 November execution, not a fresh browser run. Nine other new regressions (S2-08..16) now have complete separate #63 execution records. Passing automated companions do not silently execute those separate records. Original priorities remain proposals: 21 High/12 Medium; expanded priorities are 34 High/27 Medium. QA must review the priority rationale and actual evidence; no High-priority gate is approved here.
+The exercised numerator includes partial work and is not the 100%-completed exit gate. Zero latest case FAIL/ERROR does not erase the historical failed load/harness attempts or establish accepted passes. Current partial cases are TC-SEC-06, TC-SEC-08, TC-QUAL-01 and TC-REG-S1-05; TC-QUAL-04 is BLOCKED. The six NOT RUN records are STU-01, S1-06/08, S2-06 and QUAL-02/03. TC-SEC-08 moved from NOT RUN to PARTIAL after the 9 November passive baseline; its two observations still await QA disposition. The later [PR #66 reconciliation](evidence/issue39/followup-20261108.md) accepts S1-07/S2-07 for their historical automated scope; it is a review of 7 November execution, not a fresh browser run. Nine other new regressions (S2-08..16) now have complete separate #63 execution records. Passing automated companions do not silently execute those separate records. Original priorities remain proposals: 21 High/12 Medium; expanded priorities are 34 High/27 Medium. QA must review the priority rationale and actual evidence; no High-priority gate is approved here.
 
 | Requirement metric | Result / meaning |
 |---|---|
@@ -131,7 +131,7 @@ Accordingly:
 
 | Whole-plan criterion | Current status |
 |---|---|
-| 100% planned cases executed | NOT MET: original 33 retain 30 OWNER PASS / 2 PARTIAL / 1 NOT RUN; expanded 61 retain 50 OWNER PASS / 3 PARTIAL / 7 NOT RUN / 1 BLOCKED. Original subcondition/entry acceptance remains pending. |
+| 100% planned cases executed | NOT MET: original 33 retain 30 OWNER PASS / 2 PARTIAL / 1 NOT RUN; expanded 61 now retain 50 OWNER PASS / 4 PARTIAL / 6 NOT RUN / 1 BLOCKED. Original subcondition/entry acceptance remains pending. |
 | High-priority cases passed | UNVERIFIED until QA assigns/reviews priorities; the original plan has no priority values. |
 | Zero open critical/high defects | UNVERIFIED: no complete severity-ranked whole-project defect inventory is available; one local verification-harness failure is recorded above. |
 | Every RTM requirement backed by a passed case | UNVERIFIED: the 36 rows and closed #37 document delivery are present, but accepted case/requirement evidence remains pending. Design mapping and owner-pass proxies are insufficient. |
@@ -144,11 +144,11 @@ Accordingly:
 | Independent report/evidence technical review | Devansh's assisted review records the findings and corrections above; the new publication still needs teammate review. | Technical review performed; no final human approval inferred. |
 | Cases, priorities, RTM and historical entry/tool deviations | Vaishnavi QA with case owners: record dated reviewed revision, scope, evidence acceptance and deviation disposition; a review now cannot retroactively establish earlier entry. | PENDING. |
 | #41 Unit Test Report and unit70 | Vaishnavi publishes; module owners supply their existing results. Devansh's [module-owner handoff](Code_Coverage_Report.md#hms-19-module-owner-input--8-november-2026) supplies classifications, IDs and limitations. | Report missing; unit70 UNPROVEN. |
-| Remaining security/browser/quality execution | Existing case owners execute or seek actual authorized disposition of each gap; keep original outcomes. | PENDING, including real elapsed-time browser/security and availability/portability evidence. |
+| Remaining security/browser/quality execution | Existing case owners execute or seek actual authorized disposition of each gap; keep original outcomes. | Local TLS and passive ZAP evidence are recorded; TC-SEC-06/08 remain PARTIAL pending deployed-candidate/scope and QA dispositions. Other browser, availability and portability evidence remains pending. |
 | QA / Dev / PO final decisions | Vaishnavi / Devansh / Sreeharsha provide their own genuine dated decisions bound to the actual final revision. | PENDING; this assisted technical review is not a signature. |
 | Guide acceptance and submission | Actual guide walkthrough; Sreeharsha coordinates instructor channel/cutoff/format, genuine videos, accepted package and actual receipt through #43. | PENDING; no submission receipt recorded. |
 
-**Disposition:** historical HMS-16 observations remain 11 OWNER PASS / one PARTIAL with the original-subcondition limits above. TC-SEC-06 remains PARTIAL because actual redirect, TLS and live authenticated session-cookie evidence is unrecorded. The separately required ZAP baseline, TC-SEC-08, remains NOT RUN. Keep #38/#43 OPEN and whole-plan **NOT READY**. The technical recommendation is to obtain the required isolated HTTPS/ZAP evidence, not waive it; no team/instructor change or final QA/Dev/PO approval is invented. The 47 focused methods did not report an application security failure, but their pass summary does not establish all original conditions or complete security acceptance.
+**Historical disposition:** 11 OWNER PASS / one PARTIAL remains the 5 November owner-reported snapshot. **Current case register:** TC-SEC-06 remains PARTIAL because the isolated loopback probe now proves redirect, TLS 1.2/1.3, legacy-protocol rejection and live cookie flags, but no deployed/staging candidate or approved scope disposition is recorded. TC-SEC-08 is now PARTIAL: the passive ZAP baseline completed, with the server-banner and low-confidence `next` hotspot awaiting QA disposition. See the [source-bound supplemental evidence](evidence/issue38-security-20261109/README.md). Keep #38/#43 OPEN and whole-plan **NOT READY**. No team/instructor change or final QA/Dev/PO approval is inferred. Fresh MySQL CI passed on PR #68 head `4985139` as recorded below; that verifies code but cannot substitute for the remaining environment or human acceptance decisions.
 
 ## HMS-26 owner follow-up — 8 November 2026
 
@@ -175,17 +175,17 @@ limits. #38/#39/#41/#43 retain their actual remaining work; unit70 stays
 
 ## HMS-17 follow-up reconciliation — 8 November 2026
 
-The [PR #66 review](evidence/issue39/followup-20261108.md) retains original screenshot/run provenance, restores the two omitted raw files per historical CI bundle and reconciles S1-07/S2-07 against eleven passing methods per Python job. Product/test/template sources in the declared scope match historical `32e6f563`. Current expanded totals supersede the HMS-26 snapshot above: **50 OWNER PASS / 3 PARTIAL / 7 NOT RUN / 1 BLOCKED**, with 53/61 (86.89%) exercised and 50/61 (81.97%) owner-pass observations. Original33 statuses/steps/expectations and the original36 RTM rows are unchanged. New static Chrome/Edge-labelled images do not complete STU-01, timed QUAL-01, the SRS portability targets, real mobile execution or QUAL-02 availability. #39 remains OPEN; whole-plan readiness stays NOT READY and unit70 UNPROVEN.
+The [PR #66 review](evidence/issue39/followup-20261108.md) retains original screenshot/run provenance, restores the two omitted raw files per historical CI bundle and reconciles S1-07/S2-07 against eleven passing methods per Python job. Product/test/template sources in the declared scope match historical `32e6f563`. At this 8 November snapshot, expanded totals were **50 OWNER PASS / 3 PARTIAL / 7 NOT RUN / 1 BLOCKED**, with 53/61 (86.89%) exercised and 50/61 (81.97%) owner-pass observations. The 9 November ZAP execution later changes the current register to **50 OWNER PASS / 4 PARTIAL / 6 NOT RUN / 1 BLOCKED**, with 54/61 (88.52%) exercised; the original 33 statuses/steps/expectations and original 36 RTM rows are unchanged. New static Chrome/Edge-labelled images do not complete STU-01, timed QUAL-01, the SRS portability targets, real mobile execution or QUAL-02 availability. #39 remains OPEN; whole-plan readiness stays NOT READY and unit70 UNPROVEN.
 
 ## Current-main supplemental full-suite verification — 9 November 2026
 
 A fresh Windows local run at main commit `7556822df38b23d4f302cf68d857bb35b963ff10` (tree `781dd5195e1b6da718fe602ae67cdb04f495acd4`) added seven focused HMS-16 gap tests and a small evidence runner in a dirty candidate tree. The full `scripts/run_checks.py` completed all gates successfully: 207 methods, 206 passed, zero failures/errors, one expected timing skip, and **88.25% combined project coverage** (1,590/1,772 statements; 348/424 branch outcomes). The configured 70% project gate passes. The earlier 53.14% number was the `students hostels` partial-suite diagnostic and must not be presented as the full-suite result. See the [sanitized execution record](evidence/issue38-execution-20261109/README.md) and its JSON.
 
-This mixed project-wide measure does not establish the formal SRS unit-only 70%; #41 must classify unit vs integration/system tests and publish its denominator and result. A local HTTPS/TLS rerun was blocked because the isolated MySQL data file became unwritable to the server process. No network transport result is claimed: **TC-SEC-06 remains PARTIAL**. ZAP was intentionally skipped at the user's direction; **TC-SEC-08 remains NOT RUN**. This update does not change case dispositions or close #38.
+This mixed project-wide measure does not establish the formal SRS unit-only 70%; #41 must classify unit vs integration/system tests and publish its denominator and result. At this 9 November coverage snapshot, the isolated MySQL file issue blocked a local TLS rerun and ZAP had not yet been run; the later same-day transport/ZAP addendum below supersedes those statements. This update does not change original case dispositions or close #38.
 
 ## Local transport and ZAP follow-up — 9 November 2026
 
-This follow-up supersedes the preceding transport/ZAP limitation for the isolated local probe only. It does not replace production-host evidence or change the independent QA/Dev/PO acceptance requirement.
+This follow-up supersedes the preceding transport/ZAP limitation for the isolated local probe only. It does not replace deployed-candidate evidence or change the independent QA/Dev/PO acceptance requirement.
 
 On a disposable SQLite database containing synthetic data, a short-lived self-signed HTTPS endpoint bound only to `127.0.0.1` was exercised on the HMS-16 source tree. The network probe passed HTTP-to-HTTPS redirection (301), TLS 1.2 and 1.3 handshakes, rejection of TLS 1.0 and 1.1, authenticated login and dashboard access, and Secure/HttpOnly session-cookie plus Secure/HttpOnly CSRF-cookie attributes. Cookie values and credentials were not retained. The CA was trusted only by the local probe client; this is real loopback transport evidence, not public-domain or deployment certification.
 
@@ -195,4 +195,4 @@ The rescan exited 0 and reported two remaining observations: one Low-confidence 
 
 The focused security and changed confirmation-form tests passed 12/12 on SQLite, as did Django system/migration checks, Ruff lint/format, dependency validation, and JavaScript syntax validation. A forced full SQLite run is not a valid substitute for the configured MySQL suite: MySQL-only information-schema/SQL-mode assertions and concurrent row-lock tests require MySQL. The repository runner also stops at its MySQL `SELECT VERSION()` probe under SQLite. **Superseding verification:** fresh MySQL CI on PR #68 head `49851396796918103681aacf47394e5010426201` passed on Python 3.11 and 3.14 in [run 42566973066](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066). Each job ran 209 tests (208 passed and one expected skip), passed all 12 repository verification gates, and the full coverage report was 88% (1,780 statements; the 70% configured gate passed). Nine owned expanded regression cases passed. The remaining gap is human QA disposition/acceptance, not a pending full-suite CI run. Exact sanitized transport and ZAP details are in [issue38-security-20261109](evidence/issue38-security-20261109/README.md).
 
-**Current technical disposition:** local TC-SEC-06 transport evidence is PASS for the recorded conditions. TC-SEC-08 baseline execution is COMPLETE with the above alerts pending QA disposition. These scoped results do not constitute an approved test-plan deviation, a full #38 acceptance, or a completion of #43.
+**Current technical disposition:** TC-SEC-06's observed loopback network conditions pass, while the case remains PARTIAL pending its deployed-candidate prerequisite/scope review. TC-SEC-08's passive baseline ran and is PARTIAL pending QA disposition of the above alerts. The case register and expanded totals in this report and the HMS case document are reconciled to these statuses. These scoped results do not constitute an approved test-plan deviation, a full #38 acceptance, or a completion of #43.

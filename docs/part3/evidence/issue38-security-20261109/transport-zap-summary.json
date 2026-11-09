@@ -81,6 +81,6 @@
       "owned_expanded_regression_cases": "9 passed"
     }
   },
-  "hms16_disposition": "Local TC-SEC-06 conditions pass; TC-SEC-08 ran with two observations pending QA disposition; issue remains open for approvals.",
+  "hms16_disposition": "TC-SEC-06 remains PARTIAL: stated loopback transport conditions passed, but deployed-candidate prerequisite/scope acceptance are pending. TC-SEC-08 is PARTIAL: passive baseline completed with two observations pending QA disposition. Issue remains open for actual approvals.",
   "hms21_disposition": "NOT READY; human review/approval, instructor instructions, final package decision, and actual submission receipt remain outstanding."
 }
