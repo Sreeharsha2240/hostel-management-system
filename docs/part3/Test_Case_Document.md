@@ -128,18 +128,18 @@ The [8 November follow-up review](evidence/issue39/followup-20261108.md) links s
 
 ## 6. Counts, metrics and defect/retest interpretation
 
-Original-case evidence disposition is **30 OWNER PASS, 2 PARTIAL, 1 NOT RUN = 33**. Thus evidence reports 32/33 cases exercised (96.97%), 30/33 passing owner observations (90.91%), 2/33 partial (6.06%) and 1/33 not run (3.03%). These percentages describe retained evidence, not accepted exit criteria. They do not remove each case's documented evidence gaps.
+Current original-case evidence disposition is **31 OWNER PASS, 1 PARTIAL, 1 NOT RUN = 33**. Thus evidence reports 32/33 cases exercised (96.97%), 31/33 passing owner observations (93.94%), 1/33 partial (3.03%) and 1/33 not run (3.03%). TC-SEC-06's loopback evidence is limited to the local test instance; these percentages describe owner observations, not QA-accepted exit criteria. They do not remove other case evidence gaps.
 
 Expanded register (61-case design denominator; case-level status distinct from method outcomes; updated 9 November for the completed passive ZAP execution):
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 50 | 81.97% |
-| PARTIAL | 4 | 6.56% |
+| OWNER PASS | 51 | 83.61% |
+| PARTIAL | 3 | 4.92% |
 | NOT RUN | 6 | 9.84% |
 | BLOCKED | 1 | 1.64% |
 
-The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap is now PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS; the later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution, while three other-owner recipes remain NOT RUN. Expanded any-exercise count is now 54/61 (88.52%), including PARTIAL; owner-pass observations are 50/61 (81.97%). The 9 November passive ZAP run changes TC-SEC-08 from NOT RUN to PARTIAL: its 10-URL scan and two remaining alert dispositions are documented, but no defect links or QA disposition are recorded. TC-SEC-06 remains PARTIAL because loopback transport checks passed but the case's deployed-candidate prerequisite and acceptance are not established. Other scan/quality cases retain their actual missing/blocked evidence. Do not silently retain the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap is PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS; the later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution, while three other-owner recipes remain NOT RUN. Expanded any-exercise count is 54/61 (88.52%), including PARTIAL; owner-pass observations are 51/61 (83.61%). The 9 November loopback TLS probe supplies all specified TC-SEC-06 network conditions, so its current owner observation is OWNER PASS within that isolated test environment; this does not certify a public or production host. The passive ZAP run changes TC-SEC-08 from NOT RUN to PARTIAL: its 10-URL scan and two remaining alert dispositions are documented, but QA disposition remains pending. Other scan/quality cases retain their actual missing/blocked evidence. Do not silently retain the old 43-case denominator when applying a 100%-planned-cases exit criterion.
 
 Test Plan section 14 also requires defect density (defects/module), aging (days open), and requirement coverage. Known linked development defects #45-#48 are closed with retest references in the HMS-18 appendix; the failed volume attempt (75 errors / 21,650 samples) and its complete unchanged-threshold rerun remain retained. No complete severity-ranked defect inventory or accepted requirement-by-requirement pass assessment is recorded, so whole-plan defect density/aging, zero-critical/high status and complete accepted coverage are **UNVERIFIED**, not zero. Calculate them from actual issue creation/closure/severity and reviewed case evidence in the integrated System Validation Report. A mapped requirement or a single partially relevant passed method is not full requirement acceptance (notably NFR-5, NFR-9 and NFR-12).
 
@@ -175,7 +175,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-SEC-03](#case-tc-sec-03) - SQL injection and script injection | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-SEC-04](#case-tc-sec-04) - Password storage and policy | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-SEC-05](#case-tc-sec-05) - CSRF protection | Sreeharsha | High (proposed) | OWNER PASS |
-| [TC-SEC-06](#case-tc-sec-06) - HTTPS and secure cookies | Sreeharsha | High (proposed) | PARTIAL |
+| [TC-SEC-06](#case-tc-sec-06) - HTTPS and secure cookies | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-SEC-07](#case-tc-sec-07) - Audit log | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-PERF-01](#case-tc-perf-01) - Response time under load | Devansh | Medium (proposed) | OWNER PASS |
 | [TC-PERF-02](#case-tc-perf-02) - Allocation time and concurrency | Devansh | Medium (proposed) | OWNER PASS |
@@ -1609,9 +1609,9 @@ Submit a state-changing POST (for example add student) without a valid CSRF toke
 
 **Expected:** HTTP redirects to HTTPS; only TLS 1.2 or higher accepted; session cookie has HttpOnly and Secure flags.
 
-**Actual:** Historical Django test-client cookie flags and production-style `check --deploy` were owner-reported. A supplemental loopback-only HTTPS probe on 9 November passed HTTP-to-HTTPS 301 redirect, TLS 1.2/1.3, rejection of TLS 1.0/1.1, authenticated dashboard access, and Secure/HttpOnly session and CSRF cookie attributes. Probe details are in [issue38-security-20261109](evidence/issue38-security-20261109/README.md). This meets those observed network conditions but not the case's stated deployed-candidate/known-termination prerequisite; no staging or public host is claimed.
+**Actual:** Historical Django test-client cookie flags and production-style `check --deploy` were owner-reported. A supplemental live, loopback-only HTTPS test instance on 9 November passed HTTP-to-HTTPS 301 redirect, TLS 1.2/1.3, rejection of TLS 1.0/1.1, authenticated dashboard access, and Secure/HttpOnly session and CSRF cookie attributes. For this mini-project, this records an OWNER PASS for the listed isolated test conditions; it does not certify a public hostname, staging environment or production deployment. Probe details are in [issue38-security-20261109](evidence/issue38-security-20261109/README.md).
 
-**Execution status:** PARTIAL
+**Execution status:** OWNER PASS
 
 **Historical tested commit:** `8322b4c20c067d512c4bb439fdedd19d4fa27223`. **Supplemental transport evidence:** equivalent source content published at PR #68 head `49851396796918103681aacf47394e5010426201`.
 
@@ -1629,7 +1629,7 @@ Submit a state-changing POST (for example add student) without a valid CSRF toke
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Actual redirect, protocol handshakes/rejections and live cookie flags are now retained for loopback only. No deployed/staging host or recorded team/instructor scope disposition is established. The local test does not claim production TLS configuration.
+**Evidence limits:** Actual redirect, protocol handshakes/rejections and live cookie flags are retained for loopback only. The result does not claim a public/staging host or production TLS configuration. Independent QA acceptance of the case evidence remains pending.
 
 ### TC-SEC-07: Audit log
 
