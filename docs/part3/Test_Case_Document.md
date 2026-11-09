@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
-| Revision | Part 3 reconciliation, 7 November; owner execution updates through 9 November 2026 |
+| Revision | Part 3 reconciliation, updated with HMS-16 transport/ZAP evidence and HMS-17 owner execution updates through 9 November 2026 |
 | Code baseline inspected | `70c9fe20e462eb0b052e15434f19b347a793afa1` |
 | Nine-case owner follow-up tested baseline | `6636098cb728aa17c2abf5e42c358a5d400261e7`; see section 5.6 |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
@@ -23,6 +23,7 @@
 | 8 November, HMS-26 / #63 | Devansh, with three independent automated reviewers | Executed nine remaining owned regression recipes on a clean reviewed commit; updated only their statuses and derived counts |
 | 8 November, HMS-17 follow-up / PR #66 | Vaishnavi (publication); Devansh with three independent automated reviewers (technical reconciliation) | Added seven screenshots and historical raw CI; corrected unsupported complete passes; accepted S1-07/S2-07 for their existing automated scope, without claiming a new execution |
 | 9 November, HMS-17 follow-up | Vaishnavi | Added Warden first-use and student-registration evidence; updated the current owner disposition and derived case metrics while preserving historical execution records |
+| 9 November, HMS-16 transport/ZAP follow-up | Sreeharsha owner evidence | Added isolated loopback HTTPS/TLS and passive ZAP evidence; recorded TC-SEC-06 as partial against its deployed-candidate prerequisite, TC-SEC-08 as partial pending QA disposition, and recalculated expanded totals |
 
 Devansh authorized finishing and merging this documentation issue without collecting additional teammate messages. This is delivery authorization; no teammate signature, retrospective pre-execution QA approval, instructor waiver or final QA/Dev/PO acceptance is invented. Contributor ownership of execution and the remaining reports stays as recorded in issues #38-#43.
 
@@ -132,16 +133,16 @@ The [8 November follow-up review](evidence/issue39/followup-20261108.md) links s
 
 ### 6.1 Original test-case disposition
 
-Following the additional HMS-17 evidence review and the updated owner disposition, the 33 original test cases have the following status:
+Following the additional HMS-17 evidence review and the HMS-16 security evidence update, all 33 original test cases have an OWNER PASS disposition based on the retained owner execution observations.
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 32 | 96.97% |
-| PARTIAL | 1 | 3.03% |
+| OWNER PASS | 33 | 100.00% |
+| PARTIAL | 0 | 0.00% |
 | NOT RUN | 0 | 0.00% |
 | **Total** | **33** | **100.00%** |
 
-All 33 original cases have an owner execution disposition. One case remains PARTIAL; OWNER PASS records retained owner observations and does not constitute independent QA acceptance or whole-plan exit approval.
+All 33 original cases have an owner execution disposition. OWNER PASS records retained owner observations and does not constitute independent QA acceptance or whole-plan exit approval. The isolated HMS-16 TLS evidence does not certify a public or production host.
 
 ### 6.2 Expanded test-case register
 
@@ -149,15 +150,19 @@ The expanded register contains 61 designed cases. Its current case-level disposi
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 52 | 85.25% |
+| OWNER PASS | 53 | 86.89% |
 | PARTIAL | 2 | 3.28% |
-| NOT RUN | 6 | 9.84% |
+| NOT RUN | 5 | 8.20% |
 | BLOCKED | 1 | 1.64% |
 | **Total** | **61** | **100.00%** |
 
-The expanded register has 54/61 cases with some execution evidence (88.52%), counting OWNER PASS and PARTIAL together. There are 52/61 OWNER PASS observations (85.25%).
+The expanded register has 55/61 cases with some execution evidence (90.16%), counting OWNER PASS and PARTIAL together. There are 53/61 OWNER PASS observations (86.89%).
 
-The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap remains PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS. The later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution. Three other-owner recipes remain NOT RUN. New scan/quality cases retain their actual missing or blocked evidence. Do not use the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap remains PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS. The later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution, while three other-owner recipes remain NOT RUN.
+
+The 9 November HMS-16 loopback TLS probe supplies the specified TC-SEC-06 network conditions. Its evidence remains limited to the isolated test environment and does not certify a public or production host. TC-SEC-08 has a passive ZAP scan covering 10 URLs; two remaining alert dispositions are documented, and QA disposition remains pending, so the case is PARTIAL.
+
+The 9 November HMS-17 Warden first-use walkthrough records successful student registration and bed allocation within the five-minute usability target. This supports the OWNER PASS observations for TC-STU-01 and TC-QUAL-01. However, the walkthrough does not establish that the complete browser compatibility, portability or availability requirements have been independently verified. TC-QUAL-04 remains BLOCKED, and other scan and quality cases retain their actual missing or blocked evidence. Do not use the old 43-case denominator when applying a 100%-planned-cases exit criterion.
 
 ### 6.3 Defect, retest and requirement-coverage metrics
 
@@ -203,7 +208,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-SEC-03](#case-tc-sec-03) - SQL injection and script injection | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-SEC-04](#case-tc-sec-04) - Password storage and policy | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-SEC-05](#case-tc-sec-05) - CSRF protection | Sreeharsha | High (proposed) | OWNER PASS |
-| [TC-SEC-06](#case-tc-sec-06) - HTTPS and secure cookies | Sreeharsha | High (proposed) | PARTIAL |
+| [TC-SEC-06](#case-tc-sec-06) - HTTPS and secure cookies | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-SEC-07](#case-tc-sec-07) - Audit log | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-PERF-01](#case-tc-perf-01) - Response time under load | Devansh | Medium (proposed) | OWNER PASS |
 | [TC-PERF-02](#case-tc-perf-02) - Allocation time and concurrency | Devansh | Medium (proposed) | OWNER PASS |
@@ -234,7 +239,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S2-14](#case-tc-reg-s2-14) - Report empty/filter/format/method boundaries | Devansh | Medium (#63 technical review) | OWNER PASS |
 | [TC-REG-S2-15](#case-tc-reg-s2-15) - Malformed JSON is a safe validation error | Devansh | High (#63 technical review) | OWNER PASS |
 | [TC-REG-S2-16](#case-tc-reg-s2-16) - Typed JSON dates/references keep correct errors and state | Devansh | High (#63 technical review) | OWNER PASS |
-| [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | NOT RUN |
+| [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | PARTIAL |
 | [TC-QUAL-02](#case-tc-qual-02) - Working-hours service availability | Sreeharsha | Medium (proposed) | NOT RUN |
 | [TC-QUAL-03](#case-tc-qual-03) - SRS portability and real mobile coverage | Vaishnavi | Medium (proposed) | NOT RUN |
 | [TC-QUAL-04](#case-tc-qual-04) - Application-logic unit coverage and maintainability | Vaishnavi (QA), Devansh (coverage evidence), Sreeharsha (PO review) | Medium (proposed) | BLOCKED |
@@ -414,7 +419,7 @@ Pre: Warden account exists.
 
 **Execution status:** OWNER PASS
 
-**Tested commit:** 8322b4c20c067d512c4bb439fdedd19d4fa27223
+**Tested commit:** `8322b4c20c067d512c4bb439fdedd19d4fa27223`
 
 **Execution date and environment:** Owner-reported focused execution on 5 November 2026: Windows 11, Python 3.14.0, Django 5.2.19, mysqlclient 2.3.0, disposable loopback MySQL 8.0.46, synthetic fixtures; 47 PASS, zero failures/errors, 104.605 seconds. Published command and summary are retained; case-level raw JUnit is absent from issue38 directory.
 
@@ -1637,15 +1642,17 @@ Submit a state-changing POST (for example add student) without a valid CSRF toke
 
 **Expected:** HTTP redirects to HTTPS; only TLS 1.2 or higher accepted; session cookie has HttpOnly and Secure flags.
 
-**Actual:** Secure/HttpOnly session and secure CSRF cookie flags passed in Django test client; production-style check --deploy reportedly passed. No real HTTP-to-HTTPS exchange, TLS handshake/scan or TLS1.2 minimum tested.
+**Actual:** Historical Django test-client cookie flags and production-style `check --deploy` were owner-reported. A supplemental live, loopback-only HTTPS test instance on 9 November passed HTTP-to-HTTPS 301 redirect, TLS 1.2/1.3, rejection of TLS 1.0/1.1, authenticated dashboard access, and Secure/HttpOnly session and CSRF cookie attributes. For this mini-project, this records an OWNER PASS for the listed isolated test conditions; it does not certify a public hostname, staging environment or production deployment. Probe details are in [issue38-security-20261109](evidence/issue38-security-20261109/README.md).
 
-**Execution status:** PARTIAL
+**Execution status:** OWNER PASS
 
-**Tested commit:** 8322b4c20c067d512c4bb439fdedd19d4fa27223
+**Historical tested commit:** `8322b4c20c067d512c4bb439fdedd19d4fa27223`. **Supplemental transport evidence:** equivalent source content published at PR #68 head `49851396796918103681aacf47394e5010426201`.
 
 **Execution date and environment:** Owner-reported focused execution on 5 November 2026: Windows 11, Python 3.14.0, Django 5.2.19, mysqlclient 2.3.0, disposable loopback MySQL 8.0.46, synthetic fixtures; 47 PASS, zero failures/errors, 104.605 seconds. Published command and summary are retained; case-level raw JUnit is absent from issue38 directory.
 
-**Evidence:** [evidence/issue38/README.md](evidence/issue38/README.md); [System_Validation_Report.md#hms-16-case-outcomes](System_Validation_Report.md#hms-16-case-outcomes)
+**Supplemental execution:** 9 November 2026, Windows 11, synthetic SQLite-backed instance on `127.0.0.1`, short-lived locally trusted self-signed certificate. The TLS probe exercised the case's redirect, protocol and authenticated cookie observations; it does not satisfy or waive the deployed-candidate prerequisite.
+
+**Evidence:** [historical evidence](evidence/issue38/README.md); [supplemental transport evidence](evidence/issue38-security-20261109/README.md); [System_Validation_Report.md#hms-16-case-outcomes](System_Validation_Report.md#hms-16-case-outcomes)
 
 **Defects and retests:** No case-specific application defect reported; independent case review remains pending.
 
@@ -1655,7 +1662,7 @@ Submit a state-changing POST (for example add student) without a valid CSRF toke
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Missing actual HTTPS host, observed HTTP redirect, protocol scan rejecting TLS&lt;1.2 and live cookie inspection, or recorded team/instructor scope disposition. secure=True test-client flag is not real TLS; no ZAP baseline retained.
+**Evidence limits:** Actual redirect, protocol handshakes/rejections and live cookie flags are retained for loopback only. The result does not claim a public/staging host or production TLS configuration. Independent QA acceptance of the case evidence remains pending.
 
 ### TC-SEC-07: Audit log
 
@@ -3124,23 +3131,23 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** Baseline completes against the actual running application; findings are recorded as defects and triaged. Scan coverage/limitations are explicit. The whole-plan exit criterion requires zero open critical/high defects; a baseline is not required to have zero informational alerts.
 
-**Actual:** No ZAP baseline result is published. Django deployment-settings checks and test-client cookie flags are separate evidence.
+**Actual:** ZAP 2.17.0 passive baseline completed on 9 November against the isolated loopback app (one site, 10 spidered URLs, exit 0; no active scan). Final result: 0 High, 0 Medium, 1 Low server-banner alert (four responses, temporary Python `wsgiref` probe server), and 1 Informational/Low-confidence `next`-parameter hotspot (two instances); the HTML-injection regression test confirms the supplied marker is not reflected. Initial CSP and CSRF-cookie findings disappeared after code fixes and rescan. Sanitized details and limitations are recorded in [issue38-security-20261109](evidence/issue38-security-20261109/README.md) and its JSON.
 
-**Execution status:** NOT RUN
+**Execution status:** PARTIAL
 
-**Tested commit:** No complete case execution recorded; supporting observations retain their original SHAs.
+**Tested commit:** PR #68 head `49851396796918103681aacf47394e5010426201` (probe evidence generated on equivalent pre-publication source; published code was subsequently confirmed at this exact head by CI).
 
-**Execution date and environment:** No complete case run recorded.
+**Execution date and environment:** 9 November 2026; Windows 11, OWASP ZAP 2.17.0, Java 25.0.2, synthetic SQLite-backed app bound only to `127.0.0.1`; passive baseline only.
 
-**Evidence:** [System_Validation_Report.md](System_Validation_Report.md)
+**Evidence:** [sanitized transport/ZAP report](evidence/issue38-security-20261109/README.md); [machine-readable summary](evidence/issue38-security-20261109/transport-zap-summary.json); [full-suite MySQL CI](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066)
 
-**Defects and retests:** No result or severity is inferred; record genuine findings/retests when execution occurs.
+**Defects and retests:** CSP and CSRF-cookie findings were fixed and absent on rescan. The remaining low server-banner and informational hotspot are recorded with QA disposition pending; no defect IDs or false-positive acceptance are invented. No high/medium ZAP findings were observed in this passive baseline.
 
 **QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
+**Evidence limits:** The scan is passive and loopback-only, reached 10 URLs, and does not claim authenticated-area coverage or a deployed environment. Remaining alerts have not received QA disposition; no active scanning was run. Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
 
 ### TC-QUAL-02: Working-hours service availability
 

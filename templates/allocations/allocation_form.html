@@ -8,7 +8,7 @@
   {% if allocation %}
   <p>{{ allocation.student.name }} · {{ allocation.bed }}</p>
   {% endif %}
-  <form method="post"{% if confirmation_message %} onsubmit="return confirm('{{ confirmation_message|escapejs }}')"{% endif %}>
+  <form method="post"{% if confirmation_message %} data-confirm="{{ confirmation_message }}"{% endif %}>
     {% csrf_token %}
     {% include "includes/form.html" %}
     <button type="submit">Confirm</button>

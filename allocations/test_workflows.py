@@ -56,7 +56,7 @@ class AllocationWorkflowTests(TestCase):
                     self.assertEqual(response.status_code, 200)
                     self.assertContains(
                         response,
-                        f'<form method="post" onsubmit="return confirm(\'{message}\')">',
+                        f'<form method="post" data-confirm="{message}">',
                         count=1,
                     )
         original.refresh_from_db()

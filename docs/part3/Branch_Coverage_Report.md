@@ -1,5 +1,7 @@
 # Branch Coverage Report
 
+**9 November follow-up:** fresh local verification of base `482ef795` plus ten new isolated regression methods passes all 12 gates: 200 ordinary methods (199 PASS / one expected timing SKIP), separate timing PASS, **1,590/1,772 statements (89.73%)**, **348/424 branches (82.08%)**, and **88.25% combined**. A students/hostels-only run exactly reproduces the todo's 53% and all 23 listed file rates. See the [source-bound supplement and HMS-19 handoff](evidence/coverage-followup-20261109/README.md). Formal unit70 remains **UNPROVEN**. The reviewed 6 November measurements and frozen selections below retain their historical scope.
+
 Mixed statements: **1584/1772 (89.39%)**; mixed branches: **342/424 (80.66%)**. Application statements: **1505/1677 (89.74%)**; branches: **330/410 (80.49%)**.
 
 The previously frozen **76 proposed component methods now also execute as a standalone suite**: 76 methods: 76 PASS, 0 failures, 0 errors, 0 skipped. Its complete coverage includes imports and shared fixture execution; method-only and empty-context observations are reported separately. **Formal SRS section 6.4 unit70 remains UNPROVEN** pending joint #41/#42 scope and application-logic agreement.
