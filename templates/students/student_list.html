@@ -49,7 +49,7 @@
             {% if student.status == "Active" %}
             <form method="post" action="{% url 'student-deactivate' student.pk %}">
               {% csrf_token %}
-              <button class="secondary" type="submit" onclick="return confirm('Deactivate this student?')">Deactivate</button>
+              <button class="secondary" type="submit" data-confirm="Deactivate this student?">Deactivate</button>
             </form>
             {% endif %}
           </div>

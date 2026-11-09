@@ -129,6 +129,23 @@ class SessionAndLockoutTests(TestCase):
         self.assertTrue(response.cookies["sessionid"]["secure"])
         self.assertTrue(response.cookies["sessionid"]["httponly"])
         self.assertTrue(response.cookies["csrftoken"]["secure"])
+        self.assertTrue(response.cookies["csrftoken"]["httponly"])
+
+    def test_application_sets_a_restrictive_content_security_policy(self):
+        response = self.client.get(reverse("login"))
+        self.assertEqual(
+            response["Content-Security-Policy"],
+            "default-src 'self'; base-uri 'self'; object-src 'none'; "
+            "frame-ancestors 'self'; form-action 'self'; script-src 'self'; "
+            "style-src 'self'; img-src 'self' data:; font-src 'self' data:",
+        )
+
+    def test_login_does_not_reflect_untrusted_next_parameter(self):
+        payload = '"><svg/onload=alert(1)>'
+        response = self.client.get(reverse("login"), {"next": payload})
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, payload, html=False)
+        self.assertNotContains(response, "<svg/onload", html=False)
 
     def test_login_post_is_protected_by_csrf(self):
         client = Client(enforce_csrf_checks=True)

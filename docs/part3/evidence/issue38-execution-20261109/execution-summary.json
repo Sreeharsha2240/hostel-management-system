@@ -1,0 +1,98 @@
+{
+  "source_commit": "7556822df38b23d4f302cf68d857bb35b963ff10",
+  "source_tree": "781dd5195e1b6da718fe602ae67cdb04f495acd4",
+  "git_dirty_at_run": true,
+  "started_at": "2026-11-09T01:27:02.821464+05:30",
+  "completed_at": "2026-11-09T01:30:48.168349+05:30",
+  "python": "3.14.0",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "django": "5.2.19",
+  "mysqlclient": "2.3.0",
+  "mysql": "8.0.46",
+  "command": "python scripts/run_checks.py --output-dir test-results/issue38-full-fixed-20261109",
+  "verification_gates": {
+    "lint": {
+      "exit_code": 0,
+      "seconds": 0.187
+    },
+    "format": {
+      "exit_code": 0,
+      "seconds": 0.188
+    },
+    "dependencies": {
+      "exit_code": 0,
+      "seconds": 0.68
+    },
+    "django-checks": {
+      "exit_code": 0,
+      "seconds": 0.977
+    },
+    "applied-migrations": {
+      "exit_code": 0,
+      "seconds": 1.123
+    },
+    "migration-consistency": {
+      "exit_code": 0,
+      "seconds": 1.026
+    },
+    "staticfiles": {
+      "exit_code": 0,
+      "seconds": 0.888
+    },
+    "test-results": {
+      "exit_code": 0,
+      "seconds": 207.333
+    },
+    "coverage": {
+      "exit_code": 0,
+      "seconds": 0.572
+    },
+    "coverage-xml": {
+      "exit_code": 0,
+      "seconds": 0.636
+    },
+    "coverage-json": {
+      "exit_code": 0,
+      "seconds": 0.569
+    },
+    "timing-smoke": {
+      "exit_code": 0,
+      "seconds": 10.254
+    }
+  },
+  "test_counts": {
+    "discovered": 207,
+    "passed": 206,
+    "failures": 0,
+    "errors": 0,
+    "expected_skips": 1
+  },
+  "coverage": {
+    "statements": 1772,
+    "covered_statements": 1590,
+    "statement_percent": 89.73,
+    "branches": 424,
+    "covered_branches": 348,
+    "branch_percent": 82.08,
+    "combined_percent": 88.25,
+    "configured_gate_percent": 70
+  },
+  "focused_gap_run": {
+    "command": "python manage.py test accounts.test_issue38_gaps --verbosity=2 --testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner",
+    "passed": 7,
+    "failed": 0,
+    "mysql": "8.0.46",
+    "transport": "HTTP test client; does not replace network TLS evidence"
+  },
+  "source_sha256": {
+    "accounts/test_issue38_gaps.py": "fcef5cfa44b7e0343915fbb716263ef702d87f8940901297386031286f207ce3",
+    "scripts/part3/run_issue38_focused.py": "e06aedb4d644091a83cd8647ad708d59af522e86273e669ebaf3aa6eed7f9847"
+  },
+  "limitations": [
+    "Candidate tree was dirty only for the supplemental tests and focused-runner source; full raw output remains in ignored test-results/.",
+    "Formal SRS unit application-logic coverage remains UNPROVEN pending #41 unit classification and denominator.",
+    "Authenticated TLS and HTTP-to-HTTPS network probe not completed: isolated MySQL server was denied write access to its disposable InnoDB data file when restarted; TC-SEC-06 remains PARTIAL.",
+    "OWASP ZAP baseline was intentionally NOT RUN per user request; TC-SEC-08 remains NOT RUN."
+  ],
+  "passed": true
+}
