@@ -68,7 +68,18 @@
     "ruff_format": "PASS",
     "pip_check": "PASS",
     "javascript_syntax": "PASS",
-    "fresh_mysql_ci": "PENDING after follow-up publication"
+    "fresh_mysql_ci": {
+      "status": "PASS",
+      "run_id": "42566973066",
+      "run_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066",
+      "pr_head": "49851396796918103681aacf47394e5010426201",
+      "python_jobs": {
+        "3.11": "209 tests; 208 passed, 1 expected skip; all 12 verification gates passed",
+        "3.14": "209 tests; 208 passed, 1 expected skip; all 12 verification gates passed"
+      },
+      "total_coverage": "88% (1780 statements); configured minimum 70% passed",
+      "owned_expanded_regression_cases": "9 passed"
+    }
   },
   "hms16_disposition": "Local TC-SEC-06 conditions pass; TC-SEC-08 ran with two observations pending QA disposition; issue remains open for approvals.",
   "hms21_disposition": "NOT READY; human review/approval, instructor instructions, final package decision, and actual submission receipt remain outstanding."
