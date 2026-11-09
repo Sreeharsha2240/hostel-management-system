@@ -1,0 +1,75 @@
+{
+  "date_local": "2026-11-09",
+  "base_commit": "9286dbaef9ca0d237d12ea677a91f7aceda25209",
+  "environment": {
+    "platform": "Windows 11",
+    "python": "3.14.0",
+    "django": "5.2.19",
+    "zap": "2.17.0",
+    "java": "25.0.2"
+  },
+  "target": {
+    "kind": "disposable synthetic local HMS instance",
+    "bind": "127.0.0.1",
+    "database": "SQLite",
+    "certificate": "short-lived self-signed; explicitly trusted by local probe client",
+    "public_or_production_endpoint": false
+  },
+  "transport": {
+    "http_to_https_redirect": "PASS (301)",
+    "tls_1_2": "PASS",
+    "tls_1_3": "PASS",
+    "tls_1_0_rejected": "PASS",
+    "tls_1_1_rejected": "PASS",
+    "authenticated_dashboard": "PASS",
+    "session_cookie": ["Secure", "HttpOnly"],
+    "csrf_cookie": ["Secure", "HttpOnly"]
+  },
+  "zap_baseline": {
+    "generated_local": "2026-11-09T10:41:12+05:30",
+    "execution": "PASS",
+    "exit_code": 0,
+    "mode": "passive only; no active scanner",
+    "sites": 1,
+    "spidered_urls": 10,
+    "alerts": {
+      "high": 0,
+      "medium": 0,
+      "low": 1,
+      "informational": 1,
+      "total_instances": 6
+    },
+    "remediated_and_absent_on_rescan": [
+      "Content Security Policy (CSP) Header Not Set",
+      "Cookie No HttpOnly Flag"
+    ],
+    "remaining_dispositions": [
+      {
+        "alert": "Server Leaks Version Information via Server header",
+        "risk": "Low",
+        "instances": 4,
+        "triage": "Python wsgiref probe-server banner; retain for QA disposition"
+      },
+      {
+        "alert": "User Controllable HTML Element Attribute (Potential XSS)",
+        "risk": "Informational",
+        "confidence": "Low",
+        "instances": 2,
+        "triage": "next parameter is not consumed or rendered; injection-marker regression test confirms no reflection; QA disposition pending"
+      }
+    ]
+  },
+  "local_verification": {
+    "focused_tests": "12 passed, 0 failed/errors",
+    "django_system_check": "PASS",
+    "migration_check": "PASS",
+    "makemigrations_check": "PASS",
+    "ruff_lint": "PASS",
+    "ruff_format": "PASS",
+    "pip_check": "PASS",
+    "javascript_syntax": "PASS",
+    "fresh_mysql_ci": "PENDING after follow-up publication"
+  },
+  "hms16_disposition": "Local TC-SEC-06 conditions pass; TC-SEC-08 ran with two observations pending QA disposition; issue remains open for approvals.",
+  "hms21_disposition": "NOT READY; human review/approval, instructor instructions, final package decision, and actual submission receipt remain outstanding."
+}

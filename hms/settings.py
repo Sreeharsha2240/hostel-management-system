@@ -70,6 +70,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "hms.security_headers.ContentSecurityPolicyMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -173,6 +174,7 @@ CSRF_COOKIE_SECURE = (
     ).lower()
     == "true"
 )
+CSRF_COOKIE_HTTPONLY = True
 SECURE_SSL_REDIRECT = (
     env(
         "DJANGO_SECURE_SSL_REDIRECT",

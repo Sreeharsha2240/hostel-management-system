@@ -1,8 +1,10 @@
 # HMS-21 Final Readiness Checkpoint
 
-**Checked:** 8 November 2026
+**Checkpoint started:** 8 November 2026; security evidence updated 9 November 2026
 **Reviewed main revision:** `b523d4c7abb77072bea48ac059be7f72396e8a79` (tree `56f7fb4307bc2ce4f3595aebfd5915ce301c3fb7`). Accepted final submission revision: **PENDING**.
 **Readiness:** **NOT READY**. This checkpoint records verified deliverables and blockers; it is not an approval or submission receipt.
+
+**9 November HMS-16 evidence update:** isolated local TLS/HTTPS checks now pass and a ZAP 2.17.0 passive baseline completed. The app CSP and CSRF-cookie findings were corrected and absent on rescan. The remaining ZAP low server-banner finding is specific to the local Python WSGI probe server; its informational `next`-parameter hotspot awaits QA disposition. See the [transport/ZAP evidence](evidence/issue38-security-20261109/README.md). #38 still needs QA disposition and team approvals; #43 remains NOT READY for the independent report, case-review, approval, instructor and actual submission requirements below.
 
 **Current-main development addendum — 8 November 2026:** [Development review and #41 classification handoff](Development_Review_20261108.md) reviews `cae69ea2192838b7874ad5be240def842f5aab5e` (tree `4f81f4a5e100f6a3f22505acfa05b4dd0ff9bb1f`). PR #64 and [exact-main CI 42461981682](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42461981682) are successful; #40 and #63 are CLOSED. Final development acceptance remains **HOLD** pending the remaining evidence and final package. The earlier review revision and historical measurements below are preserved.
 
@@ -14,7 +16,7 @@
 |---|---|---|
 | Test Case Document and RTM (#37) | Published through merged PR #60; #37 CLOSED for authorized documentation delivery: 61 complete case records and 36 core RTM rows, preserving original IDs/evidence. | Devansh authorized this documentation delivery without additional teammate messages. Actual case execution, priority agreement, historical entry/deviation acceptance and final QA/Dev/PO approvals remain distinct pending work. |
 | Unit Test Report (#41) | **Missing** at `docs/part3/Unit_Test_Report.md`. | Vaishnavi and module owners must publish the current run, unit-level classification, scope/coverage disposition and evidence. Formal SRS unit70 remains unproven. |
-| System Validation Report (#38) | Published through merged PR #59, with HMS-17/HMS-18 owner dispositions; this review adds consolidated metrics and explicit original-subcondition limits. | Maintain consolidated metrics and resolve remaining evidence/acceptance. TC-SEC-06 remains PARTIAL without real TLS evidence; the separate ZAP baseline is NOT RUN. Whole-plan readiness is NOT READY and approvals are pending. |
+| System Validation Report (#38) | Published through merged PR #59, with HMS-17/HMS-18 owner dispositions; 9 November transport/ZAP evidence is added in this branch. | Integrate the local TLS pass and ZAP alert dispositions. QA acceptance and real QA/Dev/PO approvals remain pending; whole-plan readiness is NOT READY. |
 | Code Coverage Report (#42) | Published on main; PR #57 was independently reviewed and merged. | The reporting issue is closed, but unit70 interpretation remains unproven pending #41's scope/attribution agreement. |
 | Branch Coverage Report (#42) | Published on main; PR #57 was independently reviewed and merged. | Same unit-scope limitation as the Code Coverage Report. |
 
@@ -25,7 +27,7 @@ The latest HMS-17 PR #58 merged as `896b4f3`; its tested tree is the same as the
 | Issue | State | Remaining readiness dependency |
 |---|---|---|
 | #37 HMS-15 | Closed — documentation delivered through PR #60 | Complete records, mappings and evidence reconciliation are delivered under Devansh's explicit instruction. The document retains execution gaps and proposed-priority/acceptance limits; closing this delivery does not complete the whole Test Plan. |
-| #38 HMS-16 | Open | PR #59 is merged. Obtain the missing TLS/ZAP evidence or an actual authorized criterion change, integrate remaining case results/metrics, and record real QA/Dev/PO decisions. The old Windows failure/count remains honestly recorded as unreconciled historical evidence. |
+| #38 HMS-16 | Open | Local TLS checks and the passive ZAP baseline are recorded in this branch. QA must disposition the local WSGI server-banner finding and informational `next`-parameter hotspot, then review integrated results and record actual QA/Dev/PO decisions. The old Windows failure/count remains honestly recorded as unreconciled historical evidence. |
 | #39 HMS-17 | Open | PR #58 is merged; TC-STU-01 is NOT RUN for lack of case-specific evidence, TC-QUAL-01 is PARTIAL without a timed new-Warden guide walkthrough, and other issue-level SRS coverage remains outstanding. |
 | #40 HMS-18 | CLOSED — scoped technical delivery accepted | [8 November independent AI QA](evidence/issue40-final/qa-review-20261108.md), expressly authorized by Devansh, accepts the original 13 cases with current-priority, late-entry and bounded tool/environment dispositions. That #40 review preserved OWNER PASS observations, raw browser PARTIAL and expanded-case statuses; the separate #63 follow-up below subsequently executes nine expanded recipes. Actual named human final approvals and whole-plan acceptance remain pending. |
 | #41 HMS-19 | Open | Publish the missing Unit Test Report; classify unit versus integration/system tests and disposition the formal unit70 target. |
