@@ -167,3 +167,21 @@ The following conditions remain unestablished by the execution records above:
 - SRS 99% availability target measurement during 08:00–20:00 working hours.
 
 These conditions must be tested and recorded before claiming full HMS-17 acceptance.
+
+## Additional usability execution — 9 November 2026
+
+A separate owner-reported first-use walkthrough was completed using the
+one-page Warden guide. The task was to register a student and successfully
+allocate a bed. The owner confirms completion in less than five minutes,
+against the SRS target of 300 seconds.
+
+The exact elapsed time and guide revision/version were not retained.
+The participant's non-identifying code and detailed assistance/error
+observations were also not retained.
+
+See [usability-walkthrough-20261109.md](usability-walkthrough-20261109.md).
+
+This additional result does not change the historical 7 November PARTIAL
+result. It records an owner-reported pass for the timed task only.
+TC-QUAL-01 remains PARTIAL overall pending the missing execution details
+and remaining browser/platform compatibility evidence.

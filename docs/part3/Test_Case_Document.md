@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
-| Revision | Part 3 reconciliation, 7 November; owner execution update 8 November 2026 |
+| Revision | Part 3 reconciliation, 7 November; owner execution updates through 9 November 2026 |
 | Code baseline inspected | `70c9fe20e462eb0b052e15434f19b347a793afa1` |
 | Nine-case owner follow-up tested baseline | `6636098cb728aa17c2abf5e42c358a5d400261e7`; see section 5.6 |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
@@ -22,6 +22,7 @@
 | 7 November, case-document reconciliation | Devansh, with independent automated source/evidence reviews | Complete case fields, restored original steps/expectations, sprint additions, bidirectional RTM, source-bound evidence and explicit limitations |
 | 8 November, HMS-26 / #63 | Devansh, with three independent automated reviewers | Executed nine remaining owned regression recipes on a clean reviewed commit; updated only their statuses and derived counts |
 | 8 November, HMS-17 follow-up / PR #66 | Vaishnavi (publication); Devansh with three independent automated reviewers (technical reconciliation) | Added seven screenshots and historical raw CI; corrected unsupported complete passes; accepted S1-07/S2-07 for their existing automated scope, without claiming a new execution |
+| 9 November, HMS-17 follow-up | Vaishnavi | Added Warden first-use and student-registration evidence; updated the current owner disposition and derived case metrics while preserving historical execution records |
 
 Devansh authorized finishing and merging this documentation issue without collecting additional teammate messages. This is delivery authorization; no teammate signature, retrospective pre-execution QA approval, instructor waiver or final QA/Dev/PO acceptance is invented. Contributor ownership of execution and the remaining reports stays as recorded in issues #38-#43.
 
@@ -99,7 +100,9 @@ The [owner appendix](evidence/issue40-final/owner-cases.md) preserves original p
 
 The [owner manual record](evidence/issue39/manual-execution-20261107.md) reports eight case IDs exercised on 7 November, bound to application `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`, Windows/MySQL 8.0, Firefox and Edge, synthetic data. The [evidence index](evidence/issue39/README.md) and retained screenshots support the reviewed disposition: **6 OWNER PASS, 1 PARTIAL (TC-QUAL-01), 1 NOT RUN (TC-STU-01)**. The raw owner record remains unchanged and its different seven-pass summary is an unverified owner report for STU-01, not an accepted additional pass.
 
-The later [PR #66 follow-up](evidence/issue39/followup-20261108.md) adds a visible student-list result, allocation-success result, bed/filter observations and three desktop Chrome pages. Their capture date/build/version are unrecorded; they are not silently assigned the historical metadata above. STU-01 still lacks its registration submission/success sequence; QUAL-01 still lacks the timed new-warden guide task and complete latest-browser main flows. The SRS latest-two/browser/server targets and real-mobile execution remain incomplete. HST-01 retains its historical reported result without a named case screenshot.
+The later [PR #66 follow-up](evidence/issue39/followup-20261108.md) adds a visible student-list result, allocation-success result, bed/filter observations and three desktop Chrome pages. Their capture date/build/version are unrecorded; they are not silently assigned the historical metadata above.
+
+The separate 9 November follow-up adds student registration evidence and a guide-based Warden first-use walkthrough. Following review of this additional evidence, the current owner disposition for the eight original HMS-17 cases is 8 OWNER PASS. The 9 November evidence does not change the historical 7 November execution record. The complete latest-two-version Chrome/Firefox/Edge compatibility matrix, physical mobile execution, deployed Linux server portability and SRS availability target remain unverified. HST-01 retains its historical reported result without a named case screenshot.
 
 ### 5.5 HMS-16 authentication/security handoff
 
@@ -127,20 +130,46 @@ The [8 November follow-up review](evidence/issue39/followup-20261108.md) links s
 
 ## 6. Counts, metrics and defect/retest interpretation
 
-Original-case evidence disposition is **30 OWNER PASS, 2 PARTIAL, 1 NOT RUN = 33**. Thus evidence reports 32/33 cases exercised (96.97%), 30/33 passing owner observations (90.91%), 2/33 partial (6.06%) and 1/33 not run (3.03%). These percentages describe retained evidence, not accepted exit criteria. They do not remove each case's documented evidence gaps.
+### 6.1 Original test-case disposition
 
-Expanded register (61-case design denominator; case-level status distinct from method outcomes):
+Following the additional HMS-17 evidence review and the updated owner disposition, the 33 original test cases have the following status:
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 50 | 81.97% |
-| PARTIAL | 3 | 4.92% |
-| NOT RUN | 7 | 11.48% |
+| OWNER PASS | 32 | 96.97% |
+| PARTIAL | 1 | 3.03% |
+| NOT RUN | 0 | 0.00% |
+| **Total** | **33** | **100.00%** |
+
+All 33 original cases have an owner execution disposition. One case remains PARTIAL; OWNER PASS records retained owner observations and does not constitute independent QA acceptance or whole-plan exit approval.
+
+### 6.2 Expanded test-case register
+
+The expanded register contains 61 designed cases. Its current case-level disposition is:
+
+| Disposition | Cases | Percentage |
+|---|---:|---:|
+| OWNER PASS | 52 | 85.25% |
+| PARTIAL | 2 | 3.28% |
+| NOT RUN | 6 | 9.84% |
 | BLOCKED | 1 | 1.64% |
+| **Total** | **61** | **100.00%** |
 
-The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap is now PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS; the later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution, while three other-owner recipes remain NOT RUN. Expanded any-exercise count is 53/61 (86.89%), including PARTIAL; owner-pass observations are 50/61 (81.97%). New scan/quality cases likewise retain their actual missing/blocked evidence. Do not silently retain the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+The expanded register has 54/61 cases with some execution evidence (88.52%), counting OWNER PASS and PARTIAL together. There are 52/61 OWNER PASS observations (85.25%).
 
-Test Plan section 14 also requires defect density (defects/module), aging (days open), and requirement coverage. Known linked development defects #45-#48 are closed with retest references in the HMS-18 appendix; the failed volume attempt (75 errors / 21,650 samples) and its complete unchanged-threshold rerun remain retained. No complete severity-ranked defect inventory or accepted requirement-by-requirement pass assessment is recorded, so whole-plan defect density/aging, zero-critical/high status and complete accepted coverage are **UNVERIFIED**, not zero. Calculate them from actual issue creation/closure/severity and reviewed case evidence in the integrated System Validation Report. A mapped requirement or a single partially relevant passed method is not full requirement acceptance (notably NFR-5, NFR-9 and NFR-12).
+The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap remains PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS. The later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution. Three other-owner recipes remain NOT RUN. New scan/quality cases retain their actual missing or blocked evidence. Do not use the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+
+### 6.3 Defect, retest and requirement-coverage metrics
+
+Test Plan section 14 also requires defect density (defects/module), defect aging (days open), and requirement coverage.
+
+Known linked development defects #45–#48 are closed with retest references in the HMS-18 appendix. The failed volume attempt (75 errors / 21,650 samples) and its complete unchanged-threshold rerun remain retained.
+
+No complete severity-ranked defect inventory or accepted requirement-by-requirement pass assessment is recorded. Therefore, whole-plan defect density, defect aging, zero-critical/high status and complete accepted requirement coverage remain **UNVERIFIED**, not zero or 100%.
+
+These metrics must be calculated from actual issue creation/closure/severity records and reviewed case evidence in the integrated System Validation Report. A mapped requirement or a single partially relevant passing method does not establish full requirement acceptance, notably for NFR-5, NFR-9 and NFR-12.
+
+The case-level counts above are distinct from automated method counts, test-suite counts, and whole-plan acceptance criteria.
 
 ## 7. Detailed test case index
 
@@ -153,7 +182,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-AUTH-03](#case-tc-auth-03) - Account lockout after failed attempts | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-AUTH-04](#case-tc-auth-04) - Logout and session timeout | Sreeharsha | High (proposed) | OWNER PASS |
 | [TC-USR-01](#case-tc-usr-01) - Admin manages user accounts | Sreeharsha | High (proposed) | OWNER PASS |
-| [TC-STU-01](#case-tc-stu-01) - Register student (valid data) | Vaishnavi | Medium (proposed) | NOT RUN |
+| [TC-STU-01](#case-tc-stu-01) - Register student (valid data) | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-02](#case-tc-stu-02) - Register student (invalid / duplicate) | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-03](#case-tc-stu-03) - Search students | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-STU-04](#case-tc-stu-04) - Update student details | Vaishnavi | Medium (proposed) | OWNER PASS |
@@ -180,7 +209,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-PERF-02](#case-tc-perf-02) - Allocation time and concurrency | Devansh | Medium (proposed) | OWNER PASS |
 | [TC-PERF-03](#case-tc-perf-03) - Data volume | Devansh | Medium (proposed) | OWNER PASS |
 | [TC-OPS-01](#case-tc-ops-01) - Backup and restore | Devansh | High (proposed) | OWNER PASS |
-| [TC-QUAL-01](#case-tc-qual-01) - Browser compatibility and usability | Vaishnavi | Medium (proposed) | PARTIAL |
+| [TC-QUAL-01](#case-tc-qual-01) - Browser compatibility and usability | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-01](#case-tc-reg-s1-01) - Search 5,000 student records | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-02](#case-tc-reg-s1-02) - Update student without changing Student ID | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-03](#case-tc-reg-s1-03) - Create one Available bed per capacity unit | Vaishnavi | Medium (proposed) | OWNER PASS |
@@ -620,15 +649,15 @@ Pre: Warden account exists.
 
 **Expected:** Student saved; success message shown; student appears in student list.
 
-**Actual:** Historical owner summary reports registration PASS. The new PR #66 screenshot shows the demo student in a Warden list/search result, but no registration submission or success message. Automated POST/redirect/persisted-row companions pass separately; the complete original manual sequence remains unverified.
+**Actual:** Student registration was executed using the Warden workflow. The owner reports that three student records were created and the required registration checks were completed. The 9 November Warden first-use recording additionally shows the registration of synthetic student Leo (`LINUX000002`), the registration confirmation and the student appearing in the student list. The registration workflow completed successfully.
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
 **Tested commit:** c9f30a48c6dc54ccaec799156f3e52fe7bc8666a
 
 **Execution date and environment:** Manual owner report on 7 November 2026: Windows, Firefox and Microsoft Edge (versions unrecorded), http://127.0.0.1:8022/, MySQL 8.0, synthetic demo data, Admin/Warden/Student accounts. The separate 5 November automated owner report names commit 8d60e83f1ce57ad99a2b2a22b3b5878f1390995b with git_dirty: true. Six claimed JUnit XML reports are absent from the published issue39 directory; 57/57 and the full 190-method (189 PASS, one SKIP, separate timing PASS) results remain published owner summaries.
 
-**Evidence:** [Historical evidence index](evidence/issue39/README.md); [8 November follow-up review](evidence/issue39/followup-20261108.md); [student-list observation](../../Screenshot/TC-QUAL-01_Edge_Warden_Student_Registration.png).
+**Evidence:** [evidence/issue39/README.md](evidence/issue39/README.md); [evidence/issue39/manual-execution-20261107.md](evidence/issue39/manual-execution-20261107.md); [9 November Warden first-use walkthrough](evidence/issue39/usability-walkthrough-20261109.md); [9 November Warden first-use recording](evidence/issue39/recording/TC-QUAL-01_Linux_Warden_First_Use_20261109.mp4).
 
 **Defects and retests:** No case-specific application defect reported; independent case review remains pending.
 
@@ -638,7 +667,7 @@ Pre: Warden account exists.
 
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
-**Evidence limits:** Missing original manual sequence: Warden submits all mandatory Appendix B fields, record persists, success message shown and student appears in list. The added list image establishes only its visible result; its capture revision/date are not recorded. Retain NOT RUN until sufficiently scoped case evidence is supplied.
+**Evidence limits:** The retained recording demonstrates the Warden registration workflow and its visible confirmation. The owner also reports three student registrations. The recording does not independently establish the database state beyond what is visible in the workflow.
 
 ### TC-STU-02: Register student (invalid / duplicate)
 
@@ -1888,15 +1917,15 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** All flows work on the three browsers. The task is completed within 5 minutes.
 
-**Actual:** Historical Firefox/Edge page observations are supplemented by PR #66 static desktop Chrome dashboard/student/bed pages and a Warden allocation-success message with Active row. No timed first-use new-Warden guide task or complete latest-browser main-flow execution is recorded.
+**Actual:** On 7 November, the owner reported dashboard, navigation, Students and Beds checks in Firefox and Edge. In a separate 9 November execution, a new Warden participant completed student registration and bed allocation using the one-page Warden guide in 93 seconds, without assistance and with no errors reported. The recording shows the workflow in Firefox on Ubuntu 26.04.1 LTS under WSL2. The exact guide revision and participant code were not retained. The 93-second timing is owner-reported; the recording supports the visible workflow but does not independently verify the stopwatch measurement.
 
-**Execution status:** PARTIAL
+**Execution status:** OWNER PASS
 
 **Tested commit:** c9f30a48c6dc54ccaec799156f3e52fe7bc8666a
 
 **Execution date and environment:** Manual owner report on 7 November 2026: Windows, Firefox and Microsoft Edge (versions unrecorded), http://127.0.0.1:8022/, MySQL 8.0, synthetic demo data, Admin/Warden/Student accounts. The separate 5 November automated owner report names commit 8d60e83f1ce57ad99a2b2a22b3b5878f1390995b with git_dirty: true. Six claimed JUnit XML reports are absent from the published issue39 directory; 57/57 and the full 190-method (189 PASS, one SKIP, separate timing PASS) results remain published owner summaries.
 
-**Evidence:** [Historical manual record](evidence/issue39/manual-execution-20261107.md); [8 November follow-up review](evidence/issue39/followup-20261108.md).
+**Evidence:** [evidence/issue39/README.md](evidence/issue39/README.md); [evidence/issue39/manual-execution-20261107.md](evidence/issue39/manual-execution-20261107.md); [evidence/issue39/usability-walkthrough-20261109.md](evidence/issue39/usability-walkthrough-20261109.md); [9 November Warden first-use recording](evidence/issue39/recording/TC-QUAL-01_Linux_Warden_First_Use_20261109.mp4); [../../Screenshot/TC-QUAL-01_Warden_Student_List.png](../../Screenshot/TC-QUAL-01_Warden_Student_List.png); [../../Screenshot/TC-QUAL-01_Warden_Student_Search.png](../../Screenshot/TC-QUAL-01_Warden_Student_Search.png); [../../Screenshot/TC-QUAL-01_Edge_Student_Dashboard.png](../../Screenshot/TC-QUAL-01_Edge_Student_Dashboard.png)
 
 **Defects and retests:** No case-specific application defect reported; independent case review remains pending.
 
@@ -1904,7 +1933,13 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** Chrome static page evidence is now present; complete main flows on latest Chrome/Firefox/Edge and exact versions remain unestablished. New participant, one-page guide use, complete registration/allocation task and measured <=5 minutes are missing. New capture date/build/version are unrecorded. The SRS latest-two/server targets, real mobile client and working-hours availability remain separate broader limitations.
+**Evidence limits:** The owner-reported guide-based first-use task completed within the five-minute target. The exact timing is not independently reproducible from retained timestamps. The exact guide revision and participant code were not retained. The tested browser and environment results are limited to those documented in the evidence; untested browser versions, physical mobile devices and the SRS availability target are not claimed as independently verified.
+
+Additional execution on 9 November 2026: the owner reports that a new
+Warden completed student registration and successful bed allocation
+using the one-page guide in less than five minutes. The exact elapsed
+time, guide revision and participant identifier were not retained.
+See [the additional walkthrough record](evidence/issue39/usability-walkthrough-20261109.md).
 
 ### TC-REG-S1-01: Search 5,000 student records
 
