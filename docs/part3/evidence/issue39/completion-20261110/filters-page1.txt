@@ -1,0 +1,72 @@
+ACCOMMODATION
+
+Bed availability
+Browse rooms by location and type
+Hostel
+All hostels
+Boys OTHER
+HMS17 Filter Target
+Floor
+Room type
+All types
+Single
+Double
+Triple
+Bed status
+Available
+Occupied
+Under maintenance
+Apply filters
+BED	HOSTEL	ROOM	FLOOR	TYPE	STATUS
+F00-C	HMS17 Filter Target	F00	2	Double	Available
+F00-D	HMS17 Filter Target	F00	2	Double	Available
+F01-A	HMS17 Filter Target	F01	2	Double	Available
+F01-B	HMS17 Filter Target	F01	2	Double	Available
+F01-C	HMS17 Filter Target	F01	2	Double	Available
+F01-D	HMS17 Filter Target	F01	2	Double	Available
+F02-A	HMS17 Filter Target	F02	2	Double	Available
+F02-B	HMS17 Filter Target	F02	2	Double	Available
+F02-C	HMS17 Filter Target	F02	2	Double	Available
+F02-D	HMS17 Filter Target	F02	2	Double	Available
+F03-A	HMS17 Filter Target	F03	2	Double	Available
+F03-B	HMS17 Filter Target	F03	2	Double	Available
+F03-C	HMS17 Filter Target	F03	2	Double	Available
+F03-D	HMS17 Filter Target	F03	2	Double	Available
+F04-A	HMS17 Filter Target	F04	2	Double	Available
+F04-B	HMS17 Filter Target	F04	2	Double	Available
+F04-C	HMS17 Filter Target	F04	2	Double	Available
+F04-D	HMS17 Filter Target	F04	2	Double	Available
+F05-A	HMS17 Filter Target	F05	2	Double	Available
+F05-B	HMS17 Filter Target	F05	2	Double	Available
+F05-C	HMS17 Filter Target	F05	2	Double	Available
+F05-D	HMS17 Filter Target	F05	2	Double	Available
+F06-A	HMS17 Filter Target	F06	2	Double	Available
+F06-B	HMS17 Filter Target	F06	2	Double	Available
+F06-C	HMS17 Filter Target	F06	2	Double	Available
+F06-D	HMS17 Filter Target	F06	2	Double	Available
+F07-A	HMS17 Filter Target	F07	2	Double	Available
+F07-B	HMS17 Filter Target	F07	2	Double	Available
+F07-C	HMS17 Filter Target	F07	2	Double	Available
+F07-D	HMS17 Filter Target	F07	2	Double	Available
+F08-A	HMS17 Filter Target	F08	2	Double	Available
+F08-B	HMS17 Filter Target	F08	2	Double	Available
+F08-C	HMS17 Filter Target	F08	2	Double	Available
+F08-D	HMS17 Filter Target	F08	2	Double	Available
+F09-A	HMS17 Filter Target	F09	2	Double	Available
+F09-B	HMS17 Filter Target	F09	2	Double	Available
+F09-C	HMS17 Filter Target	F09	2	Double	Available
+F09-D	HMS17 Filter Target	F09	2	Double	Available
+F10-A	HMS17 Filter Target	F10	2	Double	Available
+F10-B	HMS17 Filter Target	F10	2	Double	Available
+F10-C	HMS17 Filter Target	F10	2	Double	Available
+F10-D	HMS17 Filter Target	F10	2	Double	Available
+F11-A	HMS17 Filter Target	F11	2	Double	Available
+F11-B	HMS17 Filter Target	F11	2	Double	Available
+F11-C	HMS17 Filter Target	F11	2	Double	Available
+F11-D	HMS17 Filter Target	F11	2	Double	Available
+F12-A	HMS17 Filter Target	F12	2	Double	Available
+F12-B	HMS17 Filter Target	F12	2	Double	Available
+F12-C	HMS17 Filter Target	F12	2	Double	Available
+F12-D	HMS17 Filter Target	F12	2	Double	Available
+Page 1 of 2
+Next

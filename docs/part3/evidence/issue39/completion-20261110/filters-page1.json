@@ -1,0 +1,74 @@
+{
+  "next": "?hostel=1&floor=2&room_type=Double&status=Available&page=2",
+  "rows": [
+    "F00-C\tHMS17 Filter Target\tF00\t2\tDouble\tAvailable",
+    "F00-D\tHMS17 Filter Target\tF00\t2\tDouble\tAvailable",
+    "F01-A\tHMS17 Filter Target\tF01\t2\tDouble\tAvailable",
+    "F01-B\tHMS17 Filter Target\tF01\t2\tDouble\tAvailable",
+    "F01-C\tHMS17 Filter Target\tF01\t2\tDouble\tAvailable",
+    "F01-D\tHMS17 Filter Target\tF01\t2\tDouble\tAvailable",
+    "F02-A\tHMS17 Filter Target\tF02\t2\tDouble\tAvailable",
+    "F02-B\tHMS17 Filter Target\tF02\t2\tDouble\tAvailable",
+    "F02-C\tHMS17 Filter Target\tF02\t2\tDouble\tAvailable",
+    "F02-D\tHMS17 Filter Target\tF02\t2\tDouble\tAvailable",
+    "F03-A\tHMS17 Filter Target\tF03\t2\tDouble\tAvailable",
+    "F03-B\tHMS17 Filter Target\tF03\t2\tDouble\tAvailable",
+    "F03-C\tHMS17 Filter Target\tF03\t2\tDouble\tAvailable",
+    "F03-D\tHMS17 Filter Target\tF03\t2\tDouble\tAvailable",
+    "F04-A\tHMS17 Filter Target\tF04\t2\tDouble\tAvailable",
+    "F04-B\tHMS17 Filter Target\tF04\t2\tDouble\tAvailable",
+    "F04-C\tHMS17 Filter Target\tF04\t2\tDouble\tAvailable",
+    "F04-D\tHMS17 Filter Target\tF04\t2\tDouble\tAvailable",
+    "F05-A\tHMS17 Filter Target\tF05\t2\tDouble\tAvailable",
+    "F05-B\tHMS17 Filter Target\tF05\t2\tDouble\tAvailable",
+    "F05-C\tHMS17 Filter Target\tF05\t2\tDouble\tAvailable",
+    "F05-D\tHMS17 Filter Target\tF05\t2\tDouble\tAvailable",
+    "F06-A\tHMS17 Filter Target\tF06\t2\tDouble\tAvailable",
+    "F06-B\tHMS17 Filter Target\tF06\t2\tDouble\tAvailable",
+    "F06-C\tHMS17 Filter Target\tF06\t2\tDouble\tAvailable",
+    "F06-D\tHMS17 Filter Target\tF06\t2\tDouble\tAvailable",
+    "F07-A\tHMS17 Filter Target\tF07\t2\tDouble\tAvailable",
+    "F07-B\tHMS17 Filter Target\tF07\t2\tDouble\tAvailable",
+    "F07-C\tHMS17 Filter Target\tF07\t2\tDouble\tAvailable",
+    "F07-D\tHMS17 Filter Target\tF07\t2\tDouble\tAvailable",
+    "F08-A\tHMS17 Filter Target\tF08\t2\tDouble\tAvailable",
+    "F08-B\tHMS17 Filter Target\tF08\t2\tDouble\tAvailable",
+    "F08-C\tHMS17 Filter Target\tF08\t2\tDouble\tAvailable",
+    "F08-D\tHMS17 Filter Target\tF08\t2\tDouble\tAvailable",
+    "F09-A\tHMS17 Filter Target\tF09\t2\tDouble\tAvailable",
+    "F09-B\tHMS17 Filter Target\tF09\t2\tDouble\tAvailable",
+    "F09-C\tHMS17 Filter Target\tF09\t2\tDouble\tAvailable",
+    "F09-D\tHMS17 Filter Target\tF09\t2\tDouble\tAvailable",
+    "F10-A\tHMS17 Filter Target\tF10\t2\tDouble\tAvailable",
+    "F10-B\tHMS17 Filter Target\tF10\t2\tDouble\tAvailable",
+    "F10-C\tHMS17 Filter Target\tF10\t2\tDouble\tAvailable",
+    "F10-D\tHMS17 Filter Target\tF10\t2\tDouble\tAvailable",
+    "F11-A\tHMS17 Filter Target\tF11\t2\tDouble\tAvailable",
+    "F11-B\tHMS17 Filter Target\tF11\t2\tDouble\tAvailable",
+    "F11-C\tHMS17 Filter Target\tF11\t2\tDouble\tAvailable",
+    "F11-D\tHMS17 Filter Target\tF11\t2\tDouble\tAvailable",
+    "F12-A\tHMS17 Filter Target\tF12\t2\tDouble\tAvailable",
+    "F12-B\tHMS17 Filter Target\tF12\t2\tDouble\tAvailable",
+    "F12-C\tHMS17 Filter Target\tF12\t2\tDouble\tAvailable",
+    "F12-D\tHMS17 Filter Target\tF12\t2\tDouble\tAvailable"
+  ],
+  "selectors": [
+    [
+      "hostel",
+      "1"
+    ],
+    [
+      "floor",
+      "2"
+    ],
+    [
+      "room_type",
+      "Double"
+    ],
+    [
+      "status",
+      "Available"
+    ]
+  ],
+  "url": "http://127.0.0.1:8017/beds/?hostel=1&floor=2&room_type=Double&status=Available"
+}

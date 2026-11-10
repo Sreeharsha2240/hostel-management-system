@@ -150,15 +150,15 @@ The expanded register contains 61 designed cases. Its current case-level disposi
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 53 | 86.89% |
-| PARTIAL | 2 | 3.28% |
-| NOT RUN | 5 | 8.20% |
+| OWNER PASS | 57 | 93.44% |
+| PARTIAL | 1 | 1.64% |
+| NOT RUN | 2 | 3.28% |
 | BLOCKED | 1 | 1.64% |
 | **Total** | **61** | **100.00%** |
 
-The expanded register has 55/61 cases with some execution evidence (90.16%), counting OWNER PASS and PARTIAL together. There are 53/61 OWNER PASS observations (86.89%).
+The expanded register has 58/61 cases with some execution evidence (95.08%), counting OWNER PASS and PARTIAL together. There are 57/61 OWNER PASS observations (93.44%). The [10 November HMS-17 follow-up](evidence/issue39/completion-20261110/README.md) supplies four complete regression recipes; availability and complete portability remain NOT RUN, ZAP disposition PARTIAL, and guide acceptance BLOCKED.
 
-The ten existing regression IDs retain their historical owner observations except S1-05, whose combined-filter navigation gap remains PARTIAL with passing method support. Of fourteen new regression recipes, nine Devansh-owned cases have complete reviewed execution records and OWNER PASS. The later PR #66 technical reconciliation accepts S1-07/S2-07 against their historical raw automated execution, while three other-owner recipes remain NOT RUN.
+All ten retained and fourteen added regression recipes now have OWNER PASS evidence. The 10 November follow-up completes S1-05 combined-filter navigation and S1-06/S1-08/S2-06; historical source/date and previous pending outcomes remain in their dated records. Owner execution does not constitute independent QA or whole-plan acceptance.
 
 The 9 November HMS-16 loopback TLS probe supplies the specified TC-SEC-06 network conditions. Its evidence remains limited to the isolated test environment and does not certify a public or production host. TC-SEC-08 has a passive ZAP scan covering 10 URLs; two remaining alert dispositions are documented, and QA disposition remains pending, so the case is PARTIAL.
 
@@ -219,16 +219,16 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S1-02](#case-tc-reg-s1-02) - Update student without changing Student ID | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-03](#case-tc-reg-s1-03) - Create one Available bed per capacity unit | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-04](#case-tc-reg-s1-04) - Reject capacity below active allocations | Vaishnavi | Medium (proposed) | OWNER PASS |
-| [TC-REG-S1-05](#case-tc-reg-s1-05) - Combined bed filters and pagination | Vaishnavi | Medium (proposed) | PARTIAL |
+| [TC-REG-S1-05](#case-tc-reg-s1-05) - Combined bed filters and pagination | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S2-01](#case-tc-reg-s2-01) - Transfer/release preserve history and actor audit | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-02](#case-tc-reg-s2-02) - Same bed/student concurrent allocation has one winner | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-03](#case-tc-reg-s2-03) - Concurrent payments receive unique sequential receipts | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-04](#case-tc-reg-s2-04) - Adjustments preserve original and validate net amount | Devansh | High (proposed) | OWNER PASS |
 | [TC-REG-S2-05](#case-tc-reg-s2-05) - Occupancy HTML/CSV/JSON match with filter | Devansh | Medium (proposed) | OWNER PASS |
-| [TC-REG-S1-06](#case-tc-reg-s1-06) - Empty student/hostel/room submissions are rejected | Vaishnavi | Medium (proposed) | NOT RUN |
+| [TC-REG-S1-06](#case-tc-reg-s1-06) - Empty student/hostel/room submissions are rejected | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-07](#case-tc-reg-s1-07) - Numeric bed-filter boundaries and escaped errors | Vaishnavi | Medium (proposed) | OWNER PASS |
-| [TC-REG-S1-08](#case-tc-reg-s1-08) - Student/room changes roll back on audit failure | Vaishnavi | High (proposed) | NOT RUN |
-| [TC-REG-S2-06](#case-tc-reg-s2-06) - Explicit Student login link scopes My Records | Sreeharsha / Vaishnavi | High (proposed) | NOT RUN |
+| [TC-REG-S1-08](#case-tc-reg-s1-08) - Student/room changes roll back on audit failure | Vaishnavi | High (proposed) | OWNER PASS |
+| [TC-REG-S2-06](#case-tc-reg-s2-06) - Explicit Student login link scopes My Records | Sreeharsha / Vaishnavi | High (proposed) | OWNER PASS |
 | [TC-REG-S2-07](#case-tc-reg-s2-07) - My Records empty/access/navigation/date behavior | Sreeharsha | Medium (proposed) | OWNER PASS |
 | [TC-REG-S2-08](#case-tc-reg-s2-08) - Allocation/release/transfer rollback and retry | Devansh | High (#63 technical review) | OWNER PASS |
 | [TC-REG-S2-09](#case-tc-reg-s2-09) - Payments and original receipts are permanent | Devansh | High (#63 technical review) | OWNER PASS |
@@ -2166,7 +2166,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Actual:** Historical summary labelled this PASS. Current source review confirms combined-filter selection and separate 50/7 pagination assertions pass, but the methods do not inspect a rendered Next link with combined filters. The full planned navigation expectation is therefore PARTIAL.
 
-**Execution status:** PARTIAL
+**Execution status:** OWNER PASS
 
 **Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); 0e358b4ce1fd02366184c7cb9c312b47dd093214 (historical owner regression)
 
@@ -2183,6 +2183,8 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
 **Evidence limits:** Combined-filter method checks one matching bed. Pagination method checks57 beds split50+7 with status='' and Page2of2; despite its name it does not assert rendered Next link or combined-filter persistence.
+
+**10 November follow-up:** OWNER PASS for the complete declared recipe; see [fresh browser/database execution and limitations](evidence/issue39/completion-20261110/README.md). Base `65d6c1233b1b184858b36ff93cd32e440534ebbb` plus the recorded regression test file; Windows/MySQL 8.0.46, synthetic isolated database. Earlier Actual/commit/environment paragraphs above retain the historical companion evidence; this dated follow-up supersedes their pending execution and evidence-gap statements for this recipe only. No final QA approval is inferred.
 
 ### TC-REG-S2-01: Transfer/release preserve history and actor audit
 
@@ -2455,7 +2457,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
 **Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
 
@@ -2472,6 +2474,8 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
 **Evidence limits:** Methods assert field errors, row counts, absence of relevant audit; not every stored field is explicitly reasserted.
+
+**10 November follow-up:** OWNER PASS for the complete declared recipe; see [fresh browser/database execution and limitations](evidence/issue39/completion-20261110/README.md). Base `65d6c1233b1b184858b36ff93cd32e440534ebbb` plus the recorded regression test file; Windows/MySQL 8.0.46, synthetic isolated database. Earlier Actual/commit/environment paragraphs above retain the historical companion evidence; this dated follow-up supersedes their pending execution and evidence-gap statements for this recipe only. No final QA approval is inferred.
 
 ### TC-REG-S1-07: Numeric bed-filter boundaries and escaped errors
 
@@ -2552,7 +2556,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
 **Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
 
@@ -2569,6 +2573,8 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 **Current companion outcomes:** 3 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
 **Evidence limits:** Controlled automated faults only; not deployed-database disruption.
+
+**10 November follow-up:** OWNER PASS for the complete declared recipe; see [fresh browser/database execution and limitations](evidence/issue39/completion-20261110/README.md). Base `65d6c1233b1b184858b36ff93cd32e440534ebbb` plus the recorded regression test file; Windows/MySQL 8.0.46, synthetic isolated database. Earlier Actual/commit/environment paragraphs above retain the historical companion evidence; this dated follow-up supersedes their pending execution and evidence-gap statements for this recipe only. No final QA approval is inferred.
 
 ### TC-REG-S2-06: Explicit Student login link scopes My Records
 
@@ -2601,7 +2607,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Actual:** The linked component/integration methods passed in both 7 November CI jobs. This newly specified case has no separate reviewed case-execution record; NOT RUN preserves that boundary.
 
-**Execution status:** NOT RUN
+**Execution status:** OWNER PASS
 
 **Tested commit:** 70c9fe20e462eb0b052e15434f19b347a793afa1 (automated companions); no independent execution SHA for the new planned case
 
@@ -2618,6 +2624,8 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 **Current companion outcomes:** 2 PASS and 0 expected timing SKIP in each current CI bundle. These are method outcomes, not a new case-level execution or unit-only result.
 
 **Evidence limits:** Methods inspect querysets and use fixture-created links. No link-assignment POST, forged-link POST or relink is asserted; UI save evidence needed for whole proposed case.
+
+**10 November follow-up:** OWNER PASS for the complete declared recipe; see [fresh browser/database execution and limitations](evidence/issue39/completion-20261110/README.md). Base `65d6c1233b1b184858b36ff93cd32e440534ebbb` plus the recorded regression test file; Windows/MySQL 8.0.46, synthetic isolated database. Earlier Actual/commit/environment paragraphs above retain the historical companion evidence; this dated follow-up supersedes their pending execution and evidence-gap statements for this recipe only. No final QA approval is inferred.
 
 ### TC-REG-S2-07: My Records empty/access/navigation/date behavior
 

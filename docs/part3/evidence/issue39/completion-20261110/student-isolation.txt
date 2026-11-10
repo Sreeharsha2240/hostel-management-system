@@ -1,0 +1,32 @@
+STUDENT ACCOUNT
+
+My hostel & payments
+
+HMS17 Own Profile · Student ID PES1UG24CS901
+
+PAYMENT STATUS
+Pending
+Current hostel fee
+PAID
+₹0.00
+Amount recorded for your account
+BALANCE DUE
+₹1000.00
+Against ₹1000.00
+Current allocation
+Hostel
+HMS17 Filter Target
+Floor
+2
+Room
+F00
+Bed
+F00-A
+Allocated on
+10-11-2026
+Allocation history
+HOSTEL	ROOM	BED	ALLOCATED	VACATED	STATUS
+HMS17 Filter Target	F00	F00-A	10-11-2026	—	Active
+Payment history
+RECEIPT	DATE	AMOUNT (INR)	METHOD	ENTRY
+No payments are recorded for you yet.
