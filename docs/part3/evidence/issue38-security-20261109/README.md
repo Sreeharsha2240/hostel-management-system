@@ -1,5 +1,7 @@
 # HMS-16 Local TLS and ZAP Evidence — 9 November 2026
 
+**10 November QA handoff:** The [alert-level reconciliation](../issue38-security-20261110/qa-disposition-reconciliation.md) records the supplied Vaishnavi QA assessment. It retains the Low probe-server banner and Informational `next` hotspot, with no demonstrated HMS application defect or application-fix retest. It also identifies the exact `next` regression test and its passing 10 November JUnit result, correcting the handoff's unsuccessful test search. TC-SEC-08 remains PARTIAL; the original scan results below are unchanged.
+
 ## Scope and setup
 
 - Source base: `9286dbaef9ca0d237d12ea677a91f7aceda25209`; the follow-up code and tests in the same PR addendum were exercised before publication.

@@ -1,9 +1,12 @@
 # System Validation Report — HMS Part 3
 
+**10 November HMS-16 QA addendum:** The [supplied QA handoff and evidence reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses the remaining ZAP observations: the Low `Server` banner belongs to the temporary probe server, and the Informational `next` hotspot has no demonstrated reflection or redirect use in the inspected login path. No HMS application fix or fix retest is indicated for either finding. The handoff's statement that the `next` regression test could not be found is corrected by `accounts/test_security.py` and a passing 10 November JUnit result. The recorded scan remains 0 High / 0 Medium / 1 Low / 1 Informational; **TC-SEC-08 remains PARTIAL** for the passive loopback scope. HMS-16/#38 was already closed for owner-authorized local-project tracking, while whole-plan readiness remains NOT READY.
+
 **10 November HMS-17 completion:** [fresh isolated execution](evidence/issue39/completion-20261110/README.md)
 passes four remaining regression recipes and Warden registration. Full verification:
 211 mixed methods (210 PASS / one expected timing SKIP), separate timing PASS,
-all 12 gates. Current expanded register: 57 OWNER PASS / 1 PARTIAL / 2 NOT RUN /
+all 12 gates. All original 33 are now recorded as OWNER PASS; this is not
+independent QA acceptance. Current expanded register: 57 OWNER PASS / 1 PARTIAL / 2 NOT RUN /
 1 BLOCKED. The project owner explicitly authorized #39 tracking closure with the
 full browser/real-phone matrix and working-hours availability unverified. This
 does not amend instructor criteria, establish QA approval or change whole-plan

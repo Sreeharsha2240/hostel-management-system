@@ -1,5 +1,7 @@
 # Part 3: testing, reports and team delivery
 
+**10 November tracking update:** #38, #39 and #43 are now closed for their documented limited project scopes; #41 is the only open issue. The [HMS-16 QA handoff reconciliation](part3/evidence/issue38-security-20261110/qa-disposition-reconciliation.md) records the two ZAP alert assessments and locates the passing login `next` regression test. TC-SEC-08 remains PARTIAL, the complete browser/real-phone matrix and working-hours availability are unverified, and the original Test Plan/submission package remains NOT READY. Dated issue states below are historical snapshots.
+
 This is the team work plan for **2-6 November 2026**. The assigned contributors
 execute their cases and prepare their own evidence. At the 8 November review,
 #37's case-document delivery and #42's coverage-reporting task are closed;

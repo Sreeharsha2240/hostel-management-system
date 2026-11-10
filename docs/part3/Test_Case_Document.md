@@ -1,5 +1,7 @@
 # HMS Test Case Document and Requirements Traceability Matrix
 
+**10 November current-case addendum:** [HMS-17's fresh registration and four regression executions](evidence/issue39/completion-20261110/README.md) supersede the older case-count snapshot below: the expanded 61 now stand at 57 OWNER PASS, 1 PARTIAL, 2 NOT RUN and 1 BLOCKED. The [HMS-16 QA handoff reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses both remaining passive ZAP alerts, locates the previously unlocated `next` regression test and confirms its recorded PASS. TC-SEC-08 stays PARTIAL. HMS-16/#38 and HMS-17/#39 are closed only for their owner-authorized local-project scope; these statuses do not establish whole-plan acceptance.
+
 ## 1. Document information and revision history
 
 | Field | Value |
@@ -3141,6 +3143,8 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Actual:** ZAP 2.17.0 passive baseline completed on 9 November against the isolated loopback app (one site, 10 spidered URLs, exit 0; no active scan). Final result: 0 High, 0 Medium, 1 Low server-banner alert (four responses, temporary Python `wsgiref` probe server), and 1 Informational/Low-confidence `next`-parameter hotspot (two instances); the HTML-injection regression test confirms the supplied marker is not reflected. Initial CSP and CSRF-cookie findings disappeared after code fixes and rescan. Sanitized details and limitations are recorded in [issue38-security-20261109](evidence/issue38-security-20261109/README.md) and its JSON.
 
+**10 November QA trace:** The supplied QA review assesses the server banner as a temporary probe-server observation and finds no `next` reflection or redirect use in the login path. Its claim that the marker regression test was not located is corrected by the exact test and passing JUnit entry linked in the [reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md). Both alerts remain in the scan record; this evidence does not promote the passive loopback case to PASS.
+
 **Execution status:** PARTIAL
 
 **Tested commit:** PR #68 head `49851396796918103681aacf47394e5010426201` (probe evidence generated on equivalent pre-publication source; published code was subsequently confirmed at this exact head by CI).
@@ -3149,13 +3153,13 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Evidence:** [sanitized transport/ZAP report](evidence/issue38-security-20261109/README.md); [machine-readable summary](evidence/issue38-security-20261109/transport-zap-summary.json); [full-suite MySQL CI](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066)
 
-**Defects and retests:** CSP and CSRF-cookie findings were fixed and absent on rescan. The remaining low server-banner and informational hotspot are recorded with QA disposition pending; no defect IDs or false-positive acceptance are invented. No high/medium ZAP findings were observed in this passive baseline.
+**Defects and retests:** CSP and CSRF-cookie findings were fixed and absent on rescan. The supplied QA handoff assesses the remaining Low server-banner and Informational hotspot; see the 10 November reconciliation above. No application defect or fix retest is indicated for either finding. No High/Medium ZAP findings were observed in this passive baseline.
 
 **QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The scan is passive and loopback-only, reached 10 URLs, and does not claim authenticated-area coverage or a deployed environment. Remaining alerts have not received QA disposition; no active scanning was run. Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
+**Evidence limits:** The scan is passive and loopback-only, reached 10 URLs, and does not claim authenticated-area coverage or a deployed environment. The supplied QA handoff assesses the remaining alerts; no active scanning was run. Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
 
 ### TC-QUAL-02: Working-hours service availability
 
@@ -3204,6 +3208,10 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 **Evidence limits:** SRS section 6.4 quality attribute; the original 33-case table had no dedicated availability case.
 
 ### TC-QUAL-03: SRS portability and real mobile coverage
+
+**Mini-project scope decision:** The project owner has agreed to skip real-phone testing. The original phone requirement remains unverified, and this decision does not complete the remaining browser-version and operating-system evidence or change this case's NOT RUN status.
+
+**10 November local follow-up:** A synthetic Warden signed in and opened the dashboard, students, beds, allocations, payments and occupancy report in connected Chrome. Edge was unavailable through the connected browser; Firefox, older versions and Linux workflows were not exercised. See the [local browser observations](evidence/issue39/local-browser-20261110.md). This is supporting evidence, not a complete TC-QUAL-03 execution.
 
 <a id="case-tc-qual-03"></a>
 
