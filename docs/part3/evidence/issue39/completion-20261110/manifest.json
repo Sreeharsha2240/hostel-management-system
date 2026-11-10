@@ -850,6 +850,7 @@
     }
   ],
   "evidence_sha256": {
+    "docs/part3/evidence/issue39/completion-20261110/.gitattributes": "bbd2c75527121e3785a8681db6fb08a8272b9146f414e947e38cb4613b50cbcf",
     "docs/part3/evidence/issue39/completion-20261110/checks/junit/TEST-accounts.test_backend_regressions.ChangedPasswordAuthenticationTests-20261110225942.xml": "6654ff90aa8e682faf52719521e9aa56e5c9baf494cc73d799061770c927f5a5",
     "docs/part3/evidence/issue39/completion-20261110/checks/junit/TEST-accounts.test_issue38_gaps.Issue38GapTests-20261110225942.xml": "a8595b37955c5c3751c2d90476ddbddfa2cd65751a6c2d6e016ccc2e7f263449",
     "docs/part3/evidence/issue39/completion-20261110/checks/junit/TEST-accounts.test_security.SessionAndLockoutTests-20261110225942.xml": "7fb68a1df81536514aa1f78170d9092ef818ed731f7d135a0c246418cc47f3d4",

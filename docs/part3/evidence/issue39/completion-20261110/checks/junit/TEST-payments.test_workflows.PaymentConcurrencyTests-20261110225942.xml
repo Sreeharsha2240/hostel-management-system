@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="payments.test_workflows.PaymentConcurrencyTests-20261110225942" tests="2" file="payments/test_workflows.py" time="0.059" timestamp="2026-11-10T23:00:45" failures="0" errors="0" skipped="0">
+	<testcase classname="payments.test_workflows.PaymentConcurrencyTests" name="test_competing_corrections_cannot_reverse_a_payment_twice" time="0.026" timestamp="2026-11-10T23:00:45" file="payments\test_workflows.py" line="562"/>
+	<testcase classname="payments.test_workflows.PaymentConcurrencyTests" name="test_simultaneous_payments_receive_unique_sequential_numbers" time="0.032" timestamp="2026-11-10T23:00:45" file="payments\test_workflows.py" line="549"/>
+</testsuite>

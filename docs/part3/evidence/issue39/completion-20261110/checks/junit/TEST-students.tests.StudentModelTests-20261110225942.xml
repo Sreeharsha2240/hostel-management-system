@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="students.tests.StudentModelTests-20261110225942" tests="6" file="students/tests.py" time="0.008" timestamp="2026-11-10T23:00:41" failures="0" errors="0" skipped="0">
+	<testcase classname="students.tests.StudentModelTests" name="test_create_student" time="0.001" timestamp="2026-11-10T23:00:41" file="students\tests.py" line="37"/>
+	<testcase classname="students.tests.StudentModelTests" name="test_duplicate_student_id_form_shows_exact_error_message" time="0.002" timestamp="2026-11-10T23:00:41" file="students\tests.py" line="47"/>
+	<testcase classname="students.tests.StudentModelTests" name="test_duplicate_student_id_is_rejected" time="0.001" timestamp="2026-11-10T23:00:41" file="students\tests.py" line="42"/>
+	<testcase classname="students.tests.StudentModelTests" name="test_mobile_must_have_ten_digits" time="0.001" timestamp="2026-11-10T23:00:41" file="students\tests.py" line="72"/>
+	<testcase classname="students.tests.StudentModelTests" name="test_student_can_be_deactivated_without_deleting_record" time="0.003" timestamp="2026-11-10T23:00:41" file="students\tests.py" line="58"/>
+	<testcase classname="students.tests.StudentModelTests" name="test_student_year_must_be_between_one_and_five" time="0.001" timestamp="2026-11-10T23:00:41" file="students\tests.py" line="67"/>
+</testsuite>

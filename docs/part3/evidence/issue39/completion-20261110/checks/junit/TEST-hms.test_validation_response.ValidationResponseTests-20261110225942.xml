@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_validation_response.ValidationResponseTests-20261110225942" tests="4" file="hms/test_validation_response.py" time="0.001" timestamp="2026-11-10T23:00:45" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_validation_response.ValidationResponseTests" name="test_all_conflict_errors_return_409" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_validation_response.py" line="32"/>
+	<testcase classname="hms.test_validation_response.ValidationResponseTests" name="test_all_domain_validation_errors_return_422" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_validation_response.py" line="49"/>
+	<testcase classname="hms.test_validation_response.ValidationResponseTests" name="test_missing_record_returns_404_with_code_and_message" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_validation_response.py" line="22"/>
+	<testcase classname="hms.test_validation_response.ValidationResponseTests" name="test_unknown_and_uncoded_errors_return_400_and_preserve_messages" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_validation_response.py" line="64"/>
+</testsuite>
