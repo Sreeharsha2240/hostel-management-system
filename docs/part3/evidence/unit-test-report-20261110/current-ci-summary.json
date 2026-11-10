@@ -1,0 +1,68 @@
+{
+  "captured_on": "2026-11-10",
+  "repository": "Sreeharsha2240/hostel-management-system",
+  "source_commit_tested": "2714884997b43cf3805b86d9180568f7f41ea9b1",
+  "source_tree_tested": "c5dfa2d8f482ee023417db5967133f2881513f6a",
+  "source_commit_merged_to_main": "24e12526a771d1ec9d3545de78512ed3fc229abe",
+  "workflow_run_id": 42569529411,
+  "workflow_url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42569529411",
+  "jobs": {
+    "python_3_11": {
+      "status": "success",
+      "methods": 209,
+      "passed": 208,
+      "failed": 0,
+      "errors": 0,
+      "expected_skips": 1,
+      "owned_regressions": 9
+    },
+    "python_3_14": {
+      "status": "success",
+      "methods": 209,
+      "passed": 208,
+      "failed": 0,
+      "errors": 0,
+      "expected_skips": 1,
+      "owned_regressions": 9
+    }
+  },
+  "verification_gates": 12,
+  "configured_mixed_coverage": {
+    "reported_percent": 88,
+    "unchanged_gate_percent": 70,
+    "status": "PASS",
+    "is_unit_only": false
+  },
+  "timing_smoke": "PASS separately without coverage instrumentation; one expected skip remains in each covered full-suite job",
+  "artifacts": [
+    {
+      "id": 13652851062,
+      "name": "hms-test-evidence-py3.11-10518960ce111ea7b317befa303b44b70a7c08a5",
+      "sha256": "ce20b9ee4d223b6333fc3f073cfe4a6e4b4d9c28776ef061dcc4335695f2d015",
+      "expired_at": "2026-12-09T05:52:03Z"
+    },
+    {
+      "id": 13651694975,
+      "name": "hms-test-evidence-py3.14-10518960ce111ea7b317befa303b44b70a7c08a5",
+      "sha256": "6b88b04c1eb81464e68e5ad32dee11840d2ef3819ebecdf396a1a7510104546c",
+      "expired_at": "2026-12-09T05:52:21Z"
+    },
+    {
+      "id": 13652053719,
+      "name": "hms-owned-regressions-py3.11-10518960ce111ea7b317befa303b44b70a7c08a5",
+      "sha256": "1cdbd37b60f134c96ba355e60c181d9b9eafa0dbde4a7c34790fc288fd04a6cb",
+      "expired_at": "2026-12-09T05:52:04Z"
+    },
+    {
+      "id": 13652058723,
+      "name": "hms-owned-regressions-py3.14-10518960ce111ea7b317befa303b44b70a7c08a5",
+      "sha256": "91b4cc66290cc1bf5ae2debdfcd2f94de41424c7213cc066dff5b73b60ac75f2",
+      "expired_at": "2026-12-09T05:52:22Z"
+    }
+  ],
+  "limitations": [
+    "The CI artifacts are not copied into Git. This sanitized manifest records the public run and artifact digests; the GitHub artifacts remain available until their expiry dates.",
+    "The 88 percent configured result is mixed-suite coverage and does not establish SRS section 6.4 unit application-logic coverage of at least 70 percent.",
+    "Unit scope and denominator remain pending independent QA review."
+  ]
+}
