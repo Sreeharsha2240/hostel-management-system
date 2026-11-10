@@ -59,7 +59,7 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
 | [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with [authorized scoped AI QA acceptance](part3/evidence/issue40-final/qa-review-20261108.md); feeds System Validation Report, with actual final human approvals separate |
-| [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`) | 3 | Unit Test Report; module owners provide unit results; parallel with system execution |
+| [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`); Sreeharsha co-assignee | 3 | [Unit Test Report candidate](part3/Unit_Test_Report.md); module results and current CI are recorded, while independent QA boundary/denominator review and SRS unit70 disposition remain pending |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports are published and the reporting issue is closed; formal unit70 remains UNPROVEN pending #41/#42 scope agreement |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | [Final readiness checkpoint](part3/HMS21_Final_Readiness.md); final review, required approvals and submission confirmation remain open |
 
@@ -153,15 +153,16 @@ cutoff and export requirements with the instructor through the normal team proce
 
 ## Deliverable destinations and completion evidence
 
-The table lists the required outputs, with links to published documents. The
-Unit Test Report remains missing and its path is a planned destination. Markdown
-is the team's working format; confirm whether the instructor also needs PDF/DOCX
-exports.
+The table lists the required outputs, with links to published documents and
+current report candidates. The Unit Test Report candidate is now prepared on
+this branch; its unit70 result remains UNPROVEN pending independent QA scope and
+denominator review. Markdown is the team's working format; confirm whether the
+instructor also needs PDF/DOCX exports.
 
 | Output under `docs/` | Owner / contributors | Required content |
 |---|---|---|
 | [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, proposed priorities, requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
-| `docs/part3/Unit_Test_Report.md` | Vaishnavi; each module owner supplies unit results | Environment/SHA/commands, per-module unit scope and results, mixed-level suite classification, failures/skips, defects/retests and durable evidence |
+| [Unit Test Report](part3/Unit_Test_Report.md) | Vaishnavi coordinates; Sreeharsha supplies this report contribution; module owners supply results | Exact source/CI run, module-level new-test outcomes, previous frozen classification and coverage evidence, mixed-level scope limits, failures/skips, defects/retests and durable sanitized metadata; independent QA boundary/denominator review remains pending |
 | [System Validation Report](part3/System_Validation_Report.md) | Sreeharsha integrates; QA consolidates; all owners execute | Entry/exit criteria, all planned functional/security/performance/recovery/quality cases, RTM, observed results, execution/pass/fail/requirement percentages, defect density/aging, blockers, deviations, readiness and actual approvals |
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
 | [Branch Coverage Report](part3/Branch_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
