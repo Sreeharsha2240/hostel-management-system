@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="payments.test_status_units.PaymentStatusRowTests-20261110225942" tests="1" file="payments/test_status_units.py" time="0.000" timestamp="2026-11-10T23:00:45" failures="0" errors="0" skipped="0">
+	<testcase classname="payments.test_status_units.PaymentStatusRowTests" name="test_configured_fee_overpayment_is_paid_without_negative_due" time="0.000" timestamp="2026-11-10T23:00:45" file="payments\test_status_units.py" line="10"/>
+</testsuite>

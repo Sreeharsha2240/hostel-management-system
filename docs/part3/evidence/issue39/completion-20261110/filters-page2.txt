@@ -1,0 +1,30 @@
+ACCOMMODATION
+
+Bed availability
+Browse rooms by location and type
+Hostel
+All hostels
+Boys OTHER
+HMS17 Filter Target
+Floor
+Room type
+All types
+Single
+Double
+Triple
+Bed status
+Available
+Occupied
+Under maintenance
+Apply filters
+BED	HOSTEL	ROOM	FLOOR	TYPE	STATUS
+F13-A	HMS17 Filter Target	F13	2	Double	Available
+F13-B	HMS17 Filter Target	F13	2	Double	Available
+F13-C	HMS17 Filter Target	F13	2	Double	Available
+F13-D	HMS17 Filter Target	F13	2	Double	Available
+F14-A	HMS17 Filter Target	F14	2	Double	Available
+F14-B	HMS17 Filter Target	F14	2	Double	Available
+F14-C	HMS17 Filter Target	F14	2	Double	Available
+F14-D	HMS17 Filter Target	F14	2	Double	Available
+Previous
+Page 2 of 2

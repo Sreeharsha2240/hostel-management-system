@@ -1,0 +1,31 @@
+{
+  "rows": [
+    "F13-A\tHMS17 Filter Target\tF13\t2\tDouble\tAvailable",
+    "F13-B\tHMS17 Filter Target\tF13\t2\tDouble\tAvailable",
+    "F13-C\tHMS17 Filter Target\tF13\t2\tDouble\tAvailable",
+    "F13-D\tHMS17 Filter Target\tF13\t2\tDouble\tAvailable",
+    "F14-A\tHMS17 Filter Target\tF14\t2\tDouble\tAvailable",
+    "F14-B\tHMS17 Filter Target\tF14\t2\tDouble\tAvailable",
+    "F14-C\tHMS17 Filter Target\tF14\t2\tDouble\tAvailable",
+    "F14-D\tHMS17 Filter Target\tF14\t2\tDouble\tAvailable"
+  ],
+  "selectors": [
+    [
+      "hostel",
+      "1"
+    ],
+    [
+      "floor",
+      "2"
+    ],
+    [
+      "room_type",
+      "Double"
+    ],
+    [
+      "status",
+      "Available"
+    ]
+  ],
+  "url": "http://127.0.0.1:8017/beds/?hostel=1&floor=2&room_type=Double&status=Available&page=2"
+}

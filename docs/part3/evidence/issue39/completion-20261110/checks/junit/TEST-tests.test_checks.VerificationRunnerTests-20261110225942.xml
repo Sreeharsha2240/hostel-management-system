@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.test_checks.VerificationRunnerTests-20261110225942" tests="8" file="tests/test_checks.py" time="0.283" timestamp="2026-11-10T23:00:45" failures="0" errors="0" skipped="0">
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_failed_gate_cannot_report_success" time="0.127" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="89"/>
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_git_status_distinguishes_clean_and_dirty_trees" time="0.007" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="81"/>
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_missing_empty_or_failed_test_evidence_cannot_report_success" time="0.009" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="97"/>
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_occupied_output_is_not_overwritten" time="0.002" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="126"/>
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_setup_failure_saves_failure_without_exception_message" time="0.002" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="109"/>
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_subprocess_failure_is_captured_in_log_and_exit_code" time="0.058" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="135"/>
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_success_requires_all_gates_and_writes_root_relative_evidence" time="0.006" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="63"/>
+	<testcase classname="tests.test_checks.VerificationRunnerTests" name="test_xml_keeps_same_named_package_files_and_only_selected_context_hits" time="0.071" timestamp="2026-11-10T23:00:45" file="tests\test_checks.py" line="149"/>
+</testsuite>

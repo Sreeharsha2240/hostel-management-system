@@ -1,0 +1,22 @@
+PEOPLE
+
+Students
+Register a student
+Search student records
+Search
+STUDENT ID	NAME	COURSE	YEAR	MOBILE	STATUS	ACTIONS
+PES1UG24CS901	HMS17 Own Profile	CSE	2	9000000000	Active	
+Edit
+Payment status
+Deactivate
+
+PES1UG24CS902	HMS17 Private Other	CSE	2	9000000000	Active	
+Edit
+Payment status
+Deactivate
+
+HMS1700000001	HMS17 Registration Proof	CSE	2	9000000000	Active	
+Edit
+Payment status
+Deactivate
+Page 1 of 1

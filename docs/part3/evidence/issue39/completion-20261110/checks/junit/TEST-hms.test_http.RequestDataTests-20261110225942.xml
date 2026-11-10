@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_http.RequestDataTests-20261110225942" tests="10" file="hms/test_http.py" time="0.005" timestamp="2026-11-10T23:00:45" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_http.RequestDataTests" name="test_container_field_values_raise_validation_error" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="61"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_deeply_nested_input_raises_validation_error" time="0.003" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="111"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_form_encoded_data_is_returned_unchanged" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="34"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_json_object_preserves_finite_scalar_values" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="16"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_malformed_json_and_invalid_utf8_raise_validation_error" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="45"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_non_object_json_raises_validation_error" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="53"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_nonfinite_numbers_are_rejected_including_exponent_overflow" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="92"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_parser_recursion_error_becomes_validation_error" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="103"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_unpaired_unicode_surrogates_raise_validation_error" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="78"/>
+	<testcase classname="hms.test_http.RequestDataTests" name="test_valid_unicode_strings_and_surrogate_pairs_are_preserved" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_http.py" line="69"/>
+</testsuite>

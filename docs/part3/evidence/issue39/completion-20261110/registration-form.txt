@@ -1,0 +1,23 @@
+Register Student
+Student id *
+Name *
+Date of birth *
+Gender *
+---------
+Male
+Female
+Course *
+Year *
+Mobile *
+Email *
+Guardian name *
+Guardian mobile *
+Address
+Linked student login
+---------
+hms17-unlinked
+Only this Student account can view the profile's allocation and payment details.
+Status *
+Active
+Inactive
+Save Student Cancel

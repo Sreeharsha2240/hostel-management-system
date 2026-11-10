@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hostels.tests.HostelManagementViewTests-20261110225942" tests="6" file="hostels/tests.py" time="4.020" timestamp="2026-11-10T23:00:28" failures="0" errors="0" skipped="0">
+	<testcase classname="hostels.tests.HostelManagementViewTests" name="test_admin_can_create_hostel_and_room" time="0.704" timestamp="2026-11-10T23:00:24" file="hostels\tests.py" line="47"/>
+	<testcase classname="hostels.tests.HostelManagementViewTests" name="test_anonymous_user_is_redirected_to_login" time="0.654" timestamp="2026-11-10T23:00:25" file="hostels\tests.py" line="101"/>
+	<testcase classname="hostels.tests.HostelManagementViewTests" name="test_empty_management_submissions_show_required_errors_without_saving" time="0.672" timestamp="2026-11-10T23:00:26" file="hostels\tests.py" line="81"/>
+	<testcase classname="hostels.tests.HostelManagementViewTests" name="test_hostel_deactivation_is_audited" time="0.651" timestamp="2026-11-10T23:00:26" file="hostels\tests.py" line="132"/>
+	<testcase classname="hostels.tests.HostelManagementViewTests" name="test_only_admin_can_create_or_edit_hostels_and_rooms" time="0.679" timestamp="2026-11-10T23:00:27" file="hostels\tests.py" line="150"/>
+	<testcase classname="hostels.tests.HostelManagementViewTests" name="test_room_creation_rolls_back_if_audit_recording_fails" time="0.660" timestamp="2026-11-10T23:00:28" file="hostels\tests.py" line="109"/>
+</testsuite>

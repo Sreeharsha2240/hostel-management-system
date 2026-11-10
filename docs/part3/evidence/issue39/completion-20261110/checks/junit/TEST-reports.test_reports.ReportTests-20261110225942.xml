@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="reports.test_reports.ReportTests-20261110225942" tests="12" file="reports/test_reports.py" time="0.627" timestamp="2026-11-10T23:00:29" failures="0" errors="0" skipped="0">
+	<testcase classname="reports.test_reports.ReportTests" name="test_active_allocations_override_stale_availability_and_maintenance_flags" time="0.033" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="78"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_csv_quotes_unicode_and_formula_text_and_html_escapes_names" time="0.040" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="242"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_empty_reports_and_invalid_filters_formats_and_methods" time="0.071" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="259"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_numeric_hostel_filter_accepts_leading_zeros" time="0.019" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="297"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_occupancy_counts_current_records_maintenance_and_empty_hostels" time="0.038" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="56"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_occupancy_csv_and_html_match_json_and_preserve_filters" time="0.032" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="93"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_payment_report_csv_and_html_match_json_after_corrections" time="0.051" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="218"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_payment_report_excludes_cancelled_locations_and_keeps_unassigned_blank" time="0.069" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="176"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_payment_report_sums_once_across_allocation_history_and_filters_last_room" time="0.105" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="117"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_query_counts_do_not_grow_with_students_or_hostels" time="0.052" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="333"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_reports_allow_admin_warden_and_deny_students_and_anonymous_for_all_formats" time="0.097" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="309"/>
+	<testcase classname="reports.test_reports.ReportTests" name="test_reports_landing_redirects_to_occupancy_report" time="0.020" timestamp="2026-11-10T23:00:29" file="reports\test_reports.py" line="305"/>
+</testsuite>

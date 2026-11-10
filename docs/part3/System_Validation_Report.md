@@ -1,5 +1,14 @@
 # System Validation Report — HMS Part 3
 
+**10 November HMS-17 completion:** [fresh isolated execution](evidence/issue39/completion-20261110/README.md)
+passes four remaining regression recipes and Warden registration. Full verification:
+211 mixed methods (210 PASS / one expected timing SKIP), separate timing PASS,
+all 12 gates. Current expanded register: 57 OWNER PASS / 1 PARTIAL / 2 NOT RUN /
+1 BLOCKED. The project owner explicitly authorized #39 tracking closure with the
+full browser/real-phone matrix and working-hours availability unverified. This
+does not amend instructor criteria, establish QA approval or change whole-plan
+NOT READY. Historical snapshots below retain their source/date boundaries.
+
 **Historical HMS-16 owner-reported outcomes: 11 OWNER PASS, 1 PARTIAL. Whole-plan readiness: NOT READY.** The historical focused run tested the 5 November `main` revision `8322b4c20c067d512c4bb439fdedd19d4fa27223` using synthetic data and a disposable local MySQL 8.0.46 instance. It does not claim a deployed HTTPS endpoint, complete whole-plan acceptance, or team approvals.
 
 **Independent technical review:** 8 November 2026, at merged main `b523d4c7abb77072bea48ac059be7f72396e8a79` (tree `56f7fb4307bc2ce4f3595aebfd5915ce301c3fb7`). This review was performed under Devansh's instruction with three fresh automated reviewers. It reviews existing evidence and supplies corrections; it is not a human QA/Dev/PO signature, a criterion change, a new owner execution or selection of the final submission revision. The [sanitized review extraction](evidence/issue38/independent-review-20261108.json) retains source hashes, arithmetic, actual issue dates and exact-main CI input hashes.

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_forms.DateFieldTests-20261110225942" tests="2" file="hms/test_forms.py" time="0.001" timestamp="2026-11-10T23:00:45" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_forms.DateFieldTests" name="test_dates_text_and_optional_empty_values_keep_standard_behavior" time="0.001" timestamp="2026-11-10T23:00:45" file="hms\test_forms.py" line="12"/>
+	<testcase classname="hms.test_forms.DateFieldTests" name="test_unexpected_json_types_produce_validation_errors" time="0.000" timestamp="2026-11-10T23:00:45" file="hms\test_forms.py" line="20"/>
+</testsuite>

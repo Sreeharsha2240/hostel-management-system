@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hms.test_navigation.DashboardNavigationSmokeTests-20261110225942" tests="3" file="hms/test_navigation.py" time="0.119" timestamp="2026-11-10T23:00:19" failures="0" errors="0" skipped="0">
+	<testcase classname="hms.test_navigation.DashboardNavigationSmokeTests" name="test_admin_dashboard_navigation_pages_load" time="0.050" timestamp="2026-11-10T23:00:19" file="hms\test_navigation.py" line="29"/>
+	<testcase classname="hms.test_navigation.DashboardNavigationSmokeTests" name="test_student_dashboard_navigation_and_staff_route_denials" time="0.034" timestamp="2026-11-10T23:00:19" file="hms\test_navigation.py" line="60"/>
+	<testcase classname="hms.test_navigation.DashboardNavigationSmokeTests" name="test_warden_dashboard_navigation_pages_load" time="0.034" timestamp="2026-11-10T23:00:19" file="hms\test_navigation.py" line="45"/>
+</testsuite>

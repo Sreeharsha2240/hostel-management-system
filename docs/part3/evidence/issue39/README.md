@@ -1,5 +1,12 @@
 # HMS-17 Student and Hostel Validation Evidence
 
+**10 November completion:** [four remaining regression recipes and fresh
+registration evidence](completion-20261110/README.md) pass. The project owner
+explicitly authorized closing #39 for the limited local-project scope, retaining
+the full browser/real-phone matrix and working-hours availability as unverified
+exceptions. This supersedes older instructions below to keep the tracking issue
+open; historical evidence and original Test Plan outcomes remain unchanged.
+
 GitHub issue: #39  
 Evidence scope: Student management, hostel management, Warden usability, Linux runtime and responsive mobile-viewport checks.
 

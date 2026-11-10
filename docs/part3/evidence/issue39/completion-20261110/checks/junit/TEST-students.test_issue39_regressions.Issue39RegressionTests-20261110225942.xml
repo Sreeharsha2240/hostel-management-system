@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="students.test_issue39_regressions.Issue39RegressionTests-20261110225942" tests="2" file="students/test_issue39_regressions.py" time="0.106" timestamp="2026-11-10T23:00:29" failures="0" errors="0" skipped="0">
+	<testcase classname="students.test_issue39_regressions.Issue39RegressionTests" name="test_empty_edits_preserve_all_stored_fields_and_audit" time="0.073" timestamp="2026-11-10T23:00:29" file="students\test_issue39_regressions.py" line="27">
+		<!--TC-REG-S1-06: reject empty create/edit without any persisted change.-->
+	</testcase>
+	<testcase classname="students.test_issue39_regressions.Issue39RegressionTests" name="test_failed_audit_write_rolls_back_entities_beds_and_audit" time="0.034" timestamp="2026-11-10T23:00:29" file="students\test_issue39_regressions.py" line="64">
+		<!--TC-REG-S1-08: even an audit inserted before failure must roll back.-->
+	</testcase>
+</testsuite>

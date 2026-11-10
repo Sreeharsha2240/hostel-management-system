@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="accounts.test_issue38_gaps.Issue38GapTests-20261110225942" tests="7" file="accounts/test_issue38_gaps.py" time="12.049" timestamp="2026-11-10T22:59:55" failures="0" errors="0" skipped="0">
+	<testcase classname="accounts.test_issue38_gaps.Issue38GapTests" name="test_auth02_and_sec03_known_unknown_and_sql_username_stay_logged_out" time="2.014" timestamp="2026-11-10T22:59:44" file="accounts\test_issue38_gaps.py" line="49"/>
+	<testcase classname="accounts.test_issue38_gaps.Issue38GapTests" name="test_auth03_exact_lock_duration_and_correct_password_boundary" time="3.304" timestamp="2026-11-10T22:59:48" file="accounts\test_issue38_gaps.py" line="64"/>
+	<testcase classname="accounts.test_issue38_gaps.Issue38GapTests" name="test_sec01_direct_denials_preserve_domain_rows" time="1.009" timestamp="2026-11-10T22:59:49" file="accounts\test_issue38_gaps.py" line="131"/>
+	<testcase classname="accounts.test_issue38_gaps.Issue38GapTests" name="test_sec02_changed_ids_do_not_expose_other_student" time="0.978" timestamp="2026-11-10T22:59:50" file="accounts\test_issue38_gaps.py" line="162"/>
+	<testcase classname="accounts.test_issue38_gaps.Issue38GapTests" name="test_sec03_sec05_authorized_student_post_csrf_and_persisted_script" time="1.023" timestamp="2026-11-10T22:59:51" file="accounts\test_issue38_gaps.py" line="183"/>
+	<testcase classname="accounts.test_issue38_gaps.Issue38GapTests" name="test_sec07_original_six_actions_have_records_times_and_expected_actors" time="1.695" timestamp="2026-11-10T22:59:53" file="accounts\test_issue38_gaps.py" line="208"/>
+	<testcase classname="accounts.test_issue38_gaps.Issue38GapTests" name="test_usr01_and_sec04_same_created_warden_deactivation_hash_and_abc" time="2.026" timestamp="2026-11-10T22:59:55" file="accounts\test_issue38_gaps.py" line="95"/>
+</testsuite>

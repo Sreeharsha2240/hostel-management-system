@@ -1,5 +1,13 @@
 # HMS-21 Final Readiness Checkpoint
 
+**10 November HMS-17 follow-up:** [four remaining regression recipes](evidence/issue39/completion-20261110/README.md)
+now pass with fresh registration evidence and all 12 verification gates (210 PASS,
+one expected timing SKIP plus separate timing PASS). Owner-directed #39 closure
+accepts limited local-project scope while retaining the browser/real-phone matrix
+and working-hours availability as unverified exceptions. Current expanded61:
+57 OWNER PASS / 1 PARTIAL / 2 NOT RUN / 1 BLOCKED. This supplies no QA signature,
+instructor amendment or submission receipt; original whole-plan NOT READY remains.
+
 **Checkpoint started:** 8 November 2026; security evidence updated 9 November 2026
 **Reviewed main revision:** `b523d4c7abb77072bea48ac059be7f72396e8a79` (tree `56f7fb4307bc2ce4f3595aebfd5915ce301c3fb7`). Accepted final submission revision: **PENDING**.
 **Readiness:** **NOT READY**. This checkpoint records verified deliverables and blockers; it is not an approval or submission receipt.
