@@ -1,5 +1,7 @@
 # HMS Test Case Document and Requirements Traceability Matrix
 
+**10 November current-case addendum:** [HMS-17's fresh registration and four regression executions](evidence/issue39/completion-20261110/README.md) supersede the older case-count snapshot below: the expanded 61 now stand at 57 OWNER PASS, 1 PARTIAL, 2 NOT RUN and 1 BLOCKED. The [HMS-16 QA handoff reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses both remaining passive ZAP alerts, locates the previously unlocated `next` regression test and confirms its recorded PASS. TC-SEC-08 stays PARTIAL. HMS-16/#38 and HMS-17/#39 are closed only for their owner-authorized local-project scope; these statuses do not establish whole-plan acceptance.
+
 ## 1. Document information and revision history
 
 | Field | Value |
@@ -3140,6 +3142,8 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 **Expected:** Baseline completes against the actual running application; findings are recorded as defects and triaged. Scan coverage/limitations are explicit. The whole-plan exit criterion requires zero open critical/high defects; a baseline is not required to have zero informational alerts.
 
 **Actual:** ZAP 2.17.0 passive baseline completed on 9 November against the isolated loopback app (one site, 10 spidered URLs, exit 0; no active scan). Final result: 0 High, 0 Medium, 1 Low server-banner alert (four responses, temporary Python `wsgiref` probe server), and 1 Informational/Low-confidence `next`-parameter hotspot (two instances); the HTML-injection regression test confirms the supplied marker is not reflected. Initial CSP and CSRF-cookie findings disappeared after code fixes and rescan. Sanitized details and limitations are recorded in [issue38-security-20261109](evidence/issue38-security-20261109/README.md) and its JSON.
+
+**10 November QA trace:** The supplied QA review assesses the server banner as a temporary probe-server observation and finds no `next` reflection or redirect use in the login path. Its claim that the marker regression test was not located is corrected by the exact test and passing JUnit entry linked in the [reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md). Both alerts remain in the scan record; this evidence does not promote the passive loopback case to PASS.
 
 **Execution status:** PARTIAL
 
