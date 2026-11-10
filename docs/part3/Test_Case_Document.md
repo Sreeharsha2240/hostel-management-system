@@ -3153,13 +3153,13 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Evidence:** [sanitized transport/ZAP report](evidence/issue38-security-20261109/README.md); [machine-readable summary](evidence/issue38-security-20261109/transport-zap-summary.json); [full-suite MySQL CI](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066)
 
-**Defects and retests:** CSP and CSRF-cookie findings were fixed and absent on rescan. The remaining low server-banner and informational hotspot are recorded with QA disposition pending; no defect IDs or false-positive acceptance are invented. No high/medium ZAP findings were observed in this passive baseline.
+**Defects and retests:** CSP and CSRF-cookie findings were fixed and absent on rescan. The supplied QA handoff assesses the remaining Low server-banner and Informational hotspot; see the 10 November reconciliation above. No application defect or fix retest is indicated for either finding. No High/Medium ZAP findings were observed in this passive baseline.
 
 **QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The scan is passive and loopback-only, reached 10 URLs, and does not claim authenticated-area coverage or a deployed environment. Remaining alerts have not received QA disposition; no active scanning was run. Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
+**Evidence limits:** The scan is passive and loopback-only, reached 10 URLs, and does not claim authenticated-area coverage or a deployed environment. The supplied QA handoff assesses the remaining alerts; no active scanning was run. Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
 
 ### TC-QUAL-02: Working-hours service availability
 
@@ -3208,6 +3208,10 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 **Evidence limits:** SRS section 6.4 quality attribute; the original 33-case table had no dedicated availability case.
 
 ### TC-QUAL-03: SRS portability and real mobile coverage
+
+**Mini-project scope decision:** The project owner has agreed to skip real-phone testing. The original phone requirement remains unverified, and this decision does not complete the remaining browser-version and operating-system evidence or change this case's NOT RUN status.
+
+**10 November local follow-up:** A synthetic Warden signed in and opened the dashboard, students, beds, allocations, payments and occupancy report in connected Chrome. Edge was unavailable through the connected browser; Firefox, older versions and Linux workflows were not exercised. See the [local browser observations](evidence/issue39/local-browser-20261110.md). This is supporting evidence, not a complete TC-QUAL-03 execution.
 
 <a id="case-tc-qual-03"></a>
 
