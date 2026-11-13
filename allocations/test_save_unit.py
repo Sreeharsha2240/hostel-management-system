@@ -5,7 +5,7 @@ locking, constraints and rollback remain the responsibility of integration tests
 """
 
 from datetime import date
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -23,7 +23,7 @@ class AllocationSaveDecisionUnitTests(SimpleTestCase):
             pk=11, status=Student.Status.ACTIVE, gender=Student.Gender.MALE
         )
         self.hostel = Hostel(pk=3, hostel_type=Hostel.HostelType.BOYS, is_active=True)
-        self.room = Room(pk=4, hostel=self.hostel)
+        self.room = Room(pk=4, hostel=self.hostel, capacity=2)
         self.bed = Bed(pk=5, room=self.room, status=Bed.BedStatus.AVAILABLE)
         self.allocation = Allocation(
             student_id=11, bed_id=5, allocated_on=date(2026, 11, 1)
@@ -45,12 +45,14 @@ class AllocationSaveDecisionUnitTests(SimpleTestCase):
             self.addCleanup(item.stop)
         self.mocks["students"].return_value.get.return_value = self.student
         self.mocks["bed_room"].return_value.get.return_value = self.room.pk
+        self.mocks["rooms"].return_value.get.return_value = self.room
         self.mocks[
             "beds"
         ].return_value.select_related.return_value.get.return_value = self.bed
         self.mocks[
             "existing"
         ].return_value.exclude.return_value.exists.return_value = False
+        self.mocks["existing"].return_value.exclude.return_value.count.return_value = 0
 
     def save_body(self, **kwargs):
         return Allocation.save.__wrapped__(self.allocation, **kwargs)
@@ -145,3 +147,99 @@ class AllocationSaveDecisionUnitTests(SimpleTestCase):
             self.mocks["save"].call_args.kwargs["update_fields"],
             {"status", "active_student_id", "active_bed_id"},
         )
+
+    def test_full_room_uses_locked_capacity_instead_of_cached_bed_room_capacity(self):
+        self.room.capacity = 4
+        locked_room = Room(pk=4, hostel=self.hostel, capacity=1)
+        self.mocks["rooms"].return_value.get.return_value = locked_room
+        self.mocks["existing"].return_value.exclude.return_value.count.return_value = 1
+
+        with self.assertRaises(ValidationError) as error:
+            self.save_body()
+
+        self.assertEqual(error.exception.code, "ROOM_FULL")
+        self.mocks["rooms"].return_value.get.assert_called_once_with(pk=4)
+        self.mocks["existing"].assert_called_with(
+            bed__room_id=locked_room.pk, status=Allocation.AllocationStatus.ACTIVE
+        )
+        self.mocks["clean"].assert_not_called()
+        self.mocks["save"].assert_not_called()
+        self.mocks["bed_save"].assert_not_called()
+        self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)
+
+    def test_bed_moved_to_another_room_after_lookup_is_rejected_before_writes(self):
+        self.bed.room = Room(pk=9, hostel=self.hostel, capacity=2)
+
+        with self.assertRaises(ValidationError) as error:
+            self.save_body()
+
+        self.assertEqual(error.exception.code, "BED_MOVED")
+        self.mocks["rooms"].return_value.get.assert_called_once_with(pk=4)
+        self.mocks["existing"].assert_not_called()
+        self.mocks["clean"].assert_not_called()
+        self.mocks["save"].assert_not_called()
+        self.mocks["bed_save"].assert_not_called()
+        self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)
+
+    def test_last_room_capacity_slot_is_admitted(self):
+        self.mocks["existing"].return_value.exclude.return_value.count.return_value = 1
+
+        self.save_body()
+
+        self.mocks["existing"].assert_called_with(
+            bed__room_id=4, status=Allocation.AllocationStatus.ACTIVE
+        )
+        self.mocks["existing"].return_value.exclude.assert_called_with(pk=None)
+        self.mocks[
+            "existing"
+        ].return_value.exclude.return_value.count.assert_called_once_with()
+        self.assertEqual(self.bed.status, Bed.BedStatus.OCCUPIED)
+        self.mocks["clean"].assert_called_once()
+        self.mocks["save"].assert_called_once_with(force_insert=True)
+        self.mocks["bed_save"].assert_called_once_with(update_fields=["status"])
+
+    def test_existing_active_allocation_is_excluded_from_room_capacity_count(self):
+        self.allocation.pk = 20
+        self.allocation._state.adding = False
+        self.room.capacity = 1
+        self.mocks["previous"].return_value.get.return_value = Allocation(
+            pk=20, student_id=11, bed_id=5, allocated_on=date(2026, 11, 1)
+        )
+        self.bed.status = Bed.BedStatus.OCCUPIED
+
+        self.save_body(update_fields=["status"])
+
+        self.assertEqual(
+            self.mocks["existing"].call_args_list[-1],
+            call(bed__room_id=4, status=Allocation.AllocationStatus.ACTIVE),
+        )
+        self.mocks["existing"].return_value.exclude.assert_called_with(pk=20)
+        self.mocks[
+            "existing"
+        ].return_value.exclude.return_value.count.assert_called_once_with()
+        self.mocks["save"].assert_called_once_with(
+            update_fields={"status", "active_student_id", "active_bed_id"}
+        )
+
+    def test_release_skips_capacity_guard_even_when_room_count_is_at_limit(self):
+        self.allocation.pk = 20
+        self.allocation._state.adding = False
+        self.allocation.status = Allocation.AllocationStatus.COMPLETED
+        self.allocation.vacated_on = date(2026, 11, 2)
+        self.room.capacity = 1
+        self.mocks["existing"].return_value.exclude.return_value.count.return_value = 1
+        self.mocks["previous"].return_value.get.return_value = Allocation(
+            pk=20, student_id=11, bed_id=5, allocated_on=date(2026, 11, 1)
+        )
+        self.bed.status = Bed.BedStatus.OCCUPIED
+
+        self.save_body(update_fields=["status", "vacated_on"])
+
+        self.mocks["existing"].assert_not_called()
+        self.mocks["save"].assert_called_once_with(
+            update_fields={"status", "vacated_on", "active_student_id", "active_bed_id"}
+        )
+        self.mocks["bed_save"].assert_called_once_with(update_fields=["status"])
+        self.assertIsNone(self.allocation.active_student_id)
+        self.assertIsNone(self.allocation.active_bed_id)
+        self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)

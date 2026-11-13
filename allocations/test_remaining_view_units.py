@@ -3,12 +3,13 @@
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
-from django.db.models import Q
+from django.db.models import F, OuterRef, Q, Subquery
+from django.db.models.functions import Coalesce
 from django.http import HttpResponse
 from django.test import RequestFactory, SimpleTestCase
 
 from accounts.models import User
-from hostels.models import Bed
+from hostels.models import Bed, Room
 from students.models import Student
 
 from .models import Allocation
@@ -36,7 +37,43 @@ class RemainingAllocationViewUnitTests(SimpleTestCase):
         filtered.exclude.assert_called_once_with(
             allocations__status=Allocation.AllocationStatus.ACTIVE
         )
-        self.assertIs(actual, filtered.exclude.return_value)
+        eligible = filtered.exclude.return_value
+        eligible.alias.assert_called_once()
+        room_count = eligible.alias.call_args.kwargs["room_active_count"]
+        self.assertIsInstance(room_count, Coalesce)
+        subquery, empty_count = room_count.get_source_expressions()
+        self.assertIsInstance(subquery, Subquery)
+        self.assertEqual(empty_count.value, 0)
+        self.assertEqual(subquery.query.high_mark, 1)
+        self.assertEqual(subquery.query.order_by, ())
+        eligible.alias.return_value.filter.assert_called_once_with(
+            room_active_count__lt=F("room__capacity")
+        )
+        self.assertIs(actual, eligible.alias.return_value.filter.return_value)
+
+    def test_transfer_capacity_query_omits_only_the_departing_allocation(self):
+        active = Allocation.objects.filter(
+            bed__room_id=OuterRef("room_id"),
+            status=Allocation.AllocationStatus.ACTIVE,
+        )
+        with (
+            patch(
+                "allocations.views.Allocation.objects.filter", return_value=active
+            ) as allocations,
+            patch.object(active, "exclude", wraps=active.exclude) as exclude,
+        ):
+            beds = available_beds(exclude_allocation_id=8)
+
+        allocations.assert_called_once_with(
+            bed__room_id=OuterRef("room_id"),
+            status=Allocation.AllocationStatus.ACTIVE,
+        )
+        exclude.assert_called_once_with(pk=8)
+        self.assertIsNone(beds._result_cache)
+        capacity_limit = beds.query.where.children[-1]
+        self.assertEqual(capacity_limit.lookup_name, "lt")
+        self.assertIs(capacity_limit.rhs.target.model, Room)
+        self.assertEqual(capacity_limit.rhs.target.name, "capacity")
 
     def test_post_to_list_passes_same_request_to_creation_without_reading_history(self):
         request = self.request("post", {"student": "3", "bed": "4"})
