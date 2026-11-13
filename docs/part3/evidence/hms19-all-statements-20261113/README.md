@@ -2,6 +2,8 @@
 
 Sreeharsha's decision, relayed by the user on 13 November 2026, requires counting **all application statements, including declarative rules**. The earlier 52.50% result does not meet the 70% requirement. The separate function-body figure is not accepted as proof of that requirement. This records the relayed decision; it does not invent a GitHub review or a team signature.
 
+**Subsequent owner record:** [Harsha's later function-body decision](../hms19-function-body-boundary-20261113.md) accepts the separate 946/946 (100%) diagnostic under a narrower application-logic interpretation. This snapshot preserves the preceding all-statements decision and its unchanged 55.55% result, which remains below 70%. The [current report](../../Unit_Test_Report.md) distinguishes the two boundaries; the newer record does not credit declarations in this measurement.
+
 ## Method and comparable selections
 
 The [measurement harness](../hms19-unit-review-20261113/reproduce.py), `.coveragerc`, coverage 7.16.2, application denominator and exact method-context attribution remain unchanged. Database connections are forbidden during discovery and execution. Shared setup, startup and database regressions receive no unit-method credit. Scripts remain a separate subtotal, as before.
