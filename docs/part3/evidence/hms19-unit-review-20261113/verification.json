@@ -1,0 +1,4930 @@
+{
+  "scope": "Development contribution with independent automated review; no fabricated QA/PO acceptance or final SRS disposition.",
+  "clean_unit_source": {
+    "commit": "d990a3e1fa484c198c2649463181c10ef569095a",
+    "tree": "f668ffc4cc74f8f9ef0c0bf2e359f6d48bb07326",
+    "dirty": false
+  },
+  "unit_measurement": {
+    "status": "RECORDED; all frozen isolated tests passed; no SRS disposition",
+    "counts": {
+      "PASS": 255
+    },
+    "source_stable": true,
+    "database_attempts": []
+  },
+  "precommit_full_regression": {
+    "started_at": "2026-11-13T13:28:54.292011+00:00",
+    "completed_at": "2026-11-13T13:30:00.748393+00:00",
+    "commit": "ecca29d65ab91c2799b4fd4c02bc0d4cf998bd08",
+    "git_dirty": true,
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "dependencies": {
+      "Django": "5.2.18",
+      "mysqlclient": "2.3.0",
+      "python-dotenv": "1.2.4",
+      "reportlab": "4.5.1",
+      "pypdf": "6.21.2",
+      "coverage": "7.16.2",
+      "unittest-xml-reporting": "4.0.0",
+      "ruff": "0.17.1"
+    },
+    "mysql": "8.4.9",
+    "tests": {
+      "tests": 443,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "junit_files": 76,
+    "success": true,
+    "coverage": {
+      "covered_lines": 1767,
+      "num_statements": 1798,
+      "percent_covered": 97.89991063449509,
+      "percent_covered_display": "98",
+      "missing_lines": 31,
+      "excluded_lines": 0,
+      "percent_statements_covered": 98.27586206896552,
+      "percent_statements_covered_display": "98",
+      "num_branches": 440,
+      "num_partial_branches": 16,
+      "covered_branches": 424,
+      "missing_branches": 16,
+      "percent_branches_covered": 96.36363636363636,
+      "percent_branches_covered_display": "96"
+    }
+  },
+  "precommit_steps": [
+    {
+      "name": "lint",
+      "exit_code": 0,
+      "seconds": 0.109
+    },
+    {
+      "name": "format",
+      "exit_code": 0,
+      "seconds": 0.113
+    },
+    {
+      "name": "dependencies",
+      "exit_code": 0,
+      "seconds": 0.531
+    },
+    {
+      "name": "django-checks",
+      "exit_code": 0,
+      "seconds": 0.936
+    },
+    {
+      "name": "applied-migrations",
+      "exit_code": 0,
+      "seconds": 0.98
+    },
+    {
+      "name": "migration-consistency",
+      "exit_code": 0,
+      "seconds": 0.988
+    },
+    {
+      "name": "staticfiles",
+      "exit_code": 0,
+      "seconds": 0.712
+    },
+    {
+      "name": "test-results",
+      "exit_code": 0,
+      "seconds": 52.489
+    },
+    {
+      "name": "coverage",
+      "exit_code": 0,
+      "seconds": 0.472
+    },
+    {
+      "name": "coverage-xml",
+      "exit_code": 0,
+      "seconds": 0.53
+    },
+    {
+      "name": "coverage-json",
+      "exit_code": 0,
+      "seconds": 0.514
+    },
+    {
+      "name": "timing-smoke",
+      "exit_code": 0,
+      "seconds": 6.819
+    }
+  ],
+  "before_after_source_proof": {
+    "equal": true,
+    "hashes": 172,
+    "explanation": "The before-full and after-full unit runs have identical frozen source/configuration/harness hashes. Full run is honestly labelled dirty/precommit; exact clean CI will be recorded separately."
+  },
+  "raw_full_manifest_sha256": "af2f2d746e0149c78eb36ac660a693dde3439cf1ce306161faf51a0e0b58801e",
+  "owned_regressions": {
+    "success": true,
+    "case_counts": {
+      "PASS": 9
+    },
+    "methods": {
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_12_report_history_balances_and_locations": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_13_csv_literals_unicode_and_html": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_14_report_boundaries": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_15_malformed_json_and_controls": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_16_typed_dates_references_and_contracts": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedAllocationTransactions.test_tc_reg_s2_08_rollback_and_retry": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedPaymentCorrectionConcurrency.test_tc_reg_s2_11_competing_corrections": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_09_payment_permanence": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_10_rejected_failed_and_exhausted_receipts": "PASS"
+    },
+    "cases": {
+      "TC-REG-S2-08": {
+        "case_id": "TC-REG-S2-08",
+        "test_id": "scripts.part3.test_owned_transactions.OwnedAllocationTransactions.test_tc_reg_s2_08_rollback_and_retry",
+        "started_at": "2026-11-13T13:30:24.190699+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1",
+            "expected": "Failed allocate audit leaves no allocation, Available beds and unchanged audits.",
+            "actual": {
+              "fault": "controlled allocate audit failure",
+              "audit_call_count": 1,
+              "before": {
+                "allocations": [],
+                "beds": [
+                  {
+                    "id": 1,
+                    "room_id": 1,
+                    "label": "101-A",
+                    "status": "Available"
+                  },
+                  {
+                    "id": 2,
+                    "room_id": 1,
+                    "label": "101-B",
+                    "status": "Available"
+                  }
+                ],
+                "audits": []
+              },
+              "after": {
+                "allocations": [],
+                "beds": [
+                  {
+                    "id": 1,
+                    "room_id": 1,
+                    "label": "101-A",
+                    "status": "Available"
+                  },
+                  {
+                    "id": 2,
+                    "room_id": 1,
+                    "label": "101-B",
+                    "status": "Available"
+                  }
+                ],
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "2",
+            "expected": "Created allocation survives a release audit failure as Active/Occupied with all history and audits unchanged.",
+            "actual": {
+              "fault": "controlled release audit failure",
+              "audit_call_count": 1,
+              "before": {
+                "allocations": [
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "bed_id": 1,
+                    "allocated_on": "2026-11-11",
+                    "vacated_on": null,
+                    "status": "Active",
+                    "active_student_id": 1,
+                    "active_bed_id": 1
+                  }
+                ],
+                "beds": [
+                  {
+                    "id": 1,
+                    "room_id": 1,
+                    "label": "101-A",
+                    "status": "Occupied"
+                  },
+                  {
+                    "id": 2,
+                    "room_id": 1,
+                    "label": "101-B",
+                    "status": "Available"
+                  }
+                ],
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "allocate",
+                    "record_type": "allocations.allocation",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:24.214+05:30"
+                  }
+                ]
+              },
+              "after": {
+                "allocations": [
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "bed_id": 1,
+                    "allocated_on": "2026-11-11",
+                    "vacated_on": null,
+                    "status": "Active",
+                    "active_student_id": 1,
+                    "active_bed_id": 1
+                  }
+                ],
+                "beds": [
+                  {
+                    "id": 1,
+                    "room_id": 1,
+                    "label": "101-A",
+                    "status": "Occupied"
+                  },
+                  {
+                    "id": 2,
+                    "room_id": 1,
+                    "label": "101-B",
+                    "status": "Available"
+                  }
+                ],
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "allocate",
+                    "record_type": "allocations.allocation",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:24.214+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "3",
+            "expected": "Failed target Occupied save rolls back both beds, complete original history/dates/active keys and every audit.",
+            "actual": {
+              "fault_hits": [
+                {
+                  "bed_id": 2,
+                  "attempted_status": "Occupied"
+                }
+              ],
+              "before": {
+                "allocations": [
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "bed_id": 1,
+                    "allocated_on": "2026-11-11",
+                    "vacated_on": null,
+                    "status": "Active",
+                    "active_student_id": 1,
+                    "active_bed_id": 1
+                  }
+                ],
+                "beds": [
+                  {
+                    "id": 1,
+                    "room_id": 1,
+                    "label": "101-A",
+                    "status": "Occupied"
+                  },
+                  {
+                    "id": 2,
+                    "room_id": 1,
+                    "label": "101-B",
+                    "status": "Available"
+                  }
+                ],
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "allocate",
+                    "record_type": "allocations.allocation",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:24.214+05:30"
+                  }
+                ]
+              },
+              "after": {
+                "allocations": [
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "bed_id": 1,
+                    "allocated_on": "2026-11-11",
+                    "vacated_on": null,
+                    "status": "Active",
+                    "active_student_id": 1,
+                    "active_bed_id": 1
+                  }
+                ],
+                "beds": [
+                  {
+                    "id": 1,
+                    "room_id": 1,
+                    "label": "101-A",
+                    "status": "Occupied"
+                  },
+                  {
+                    "id": 2,
+                    "room_id": 1,
+                    "label": "101-B",
+                    "status": "Available"
+                  }
+                ],
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "allocate",
+                    "record_type": "allocations.allocation",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:24.214+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "4",
+            "expected": "Same transfer retry completes original, creates exactly one active successor and one attributable transfer audit.",
+            "actual": {
+              "original_id": 2,
+              "successor_id": 4,
+              "after": {
+                "allocations": [
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "bed_id": 1,
+                    "allocated_on": "2026-11-11",
+                    "vacated_on": "2026-11-13",
+                    "status": "Completed",
+                    "active_student_id": null,
+                    "active_bed_id": null
+                  },
+                  {
+                    "id": 4,
+                    "student_id": 1,
+                    "bed_id": 2,
+                    "allocated_on": "2026-11-13",
+                    "vacated_on": null,
+                    "status": "Active",
+                    "active_student_id": 1,
+                    "active_bed_id": 2
+                  }
+                ],
+                "beds": [
+                  {
+                    "id": 1,
+                    "room_id": 1,
+                    "label": "101-A",
+                    "status": "Available"
+                  },
+                  {
+                    "id": 2,
+                    "room_id": 1,
+                    "label": "101-B",
+                    "status": "Occupied"
+                  }
+                ],
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "allocate",
+                    "record_type": "allocations.allocation",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:24.214+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "transfer",
+                    "record_type": "allocations.allocation",
+                    "record_id": "4",
+                    "timestamp": "2026-11-13T19:00:24.275+05:30"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:24.285606+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-08.json"
+      },
+      "TC-REG-S2-09": {
+        "case_id": "TC-REG-S2-09",
+        "test_id": "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_09_payment_permanence",
+        "started_at": "2026-11-13T13:30:25.088116+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1",
+            "expected": "Two genuine payments have distinct sequential receipts, counter 2 and one actor audit per payment.",
+            "actual": {
+              "payments": [
+                {
+                  "id": 1,
+                  "student_id": 1,
+                  "receipt_no": "R00000000001",
+                  "amount": "400.00",
+                  "date": "2026-11-13",
+                  "mode": "UPI",
+                  "reference": "TEST123",
+                  "adjustment_of_id": null,
+                  "adjustment_reason": "",
+                  "created_at": "2026-11-13T19:00:25.093+05:30"
+                },
+                {
+                  "id": 2,
+                  "student_id": 1,
+                  "receipt_no": "R00000000002",
+                  "amount": "400.00",
+                  "date": "2026-11-13",
+                  "mode": "Bank Transfer",
+                  "reference": "TEST123",
+                  "adjustment_of_id": null,
+                  "adjustment_reason": "",
+                  "created_at": "2026-11-13T19:00:25.102+05:30"
+                }
+              ],
+              "receipt_counter": 2,
+              "audits": [
+                {
+                  "id": 1,
+                  "user_id": 1,
+                  "action": "payment",
+                  "record_type": "payments.payment",
+                  "record_id": "1",
+                  "timestamp": "2026-11-13T19:00:25.093+05:30"
+                },
+                {
+                  "id": 2,
+                  "user_id": 1,
+                  "action": "payment",
+                  "record_type": "payments.payment",
+                  "record_id": "2",
+                  "timestamp": "2026-11-13T19:00:25.103+05:30"
+                }
+              ]
+            }
+          },
+          {
+            "step": "2.unchanged_save",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "unchanged_save",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments cannot be edited. Record a new adjusting entry."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.edited_save",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "edited_save",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments cannot be edited. Record a new adjusting entry."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.partial_save",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "partial_save",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments cannot be edited. Record a new adjusting entry."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.instance_delete",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "instance_delete",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments cannot be deleted. Record a new adjusting entry."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.queryset_delete",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "queryset_delete",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments are permanent. Record a new adjusting entry to make a correction."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.queryset_update",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "queryset_update",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments are permanent. Record a new adjusting entry to make a correction."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.bulk_update",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "bulk_update",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments are permanent. Record a new adjusting entry to make a correction."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.bulk_create",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "bulk_create",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments are permanent. Record a new adjusting entry to make a correction."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.primary_key_replay",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "primary_key_replay",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments cannot be edited. Record a new adjusting entry."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "2.receipt_reuse",
+            "expected": "Guarded mutation rejects without changing any original field, receipt counter or audit.",
+            "actual": {
+              "mutation": "receipt_reuse",
+              "error_code": "IMMUTABLE_FIELD",
+              "error_messages": [
+                "Payments cannot be edited. Record a new adjusting entry."
+              ],
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "step": "3",
+            "expected": "Reloaded originals retain complete amount, identity, receipt and creation history.",
+            "actual": {
+              "payments": [
+                {
+                  "id": 1,
+                  "student_id": 1,
+                  "receipt_no": "R00000000001",
+                  "amount": "400.00",
+                  "date": "2026-11-13",
+                  "mode": "UPI",
+                  "reference": "TEST123",
+                  "adjustment_of_id": null,
+                  "adjustment_reason": "",
+                  "created_at": "2026-11-13T19:00:25.093+05:30"
+                },
+                {
+                  "id": 2,
+                  "student_id": 1,
+                  "receipt_no": "R00000000002",
+                  "amount": "400.00",
+                  "date": "2026-11-13",
+                  "mode": "Bank Transfer",
+                  "reference": "TEST123",
+                  "adjustment_of_id": null,
+                  "adjustment_reason": "",
+                  "created_at": "2026-11-13T19:00:25.102+05:30"
+                }
+              ],
+              "receipt_counter": 2,
+              "audits": [
+                {
+                  "id": 1,
+                  "user_id": 1,
+                  "action": "payment",
+                  "record_type": "payments.payment",
+                  "record_id": "1",
+                  "timestamp": "2026-11-13T19:00:25.093+05:30"
+                },
+                {
+                  "id": 2,
+                  "user_id": 1,
+                  "action": "payment",
+                  "record_type": "payments.payment",
+                  "record_id": "2",
+                  "timestamp": "2026-11-13T19:00:25.103+05:30"
+                }
+              ]
+            }
+          },
+          {
+            "step": "expected.adjusting_entry",
+            "expected": "Correction is a new linked adjusting entry with its own sequential receipt/audit; originals remain unchanged.",
+            "actual": {
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "Bank Transfer",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.102+05:30"
+                  },
+                  {
+                    "id": 3,
+                    "student_id": 1,
+                    "receipt_no": "R00000000003",
+                    "amount": "-100.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": 1,
+                    "adjustment_reason": "Duplicate part of entry",
+                    "created_at": "2026-11-13T19:00:25.142+05:30"
+                  }
+                ],
+                "receipt_counter": 3,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:25.093+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.103+05:30"
+                  },
+                  {
+                    "id": 3,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "3",
+                    "timestamp": "2026-11-13T19:00:25.142+05:30"
+                  }
+                ]
+              },
+              "net_amount": "700.00"
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:25.150707+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-09.json"
+      },
+      "TC-REG-S2-10": {
+        "case_id": "TC-REG-S2-10",
+        "test_id": "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_10_rejected_failed_and_exhausted_receipts",
+        "started_at": "2026-11-13T13:30:25.552284+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1.amount_1",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "0"
+              },
+              "error_messages": [
+                "Enter a positive payment or a nonzero adjustment."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.amount_2",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "-1"
+              },
+              "error_messages": [
+                "Enter a positive payment or a nonzero adjustment."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.amount_3",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "NaN"
+              },
+              "error_messages": [
+                "“NaN” value must be a decimal number."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.amount_4",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "Infinity"
+              },
+              "error_messages": [
+                "“Infinity” value must be a decimal number."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.amount_5",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "-Infinity"
+              },
+              "error_messages": [
+                "“-Infinity” value must be a decimal number."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.amount_6",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "1.001"
+              },
+              "error_messages": [
+                "Ensure that there are no more than 2 decimal places."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.amount_7",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "100000000"
+              },
+              "error_messages": [
+                "Ensure that there are no more than 8 digits before the decimal point."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.amount_8",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "amount": "text"
+              },
+              "error_messages": [
+                "“text” value must be a decimal number."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.unsupported_mode",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "mode": "Card"
+              },
+              "error_messages": [
+                "Value 'Card' is not a valid choice."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.future_date",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "date": "2026-11-14"
+              },
+              "error_messages": [
+                "Payment date cannot be in the future."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.invalid_date",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "date": "invalid"
+              },
+              "error_messages": [
+                "“invalid” value has an invalid date format. It must be in YYYY-MM-DD format."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.overlength_reference",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "reference": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "error_messages": [
+                "Ensure this value has at most 30 characters (it has 31)."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "1.invalid_reference",
+            "expected": "Invalid payment creates no row or audit and consumes no receipt number.",
+            "actual": {
+              "input_overrides": {
+                "reference": "invalid/ref"
+              },
+              "error_messages": [
+                "Use letters and numbers only."
+              ],
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "2",
+            "expected": "Valid payment with failed audit rolls back payment and counter together.",
+            "actual": {
+              "fault": "controlled payment audit failure",
+              "audit_call_count": 1,
+              "after": {
+                "payments": [],
+                "receipt_counter": 0,
+                "audits": []
+              }
+            }
+          },
+          {
+            "step": "3",
+            "expected": "Fresh valid retry after removing fault receives R00000000001 and one actor payment audit.",
+            "actual": {
+              "payments": [
+                {
+                  "id": 2,
+                  "student_id": 1,
+                  "receipt_no": "R00000000001",
+                  "amount": "400.00",
+                  "date": "2026-11-13",
+                  "mode": "UPI",
+                  "reference": "TEST123",
+                  "adjustment_of_id": null,
+                  "adjustment_reason": "",
+                  "created_at": "2026-11-13T19:00:25.641+05:30"
+                }
+              ],
+              "receipt_counter": 1,
+              "audits": [
+                {
+                  "id": 1,
+                  "user_id": 1,
+                  "action": "payment",
+                  "record_type": "payments.payment",
+                  "record_id": "2",
+                  "timestamp": "2026-11-13T19:00:25.641+05:30"
+                }
+              ]
+            }
+          },
+          {
+            "step": "4",
+            "expected": "Exhausted range rejects without overwriting existing payment/receipt history, audits or maximum counter.",
+            "actual": {
+              "counter_fixture": 99999999999,
+              "error_messages": [
+                "The receipt number range is exhausted."
+              ],
+              "before": {
+                "payments": [
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.641+05:30"
+                  }
+                ],
+                "receipt_counter": 99999999999,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.641+05:30"
+                  }
+                ]
+              },
+              "after": {
+                "payments": [
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "400.00",
+                    "date": "2026-11-13",
+                    "mode": "UPI",
+                    "reference": "TEST123",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:25.641+05:30"
+                  }
+                ],
+                "receipt_counter": 99999999999,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:25.641+05:30"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:25.663617+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-10.json"
+      },
+      "TC-REG-S2-11": {
+        "case_id": "TC-REG-S2-11",
+        "test_id": "scripts.part3.test_owned_transactions.OwnedPaymentCorrectionConcurrency.test_tc_reg_s2_11_competing_corrections",
+        "started_at": "2026-11-13T13:30:24.667584+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1",
+            "expected": "Two barrier-synchronized corrections on distinct MySQL connections produce one new receipt and one over-reversal rejection.",
+            "actual": {
+              "original": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "100.00",
+                    "date": "2026-11-13",
+                    "mode": "Cash",
+                    "reference": "",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:24.672+05:30"
+                  }
+                ],
+                "receipt_counter": 1,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:24.673+05:30"
+                  }
+                ]
+              },
+              "correction_amount": "-80.00",
+              "barrier_parties": 2,
+              "attempt_intervals_include_initial_barrier_wait": false,
+              "both_services_synchronized_at_student_lock_query": true,
+              "database_lock_wait_duration_measured": false,
+              "outcomes": [
+                {
+                  "worker": 0,
+                  "connection_id": 138,
+                  "attempt_started_monotonic": 2452.5441286,
+                  "attempt_finished_monotonic": 2452.5621525,
+                  "locking_query_entries_monotonic": [
+                    2452.5452246
+                  ],
+                  "result": "rejected",
+                  "error_messages": [
+                    "Adjustments cannot reverse more than the recorded amount."
+                  ]
+                },
+                {
+                  "worker": 1,
+                  "connection_id": 139,
+                  "attempt_started_monotonic": 2452.5440821,
+                  "attempt_finished_monotonic": 2452.5578058,
+                  "locking_query_entries_monotonic": [
+                    2452.5448966
+                  ],
+                  "result": "created",
+                  "payment_id": 2,
+                  "receipt_no": "R00000000002"
+                }
+              ]
+            }
+          },
+          {
+            "step": "2",
+            "expected": "Exactly two unchanged-original/correction rows, receipts 1/2, counter 2, two actor audits and net INR20 remain.",
+            "actual": {
+              "after": {
+                "payments": [
+                  {
+                    "id": 1,
+                    "student_id": 1,
+                    "receipt_no": "R00000000001",
+                    "amount": "100.00",
+                    "date": "2026-11-13",
+                    "mode": "Cash",
+                    "reference": "",
+                    "adjustment_of_id": null,
+                    "adjustment_reason": "",
+                    "created_at": "2026-11-13T19:00:24.672+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "student_id": 1,
+                    "receipt_no": "R00000000002",
+                    "amount": "-80.00",
+                    "date": "2026-11-13",
+                    "mode": "Cash",
+                    "reference": "",
+                    "adjustment_of_id": 1,
+                    "adjustment_reason": "Correction",
+                    "created_at": "2026-11-13T19:00:24.695+05:30"
+                  }
+                ],
+                "receipt_counter": 2,
+                "audits": [
+                  {
+                    "id": 1,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "1",
+                    "timestamp": "2026-11-13T19:00:24.673+05:30"
+                  },
+                  {
+                    "id": 2,
+                    "user_id": 1,
+                    "action": "payment",
+                    "record_type": "payments.payment",
+                    "record_id": "2",
+                    "timestamp": "2026-11-13T19:00:24.695+05:30"
+                  }
+                ]
+              },
+              "net_amount": "20.00",
+              "status": {
+                "student_id": "PES1UG24CS001",
+                "student_name": "Sample Student 1",
+                "hostel_id": null,
+                "hostel": "",
+                "room": "",
+                "bed": "",
+                "fee": "0.00",
+                "paid": "20.00",
+                "due": "0.00",
+                "status": "Pending",
+                "fee_configured": false
+              }
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:24.716673+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-11.json"
+      },
+      "TC-REG-S2-12": {
+        "case_id": "TC-REG-S2-12",
+        "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_12_report_history_balances_and_locations",
+        "started_at": "2026-11-13T13:30:26.080050+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1",
+            "expected": "Transfer/release preserve latest Bed and fee; two payments total 1000 once; old/new hostel filters follow location",
+            "actual": {
+              "after_transfer": {
+                "json": {
+                  "student_id": "PES1UG24CS001",
+                  "student_name": "Sample Student 1",
+                  "hostel_id": 3,
+                  "hostel": "Boys 202",
+                  "room": "202",
+                  "bed": "202-A",
+                  "fee": "2000.00",
+                  "paid": "1000.00",
+                  "due": "1000.00",
+                  "status": "Partial",
+                  "fee_configured": true
+                },
+                "csv": {
+                  "Student ID": "PES1UG24CS001",
+                  "Student Name": "Sample Student 1",
+                  "Hostel Name": "Boys 202",
+                  "Room": "202",
+                  "Bed": "202-A",
+                  "Fee Amount (INR)": "2000.00",
+                  "Amount Paid (INR)": "1000.00",
+                  "Due (INR)": "1000.00",
+                  "Payment Status": "Partial",
+                  "Generated On": "13-11-2026 19:00:26 IST"
+                },
+                "html_cells": [
+                  "PES1UG24CS001",
+                  "Sample Student 1",
+                  "Boys 202",
+                  "202",
+                  "202-A",
+                  "2000.00",
+                  "1000.00",
+                  "1000.00",
+                  "Partial"
+                ]
+              },
+              "after_release": {
+                "json": {
+                  "student_id": "PES1UG24CS001",
+                  "student_name": "Sample Student 1",
+                  "hostel_id": 3,
+                  "hostel": "Boys 202",
+                  "room": "202",
+                  "bed": "202-A",
+                  "fee": "2000.00",
+                  "paid": "1000.00",
+                  "due": "1000.00",
+                  "status": "Partial",
+                  "fee_configured": true
+                },
+                "csv": {
+                  "Student ID": "PES1UG24CS001",
+                  "Student Name": "Sample Student 1",
+                  "Hostel Name": "Boys 202",
+                  "Room": "202",
+                  "Bed": "202-A",
+                  "Fee Amount (INR)": "2000.00",
+                  "Amount Paid (INR)": "1000.00",
+                  "Due (INR)": "1000.00",
+                  "Payment Status": "Partial",
+                  "Generated On": "13-11-2026 19:00:26 IST"
+                },
+                "html_cells": [
+                  "PES1UG24CS001",
+                  "Sample Student 1",
+                  "Boys 202",
+                  "202",
+                  "202-A",
+                  "2000.00",
+                  "1000.00",
+                  "1000.00",
+                  "Partial"
+                ]
+              },
+              "old_hostel_rows": [],
+              "new_hostel_row_count": 1
+            }
+          },
+          {
+            "step": "2",
+            "expected": "1000 less 250 gives paid 750/due 250/Partial with matching HTML/CSV/JSON and Bed",
+            "actual": {
+              "json": {
+                "student_id": "PES1UG24CS003",
+                "student_name": "Sample Student 3",
+                "hostel_id": 4,
+                "hostel": "Boys 404",
+                "room": "404",
+                "bed": "404-A",
+                "fee": "1000.00",
+                "paid": "750.00",
+                "due": "250.00",
+                "status": "Partial",
+                "fee_configured": true
+              },
+              "csv": {
+                "Student ID": "PES1UG24CS003",
+                "Student Name": "Sample Student 3",
+                "Hostel Name": "Boys 404",
+                "Room": "404",
+                "Bed": "404-A",
+                "Fee Amount (INR)": "1000.00",
+                "Amount Paid (INR)": "750.00",
+                "Due (INR)": "250.00",
+                "Payment Status": "Partial",
+                "Generated On": "13-11-2026 19:00:26 IST"
+              },
+              "html_cells": [
+                "PES1UG24CS003",
+                "Sample Student 3",
+                "Boys 404",
+                "404",
+                "404-A",
+                "1000.00",
+                "750.00",
+                "250.00",
+                "Partial"
+              ]
+            }
+          },
+          {
+            "step": "3",
+            "expected": "Cancelled locations ignored; cancelled-only location blank/Unassigned; advance with zero fee remains Pending",
+            "actual": {
+              "retained_history": {
+                "json": {
+                  "student_id": "PES1UG24CS001",
+                  "student_name": "Sample Student 1",
+                  "hostel_id": 3,
+                  "hostel": "Boys 202",
+                  "room": "202",
+                  "bed": "202-A",
+                  "fee": "2000.00",
+                  "paid": "1000.00",
+                  "due": "1000.00",
+                  "status": "Partial",
+                  "fee_configured": true
+                },
+                "csv": {
+                  "Student ID": "PES1UG24CS001",
+                  "Student Name": "Sample Student 1",
+                  "Hostel Name": "Boys 202",
+                  "Room": "202",
+                  "Bed": "202-A",
+                  "Fee Amount (INR)": "2000.00",
+                  "Amount Paid (INR)": "1000.00",
+                  "Due (INR)": "1000.00",
+                  "Payment Status": "Partial",
+                  "Generated On": "13-11-2026 19:00:26 IST"
+                },
+                "html_cells": [
+                  "PES1UG24CS001",
+                  "Sample Student 1",
+                  "Boys 202",
+                  "202",
+                  "202-A",
+                  "2000.00",
+                  "1000.00",
+                  "1000.00",
+                  "Partial"
+                ]
+              },
+              "never_assigned": {
+                "json": {
+                  "student_id": "PES1UG24CS002",
+                  "student_name": "Sample Student 2",
+                  "hostel_id": null,
+                  "hostel": "",
+                  "room": "",
+                  "bed": "",
+                  "fee": "0.00",
+                  "paid": "25.00",
+                  "due": "0.00",
+                  "status": "Pending",
+                  "fee_configured": false
+                },
+                "csv": {
+                  "Student ID": "PES1UG24CS002",
+                  "Student Name": "Sample Student 2",
+                  "Hostel Name": "",
+                  "Room": "",
+                  "Bed": "",
+                  "Fee Amount (INR)": "0.00",
+                  "Amount Paid (INR)": "25.00",
+                  "Due (INR)": "0.00",
+                  "Payment Status": "Pending",
+                  "Generated On": "13-11-2026 19:00:26 IST"
+                },
+                "html_cells": [
+                  "PES1UG24CS002",
+                  "Sample Student 2",
+                  "Unassigned",
+                  "Unassigned",
+                  "Unassigned",
+                  "0.00",
+                  "25.00",
+                  "0.00",
+                  "Pending"
+                ]
+              },
+              "cancelled_only": {
+                "json": {
+                  "student_id": "PES1UG24CS002",
+                  "student_name": "Sample Student 2",
+                  "hostel_id": null,
+                  "hostel": "",
+                  "room": "",
+                  "bed": "",
+                  "fee": "0.00",
+                  "paid": "25.00",
+                  "due": "0.00",
+                  "status": "Pending",
+                  "fee_configured": false
+                },
+                "csv": {
+                  "Student ID": "PES1UG24CS002",
+                  "Student Name": "Sample Student 2",
+                  "Hostel Name": "",
+                  "Room": "",
+                  "Bed": "",
+                  "Fee Amount (INR)": "0.00",
+                  "Amount Paid (INR)": "25.00",
+                  "Due (INR)": "0.00",
+                  "Payment Status": "Pending",
+                  "Generated On": "13-11-2026 19:00:26 IST"
+                },
+                "html_cells": [
+                  "PES1UG24CS002",
+                  "Sample Student 2",
+                  "Unassigned",
+                  "Unassigned",
+                  "Unassigned",
+                  "0.00",
+                  "25.00",
+                  "0.00",
+                  "Pending"
+                ]
+              },
+              "zero_fee": {
+                "json": {
+                  "student_id": "PES1UG24CS004",
+                  "student_name": "Sample Student 4",
+                  "hostel_id": 6,
+                  "hostel": "Boys 505",
+                  "room": "505",
+                  "bed": "505-A",
+                  "fee": "0.00",
+                  "paid": "1500.00",
+                  "due": "0.00",
+                  "status": "Pending",
+                  "fee_configured": false
+                },
+                "csv": {
+                  "Student ID": "PES1UG24CS004",
+                  "Student Name": "Sample Student 4",
+                  "Hostel Name": "Boys 505",
+                  "Room": "505",
+                  "Bed": "505-A",
+                  "Fee Amount (INR)": "0.00",
+                  "Amount Paid (INR)": "1500.00",
+                  "Due (INR)": "0.00",
+                  "Payment Status": "Pending",
+                  "Generated On": "13-11-2026 19:00:26 IST"
+                },
+                "html_cells": [
+                  "PES1UG24CS004",
+                  "Sample Student 4",
+                  "Boys 505",
+                  "505",
+                  "505-A",
+                  "0.00",
+                  "1500.00",
+                  "0.00",
+                  "Pending"
+                ]
+              },
+              "cancelled_hostel_rows": []
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:26.724006+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-12.json"
+      },
+      "TC-REG-S2-13": {
+        "case_id": "TC-REG-S2-13",
+        "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_13_csv_literals_unicode_and_html",
+        "started_at": "2026-11-13T13:30:27.119904+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1-3.vector-1",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "  =2+2, \"North\"\nWing",
+              "input_student": "  =2+2, \"North\"\nWing <b>Élève</b>",
+              "occupancy_csv_hostel": "'  =2+2, \"North\"\nWing",
+              "payment_csv_hostel": "'  =2+2, \"North\"\nWing",
+              "payment_csv_student": "'  =2+2, \"North\"\nWing <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "  =2+2, \"North\"\nWing <b>Élève</b>",
+                "  =2+2, \"North\"\nWing",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-2",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "+SUM(1,2)",
+              "input_student": "+SUM(1,2) <b>Élève</b>",
+              "occupancy_csv_hostel": "'+SUM(1,2)",
+              "payment_csv_hostel": "'+SUM(1,2)",
+              "payment_csv_student": "'+SUM(1,2) <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "+SUM(1,2) <b>Élève</b>",
+                "+SUM(1,2)",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-3",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "-2+3",
+              "input_student": "-2+3 <b>Élève</b>",
+              "occupancy_csv_hostel": "'-2+3",
+              "payment_csv_hostel": "'-2+3",
+              "payment_csv_student": "'-2+3 <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "-2+3 <b>Élève</b>",
+                "-2+3",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-4",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "@SUM(1,2)",
+              "input_student": "@SUM(1,2) <b>Élève</b>",
+              "occupancy_csv_hostel": "'@SUM(1,2)",
+              "payment_csv_hostel": "'@SUM(1,2)",
+              "payment_csv_student": "'@SUM(1,2) <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "@SUM(1,2) <b>Élève</b>",
+                "@SUM(1,2)",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-5",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": " \t+SUM(1,2)",
+              "input_student": " \t+SUM(1,2) <b>Élève</b>",
+              "occupancy_csv_hostel": "' \t+SUM(1,2)",
+              "payment_csv_hostel": "' \t+SUM(1,2)",
+              "payment_csv_student": "' \t+SUM(1,2) <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                " \t+SUM(1,2) <b>Élève</b>",
+                " \t+SUM(1,2)",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-6",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "\ttext",
+              "input_student": "\ttext <b>Élève</b>",
+              "occupancy_csv_hostel": "'\ttext",
+              "payment_csv_hostel": "'\ttext",
+              "payment_csv_student": "'\ttext <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "\ttext <b>Élève</b>",
+                "\ttext",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-7",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "\rtext",
+              "input_student": "\rtext <b>Élève</b>",
+              "occupancy_csv_hostel": "'\rtext",
+              "payment_csv_hostel": "'\rtext",
+              "payment_csv_student": "'\rtext <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "\rtext <b>Élève</b>",
+                "\rtext",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-8",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "\ntext",
+              "input_student": "\ntext <b>Élève</b>",
+              "occupancy_csv_hostel": "'\ntext",
+              "payment_csv_hostel": "'\ntext",
+              "payment_csv_student": "'\ntext <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "\ntext <b>Élève</b>",
+                "\ntext",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          },
+          {
+            "step": "1-3.vector-9",
+            "expected": "CSV quoting preserves text/Unicode; dangerous prefixes receive apostrophe; rendered HTML contains literal labels without injected element",
+            "actual": {
+              "input_hostel": "नमस्ते 😀, \"Élève\"\nWing",
+              "input_student": "नमस्ते 😀, \"Élève\"\nWing <b>Élève</b>",
+              "occupancy_csv_hostel": "नमस्ते 😀, \"Élève\"\nWing",
+              "payment_csv_hostel": "नमस्ते 😀, \"Élève\"\nWing",
+              "payment_csv_student": "नमस्ते 😀, \"Élève\"\nWing <b>Élève</b>",
+              "html_cells": [
+                "PES1UG24CS001",
+                "नमस्ते 😀, \"Élève\"\nWing <b>Élève</b>",
+                "नमस्ते 😀, \"Élève\"\nWing",
+                "101",
+                "101-A",
+                "1000.00",
+                "0.00",
+                "1000.00",
+                "Pending"
+              ],
+              "injected_b_elements": 0
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:27.586859+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-13.json"
+      },
+      "TC-REG-S2-14": {
+        "case_id": "TC-REG-S2-14",
+        "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_14_report_boundaries",
+        "started_at": "2026-11-13T13:30:28.006224+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1",
+            "expected": "Empty filtered payment rows; zero-bed occupancy 0.00 percent without division error",
+            "actual": {
+              "payment_rows": [],
+              "zero_bed_csv": {
+                "Hostel Name": "Empty hostel",
+                "Total Beds": "0",
+                "Occupied Beds": "0",
+                "Available Beds": "0",
+                "Beds Under Maintenance": "0",
+                "Occupancy %": "0.00",
+                "Generated On": "13-11-2026 19:00:28 IST"
+              }
+            }
+          },
+          {
+            "step": "2.occupancy-report",
+            "expected": "Malformed, zero, negative, fractional, non-ASCII and extreme hostel IDs return 400",
+            "actual": {
+              "results": [
+                {
+                  "vector": 1,
+                  "length": 3,
+                  "prefix": "bad",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 2,
+                  "length": 2,
+                  "prefix": "-1",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 3,
+                  "length": 1,
+                  "prefix": "0",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 4,
+                  "length": 3,
+                  "prefix": "1.5",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 5,
+                  "length": 100,
+                  "prefix": "99999999999999999999",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 6,
+                  "length": 5000,
+                  "prefix": "99999999999999999999",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 7,
+                  "length": 5000,
+                  "prefix": "00000000000000000000",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 8,
+                  "length": 1,
+                  "prefix": "١",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 9,
+                  "length": 19,
+                  "prefix": "9223372036854775808",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "step": "3.occupancy-report",
+            "expected": "Absent well-formed hostel 404; unsupported format 400; POST 405 with Allow GET",
+            "actual": {
+              "missing": {
+                "error": {
+                  "code": "NOT_FOUND",
+                  "message": "Record not found."
+                }
+              },
+              "missing_status": 404,
+              "format": {
+                "error": {
+                  "code": "VALIDATION_ERROR",
+                  "message": "Choose html, json or csv as the report format."
+                }
+              },
+              "format_status": 400,
+              "post_status": 405,
+              "allow": "GET"
+            }
+          },
+          {
+            "step": "4.occupancy-report",
+            "expected": "5000 leading zeros select exactly the known hostel",
+            "actual": {
+              "leading_zero_count": 5000,
+              "rows": [
+                {
+                  "hostel_id": 1,
+                  "hostel": "Boys 101",
+                  "total_beds": 4,
+                  "occupied_beds": 1,
+                  "available_beds": 3,
+                  "maintenance_beds": 0,
+                  "occupancy_percent": "25.00"
+                }
+              ],
+              "matches_canonical_filter": true
+            }
+          },
+          {
+            "step": "2.payment-status-report",
+            "expected": "Malformed, zero, negative, fractional, non-ASCII and extreme hostel IDs return 400",
+            "actual": {
+              "results": [
+                {
+                  "vector": 1,
+                  "length": 3,
+                  "prefix": "bad",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 2,
+                  "length": 2,
+                  "prefix": "-1",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 3,
+                  "length": 1,
+                  "prefix": "0",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 4,
+                  "length": 3,
+                  "prefix": "1.5",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 5,
+                  "length": 100,
+                  "prefix": "99999999999999999999",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 6,
+                  "length": 5000,
+                  "prefix": "99999999999999999999",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 7,
+                  "length": 5000,
+                  "prefix": "00000000000000000000",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 8,
+                  "length": 1,
+                  "prefix": "١",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                },
+                {
+                  "vector": 9,
+                  "length": 19,
+                  "prefix": "9223372036854775808",
+                  "status": 400,
+                  "error": {
+                    "code": "VALIDATION_ERROR",
+                    "message": "Choose a valid hostel ID."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "step": "3.payment-status-report",
+            "expected": "Absent well-formed hostel 404; unsupported format 400; POST 405 with Allow GET",
+            "actual": {
+              "missing": {
+                "error": {
+                  "code": "NOT_FOUND",
+                  "message": "Record not found."
+                }
+              },
+              "missing_status": 404,
+              "format": {
+                "error": {
+                  "code": "VALIDATION_ERROR",
+                  "message": "Choose html, json or csv as the report format."
+                }
+              },
+              "format_status": 400,
+              "post_status": 405,
+              "allow": "GET"
+            }
+          },
+          {
+            "step": "4.payment-status-report",
+            "expected": "5000 leading zeros select exactly the known hostel",
+            "actual": {
+              "leading_zero_count": 5000,
+              "rows": [
+                {
+                  "student_id": "PES1UG24CS001",
+                  "student_name": "Sample Student 1",
+                  "hostel_id": 1,
+                  "hostel": "Boys 101",
+                  "room": "101",
+                  "bed": "101-A",
+                  "fee": "1000.00",
+                  "paid": "0.00",
+                  "due": "1000.00",
+                  "status": "Pending",
+                  "fee_configured": true
+                }
+              ],
+              "matches_canonical_filter": true
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:28.468471+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-14.json"
+      },
+      "TC-REG-S2-15": {
+        "case_id": "TC-REG-S2-15",
+        "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_15_malformed_json_and_controls",
+        "started_at": "2026-11-13T13:30:28.879063+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1+3.allocation-list.incomplete",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.incomplete",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.missing-value",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.missing-value",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.invalid-utf8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.invalid-utf8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.invalid-string-utf8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.invalid-string-utf8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.array",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.array",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.number",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.number",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.null",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.null",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.string",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.string",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.boolean",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.boolean",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.field-array",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.field-array",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.field-object",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.field-object",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.mode-array",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.mode-array",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.high-surrogate",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.high-surrogate",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.low-surrogate",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.low-surrogate",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.surrogate-key",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.surrogate-key",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.low-surrogate-key",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.low-surrogate-key",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.surrogate-text",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.surrogate-text",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.NaN",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.NaN",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.NaN-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.NaN-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.Infinity",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.Infinity",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.Infinity-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.Infinity-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.-Infinity",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.-Infinity",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.-Infinity-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.-Infinity-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.1e999",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.1e999",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.1e999-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.1e999-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.-1e999",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.-1e999",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.-1e999-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.-1e999-nested",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.depth-1500",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.depth-1500",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.allocation-list.depth-20000",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "1+3.payment-list.depth-20000",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "3.allocation-transfer",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/transfer/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "3.allocation-release",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "3.payment-adjust",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7",
+              "state_after_sha256": "9005d02c261e2dbc2fa79de96b31a906e17ff3c71bc4419012e2e1a5b3add3a7"
+            }
+          },
+          {
+            "step": "2",
+            "expected": "Finite scalar types and paired Unicode preserved; non-JSON POST returned unchanged; valid HTTP controls succeed",
+            "actual": {
+              "parser_control": {
+                "student_id": "TEST123",
+                "bed_id": 12,
+                "amount": 1.25,
+                "enabled": true,
+                "empty": null,
+                "नाम": "नमस्ते",
+                "symbol": "😀"
+              },
+              "form_identity_preserved": true,
+              "allocation": {
+                "allocation_id": 2,
+                "student_id": "PES1UG24CS002",
+                "bed_id": 2,
+                "bed": "101-B",
+                "hostel": "Boys 101",
+                "status": "Active",
+                "allocated_on": "2026-11-13",
+                "vacated_on": null
+              },
+              "payment": {
+                "receipt_no": "R00000000002",
+                "student_id": "PES1UG24CS002",
+                "amount": "1.25",
+                "date": "2026-11-13",
+                "mode": "Cash",
+                "reference": "",
+                "adjustment_of": null,
+                "adjustment_reason": ""
+              },
+              "unicode_adjustment": {
+                "receipt_no": "R00000000003",
+                "student_id": "PES1UG24CS001",
+                "amount": "1.25",
+                "date": "2026-11-13",
+                "mode": "Cash",
+                "reference": "",
+                "adjustment_of": "R00000000001",
+                "adjustment_reason": "नमस्ते 😀"
+              }
+            }
+          },
+          {
+            "step": "3.no-raw-payload",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "0ec64c3b9b1c511d7cb26d2da8f4d457d3b8cdad338b113f6f72e720ae19ed79",
+              "state_after_sha256": "0ec64c3b9b1c511d7cb26d2da8f4d457d3b8cdad338b113f6f72e720ae19ed79"
+            }
+          },
+          {
+            "step": "3.log-check",
+            "expected": "Rejected synthetic raw payload absent from captured django.request log messages and no audit writes",
+            "actual": {
+              "logger": "django.request",
+              "captured_messages": "Bad Request: /payments/\n",
+              "raw_payload_marker_present": false
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:29.982964+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-15.json"
+      },
+      "TC-REG-S2-16": {
+        "case_id": "TC-REG-S2-16",
+        "test_id": "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_16_typed_dates_references_and_contracts",
+        "started_at": "2026-11-13T13:30:30.399773+00:00",
+        "execution_status": "ASSERTIONS_COMPLETED",
+        "steps": [
+          {
+            "step": "1.allocation-list.type-1",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "allocated_on": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-1",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "vacate_date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-1",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-1",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-2",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "allocated_on": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-2",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "vacate_date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-2",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-2",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-3",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "allocated_on": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-3",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "vacate_date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-3",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-3",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-4",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "allocated_on": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-4",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "vacate_date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-4",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-4",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-5",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "allocated_on": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-5",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "vacate_date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-5",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-5",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "Enter a valid date.",
+                      "code": "invalid"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-6",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-6",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-6",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-6",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-7",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-7",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-7",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-7",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-8",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-list.type-9",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.allocation-release.type-9",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-list.type-9",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "1.payment-adjust.type-9",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Enter a valid JSON object."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-list.type-1",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-list.type-2",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-list.type-3",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-list.type-4",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-transfer.type-1",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/transfer/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "new_bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-transfer.type-2",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/transfer/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "new_bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-transfer.type-3",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/transfer/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "new_bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "2.allocation-transfer.type-4",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/transfer/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "new_bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.missing-bed",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "bed": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.missing-new-bed",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/transfer/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "new_bed": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.unknown-bed",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.unknown-new-bed",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/transfer/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "new_bed": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.form-missing-student-allocation",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/create/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "student": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.form-missing-bed",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/create/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "bed": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.form-missing-student-payment",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/create/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "student": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.form-unknown-student-allocation",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "student": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.form-unknown-student-payment",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "student": [
+                    {
+                      "message": "Select a valid choice. That choice is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.required-release-date",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/1/release/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "vacate_date": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.required-payment-date",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/create/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.required-adjustment-date",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/R00000000001/adjust/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "date": [
+                    {
+                      "message": "This field is required.",
+                      "code": "required"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.non-reference-choice",
+            "expected": "HTTP 400, VALIDATION_ERROR; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/create/",
+              "status": 400,
+              "error": {
+                "code": "VALIDATION_ERROR",
+                "message": "Please correct the highlighted fields.",
+                "fields": {
+                  "mode": [
+                    {
+                      "message": "Select a valid choice. Card is not one of the available choices.",
+                      "code": "invalid_choice"
+                    }
+                  ]
+                }
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.allocation-create.student-omitted",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Student not found."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.allocation-create.student-unknown",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Student not found."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.allocation-create.student-boolean",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/allocations/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Student not found."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.payment-create.student-omitted",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Student not found."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.payment-create.student-unknown",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Student not found."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "3.payment-create.student-boolean",
+            "expected": "HTTP 404, NOT_FOUND; complete domain state unchanged",
+            "actual": {
+              "route": "/payments/create/",
+              "status": 404,
+              "error": {
+                "code": "NOT_FOUND",
+                "message": "Student not found."
+              },
+              "state_unchanged": true,
+              "state_before_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36",
+              "state_after_sha256": "f8a884175e0bcb213e292318b0bf5f1dc8f29beed6330f6ee959432d740efe36"
+            }
+          },
+          {
+            "step": "4",
+            "expected": "Every rejected vector preserves allocations, Bed flags, history, all payments/receipts, receipt counter, student/hostel/room values and audits",
+            "actual": {
+              "snapshot_models": [
+                "students.student",
+                "hostels.hostel",
+                "hostels.room",
+                "hostels.bed",
+                "allocations.allocation",
+                "payments.payment",
+                "payments.receiptsequence",
+                "audit.auditevent"
+              ],
+              "snapshot_comparison": "full ordered rows before and after every rejected request"
+            }
+          },
+          {
+            "step": "3.optional-date-controls",
+            "expected": "Allocation allocated_on is optional; omitted, null and empty dates use today successfully",
+            "actual": {
+              "controls": [
+                {
+                  "optional_date": "omitted",
+                  "status": 201,
+                  "allocation": {
+                    "allocation_id": 2,
+                    "student_id": "PES1UG24CS002",
+                    "bed_id": 2,
+                    "bed": "101-B",
+                    "hostel": "Boys 101",
+                    "status": "Active",
+                    "allocated_on": "2026-11-13",
+                    "vacated_on": null
+                  }
+                },
+                {
+                  "optional_date": null,
+                  "status": 201,
+                  "allocation": {
+                    "allocation_id": 3,
+                    "student_id": "PES1UG24CS003",
+                    "bed_id": 3,
+                    "bed": "101-C",
+                    "hostel": "Boys 101",
+                    "status": "Active",
+                    "allocated_on": "2026-11-13",
+                    "vacated_on": null
+                  }
+                },
+                {
+                  "optional_date": "",
+                  "status": 201,
+                  "allocation": {
+                    "allocation_id": 4,
+                    "student_id": "PES1UG24CS004",
+                    "bed_id": 4,
+                    "bed": "101-D",
+                    "hostel": "Boys 101",
+                    "status": "Active",
+                    "allocated_on": "2026-11-13",
+                    "vacated_on": null
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "scope": "Synthetic integration case on disposable MySQL test_hms",
+        "completed_at": "2026-11-13T13:30:31.577972+00:00",
+        "status": "PASS",
+        "record": "TC-REG-S2-16.json"
+      }
+    },
+    "raw_manifest_sha256": "9dc1be3bdee40a0b2a1cb1a326021bfe477b43afe40dc46c85cec8c9317096c5"
+  },
+  "offline_safety": {
+    "recovery_safety": {
+      "tests": 32,
+      "success": true,
+      "log_sha256": "df3f036d9b289d0c62186f56ed3b549d33e3b37ddbdf264bb8a2f0cd1288829c"
+    },
+    "owned_runner_safety": {
+      "tests": 7,
+      "success": true,
+      "log_sha256": "b2252b91b7a123685b0ac724af4ebeb5eeadc6dd44b8996e27ba6f1765a7f813"
+    }
+  },
+  "baseline_reproduction": {
+    "base": "ecca29d65ab91c2799b4fd4c02bc0d4cf998bd08",
+    "selection_methods": 257,
+    "outcome": "257 PASS",
+    "application_metrics": {
+      "component": {
+        "covered_lines": 860,
+        "num_statements": 1685,
+        "covered_branches": 359,
+        "num_branches": 410
+      },
+      "isolated": {
+        "covered_lines": 811,
+        "num_statements": 1685,
+        "covered_branches": 330,
+        "num_branches": 410
+      }
+    },
+    "raw_summary_sha256": "219033b4f226c8a32f4a6adcdcbd3b7a782fc903847f3751c42abc731c46d21c"
+  },
+  "retained_attempts": [
+    {
+      "scope": "Initial full precommit attempt while measurement helper formatting was unfinished",
+      "success": false,
+      "failed_steps": [
+        "format"
+      ],
+      "raw_manifest_sha256": "4c1e327a21c7b24ebb19f5630ee02b175bcd49fe011b6f5583e66121ffc1a6cd"
+    },
+    {
+      "scope": "An owned-runner invocation before the prior timing process returned was blocked safely at database-preflight; no cases executed",
+      "success": false,
+      "case_counts": {
+        "NOT RUN": 9
+      },
+      "raw_manifest_sha256": "8633002e2a461f533dd545b181528e144770e5304be8f6a482d4c7e4cd1d0811"
+    },
+    {
+      "scope": "New partial-save unit regressions failed before the fix: 5 failing subtests and 3 errors in 7 methods. These are genuine defect reproductions, not application PASS.",
+      "log_sha256": "41d7698205f02247092071f10dad896cd62efc629c48b5082e4be2b721c7039a"
+    },
+    {
+      "scope": "Initial form-unit assertion incorrectly expected ModelForm field.clean to run model validators; corrected the test to validate actual model-field rules. The observed failure was a test-design error, not an additional product defect."
+    }
+  ],
+  "historical_selection_hash_correction": {
+    "recorded_v11_sha256": "0f5b923d1196bd078f4b383183c5d6d9d9dace4171fc5dcbbd2244743a26f6ae",
+    "committed_canonical_lf_sha256": "f87a0b5f458eba0b4c8f26c1475e03218c2ef689d717ed6628b33bcde6a8d8e9",
+    "crlf_representation_sha256": "0f5b923d1196bd078f4b383183c5d6d9d9dace4171fc5dcbbd2244743a26f6ae",
+    "explanation": "Recorded historical digest hashes CRLF bytes; Git stores LF. Historical files remain unchanged; new hashes declare LF/canonical-JSON normalization."
+  }
+}
