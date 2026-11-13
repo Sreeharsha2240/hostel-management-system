@@ -1,5 +1,11 @@
 # Part 3: testing, reports and team delivery
 
+**Current technical follow-up - 13 November:** PR #74 is merged and GitHub issue #41 is closed. The allocation-capacity follow-up passed 497 mixed methods (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes and 294 isolated methods. Function-body unit coverage is 955/955 (100%); all-application-statements companion is 955/1,713 (55.75%). The [Code Coverage Report](part3/Code_Coverage_Report.md), [Branch Coverage Report](part3/Branch_Coverage_Report.md) and [source-bound evidence](part3/evidence/hms18-capacity-20261113/README.md) describe the tested implementation revision. These technical results do not supply remaining human approvals, instructor instructions or submission receipt.
+
+## Earlier planning and status snapshots
+
+The dated entries below retain their earlier states; current technical status is above.
+
 **13 November HMS-19 update:** the project owner recorded approval of the narrower function-body unit-coverage boundary, which measures 946/946 (100%) and meets 70% under that interpretation. The preceding all-application-statements criterion measures 946/1,703 (55.55%) and remains below 70%. These boundaries differ in whether declarations count. See the [owner decision](part3/evidence/hms19-function-body-boundary-20261113.md) and [reconciled report](part3/Unit_Test_Report.md). #41 remains open pending review, the applicable acceptance disposition, remaining issue checks and PR merge; this entry does not itself close those checks.
 
 **13 November HMS-19 update:** the project owner approved the function-body application-logic boundary; 288/288 isolated methods pass and the exact selection measures 946/946 (100%) of function-body statements. The 55.55% all-statements companion result remains disclosed. PR #74 has passing CI on the previous report commit; its latest reconciliation checks must complete and the PR must merge before #41 closes. See the [owner decision](part3/evidence/hms19-function-body-boundary-20261113.md) and [report](part3/Unit_Test_Report.md).

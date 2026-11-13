@@ -1,5 +1,115 @@
 # Branch Coverage Report
 
+**Current measured revision - 13 November 2026:** clean source `918477c2767161aa49526a57350a54eea0bd4c3e`, tree `76d2f64d5ad5ace8c6c2322c7823052600b23a72`. The full suite passed all 12 gates: **497 methods, 496 PASS and one expected timing SKIP**; timing passed separately without coverage. The previous 288 isolated IDs all pass; the expanded 294 IDs all pass, with **zero database attempts**. The accepted function-body statement result is **955/955 (100.00%)**; the all-application-statements companion is **955/1,713 (55.75%)**. The separate isolated application-branch diagnostic is **417/432 (96.53%)**.
+
+Owner: Devansh Gupta (`DevaOnL`), HMS-18/#40 and HMS-20/#42 follow-up. The [owner-authored boundary decision](evidence/hms19-function-body-boundary-20261113.md) governs the SRS >=70% unit criterion. The unit result meets that boundary; declarative statements remain outside it and are disclosed in the full-file companion. [Durable source-bound evidence](evidence/hms18-capacity-20261113/README.md) contains selections, per-file lines/arcs, commands, versions and actual outcomes. PR #74 is merged; its earlier measurements remain historical. Teammate review and final submission acceptance are separate.
+
+Mixed configured coverage is **1,792/1,808 (99.12%) statements**, **441/446 (98.88%) branch outcomes**, **99.07% combined**. Mixed coverage includes startup, shared setup and database execution. It is not used as unit evidence. Scripts remain in configured totals and are excluded from the separately labelled application subtotal.
+
+
+Branch outcomes retain the complete application denominator; the accepted function-body definition applies to statements only. Partial missing outcomes are already included in missing outcomes. No new branch pass threshold is inferred; the unchanged `.coveragerc` gate is 70% combined configured coverage.
+
+## Expanded isolated results by module
+
+| Module | Measured outcomes | Covered | Missing | Partial missing | Branch rate |
+|---|---|---|---|---|---|
+| accounts | 100 | 96 | 4 | 4 | 96.00% |
+| allocations | 98 | 95 | 3 | 3 | 96.94% |
+| audit | 26 | 26 | 0 | 0 | 100.00% |
+| hms | 26 | 26 | 0 | 0 | 100.00% |
+| hostels | 74 | 70 | 4 | 4 | 94.59% |
+| payments | 54 | 52 | 2 | 2 | 96.30% |
+| reports | 20 | 19 | 1 | 1 | 95.00% |
+| scripts | 14 | 0 | 14 | 0 | 0.00% |
+| students | 34 | 33 | 1 | 1 | 97.06% |
+| Configured total | 446 | 417 | 29 | 15 | 93.50% |
+| Application subtotal | 432 | 417 | 15 | 15 | 96.53% |
+
+## Full mixed results by module
+
+| Module | Measured outcomes | Covered | Missing | Partial missing | Branch rate |
+|---|---|---|---|---|---|
+| accounts | 100 | 98 | 2 | 2 | 98.00% |
+| allocations | 98 | 98 | 0 | 0 | 100.00% |
+| audit | 26 | 26 | 0 | 0 | 100.00% |
+| hms | 26 | 26 | 0 | 0 | 100.00% |
+| hostels | 74 | 74 | 0 | 0 | 100.00% |
+| payments | 54 | 53 | 1 | 1 | 98.15% |
+| reports | 20 | 20 | 0 | 0 | 100.00% |
+| scripts | 14 | 12 | 2 | 2 | 85.71% |
+| students | 34 | 34 | 0 | 0 | 100.00% |
+| Configured total | 446 | 441 | 5 | 5 | 98.88% |
+| Application subtotal | 432 | 429 | 3 | 3 | 99.31% |
+
+## Exact per-file gaps
+
+| File | Isolated branches | Isolated rate | Isolated missing arcs | Mixed branches | Mixed missing arcs |
+|---|---|---|---|---|---|
+| accounts/admin.py | 0/0 | N/A | none | 0/0 | none |
+| accounts/backends.py | 12/12 | 100.00% | none | 12/12 | none |
+| accounts/decorators.py | 8/8 | 100.00% | none | 8/8 | none |
+| accounts/forms.py | 6/6 | 100.00% | none | 6/6 | none |
+| accounts/management/commands/create_demo_accounts.py | 10/10 | 100.00% | none | 10/10 | none |
+| accounts/management/commands/create_demo_data.py | 22/22 | 100.00% | none | 22/22 | none |
+| accounts/middleware.py | 2/2 | 100.00% | none | 2/2 | none |
+| accounts/models.py | 3/4 | 75.00% | 29 -> 31 | 4/4 | none |
+| accounts/urls.py | 0/0 | N/A | none | 0/0 | none |
+| accounts/validators.py | 2/2 | 100.00% | none | 2/2 | none |
+| accounts/views.py | 31/34 | 91.18% | 73 -> 96; 77 -> 96; 87 -> 96 | 32/34 | 77 -> 96; 87 -> 96 |
+| allocations/admin.py | 0/0 | N/A | none | 0/0 | none |
+| allocations/forms.py | 0/0 | N/A | none | 0/0 | none |
+| allocations/models.py | 43/44 | 97.73% | 220 -> 223 | 44/44 | none |
+| allocations/services.py | 6/6 | 100.00% | none | 6/6 | none |
+| allocations/urls.py | 0/0 | N/A | none | 0/0 | none |
+| allocations/views.py | 46/48 | 95.83% | 79 -> 86; 199 -> 220 | 48/48 | none |
+| audit/admin.py | 0/0 | N/A | none | 0/0 | none |
+| audit/management/commands/purge_audit_logs.py | 4/4 | 100.00% | none | 4/4 | none |
+| audit/mixins.py | 4/4 | 100.00% | none | 4/4 | none |
+| audit/models.py | 6/6 | 100.00% | none | 6/6 | none |
+| audit/services.py | 4/4 | 100.00% | none | 4/4 | none |
+| audit/signals.py | 4/4 | 100.00% | none | 4/4 | none |
+| audit/urls.py | 0/0 | N/A | none | 0/0 | none |
+| audit/views.py | 4/4 | 100.00% | none | 4/4 | none |
+| hms/decorators.py | 2/2 | 100.00% | none | 2/2 | none |
+| hms/forms.py | 4/4 | 100.00% | none | 4/4 | none |
+| hms/http.py | 14/14 | 100.00% | none | 14/14 | none |
+| hms/responses.py | 6/6 | 100.00% | none | 6/6 | none |
+| hms/security_headers.py | 0/0 | N/A | none | 0/0 | none |
+| hms/urls.py | 0/0 | N/A | none | 0/0 | none |
+| hostels/admin.py | 2/2 | 100.00% | none | 2/2 | none |
+| hostels/forms.py | 4/4 | 100.00% | none | 4/4 | none |
+| hostels/models.py | 42/42 | 100.00% | none | 42/42 | none |
+| hostels/urls.py | 0/0 | N/A | none | 0/0 | none |
+| hostels/views.py | 22/26 | 84.62% | 157 -> 159; 159 -> 161; 161 -> 163; 163 -> 168 | 26/26 | none |
+| payments/admin.py | 0/0 | N/A | none | 0/0 | none |
+| payments/forms.py | 0/0 | N/A | none | 0/0 | none |
+| payments/models.py | 21/22 | 95.45% | 94 -> 96 | 21/22 | 94 -> 96 |
+| payments/receipts.py | 2/2 | 100.00% | none | 2/2 | none |
+| payments/services.py | 4/4 | 100.00% | none | 4/4 | none |
+| payments/urls.py | 0/0 | N/A | none | 0/0 | none |
+| payments/views.py | 25/26 | 96.15% | 42 -> 48 | 26/26 | none |
+| reports/admin.py | 0/0 | N/A | none | 0/0 | none |
+| reports/models.py | 0/0 | N/A | none | 0/0 | none |
+| reports/services.py | 5/6 | 83.33% | 58 -> 60 | 6/6 | none |
+| reports/urls.py | 0/0 | N/A | none | 0/0 | none |
+| reports/views.py | 14/14 | 100.00% | none | 14/14 | none |
+| scripts/run_checks.py | 0/14 | 0.00% | 131 -> 132; 131 -> 134; 162 -> 164; 162 -> 167; 181 -> 182; 181 -> 184; 189 -> 190; 189 -> 193; 217 -> 218; 217 -> 221; 218 -> 219; 218 -> 220; 249 -> exit@1; 249 -> 250 | 12/14 | 162 -> 167; 249 -> 250 |
+| students/admin.py | 0/0 | N/A | none | 0/0 | none |
+| students/forms.py | 6/6 | 100.00% | none | 6/6 | none |
+| students/models.py | 8/8 | 100.00% | none | 8/8 | none |
+| students/urls.py | 0/0 | N/A | none | 0/0 | none |
+| students/views.py | 19/20 | 95.00% | 37 -> 47 | 20/20 | none |
+
+## Method, commands and limits
+
+The unchanged [measurement harness](evidence/hms19-unit-review-20261113/reproduce.py) attributes only exact selected methods and blocks database connections during discovery and execution. The [baseline288 and expanded 294 selections](evidence/hms18-capacity-20261113/README.md) pin179 current source/configuration inputs. The six added units cover real capacity boundaries, stale locked-bed identity, active self-save, release and transfer choices. Existing mock fixtures were updated to represent the locked Room and query shape; no original method was removed. Import/schema declarations receive no method credit. The raw harness retains its generic scope-pending text; the independently authored owner decision supplies acceptance interpretation without modifying raw measurements.
+
+The evidence README provides exact commands and environment. Full CI confirmation for the publication commit is recorded separately after it actually runs. Local measurements bind the clean implementation commit above; later documentation commits do not relabel it. Manual/browser, deployment, availability, instructor decisions, named human approvals and actual submission receipt are not established by these Python results. Occupancy reports retain their documented physical-bed semantics.
+
+## Historical measurements
+
+The remaining material is retained from earlier measured revisions. Its source, counts, gap descriptions and scope-pending interpretations apply to those earlier snapshots; current results and acceptance interpretation are above.
+
 **9 November follow-up:** fresh local verification of base `482ef795` plus ten new isolated regression methods passes all 12 gates: 200 ordinary methods (199 PASS / one expected timing SKIP), separate timing PASS, **1,590/1,772 statements (89.73%)**, **348/424 branches (82.08%)**, and **88.25% combined**. A students/hostels-only run exactly reproduces the todo's 53% and all 23 listed file rates. See the [source-bound supplement and HMS-19 handoff](evidence/coverage-followup-20261109/README.md). Formal unit70 remains **UNPROVEN**. The reviewed 6 November measurements and frozen selections below retain their historical scope.
 
 Mixed statements: **1584/1772 (89.39%)**; mixed branches: **342/424 (80.66%)**. Application statements: **1505/1677 (89.74%)**; branches: **330/410 (80.49%)**.
