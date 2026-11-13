@@ -1,5 +1,7 @@
 # Unit Test Report — Part 3
 
+**13 November test follow-up:** [151 selected component/isolated tests](evidence/hms19-scope-20261113/README.md) passed, including 65 new focused tests. Method-attributed application statement coverage was 586/1,685 (34.78%) under a provisional conservative boundary; an isolated-only subset covered 392/1,685 (23.26%). These are diagnostics, not an accepted SRS result. The separate 276-method mixed suite passed with one expected skip, but its full runner failed its timing gate once (admin login 2.146 seconds); a later standalone timing rerun passed. HMS-19 and the unit-only 70% requirement remain open and UNPROVEN.
+
 **Report status:** Evidence assembled; unit-scope acceptance pending. This report does not claim a formal SRS unit-coverage PASS or FAIL.
 
 **CI baseline reported below:** main merge `24e12526a771d1ec9d3545de78512ed3fc229abe`, tree `c5dfa2d8f482ee023417db5967133f2881513f6a`. The exact pull-request head tested by CI was `2714884997b43cf3805b86d9180568f7f41ea9b1` with the same tree. A later local run is separately identified below. This report is published as a candidate and still needs independent review.

@@ -1,0 +1,30 @@
+# HMS-19 test and scope follow-up — 13 November 2026
+
+## Decision and source
+
+The project owner asked the agent to choose a scope and implement tests. For this provisional measurement the agent chose the existing conservative 76-method model/form/view component proposal, the 10 previously documented isolated additions, and 65 new focused tests. This respects the Test Plan's component-unit interpretation while preserving a separate isolated-only result. It is an agent-selected proposal, not an independent teammate approval. The [machine-readable summary](summary.json) records the exact historical method IDs, selected module names, per-file measurements and SHA-256 hashes of the eight new test files. The source base was `37ba016`; seven test files were untracked during the run. The previously committed `hms/test_unit_contracts.py` is also included and hashed. The raw local files remain in ignored `.tmp/` and `test-results/` and are not presented as clean-checkout evidence.
+
+The denominator contains all measured application files in the unchanged coverage configuration, including admin, URLs and demo commands; `scripts/` verification tooling is reported separately. This conservative boundary avoids choosing exclusions based on their effect on the result. It is a provisional interpretation of “application logic,” not a claim that the SRS explicitly defines its exact file boundary. Coverage uses `dynamic_context = test_function` and counts only selected method contexts. Imports and shared setup outside those contexts receive no credit; consequently this is a conservative diagnostic, not a complete attribution of all useful setup work. Statement and branch outcomes are reported separately.
+
+## Test results
+
+| Scope | Result | Application statements hit | Application branches hit |
+|---|---:|---:|---:|
+| Isolated-only selection (16 historical + 10 later + 65 new) | 91 selected methods passed as part of the 151-method run | 392 / 1,685 = **23.26%** | 175 / 410 = **42.68%** |
+| Broader component proposal (76 historical + 10 later + 65 new) | **151 / 151 PASS** | 586 / 1,685 = **34.78%** | 254 / 410 = **61.95%** |
+
+The new tests cover role and login decisions, demo-account safety, allocation and payment validation, response contracts, report calculations, form validation and selected model-save decisions. Tests that mock persistence or call a save body outside its transaction are unit checks of decisions; they do not establish database locking, atomicity, rollback or concurrency. Those remain covered by separately classified integration tests.
+
+The raw context data has 145 nonempty method contexts and one empty context for the 151 passing selected methods. The three historical methods without an observed application context are `hostels.tests.HostelModelBehaviorTests.test_create_hostel`, `students.tests.StudentModelTests.test_mobile_must_have_ten_digits`, and `students.tests.StudentModelTests.test_student_year_must_be_between_one_and_five`. The additional methods without a recorded context are `hms.test_unit_workflows.FormRuleUnitTests.test_bed_filter_accepts_exact_storage_boundaries`, `hms.test_unit_workflows.FormRuleUnitTests.test_bed_filter_rejects_out_of_range_identifiers`, and `hms.test_unit_workflows.FormRuleUnitTests.test_payment_amount_and_reference_field_validation`. An absent context does not mean the test did not run, and its cause has not been established here.
+
+The serial full runner discovered **276** mixed methods: **275 PASS, one expected timing SKIP, zero failures/errors**. Its mixed coverage export recorded 1,653/1,780 statements and 364/424 branches. Eleven of twelve runner gates passed; the separate timing gate failed because one admin login took **2.146 seconds** against the two-second assertion. A subsequent isolated invocation of the same timing test passed. The initial failed timing gate is retained in `test-results/hms19-final-units-20261113/` locally; the follow-up pass was observed in terminal output but no separate raw log was saved. Do not describe that runner invocation as an all-gates PASS or infer the cause of the slower observation.
+
+An earlier full run and component run were accidentally overlapped against the designated disposable test database and interrupted. Neither result is used. The subsequent 151-method selection and 276-method full run were executed serially.
+
+## Reproduction and disposition
+
+Use the repository's documented MySQL/Python environment and a disposable test database. Run database suites serially. Copy `.coveragerc` to a separate ignored file and add `dynamic_context = test_function` under `[run]`; do not change the tracked configuration or its threshold. The 151-method selection consists of `component_proposal_methods` from `summary.json`, plus `allocations.test_validation_units`, `payments.test_status_units`, `accounts.test_backend_regressions`, `hms.test_validation_response`, and all eight new test modules listed in that JSON. Run those Django test labels under `coverage run` with the temporary configuration, then export coverage using anchored escaped test-method contexts. Exclude `scripts/` only from the application subtotal and report any other denominator separately. The isolated result uses the `isolated_modules` list in the same JSON. Keep empty startup contexts distinct and do not count the same method twice.
+
+The full runner is `python scripts/run_checks.py --output-dir test-results/<new-run>` using the documented local database environment. The separate timing rerun was `python manage.py test accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds --noinput -v 1` in that same environment.
+
+**HMS-19 remains open; the SRS 70% unit-only result is UNPROVEN.** Both reported method-context diagnostics are below 70% under their stated provisional boundary, but other genuine unit candidates and the treatment of setup require review. Further meaningful tests, an accepted revision-bound measurement, and the issue's independent review remain necessary. The configured mixed-suite gate must not be relabelled as the unit-only SRS result.
