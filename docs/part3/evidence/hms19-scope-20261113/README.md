@@ -1,5 +1,15 @@
 # HMS-19 test and scope follow-up — 13 November 2026
 
+## Expanded follow-up — 13 November 2026
+
+The latest selection adds 106 more focused tests to the 65 described below, for **171 new tests**. The reproducible selection contains 257 methods: the historical 76-method component proposal, 10 previously documented isolated methods, and the 171 additions. All 257 passed. Under the same provisional 1,685-statement application boundary, method contexts covered **860 statements (51.04%)** and 359 of 410 branch outcomes (87.56%). The isolated subset covered **811 statements (48.13%)** and 330 of 410 branch outcomes (80.49%). These are conservative diagnostics: module imports and shared setup outside test methods are not attributed to those methods. The boundary and selection still require independent acceptance; neither result establishes the SRS 70% unit-only requirement.
+
+The full mixed regression runner subsequently passed **all 12 gates**: 382 tests ran, one was skipped as expected, and the separate timing check passed. This run was on base `ef8610857cfcbe268dec267deb9e101190c18733` with the additional tests untracked; it is not a clean-commit run. Its mixed-suite coverage must not be substituted for the unit-only measure. The prior timing failure and passing rerun documented below remain part of the history.
+
+[Scope and exact test labels](scope-v11.json), [measurement and source hashes](measurement-v11.json), and [reproduction script](reproduce.py) capture the latest selection. With the project's documented database environment configured and a disposable test database available, run `python docs/part3/evidence/hms19-scope-20261113/reproduce.py --output-dir test-results/<new-directory>`. Run database suites serially. Raw local results from the recorded run are in the ignored `test-results/hms19-reproduction-20261113/` and `test-results/hms19-expanded-final-20261113/` directories. The reproducibility script preserves the coverage configuration and does not use `--noinput` when creating the test database.
+
+**HMS-19 remains open:** further meaningful unit coverage, a defensible accepted measurement, and independent review are needed.
+
 ## Decision and source
 
 The project owner asked the agent to choose a scope and implement tests. For this provisional measurement the agent chose the existing conservative 76-method model/form/view component proposal, the 10 previously documented isolated additions, and 65 new focused tests. This respects the Test Plan's component-unit interpretation while preserving a separate isolated-only result. It is an agent-selected proposal, not an independent teammate approval. The [machine-readable summary](summary.json) records the exact historical method IDs, selected module names, per-file measurements and SHA-256 hashes of the eight new test files. The source base was `37ba016`; seven test files were untracked during the run. The previously committed `hms/test_unit_contracts.py` is also included and hashed. The raw local files remain in ignored `.tmp/` and `test-results/` and are not presented as clean-checkout evidence.

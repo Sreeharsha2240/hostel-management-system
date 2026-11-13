@@ -1,5 +1,7 @@
 # Unit Test Report — Part 3
 
+**Latest 13 November follow-up:** [257 selected tests passed](evidence/hms19-scope-20261113/README.md), including 171 new focused tests. The provisional method-context measurement covered 860/1,685 application statements (51.04%); its isolated subset covered 811/1,685 (48.13%). Imports and shared setup outside test contexts are not credited. The separate mixed regression run passed all 12 gates, with 382 tests run and one expected skip. HMS-19 remains open: the 70% unit-only requirement is not yet established.
+
 **13 November test follow-up:** [151 selected component/isolated tests](evidence/hms19-scope-20261113/README.md) passed, including 65 new focused tests. Method-attributed application statement coverage was 586/1,685 (34.78%) under a provisional conservative boundary; an isolated-only subset covered 392/1,685 (23.26%). These are diagnostics, not an accepted SRS result. The separate 276-method mixed suite passed with one expected skip, but its full runner failed its timing gate once (admin login 2.146 seconds); a later standalone timing rerun passed. HMS-19 and the unit-only 70% requirement remain open and UNPROVEN.
 
 **Report status:** Evidence assembled; unit-scope acceptance pending. This report does not claim a formal SRS unit-coverage PASS or FAIL.

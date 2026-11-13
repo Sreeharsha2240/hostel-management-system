@@ -1,0 +1,934 @@
+{
+  "status": "Provisional scope; SRS 70% unproven; executed on dirty working tree",
+  "base_commit": "ef8610857cfcbe268dec267deb9e101190c18733",
+  "selected_methods": 257,
+  "new_methods": 171,
+  "component": {
+    "application": {
+      "covered_lines": 860,
+      "num_statements": 1685,
+      "covered_branches": 359,
+      "num_branches": 410
+    },
+    "files": {
+      "accounts/admin.py": {
+        "covered_lines": 5,
+        "num_statements": 23,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "accounts/backends.py": {
+        "covered_lines": 27,
+        "num_statements": 36,
+        "covered_branches": 12,
+        "num_branches": 12
+      },
+      "accounts/decorators.py": {
+        "covered_lines": 15,
+        "num_statements": 22,
+        "covered_branches": 8,
+        "num_branches": 8
+      },
+      "accounts/forms.py": {
+        "covered_lines": 17,
+        "num_statements": 38,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "accounts/management/commands/create_demo_accounts.py": {
+        "covered_lines": 32,
+        "num_statements": 43,
+        "covered_branches": 10,
+        "num_branches": 10
+      },
+      "accounts/management/commands/create_demo_data.py": {
+        "covered_lines": 36,
+        "num_statements": 55,
+        "covered_branches": 21,
+        "num_branches": 22
+      },
+      "accounts/middleware.py": {
+        "covered_lines": 6,
+        "num_statements": 10,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "accounts/models.py": {
+        "covered_lines": 6,
+        "num_statements": 20,
+        "covered_branches": 3,
+        "num_branches": 4
+      },
+      "accounts/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "accounts/validators.py": {
+        "covered_lines": 3,
+        "num_statements": 8,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "accounts/views.py": {
+        "covered_lines": 63,
+        "num_statements": 111,
+        "covered_branches": 28,
+        "num_branches": 34
+      },
+      "allocations/admin.py": {
+        "covered_lines": 3,
+        "num_statements": 12,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "allocations/forms.py": {
+        "covered_lines": 0,
+        "num_statements": 13,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "allocations/models.py": {
+        "covered_lines": 62,
+        "num_statements": 96,
+        "covered_branches": 36,
+        "num_branches": 40
+      },
+      "allocations/services.py": {
+        "covered_lines": 32,
+        "num_statements": 47,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "allocations/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "allocations/views.py": {
+        "covered_lines": 74,
+        "num_statements": 132,
+        "covered_branches": 30,
+        "num_branches": 46
+      },
+      "audit/admin.py": {
+        "covered_lines": 5,
+        "num_statements": 17,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "audit/management/commands/purge_audit_logs.py": {
+        "covered_lines": 9,
+        "num_statements": 19,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/mixins.py": {
+        "covered_lines": 16,
+        "num_statements": 23,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/models.py": {
+        "covered_lines": 13,
+        "num_statements": 50,
+        "covered_branches": 5,
+        "num_branches": 6
+      },
+      "audit/services.py": {
+        "covered_lines": 6,
+        "num_statements": 8,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/signals.py": {
+        "covered_lines": 8,
+        "num_statements": 19,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "audit/views.py": {
+        "covered_lines": 8,
+        "num_statements": 19,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "hms/decorators.py": {
+        "covered_lines": 9,
+        "num_statements": 15,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "hms/forms.py": {
+        "covered_lines": 6,
+        "num_statements": 13,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "hms/http.py": {
+        "covered_lines": 24,
+        "num_statements": 32,
+        "covered_branches": 14,
+        "num_branches": 14
+      },
+      "hms/responses.py": {
+        "covered_lines": 12,
+        "num_statements": 15,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "hms/security_headers.py": {
+        "covered_lines": 4,
+        "num_statements": 8,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "hms/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 4,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "hostels/admin.py": {
+        "covered_lines": 8,
+        "num_statements": 42,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "hostels/forms.py": {
+        "covered_lines": 4,
+        "num_statements": 29,
+        "covered_branches": 0,
+        "num_branches": 4
+      },
+      "hostels/models.py": {
+        "covered_lines": 33,
+        "num_statements": 92,
+        "covered_branches": 21,
+        "num_branches": 26
+      },
+      "hostels/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "hostels/views.py": {
+        "covered_lines": 58,
+        "num_statements": 89,
+        "covered_branches": 22,
+        "num_branches": 26
+      },
+      "payments/admin.py": {
+        "covered_lines": 3,
+        "num_statements": 14,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "payments/forms.py": {
+        "covered_lines": 2,
+        "num_statements": 18,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "payments/models.py": {
+        "covered_lines": 40,
+        "num_statements": 80,
+        "covered_branches": 21,
+        "num_branches": 22
+      },
+      "payments/receipts.py": {
+        "covered_lines": 14,
+        "num_statements": 21,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "payments/services.py": {
+        "covered_lines": 16,
+        "num_statements": 29,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "payments/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "payments/views.py": {
+        "covered_lines": 50,
+        "num_statements": 91,
+        "covered_branches": 21,
+        "num_branches": 26
+      },
+      "reports/admin.py": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "reports/models.py": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "reports/services.py": {
+        "covered_lines": 19,
+        "num_statements": 26,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "reports/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 4,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "reports/views.py": {
+        "covered_lines": 35,
+        "num_statements": 56,
+        "covered_branches": 14,
+        "num_branches": 14
+      },
+      "scripts/run_checks.py": {
+        "covered_lines": 0,
+        "num_statements": 95,
+        "covered_branches": 0,
+        "num_branches": 14
+      },
+      "students/admin.py": {
+        "covered_lines": 0,
+        "num_statements": 9,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "students/forms.py": {
+        "covered_lines": 16,
+        "num_statements": 27,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "students/models.py": {
+        "covered_lines": 10,
+        "num_statements": 46,
+        "covered_branches": 7,
+        "num_branches": 8
+      },
+      "students/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "students/views.py": {
+        "covered_lines": 51,
+        "num_statements": 86,
+        "covered_branches": 18,
+        "num_branches": 20
+      }
+    }
+  },
+  "isolated": {
+    "application": {
+      "covered_lines": 811,
+      "num_statements": 1685,
+      "covered_branches": 330,
+      "num_branches": 410
+    },
+    "files": {
+      "accounts/admin.py": {
+        "covered_lines": 5,
+        "num_statements": 23,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "accounts/backends.py": {
+        "covered_lines": 27,
+        "num_statements": 36,
+        "covered_branches": 12,
+        "num_branches": 12
+      },
+      "accounts/decorators.py": {
+        "covered_lines": 14,
+        "num_statements": 22,
+        "covered_branches": 7,
+        "num_branches": 8
+      },
+      "accounts/forms.py": {
+        "covered_lines": 17,
+        "num_statements": 38,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "accounts/management/commands/create_demo_accounts.py": {
+        "covered_lines": 32,
+        "num_statements": 43,
+        "covered_branches": 10,
+        "num_branches": 10
+      },
+      "accounts/management/commands/create_demo_data.py": {
+        "covered_lines": 36,
+        "num_statements": 55,
+        "covered_branches": 21,
+        "num_branches": 22
+      },
+      "accounts/middleware.py": {
+        "covered_lines": 0,
+        "num_statements": 10,
+        "covered_branches": 0,
+        "num_branches": 2
+      },
+      "accounts/models.py": {
+        "covered_lines": 6,
+        "num_statements": 20,
+        "covered_branches": 3,
+        "num_branches": 4
+      },
+      "accounts/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "accounts/validators.py": {
+        "covered_lines": 3,
+        "num_statements": 8,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "accounts/views.py": {
+        "covered_lines": 61,
+        "num_statements": 111,
+        "covered_branches": 27,
+        "num_branches": 34
+      },
+      "allocations/admin.py": {
+        "covered_lines": 3,
+        "num_statements": 12,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "allocations/forms.py": {
+        "covered_lines": 0,
+        "num_statements": 13,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "allocations/models.py": {
+        "covered_lines": 62,
+        "num_statements": 96,
+        "covered_branches": 36,
+        "num_branches": 40
+      },
+      "allocations/services.py": {
+        "covered_lines": 32,
+        "num_statements": 47,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "allocations/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "allocations/views.py": {
+        "covered_lines": 70,
+        "num_statements": 132,
+        "covered_branches": 27,
+        "num_branches": 46
+      },
+      "audit/admin.py": {
+        "covered_lines": 5,
+        "num_statements": 17,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "audit/management/commands/purge_audit_logs.py": {
+        "covered_lines": 9,
+        "num_statements": 19,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/mixins.py": {
+        "covered_lines": 16,
+        "num_statements": 23,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/models.py": {
+        "covered_lines": 13,
+        "num_statements": 50,
+        "covered_branches": 5,
+        "num_branches": 6
+      },
+      "audit/services.py": {
+        "covered_lines": 6,
+        "num_statements": 8,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/signals.py": {
+        "covered_lines": 8,
+        "num_statements": 19,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "audit/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "audit/views.py": {
+        "covered_lines": 0,
+        "num_statements": 19,
+        "covered_branches": 0,
+        "num_branches": 4
+      },
+      "hms/decorators.py": {
+        "covered_lines": 9,
+        "num_statements": 15,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "hms/forms.py": {
+        "covered_lines": 5,
+        "num_statements": 13,
+        "covered_branches": 3,
+        "num_branches": 4
+      },
+      "hms/http.py": {
+        "covered_lines": 24,
+        "num_statements": 32,
+        "covered_branches": 14,
+        "num_branches": 14
+      },
+      "hms/responses.py": {
+        "covered_lines": 12,
+        "num_statements": 15,
+        "covered_branches": 6,
+        "num_branches": 6
+      },
+      "hms/security_headers.py": {
+        "covered_lines": 4,
+        "num_statements": 8,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "hms/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 4,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "hostels/admin.py": {
+        "covered_lines": 8,
+        "num_statements": 42,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "hostels/forms.py": {
+        "covered_lines": 4,
+        "num_statements": 29,
+        "covered_branches": 0,
+        "num_branches": 4
+      },
+      "hostels/models.py": {
+        "covered_lines": 32,
+        "num_statements": 92,
+        "covered_branches": 21,
+        "num_branches": 26
+      },
+      "hostels/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "hostels/views.py": {
+        "covered_lines": 55,
+        "num_statements": 89,
+        "covered_branches": 15,
+        "num_branches": 26
+      },
+      "payments/admin.py": {
+        "covered_lines": 3,
+        "num_statements": 14,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "payments/forms.py": {
+        "covered_lines": 2,
+        "num_statements": 18,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "payments/models.py": {
+        "covered_lines": 40,
+        "num_statements": 80,
+        "covered_branches": 21,
+        "num_branches": 22
+      },
+      "payments/receipts.py": {
+        "covered_lines": 14,
+        "num_statements": 21,
+        "covered_branches": 2,
+        "num_branches": 2
+      },
+      "payments/services.py": {
+        "covered_lines": 11,
+        "num_statements": 29,
+        "covered_branches": 4,
+        "num_branches": 4
+      },
+      "payments/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "payments/views.py": {
+        "covered_lines": 47,
+        "num_statements": 91,
+        "covered_branches": 19,
+        "num_branches": 26
+      },
+      "reports/admin.py": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "reports/models.py": {
+        "covered_lines": 0,
+        "num_statements": 0,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "reports/services.py": {
+        "covered_lines": 19,
+        "num_statements": 26,
+        "covered_branches": 5,
+        "num_branches": 6
+      },
+      "reports/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 4,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "reports/views.py": {
+        "covered_lines": 33,
+        "num_statements": 56,
+        "covered_branches": 14,
+        "num_branches": 14
+      },
+      "scripts/run_checks.py": {
+        "covered_lines": 0,
+        "num_statements": 95,
+        "covered_branches": 0,
+        "num_branches": 14
+      },
+      "students/admin.py": {
+        "covered_lines": 0,
+        "num_statements": 9,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "students/forms.py": {
+        "covered_lines": 7,
+        "num_statements": 27,
+        "covered_branches": 4,
+        "num_branches": 6
+      },
+      "students/models.py": {
+        "covered_lines": 9,
+        "num_statements": 46,
+        "covered_branches": 6,
+        "num_branches": 8
+      },
+      "students/urls.py": {
+        "covered_lines": 0,
+        "num_statements": 3,
+        "covered_branches": 0,
+        "num_branches": 0
+      },
+      "students/views.py": {
+        "covered_lines": 48,
+        "num_statements": 86,
+        "covered_branches": 14,
+        "num_branches": 20
+      }
+    }
+  },
+  "test_sources": [
+    {
+      "module": "allocations.test_validation_units",
+      "path": "allocations/test_validation_units.py",
+      "methods_declared": 3,
+      "sha256": "6c7f36b692405243717641d8ec9bdae90ca38125e8218a1a8ca5b8a11b778c51"
+    },
+    {
+      "module": "payments.test_status_units",
+      "path": "payments/test_status_units.py",
+      "methods_declared": 1,
+      "sha256": "5fa77f957f01a2d42c15efe2d9f58ebfab292af8c73364fe01a0e884d07ba35a"
+    },
+    {
+      "module": "accounts.test_backend_regressions",
+      "path": "accounts/test_backend_regressions.py",
+      "methods_declared": 2,
+      "sha256": "2130ccc61b04fadd6a309294c714476040278ec70cf271ef514c1ff10d228eb9"
+    },
+    {
+      "module": "hms.test_validation_response",
+      "path": "hms/test_validation_response.py",
+      "methods_declared": 4,
+      "sha256": "bb666823fe553f5bbe8ccc7b98dce1b7994a0ccf805b060de2f2113acf3228e9"
+    },
+    {
+      "module": "hms.test_unit_contracts",
+      "path": "hms/test_unit_contracts.py",
+      "methods_declared": 12,
+      "sha256": "48659a42ff1ed797508f358599451ef42aaf36df2948013a00ee1e9eea49b81c"
+    },
+    {
+      "module": "hms.test_unit_workflows",
+      "path": "hms/test_unit_workflows.py",
+      "methods_declared": 15,
+      "sha256": "0d2c6723d41ac48dba659bf34ea44c9cb2574dfc8edd057d4803510216a8cf02"
+    },
+    {
+      "module": "hms.test_unit_endpoints",
+      "path": "hms/test_unit_endpoints.py",
+      "methods_declared": 8,
+      "sha256": "5cf21272c39ae5fc3a5b15fdb1fc40eb82e48e36f43e7f334d7b0c6fbb533056"
+    },
+    {
+      "module": "accounts.test_backend_units",
+      "path": "accounts/test_backend_units.py",
+      "methods_declared": 6,
+      "sha256": "2531d4e75cd01504bff400d2a27dc284affd2fd9b0eff66ccec7b54bd63b929a"
+    },
+    {
+      "module": "accounts.test_auth_view_units",
+      "path": "accounts/test_auth_view_units.py",
+      "methods_declared": 6,
+      "sha256": "fb9769878ee5912106d407020b5ba86a3a6f74679f5f9732d927431b054b73fe"
+    },
+    {
+      "module": "accounts.test_demo_command_units",
+      "path": "accounts/test_demo_command_units.py",
+      "methods_declared": 2,
+      "sha256": "2d26a6e33b6b76c8301dc826fa26d77544416178c312437a72bfaa189d3b790d"
+    },
+    {
+      "module": "allocations.test_save_unit",
+      "path": "allocations/test_save_unit.py",
+      "methods_declared": 8,
+      "sha256": "33cabec5c960125742ac212bbc18a22d2c2a4a99b04a0f87eff5e83bc5fcbc5a"
+    },
+    {
+      "module": "payments.test_save_unit",
+      "path": "payments/test_save_unit.py",
+      "methods_declared": 8,
+      "sha256": "2f73bf787bcaf1bb0a21713f59bc5e269a997298d9d2ea01d23b6294b4d08db2"
+    },
+    {
+      "module": "audit.test_unit_contracts",
+      "path": "audit/test_unit_contracts.py",
+      "methods_declared": 9,
+      "sha256": "2cb0d004601b6d5075c8d8bf27b4c56647ce3d0054ca8a29d3867d974fbeca8f"
+    },
+    {
+      "module": "hostels.test_room_unit",
+      "path": "hostels/test_room_unit.py",
+      "methods_declared": 7,
+      "sha256": "1e64b0375be8a0146a05bbae11f8ab060f393b4c082217f0c51888d7bd538da5"
+    },
+    {
+      "module": "allocations.test_services_unit",
+      "path": "allocations/test_services_unit.py",
+      "methods_declared": 8,
+      "sha256": "ebca3e5e445cd843c9def211ff51798ff1792194d8a682a313a8470ab34edf9f"
+    },
+    {
+      "module": "students.test_view_units",
+      "path": "students/test_view_units.py",
+      "methods_declared": 10,
+      "sha256": "7efd8e60b49e0146dde0efe97c9b40210820b991b32979f2a1cd46493df0ddef"
+    },
+    {
+      "module": "accounts.test_demo_data_units",
+      "path": "accounts/test_demo_data_units.py",
+      "methods_declared": 4,
+      "sha256": "0786d787471ed394492fd47f3ee817d19730849169d437175a7e121a7a0d7bb5"
+    },
+    {
+      "module": "hostels.test_views_unit",
+      "path": "hostels/test_views_unit.py",
+      "methods_declared": 8,
+      "sha256": "078e386ba82fbb7699af4c97b059f204a9635e7e51290f3d4b7961286f633394"
+    },
+    {
+      "module": "accounts.test_settings_view_units",
+      "path": "accounts/test_settings_view_units.py",
+      "methods_declared": 8,
+      "sha256": "cbb90d4ea3d24f60d6aa7229c5c2367f2cca4eb57da6dc7181d5ac65af7475be"
+    },
+    {
+      "module": "allocations.test_lock_unit",
+      "path": "allocations/test_lock_unit.py",
+      "methods_declared": 2,
+      "sha256": "54f3021193c5daf75a390f711a0c4fb82c6f319f4ba9beb17e26e7c4166c5cbb"
+    },
+    {
+      "module": "students.test_model_units",
+      "path": "students/test_model_units.py",
+      "methods_declared": 7,
+      "sha256": "fb66d949e87c218eb6874ae9f426e7a3edcc0c38cb7395fc8743254955e43c18"
+    },
+    {
+      "module": "hms.test_more_view_units",
+      "path": "hms/test_more_view_units.py",
+      "methods_declared": 11,
+      "sha256": "087b0a55babf5234675ce49af41010d2e887d7f551b4a125d5cdc0b8c9836e5b"
+    },
+    {
+      "module": "payments.test_receipts_unit",
+      "path": "payments/test_receipts_unit.py",
+      "methods_declared": 3,
+      "sha256": "31621a5359175a829410e455a1897784d1abba4ff2ca4330bbcd434854507cc3"
+    },
+    {
+      "module": "audit.test_purge_unit",
+      "path": "audit/test_purge_unit.py",
+      "methods_declared": 3,
+      "sha256": "44476962ba808820c81e44648379d5ac2b1472475af5887f44985ac2f13e532b"
+    },
+    {
+      "module": "accounts.test_user_model_units",
+      "path": "accounts/test_user_model_units.py",
+      "methods_declared": 3,
+      "sha256": "161e020ef285d308677d1f03d683d28eed93d602a0cbf3e297984c11f07e9a1c"
+    },
+    {
+      "module": "audit.test_signal_units",
+      "path": "audit/test_signal_units.py",
+      "methods_declared": 4,
+      "sha256": "cfc8f5bfabd3893dcc46f69f4ee0d880d8f4a4c36b1f5447ca69a862cdd534a5"
+    },
+    {
+      "module": "accounts.test_form_units",
+      "path": "accounts/test_form_units.py",
+      "methods_declared": 5,
+      "sha256": "f51dc9d1e888af2017d1cd6d47afcd33f12d3591d6b5a3bc9900d211aa07187b"
+    },
+    {
+      "module": "hms.test_admin_security_units",
+      "path": "hms/test_admin_security_units.py",
+      "methods_declared": 4,
+      "sha256": "4f3cf2153ab9b2123c319c0fc59a14a4fbf1e272aa10dd29e945325d1d0fc5ec"
+    },
+    {
+      "module": "payments.test_view_units",
+      "path": "payments/test_view_units.py",
+      "methods_declared": 7,
+      "sha256": "dc7c68521c004ac177d23226feb8b462476b6d020f338a9ecdb4b63ea0b3110d"
+    },
+    {
+      "module": "payments.test_immutability_unit",
+      "path": "payments/test_immutability_unit.py",
+      "methods_declared": 3,
+      "sha256": "9ab45855d2439849a9acd656f1fae3debcc0d5c05db7040e6845de719bf911ad"
+    }
+  ],
+  "measured_source_sha256": {
+    "accounts/admin.py": "153041adfc78fdb054fef0f48c46375960f0d4f53f3d529624c220c0e3ae3784",
+    "accounts/backends.py": "981a5e23cba1dc3747ed80a934847e25a3d56ad8510a206eb964d0374695282d",
+    "accounts/decorators.py": "ddaa548c6c3a5572fd148bc6bad9dc2fdd98c11f93cb63406e227958fc3388e9",
+    "accounts/forms.py": "36a16c399d45c57d3bf4bfe1394c3e9e2002152a2adfd2209f4ae4c8da87e2ec",
+    "accounts/management/commands/create_demo_accounts.py": "22a657f9cc24450031574c422c52493d747c77dfe89098a071b0293141e128ba",
+    "accounts/management/commands/create_demo_data.py": "ffcf84c7f716c231d08c5028e800f44f94dedd4778835559ef63c78e8d5e9e01",
+    "accounts/middleware.py": "3a53e1e95502b4d2df1463c05850686fa23227335bba4dc8a1edf04317af4fe2",
+    "accounts/models.py": "a5265e9df98ee9e3015298638071cc15f71c0c525138b49baf62aec545888523",
+    "accounts/urls.py": "bbddf3d4043e78a8897792854b46e2e69cca9f28ad021b4daccca247c2fcfc7d",
+    "accounts/validators.py": "c044ae9ba59a272d9e8dd91b1d4dbea32af12f338691bd0656a10fbad49ed86f",
+    "accounts/views.py": "b632e024369f088586e997b281297a81f368cd1ba4c84b0c86989c4e31fcc2f5",
+    "allocations/admin.py": "3899c77d7fde5c03d8a925119cea838219874810ca65e202d2839bd2c4af8586",
+    "allocations/forms.py": "d7f2e3d0bc42d7170b3d48ea97cf6d0110224a749b26e8bcd46e11a722a7724c",
+    "allocations/models.py": "a202ff5d237abdd958e10e64f8b2ccec34993afe256303846a23458d1bcaf81c",
+    "allocations/services.py": "96146beece0d45fe568c12aff35e9979ec8cf5d6ed46be4def6b9cc059744b24",
+    "allocations/urls.py": "a91787308875e1b46bed5ec4ec575d9713ff68a61efc5f341f3be095b0bd4b90",
+    "allocations/views.py": "add611b83a06edde5cf3ffe707d891ea7f78a68e57dc0f95ca9a4a46bfce749c",
+    "audit/admin.py": "dc831bc7f947cf3f6d3dbeeccd952bc60f9ec09a1a46574234e4a84f768479d7",
+    "audit/management/commands/purge_audit_logs.py": "9c2857a320979129421928dd0ea34dab009087abfd53cff33c875ab6675c7125",
+    "audit/mixins.py": "ad51ecaa918ccd00e47eb766f1753516faa5988c4aee48860ca6c2fa57081f8e",
+    "audit/models.py": "0d38e33641510111eb1e861ccac957c51bdb95bc378285670ad3ea802c553d9d",
+    "audit/services.py": "75770d22ff4d0a931111aba52fd5db67ea681b63b25f4c1756ef60aa5fdac651",
+    "audit/signals.py": "2ddd893281ad62932cda7c53b99a81810203f39949040678bd51b87eb36466bb",
+    "audit/urls.py": "fee50c148fe8b6a030e3a1b7d6de03be97bae14653d3c863f2a26111921e0959",
+    "audit/views.py": "491a7b0058471bbe2e5cbca2e2158d98b6ab56866690d4a6f2c757a07d6fdb9e",
+    "hms/decorators.py": "1557ba69822d5eee2e2dc85a10831cf95064f035e4a9ae49d01c7e711e60cc78",
+    "hms/forms.py": "cd9827bf07734936dc14ba931742068d1a609f142a579223f3d19005be4facdd",
+    "hms/http.py": "859fe772935cbd18f8a4fe670e16bb813304119248f4ccf0331d2495969b6cf5",
+    "hms/responses.py": "bf485021f1d26942a9669ad2a74fa5e9d17cbf640a5ab8e8044c6ba99a0c575c",
+    "hms/security_headers.py": "fec0afa25d94999fb9b5ed4430ffec8682f3508c86045b482fc2ca4dfe594701",
+    "hms/urls.py": "f2228dbe724b3aa910cca816b730996e977388a0567b1829e65a26b2bdf95167",
+    "hostels/admin.py": "5372ab93fd788374af3ee71ed4366fe86efb1ad9dfb40566cbe3777bb2ac6e7b",
+    "hostels/forms.py": "d598e7197d165518828c9be013d597ec4f4917e69629d1d04539dfeafd09987e",
+    "hostels/models.py": "dc541eed354c5343b1ac355763137cda48eae0e0a4c083518c16a7853b667b6e",
+    "hostels/urls.py": "34a7e1cb3836c70f06d68348beedede3c68aebddf4494eb83c7fa3d676d1eeb1",
+    "hostels/views.py": "b32168552bc15f8cfc0a1dc99b891fa78ab584c68d1035cfc10e3d5e704117c2",
+    "payments/admin.py": "a0502cb5a3fbf4a3f78f76d4b7eee725f5763a5025693a18202df0de0f8cf8e8",
+    "payments/forms.py": "17885accddc50c1ad97d28038b0306ac6fc302814381cfbfbd156533bd5d5c8d",
+    "payments/models.py": "20f24ae31cca01e7aa207f7de90571c31c3a492152205b269a7c193a9afb4f8f",
+    "payments/receipts.py": "a200b4df20df769f86014fb42579a200e25bfeb3cb6c00e5c02e35e89b86b04a",
+    "payments/services.py": "43f9d3122a90f02589634d55297594983efbcc0b1ab55d29a10a3041dfbd52c9",
+    "payments/urls.py": "f55e5cad9c6ad47b3ca6b0c3b987610550640ff17790e1b350b9777bcc315a87",
+    "payments/views.py": "7ae37c17b68d8112608a88626c50aa4c0d1746f726102e93947beedb4b3c1705",
+    "reports/admin.py": "45d9d4108b7c9fd9feab52357e95993821b733ad3e662949ea9d9690a38ce6d1",
+    "reports/models.py": "3eb07bb5bb2429c4152a459ea520b2b81afbc0f543ebbd63db4108628dc17886",
+    "reports/services.py": "05912eb7273e44919b25fbf235b0355825e00826703d7d8c3a5db6bf32dc0e59",
+    "reports/urls.py": "2e44451772a65a3a80dccfad07fb1967e9befc3c0bf1254554d8d878a212f306",
+    "reports/views.py": "39a1505f49b4566271ce8a904af74998596fed9899cdd1836b3724fe62d18e5b",
+    "scripts/run_checks.py": "257fb4306f6943e7396db781f9ee7c47f180878e2851494b17a5f086c1c2ee62",
+    "students/admin.py": "4f11570309dcefdb3af7cbd6325c10e79c037297bc8a7f6f2ae7e65a3af51f0d",
+    "students/forms.py": "9945a8af77e90451a2a4547360b0594130576594b276a27b691ff799392c0278",
+    "students/models.py": "6890361e98a59267fa8650a0619e334451d305f5387bcef2258cd9fcec09bbe6",
+    "students/urls.py": "525674c1ff5fb167fad46400a6ab96ceb67549871092fb3db228d332cc51761c",
+    "students/views.py": "171130210cd2c94138bc224c03c350f8ffdf24048b0a2c70c73a7b5c6f1a3ba7"
+  },
+  "artifact_sha256": {
+    "coverage.data": "b9d17bceeb9b10487232fbeb7ba6c33ca3dab1827fbd08787392b96ddc7503a0",
+    "coverage.ini": "a735a65616b7a0aacfde459a50bf1078f5fcd8b1205e514b23a51d90969294f0",
+    "component.json": "5b93d527cacf43b966c78c06d199f4a278c491cdaebed1bbab776f438d5b79f5",
+    "isolated.json": "aaf07331db77638a456f557cb9f1470aab4fb7aca6d3f956fcc0c61c669f0063",
+    "tests.log": "51929425e87e878b2dd06e9bd8a7105934293f8db44a3de0790e1d5b6088e460"
+  },
+  "selection_sha256": "0f5b923d1196bd078f4b383183c5d6d9d9dace4171fc5dcbbd2244743a26f6ae",
+  "reproduction_script_sha256": "cf6ddfd19bbad22d514f51ce6513f00868c14dad5f5643269a4157d36f4e9f2b",
+  "coverage_meta": {
+    "format": 3,
+    "version": "7.16.2",
+    "timestamp": "2026-11-13T18:31:09.446846",
+    "branch_coverage": true,
+    "show_contexts": false
+  },
+  "reproduction": "257 tests passed; regenerated results matched earlier separate v11 execution",
+  "notes": [
+    "Only selected test-function contexts are credited; setup and import execution outside them are excluded.",
+    "Raw local artifacts are ignored and are not included in this summary.",
+    "Application subtotal excludes scripts/ tooling, retaining configured application files including import and declaration lines."
+  ]
+}
