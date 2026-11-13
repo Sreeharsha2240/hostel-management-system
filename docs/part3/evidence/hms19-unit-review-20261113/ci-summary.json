@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "audit_kind": "Independent technical CI artifact reconciliation; no stakeholder acceptance or final SRS disposition",
+  "checked_at_utc": "2026-11-13T13:44:08.067828+00:00",
+  "repository": "Sreeharsha2240/hostel-management-system",
+  "pull_request": 74,
+  "run": {
+    "id": 43435199043,
+    "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043",
+    "workflow": "Django Tests",
+    "event": "pull_request",
+    "head_sha": "029e21d4d4a9d1580fdc032f5f959379c3ee3c91",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-13T13:37:00Z",
+    "updated_at": "2026-11-13T13:39:55Z"
+  },
+  "source_provenance": {
+    "candidate_commit": "029e21d4d4a9d1580fdc032f5f959379c3ee3c91",
+    "candidate_tree": "b8f19067063221f0bc47f7e60b8edec8dfd41217",
+    "actual_checkout_commit": "7738622931e07427b340bf0963c675339a66f049",
+    "actual_checkout_tree": "b8f19067063221f0bc47f7e60b8edec8dfd41217",
+    "checkout_parents": [
+      "f1df6e3df0e6486643899d760cb3660872691af1",
+      "029e21d4d4a9d1580fdc032f5f959379c3ee3c91"
+    ],
+    "checkout_Git_object_api_url": "https://api.github.com/repos/Sreeharsha2240/hostel-management-system/git/commits/7738622931e07427b340bf0963c675339a66f049",
+    "synthetic_merge_checkout": true,
+    "candidate_and_checkout_full_Git_trees_equal": true,
+    "frozen_source_count": 171,
+    "frozen_hashes_match_local_and_candidate_Git_objects": true,
+    "frozen_hash_map_sha256_canonical_json": "b6cbea7a0ac96e49325f2a95344bcdd745d372a4fb9e9ec4714163b6daa8af0b",
+    "scope_sha256_canonical_json": "c46feb807bd562210eb3f50f622c37bbdda7e2ea6d7c95808bdb68a0733a8137",
+    "selection_sha256_canonical_json": "df178cd797b4bb4bd25ee9529e7da33c250c6ebf832ff8552afecfe5d5bff7c6"
+  },
+  "artifacts": [
+    {
+      "id": 14043851786,
+      "name": "hms-test-evidence-py3.14-7738622931e07427b340bf0963c675339a66f049",
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/artifacts/14043851786",
+      "sha256": "97d36427ca8864ff92b262e18d912c08808d87ab2ff81d4652ba01b0e5a8195d",
+      "GitHub_digest_matches_download": true,
+      "zip_members_equal_extracted_files_verified": true
+    },
+    {
+      "id": 14043716654,
+      "name": "hms-owned-regressions-py3.14-7738622931e07427b340bf0963c675339a66f049",
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/artifacts/14043716654",
+      "sha256": "cdff30d5f01d6d803344b0a58a9c0636e799797c532457cd31fd5d3d3693cba9",
+      "GitHub_digest_matches_download": true,
+      "zip_members_equal_extracted_files_verified": true
+    },
+    {
+      "id": 14043656922,
+      "name": "hms-isolated-unit-evidence-py3.11-7738622931e07427b340bf0963c675339a66f049",
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/artifacts/14043656922",
+      "sha256": "70fdf6665c098f7216293175e4670226db219921f3c9c0e958f64507e19d6649",
+      "GitHub_digest_matches_download": true,
+      "zip_members_equal_extracted_files_verified": true
+    },
+    {
+      "id": 14043616896,
+      "name": "hms-isolated-unit-evidence-py3.14-7738622931e07427b340bf0963c675339a66f049",
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/artifacts/14043616896",
+      "sha256": "19af120defb97741cce5cd3c07157b4065d876febbacd23afff63ee2c2e06d7a",
+      "GitHub_digest_matches_download": true,
+      "zip_members_equal_extracted_files_verified": true
+    },
+    {
+      "id": 14043251943,
+      "name": "hms-test-evidence-py3.11-7738622931e07427b340bf0963c675339a66f049",
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/artifacts/14043251943",
+      "sha256": "7ece0455c22d2a4eb8a3a1f7f4d7449865c319fefc955e1c0df0b5f01508750f",
+      "GitHub_digest_matches_download": true,
+      "zip_members_equal_extracted_files_verified": true
+    },
+    {
+      "id": 14042887191,
+      "name": "hms-owned-regressions-py3.11-7738622931e07427b340bf0963c675339a66f049",
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/artifacts/14042887191",
+      "sha256": "1093c3e49493b30bc46a7036d488d051aa732160c83c892d874bafed1c92897e",
+      "GitHub_digest_matches_download": true,
+      "zip_members_equal_extracted_files_verified": true
+    }
+  ],
+  "jobs": [
+    {
+      "python_matrix": "3.11",
+      "python_version": "3.11.18",
+      "job_id": 131918366159,
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/job/131918366159",
+      "conclusion": "success",
+      "all_workflow_steps_success": true,
+      "actual_checkout": {
+        "commit": "7738622931e07427b340bf0963c675339a66f049",
+        "tree": "b8f19067063221f0bc47f7e60b8edec8dfd41217",
+        "dirty": false
+      },
+      "normal": {
+        "gates": 12,
+        "steps": [
+          {
+            "name": "lint",
+            "exit_code": 0
+          },
+          {
+            "name": "format",
+            "exit_code": 0
+          },
+          {
+            "name": "dependencies",
+            "exit_code": 0
+          },
+          {
+            "name": "django-checks",
+            "exit_code": 0
+          },
+          {
+            "name": "applied-migrations",
+            "exit_code": 0
+          },
+          {
+            "name": "migration-consistency",
+            "exit_code": 0
+          },
+          {
+            "name": "staticfiles",
+            "exit_code": 0
+          },
+          {
+            "name": "test-results",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-xml",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-json",
+            "exit_code": 0
+          },
+          {
+            "name": "timing-smoke",
+            "exit_code": 0
+          }
+        ],
+        "junit_files": 76,
+        "outcomes": {
+          "PASS": 442,
+          "SKIP": 1
+        },
+        "exact443ids_and_outcomes_match_local_precommit_baseline": true,
+        "identity_sha256_canonical_json": "1c8fdcbae48aed4af9cc5c7b72a890b83eed38f952670d086b180f8d8d2c70bf",
+        "separate_timing": "PASS; Ran 1 test; OK",
+        "coverage_statements": [
+          1767,
+          1798
+        ],
+        "coverage_branches": [
+          424,
+          440
+        ],
+        "manifest_JSON_XML_reconciled_independently": true,
+        "manifest_sha256": "8565061f2f5fd0f4ce7a0aa9d3c4e193011435151b6dfd2acf2ab48d032398ee",
+        "timing_log_sha256": "5a277a62de0ade173377c08a2c96f1219f54e935450a4564a160f6592bc15b1f"
+      },
+      "owned": {
+        "PASS_cases": 9,
+        "exact_expected_case_method_ids": true,
+        "junit_files": 4,
+        "identity_sha256_canonical_json": "d3d8c6510e5e38410a5ebe62210ffb1123d07e097aa60c3f7f7ca559028d09b0",
+        "raw_artifacts": {
+          "files_verified": 14,
+          "hash_map_sha256_canonical_json": "ddf02f59ae0b2bd6ca6d8a35ccd1e4738261fa66790aa55310bb9ceca6c953dc"
+        },
+        "raw_source_hashes_match_candidate_Git_blobs_independently_verified": 207,
+        "source_hash_map_sha256_canonical_json": "9c2c627142957d16e5b17f15dd7914b3784c8e304d678958a7d37decc52bdd78",
+        "source_unchanged": true,
+        "manifest_sha256": "fd3192fb5d02c2ad25a35fae22ce842cbc1b5010c52983d7ff277e10c6d86e62"
+      },
+      "isolated": {
+        "PASS_methods": 255,
+        "exact_selection_discovery_execution_junit_frozen_ids": true,
+        "junit_files": 50,
+        "identity_sha256_canonical_json": "8631b62010a7c51f6c4069c932049e8380c7b389a4bacd8ab552776aafdc5d6c",
+        "database_attempts": 0,
+        "runner_failures": 0,
+        "source_unchanged": true,
+        "frozen_hashes_verified": 171,
+        "snapshot_hashes_verified": 172,
+        "snapshot_hash_map_sha256_canonical_json": "31674027261f3e009a8c3e9587f70f1636c5cd67f3c05b5a37347e49f9f85307",
+        "frozen_snapshot_matches_local_and_candidate_Git": true,
+        "raw_artifacts": {
+          "files_verified": 55,
+          "hash_map_sha256_canonical_json": "ac4916db1b07f809b202161ac7d3bb41d06260b377a65415c0334dda7f579c15"
+        },
+        "manifest_sha256": "13369c3d11b21e89c7dfe3bf3bc2b27d2bef73f326e9f5146ce91da2883c5f38",
+        "full_file_method_diagnostic": {
+          "covered_statements": 894,
+          "statements": 1703,
+          "percent": 52.49559600704639
+        },
+        "function_body_method_diagnostic": {
+          "covered_statements": 894,
+          "statements": 946,
+          "percent": 94.5031712473573
+        },
+        "method_branches": {
+          "covered": 378,
+          "total": 426,
+          "percent": 88.73239436619718
+        },
+        "application_aggregate_files": 53,
+        "per_file_denominators_method_hits_branches_equal_local_baseline": true,
+        "coverage_source_denominators_independently_verified": 54,
+        "dependencies": {
+          "coverage": "7.16.2",
+          "Django": "5.2.19",
+          "unittest-xml-reporting": "4.0.0",
+          "mysqlclient": "2.3.1",
+          "python-dotenv": "1.2.4",
+          "reportlab": "4.5.1",
+          "pypdf": "6.21.2"
+        }
+      }
+    },
+    {
+      "python_matrix": "3.14",
+      "python_version": "3.14.10",
+      "job_id": 131918366885,
+      "url": "https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43435199043/job/131918366885",
+      "conclusion": "success",
+      "all_workflow_steps_success": true,
+      "actual_checkout": {
+        "commit": "7738622931e07427b340bf0963c675339a66f049",
+        "tree": "b8f19067063221f0bc47f7e60b8edec8dfd41217",
+        "dirty": false
+      },
+      "normal": {
+        "gates": 12,
+        "steps": [
+          {
+            "name": "lint",
+            "exit_code": 0
+          },
+          {
+            "name": "format",
+            "exit_code": 0
+          },
+          {
+            "name": "dependencies",
+            "exit_code": 0
+          },
+          {
+            "name": "django-checks",
+            "exit_code": 0
+          },
+          {
+            "name": "applied-migrations",
+            "exit_code": 0
+          },
+          {
+            "name": "migration-consistency",
+            "exit_code": 0
+          },
+          {
+            "name": "staticfiles",
+            "exit_code": 0
+          },
+          {
+            "name": "test-results",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-xml",
+            "exit_code": 0
+          },
+          {
+            "name": "coverage-json",
+            "exit_code": 0
+          },
+          {
+            "name": "timing-smoke",
+            "exit_code": 0
+          }
+        ],
+        "junit_files": 76,
+        "outcomes": {
+          "PASS": 442,
+          "SKIP": 1
+        },
+        "exact443ids_and_outcomes_match_local_precommit_baseline": true,
+        "identity_sha256_canonical_json": "1c8fdcbae48aed4af9cc5c7b72a890b83eed38f952670d086b180f8d8d2c70bf",
+        "separate_timing": "PASS; Ran 1 test; OK",
+        "coverage_statements": [
+          1767,
+          1798
+        ],
+        "coverage_branches": [
+          424,
+          440
+        ],
+        "manifest_JSON_XML_reconciled_independently": true,
+        "manifest_sha256": "a7ce7da10bc2f2bfe470be0ac2ef4f114d75f5517eaf68ddf2aab77ccf277aa9",
+        "timing_log_sha256": "8053dfd222b87c6429690d562665f38450716b82d1e23002786adb2e21c5baaf"
+      },
+      "owned": {
+        "PASS_cases": 9,
+        "exact_expected_case_method_ids": true,
+        "junit_files": 4,
+        "identity_sha256_canonical_json": "d3d8c6510e5e38410a5ebe62210ffb1123d07e097aa60c3f7f7ca559028d09b0",
+        "raw_artifacts": {
+          "files_verified": 14,
+          "hash_map_sha256_canonical_json": "025f566169d55c739a55deccea38db19f7e748b0eb874a95178140440dbbbe7d"
+        },
+        "raw_source_hashes_match_candidate_Git_blobs_independently_verified": 207,
+        "source_hash_map_sha256_canonical_json": "9c2c627142957d16e5b17f15dd7914b3784c8e304d678958a7d37decc52bdd78",
+        "source_unchanged": true,
+        "manifest_sha256": "dd57d9825f81ef11488e0f88119cd0cf3c05f0959375ecf75893e904d0084ce6"
+      },
+      "isolated": {
+        "PASS_methods": 255,
+        "exact_selection_discovery_execution_junit_frozen_ids": true,
+        "junit_files": 50,
+        "identity_sha256_canonical_json": "8631b62010a7c51f6c4069c932049e8380c7b389a4bacd8ab552776aafdc5d6c",
+        "database_attempts": 0,
+        "runner_failures": 0,
+        "source_unchanged": true,
+        "frozen_hashes_verified": 171,
+        "snapshot_hashes_verified": 172,
+        "snapshot_hash_map_sha256_canonical_json": "31674027261f3e009a8c3e9587f70f1636c5cd67f3c05b5a37347e49f9f85307",
+        "frozen_snapshot_matches_local_and_candidate_Git": true,
+        "raw_artifacts": {
+          "files_verified": 55,
+          "hash_map_sha256_canonical_json": "07ad4facded131029cbb784e66e0a302552b53c5673bd605ff1d6c7aaca3c572"
+        },
+        "manifest_sha256": "40cd2e876808647ade9ec007953f5ca5cde308cfaf10cf1e81b22c0a47f4b932",
+        "full_file_method_diagnostic": {
+          "covered_statements": 894,
+          "statements": 1703,
+          "percent": 52.49559600704639
+        },
+        "function_body_method_diagnostic": {
+          "covered_statements": 894,
+          "statements": 946,
+          "percent": 94.5031712473573
+        },
+        "method_branches": {
+          "covered": 378,
+          "total": 426,
+          "percent": 88.73239436619718
+        },
+        "application_aggregate_files": 53,
+        "per_file_denominators_method_hits_branches_equal_local_baseline": true,
+        "coverage_source_denominators_independently_verified": 54,
+        "dependencies": {
+          "coverage": "7.16.2",
+          "Django": "5.2.19",
+          "unittest-xml-reporting": "4.0.0",
+          "mysqlclient": "2.3.1",
+          "python-dotenv": "1.2.4",
+          "reportlab": "4.5.1",
+          "pypdf": "6.21.2"
+        }
+      }
+    }
+  ],
+  "private_evidence": {
+    "raw_artifacts_and_workflow_logs_retained_Git_ignored": true,
+    "workflow_log_archive_sha256": "6a25e7f956cd7c0ae055ff39c4c9fd41dad32373ba8fcaac1b83155d1cf7f1f6",
+    "checkout_step_log_sha256": {
+      "3.11": "3cce7eacfa29bfa6ab9d1ed89ec5340b3222e2a3be1967b3ce31bb66903a893d",
+      "3.14": "2690e7455ed607a939f2faaf0ba1531c07b5c237e4586b41c086dc245a06315a"
+    },
+    "both_checkout_logs_prove_PR74_merge_ref_and_actual_commit": true
+  },
+  "result": "PASS; both Python jobs and all six artifacts reconciled",
+  "limitations": [
+    "Actual checkout is a synthetic merge commit with exactly the candidate Git tree.",
+    "Coverage is diagnostic for the frozen isolated scope; SRS unit70 remains UNPROVEN.",
+    "The body denominator excludes declarations; isolated tests do not establish persistence, concurrency or browser behavior."
+  ]
+}

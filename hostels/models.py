@@ -112,49 +112,72 @@ class Room(models.Model):
 
     @transaction.atomic
     def save(self, *args, **kwargs):
+        update_fields = kwargs.get("update_fields", args[3] if len(args) > 3 else None)
+        if update_fields is not None:
+            update_fields = frozenset(update_fields)
+            if not update_fields:
+                return
+            if len(args) > 3 and "update_fields" not in kwargs:
+                args = (*args[:3], update_fields, *args[4:])
+            else:
+                kwargs["update_fields"] = update_fields
+
         old_room_number = None
-        self.fee_amount = self._meta.get_field("fee_amount").clean(
-            self.fee_amount, self
-        )
+        room_number = self.room_number
+        capacity = self.capacity
+        if update_fields is None or "fee_amount" in update_fields:
+            self.fee_amount = self._meta.get_field("fee_amount").clean(
+                self.fee_amount, self
+            )
 
         if self.pk:
             previous = Room.objects.select_for_update().get(pk=self.pk)
             old_room_number = previous.room_number
+            if update_fields is not None:
+                if "room_number" not in update_fields:
+                    room_number = previous.room_number
+                if "capacity" not in update_fields:
+                    capacity = previous.capacity
 
         super().save(*args, **kwargs)
 
+        if update_fields is not None and not RoomQuerySet.SYNC_FIELDS.intersection(
+            update_fields
+        ):
+            return
+
         # Rename existing bed labels when the room number changes.
-        if old_room_number is not None and old_room_number != self.room_number:
+        if old_room_number is not None and old_room_number != room_number:
             for bed in self.beds.select_for_update().all():
                 suffix = bed.label.rsplit("-", 1)[-1]
-                bed.label = f"{self.room_number}-{suffix}"
+                bed.label = f"{room_number}-{suffix}"
                 bed.save(update_fields=["label"])
 
         # Remove excess beds only when they have no allocation history.
         # Beds with allocation records must be preserved.
-        if self.beds.count() > self.capacity:
+        if self.beds.count() > capacity:
             removable_beds = (
                 self.beds.exclude(allocations__isnull=False)
                 .order_by("-label")
                 .distinct()
             )
 
-            excess = self.beds.count() - self.capacity
+            excess = self.beds.count() - capacity
 
             for bed in removable_beds[:excess]:
                 bed.delete()
 
         # Create missing beds without duplicating existing labels.
-        for suffix in ["A", "B", "C", "D"][: self.capacity]:
+        for suffix in ["A", "B", "C", "D"][:capacity]:
             Bed.objects.get_or_create(
                 room=self,
-                label=f"{self.room_number}-{suffix}",
+                label=f"{room_number}-{suffix}",
                 defaults={"status": Bed.BedStatus.AVAILABLE},
             )
 
         # A historical or allocated bed may need to remain beyond capacity.
         # Never silently delete a bed that has an allocation record.
-        if self.beds.count() > self.capacity:
+        if self.beds.count() > capacity:
             from allocations.models import Allocation
 
             active_bed_count = (
@@ -163,7 +186,7 @@ class Room(models.Model):
                 .count()
             )
 
-            if active_bed_count > self.capacity:
+            if active_bed_count > capacity:
                 raise ValidationError(
                     "Capacity cannot be reduced below the number of "
                     "beds with active allocations."

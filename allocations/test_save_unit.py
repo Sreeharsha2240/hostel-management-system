@@ -1,0 +1,147 @@
+"""Allocation eligibility decisions with persistence boundaries replaced by fakes.
+
+These tests exercise the save body without its transaction wrapper. Database
+locking, constraints and rollback remain the responsibility of integration tests.
+"""
+
+from datetime import date
+from unittest.mock import patch
+
+from django.core.exceptions import ValidationError
+from django.db import models
+from django.test import SimpleTestCase
+
+from hostels.models import Bed, Hostel, Room
+from students.models import Student
+
+from .models import Allocation
+
+
+class AllocationSaveDecisionUnitTests(SimpleTestCase):
+    def setUp(self):
+        self.student = Student(
+            pk=11, status=Student.Status.ACTIVE, gender=Student.Gender.MALE
+        )
+        self.hostel = Hostel(pk=3, hostel_type=Hostel.HostelType.BOYS, is_active=True)
+        self.room = Room(pk=4, hostel=self.hostel)
+        self.bed = Bed(pk=5, room=self.room, status=Bed.BedStatus.AVAILABLE)
+        self.allocation = Allocation(
+            student_id=11, bed_id=5, allocated_on=date(2026, 11, 1)
+        )
+
+        patches = {
+            "students": patch.object(Student.objects, "select_for_update"),
+            "bed_room": patch.object(Bed.objects, "values_list"),
+            "rooms": patch.object(Room.objects, "select_for_update"),
+            "beds": patch.object(Bed.objects, "select_for_update"),
+            "existing": patch.object(Allocation.objects, "filter"),
+            "previous": patch.object(Allocation.objects, "select_for_update"),
+            "clean": patch.object(self.allocation, "full_clean"),
+            "save": patch.object(models.Model, "save", return_value=None),
+            "bed_save": patch.object(self.bed, "save"),
+        }
+        self.mocks = {name: item.start() for name, item in patches.items()}
+        for item in patches.values():
+            self.addCleanup(item.stop)
+        self.mocks["students"].return_value.get.return_value = self.student
+        self.mocks["bed_room"].return_value.get.return_value = self.room.pk
+        self.mocks[
+            "beds"
+        ].return_value.select_related.return_value.get.return_value = self.bed
+        self.mocks[
+            "existing"
+        ].return_value.exclude.return_value.exists.return_value = False
+
+    def save_body(self, **kwargs):
+        return Allocation.save.__wrapped__(self.allocation, **kwargs)
+
+    def test_new_allocation_sets_keys_and_marks_bed_occupied(self):
+        self.save_body()
+        self.assertEqual(
+            (self.allocation.active_student_id, self.allocation.active_bed_id), (11, 5)
+        )
+        self.assertEqual(self.bed.status, Bed.BedStatus.OCCUPIED)
+        self.mocks["clean"].assert_called_once()
+        self.assertTrue(self.mocks["save"].call_args.kwargs["force_insert"])
+        self.mocks["bed_save"].assert_called_once_with(update_fields=["status"])
+
+    def test_inactive_student_is_rejected_before_save(self):
+        self.student.status = Student.Status.INACTIVE
+        with self.assertRaises(ValidationError) as error:
+            self.save_body()
+        self.assertEqual(error.exception.code, "INACTIVE_STUDENT")
+        self.mocks["save"].assert_not_called()
+
+    def test_inactive_hostel_and_gender_mismatch_are_rejected(self):
+        for active, hostel_type, expected in (
+            (False, Hostel.HostelType.BOYS, "INACTIVE_HOSTEL"),
+            (True, Hostel.HostelType.GIRLS, "GENDER_MISMATCH"),
+        ):
+            with self.subTest(expected=expected):
+                self.hostel.is_active, self.hostel.hostel_type = active, hostel_type
+                with self.assertRaises(ValidationError) as error:
+                    self.save_body()
+                self.assertEqual(error.exception.code, expected)
+        self.mocks["save"].assert_not_called()
+
+    def test_existing_student_or_bed_allocation_is_rejected(self):
+        for existing, expected in (
+            ([True], "ALREADY_ALLOCATED"),
+            ([False, True], "BED_OCCUPIED"),
+        ):
+            with self.subTest(expected=expected):
+                self.mocks[
+                    "existing"
+                ].return_value.exclude.return_value.exists.side_effect = existing
+                with self.assertRaises(ValidationError) as error:
+                    self.save_body()
+                self.assertEqual(error.exception.code, expected)
+        self.mocks["save"].assert_not_called()
+
+    def test_maintenance_bed_cannot_receive_new_allocation(self):
+        self.bed.status = Bed.BedStatus.MAINTENANCE
+        with self.assertRaises(ValidationError) as error:
+            self.save_body()
+        self.assertEqual(error.exception.code, "BED_OCCUPIED")
+        self.mocks["save"].assert_not_called()
+
+    def test_missing_student_maps_to_not_found(self):
+        self.mocks["students"].return_value.get.side_effect = Student.DoesNotExist
+        with self.assertRaises(ValidationError) as error:
+            self.save_body()
+        self.assertEqual(error.exception.code, "NOT_FOUND")
+        self.mocks["save"].assert_not_called()
+
+    def test_existing_allocation_history_is_immutable(self):
+        self.allocation.pk = 20
+        self.allocation._state.adding = False
+        previous = Allocation(
+            pk=20, student_id=11, bed_id=99, allocated_on=date(2026, 11, 1)
+        )
+        self.mocks["previous"].return_value.get.return_value = previous
+        with self.assertRaises(ValidationError) as error:
+            self.save_body()
+        self.assertEqual(error.exception.code, "IMMUTABLE_FIELD")
+        self.mocks["save"].assert_not_called()
+
+    def test_release_clears_active_keys_and_frees_occupied_bed(self):
+        self.allocation.pk = 20
+        self.allocation._state.adding = False
+        self.allocation.status = Allocation.AllocationStatus.COMPLETED
+        previous = Allocation(
+            pk=20,
+            student_id=11,
+            bed_id=5,
+            allocated_on=date(2026, 11, 1),
+            status=Allocation.AllocationStatus.ACTIVE,
+        )
+        self.mocks["previous"].return_value.get.return_value = previous
+        self.bed.status = Bed.BedStatus.OCCUPIED
+        self.save_body(update_fields=["status"])
+        self.assertIsNone(self.allocation.active_student_id)
+        self.assertIsNone(self.allocation.active_bed_id)
+        self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)
+        self.assertEqual(
+            self.mocks["save"].call_args.kwargs["update_fields"],
+            {"status", "active_student_id", "active_bed_id"},
+        )
