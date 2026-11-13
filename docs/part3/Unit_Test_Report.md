@@ -2,7 +2,27 @@
 
 **Report status:** Evidence assembled; unit-scope acceptance pending. This report does not claim a formal SRS unit-coverage PASS or FAIL.
 
-**Latest tested source:** main merge `24e12526a771d1ec9d3545de78512ed3fc229abe`, tree `c5dfa2d8f482ee023417db5967133f2881513f6a`. The exact pull-request head tested by CI was `2714884997b43cf3805b86d9180568f7f41ea9b1` with the same tree. The code/report change in PR #68 is merged; this report is a new contribution and still needs independent review.
+**CI baseline reported below:** main merge `24e12526a771d1ec9d3545de78512ed3fc229abe`, tree `c5dfa2d8f482ee023417db5967133f2881513f6a`. The exact pull-request head tested by CI was `2714884997b43cf3805b86d9180568f7f41ea9b1` with the same tree. A later local run is separately identified below. This report is published as a candidate and still needs independent review.
+
+## Project and testing overview
+
+HMS supports student records, hostel and bed management, allocations, payments, reporting and access control. The verification evidence covers validation and small logic contracts, model/form/view components, database-backed workflows, concurrency, security-related behavior and verification tooling. Unit, component, integration and system results have different scopes; an automated test does not by itself complete a manual acceptance case.
+
+The ten separately verified isolated additions cover password-backend decisions (2), allocation date/status rules (3), shared JSON validation responses (4), and a payment status rule (1). The earlier 190-method classification lists 85 component candidates, 87 integration, five concurrency, four system-surrogate and nine tooling methods. Those categories are proposals describing the earlier inventory, not a final approved unit-only selection.
+
+## Execution snapshots and coverage gate
+
+Results below are separate runs, not additional sets of unique tests to add together. Coverage figures are for the configured **mixed** suite, including measured verification tooling; they are not unit-only application-logic coverage.
+
+| Evidence | Source and scope | Result |
+|---|---|---|
+| PR #67 follow-up | Local source base `482ef795e0c538f1bf25b9a2f79266051727ab7e` plus four new test files; dirty worktree. The [follow-up](evidence/coverage-followup-20261109/README.md) also links PR and merged-main CI for merged source `7556822df38b23d4f302cf68d857bb35b963ff10`. | 200 mixed methods: 199 PASS, one expected timing SKIP; timing passed separately. All 12 local gates passed; 10 isolated additions passed separately. Mixed statement coverage 1,590/1,772 (89.73%), branch coverage 348/424 (82.08%), combined (1,590+348)/(1,772+424) = 88.25%, passing the configured 70% gate. |
+| PR #68 exact-tree CI | Head `2714884997b43cf3805b86d9180568f7f41ea9b1`, same tree as merge `24e1252`; Python 3.11 and 3.14 with MySQL 8.4. | 209 mixed methods per job: 208 PASS, one expected timing SKIP, no failures/errors; separate timing PASS and all 12 gates passed. [CI metadata](evidence/unit-test-report-20261110/current-ci-summary.json) |
+| HMS-17 local follow-up | Base `65d6c1233b1b184858b36ff93cd32e440534ebbb` plus the documented test/evidence changes in a dirty worktree; Windows, Python 3.14.0, MySQL 8.0.46. | 211 mixed methods: 210 PASS, one expected timing SKIP; separate timing PASS and all 12 gates passed. [Source-bound execution record](evidence/issue39/completion-20261110/README.md) |
+
+The configured 70% combined gate is a repository verification threshold. The submitted SRS §6.4 separately requires unit tests to cover at least 70% of application logic. The teammate's 13 November report says a guide/project owner approved using the combined metric for the project gate; a dated approval and its precise scope are not included in the available evidence. The mixed-suite PASS above is therefore not an accepted unit-only SRS PASS. Obtain and link any actual approval or amendment before relying on it as an interpretation of the SRS requirement.
+
+The PR #67 follow-up also identifies two demo-data management commands with 98 statements and 32 branch outcomes that were unexecuted in that run. They remained in its configured denominator. The 10 isolated tests are included in the 200 ordinary methods; the nine separate integration/regression recipes and the 32 recovery-safety and seven runner-safety methods are separately reported, not added to the ordinary test count.
 
 ## Purpose and scope
 
@@ -10,7 +30,7 @@ This report separates component-unit candidates from integration, concurrency, s
 
 The coverage owner's frozen classification is retained as an earlier proposal: 190 methods were classified as 85 primary component candidates, 87 integration, 5 concurrency, 4 system-surrogate and 9 tooling methods. The exact conservative selection contains 76 methods; the sensitivity selection contains 100. The selection was frozen before its original rates. See the [classification](evidence/issue42-final/method-classification.json), [attribution](evidence/issue42-main/attribution.json), [JUnit summary](evidence/issue42-main/junit-summary.json), [coverage report](Code_Coverage_Report.md) and [branch report](Branch_Coverage_Report.md).
 
-The current 209-method CI suite includes 19 methods added after that frozen 190-method inventory. Their outcomes are verified, but no exact-source, separately attributed unit-coverage run has classified and measured a final approved unit scope. The 19 additions are disclosed below rather than silently folded into the frozen 76/100 selections.
+The PR #68 209-method CI suite includes 19 methods added after that frozen 190-method inventory. Their outcomes are verified, but no exact-source, separately attributed unit-coverage run has classified and measured a final approved unit scope. The 19 additions are disclosed below rather than silently folded into the frozen 76/100 selections. The later local run has 211 methods, as recorded above.
 
 ## Environment and execution evidence
 
@@ -45,7 +65,7 @@ The 10 isolated additions are documented with source hashes, assertion boundarie
 
 The 6 November coverage publication on clean source `b936e4d8ef7efd37dd66fde022efcb44e5b386ee` reports the mixed suite at 1,584/1,772 statements (89.39%) and 342/424 branch outcomes (80.66%), with a configured combined gate of 87.70%. The frozen standalone 76-method proposal passed 76/76. On that same older source, startup/shared-setup-inclusive application execution was 1,127/1,677 statements (67.20%); exact method-context execution was 414/1,677 (24.69%). These are different diagnostic observations, not the formal SRS unit-coverage result.
 
-The later 10-method isolated supplement passed 10/10 and the latest 209-method MySQL CI passed. Neither adds a separately attributed coverage measurement for the approved unit scope on the current source tree. The current CI's 88% mixed result must not be relabelled as unit coverage. The threshold, `.coveragerc` exclusions, source denominator and frozen selection were not lowered or altered to achieve a target.
+The later 10-method isolated supplement passed 10/10 and the PR #68 209-method MySQL CI passed. Neither adds a separately attributed coverage measurement for an approved unit scope on its tested source tree. That CI's 88% mixed result must not be relabelled as unit coverage. The threshold, `.coveragerc` exclusions, source denominator and frozen selection were not lowered or altered to achieve a target.
 
 **SRS §6.4 unit application-logic coverage of at least 70%: UNPROVEN.** An accepted unit boundary, application-logic denominator, and exact-source attribution run remain necessary before PASS or FAIL can be concluded. Do not infer unit coverage from test counts, mixed coverage, startup execution or the standalone proposal's aggregate.
 
