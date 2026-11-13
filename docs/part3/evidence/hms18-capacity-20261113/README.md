@@ -16,7 +16,7 @@ The retained 288 unit IDs pass on updated source at 952/955 function-body statem
 - `mixed-coverage.json`, `checks-run.json`, `junit-summary.json`: mixed raw coverage, 12-gate manifest and 497 exact outcomes.
 - `verification.json`: owned case outcomes, offline checks, independent-review corrections and retained attempts.
 
-The tracked reports are [Code Coverage Report](../../Code_Coverage_Report.md), [Branch Coverage Report](../../Branch_Coverage_Report.md) and the refreshed Unit Test Report summary. Historical evidence is unchanged. Both Python CI jobs must confirm the publication head; matching CI provenance is added only after actual completion.
+The tracked reports are [Code Coverage Report](../../Code_Coverage_Report.md), [Branch Coverage Report](../../Branch_Coverage_Report.md) and the refreshed Unit Test Report summary. Historical evidence is unchanged. Both Python CI jobs passed for publication candidate `eebb30afeb63d27618fdd3be4cc4c2b76392fc32`. The [independent CI extraction](ci-summary.json) verifies their actual checkout tree, source pins, exact outcomes, raw hashes and coverage. The commit publishing this record is a subsequent documentation update; current head checks are linked from PR #75.
 
 Publication uses UTF-8 LF line endings as required by `.gitattributes`. Raw hashes identify the original runtime artifacts; published log hashes identify the sanitized LF copies. Normalized JSON preserves the original data.
 
