@@ -166,6 +166,33 @@ class SessionAndLockoutTests(TestCase):
         self.client.force_login(account)
         self.assertEqual(self.client.get(reverse("dashboard")).status_code, 403)
 
+    def test_demoting_staff_account_revokes_existing_django_admin_session(self):
+        staff_account = User.objects.create_user(
+            username="demoted-staff",
+            password="Strongpass123",
+            role=User.Role.WARDEN,
+            is_staff=True,
+        )
+        staff_client = Client()
+        staff_client.force_login(staff_account)
+        self.assertEqual(staff_client.get(reverse("admin:index")).status_code, 200)
+
+        self.client.force_login(self.admin)
+        response = self.client.post(
+            reverse("user-update", args=[staff_account.pk]),
+            {
+                "first_name": "",
+                "last_name": "",
+                "email": "",
+                "role": User.Role.STUDENT,
+            },
+        )
+        self.assertRedirects(response, reverse("user-management"))
+        staff_account.refresh_from_db()
+        self.assertEqual(staff_account.role, User.Role.STUDENT)
+        self.assertFalse(staff_account.is_staff)
+        self.assertEqual(staff_client.get(reverse("admin:index")).status_code, 302)
+
     def test_superuser_role_and_password_similarity_validation(self):
         form = AccountUpdateForm({"role": User.Role.STUDENT}, instance=self.admin)
         self.assertFalse(form.is_valid())

@@ -28,4 +28,12 @@ class User(AbstractUser):
             self.role = self.Role.ADMIN
             if kwargs.get("update_fields") is not None:
                 kwargs["update_fields"] = set(kwargs["update_fields"]) | {"role"}
+        if self.role == self.Role.STUDENT and self.is_staff:
+            # Django's admin site uses is_staff as its entry gate. Keep it in
+            # sync with HMS roles so demoting an account immediately removes
+            # its Django admin access, including when save(update_fields=...)
+            # is used by account-management code.
+            self.is_staff = False
+            if kwargs.get("update_fields") is not None:
+                kwargs["update_fields"] = set(kwargs["update_fields"]) | {"is_staff"}
         super().save(*args, **kwargs)
