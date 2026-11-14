@@ -1,5 +1,9 @@
 # HMS Test Case Document and Requirements Traceability Matrix
 
+**13 November current disposition:** HMS-19/#41 is complete through merged PR #74 (`a41f884`). The project owner approved the function-body unit-coverage boundary: 288/288 isolated methods pass and 946/946 (100%) function-body statements are covered; the 55.55% all-application-statements result remains disclosed. Real-phone testing is excluded from this mini-project. The expanded 61-case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED: TC-SEC-08 and TC-QUAL-04 are PARTIAL; TC-QUAL-02 and desktop/OS portability TC-QUAL-03 are NOT RUN. Dated entries below are historical where they conflict with this update.
+
+**14 November scope clarification:** SRS REQ-24 requires access to only the student's own profile, current allocation and payment status, but does not define the full profile-field list. The current page displays name and student ID plus own allocation and payment summaries/history. No additional personal fields are inferred as requirements pending QA/PO clarification. The SAD §4.4 request-ID error-log and operational-monitoring gap is recorded in the [System Validation Report](System_Validation_Report.md).
+
 **10 November current-case addendum:** [HMS-17's fresh registration and four regression executions](evidence/issue39/completion-20261110/README.md) supersede the older case-count snapshot below: the expanded 61 now stand at 57 OWNER PASS, 1 PARTIAL, 2 NOT RUN and 1 BLOCKED. The [HMS-16 QA handoff reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses both remaining passive ZAP alerts, locates the previously unlocated `next` regression test and confirms its recorded PASS. TC-SEC-08 stays PARTIAL. HMS-16/#38 and HMS-17/#39 are closed only for their owner-authorized local-project scope; these statuses do not establish whole-plan acceptance.
 
 ## 1. Document information and revision history
@@ -55,9 +59,9 @@ An automated method and a planned case are different counting units. Adding a me
 
 ## 4. Environment, planned data and declared deviations
 
-Submitted Plan section 6: Python 3.11+, Django 5.x, MySQL 8.0; Windows 10+ **or** Ubuntu 20.04+; latest Chrome/Firefox/Edge and one real mobile phone. Planned tools include Django tests, Selenium, Postman, JMeter and ZAP. The SRS separately specifies broader Windows/Linux/latest-two-browser portability coverage; TC-QUAL-03 records it explicitly.
+Submitted Plan section 6: Python 3.11+, Django 5.x, MySQL 8.0; Windows 10+ **or** Ubuntu 20.04+; latest Chrome/Firefox/Edge and one real mobile phone. The project owner has removed real-phone testing from this mini-project's acceptance scope. Desktop browser and server portability remain in scope. Planned tools include Django tests, Selenium, Postman, JMeter and ZAP; TC-QUAL-03 records the adjusted project scope.
 
-Current CI uses MySQL 8.4.13 on Linux with Python 3.11.18/3.14.10 and Django 5.2.19. HMS-18 uses Edge/Playwright and MySQL 8.4.9 in its recorded Windows environment; HMS-16/HMS-17 have their own MySQL 8.0 records. These substitutions and loopback HTTP results are usable as evidence with stated scope, but do not prove the submitted MySQL 8.0 environment, Selenium/Postman execution, real mobile coverage or deployed TLS. Acceptance of a requirement/tool deviation remains a real team/instructor decision; this document does not grant it.
+Current CI uses MySQL 8.4.13 on Linux with Python 3.11.18/3.14.10 and Django 5.2.19. HMS-18 uses Edge/Playwright and MySQL 8.4.9 in its recorded Windows environment; HMS-16/HMS-17 have their own MySQL 8.0 records. These substitutions and loopback HTTP results are usable as evidence with stated scope, but do not prove the submitted MySQL 8.0 environment, Selenium/Postman execution or deployed TLS. Real-phone coverage is excluded under the owner-approved mini-project scope decision above. Acceptance of other requirement/tool deviations remains a real team/instructor decision; this document does not grant it.
 
 ### 4.1 Shared planned fixture
 
@@ -105,7 +109,7 @@ The [owner manual record](evidence/issue39/manual-execution-20261107.md) reports
 
 The later [PR #66 follow-up](evidence/issue39/followup-20261108.md) adds a visible student-list result, allocation-success result, bed/filter observations and three desktop Chrome pages. Their capture date/build/version are unrecorded; they are not silently assigned the historical metadata above.
 
-The separate 9 November follow-up adds student registration evidence and a guide-based Warden first-use walkthrough. Following review of this additional evidence, the current owner disposition for the eight original HMS-17 cases is 8 OWNER PASS. The 9 November evidence does not change the historical 7 November execution record. The complete latest-two-version Chrome/Firefox/Edge compatibility matrix, physical mobile execution, deployed Linux server portability and SRS availability target remain unverified. HST-01 retains its historical reported result without a named case screenshot.
+The separate 9 November follow-up adds student registration evidence and a guide-based Warden first-use walkthrough. Following review of this additional evidence, the current owner disposition for the eight original HMS-17 cases is 8 OWNER PASS. The 9 November evidence does not change the historical 7 November execution record. The complete latest-two-version desktop Chrome/Firefox/Edge compatibility matrix, deployed Linux server portability and SRS availability target remain unverified. Physical-phone testing is excluded by the current mini-project scope decision. HST-01 retains its historical reported result without a named case screenshot.
 
 ### 5.5 HMS-16 authentication/security handoff
 
@@ -148,7 +152,9 @@ All 33 original cases have an owner execution disposition. OWNER PASS records re
 
 ### 6.2 Expanded test-case register
 
-The expanded register contains 61 designed cases. Its current case-level disposition is:
+The expanded register contains 61 designed cases. The 10 November snapshot below is superseded by the current disposition at the top of this document. At the 13 November update, the register is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED.
+
+The prior 10 November case-level disposition was:
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
@@ -158,13 +164,13 @@ The expanded register contains 61 designed cases. Its current case-level disposi
 | BLOCKED | 1 | 1.64% |
 | **Total** | **61** | **100.00%** |
 
-The expanded register has 58/61 cases with some execution evidence (95.08%), counting OWNER PASS and PARTIAL together. There are 57/61 OWNER PASS observations (93.44%). The [10 November HMS-17 follow-up](evidence/issue39/completion-20261110/README.md) supplies four complete regression recipes; availability and complete portability remain NOT RUN, ZAP disposition PARTIAL, and guide acceptance BLOCKED.
+The 10 November snapshot had 58/61 cases with some execution evidence (95.08%), counting OWNER PASS and PARTIAL together. At the current update, 59/61 have some execution evidence (96.72%), including PARTIALs, and 57/61 are OWNER PASS observations (93.44%). Availability and complete desktop/OS portability remain NOT RUN; TC-SEC-08 and TC-QUAL-04 remain PARTIAL. The guide walkthrough has owner execution evidence; final team acceptance remains pending.
 
 All ten retained and fourteen added regression recipes now have OWNER PASS evidence. The 10 November follow-up completes S1-05 combined-filter navigation and S1-06/S1-08/S2-06; historical source/date and previous pending outcomes remain in their dated records. Owner execution does not constitute independent QA or whole-plan acceptance.
 
 The 9 November HMS-16 loopback TLS probe supplies the specified TC-SEC-06 network conditions. Its evidence remains limited to the isolated test environment and does not certify a public or production host. TC-SEC-08 has a passive ZAP scan covering 10 URLs; two remaining alert dispositions are documented, and QA disposition remains pending, so the case is PARTIAL.
 
-The 9 November HMS-17 Warden first-use walkthrough records successful student registration and bed allocation within the five-minute usability target. This supports the OWNER PASS observations for TC-STU-01 and TC-QUAL-01. However, the walkthrough does not establish that the complete browser compatibility, portability or availability requirements have been independently verified. TC-QUAL-04 remains BLOCKED, and other scan and quality cases retain their actual missing or blocked evidence. Do not use the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+The 9 November HMS-17 Warden first-use walkthrough records successful student registration and bed allocation within the five-minute usability target. This supports the OWNER PASS observations for TC-STU-01 and TC-QUAL-01. However, the walkthrough does not establish that the complete browser compatibility, portability or availability requirements have been independently verified. TC-QUAL-04's coverage target was later met under the owner-approved function-body definition; broader PEP 8 review remains limited to configured checks. Other scan and quality cases retain their actual missing evidence. Do not use the old 43-case denominator when applying a 100%-planned-cases exit criterion.
 
 ### 6.3 Defect, retest and requirement-coverage metrics
 
@@ -243,8 +249,8 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S2-16](#case-tc-reg-s2-16) - Typed JSON dates/references keep correct errors and state | Devansh | High (#63 technical review) | OWNER PASS |
 | [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | PARTIAL |
 | [TC-QUAL-02](#case-tc-qual-02) - Working-hours service availability | Sreeharsha | Medium (proposed) | NOT RUN |
-| [TC-QUAL-03](#case-tc-qual-03) - SRS portability and real mobile coverage | Vaishnavi | Medium (proposed) | NOT RUN |
-| [TC-QUAL-04](#case-tc-qual-04) - Application-logic unit coverage and maintainability | Vaishnavi (QA), Devansh (coverage evidence), Sreeharsha (PO review) | Medium (proposed) | BLOCKED |
+| [TC-QUAL-03](#case-tc-qual-03) - Desktop browser and server portability | Vaishnavi | Medium (proposed) | NOT RUN |
+| [TC-QUAL-04](#case-tc-qual-04) - Application-logic unit coverage and maintainability | Vaishnavi (QA), Devansh (coverage evidence), Sreeharsha (PO review) | Medium (proposed) | PARTIAL |
 
 ## 8. Requirements Traceability Matrix (RTM)
 
@@ -383,7 +389,7 @@ Actual QA/Dev/PO approvals (Plan section 15) and the project-guide acceptance wa
 
 All 33 original IDs, ten existing sprint IDs and original 36-requirement mappings are preserved. This revision restores full original inputs/expectations, documents AUTH-03's wording resolution, supplies every case's owner/priority/type/level/setup/data/steps/expected/actual/status/SHA/evidence/defect fields, adds sprint/quality coverage and corrects the contradictory HMS-17 totals. The original owner manual record, historical JSON, failed load attempt, successful full rerun and raw transfer PARTIAL are preserved unchanged.
 
-Issue #37 is the case-document/traceability delivery. This document does not complete #38's security/integrated report, #39's missing UI/quality evidence, #41's Unit Test Report or #43's real final approvals/submission. #40's separate technical QA delivery and #42's reporting delivery are closed; formal unit70 remains UNPROVEN. Original Test Plan/SRS/SAD DOCX/PDF baselines remain intact. The publication date and review scope are explicit.
+Issue #37 is the case-document/traceability delivery. This document does not complete whole-plan case acceptance or #43's final approvals/submission. HMS-19/#41 and reporting #42 are complete; the owner-approved unit70 result and its all-statements companion are recorded in the Unit Test Report. Original Test Plan/SRS/SAD DOCX/PDF baselines remain intact. The publication date and review scope are explicit.
 
 ## 13. Complete case records
 
@@ -429,7 +435,7 @@ Pre: Warden account exists.
 
 **Defects and retests:** No case-specific application defect reported; independent case review remains pending.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** The owner-approved function-body coverage boundary and result are documented. Final whole-plan case/entry/deviation acceptance is not inferred by this report.
 
 **Automation:** [`accounts.tests.AuthenticationTests.test_login_shows_role_dashboard_and_logout_clears_session`](../../accounts/tests.py#L28); [`accounts.tests.AuthenticationTests.test_each_role_can_access_dashboard_and_dashboard_reflects_role`](../../accounts/tests.py#L44); [`accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds`](../../accounts/tests.py#L74)
 
@@ -1942,7 +1948,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The owner-reported guide-based first-use task completed within the five-minute target. The exact timing is not independently reproducible from retained timestamps. The exact guide revision and participant code were not retained. The tested browser and environment results are limited to those documented in the evidence; untested browser versions, physical mobile devices and the SRS availability target are not claimed as independently verified.
+**Evidence limits:** The owner-reported guide-based first-use task completed within the five-minute target. The exact timing is not independently reproducible from retained timestamps. The exact guide revision and participant code were not retained. The tested browser and environment results are limited to those documented in the evidence; untested desktop browser versions and the SRS availability target are not claimed as independently verified. Physical-phone coverage is outside this mini-project's scope.
 
 Additional execution on 9 November 2026: the owner reports that a new
 Warden completed student registration and successful bed allocation
@@ -3207,9 +3213,9 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Evidence limits:** SRS section 6.4 quality attribute; the original 33-case table had no dedicated availability case.
 
-### TC-QUAL-03: SRS portability and real mobile coverage
+### TC-QUAL-03: Desktop browser and server portability
 
-**Mini-project scope decision:** The project owner has agreed to skip real-phone testing. The original phone requirement remains unverified, and this decision does not complete the remaining browser-version and operating-system evidence or change this case's NOT RUN status.
+**Mini-project scope decision:** The project owner removed real-phone testing from acceptance scope. TC-QUAL-03 covers desktop browser versions and Windows/Linux server portability for this mini-project. Those remaining conditions still lack complete evidence, so the case remains NOT RUN.
 
 **10 November local follow-up:** A synthetic Warden signed in and opened the dashboard, students, beds, allocations, payments and occupancy report in connected Chrome. Edge was unavailable through the connected browser; Firefox, older versions and Linux workflows were not exercised. See the [local browser observations](evidence/issue39/local-browser-20261110.md). This is supporting evidence, not a complete TC-QUAL-03 execution.
 
@@ -3235,7 +3241,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 1. Execute the main application flows on latest two versions of Chrome, Firefox and Edge, retaining exact versions and results.
 2. Verify supported Windows and Linux operation, recording deployment/configuration and exercised flows on each.
-3. Exercise main browser flows on a real mobile phone; retain device/browser and responsive navigation/form observations.
+3. (Excluded by the owner-approved mini-project scope: physical-phone checks.)
 
 **Expected:** SRS portability target (Windows/Linux and latest two Chrome/Firefox/Edge versions) and the Test Plan's real-mobile environment are evidenced. Original TC-QUAL-01 still separately covers the latest-browser main flows and timed new-warden guide task.
 
@@ -3255,7 +3261,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and latest Chrome/Firefox/Edge; SRS section 6.4 separately requires Windows AND Linux/latest-two targets, and the Plan includes a real mobile phone. No full Cartesian product is imposed. Current supporting pages/CI do not supply a scoped complete execution of this case.
+**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and latest Chrome/Firefox/Edge; SRS section 6.4 separately requires Windows AND Linux/latest-two targets. Physical-phone coverage was removed from this mini-project's acceptance scope. No full Cartesian product is imposed. Current supporting pages/CI do not supply a scoped complete desktop-browser/OS execution of this case.
 
 ### TC-QUAL-04: Application-logic unit coverage and maintainability
 
@@ -3275,7 +3281,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Type:** Maintainability
 
-**Prerequisites and data:** Publish #41's Unit Test Report and agree unit/integration classification, application-logic scope and execution attribution. Preserve application code in the denominator; retain measured evidence and any approved interpretation. Synthetic data only; retain the source-bound setup with actual execution.
+**Prerequisites and data:** Unit Test Report is published; the owner-approved function-body application-logic boundary and exact-source attribution are recorded there. Synthetic data only; use the source-bound selection and preserve the separate all-application-statements diagnostic.
 
 **Steps:**
 
@@ -3286,13 +3292,13 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** The complete SRS section 6.4 maintainability target is assessed: modular Django apps, PEP 8 adherence and unit tests covering at least 70% of application logic. Repository lint/format checks support the style assessment; mixed-suite statement/branch percentages alone cannot establish unit70.
 
-**Actual:** Current CI lint and format gates passed under the repository's configured rules. Full PEP 8 adherence beyond those rules is not certified. #41 Unit Test Report and agreed scope/attribution are missing. Published coverage reports deliver measurements but leave formal unit70 UNPROVEN.
+**Actual:** Current CI lint and format gates passed under the repository's configured rules. Full PEP 8 adherence beyond those rules is not certified. The Unit Test Report is published; the project owner approved the function-body application-logic boundary, with 946/946 (100%) coverage across 288 isolated methods. The companion all-application-statements result is 946/1,703 (55.55%).
 
-**Execution status:** BLOCKED
+**Execution status:** PARTIAL — unit-coverage target met under the owner-approved function-body boundary; broader PEP 8 adherence beyond configured checks is not certified.
 
-**Tested commit:** No complete case execution recorded; supporting observations retain their original SHAs.
+**Tested commit:** See the [HMS-19 Unit Test Report and exact-source evidence](Unit_Test_Report.md).
 
-**Execution date and environment:** No complete case run recorded.
+**Execution date and environment:** 13 November 2026; isolated unit selection and exact-head CI as documented in the Unit Test Report.
 
 **Evidence:** [Code_Coverage_Report.md](Code_Coverage_Report.md); [Branch_Coverage_Report.md](Branch_Coverage_Report.md); [evidence/issue42-main/README.md](evidence/issue42-main/README.md); [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
 
@@ -3302,4 +3308,4 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** Coverage evidence delivery #42 is closed; this separate application-logic interpretation remains unresolved. Configured lint/format success is supporting PEP 8 evidence, with rule coverage/exceptions requiring review. No new branch-percentage grading target is introduced.
+**Evidence limits:** HMS-19/#41 and coverage evidence delivery #42 are closed. The function-body boundary meets the unit target; the all-application-statements companion remains below 70%, and configured lint/format success does not certify PEP 8 beyond those rules. No new branch-percentage grading target is introduced.

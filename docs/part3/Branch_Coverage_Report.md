@@ -1,14 +1,12 @@
 # Branch Coverage Report
 
-**9 November follow-up:** fresh local verification of base `482ef795` plus ten new isolated regression methods passes all 12 gates: 200 ordinary methods (199 PASS / one expected timing SKIP), separate timing PASS, **1,590/1,772 statements (89.73%)**, **348/424 branches (82.08%)**, and **88.25% combined**. A students/hostels-only run exactly reproduces the todo's 53% and all 23 listed file rates. See the [source-bound supplement and HMS-19 handoff](evidence/coverage-followup-20261109/README.md). Formal unit70 remains **UNPROVEN**. The reviewed 6 November measurements and frozen selections below retain their historical scope.
+**Current merged-build branch coverage — PR #74 / HMS-19:** The exact tested source tree `d7b1023dcdd585f87318ce5ad8aa27a3e058b38c` passed [CI run 43440707669](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43440707669) on Python 3.11 and 3.14. The final merged revision is `a41f884`; the CI synthetic merge checkout used the same full tree. Full mixed-suite branch coverage is **435/440 (98.86%)**, with 5 missing branch outcomes. The combined configured metric is **2,217/2,238 (99.06%)**, above its unchanged 70% gate. This mixed branch result is not the HMS-19 unit-only result. The owner-approved function-body unit branch diagnostic is **411/426 (96.48%)** across the 288-method selection, as documented in the [Unit Test Report](Unit_Test_Report.md). The checked-in CI reconciliation preserves the aggregate totals and hashes, but not the current per-file branch export; detailed per-file tables below are dated historical measurements.
 
-Mixed statements: **1584/1772 (89.39%)**; mixed branches: **342/424 (80.66%)**. Application statements: **1505/1677 (89.74%)**; branches: **330/410 (80.49%)**.
-
-The previously frozen **76 proposed component methods now also execute as a standalone suite**: 76 methods: 76 PASS, 0 failures, 0 errors, 0 skipped. Its complete coverage includes imports and shared fixture execution; method-only and empty-context observations are reported separately. **Formal SRS section 6.4 unit70 remains UNPROVEN** pending joint #41/#42 scope and application-logic agreement.
+**Historical coverage snapshot — 6–9 November:** Earlier mixed statements were 1,584/1,772 (89.39%), branches 342/424 (80.66%), and application branches 330/410 (80.49%). These values and the per-file tables below remain historical for their recorded source revisions, not current merged-build figures.
 
 Owner: Devansh Gupta (`DevaOnL`), [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42). Measured **2026-11-06** on clean current main `b936e4d8ef7efd37dd66fde022efcb44e5b386ee`, tree `1191cfa0aed5201d3529e2f63120c5b99a29e781`. This is a measured candidate; the team retains the accepted final submission-build decision. The source manifest retains the measured `docs/PART3.md` hash as its pre-publication documentation snapshot; its later owner index update does not relabel the measured SHA. `Test_Case_Document.md` remains unchanged in this refresh.
 
-Both reports use [current source metrics](evidence/issue42-main/coverage-metrics.json), [normal verification](evidence/issue42-main/checks-run.json), [serial collection commands](evidence/issue42-main/collection-run.json), [all JUnit outcomes](evidence/issue42-main/junit-summary.json), [attribution and frozen selection](evidence/issue42-main/attribution.json), [startup/setup partition](evidence/issue42-main/startup-context-diagnostic.json) and [reconciliation](evidence/issue42-main/validation.json). [Reproduction and limits](evidence/issue42-main/README.md) accompany them. All earlier evidence JSON, including `issue42-final`, is preserved unchanged.
+The historical 6 November reports use [source metrics](evidence/issue42-main/coverage-metrics.json), [normal verification](evidence/issue42-main/checks-run.json), [serial collection commands](evidence/issue42-main/collection-run.json), [JUnit outcomes](evidence/issue42-main/junit-summary.json), [attribution and frozen selection](evidence/issue42-main/attribution.json), [startup/setup partition](evidence/issue42-main/startup-context-diagnostic.json) and [reconciliation](evidence/issue42-main/validation.json). The merged-build aggregate is linked in the current summary above. All earlier evidence JSON is preserved unchanged.
 
 ## Environment and execution
 
@@ -54,7 +52,7 @@ skip_empty = True
 
 The context and standalone collections add only `dynamic_context = test_function`. All observations retain the complete current file/line/arc denominator, including declarations. The application subtotal excludes only runner tooling under `scripts/`; it remains a full-file proxy, not a reviewed definition of application logic. Missing-context methods receive no inferred credit.
 
-## Current source gaps
+## Historical source gaps — 6 November 2026
 
 Main incorporated the seed/demo-data commands after the earlier `9a0f814` measurement. They remain measured at zero executed statements in this run; the denominator includes them. No percentage-driven tests or exclusions were added, and the commands were not invoked against the application database.
 
@@ -63,7 +61,7 @@ Main incorporated the seed/demo-data commands after the earlier `9a0f814` measur
 | accounts/management/commands/create_demo_accounts.py | 43 | 0 | 10 | 0 |
 | accounts/management/commands/create_demo_data.py | 55 | 0 | 22 | 0 |
 
-Historical October/PR #36 values (94.28% statements, 85.57% branches, 92.63% combined) and the earlier 6 November 1,674/392 configured denominator are baselines only. The current configured denominator is **1772 statements / 424 outcomes**; application denominator is **1677 / 410**. All actual missing paths remain visible below.
+Historical October/PR #36 values (94.28% statements, 85.57% branches, 92.63% combined) and the earlier 6 November 1,674/392 configured denominator are baselines only. In the 6 November snapshot, the configured denominator was **1,772 statements / 424 outcomes**; application denominator was **1,677 / 410**. Those per-file gaps are historical and are not relabeled as final merged-build detail.
 
 ## Mixed-suite branch coverage by module
 
@@ -176,9 +174,9 @@ The submitted Test Plan permits Django model/form/view component unit tests and 
 
 ## Gate and acceptance limits
 
-The unchanged configured gate combines statements and branch outcomes: `(1584 + 342) / (1772 + 424) = 87.70%` against `fail_under = 70`. Normal verification passes this combined gate. It is a different metric from statement coverage, branch coverage and SRS unit70. No separate Part 3 branch threshold is specified. Diagnostic exports use `fail_under = 0` only to preserve observations, without changing the normal gate.
+The formula above describes the historical 6 November run. On the current merged tree, the unchanged configured gate is `(1782 + 435) / (1798 + 440) = 99.06%` against `fail_under = 70`; both supported CI jobs passed it. It differs from statement coverage, branch coverage and unit-only coverage. No separate Part 3 branch threshold is specified.
 
-**SRS section 6.4 unit-test application-logic coverage of at least 70%: UNPROVEN.** Neither a startup-inclusive standalone percentage nor a mixed-suite percentage establishes its PASS or FAIL. The proposed classification and full-file denominator require joint independent #41/#42 review.
+**SRS section 6.4 unit-test application-logic coverage of at least 70%: MET under the owner-approved function-body definition.** The function-body branch diagnostic is 411/426 (96.48%); this is a secondary metric, not a separate SRS branch threshold. The older standalone76 and startup-context observations remain historical and do not supersede the current disposition documented in the [Unit Test Report](Unit_Test_Report.md).
 
 PR #54 received an actual independent approval from `harsha2240` and merged on 6 November at `af3da3af513e8d413093132486ff1206c0d1f312`. That review accepted the previous documentation/evidence reconciliation while preserving the unit70 and QA acceptance limitations. The refreshed reports and standalone evidence received `harsha2240`'s actual APPROVED review in [PR #57](https://github.com/Sreeharsha2240/hostel-management-system/pull/57) at **2026-11-07 04:10:33 UTC** on `f7958015f933f3cf88d0d0adabe8bcd83d2146c8`, then merged at **04:10:53 UTC** as `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`. #42 is CLOSED as the reporting/evaluation task. This does not approve unit70 scope/attribution, select the final submission build or complete the Unit/System reports. The [8 November module-owner input](Code_Coverage_Report.md#hms-19-module-owner-input--8-november-2026) is a documentation contribution, not a fresh coverage run or new human approval. Source/test/configuration changes require refreshed affected evidence. Coverage does not establish assertion quality, RTM completion or whole-system readiness.
 
