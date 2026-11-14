@@ -1,5 +1,115 @@
 # Code Coverage Report
 
+**Independent CI confirmation:** [run 43470319270](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43470319270) passed Python 3.11.18 and 3.14.10 on publication candidate `eebb30afeb63d27618fdd3be4cc4c2b76392fc32`. Its actual synthetic merge checkout `ee3b0c2f5b9c464109e72e360ee8fd89e2fecf7f` has the identical full Git tree `26bcecf56f436ad79c40ddff2fbc005c790be38b`. Both jobs reconcile all 12 gates, 497 exact mixed identities (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes, 288/294 exact isolated PASS selections, zero database attempts and all 179 frozen source pins. Six downloaded ZIP hashes match GitHub; per-file isolated measurements match the clean implementation evidence. The [durable CI extraction](evidence/hms18-capacity-20261113/ci-summary.json) preserves job/environment, source/artifact hashes and gaps. This record describes the tested publication candidate; the later documentation commit recording it is separate. The current head's checks are available on [PR #75](https://github.com/Sreeharsha2240/hostel-management-system/pull/75/checks).
+
+**Current measured revision - 13 November 2026:** clean source `918477c2767161aa49526a57350a54eea0bd4c3e`, tree `76d2f64d5ad5ace8c6c2322c7823052600b23a72`. The full suite passed all 12 gates: **497 methods, 496 PASS and one expected timing SKIP**; timing passed separately without coverage. The previous 288 isolated IDs all pass; the expanded 294 IDs all pass, with **zero database attempts**. The accepted function-body statement result is **955/955 (100.00%)**; the all-application-statements companion is **955/1,713 (55.75%)**. The separate isolated application-branch diagnostic is **417/432 (96.53%)**.
+
+Owner: Devansh Gupta (`DevaOnL`), HMS-18/#40 and HMS-20/#42 follow-up. The [owner-authored boundary decision](evidence/hms19-function-body-boundary-20261113.md) governs the SRS >=70% unit criterion. The unit result meets that boundary; declarative statements remain outside it and are disclosed in the full-file companion. [Durable source-bound evidence](evidence/hms18-capacity-20261113/README.md) contains selections, per-file lines/arcs, commands, versions and actual outcomes. PR #74 is merged; its earlier measurements remain historical. Teammate review and final submission acceptance are separate.
+
+Mixed configured coverage is **1,792/1,808 (99.12%) statements**, **441/446 (98.88%) branch outcomes**, **99.07% combined**. Mixed coverage includes startup, shared setup and database execution. It is not used as unit evidence. Scripts remain in configured totals and are excluded from the separately labelled application subtotal.
+
+
+## Expanded isolated results by module
+
+| Module | Statements | Covered | Missing | Statement rate | Body covered/measured |
+|---|---|---|---|---|---|
+| accounts | 369 | 218 | 151 | 59.08% | 218/218 |
+| allocations | 313 | 205 | 108 | 65.50% | 205/205 |
+| audit | 158 | 69 | 89 | 43.67% | 69/69 |
+| hms | 87 | 55 | 32 | 63.22% | 55/55 |
+| hostels | 273 | 143 | 130 | 52.38% | 143/143 |
+| payments | 256 | 131 | 125 | 51.17% | 131/131 |
+| reports | 86 | 54 | 32 | 62.79% | 54/54 |
+| scripts | 95 | 0 | 95 | 0.00% | 0/73 |
+| students | 171 | 80 | 91 | 46.78% | 80/80 |
+| Configured total | 1808 | 955 | 853 | 52.82% | 955/1028 |
+| Application subtotal | 1713 | 955 | 758 | 55.75% | 955/955 |
+
+## Full mixed results by module
+
+| Module | Statements | Covered | Missing | Statement rate | Body covered/measured |
+|---|---|---|---|---|---|
+| accounts | 369 | 369 | 0 | 100.00% | N/A |
+| allocations | 313 | 313 | 0 | 100.00% | N/A |
+| audit | 158 | 158 | 0 | 100.00% | N/A |
+| hms | 87 | 87 | 0 | 100.00% | N/A |
+| hostels | 273 | 273 | 0 | 100.00% | N/A |
+| payments | 256 | 256 | 0 | 100.00% | N/A |
+| reports | 86 | 86 | 0 | 100.00% | N/A |
+| scripts | 95 | 79 | 16 | 83.16% | N/A |
+| students | 171 | 171 | 0 | 100.00% | N/A |
+| Configured total | 1808 | 1792 | 16 | 99.12% | N/A |
+| Application subtotal | 1713 | 1713 | 0 | 100.00% | N/A |
+
+## Exact per-file gaps
+
+| File | Isolated full statements | Missing full lines | Isolated body statements | Missing body lines | Mixed full statements | Mixed missing lines |
+|---|---|---|---|---|---|---|
+| accounts/admin.py | 6/23 | 1-3, 5, 7, 10-12, 15-16, 18-19, 22, 25, 28, 31, 34 | 6/6 | none | 23/23 | none |
+| accounts/backends.py | 27/36 | 3, 5-8, 11-13, 15 | 27/27 | none | 36/36 | none |
+| accounts/decorators.py | 15/22 | 1, 3-4, 6-8, 11 | 15/15 | none | 22/22 | none |
+| accounts/forms.py | 17/38 | 1-3, 5, 8-9, 11-13, 15, 25, 33-36, 38, 45-49 | 17/17 | none | 38/38 | none |
+| accounts/management/commands/create_demo_accounts.py | 32/43 | 3, 5-9, 11, 14-15, 17, 23 | 32/32 | none | 43/43 | none |
+| accounts/management/commands/create_demo_data.py | 38/55 | 3, 5-8, 10-16, 19-20, 22, 31-32 | 38/38 | none | 55/55 | none |
+| accounts/middleware.py | 6/10 | 1, 4, 7, 10 | 6/6 | none | 10/10 | none |
+| accounts/models.py | 6/20 | 1-3, 6, 13-16, 18-21, 23, 26 | 6/6 | none | 20/20 | none |
+| accounts/urls.py | 0/3 | 1, 3, 5 | 0/0 | none | 3/3 | none |
+| accounts/validators.py | 3/8 | 1-2, 5, 8, 17 | 3/3 | none | 8/8 | none |
+| accounts/views.py | 68/111 | 1-9, 11-13, 15-17, 20-22, 38-40, 45-46, 66-69, 106, 109-113, 130-134, 152-156 | 68/68 | none | 111/111 | none |
+| allocations/admin.py | 3/12 | 1, 3, 6-9, 19, 22, 25 | 3/3 | none | 12/12 | none |
+| allocations/forms.py | 0/13 | 1-2, 4-6, 9-12, 19-20, 23-24 | 0/0 | none | 13/13 | none |
+| allocations/models.py | 71/101 | 1, 3-6, 9-10, 13, 16, 20-24, 26, 29, 32-34, 37, 40, 43, 45-47, 80, 106-107, 226, 229 | 71/71 | none | 101/101 | none |
+| allocations/services.py | 32/47 | 1-3, 5-8, 10, 13-14, 23, 40-41, 50-51 | 32/32 | none | 47/47 | none |
+| allocations/urls.py | 0/3 | 1, 3, 5 | 0/0 | none | 3/3 | none |
+| allocations/views.py | 99/137 | 1-9, 11-15, 17-19, 22, 37, 47, 72-74, 102-104, 148-150, 192-194, 232-234, 251-253 | 99/99 | none | 137/137 | none |
+| audit/admin.py | 5/17 | 1, 3, 6-10, 12, 15, 18, 21, 24 | 5/5 | none | 17/17 | none |
+| audit/management/commands/purge_audit_logs.py | 11/19 | 1, 3-4, 6, 9-10, 12, 16 | 11/11 | none | 19/19 | none |
+| audit/mixins.py | 16/23 | 1-2, 5, 8, 23, 28, 32 | 16/16 | none | 23/23 | none |
+| audit/models.py | 15/50 | 1, 3-6, 9-10, 30, 33, 36, 39, 46-58, 60, 67-70, 72, 74-75, 77, 88, 91 | 15/15 | none | 50/50 | none |
+| audit/services.py | 6/8 | 1, 4 | 6/6 | none | 8/8 | none |
+| audit/signals.py | 8/19 | 1-2, 7, 9-10, 13-14, 18-19, 32-33 | 8/8 | none | 19/19 | none |
+| audit/urls.py | 0/3 | 1, 3, 5 | 0/0 | none | 3/3 | none |
+| audit/views.py | 8/19 | 1-4, 6-8, 10, 13-15 | 8/8 | none | 19/19 | none |
+| hms/decorators.py | 9/15 | 1, 3, 5-6, 8, 11 | 9/9 | none | 15/15 | none |
+| hms/forms.py | 6/13 | 3, 5-6, 9, 12, 18, 21 | 6/6 | none | 13/13 | none |
+| hms/http.py | 24/32 | 3-4, 6-7, 10, 17, 24, 47 | 24/24 | none | 32/32 | none |
+| hms/responses.py | 12/15 | 1, 4, 20 | 12/12 | none | 15/15 | none |
+| hms/security_headers.py | 4/8 | 4, 7, 19, 22 | 4/4 | none | 8/8 | none |
+| hms/urls.py | 0/4 | 1-3, 5 | 0/0 | none | 4/4 | none |
+| hostels/admin.py | 8/42 | 1, 3-5, 7, 10-13, 16-20, 23, 35-40, 42, 46-51, 53, 57-61 | 8/8 | none | 42/42 | none |
+| hostels/forms.py | 13/29 | 1, 3, 6-7, 9, 12-15, 18-21, 30, 34, 38 | 13/13 | none | 29/29 | none |
+| hostels/models.py | 59/110 | 1, 3-5, 8-11, 13-17, 19-20, 22, 26-27, 29, 37, 46-47, 49-52, 54, 59-62, 65, 73-75, 85, 113-114, 195, 199-203, 205, 210-211, 217-219, 226 | 59/59 | none | 110/110 | none |
+| hostels/urls.py | 0/3 | 1, 3, 5 | 0/0 | none | 3/3 | none |
+| hostels/views.py | 63/89 | 1-6, 8-10, 12-13, 16, 20-22, 49-51, 86-88, 114-116, 143-144 | 63/63 | none | 89/89 | none |
+| payments/admin.py | 3/14 | 1, 3, 6-11, 13, 16, 19 | 3/3 | none | 14/14 | none |
+| payments/forms.py | 2/18 | 1, 3-4, 6-7, 9, 12-14, 17, 20-21, 26-27, 33, 37 | 2/2 | none | 18/18 | none |
+| payments/models.py | 41/80 | 3-4, 6-10, 12, 15-17, 19-20, 28-29, 35, 38-42, 44, 47-51, 56, 63-65, 67-69, 87, 90, 111-112, 162 | 41/41 | none | 80/80 | none |
+| payments/receipts.py | 14/21 | 1-2, 4-7, 10 | 14/14 | none | 21/21 | none |
+| payments/services.py | 16/29 | 1, 3-5, 7-10, 12, 15-16, 23, 60 | 16/16 | none | 29/29 | none |
+| payments/urls.py | 0/3 | 1, 3, 5 | 0/0 | none | 3/3 | none |
+| payments/views.py | 55/91 | 1-7, 9-12, 14-17, 20, 35-37, 64, 102-104, 108-110, 119, 126-128, 139-141, 151-153 | 55/55 | none | 91/91 | none |
+| reports/admin.py | 0/0 | none | 0/0 | none | 0/0 | none |
+| reports/models.py | 0/0 | none | 0/0 | none | 0/0 | none |
+| reports/services.py | 19/26 | 1, 3, 5-7, 10, 56 | 19/19 | none | 26/26 | none |
+| reports/urls.py | 0/4 | 1-2, 4, 6 | 0/0 | none | 4/4 | none |
+| reports/views.py | 35/56 | 1, 3-7, 9-12, 14, 16, 24, 37, 47, 102-104, 108-110 | 35/35 | none | 56/56 | none |
+| scripts/run_checks.py | 0/95 | 9-19, 21-22, 34-36, 39-41, 44, 46-48, 50-51, 53-56, 58, 61, 63, 117-121, 131-135, 143-144, 148, 152, 155, 157, 159-162, 164, 167-168, 173-177, 180-185, 188-190, 193-194, 196-197, 205-207, 215-222, 225, 227-228, 233-235, 242, 245-246, 249-250 | 0/73 | 35-36, 39-41, 46-48, 50-51, 53-56, 58, 63, 118-121, 131-135, 144, 148, 152, 157, 159-162, 164, 167-168, 174-177, 180-185, 188-190, 193-194, 196-197, 205-207, 215-222, 225, 227-228, 233-235, 242, 245-246 | 79/95 | 35-36, 39-41, 46-48, 50-51, 53-56, 58, 250 |
+| students/admin.py | 0/9 | 1, 3, 5, 8-13 | 0/0 | none | 9/9 | none |
+| students/forms.py | 16/27 | 1-2, 4, 6, 9-10, 26-28, 43, 48 | 16/16 | none | 27/27 | none |
+| students/models.py | 11/46 | 1-4, 7-8, 16-19, 21-23, 25, 35-39, 42, 46-48, 54-55, 63, 68-70, 72-74, 79, 82-83 | 11/11 | none | 46/46 | none |
+| students/urls.py | 0/3 | 1, 3, 5 | 0/0 | none | 3/3 | none |
+| students/views.py | 53/86 | 1-8, 10-16, 18-19, 22, 29-30, 57-59, 86-88, 125-128, 176-178 | 53/53 | none | 86/86 | none |
+
+## Method, commands and limits
+
+The unchanged [measurement harness](evidence/hms19-unit-review-20261113/reproduce.py) attributes only exact selected methods and blocks database connections during discovery and execution. The [baseline288 and expanded 294 selections](evidence/hms18-capacity-20261113/README.md) pin179 current source/configuration inputs. The six added units cover real capacity boundaries, stale locked-bed identity, active self-save, release and transfer choices. Existing mock fixtures were updated to represent the locked Room and query shape; no original method was removed. Import/schema declarations receive no method credit. The raw harness retains its generic scope-pending text; the independently authored owner decision supplies acceptance interpretation without modifying raw measurements.
+
+The evidence README provides exact commands and environment. Full CI confirmation for the publication commit is recorded separately after it actually runs. Local measurements bind the clean implementation commit above; later documentation commits do not relabel it. Manual/browser, deployment, availability, instructor decisions, named human approvals and actual submission receipt are not established by these Python results. Occupancy reports retain their documented physical-bed semantics.
+
+## Historical measurements
+
+The following material preserves the updated main-branch account of earlier measured revisions, including PR #76/#77 owner scope decisions. Its figures describe those original sources; the current PR #75 implementation and source-bound measurements are above.
+
 **Final-main freshness check — PR #76:** main is `dd747ff758581424d9575ad7ff1fe443c51baddf` (tree `40cdc52fc61eabb728919d68d05c77b28d152745`). The PR #74 coverage source tree remains current for application code: the PR #76 delta contains documentation and the Sprint 1 demo only, with no application, test, or configuration changes. Therefore the measured figures below are preserved without relabelling their original tested source; the 55.55% all-application-statements companion and 100% owner-approved function-body result remain side by side.
 
 **Current merged-build coverage — PR #74 / HMS-19:** The exact tested source tree `d7b1023dcdd585f87318ce5ad8aa27a3e058b38c` passed [CI run 43440707669](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43440707669) on Python 3.11 and 3.14. The final merged revision is `a41f884`; the CI synthetic merge checkout used the same full tree. Full mixed-suite statement coverage is **1,782/1,798 (99.11%)**; the configured combined metric is **2,217/2,238 (99.06%)**, above its unchanged 70% gate. This includes unit, integration, startup and other mixed execution, so it is not the HMS-19 unit-only result. The separately owner-approved function-body unit result is **946/946 (100%)** across 288 isolated methods; the all-application-statements companion is **946/1,703 (55.55%)**. See the [HMS-19 evidence reconciliation](evidence/hms19-all-statements-20261113/ci-summary.json) and [Unit Test Report](Unit_Test_Report.md). The checked-in CI reconciliation preserves aggregate totals and hashes, but not the current per-file coverage export; detailed per-file tables below are retained as dated historical measurements.

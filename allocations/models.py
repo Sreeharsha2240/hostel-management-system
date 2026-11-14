@@ -113,7 +113,7 @@ class Allocation(models.Model):
         try:
             student = Student.objects.select_for_update().get(pk=self.student_id)
             room_id = Bed.objects.values_list("room_id", flat=True).get(pk=self.bed_id)
-            Room.objects.select_for_update().get(pk=room_id)
+            room = Room.objects.select_for_update().get(pk=room_id)
             bed = (
                 Bed.objects.select_for_update()
                 .select_related("room__hostel")
@@ -123,6 +123,11 @@ class Allocation(models.Model):
             raise ValidationError(
                 "The selected student or bed no longer exists.", code="NOT_FOUND"
             ) from None
+        if bed.room_id != room.pk:
+            raise ValidationError(
+                "The selected bed has moved to another room. Refresh and try again.",
+                code="BED_MOVED",
+            )
         previous = None
         if not self._state.adding:
             previous = Allocation.objects.select_for_update().get(pk=self.pk)
@@ -186,6 +191,19 @@ class Allocation(models.Model):
                 raise ValidationError(
                     "Select an available bed; occupied and maintenance beds cannot be allocated.",
                     code="BED_OCCUPIED",
+                )
+            # Historical beds can survive a capacity reduction. The Room lock
+            # serializes this admission check with allocations and room edits.
+            other_active = (
+                Allocation.objects.filter(
+                    bed__room_id=room.pk, status=self.AllocationStatus.ACTIVE
+                )
+                .exclude(pk=self.pk)
+                .count()
+            )
+            if other_active >= room.capacity:
+                raise ValidationError(
+                    "This room has reached its allocation capacity.", code="ROOM_FULL"
                 )
         self.full_clean()
         if self._state.adding:

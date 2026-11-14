@@ -1,0 +1,1804 @@
+{
+  "description": "Devansh-only current module contribution; not the full team Sprint 2 video",
+  "capture_date": "2026-11-14",
+  "human_participation": "none; automated current UI capture with text captions, no voice",
+  "team_video_status": "Complete two-minute team Sprint 2 outcome video remains missing",
+  "acceptance": "No final team, guide or instructor acceptance supplied",
+  "capture_started_utc": "2026-11-14T13:22:18.885309+00:00",
+  "source": {
+    "worktree": "<capture-checkout>",
+    "commit": "ccddcbfedb0a809a9bf1de5d67a50dd49070c9d2",
+    "tree": "767347feb6f6884406768f03a1dfc3194d4934b4",
+    "git_status_before": "",
+    "pins_before": {
+      ".coveragerc": "c9718d54238272c1979f9e8af890855bcdbd74688110d69f514a18a48f01efab",
+      "accounts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accounts/admin.py": "153041adfc78fdb054fef0f48c46375960f0d4f53f3d529624c220c0e3ae3784",
+      "accounts/apps.py": "c7f97d7d89f2a45fff24699ddeae1d727b473ebe5074d1ae05b8427c354a92e8",
+      "accounts/backends.py": "981a5e23cba1dc3747ed80a934847e25a3d56ad8510a206eb964d0374695282d",
+      "accounts/decorators.py": "ddaa548c6c3a5572fd148bc6bad9dc2fdd98c11f93cb63406e227958fc3388e9",
+      "accounts/forms.py": "36a16c399d45c57d3bf4bfe1394c3e9e2002152a2adfd2209f4ae4c8da87e2ec",
+      "accounts/management/__init__.py": "d83dfe629bfaa966f4d9b059a179401ea9282138ee9626afbbf23ab4061713dc",
+      "accounts/management/commands/__init__.py": "8884f09d482d6a795cfef54f39e21747fccf84f660f07c353985dd9a70559761",
+      "accounts/management/commands/create_demo_accounts.py": "22a657f9cc24450031574c422c52493d747c77dfe89098a071b0293141e128ba",
+      "accounts/management/commands/create_demo_data.py": "ffcf84c7f716c231d08c5028e800f44f94dedd4778835559ef63c78e8d5e9e01",
+      "accounts/middleware.py": "3a53e1e95502b4d2df1463c05850686fa23227335bba4dc8a1edf04317af4fe2",
+      "accounts/migrations/0001_initial.py": "e9bbbc8ccb97535cceb3ea1d75853548a4e9752d7f78ca5a3aeebc4720458b6f",
+      "accounts/migrations/0002_hms04_roles_and_lockout.py": "c84cdccfd0a68bb6389d4fdc8c34c74ac33aa343d2a4951c9318928677c1b571",
+      "accounts/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accounts/models.py": "a5265e9df98ee9e3015298638071cc15f71c0c525138b49baf62aec545888523",
+      "accounts/templates/accounts/dashboard_admin.html": "6d27a0b5c9e1b34f6f1bcad7a679834ecead8ca205e672318f17001ae67f718f",
+      "accounts/templates/accounts/dashboard_student.html": "b3b60dd2959c7a6e14f69f03bb369c1c79dac241f062a8ff2b776c6f0ea247e5",
+      "accounts/templates/accounts/dashboard_warden.html": "91c44005af5067b2a06c83fc7da2df326d4cd1a018eb01caa3cfb05801ec4c8d",
+      "accounts/templates/accounts/login.html": "74efef06efb90893e2c4ece03d424307324a88eeb34cb426660b79f9ed1d2319",
+      "accounts/templates/accounts/settings.html": "2b322b9037026c807123dd903c96ccbddcefda37258f0f1be9b91b60381ef672",
+      "accounts/templates/accounts/user_management.html": "e9e7ced93f8ae6e3e9c944f6479422059bfe2d4d4228864c6b69609817fc8d53",
+      "accounts/templates/accounts/user_update.html": "7917fad4a2e730eaa0a3313a37aed6f48588be249fe8831b1f613366c14e92d7",
+      "accounts/test_auth_view_units.py": "fb9769878ee5912106d407020b5ba86a3a6f74679f5f9732d927431b054b73fe",
+      "accounts/test_backend_regressions.py": "2130ccc61b04fadd6a309294c714476040278ec70cf271ef514c1ff10d228eb9",
+      "accounts/test_backend_units.py": "2531d4e75cd01504bff400d2a27dc284affd2fd9b0eff66ccec7b54bd63b929a",
+      "accounts/test_demo_command_units.py": "2d26a6e33b6b76c8301dc826fa26d77544416178c312437a72bfaa189d3b790d",
+      "accounts/test_demo_data_units.py": "0786d787471ed394492fd47f3ee817d19730849169d437175a7e121a7a0d7bb5",
+      "accounts/test_form_units.py": "f51dc9d1e888af2017d1cd6d47afcd33f12d3591d6b5a3bc9900d211aa07187b",
+      "accounts/test_issue38_gaps.py": "fcef5cfa44b7e0343915fbb716263ef702d87f8940901297386031286f207ce3",
+      "accounts/test_private_middleware_units.py": "21903e22386ceb547d5f3db136da79dbd8f09abef9a3132c9c65048577cb5526",
+      "accounts/test_remaining_view_units.py": "e8d197cdd9b0e03f722455a90167efbb1d4ff357626907867c1ba5a314eb2068",
+      "accounts/test_security.py": "b8fa6e1175add2cd6bed65ffddc879bb7aae8529e2ce2a410e561acfc41d559b",
+      "accounts/test_settings_view_units.py": "cbb90d4ea3d24f60d6aa7229c5c2367f2cca4eb57da6dc7181d5ac65af7475be",
+      "accounts/test_user_model_units.py": "161e020ef285d308677d1f03d683d28eed93d602a0cbf3e297984c11f07e9a1c",
+      "accounts/tests.py": "4a78477a901a9bb802985f3ea0028b58a653fdbd58dab75d917d3296c5adfcd0",
+      "accounts/urls.py": "bbddf3d4043e78a8897792854b46e2e69cca9f28ad021b4daccca247c2fcfc7d",
+      "accounts/validators.py": "c044ae9ba59a272d9e8dd91b1d4dbea32af12f338691bd0656a10fbad49ed86f",
+      "accounts/views.py": "b632e024369f088586e997b281297a81f368cd1ba4c84b0c86989c4e31fcc2f5",
+      "allocations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "allocations/admin.py": "3899c77d7fde5c03d8a925119cea838219874810ca65e202d2839bd2c4af8586",
+      "allocations/apps.py": "dfb1c46eca9c5da2635c770d59dd5f1c79c50894a429dd881096ac93b1823d26",
+      "allocations/forms.py": "d7f2e3d0bc42d7170b3d48ea97cf6d0110224a749b26e8bcd46e11a722a7724c",
+      "allocations/migrations/0001_initial.py": "e7b685b14509b1075a01bc39043999a6a516a1f45a32840b9076229298616a70",
+      "allocations/migrations/0002_remove_allocation_unique_active_allocation_per_student_and_more.py": "f2ee2efc56e09c66f6f11813e186faec9254d0305a7195ca3444032fc6cf4d6c",
+      "allocations/migrations/0003_allocation_integrity.py": "55b1f9b2f00a949d71a8c1f360d9ec9cebbaa5ba60fda47e833b2ac9da13e11f",
+      "allocations/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "allocations/models.py": "742c6f6f7f6e6a05763e0624fe1770279bfe227343cde490561112fd4ae23006",
+      "allocations/services.py": "96146beece0d45fe568c12aff35e9979ec8cf5d6ed46be4def6b9cc059744b24",
+      "allocations/test_lock_unit.py": "54f3021193c5daf75a390f711a0c4fb82c6f319f4ba9beb17e26e7c4166c5cbb",
+      "allocations/test_migrations.py": "f7af22824abe3d453692a52fb984bfafbf5da171e518daefe562a04e9aef191a",
+      "allocations/test_remaining_view_units.py": "9b03136e82a645d06e81c4cf015ff0e014b388a6ec0e416f2cfe513798607e1f",
+      "allocations/test_room_capacity.py": "6bb268e197b438c9f0d4f41bf8fb8b93f779905cb59ba6f47896d6f354c941d5",
+      "allocations/test_save_unit.py": "5c2e7e414bb5251096ee06333b55a9c0fc128952761f3d0d117f1c90546ad4c5",
+      "allocations/test_services_unit.py": "ebca3e5e445cd843c9def211ff51798ff1792194d8a682a313a8470ab34edf9f",
+      "allocations/test_validation_units.py": "6c7f36b692405243717641d8ec9bdae90ca38125e8218a1a8ca5b8a11b778c51",
+      "allocations/test_view_error_units.py": "ccc9c34a24a846bd99c715960bf9a08e19b36b5dd69a76a8b5c1d83613a95398",
+      "allocations/test_workflows.py": "ffc70b3d3859b1069737d52e9d5b541160fbe490f5fa7913753886153b95e952",
+      "allocations/tests.py": "ac759ac5051f4c00628059bca35974b258dafd08b339b765fb74bc947998d24a",
+      "allocations/urls.py": "a91787308875e1b46bed5ec4ec575d9713ff68a61efc5f341f3be095b0bd4b90",
+      "allocations/views.py": "1f74ee1495fd30864bfd4176b7211973cc4cbb67e92e652a6d04be02879bb211",
+      "audit/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/admin.py": "dc831bc7f947cf3f6d3dbeeccd952bc60f9ec09a1a46574234e4a84f768479d7",
+      "audit/apps.py": "7efb5fee94283f8a46e7ab19a0add30d1f752d0e46713156b1fba0e04554cb30",
+      "audit/management/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/management/commands/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/management/commands/purge_audit_logs.py": "9c2857a320979129421928dd0ea34dab009087abfd53cff33c875ab6675c7125",
+      "audit/migrations/0001_initial.py": "8e4e7ab4445bfa73d10a8acb4dfb9dc3a7d09aa8516deba9fb87f9cd60edbf2a",
+      "audit/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/mixins.py": "ad51ecaa918ccd00e47eb766f1753516faa5988c4aee48860ca6c2fa57081f8e",
+      "audit/models.py": "0d38e33641510111eb1e861ccac957c51bdb95bc378285670ad3ea802c553d9d",
+      "audit/services.py": "75770d22ff4d0a931111aba52fd5db67ea681b63b25f4c1756ef60aa5fdac651",
+      "audit/signals.py": "2ddd893281ad62932cda7c53b99a81810203f39949040678bd51b87eb36466bb",
+      "audit/templates/audit/event_list.html": "807ae83da54a11b6eddf412ca6aef16055b88638160f37938ca3ef9cbaddae20",
+      "audit/test_purge_unit.py": "44476962ba808820c81e44648379d5ac2b1472475af5887f44985ac2f13e532b",
+      "audit/test_signal_units.py": "cfc8f5bfabd3893dcc46f69f4ee0d880d8f4a4c36b1f5447ca69a862cdd534a5",
+      "audit/test_unit_contracts.py": "2cb0d004601b6d5075c8d8bf27b4c56647ce3d0054ca8a29d3867d974fbeca8f",
+      "audit/test_view_units.py": "e9eeffcd72838facfb469698e66d84b1cf7e3184321712bbdedebed5f5fba9bf",
+      "audit/tests.py": "b22e1e60d698ef9a655cfd126dd6bfe9af86cf59c859203a8766bf27650c67cd",
+      "audit/urls.py": "fee50c148fe8b6a030e3a1b7d6de03be97bae14653d3c863f2a26111921e0959",
+      "audit/views.py": "491a7b0058471bbe2e5cbca2e2158d98b6ab56866690d4a6f2c757a07d6fdb9e",
+      "docs/part3/evidence/hms19-scope-20261113/reproduce.py": "cf6ddfd19bbad22d514f51ce6513f00868c14dad5f5643269a4157d36f4e9f2b",
+      "docs/part3/evidence/hms19-unit-review-20261113/reproduce.py": "fb7d6bbab2bd1b0883ef6a34d92bc2ec7dfdaf4cec4a7cbc1548d7f4fde1fafc",
+      "docs/part3/evidence/hms19-unit-review-20261113/test_reproduce.py": "e51c95a9f6f1060e9dd93956af716f1d692c2242cfdf689ac581c66e46ebf76d",
+      "hms/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hms/asgi.py": "d69fa179c865ecc40495fe56354c96684ae1010ca14e742810c9146ffdc86f0f",
+      "hms/decorators.py": "1557ba69822d5eee2e2dc85a10831cf95064f035e4a9ae49d01c7e711e60cc78",
+      "hms/forms.py": "cd9827bf07734936dc14ba931742068d1a609f142a579223f3d19005be4facdd",
+      "hms/http.py": "859fe772935cbd18f8a4fe670e16bb813304119248f4ccf0331d2495969b6cf5",
+      "hms/responses.py": "85d36d9a1895ec4ecd05035127811023c483ffd4e0aa1e277af25728c9344263",
+      "hms/security_headers.py": "fec0afa25d94999fb9b5ed4430ffec8682f3508c86045b482fc2ca4dfe594701",
+      "hms/settings.py": "b5f062fbe7fef57d80de44bf59e52bd4d159ccf95e90a49ea8f54ddfdcf330d2",
+      "hms/test_admin_security_units.py": "4f3cf2153ab9b2123c319c0fc59a14a4fbf1e272aa10dd29e945325d1d0fc5ec",
+      "hms/test_forms.py": "338d3f4b6e9ba4438581a26d867918fa2bdd16eaa959fb4612afc9b5c949dbf5",
+      "hms/test_http.py": "263eea316721e3f85e46f80987cce6677aea39ccb28fdaefad103d080512ae46",
+      "hms/test_more_view_units.py": "851d83dbd03fd00de13766a768414d946136478873146b0550ce52c2ed6dfb5d",
+      "hms/test_navigation.py": "775e907b363e212dd81e73f0b8631288133bab447507a5fa6d2beeb005ee0230",
+      "hms/test_remaining_model_units.py": "e5201c2f22a1cd9bc820d08b4260f238bbbd98a710c18c927e3551d15c4d6004",
+      "hms/test_responses.py": "7eed893af8ed9275cca95dbded0c1a93c36c7a65ec0927c7534a958767f2f218",
+      "hms/test_settings.py": "2c17be0bb0725550b237c6dc93945c99ea9641a167361e1b25ba76d73de460ec",
+      "hms/test_system_journey.py": "27715a5a400e751a5ca487118f21272e0a21c8ae2e03448cfc5c2bfb5b0de74e",
+      "hms/test_unit_contracts.py": "48659a42ff1ed797508f358599451ef42aaf36df2948013a00ee1e9eea49b81c",
+      "hms/test_unit_endpoints.py": "5cf21272c39ae5fc3a5b15fdb1fc40eb82e48e36f43e7f334d7b0c6fbb533056",
+      "hms/test_unit_workflows.py": "0d2c6723d41ac48dba659bf34ea44c9cb2574dfc8edd057d4803510216a8cf02",
+      "hms/test_validation_response.py": "4715bee43cc2066dcefc02c4f6477cab05baf30442dda95248a9d05fbcf4cb00",
+      "hms/tests.py": "5ce0cbb8dbaf935afd133b98124586de6e64a08f3e0d7056b56592ede1750c21",
+      "hms/urls.py": "f2228dbe724b3aa910cca816b730996e977388a0567b1829e65a26b2bdf95167",
+      "hms/wsgi.py": "8bbf6a9d5d9f866ce198b061de818cdefdccf9ac351afcef4563b7d6c6f6b8e6",
+      "hostels/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hostels/admin.py": "5372ab93fd788374af3ee71ed4366fe86efb1ad9dfb40566cbe3777bb2ac6e7b",
+      "hostels/apps.py": "1eb5a062030445bb0464db1e0871800dea88c56d00e7a124930e5ad560bd8072",
+      "hostels/forms.py": "d598e7197d165518828c9be013d597ec4f4917e69629d1d04539dfeafd09987e",
+      "hostels/migrations/0001_initial.py": "108a5b8f28890542cfd86e3d4654d092cec0305b97c084ca353948c12f2efd4d",
+      "hostels/migrations/0002_room_fee_amount_room_nonnegative_room_fee.py": "99086eae4186496810c66cba49d5bf0582ef738d50ffcb3303c5347a47b9cd08",
+      "hostels/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hostels/models.py": "5bf3d2c1e349b36661d3be6a21580ba9ff3dcfb202bf5cf0d8f02fb73ab8b360",
+      "hostels/test_form_rule_units.py": "50200164de3e29116e326c3056b7690b528659f54aa0f7d4a46a9f886f80d243",
+      "hostels/test_model_contract_units.py": "a45666f2ca43a608d61880cb1cf9f4ffa6d1d1e608c470494eca75c5f40b039c",
+      "hostels/test_partial_room_save.py": "0460614d6549c2a1ed586d0f47ca53bf4797aa8a7f574616f02ef338a6471e1e",
+      "hostels/test_remaining_view_units.py": "f313576e65a6216624e8e68e899d548eeaf6ae30c8fe43f19e0e3ea11f0818cd",
+      "hostels/test_room_unit.py": "1e64b0375be8a0146a05bbae11f8ab060f393b4c082217f0c51888d7bd538da5",
+      "hostels/test_views_unit.py": "078e386ba82fbb7699af4c97b059f204a9635e7e51290f3d4b7961286f633394",
+      "hostels/tests.py": "9a327e0bb6561b92e4ea46a4dbffaf0a880dccee2bed29f6d210c81ea6044635",
+      "hostels/urls.py": "34a7e1cb3836c70f06d68348beedede3c68aebddf4494eb83c7fa3d676d1eeb1",
+      "hostels/views.py": "b32168552bc15f8cfc0a1dc99b891fa78ab584c68d1035cfc10e3d5e704117c2",
+      "manage.py": "b4e763c1311508ce729096040e701a2ff229b648c03e60679d01d644a660cada",
+      "payments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "payments/admin.py": "a0502cb5a3fbf4a3f78f76d4b7eee725f5763a5025693a18202df0de0f8cf8e8",
+      "payments/apps.py": "4357bc9626e1ed75fa674755108dcdd275f27e2c473e4384ff38249acd03d694",
+      "payments/forms.py": "17885accddc50c1ad97d28038b0306ac6fc302814381cfbfbd156533bd5d5c8d",
+      "payments/migrations/0001_initial.py": "ba4cf8b53bba13d573eaf4b8e82b76b3d304a345e753cd8a84fbaa558cda43dc",
+      "payments/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "payments/models.py": "20f24ae31cca01e7aa207f7de90571c31c3a492152205b269a7c193a9afb4f8f",
+      "payments/receipts.py": "a200b4df20df769f86014fb42579a200e25bfeb3cb6c00e5c02e35e89b86b04a",
+      "payments/services.py": "43f9d3122a90f02589634d55297594983efbcc0b1ab55d29a10a3041dfbd52c9",
+      "payments/test_immutability_unit.py": "9ab45855d2439849a9acd656f1fae3debcc0d5c05db7040e6845de719bf911ad",
+      "payments/test_receipts_unit.py": "31621a5359175a829410e455a1897784d1abba4ff2ca4330bbcd434854507cc3",
+      "payments/test_remaining_view_units.py": "62407e8edcc5ad16d2a8e3979b55e7493f1eae4f33996e45bf44a733e0ea1630",
+      "payments/test_save_unit.py": "2f73bf787bcaf1bb0a21713f59bc5e269a997298d9d2ea01d23b6294b4d08db2",
+      "payments/test_service_query_units.py": "498282328be009a4e6178250a6e316905ec7a6df6e65a4f30320ef4f4c5d0710",
+      "payments/test_status_units.py": "5fa77f957f01a2d42c15efe2d9f58ebfab292af8c73364fe01a0e884d07ba35a",
+      "payments/test_view_units.py": "dc7c68521c004ac177d23226feb8b462476b6d020f338a9ecdb4b63ea0b3110d",
+      "payments/test_workflows.py": "f8c05aa3305c10d7b4c0d1a9fa400dcf8a25ea7c6ec8cb4810cbc1deb1445a40",
+      "payments/urls.py": "f55e5cad9c6ad47b3ca6b0c3b987610550640ff17790e1b350b9777bcc315a87",
+      "payments/views.py": "7ae37c17b68d8112608a88626c50aa4c0d1746f726102e93947beedb4b3c1705",
+      "reports/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reports/admin.py": "45d9d4108b7c9fd9feab52357e95993821b733ad3e662949ea9d9690a38ce6d1",
+      "reports/apps.py": "4459b83e533ad5c817767420954f64292d5b6eba6c2d344fb6a95f85449fec90",
+      "reports/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reports/models.py": "3eb07bb5bb2429c4152a459ea520b2b81afbc0f543ebbd63db4108628dc17886",
+      "reports/services.py": "05912eb7273e44919b25fbf235b0355825e00826703d7d8c3a5db6bf32dc0e59",
+      "reports/test_remaining_view_units.py": "a5c3e66c2a582e1fe3a358953932323eaba2eea808c3f71e5c8838e9bcc8a079",
+      "reports/test_reports.py": "c8cc1082a255c0628d59154fd009a983e9b6c6d4c62a5fd75629ab6c35a16b01",
+      "reports/urls.py": "2e44451772a65a3a80dccfad07fb1967e9befc3c0bf1254554d8d878a212f306",
+      "reports/views.py": "39a1505f49b4566271ce8a904af74998596fed9899cdd1836b3724fe62d18e5b",
+      "requirements-dev.txt": "396627fb7580dff047e30f29344e3b833a3849a68bdcdaf53e429ff4201fc137",
+      "requirements.txt": "fce9f192ae9094fd441af0bae743b846b4fc8f2aa085334e8d33f1f658583cfa",
+      "ruff.toml": "385ab3980985e0863506e77349954470f4f4be532ea570f26d87d35733b539a1",
+      "scripts/part3/backup_issue40.py": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+      "scripts/part3/run_issue38_focused.py": "e06aedb4d644091a83cd8647ad708d59af522e86273e669ebaf3aa6eed7f9847",
+      "scripts/part3/run_issue40_browser.py": "4c662c118415b5faa9fca02517915b976652cdf892f7c9571634d6d602630e10",
+      "scripts/part3/run_issue40_load.py": "15ecafeae3daf0f9c353a929c2e84d6356dfe838217d30ed8e036d334c2747c1",
+      "scripts/part3/run_issue40_recovery.py": "995654f432baab0b67b28be623ce832249842369f7f3b8907250ad15c94518c5",
+      "scripts/part3/run_owned_regressions.py": "73572719d612b0462dbd72e4d1111598b5735e8974179f32ba3c3982096f1a78",
+      "scripts/part3/test_issue40_browser.py": "be6d1d56a6077d28189b309bc0d86baf4a47482f099490b8e4ecafff75bce1b1",
+      "scripts/part3/test_issue40_load.py": "80665cdb39f42908c323acd95271c4078f13c6b9023f451a3bc1b46a1c1aac1a",
+      "scripts/part3/test_issue40_recovery_safety.py": "062a84239551e227550183e2e08ef5606b70932271195ec1c448f08845bd6ec4",
+      "scripts/part3/test_owned_case_support.py": "54946ea3b46c95ee383abfe64a2e5aeb9c2a5525229508b735285c5df1ab9269",
+      "scripts/part3/test_owned_reports_inputs.py": "eb936bb1e5590085a902cd2179a34028ad45cffffdf6b640574b9367fbc1d147",
+      "scripts/part3/test_owned_runner_safety.py": "80c6699b7f5887a420a558579b8c41905c2e6e7a19d45a1d46d68b6cdb0b18ba",
+      "scripts/part3/test_owned_transactions.py": "e83e10e9198306eb73fd2b91e69686bfac68559fd7f916324514b7db6c30f7fa",
+      "scripts/run_checks.py": "257fb4306f6943e7396db781f9ee7c47f180878e2851494b17a5f086c1c2ee62",
+      "static/hms/app.js": "c5ab7c6373e1a176f70905e75e3145fbd31540dc9fd19e35d3b71e50432e9c9a",
+      "static/hms/styles.css": "aed96601fe30f08a26934148c690020e4210a4902e9946315c3a2adbbe87f996",
+      "students/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "students/admin.py": "4f11570309dcefdb3af7cbd6325c10e79c037297bc8a7f6f2ae7e65a3af51f0d",
+      "students/apps.py": "67496af5ea6c06477243e58305d9807c0041068a059331cf0f1a76743bea80c5",
+      "students/forms.py": "9945a8af77e90451a2a4547360b0594130576594b276a27b691ff799392c0278",
+      "students/migrations/0001_initial.py": "c252869024b1f0b8e3ad308c081a99c640026c098c63985d53a05c9498ccc5ae",
+      "students/migrations/0002_student_user_link.py": "fa9476d32610048afbf57ea6fc64625e49b4795cede0421ae369e46b9971b958",
+      "students/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "students/models.py": "6890361e98a59267fa8650a0619e334451d305f5387bcef2258cd9fcec09bbe6",
+      "students/test_form_contract_units.py": "934a18895e2193ec602ff673923e48c693edb0d6d13e30dc81df4afb08029b1f",
+      "students/test_issue39_regressions.py": "1e29f40f4c92a71b5ff3c233cd85516eaf6507ebf0a7f5256da093a5d2dc67a4",
+      "students/test_model_units.py": "fb66d949e87c218eb6874ae9f426e7a3edcc0c38cb7395fc8743254955e43c18",
+      "students/test_remaining_view_units.py": "b6b30aee3b22b8fc1f9af5860a4dcc9f74bff3ee5363c6314a8675ad2ada6aa8",
+      "students/test_self_service.py": "9d4bc9d01e25b917ae67f2f24f6d8d1e0bf15df9462cb969c555f966bd5d0f02",
+      "students/test_view_units.py": "7efd8e60b49e0146dde0efe97c9b40210820b991b32979f2a1cd46493df0ddef",
+      "students/tests.py": "d1d7f5604014f05e239fceb5a6a1149ee9e8485dd11cbecbff3d99170ecba62d",
+      "students/urls.py": "525674c1ff5fb167fad46400a6ab96ceb67549871092fb3db228d332cc51761c",
+      "students/views.py": "171130210cd2c94138bc224c03c350f8ffdf24048b0a2c70c73a7b5c6f1a3ba7",
+      "templates/allocations/allocation_form.html": "84a51805366d6779790793539b261c130f7a9ca776b1c2652edba211ca087ccd",
+      "templates/allocations/allocation_list.html": "cdcba29261a5d45c780949bcf0cb89b7f58e409216b74e5288d047bbaf7d0481",
+      "templates/base.html": "44c41d9a061f2d5dbacbdff3de9729e2b0db8beb8ede2d6c128f0a553f671a86",
+      "templates/hostels/bed_list.html": "407c1cc37955a52692293970e769d968a59bd9be58c4fa7aec86f6f9b8663218",
+      "templates/hostels/hostel_form.html": "19795df3131bb6ec62117e0d03178e173a8f20d852edd53d84945c778a788ea7",
+      "templates/hostels/hostel_list.html": "93e3e7f65ae50987acaebb40f2cbe82372ad402950650abaed48b557f6965a4f",
+      "templates/hostels/room_form.html": "4b7c7108f834d102991a9603dfb039ebbeadfbcf825e824d6defa235c826a73a",
+      "templates/includes/form.html": "f9ab6ef2af4b840e62db11376485745f8ff7f635d04e12bc6cf1ab41ba2b6166",
+      "templates/includes/pagination.html": "29ef0d23541c6befbfe5a955a81f3ec8148d01ab2521e935e8a8d110571ea4ad",
+      "templates/payments/payment_form.html": "c1e9e7b7e081158591c762de24043c25d3bceda48d1ec55d0a22263eab331c9a",
+      "templates/payments/payment_list.html": "c2cc292f25778e05a7e327f0b50dda57fc44f06e564e70d70f117df37aef7699",
+      "templates/payments/receipt.html": "660dd024647ba1cd677eddb567278d564ce001dc9a3f3ecb63613820dac3c244",
+      "templates/payments/status.html": "c642123cb8f6c20404e20189eb717642da0c9c31a9ca6b21d9235fd1d12b995f",
+      "templates/reports/report.html": "576521e5f215a1418826b7820bcd4af394427e94e7b18f89a7307c39d1819650",
+      "templates/students/my_records.html": "c868a9dad4e2c56812d35cd503e33286e12b71771c77704e7748dc68c7f5aa2d",
+      "templates/students/student_form.html": "f45d7611f5a54f95fca6258e9bfb1b74843a4dcbbf7025b466e0a56d22ece4a5",
+      "templates/students/student_list.html": "08c829dd15f0c72f12e3527caa3abdbaf493df380d2bd00f51623a7a5e804463",
+      "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/factories.py": "74eef48366c210a5e2742e725f81ab85ae34b0ed4876048bb35a4ee1af69c1fa",
+      "tests/test_checks.py": "658fdfd3302da9566510fd29c1456ab621287ac46a11ff458e64ba3282a67b9b"
+    },
+    "pins_after": {
+      ".coveragerc": "c9718d54238272c1979f9e8af890855bcdbd74688110d69f514a18a48f01efab",
+      "accounts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accounts/admin.py": "153041adfc78fdb054fef0f48c46375960f0d4f53f3d529624c220c0e3ae3784",
+      "accounts/apps.py": "c7f97d7d89f2a45fff24699ddeae1d727b473ebe5074d1ae05b8427c354a92e8",
+      "accounts/backends.py": "981a5e23cba1dc3747ed80a934847e25a3d56ad8510a206eb964d0374695282d",
+      "accounts/decorators.py": "ddaa548c6c3a5572fd148bc6bad9dc2fdd98c11f93cb63406e227958fc3388e9",
+      "accounts/forms.py": "36a16c399d45c57d3bf4bfe1394c3e9e2002152a2adfd2209f4ae4c8da87e2ec",
+      "accounts/management/__init__.py": "d83dfe629bfaa966f4d9b059a179401ea9282138ee9626afbbf23ab4061713dc",
+      "accounts/management/commands/__init__.py": "8884f09d482d6a795cfef54f39e21747fccf84f660f07c353985dd9a70559761",
+      "accounts/management/commands/create_demo_accounts.py": "22a657f9cc24450031574c422c52493d747c77dfe89098a071b0293141e128ba",
+      "accounts/management/commands/create_demo_data.py": "ffcf84c7f716c231d08c5028e800f44f94dedd4778835559ef63c78e8d5e9e01",
+      "accounts/middleware.py": "3a53e1e95502b4d2df1463c05850686fa23227335bba4dc8a1edf04317af4fe2",
+      "accounts/migrations/0001_initial.py": "e9bbbc8ccb97535cceb3ea1d75853548a4e9752d7f78ca5a3aeebc4720458b6f",
+      "accounts/migrations/0002_hms04_roles_and_lockout.py": "c84cdccfd0a68bb6389d4fdc8c34c74ac33aa343d2a4951c9318928677c1b571",
+      "accounts/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accounts/models.py": "a5265e9df98ee9e3015298638071cc15f71c0c525138b49baf62aec545888523",
+      "accounts/templates/accounts/dashboard_admin.html": "6d27a0b5c9e1b34f6f1bcad7a679834ecead8ca205e672318f17001ae67f718f",
+      "accounts/templates/accounts/dashboard_student.html": "b3b60dd2959c7a6e14f69f03bb369c1c79dac241f062a8ff2b776c6f0ea247e5",
+      "accounts/templates/accounts/dashboard_warden.html": "91c44005af5067b2a06c83fc7da2df326d4cd1a018eb01caa3cfb05801ec4c8d",
+      "accounts/templates/accounts/login.html": "74efef06efb90893e2c4ece03d424307324a88eeb34cb426660b79f9ed1d2319",
+      "accounts/templates/accounts/settings.html": "2b322b9037026c807123dd903c96ccbddcefda37258f0f1be9b91b60381ef672",
+      "accounts/templates/accounts/user_management.html": "e9e7ced93f8ae6e3e9c944f6479422059bfe2d4d4228864c6b69609817fc8d53",
+      "accounts/templates/accounts/user_update.html": "7917fad4a2e730eaa0a3313a37aed6f48588be249fe8831b1f613366c14e92d7",
+      "accounts/test_auth_view_units.py": "fb9769878ee5912106d407020b5ba86a3a6f74679f5f9732d927431b054b73fe",
+      "accounts/test_backend_regressions.py": "2130ccc61b04fadd6a309294c714476040278ec70cf271ef514c1ff10d228eb9",
+      "accounts/test_backend_units.py": "2531d4e75cd01504bff400d2a27dc284affd2fd9b0eff66ccec7b54bd63b929a",
+      "accounts/test_demo_command_units.py": "2d26a6e33b6b76c8301dc826fa26d77544416178c312437a72bfaa189d3b790d",
+      "accounts/test_demo_data_units.py": "0786d787471ed394492fd47f3ee817d19730849169d437175a7e121a7a0d7bb5",
+      "accounts/test_form_units.py": "f51dc9d1e888af2017d1cd6d47afcd33f12d3591d6b5a3bc9900d211aa07187b",
+      "accounts/test_issue38_gaps.py": "fcef5cfa44b7e0343915fbb716263ef702d87f8940901297386031286f207ce3",
+      "accounts/test_private_middleware_units.py": "21903e22386ceb547d5f3db136da79dbd8f09abef9a3132c9c65048577cb5526",
+      "accounts/test_remaining_view_units.py": "e8d197cdd9b0e03f722455a90167efbb1d4ff357626907867c1ba5a314eb2068",
+      "accounts/test_security.py": "b8fa6e1175add2cd6bed65ffddc879bb7aae8529e2ce2a410e561acfc41d559b",
+      "accounts/test_settings_view_units.py": "cbb90d4ea3d24f60d6aa7229c5c2367f2cca4eb57da6dc7181d5ac65af7475be",
+      "accounts/test_user_model_units.py": "161e020ef285d308677d1f03d683d28eed93d602a0cbf3e297984c11f07e9a1c",
+      "accounts/tests.py": "4a78477a901a9bb802985f3ea0028b58a653fdbd58dab75d917d3296c5adfcd0",
+      "accounts/urls.py": "bbddf3d4043e78a8897792854b46e2e69cca9f28ad021b4daccca247c2fcfc7d",
+      "accounts/validators.py": "c044ae9ba59a272d9e8dd91b1d4dbea32af12f338691bd0656a10fbad49ed86f",
+      "accounts/views.py": "b632e024369f088586e997b281297a81f368cd1ba4c84b0c86989c4e31fcc2f5",
+      "allocations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "allocations/admin.py": "3899c77d7fde5c03d8a925119cea838219874810ca65e202d2839bd2c4af8586",
+      "allocations/apps.py": "dfb1c46eca9c5da2635c770d59dd5f1c79c50894a429dd881096ac93b1823d26",
+      "allocations/forms.py": "d7f2e3d0bc42d7170b3d48ea97cf6d0110224a749b26e8bcd46e11a722a7724c",
+      "allocations/migrations/0001_initial.py": "e7b685b14509b1075a01bc39043999a6a516a1f45a32840b9076229298616a70",
+      "allocations/migrations/0002_remove_allocation_unique_active_allocation_per_student_and_more.py": "f2ee2efc56e09c66f6f11813e186faec9254d0305a7195ca3444032fc6cf4d6c",
+      "allocations/migrations/0003_allocation_integrity.py": "55b1f9b2f00a949d71a8c1f360d9ec9cebbaa5ba60fda47e833b2ac9da13e11f",
+      "allocations/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "allocations/models.py": "742c6f6f7f6e6a05763e0624fe1770279bfe227343cde490561112fd4ae23006",
+      "allocations/services.py": "96146beece0d45fe568c12aff35e9979ec8cf5d6ed46be4def6b9cc059744b24",
+      "allocations/test_lock_unit.py": "54f3021193c5daf75a390f711a0c4fb82c6f319f4ba9beb17e26e7c4166c5cbb",
+      "allocations/test_migrations.py": "f7af22824abe3d453692a52fb984bfafbf5da171e518daefe562a04e9aef191a",
+      "allocations/test_remaining_view_units.py": "9b03136e82a645d06e81c4cf015ff0e014b388a6ec0e416f2cfe513798607e1f",
+      "allocations/test_room_capacity.py": "6bb268e197b438c9f0d4f41bf8fb8b93f779905cb59ba6f47896d6f354c941d5",
+      "allocations/test_save_unit.py": "5c2e7e414bb5251096ee06333b55a9c0fc128952761f3d0d117f1c90546ad4c5",
+      "allocations/test_services_unit.py": "ebca3e5e445cd843c9def211ff51798ff1792194d8a682a313a8470ab34edf9f",
+      "allocations/test_validation_units.py": "6c7f36b692405243717641d8ec9bdae90ca38125e8218a1a8ca5b8a11b778c51",
+      "allocations/test_view_error_units.py": "ccc9c34a24a846bd99c715960bf9a08e19b36b5dd69a76a8b5c1d83613a95398",
+      "allocations/test_workflows.py": "ffc70b3d3859b1069737d52e9d5b541160fbe490f5fa7913753886153b95e952",
+      "allocations/tests.py": "ac759ac5051f4c00628059bca35974b258dafd08b339b765fb74bc947998d24a",
+      "allocations/urls.py": "a91787308875e1b46bed5ec4ec575d9713ff68a61efc5f341f3be095b0bd4b90",
+      "allocations/views.py": "1f74ee1495fd30864bfd4176b7211973cc4cbb67e92e652a6d04be02879bb211",
+      "audit/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/admin.py": "dc831bc7f947cf3f6d3dbeeccd952bc60f9ec09a1a46574234e4a84f768479d7",
+      "audit/apps.py": "7efb5fee94283f8a46e7ab19a0add30d1f752d0e46713156b1fba0e04554cb30",
+      "audit/management/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/management/commands/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/management/commands/purge_audit_logs.py": "9c2857a320979129421928dd0ea34dab009087abfd53cff33c875ab6675c7125",
+      "audit/migrations/0001_initial.py": "8e4e7ab4445bfa73d10a8acb4dfb9dc3a7d09aa8516deba9fb87f9cd60edbf2a",
+      "audit/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit/mixins.py": "ad51ecaa918ccd00e47eb766f1753516faa5988c4aee48860ca6c2fa57081f8e",
+      "audit/models.py": "0d38e33641510111eb1e861ccac957c51bdb95bc378285670ad3ea802c553d9d",
+      "audit/services.py": "75770d22ff4d0a931111aba52fd5db67ea681b63b25f4c1756ef60aa5fdac651",
+      "audit/signals.py": "2ddd893281ad62932cda7c53b99a81810203f39949040678bd51b87eb36466bb",
+      "audit/templates/audit/event_list.html": "807ae83da54a11b6eddf412ca6aef16055b88638160f37938ca3ef9cbaddae20",
+      "audit/test_purge_unit.py": "44476962ba808820c81e44648379d5ac2b1472475af5887f44985ac2f13e532b",
+      "audit/test_signal_units.py": "cfc8f5bfabd3893dcc46f69f4ee0d880d8f4a4c36b1f5447ca69a862cdd534a5",
+      "audit/test_unit_contracts.py": "2cb0d004601b6d5075c8d8bf27b4c56647ce3d0054ca8a29d3867d974fbeca8f",
+      "audit/test_view_units.py": "e9eeffcd72838facfb469698e66d84b1cf7e3184321712bbdedebed5f5fba9bf",
+      "audit/tests.py": "b22e1e60d698ef9a655cfd126dd6bfe9af86cf59c859203a8766bf27650c67cd",
+      "audit/urls.py": "fee50c148fe8b6a030e3a1b7d6de03be97bae14653d3c863f2a26111921e0959",
+      "audit/views.py": "491a7b0058471bbe2e5cbca2e2158d98b6ab56866690d4a6f2c757a07d6fdb9e",
+      "docs/part3/evidence/hms19-scope-20261113/reproduce.py": "cf6ddfd19bbad22d514f51ce6513f00868c14dad5f5643269a4157d36f4e9f2b",
+      "docs/part3/evidence/hms19-unit-review-20261113/reproduce.py": "fb7d6bbab2bd1b0883ef6a34d92bc2ec7dfdaf4cec4a7cbc1548d7f4fde1fafc",
+      "docs/part3/evidence/hms19-unit-review-20261113/test_reproduce.py": "e51c95a9f6f1060e9dd93956af716f1d692c2242cfdf689ac581c66e46ebf76d",
+      "hms/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hms/asgi.py": "d69fa179c865ecc40495fe56354c96684ae1010ca14e742810c9146ffdc86f0f",
+      "hms/decorators.py": "1557ba69822d5eee2e2dc85a10831cf95064f035e4a9ae49d01c7e711e60cc78",
+      "hms/forms.py": "cd9827bf07734936dc14ba931742068d1a609f142a579223f3d19005be4facdd",
+      "hms/http.py": "859fe772935cbd18f8a4fe670e16bb813304119248f4ccf0331d2495969b6cf5",
+      "hms/responses.py": "85d36d9a1895ec4ecd05035127811023c483ffd4e0aa1e277af25728c9344263",
+      "hms/security_headers.py": "fec0afa25d94999fb9b5ed4430ffec8682f3508c86045b482fc2ca4dfe594701",
+      "hms/settings.py": "b5f062fbe7fef57d80de44bf59e52bd4d159ccf95e90a49ea8f54ddfdcf330d2",
+      "hms/test_admin_security_units.py": "4f3cf2153ab9b2123c319c0fc59a14a4fbf1e272aa10dd29e945325d1d0fc5ec",
+      "hms/test_forms.py": "338d3f4b6e9ba4438581a26d867918fa2bdd16eaa959fb4612afc9b5c949dbf5",
+      "hms/test_http.py": "263eea316721e3f85e46f80987cce6677aea39ccb28fdaefad103d080512ae46",
+      "hms/test_more_view_units.py": "851d83dbd03fd00de13766a768414d946136478873146b0550ce52c2ed6dfb5d",
+      "hms/test_navigation.py": "775e907b363e212dd81e73f0b8631288133bab447507a5fa6d2beeb005ee0230",
+      "hms/test_remaining_model_units.py": "e5201c2f22a1cd9bc820d08b4260f238bbbd98a710c18c927e3551d15c4d6004",
+      "hms/test_responses.py": "7eed893af8ed9275cca95dbded0c1a93c36c7a65ec0927c7534a958767f2f218",
+      "hms/test_settings.py": "2c17be0bb0725550b237c6dc93945c99ea9641a167361e1b25ba76d73de460ec",
+      "hms/test_system_journey.py": "27715a5a400e751a5ca487118f21272e0a21c8ae2e03448cfc5c2bfb5b0de74e",
+      "hms/test_unit_contracts.py": "48659a42ff1ed797508f358599451ef42aaf36df2948013a00ee1e9eea49b81c",
+      "hms/test_unit_endpoints.py": "5cf21272c39ae5fc3a5b15fdb1fc40eb82e48e36f43e7f334d7b0c6fbb533056",
+      "hms/test_unit_workflows.py": "0d2c6723d41ac48dba659bf34ea44c9cb2574dfc8edd057d4803510216a8cf02",
+      "hms/test_validation_response.py": "4715bee43cc2066dcefc02c4f6477cab05baf30442dda95248a9d05fbcf4cb00",
+      "hms/tests.py": "5ce0cbb8dbaf935afd133b98124586de6e64a08f3e0d7056b56592ede1750c21",
+      "hms/urls.py": "f2228dbe724b3aa910cca816b730996e977388a0567b1829e65a26b2bdf95167",
+      "hms/wsgi.py": "8bbf6a9d5d9f866ce198b061de818cdefdccf9ac351afcef4563b7d6c6f6b8e6",
+      "hostels/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hostels/admin.py": "5372ab93fd788374af3ee71ed4366fe86efb1ad9dfb40566cbe3777bb2ac6e7b",
+      "hostels/apps.py": "1eb5a062030445bb0464db1e0871800dea88c56d00e7a124930e5ad560bd8072",
+      "hostels/forms.py": "d598e7197d165518828c9be013d597ec4f4917e69629d1d04539dfeafd09987e",
+      "hostels/migrations/0001_initial.py": "108a5b8f28890542cfd86e3d4654d092cec0305b97c084ca353948c12f2efd4d",
+      "hostels/migrations/0002_room_fee_amount_room_nonnegative_room_fee.py": "99086eae4186496810c66cba49d5bf0582ef738d50ffcb3303c5347a47b9cd08",
+      "hostels/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hostels/models.py": "5bf3d2c1e349b36661d3be6a21580ba9ff3dcfb202bf5cf0d8f02fb73ab8b360",
+      "hostels/test_form_rule_units.py": "50200164de3e29116e326c3056b7690b528659f54aa0f7d4a46a9f886f80d243",
+      "hostels/test_model_contract_units.py": "a45666f2ca43a608d61880cb1cf9f4ffa6d1d1e608c470494eca75c5f40b039c",
+      "hostels/test_partial_room_save.py": "0460614d6549c2a1ed586d0f47ca53bf4797aa8a7f574616f02ef338a6471e1e",
+      "hostels/test_remaining_view_units.py": "f313576e65a6216624e8e68e899d548eeaf6ae30c8fe43f19e0e3ea11f0818cd",
+      "hostels/test_room_unit.py": "1e64b0375be8a0146a05bbae11f8ab060f393b4c082217f0c51888d7bd538da5",
+      "hostels/test_views_unit.py": "078e386ba82fbb7699af4c97b059f204a9635e7e51290f3d4b7961286f633394",
+      "hostels/tests.py": "9a327e0bb6561b92e4ea46a4dbffaf0a880dccee2bed29f6d210c81ea6044635",
+      "hostels/urls.py": "34a7e1cb3836c70f06d68348beedede3c68aebddf4494eb83c7fa3d676d1eeb1",
+      "hostels/views.py": "b32168552bc15f8cfc0a1dc99b891fa78ab584c68d1035cfc10e3d5e704117c2",
+      "manage.py": "b4e763c1311508ce729096040e701a2ff229b648c03e60679d01d644a660cada",
+      "payments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "payments/admin.py": "a0502cb5a3fbf4a3f78f76d4b7eee725f5763a5025693a18202df0de0f8cf8e8",
+      "payments/apps.py": "4357bc9626e1ed75fa674755108dcdd275f27e2c473e4384ff38249acd03d694",
+      "payments/forms.py": "17885accddc50c1ad97d28038b0306ac6fc302814381cfbfbd156533bd5d5c8d",
+      "payments/migrations/0001_initial.py": "ba4cf8b53bba13d573eaf4b8e82b76b3d304a345e753cd8a84fbaa558cda43dc",
+      "payments/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "payments/models.py": "20f24ae31cca01e7aa207f7de90571c31c3a492152205b269a7c193a9afb4f8f",
+      "payments/receipts.py": "a200b4df20df769f86014fb42579a200e25bfeb3cb6c00e5c02e35e89b86b04a",
+      "payments/services.py": "43f9d3122a90f02589634d55297594983efbcc0b1ab55d29a10a3041dfbd52c9",
+      "payments/test_immutability_unit.py": "9ab45855d2439849a9acd656f1fae3debcc0d5c05db7040e6845de719bf911ad",
+      "payments/test_receipts_unit.py": "31621a5359175a829410e455a1897784d1abba4ff2ca4330bbcd434854507cc3",
+      "payments/test_remaining_view_units.py": "62407e8edcc5ad16d2a8e3979b55e7493f1eae4f33996e45bf44a733e0ea1630",
+      "payments/test_save_unit.py": "2f73bf787bcaf1bb0a21713f59bc5e269a997298d9d2ea01d23b6294b4d08db2",
+      "payments/test_service_query_units.py": "498282328be009a4e6178250a6e316905ec7a6df6e65a4f30320ef4f4c5d0710",
+      "payments/test_status_units.py": "5fa77f957f01a2d42c15efe2d9f58ebfab292af8c73364fe01a0e884d07ba35a",
+      "payments/test_view_units.py": "dc7c68521c004ac177d23226feb8b462476b6d020f338a9ecdb4b63ea0b3110d",
+      "payments/test_workflows.py": "f8c05aa3305c10d7b4c0d1a9fa400dcf8a25ea7c6ec8cb4810cbc1deb1445a40",
+      "payments/urls.py": "f55e5cad9c6ad47b3ca6b0c3b987610550640ff17790e1b350b9777bcc315a87",
+      "payments/views.py": "7ae37c17b68d8112608a88626c50aa4c0d1746f726102e93947beedb4b3c1705",
+      "reports/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reports/admin.py": "45d9d4108b7c9fd9feab52357e95993821b733ad3e662949ea9d9690a38ce6d1",
+      "reports/apps.py": "4459b83e533ad5c817767420954f64292d5b6eba6c2d344fb6a95f85449fec90",
+      "reports/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reports/models.py": "3eb07bb5bb2429c4152a459ea520b2b81afbc0f543ebbd63db4108628dc17886",
+      "reports/services.py": "05912eb7273e44919b25fbf235b0355825e00826703d7d8c3a5db6bf32dc0e59",
+      "reports/test_remaining_view_units.py": "a5c3e66c2a582e1fe3a358953932323eaba2eea808c3f71e5c8838e9bcc8a079",
+      "reports/test_reports.py": "c8cc1082a255c0628d59154fd009a983e9b6c6d4c62a5fd75629ab6c35a16b01",
+      "reports/urls.py": "2e44451772a65a3a80dccfad07fb1967e9befc3c0bf1254554d8d878a212f306",
+      "reports/views.py": "39a1505f49b4566271ce8a904af74998596fed9899cdd1836b3724fe62d18e5b",
+      "requirements-dev.txt": "396627fb7580dff047e30f29344e3b833a3849a68bdcdaf53e429ff4201fc137",
+      "requirements.txt": "fce9f192ae9094fd441af0bae743b846b4fc8f2aa085334e8d33f1f658583cfa",
+      "ruff.toml": "385ab3980985e0863506e77349954470f4f4be532ea570f26d87d35733b539a1",
+      "scripts/part3/backup_issue40.py": "034759b3e380c44d8cc55ef745f0d90bd9ae0bd43fffbaeea1b98cda5c396263",
+      "scripts/part3/run_issue38_focused.py": "e06aedb4d644091a83cd8647ad708d59af522e86273e669ebaf3aa6eed7f9847",
+      "scripts/part3/run_issue40_browser.py": "4c662c118415b5faa9fca02517915b976652cdf892f7c9571634d6d602630e10",
+      "scripts/part3/run_issue40_load.py": "15ecafeae3daf0f9c353a929c2e84d6356dfe838217d30ed8e036d334c2747c1",
+      "scripts/part3/run_issue40_recovery.py": "995654f432baab0b67b28be623ce832249842369f7f3b8907250ad15c94518c5",
+      "scripts/part3/run_owned_regressions.py": "73572719d612b0462dbd72e4d1111598b5735e8974179f32ba3c3982096f1a78",
+      "scripts/part3/test_issue40_browser.py": "be6d1d56a6077d28189b309bc0d86baf4a47482f099490b8e4ecafff75bce1b1",
+      "scripts/part3/test_issue40_load.py": "80665cdb39f42908c323acd95271c4078f13c6b9023f451a3bc1b46a1c1aac1a",
+      "scripts/part3/test_issue40_recovery_safety.py": "062a84239551e227550183e2e08ef5606b70932271195ec1c448f08845bd6ec4",
+      "scripts/part3/test_owned_case_support.py": "54946ea3b46c95ee383abfe64a2e5aeb9c2a5525229508b735285c5df1ab9269",
+      "scripts/part3/test_owned_reports_inputs.py": "eb936bb1e5590085a902cd2179a34028ad45cffffdf6b640574b9367fbc1d147",
+      "scripts/part3/test_owned_runner_safety.py": "80c6699b7f5887a420a558579b8c41905c2e6e7a19d45a1d46d68b6cdb0b18ba",
+      "scripts/part3/test_owned_transactions.py": "e83e10e9198306eb73fd2b91e69686bfac68559fd7f916324514b7db6c30f7fa",
+      "scripts/run_checks.py": "257fb4306f6943e7396db781f9ee7c47f180878e2851494b17a5f086c1c2ee62",
+      "static/hms/app.js": "c5ab7c6373e1a176f70905e75e3145fbd31540dc9fd19e35d3b71e50432e9c9a",
+      "static/hms/styles.css": "aed96601fe30f08a26934148c690020e4210a4902e9946315c3a2adbbe87f996",
+      "students/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "students/admin.py": "4f11570309dcefdb3af7cbd6325c10e79c037297bc8a7f6f2ae7e65a3af51f0d",
+      "students/apps.py": "67496af5ea6c06477243e58305d9807c0041068a059331cf0f1a76743bea80c5",
+      "students/forms.py": "9945a8af77e90451a2a4547360b0594130576594b276a27b691ff799392c0278",
+      "students/migrations/0001_initial.py": "c252869024b1f0b8e3ad308c081a99c640026c098c63985d53a05c9498ccc5ae",
+      "students/migrations/0002_student_user_link.py": "fa9476d32610048afbf57ea6fc64625e49b4795cede0421ae369e46b9971b958",
+      "students/migrations/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "students/models.py": "6890361e98a59267fa8650a0619e334451d305f5387bcef2258cd9fcec09bbe6",
+      "students/test_form_contract_units.py": "934a18895e2193ec602ff673923e48c693edb0d6d13e30dc81df4afb08029b1f",
+      "students/test_issue39_regressions.py": "1e29f40f4c92a71b5ff3c233cd85516eaf6507ebf0a7f5256da093a5d2dc67a4",
+      "students/test_model_units.py": "fb66d949e87c218eb6874ae9f426e7a3edcc0c38cb7395fc8743254955e43c18",
+      "students/test_remaining_view_units.py": "b6b30aee3b22b8fc1f9af5860a4dcc9f74bff3ee5363c6314a8675ad2ada6aa8",
+      "students/test_self_service.py": "9d4bc9d01e25b917ae67f2f24f6d8d1e0bf15df9462cb969c555f966bd5d0f02",
+      "students/test_view_units.py": "7efd8e60b49e0146dde0efe97c9b40210820b991b32979f2a1cd46493df0ddef",
+      "students/tests.py": "d1d7f5604014f05e239fceb5a6a1149ee9e8485dd11cbecbff3d99170ecba62d",
+      "students/urls.py": "525674c1ff5fb167fad46400a6ab96ceb67549871092fb3db228d332cc51761c",
+      "students/views.py": "171130210cd2c94138bc224c03c350f8ffdf24048b0a2c70c73a7b5c6f1a3ba7",
+      "templates/allocations/allocation_form.html": "84a51805366d6779790793539b261c130f7a9ca776b1c2652edba211ca087ccd",
+      "templates/allocations/allocation_list.html": "cdcba29261a5d45c780949bcf0cb89b7f58e409216b74e5288d047bbaf7d0481",
+      "templates/base.html": "44c41d9a061f2d5dbacbdff3de9729e2b0db8beb8ede2d6c128f0a553f671a86",
+      "templates/hostels/bed_list.html": "407c1cc37955a52692293970e769d968a59bd9be58c4fa7aec86f6f9b8663218",
+      "templates/hostels/hostel_form.html": "19795df3131bb6ec62117e0d03178e173a8f20d852edd53d84945c778a788ea7",
+      "templates/hostels/hostel_list.html": "93e3e7f65ae50987acaebb40f2cbe82372ad402950650abaed48b557f6965a4f",
+      "templates/hostels/room_form.html": "4b7c7108f834d102991a9603dfb039ebbeadfbcf825e824d6defa235c826a73a",
+      "templates/includes/form.html": "f9ab6ef2af4b840e62db11376485745f8ff7f635d04e12bc6cf1ab41ba2b6166",
+      "templates/includes/pagination.html": "29ef0d23541c6befbfe5a955a81f3ec8148d01ab2521e935e8a8d110571ea4ad",
+      "templates/payments/payment_form.html": "c1e9e7b7e081158591c762de24043c25d3bceda48d1ec55d0a22263eab331c9a",
+      "templates/payments/payment_list.html": "c2cc292f25778e05a7e327f0b50dda57fc44f06e564e70d70f117df37aef7699",
+      "templates/payments/receipt.html": "660dd024647ba1cd677eddb567278d564ce001dc9a3f3ecb63613820dac3c244",
+      "templates/payments/status.html": "c642123cb8f6c20404e20189eb717642da0c9c31a9ca6b21d9235fd1d12b995f",
+      "templates/reports/report.html": "576521e5f215a1418826b7820bcd4af394427e94e7b18f89a7307c39d1819650",
+      "templates/students/my_records.html": "c868a9dad4e2c56812d35cd503e33286e12b71771c77704e7748dc68c7f5aa2d",
+      "templates/students/student_form.html": "f45d7611f5a54f95fca6258e9bfb1b74843a4dcbbf7025b466e0a56d22ece4a5",
+      "templates/students/student_list.html": "08c829dd15f0c72f12e3527caa3abdbaf493df380d2bd00f51623a7a5e804463",
+      "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/factories.py": "74eef48366c210a5e2742e725f81ab85ae34b0ed4876048bb35a4ee1af69c1fa",
+      "tests/test_checks.py": "658fdfd3302da9566510fd29c1456ab621287ac46a11ff458e64ba3282a67b9b"
+    },
+    "code_pins_unchanged_during_capture": true,
+    "commit_after": "ccddcbfedb0a809a9bf1de5d67a50dd49070c9d2",
+    "git_status_after": ""
+  },
+  "owned_database_guard": {
+    "host_is_loopback": true,
+    "port_matches_owned_state": true,
+    "user_matches_owned_state": true,
+    "password_matches_owned_state": true,
+    "database_is_owned_hms": true,
+    "server_port_matches": true,
+    "server_data_directory_matches": true,
+    "connected_database_is_hms": true
+  },
+  "synthetic_fixture": {
+    "unique_namespace": "5270",
+    "student_id": "DV11141322192",
+    "student_pk": 1,
+    "student_name": "Demo Student - Devansh",
+    "hostel_pk": 1,
+    "hostel_name": "Devansh Demo 14 Nov 5270",
+    "bed_a": 1,
+    "bed_b": 2,
+    "warden_username": "dv-video-1114132219-5270",
+    "all_values_synthetic": true,
+    "counts_before": {
+      "User": 0,
+      "Student": 0,
+      "Hostel": 0,
+      "Room": 0,
+      "Bed": 0,
+      "Allocation": 0,
+      "Payment": 0
+    },
+    "counts_after_seed": {
+      "User": 1,
+      "Student": 1,
+      "Hostel": 1,
+      "Room": 2,
+      "Bed": 2,
+      "Allocation": 0,
+      "Payment": 0
+    },
+    "seed_delta": {
+      "User": 1,
+      "Student": 1,
+      "Hostel": 1,
+      "Room": 2,
+      "Bed": 2,
+      "Allocation": 0,
+      "Payment": 0
+    },
+    "no_schema_drop_or_reset": true,
+    "seeded_business_records_use_unique_namespace": true,
+    "workflow_mutation_scope": "Capture fixture allocation/bed/payment/audit/session state; normal application receipt-counter update. No receipt-counter reset. Original checkout database not accessed."
+  },
+  "webserver": {
+    "pid": 5172,
+    "base_url": "http://127.0.0.1:63377",
+    "noreload": true,
+    "hidden_window": true,
+    "process_only_security_overrides": {
+      "DJANGO_SETTINGS_MODULE": "hms.settings",
+      "DJANGO_DEBUG": "true",
+      "DJANGO_ALLOWED_HOSTS": "127.0.0.1,localhost",
+      "DJANGO_SESSION_COOKIE_SECURE": "false",
+      "DJANGO_CSRF_COOKIE_SECURE": "false",
+      "DJANGO_SECURE_SSL_REDIRECT": "false"
+    },
+    "stopped_own_process": true,
+    "exit_code_after_stop": 1
+  },
+  "node_capture_exit_code": 0,
+  "ui_capture": {
+    "steps": [
+      {
+        "name": "allocation form with synthetic values",
+        "elapsed_seconds": 0.0003618000000001302,
+        "url": "http://127.0.0.1:63377/allocations/create/",
+        "result": "ready before recorded submission"
+      },
+      {
+        "name": "allocation created",
+        "elapsed_seconds": 2.2187452000000003,
+        "url": "http://127.0.0.1:63377/allocations/?q=DV11141322192",
+        "result": "DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D101 D101-A 14-11-2026 — Active History Transfer Release with date Complete"
+      },
+      {
+        "name": "transfer form",
+        "elapsed_seconds": 6.0883575,
+        "url": "http://127.0.0.1:63377/allocations/1/transfer/",
+        "result": "selected second synthetic bed"
+      },
+      {
+        "name": "transfer confirmed and history preserved",
+        "elapsed_seconds": 9.2476096,
+        "url": "http://127.0.0.1:63377/students/1/allocations/",
+        "result": "Hostel Allocations History for DV11141322192 — Demo Student - Devansh Create Allocation Search student, bed, or hostel Search STUDENT ID STUDENT NAME HOSTEL ROOM BED ALLOCATED ON VACATED ON STATUS ACTION DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D102 D102-A 14-11-2026 — Active History Transfer Release with date Complete DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D101 D101-A 14-11-2026 14-11-2026 Completed History —"
+      },
+      {
+        "name": "payment form",
+        "elapsed_seconds": 14.1136916,
+        "url": "http://127.0.0.1:63377/payments/create/",
+        "result": "synthetic INR 5000.00 via UPI"
+      },
+      {
+        "name": "numbered receipt generated",
+        "elapsed_seconds": 17.1403359,
+        "url": "http://127.0.0.1:63377/payments/R00000000001/receipt/",
+        "result": "Receipt R00000000001 recorded. Payment receipt Download PDF R00000000001 Student DV11141322192 - Demo Student - Devansh Amount (INR) 5000.00 Payment date 14-11-2026 Mode UPI Reference DEMO14112026 View student payment status Record a correction Back to payments"
+      },
+      {
+        "name": "receipt PDF downloaded",
+        "elapsed_seconds": 20.234098300000003,
+        "url": "http://127.0.0.1:63377/payments/R00000000001/receipt/",
+        "result": "saved for independent PDF text inspection"
+      },
+      {
+        "name": "student balance",
+        "elapsed_seconds": 23.0967098,
+        "url": "http://127.0.0.1:63377/students/1/payment-status/",
+        "result": "Payment status DV11141322192 - Demo Student - Devansh Hostel / room Devansh Demo 14 Nov 5270 / D102 Fee (INR) 10000.00 Paid (INR) 5000.00 Due (INR) 5000.00 Status Partial View payment history"
+      },
+      {
+        "name": "filtered occupancy report",
+        "elapsed_seconds": 26.067451400000003,
+        "url": "http://127.0.0.1:63377/reports/occupancy/?hostel=1",
+        "result": "Devansh Demo 14 Nov 5270 2 1 1 0 50.00%"
+      },
+      {
+        "name": "filtered payment status report",
+        "elapsed_seconds": 30.068028,
+        "url": "http://127.0.0.1:63377/reports/payment-status/?hostel=1",
+        "result": "DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D102 D102-A 10000.00 5000.00 5000.00 Partial"
+      },
+      {
+        "name": "filtered CSV downloaded",
+        "elapsed_seconds": 34.141397299999994,
+        "url": "http://127.0.0.1:63377/reports/payment-status/?hostel=1",
+        "result": "saved for independent text inspection"
+      },
+      {
+        "name": "published evidence card",
+        "elapsed_seconds": 36.0126905,
+        "url": "http://127.0.0.1:63377/reports/payment-status/?hostel=1",
+        "result": "editorial card; published historical observations, not a new execution"
+      }
+    ],
+    "frames": [
+      {
+        "file": "frame_00000.jpg",
+        "started_seconds": 0.003065700000000106,
+        "completed_seconds": 0.03165780000000018
+      },
+      {
+        "file": "frame_00001.jpg",
+        "started_seconds": 0.2005685000000001,
+        "completed_seconds": 0.2235561
+      },
+      {
+        "file": "frame_00002.jpg",
+        "started_seconds": 0.4050871000000002,
+        "completed_seconds": 0.43640190000000006
+      },
+      {
+        "file": "frame_00003.jpg",
+        "started_seconds": 0.6070705000000001,
+        "completed_seconds": 0.6308777999999999
+      },
+      {
+        "file": "frame_00004.jpg",
+        "started_seconds": 0.8119113,
+        "completed_seconds": 0.8360687
+      },
+      {
+        "file": "frame_00005.jpg",
+        "started_seconds": 1.0123106,
+        "completed_seconds": 1.0355379
+      },
+      {
+        "file": "frame_00006.jpg",
+        "started_seconds": 1.2121876,
+        "completed_seconds": 1.2360784
+      },
+      {
+        "file": "frame_00007.jpg",
+        "started_seconds": 1.4122026000000003,
+        "completed_seconds": 1.4360088000000002
+      },
+      {
+        "file": "frame_00008.jpg",
+        "started_seconds": 1.6120886000000003,
+        "completed_seconds": 1.6362994999999998
+      },
+      {
+        "file": "frame_00009.jpg",
+        "started_seconds": 1.8122156000000003,
+        "completed_seconds": 1.8362903
+      },
+      {
+        "file": "frame_00010.jpg",
+        "started_seconds": 2.0134288,
+        "completed_seconds": 2.0361076000000002
+      },
+      {
+        "file": "frame_00011.jpg",
+        "started_seconds": 2.1987842,
+        "completed_seconds": 2.2370877
+      },
+      {
+        "file": "frame_00012.jpg",
+        "started_seconds": 2.4127079000000005,
+        "completed_seconds": 2.4360764
+      },
+      {
+        "file": "frame_00013.jpg",
+        "started_seconds": 2.6122537,
+        "completed_seconds": 2.6361506
+      },
+      {
+        "file": "frame_00014.jpg",
+        "started_seconds": 2.8066633999999993,
+        "completed_seconds": 2.8300098
+      },
+      {
+        "file": "frame_00015.jpg",
+        "started_seconds": 3.0002799999999996,
+        "completed_seconds": 3.0241983
+      },
+      {
+        "file": "frame_00016.jpg",
+        "started_seconds": 3.2057713999999997,
+        "completed_seconds": 3.2358742
+      },
+      {
+        "file": "frame_00017.jpg",
+        "started_seconds": 3.4088298999999997,
+        "completed_seconds": 3.430361
+      },
+      {
+        "file": "frame_00018.jpg",
+        "started_seconds": 3.6111907000000003,
+        "completed_seconds": 3.6360217
+      },
+      {
+        "file": "frame_00019.jpg",
+        "started_seconds": 3.8130990000000002,
+        "completed_seconds": 3.8393580999999997
+      },
+      {
+        "file": "frame_00020.jpg",
+        "started_seconds": 4.0122152,
+        "completed_seconds": 4.0357036
+      },
+      {
+        "file": "frame_00021.jpg",
+        "started_seconds": 4.212051,
+        "completed_seconds": 4.236083
+      },
+      {
+        "file": "frame_00022.jpg",
+        "started_seconds": 4.412162499999999,
+        "completed_seconds": 4.4364731
+      },
+      {
+        "file": "frame_00023.jpg",
+        "started_seconds": 4.612226499999999,
+        "completed_seconds": 4.636179
+      },
+      {
+        "file": "frame_00024.jpg",
+        "started_seconds": 4.8120995,
+        "completed_seconds": 4.8364956999999995
+      },
+      {
+        "file": "frame_00025.jpg",
+        "started_seconds": 5.012194099999999,
+        "completed_seconds": 5.0358265
+      },
+      {
+        "file": "frame_00026.jpg",
+        "started_seconds": 5.212685,
+        "completed_seconds": 5.239308100000001
+      },
+      {
+        "file": "frame_00027.jpg",
+        "started_seconds": 5.403104,
+        "completed_seconds": 5.4245106
+      },
+      {
+        "file": "frame_00028.jpg",
+        "started_seconds": 5.6003662,
+        "completed_seconds": 5.6236872
+      },
+      {
+        "file": "frame_00029.jpg",
+        "started_seconds": 5.8009957,
+        "completed_seconds": 5.8332626
+      },
+      {
+        "file": "frame_00030.jpg",
+        "started_seconds": 6.013929599999999,
+        "completed_seconds": 6.1028561
+      },
+      {
+        "file": "frame_00031.jpg",
+        "started_seconds": 6.2011401,
+        "completed_seconds": 6.224181499999999
+      },
+      {
+        "file": "frame_00032.jpg",
+        "started_seconds": 6.4126059,
+        "completed_seconds": 6.435829
+      },
+      {
+        "file": "frame_00033.jpg",
+        "started_seconds": 6.606180899999999,
+        "completed_seconds": 6.636193100000001
+      },
+      {
+        "file": "frame_00034.jpg",
+        "started_seconds": 6.805538899999999,
+        "completed_seconds": 6.852182499999999
+      },
+      {
+        "file": "frame_00035.jpg",
+        "started_seconds": 7.009654199999999,
+        "completed_seconds": 7.0355589
+      },
+      {
+        "file": "frame_00036.jpg",
+        "started_seconds": 7.206277599999999,
+        "completed_seconds": 7.2302577999999995
+      },
+      {
+        "file": "frame_00037.jpg",
+        "started_seconds": 7.400570900000001,
+        "completed_seconds": 7.434064500000001
+      },
+      {
+        "file": "frame_00038.jpg",
+        "started_seconds": 7.606928,
+        "completed_seconds": 7.6294872
+      },
+      {
+        "file": "frame_00039.jpg",
+        "started_seconds": 7.8009758,
+        "completed_seconds": 7.8299421
+      },
+      {
+        "file": "frame_00040.jpg",
+        "started_seconds": 8.0007802,
+        "completed_seconds": 8.023741099999999
+      },
+      {
+        "file": "frame_00041.jpg",
+        "started_seconds": 8.2104653,
+        "completed_seconds": 8.2292382
+      },
+      {
+        "file": "frame_00042.jpg",
+        "started_seconds": 8.4019742,
+        "completed_seconds": 8.423986
+      },
+      {
+        "file": "frame_00043.jpg",
+        "started_seconds": 8.609866700000001,
+        "completed_seconds": 8.6295286
+      },
+      {
+        "file": "frame_00044.jpg",
+        "started_seconds": 8.8010745,
+        "completed_seconds": 8.8298173
+      },
+      {
+        "file": "frame_00045.jpg",
+        "started_seconds": 9.0004814,
+        "completed_seconds": 9.0240974
+      },
+      {
+        "file": "frame_00046.jpg",
+        "started_seconds": 9.2013538,
+        "completed_seconds": 9.2732231
+      },
+      {
+        "file": "frame_00047.jpg",
+        "started_seconds": 9.401262500000001,
+        "completed_seconds": 9.4304573
+      },
+      {
+        "file": "frame_00048.jpg",
+        "started_seconds": 9.6015312,
+        "completed_seconds": 9.624180699999998
+      },
+      {
+        "file": "frame_00049.jpg",
+        "started_seconds": 9.801135899999998,
+        "completed_seconds": 9.8240254
+      },
+      {
+        "file": "frame_00050.jpg",
+        "started_seconds": 10.000669899999998,
+        "completed_seconds": 10.0341476
+      },
+      {
+        "file": "frame_00051.jpg",
+        "started_seconds": 10.2123475,
+        "completed_seconds": 10.2357212
+      },
+      {
+        "file": "frame_00052.jpg",
+        "started_seconds": 10.412246699999999,
+        "completed_seconds": 10.4464571
+      },
+      {
+        "file": "frame_00053.jpg",
+        "started_seconds": 10.6089039,
+        "completed_seconds": 10.630481900000001
+      },
+      {
+        "file": "frame_00054.jpg",
+        "started_seconds": 10.8062258,
+        "completed_seconds": 10.8307747
+      },
+      {
+        "file": "frame_00055.jpg",
+        "started_seconds": 11.006358200000001,
+        "completed_seconds": 11.0363811
+      },
+      {
+        "file": "frame_00056.jpg",
+        "started_seconds": 11.2120711,
+        "completed_seconds": 11.235539999999999
+      },
+      {
+        "file": "frame_00057.jpg",
+        "started_seconds": 11.412280999999998,
+        "completed_seconds": 11.4464879
+      },
+      {
+        "file": "frame_00058.jpg",
+        "started_seconds": 11.6092155,
+        "completed_seconds": 11.6305333
+      },
+      {
+        "file": "frame_00059.jpg",
+        "started_seconds": 11.8068264,
+        "completed_seconds": 11.8365324
+      },
+      {
+        "file": "frame_00060.jpg",
+        "started_seconds": 12.0122836,
+        "completed_seconds": 12.0362626
+      },
+      {
+        "file": "frame_00061.jpg",
+        "started_seconds": 12.2128089,
+        "completed_seconds": 12.236206399999999
+      },
+      {
+        "file": "frame_00062.jpg",
+        "started_seconds": 12.412936,
+        "completed_seconds": 12.4365875
+      },
+      {
+        "file": "frame_00063.jpg",
+        "started_seconds": 12.612384500000001,
+        "completed_seconds": 12.6363764
+      },
+      {
+        "file": "frame_00064.jpg",
+        "started_seconds": 12.812263399999999,
+        "completed_seconds": 12.836427599999999
+      },
+      {
+        "file": "frame_00065.jpg",
+        "started_seconds": 13.0123868,
+        "completed_seconds": 13.0424252
+      },
+      {
+        "file": "frame_00066.jpg",
+        "started_seconds": 13.202638199999999,
+        "completed_seconds": 13.2239712
+      },
+      {
+        "file": "frame_00067.jpg",
+        "started_seconds": 13.4069007,
+        "completed_seconds": 13.4367037
+      },
+      {
+        "file": "frame_00068.jpg",
+        "started_seconds": 13.6122798,
+        "completed_seconds": 13.640812400000002
+      },
+      {
+        "file": "frame_00069.jpg",
+        "started_seconds": 13.8124087,
+        "completed_seconds": 13.8363313
+      },
+      {
+        "file": "frame_00070.jpg",
+        "started_seconds": 14.013406699999999,
+        "completed_seconds": 14.1079637
+      },
+      {
+        "file": "frame_00071.jpg",
+        "started_seconds": 14.2012592,
+        "completed_seconds": 14.230675999999999
+      },
+      {
+        "file": "frame_00072.jpg",
+        "started_seconds": 14.400776,
+        "completed_seconds": 14.4300426
+      },
+      {
+        "file": "frame_00073.jpg",
+        "started_seconds": 14.607042600000002,
+        "completed_seconds": 14.6370725
+      },
+      {
+        "file": "frame_00074.jpg",
+        "started_seconds": 14.799386799999999,
+        "completed_seconds": 14.8302459
+      },
+      {
+        "file": "frame_00075.jpg",
+        "started_seconds": 15.0069527,
+        "completed_seconds": 15.036618
+      },
+      {
+        "file": "frame_00076.jpg",
+        "started_seconds": 15.210827,
+        "completed_seconds": 15.2420102
+      },
+      {
+        "file": "frame_00077.jpg",
+        "started_seconds": 15.4028611,
+        "completed_seconds": 15.4244119
+      },
+      {
+        "file": "frame_00078.jpg",
+        "started_seconds": 15.6005066,
+        "completed_seconds": 15.6347421
+      },
+      {
+        "file": "frame_00079.jpg",
+        "started_seconds": 15.812800099999999,
+        "completed_seconds": 15.845683999999999
+      },
+      {
+        "file": "frame_00080.jpg",
+        "started_seconds": 16.008835700000002,
+        "completed_seconds": 16.0311285
+      },
+      {
+        "file": "frame_00081.jpg",
+        "started_seconds": 16.2065872,
+        "completed_seconds": 16.239611800000002
+      },
+      {
+        "file": "frame_00082.jpg",
+        "started_seconds": 16.403121000000002,
+        "completed_seconds": 16.424482200000003
+      },
+      {
+        "file": "frame_00083.jpg",
+        "started_seconds": 16.600345200000003,
+        "completed_seconds": 16.6301257
+      },
+      {
+        "file": "frame_00084.jpg",
+        "started_seconds": 16.8054829,
+        "completed_seconds": 16.8574156
+      },
+      {
+        "file": "frame_00085.jpg",
+        "started_seconds": 17.0062482,
+        "completed_seconds": 17.030349400000002
+      },
+      {
+        "file": "frame_00086.jpg",
+        "started_seconds": 17.201290200000003,
+        "completed_seconds": 17.2246021
+      },
+      {
+        "file": "frame_00087.jpg",
+        "started_seconds": 17.4018341,
+        "completed_seconds": 17.430125500000003
+      },
+      {
+        "file": "frame_00088.jpg",
+        "started_seconds": 17.599643300000004,
+        "completed_seconds": 17.6276477
+      },
+      {
+        "file": "frame_00089.jpg",
+        "started_seconds": 17.800183,
+        "completed_seconds": 17.823945900000002
+      },
+      {
+        "file": "frame_00090.jpg",
+        "started_seconds": 18.010293100000002,
+        "completed_seconds": 18.0327951
+      },
+      {
+        "file": "frame_00091.jpg",
+        "started_seconds": 18.206469800000004,
+        "completed_seconds": 18.2303256
+      },
+      {
+        "file": "frame_00092.jpg",
+        "started_seconds": 18.400349100000003,
+        "completed_seconds": 18.4336136
+      },
+      {
+        "file": "frame_00093.jpg",
+        "started_seconds": 18.606624600000004,
+        "completed_seconds": 18.640017600000004
+      },
+      {
+        "file": "frame_00094.jpg",
+        "started_seconds": 18.805404300000003,
+        "completed_seconds": 18.8296915
+      },
+      {
+        "file": "frame_00095.jpg",
+        "started_seconds": 19.000293000000003,
+        "completed_seconds": 19.0302626
+      },
+      {
+        "file": "frame_00096.jpg",
+        "started_seconds": 19.199874300000005,
+        "completed_seconds": 19.223954000000003
+      },
+      {
+        "file": "frame_00097.jpg",
+        "started_seconds": 19.410314000000003,
+        "completed_seconds": 19.430008400000002
+      },
+      {
+        "file": "frame_00098.jpg",
+        "started_seconds": 19.6010597,
+        "completed_seconds": 19.630050200000003
+      },
+      {
+        "file": "frame_00099.jpg",
+        "started_seconds": 19.799771900000003,
+        "completed_seconds": 19.8239364
+      },
+      {
+        "file": "frame_00100.jpg",
+        "started_seconds": 20.0114677,
+        "completed_seconds": 20.0388644
+      },
+      {
+        "file": "frame_00101.jpg",
+        "started_seconds": 20.199221800000004,
+        "completed_seconds": 20.2353032
+      },
+      {
+        "file": "frame_00102.jpg",
+        "started_seconds": 20.4012923,
+        "completed_seconds": 20.4314
+      },
+      {
+        "file": "frame_00103.jpg",
+        "started_seconds": 20.6139424,
+        "completed_seconds": 20.6465498
+      },
+      {
+        "file": "frame_00104.jpg",
+        "started_seconds": 20.803273800000003,
+        "completed_seconds": 20.823952100000003
+      },
+      {
+        "file": "frame_00105.jpg",
+        "started_seconds": 21.012266000000004,
+        "completed_seconds": 21.036325500000004
+      },
+      {
+        "file": "frame_00106.jpg",
+        "started_seconds": 21.208182500000003,
+        "completed_seconds": 21.229717200000003
+      },
+      {
+        "file": "frame_00107.jpg",
+        "started_seconds": 21.4038189,
+        "completed_seconds": 21.424173200000002
+      },
+      {
+        "file": "frame_00108.jpg",
+        "started_seconds": 21.6118634,
+        "completed_seconds": 21.642117400000004
+      },
+      {
+        "file": "frame_00109.jpg",
+        "started_seconds": 21.8131093,
+        "completed_seconds": 21.8363729
+      },
+      {
+        "file": "frame_00110.jpg",
+        "started_seconds": 22.006429400000002,
+        "completed_seconds": 22.036646400000002
+      },
+      {
+        "file": "frame_00111.jpg",
+        "started_seconds": 22.205543900000002,
+        "completed_seconds": 22.23035
+      },
+      {
+        "file": "frame_00112.jpg",
+        "started_seconds": 22.4005557,
+        "completed_seconds": 22.4345678
+      },
+      {
+        "file": "frame_00113.jpg",
+        "started_seconds": 22.607357500000003,
+        "completed_seconds": 22.6365614
+      },
+      {
+        "file": "frame_00114.jpg",
+        "started_seconds": 22.805635900000002,
+        "completed_seconds": 22.8303541
+      },
+      {
+        "file": "frame_00115.jpg",
+        "started_seconds": 23.001378900000002,
+        "completed_seconds": 23.0252504
+      },
+      {
+        "file": "frame_00116.jpg",
+        "started_seconds": 23.2014068,
+        "completed_seconds": 23.224798600000003
+      },
+      {
+        "file": "frame_00117.jpg",
+        "started_seconds": 23.404086700000004,
+        "completed_seconds": 23.4263271
+      },
+      {
+        "file": "frame_00118.jpg",
+        "started_seconds": 23.611145200000003,
+        "completed_seconds": 23.6392583
+      },
+      {
+        "file": "frame_00119.jpg",
+        "started_seconds": 23.812083400000002,
+        "completed_seconds": 23.8455483
+      },
+      {
+        "file": "frame_00120.jpg",
+        "started_seconds": 24.003030300000002,
+        "completed_seconds": 24.0238816
+      },
+      {
+        "file": "frame_00121.jpg",
+        "started_seconds": 24.2130446,
+        "completed_seconds": 24.2360216
+      },
+      {
+        "file": "frame_00122.jpg",
+        "started_seconds": 24.406590500000004,
+        "completed_seconds": 24.436803100000002
+      },
+      {
+        "file": "frame_00123.jpg",
+        "started_seconds": 24.6060917,
+        "completed_seconds": 24.63012
+      },
+      {
+        "file": "frame_00124.jpg",
+        "started_seconds": 24.8023303,
+        "completed_seconds": 24.8302582
+      },
+      {
+        "file": "frame_00125.jpg",
+        "started_seconds": 25.001916800000004,
+        "completed_seconds": 25.024090400000002
+      },
+      {
+        "file": "frame_00126.jpg",
+        "started_seconds": 25.212612200000002,
+        "completed_seconds": 25.2357635
+      },
+      {
+        "file": "frame_00127.jpg",
+        "started_seconds": 25.4081432,
+        "completed_seconds": 25.435749300000005
+      },
+      {
+        "file": "frame_00128.jpg",
+        "started_seconds": 25.605684500000002,
+        "completed_seconds": 25.636495900000003
+      },
+      {
+        "file": "frame_00129.jpg",
+        "started_seconds": 25.806179500000002,
+        "completed_seconds": 25.8303516
+      },
+      {
+        "file": "frame_00130.jpg",
+        "started_seconds": 26.000917100000002,
+        "completed_seconds": 26.0909366
+      },
+      {
+        "file": "frame_00131.jpg",
+        "started_seconds": 26.201468500000004,
+        "completed_seconds": 26.2252438
+      },
+      {
+        "file": "frame_00132.jpg",
+        "started_seconds": 26.403749200000004,
+        "completed_seconds": 26.4246715
+      },
+      {
+        "file": "frame_00133.jpg",
+        "started_seconds": 26.6098941,
+        "completed_seconds": 26.6306552
+      },
+      {
+        "file": "frame_00134.jpg",
+        "started_seconds": 26.800477000000004,
+        "completed_seconds": 26.828432
+      },
+      {
+        "file": "frame_00135.jpg",
+        "started_seconds": 27.0098469,
+        "completed_seconds": 27.030167900000002
+      },
+      {
+        "file": "frame_00136.jpg",
+        "started_seconds": 27.200563900000002,
+        "completed_seconds": 27.2238577
+      },
+      {
+        "file": "frame_00137.jpg",
+        "started_seconds": 27.4106215,
+        "completed_seconds": 27.430362200000005
+      },
+      {
+        "file": "frame_00138.jpg",
+        "started_seconds": 27.6011862,
+        "completed_seconds": 27.624366800000004
+      },
+      {
+        "file": "frame_00139.jpg",
+        "started_seconds": 27.810236200000002,
+        "completed_seconds": 27.829905400000005
+      },
+      {
+        "file": "frame_00140.jpg",
+        "started_seconds": 28.001463300000005,
+        "completed_seconds": 28.024047700000004
+      },
+      {
+        "file": "frame_00141.jpg",
+        "started_seconds": 28.209906400000005,
+        "completed_seconds": 28.2298279
+      },
+      {
+        "file": "frame_00142.jpg",
+        "started_seconds": 28.400500700000002,
+        "completed_seconds": 28.4245494
+      },
+      {
+        "file": "frame_00143.jpg",
+        "started_seconds": 28.610755800000003,
+        "completed_seconds": 28.630546400000004
+      },
+      {
+        "file": "frame_00144.jpg",
+        "started_seconds": 28.801255400000002,
+        "completed_seconds": 28.8248752
+      },
+      {
+        "file": "frame_00145.jpg",
+        "started_seconds": 29.0103394,
+        "completed_seconds": 29.030529
+      },
+      {
+        "file": "frame_00146.jpg",
+        "started_seconds": 29.200806800000002,
+        "completed_seconds": 29.224331700000004
+      },
+      {
+        "file": "frame_00147.jpg",
+        "started_seconds": 29.4100852,
+        "completed_seconds": 29.4335911
+      },
+      {
+        "file": "frame_00148.jpg",
+        "started_seconds": 29.606882400000003,
+        "completed_seconds": 29.635981400000002
+      },
+      {
+        "file": "frame_00149.jpg",
+        "started_seconds": 29.8063443,
+        "completed_seconds": 29.830541200000003
+      },
+      {
+        "file": "frame_00150.jpg",
+        "started_seconds": 30.0019025,
+        "completed_seconds": 30.085275400000004
+      },
+      {
+        "file": "frame_00151.jpg",
+        "started_seconds": 30.201542800000002,
+        "completed_seconds": 30.2247662
+      },
+      {
+        "file": "frame_00152.jpg",
+        "started_seconds": 30.4036955,
+        "completed_seconds": 30.4244618
+      },
+      {
+        "file": "frame_00153.jpg",
+        "started_seconds": 30.6098649,
+        "completed_seconds": 30.630550200000002
+      },
+      {
+        "file": "frame_00154.jpg",
+        "started_seconds": 30.8006057,
+        "completed_seconds": 30.824316300000003
+      },
+      {
+        "file": "frame_00155.jpg",
+        "started_seconds": 31.0099159,
+        "completed_seconds": 31.0303401
+      },
+      {
+        "file": "frame_00156.jpg",
+        "started_seconds": 31.201851299999998,
+        "completed_seconds": 31.2240007
+      },
+      {
+        "file": "frame_00157.jpg",
+        "started_seconds": 31.410134800000005,
+        "completed_seconds": 31.4308576
+      },
+      {
+        "file": "frame_00158.jpg",
+        "started_seconds": 31.600886200000005,
+        "completed_seconds": 31.627450700000004
+      },
+      {
+        "file": "frame_00159.jpg",
+        "started_seconds": 31.8108196,
+        "completed_seconds": 31.830158200000003
+      },
+      {
+        "file": "frame_00160.jpg",
+        "started_seconds": 32.0017433,
+        "completed_seconds": 32.024401000000005
+      },
+      {
+        "file": "frame_00161.jpg",
+        "started_seconds": 32.2112398,
+        "completed_seconds": 32.2365848
+      },
+      {
+        "file": "frame_00162.jpg",
+        "started_seconds": 32.4064977,
+        "completed_seconds": 32.4366751
+      },
+      {
+        "file": "frame_00163.jpg",
+        "started_seconds": 32.6058455,
+        "completed_seconds": 32.6338099
+      },
+      {
+        "file": "frame_00164.jpg",
+        "started_seconds": 32.8059327,
+        "completed_seconds": 32.839600999999995
+      },
+      {
+        "file": "frame_00165.jpg",
+        "started_seconds": 33.0124904,
+        "completed_seconds": 33.0419789
+      },
+      {
+        "file": "frame_00166.jpg",
+        "started_seconds": 33.21193219999999,
+        "completed_seconds": 33.2361573
+      },
+      {
+        "file": "frame_00167.jpg",
+        "started_seconds": 33.4072728,
+        "completed_seconds": 33.430671
+      },
+      {
+        "file": "frame_00168.jpg",
+        "started_seconds": 33.6006213,
+        "completed_seconds": 33.624229
+      },
+      {
+        "file": "frame_00169.jpg",
+        "started_seconds": 33.809971,
+        "completed_seconds": 33.830026399999994
+      },
+      {
+        "file": "frame_00170.jpg",
+        "started_seconds": 34.0012451,
+        "completed_seconds": 34.025035599999995
+      },
+      {
+        "file": "frame_00171.jpg",
+        "started_seconds": 34.2026951,
+        "completed_seconds": 34.2312934
+      },
+      {
+        "file": "frame_00172.jpg",
+        "started_seconds": 34.400169999999996,
+        "completed_seconds": 34.4303124
+      },
+      {
+        "file": "frame_00173.jpg",
+        "started_seconds": 34.6001607,
+        "completed_seconds": 34.6251271
+      },
+      {
+        "file": "frame_00174.jpg",
+        "started_seconds": 34.8108492,
+        "completed_seconds": 34.8396697
+      },
+      {
+        "file": "frame_00175.jpg",
+        "started_seconds": 35.0117085,
+        "completed_seconds": 35.0396876
+      },
+      {
+        "file": "frame_00176.jpg",
+        "started_seconds": 35.2120049,
+        "completed_seconds": 35.242158499999995
+      },
+      {
+        "file": "frame_00177.jpg",
+        "started_seconds": 35.411782599999995,
+        "completed_seconds": 35.4390216
+      },
+      {
+        "file": "frame_00178.jpg",
+        "started_seconds": 35.6129216,
+        "completed_seconds": 35.6456478
+      },
+      {
+        "file": "frame_00179.jpg",
+        "started_seconds": 35.8031993,
+        "completed_seconds": 35.8304973
+      },
+      {
+        "file": "frame_00180.jpg",
+        "started_seconds": 36.000292699999996,
+        "completed_seconds": 36.0368303
+      },
+      {
+        "file": "frame_00181.jpg",
+        "started_seconds": 36.2065585,
+        "completed_seconds": 36.229647400000005
+      },
+      {
+        "file": "frame_00182.jpg",
+        "started_seconds": 36.40121189999999,
+        "completed_seconds": 36.445951099999995
+      },
+      {
+        "file": "frame_00183.jpg",
+        "started_seconds": 36.60360789999999,
+        "completed_seconds": 36.6241925
+      },
+      {
+        "file": "frame_00184.jpg",
+        "started_seconds": 36.8108551,
+        "completed_seconds": 36.8359686
+      },
+      {
+        "file": "frame_00185.jpg",
+        "started_seconds": 37.006648799999994,
+        "completed_seconds": 37.030766899999996
+      },
+      {
+        "file": "frame_00186.jpg",
+        "started_seconds": 37.200724199999996,
+        "completed_seconds": 37.2245169
+      },
+      {
+        "file": "frame_00187.jpg",
+        "started_seconds": 37.411354,
+        "completed_seconds": 37.4300859
+      },
+      {
+        "file": "frame_00188.jpg",
+        "started_seconds": 37.6005074,
+        "completed_seconds": 37.6241708
+      },
+      {
+        "file": "frame_00189.jpg",
+        "started_seconds": 37.810040199999996,
+        "completed_seconds": 37.8301163
+      },
+      {
+        "file": "frame_00190.jpg",
+        "started_seconds": 38.0005271,
+        "completed_seconds": 38.02431179999999
+      },
+      {
+        "file": "frame_00191.jpg",
+        "started_seconds": 38.2104658,
+        "completed_seconds": 38.23572969999999
+      },
+      {
+        "file": "frame_00192.jpg",
+        "started_seconds": 38.4069491,
+        "completed_seconds": 38.4526169
+      },
+      {
+        "file": "frame_00193.jpg",
+        "started_seconds": 38.6092075,
+        "completed_seconds": 38.630583200000004
+      },
+      {
+        "file": "frame_00194.jpg",
+        "started_seconds": 38.800918599999996,
+        "completed_seconds": 38.8293688
+      },
+      {
+        "file": "frame_00195.jpg",
+        "started_seconds": 39.0102974,
+        "completed_seconds": 39.0367261
+      },
+      {
+        "file": "frame_00196.jpg",
+        "started_seconds": 39.2080631,
+        "completed_seconds": 39.230076600000004
+      },
+      {
+        "file": "frame_00197.jpg",
+        "started_seconds": 39.400816899999995,
+        "completed_seconds": 39.4245399
+      },
+      {
+        "file": "frame_00198.jpg",
+        "started_seconds": 39.6101743,
+        "completed_seconds": 39.6364865
+      },
+      {
+        "file": "frame_00199.jpg",
+        "started_seconds": 39.8069225,
+        "completed_seconds": 39.830181700000004
+      }
+    ],
+    "human_participation": "none",
+    "target_seconds": 40,
+    "capture_method": "real headless Edge UI screenshots at a target 5 fps",
+    "login_not_recorded": true,
+    "audio": "none",
+    "browser_version": "157.0.4341.46",
+    "started_utc": "2026-11-14T13:22:22.839Z",
+    "completed_seconds": 40.0009876,
+    "dialogs": [
+      {
+        "message": "Transfer this allocation?",
+        "elapsed_seconds": 9.0229503,
+        "accepted": true
+      },
+      {
+        "message": "Transfer this allocation?",
+        "elapsed_seconds": 9.031784,
+        "accepted": true
+      }
+    ],
+    "finished_utc": "2026-11-14T13:23:02.840Z",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "frame_count": 200,
+    "configured_timezone": "Asia/Kolkata",
+    "configured_locale": "en-IN"
+  },
+  "fixture_after_ui": {
+    "allocations": [
+      {
+        "pk": 2,
+        "bed_id": 2,
+        "status": "Active"
+      },
+      {
+        "pk": 1,
+        "bed_id": 1,
+        "status": "Completed"
+      }
+    ],
+    "payments": [
+      {
+        "pk": 1,
+        "receipt_no": "R00000000001",
+        "amount": "5000.00"
+      }
+    ],
+    "counts_after_ui": {
+      "User": 1,
+      "Student": 1,
+      "Hostel": 1,
+      "Room": 2,
+      "Bed": 2,
+      "Allocation": 2,
+      "Payment": 1
+    },
+    "checks_passed": true
+  },
+  "receipt_pdf_checks": {
+    "receipt_number_present": true,
+    "synthetic_student_id_present": true,
+    "amount_5000_present": true
+  },
+  "csv_checks": {
+    "synthetic_student_present": true,
+    "paid_amount_present": true
+  },
+  "status": "DEVANSH CONTRIBUTION AVAILABLE FOR TEAM REVIEW; complete team video and final acceptance pending",
+  "mysql_left_running_for_root": true,
+  "capture_finished_utc": "2026-11-14T13:23:03.401875+00:00",
+  "tools": {
+    "node_path": "C:\\Program Files\\nodejs\\node.exe",
+    "node_version": "v26.8.1",
+    "playwright_version": "1.64.1",
+    "playwright_module": "<private-browser-tools>/node_modules/playwright",
+    "browser_channel": "msedge",
+    "browser_version": "157.0.4341.46",
+    "browser_path": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+    "ffmpeg_path": "<ffmpeg-install>\\ffmpeg.exe",
+    "ffmpeg_version": "ffmpeg version 4.4.1-Jellyfin Copyright (c) 2000-2021 the FFmpeg developers",
+    "ffprobe_path": "<ffmpeg-install>\\ffprobe.exe",
+    "ffprobe_version": "ffprobe version 4.4.1-Jellyfin Copyright (c) 2007-2021 the FFmpeg developers",
+    "capture_os": "Windows-11-10.0.26200-SP0",
+    "capture_python": "3.14.7"
+  },
+  "video": {
+    "path": "Devansh_Sprint2_Contribution_Current_2026-11-14.mp4",
+    "bytes": 622066,
+    "sha256": "bc5104138b134e597bff52048c764f32a92d542dbce6b5c3dc5d674f8f4f8981",
+    "duration_seconds": 39.96,
+    "width": 1280,
+    "height": 960,
+    "codec": "h264",
+    "frame_rate": "25/1",
+    "audio_streams": 0,
+    "full_decode_exit_code": 0,
+    "full_decode_errors": "",
+    "capture_timing_note": "200 real screenshots at a target 5 fps, encoded uniformly at 5 fps and output 25 fps; no performance timing claim",
+    "maximum_capture_schedule_lag_seconds": 0.01394239999999769,
+    "encoding_command": [
+      "<ffmpeg-install>\\ffmpeg.exe",
+      "-y",
+      "-hide_banner",
+      "-loglevel",
+      "warning",
+      "-framerate",
+      "5",
+      "-i",
+      "frames/frame_%05d.jpg",
+      "-filter_script:v",
+      "captions.filter",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "20",
+      "-r",
+      "25",
+      "-pix_fmt",
+      "yuv420p",
+      "-movflags",
+      "+faststart",
+      "-t",
+      "40",
+      "Devansh_Sprint2_Contribution_Current_2026-11-14.mp4"
+    ],
+    "contact_sheet": "contact-sheet.jpg",
+    "visual_review": {
+      "reviewer": "assistant; no human review or acceptance supplied",
+      "reviewed_utc": "2026-11-14T13:25:17.107049+00:00",
+      "material": "4x2 contact sheet plus full-resolution decoded samples at 0.5, 24.5 and 38 seconds",
+      "observations": [
+        "Readable current-date and synthetic-data labels",
+        "Allocation, transfer/history, receipt, balance and report screens match recorded step outcomes",
+        "Closing editorial card readable; historical owner observations and pending final acceptance are explicit",
+        "No login password screen in recorded frames"
+      ]
+    },
+    "editorial_card": {
+      "interval_seconds": [
+        36,
+        40
+      ],
+      "path": "evidence-card.png",
+      "sha256": "f0d114806c79a2f5eee88ec09cd4a8398597335fc758cee9fa4dddbef8dce405",
+      "frames_replaced": [
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199
+      ],
+      "original_frames_retained_in": "original-end-card-frames/",
+      "reason": "Readable editorial evidence summary; inherited app CSP blocked inline card CSS. Product UI frames were not changed."
+    },
+    "helper_manifest_credentials_scan": "Compared share text against owned DB passwords and Django secret without printing them; none present"
+  },
+  "artifact_hashes": {
+    "capture_current.py": "7946fe85f73ebb836e61b24716cc85df0d323bc04103e516166d930512cb769d",
+    "capture-ui.cjs": "5118c4d870713dea32682ca18cf998654b03da24523d36f29094d964f05594af",
+    "encode_and_verify.py": "b62bdac48130a7903c4e3da7717fdfe2482113dc044daeadd45162e125ecd093",
+    "receipt.pdf": "1d070640dbea65f38b3cf169124a8ffbd82b7e45b955e847fed61aa55480569c",
+    "payment-status.csv": "c047e7f9975332aba1786a572b3802ca6121112f84e644b7d9cf9aff5c03dcc7",
+    "ui-capture.json": "277eb18cc02a1e530490ee5a7f41ca82917d04f9084b673d94a013a89aca35e1",
+    "captions.filter": "b3081c4a1b4c192bd7e0c0b2bdf81520ea97594e1a07a0d243482d1121fde926",
+    "title.txt": "31efad6fa1d31738d4884a0f37e7e2f7c5b6986c3e174431087a756df78b6c0a",
+    "subtitle.txt": "c3e54bbf814f9b234749ace3dbddc47d2db657bb1d348053b78201d7fda492ba",
+    "allocation.txt": "b6f1a354ce27b733c091b1e486b5059384e1e925ab9cf43cee71cbfcd66e0fc8",
+    "payment.txt": "3325a536bf8363180e684e471ab1254c3ec40de6276281e4c1a28b4b5d97cf3f",
+    "balance.txt": "c4c880c64796b13623cd82bf6bfd182a7150f2f78b032108bfd513002d04fc31",
+    "occupancy.txt": "cce55b38ea7fe22e50c0259b1b9f1fa6368564270bfed14bd1e21aa30c73870c",
+    "report.txt": "29e7d5183fd61d6202631c5c9c44a7f34448c6145a7ccde2c6278d239b088426",
+    "evidence.txt": "62367d0f916f6e0daf2d78a117cb672054f91e1b6a766187246734fe76103409"
+  },
+  "publication_note": "Selected artifacts published for the team editor. Private operational paths are replaced with descriptive relative paths; omitted capture script hashes remain provenance only, not published file claims. Original private manifest retained locally.",
+  "publication_adjustments": [
+    "Reloaded embedded ui_capture from the published UTF-8 ui-capture.json to correct inherited mojibake in em-dash characters. Numeric measurements, source hashes and observed outcomes are unchanged; additional configured locale/timezone annotations are retained.",
+    "Published the exact eight safe caption text assets referenced by captions.filter. Their SHA-256 values are included in artifact_hashes.",
+    "Text artifacts normalized to LF as required by repository .gitattributes. artifact_hashes identifies published bytes; raw_capture_artifact_hashes retains original capture bytes, including original CSV/filter endings. Omitted helper hashes identify private source only."
+  ],
+  "raw_capture_artifact_hashes": {
+    "capture_current.py": "7946fe85f73ebb836e61b24716cc85df0d323bc04103e516166d930512cb769d",
+    "capture-ui.cjs": "5118c4d870713dea32682ca18cf998654b03da24523d36f29094d964f05594af",
+    "encode_and_verify.py": "b62bdac48130a7903c4e3da7717fdfe2482113dc044daeadd45162e125ecd093",
+    "receipt.pdf": "1d070640dbea65f38b3cf169124a8ffbd82b7e45b955e847fed61aa55480569c",
+    "payment-status.csv": "62e84dbe024f3af39e9f518a2934d120c76bc632e5cb8b21cacd35af98e31350",
+    "ui-capture.json": "277eb18cc02a1e530490ee5a7f41ca82917d04f9084b673d94a013a89aca35e1",
+    "captions.filter": "e548e8ecb9136dc510a0c8e9346cfd97e26c2a030f6db927950337a5913d6548",
+    "title.txt": "31efad6fa1d31738d4884a0f37e7e2f7c5b6986c3e174431087a756df78b6c0a",
+    "subtitle.txt": "c3e54bbf814f9b234749ace3dbddc47d2db657bb1d348053b78201d7fda492ba",
+    "allocation.txt": "b6f1a354ce27b733c091b1e486b5059384e1e925ab9cf43cee71cbfcd66e0fc8",
+    "payment.txt": "3325a536bf8363180e684e471ab1254c3ec40de6276281e4c1a28b4b5d97cf3f",
+    "balance.txt": "c4c880c64796b13623cd82bf6bfd182a7150f2f78b032108bfd513002d04fc31",
+    "occupancy.txt": "cce55b38ea7fe22e50c0259b1b9f1fa6368564270bfed14bd1e21aa30c73870c",
+    "report.txt": "29e7d5183fd61d6202631c5c9c44a7f34448c6145a7ccde2c6278d239b088426",
+    "evidence.txt": "62367d0f916f6e0daf2d78a117cb672054f91e1b6a766187246734fe76103409"
+  }
+}

@@ -32,6 +32,8 @@ class ValidationResponseTests(SimpleTestCase):
     def test_all_conflict_errors_return_409(self):
         for code in (
             "BED_OCCUPIED",
+            "BED_MOVED",
+            "ROOM_FULL",
             "ALREADY_ALLOCATED",
             "ALREADY_RELEASED",
             "HAS_ACTIVE_ALLOCATION",

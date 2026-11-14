@@ -1,0 +1,72 @@
+python.exe : F............FF..............................
+At line:2 char:1
++ & '<workspace>\hostel-management-system\. ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (F............FF..................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+======================================================================
+FAIL: test_bed_moved_to_another_room_after_lookup_is_rejected_before_writes (allocations.test_save_unit.AllocationSaveD
+ecisionUnitTests.test_bed_moved_to_another_room_after_lookup_is_rejected_before_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\allocations\test_save_unit.py",
+line 173, in test_bed_moved_to_another_room_after_lookup_is_rejected_before_writes
+    with self.assertRaises(ValidationError) as error:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_all_conflict_errors_return_409
+(hms.test_validation_response.ValidationResponseTests.test_all_conflict_errors_return_409) (code='BED_MOVED')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File
+"<repo>\hms\test_validation_response.py", line
+42, in test_all_conflict_errors_return_409
+    self.assert_error_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        ValidationError(
+        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        message="The allocation conflicts with current records.",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File
+"<repo>\hms\test_validation_response.py", line
+15, in assert_error_response
+    self.assertEqual(response.status_code, status)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 400 != 409
+
+======================================================================
+FAIL: test_all_conflict_errors_return_409
+(hms.test_validation_response.ValidationResponseTests.test_all_conflict_errors_return_409) (code='ROOM_FULL')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File
+"<repo>\hms\test_validation_response.py", line
+42, in test_all_conflict_errors_return_409
+    self.assert_error_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        ValidationError(
+        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        message="The allocation conflicts with current records.",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File
+"<repo>\hms\test_validation_response.py", line
+15, in assert_error_response
+    self.assertEqual(response.status_code, status)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 400 != 409
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.106s
+
+FAILED (failures=3)
+Found 44 test(s).
+System check identified no issues (0 silenced).

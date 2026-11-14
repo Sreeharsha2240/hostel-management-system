@@ -108,11 +108,13 @@ class ViewContractUnitTests(SimpleTestCase):
     def test_transfer_form_excludes_current_bed(
         self, query, lookup, form, available, render
     ):
-        lookup.return_value = SimpleNamespace(bed_id=5)
+        lookup.return_value = SimpleNamespace(pk=8, bed_id=5)
         field = Mock()
         form.return_value.fields = {"new_bed": field}
         self.assertEqual(allocation_transfer(self.get(), 8).content, b"form")
+        available.assert_called_once_with(exclude_allocation_id=8)
         available.return_value.exclude.assert_called_once_with(pk=5)
+        self.assertIs(field.queryset, available.return_value.exclude.return_value)
         self.assertEqual(
             render.call_args.args[2]["confirmation_message"],
             "Transfer this allocation?",
