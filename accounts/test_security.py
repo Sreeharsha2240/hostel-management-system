@@ -177,6 +177,7 @@ class SessionAndLockoutTests(TestCase):
         staff_client.force_login(staff_account)
         self.assertEqual(staff_client.get(reverse("admin:index")).status_code, 200)
 
+        self.client.force_login(self.admin)
         response = self.client.post(
             reverse("user-update", args=[staff_account.pk]),
             {
