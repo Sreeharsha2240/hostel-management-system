@@ -1,16 +1,26 @@
 # System Validation Report — HMS Part 3
 
+**14 November current status:** HMS-19/#41 is complete through PR #74 (`a41f884`), with 946/946 (100%) function-body statements covered by 288 isolated methods under the owner-approved definition; the all-application-statements result remains 55.55%. PR #76 is merged as `dd747ff`; it changes documentation and adds the Sprint 1 demo, not application/test/configuration code. The current case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED. TC-SEC-08 remains PARTIAL after QA assessed the two alerts in the supplied 10 November handoff; TC-QUAL-02 and desktop browser/OS TC-QUAL-03 remain NOT RUN; TC-QUAL-04 remains PARTIAL for style assessment beyond configured checks. Real-phone testing is out of scope. Whole-plan readiness remains NOT READY pending the stated project, team and instructor dependencies. Dated sections below preserve historical status and metrics.
+
+## Current SAD alignment and project-scope dispositions — 14 November 2026
+
+The SAD §4.4 requires error logs to carry a request ID, operational monitoring of login failures, HTTP error rates, average response time, backup success and database free space, and weekly review. The current application code has no request-ID middleware/log field and no operational metrics/weekly review mechanism. Audit events are present, but they do not provide those operational measurements. The project owner accepts these documented items as a **mini-project limitation**, not implemented or evidenced; this is not a claim of SAD compliance or production monitoring. QA, the guide and the instructor still need to review the scope disposition against course requirements. The [owner decision](evidence/owner-disposition-20261114.md) records the boundary.
+
+The SRS REQ-24 promises each student their own profile, current allocation and payment status, but it does not enumerate all profile fields. The project owner defines the mini-project boundary as the current My Records fields: name, Student ID, own current allocation and allocation history, own payment status/paid/balance summary and payment history. No extra contact or guardian fields are required under this PO interpretation. Existing owner/CI checks cover linked-account isolation. QA review of this interpretation remains pending. See the [owner decision](evidence/owner-disposition-20261114.md).
+
+These documented scope questions supplement the case register and are separate from the owner-approved removal of physical-phone testing. No real-phone test is expected for this mini-project.
+
 **10 November HMS-16 QA addendum:** The [supplied QA handoff and evidence reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses the remaining ZAP observations: the Low `Server` banner belongs to the temporary probe server, and the Informational `next` hotspot has no demonstrated reflection or redirect use in the inspected login path. No HMS application fix or fix retest is indicated for either finding. The handoff's statement that the `next` regression test could not be found is corrected by `accounts/test_security.py` and a passing 10 November JUnit result. The recorded scan remains 0 High / 0 Medium / 1 Low / 1 Informational; **TC-SEC-08 remains PARTIAL** for the passive loopback scope. HMS-16/#38 was already closed for owner-authorized local-project tracking, while whole-plan readiness remains NOT READY.
 
-**10 November HMS-17 completion:** [fresh isolated execution](evidence/issue39/completion-20261110/README.md)
+**Historical 10 November HMS-17 completion snapshot:** [fresh isolated execution](evidence/issue39/completion-20261110/README.md)
 passes four remaining regression recipes and Warden registration. Full verification:
 211 mixed methods (210 PASS / one expected timing SKIP), separate timing PASS,
 all 12 gates. All original 33 are now recorded as OWNER PASS; this is not
-independent QA acceptance. Current expanded register: 57 OWNER PASS / 1 PARTIAL / 2 NOT RUN /
+independent QA acceptance. At that dated snapshot, the expanded register was 57 OWNER PASS / 1 PARTIAL / 2 NOT RUN /
 1 BLOCKED. The project owner explicitly authorized #39 tracking closure with the
-full browser/real-phone matrix and working-hours availability unverified. This
-does not amend instructor criteria, establish QA approval or change whole-plan
-NOT READY. Historical snapshots below retain their source/date boundaries.
+then-recorded browser/real-phone matrix and working-hours availability unverified.
+The current owner decision removes physical-phone testing from this mini-project;
+the current ledger and remaining desktop/OS scope are stated at the top of this report.
 
 **Historical HMS-16 owner-reported outcomes: 11 OWNER PASS, 1 PARTIAL. Whole-plan readiness: NOT READY.** The historical focused run tested the 5 November `main` revision `8322b4c20c067d512c4bb439fdedd19d4fa27223` using synthetic data and a disposable local MySQL 8.0.46 instance. It does not claim a deployed HTTPS endpoint, complete whole-plan acceptance, or team approvals.
 
@@ -93,9 +103,9 @@ PR #58 merged to `main` as `896b4f343e1e3f467155352820124f5931d12c3d`. Its teste
 
 The manual HMS-17 run remains bound to application commit `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`, not the current submission tree. The owner record reports eight case IDs exercised. The reviewed evidence disposition is **6 OWNER PASS, TC-STU-01 NOT RUN** (no case-specific registration result or screenshot located), and **TC-QUAL-01 PARTIAL** (no timed first-use walkthrough by a new Warden using the one-page guide). Firefox and Edge page checks are recorded; they do not establish the full compatibility, platform, mobile or availability requirements. See the [HMS-17 evidence index](evidence/issue39/README.md), [manual record](evidence/issue39/manual-execution-20261107.md), and the [case register](Test_Case_Document.md#54-manual-browser-testing--hms-17).
 
-HMS-18/#40 owner evidence for 13 cases is present under `docs/part3/evidence/issue40-final/`; recorded cases include the TC-ALC-05 browser PARTIAL, retained failed load attempt and passing unchanged-threshold rerun, and populated recovery result. The [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), explicitly authorized by Devansh, now accepts the original 13 cases for scoped #40 technical closure and records current priorities, late-entry and environment/tool dispositions. It does not supply historical entry compliance, actual named human approvals or full-plan acceptance. The [HMS-15 case document](Test_Case_Document.md) now supplies complete case records, 61 planned IDs and the preserved 36-requirement RTM; this documentation delivery does not approve historical entry criteria or final case acceptance. Section 6 distinguishes original-case metrics from the expanded design denominator and current method evidence. HMS-19/#41's Unit Test Report is not present. HMS-20/#42 coverage reports are published and the issue is closed as a reporting task, while formal SRS unit70 remains UNPROVEN.
+HMS-18/#40 owner evidence for 13 cases is present under `docs/part3/evidence/issue40-final/`; recorded cases include the TC-ALC-05 browser PARTIAL, retained failed load attempt and passing unchanged-threshold rerun, and populated recovery result. The [8 November independent AI QA review](evidence/issue40-final/qa-review-20261108.md), explicitly authorized by Devansh, now accepts the original 13 cases for scoped #40 technical closure and records current priorities, late-entry and environment/tool dispositions. It does not supply historical entry compliance, actual named human approvals or full-plan acceptance. The [HMS-15 case document](Test_Case_Document.md) now supplies complete case records, 61 planned IDs and the preserved 36-requirement RTM; this documentation delivery does not approve historical entry criteria or final case acceptance. Section 6 distinguishes original-case metrics from the expanded design denominator and current method evidence. This paragraph's earlier assertion that the #41 Unit Test Report was missing and unit70 unproven is superseded by the current 13 November status at the top of this report and in the [Unit Test Report](Unit_Test_Report.md). HMS-20/#42 coverage-report publication remains complete.
 
-## Consolidated case, requirement and defect metrics — 8 November 2026
+## Consolidated case, requirement and defect metrics — historical snapshot through 10 November 2026
 
 Counts are recalculated from all complete records and cross-checked against the index and original RTM. They preserve original and expanded denominators. The earlier consolidated review changed no case status. The separately dated #63 execution below changes only S2-08..16. The later [PR #66 review](evidence/issue39/followup-20261108.md) reconciles S1-07/S2-07 against historical raw CI; current totals include both updates.
 
@@ -109,7 +119,7 @@ Counts are recalculated from all complete records and cross-checked against the 
 | Any exercise: OWNER PASS + PARTIAL | 32 / 33 = 96.97% | 54 / 61 = 88.52% |
 | QA-accepted execution/pass percentage | UNVERIFIED | UNVERIFIED |
 
-The exercised numerator includes partial work and is not the 100%-completed exit gate. Zero latest case FAIL/ERROR does not erase the historical failed load/harness attempts or establish accepted passes. Current partial cases are TC-SEC-08, TC-QUAL-01 and TC-REG-S1-05; TC-QUAL-04 is BLOCKED. TC-SEC-06 is now an OWNER PASS for the recorded isolated loopback conditions; this does not certify a public or production host. The six NOT RUN records are STU-01, S1-06/08, S2-06 and QUAL-02/03. TC-SEC-08 moved from NOT RUN to PARTIAL after the 9 November passive baseline; its two observations still await QA disposition. The later [PR #66 reconciliation](evidence/issue39/followup-20261108.md) accepts S1-07/S2-07 for their historical automated scope; it is a review of 7 November execution, not a fresh browser run. Nine other new regressions (S2-08..16) now have complete separate #63 execution records. Passing automated companions do not silently execute those separate records. Original priorities remain proposals: 21 High/12 Medium; expanded priorities are 34 High/27 Medium. QA must review the priority rationale and actual evidence; no High-priority gate is approved here.
+The historical 10 November snapshot's exercised numerator included partial work and was not the 100%-completed exit gate. Its current partial/blocked labels and counts are superseded by the 14 November current status at the top of this report. The original plan specified no per-case priorities. The project owner accepted the 61-case proposals (34 High/27 Medium) for planning; QA and Development still need to agree to the rationale and evidence before the High-priority exit criterion can be applied.
 
 | Requirement metric | Result / meaning |
 |---|---|
@@ -120,7 +130,7 @@ The exercised numerator includes partial work and is not the 100%-completed exit
 
 For example, a negative-registration pass does not prove the unrecorded positive STU-01 journey; AUTH-04's mapped owner observation does not establish NFR-9's live cookie conditions; AUTH-03 does not establish NFR-12's TLS conditions. Keep SRS quality attributes, BR-1..6 and SO-1..4 in the separate assessment without silently changing the original 36-row denominator.
 
-The review queries every public issue with pagination and selects all non-PR issues carrying the `bug` label. The four known labelled defects are closed. Technical module counts are reports **1**, allocations **2**, student self-service **1**; these are known defects/module, not a complete whole-project density or proof other modules have zero defects. No severity labels are present.
+The review queries every public issue with pagination and selects all non-PR issues carrying the `bug` label. The four known labelled defects are closed. The project owner retrospectively assessed #45/#46 Medium and #47/#48 Low; no historical GitHub severity labels are asserted. Technical module counts are reports **1**, allocations **2**, student self-service **1**; these are known defects/module, not a complete whole-project density or proof other modules have zero defects.
 
 | Defect | Technical module | State | Age in days: actual closure minus creation |
 |---|---|---|---:|
@@ -129,7 +139,7 @@ The review queries every public issue with pagination and selects all non-PR iss
 | [#47](https://github.com/Sreeharsha2240/hostel-management-system/issues/47) | allocations | CLOSED | 1.002847 |
 | [#48](https://github.com/Sreeharsha2240/hostel-management-system/issues/48) | student self-service | CLOSED | 1.019699 |
 
-Actual creation/closure timestamps and the query's UTC acquisition time are retained in the [review extraction](evidence/issue38/independent-review-20261108.json). For an open defect, age would be acquisition time minus creation. Severity is UNKNOWN; zero open critical/high defects and whole-project inventory completeness remain UNVERIFIED. Retain PR #44/#49 and the [owner retest appendix](evidence/issue40-final/owner-cases.md), the failed volume attempt and the unreconciled historical harness failure separately.
+Actual creation/closure timestamps and the query's UTC acquisition time are retained in the [review extraction](evidence/issue38/independent-review-20261108.json). For an open defect, age would be acquisition time minus creation. The owner assessment supports zero known open Critical/High defects among these four only. Whole-project inventory completeness and severity-ranked status remain UNVERIFIED. Retain PR #44/#49 and the [owner retest appendix](evidence/issue40-final/owner-cases.md), the failed volume attempt and the unreconciled historical harness failure separately. Full decision and limits are in the [owner disposition](evidence/owner-disposition-20261114.md).
 
 ## Independent evidence review and current build
 
@@ -137,25 +147,25 @@ Freshly downloaded [main run 42399172513](https://github.com/Sreeharsha2240/host
 
 The earlier [retained method extraction](evidence/issue37/ci-methods.json) remains bound to `70c9fe2` / run 42397043317. This new review neither relabels that earlier run nor retests historical browser/load/recovery observations. No application/test/configuration change or fresh local application, security scan, load or recovery execution is claimed by these documentation corrections.
 
-## Integrated report and exit criteria
+## Current whole-plan exit criteria — 14 November 2026
 
 Accordingly:
 
 | Whole-plan criterion | Current status |
 |---|---|
-| 100% planned cases executed | NOT MET: original 33 now retain 31 OWNER PASS / 1 PARTIAL / 1 NOT RUN; expanded 61 now retain 51 OWNER PASS / 3 PARTIAL / 6 NOT RUN / 1 BLOCKED. Original subcondition/entry acceptance remains pending. |
-| High-priority cases passed | UNVERIFIED until QA assigns/reviews priorities; the original plan has no priority values. |
-| Zero open critical/high defects | UNVERIFIED: no complete severity-ranked whole-project defect inventory is available; one local verification-harness failure is recorded above. |
-| Every RTM requirement backed by a passed case | UNVERIFIED: the 36 rows and closed #37 document delivery are present, but accepted case/requirement evidence remains pending. Design mapping and owner-pass proxies are insufficient. |
-| Independent QA/Dev/PO approvals and project-guide walkthrough | PENDING; no approval is inferred. |
+| 100% planned cases executed | Original 33 have 33 OWNER PASS observations. The expanded 61-case register still has 2 NOT RUN and 2 PARTIAL, so the expanded scope is NOT MET; independent QA acceptance of case conditions remains pending. |
+| High-priority cases passed | NOT MET / acceptance pending: the project owner accepted the 61 proposals (34 High/27 Medium) for planning; QA/Development agreement remains pending, and TC-SEC-08 is High and PARTIAL. |
+| Zero open critical/high defects | No known open Critical/High defect among the four reviewed closed issues (#45–#48); whole-project inventory completeness and independent acceptance remain UNVERIFIED. |
+| Every RTM requirement backed by a passed case | The owner accepted all 36 original RTM pairs as design mappings; accepted requirement-by-requirement passed-case coverage remains UNVERIFIED. |
+| Independent QA/Dev/PO approvals and project-guide walkthrough | PENDING final revision-bound decisions. A Warden walkthrough was owner-reported, but exact guide revision and participant code were not retained; team acceptance is not inferred. |
 
-## Team actions and actual approvals
+## Historical team action ledger — 8 November 2026
 
 | Dependency | Responsible owner / exact next action | Current decision |
 |---|---|---|
 | Independent report/evidence technical review | Devansh's assisted review records the findings and corrections above; the new publication still needs teammate review. | Technical review performed; no final human approval inferred. |
 | Cases, priorities, RTM and historical entry/tool deviations | Vaishnavi QA with case owners: record dated reviewed revision, scope, evidence acceptance and deviation disposition; a review now cannot retroactively establish earlier entry. | PENDING. |
-| #41 Unit Test Report and unit70 | Vaishnavi publishes; module owners supply their existing results. Devansh's [module-owner handoff](Code_Coverage_Report.md#hms-19-module-owner-input--8-november-2026) supplies classifications, IDs and limitations. | Report missing; unit70 UNPROVEN. |
+| #41 Unit Test Report and unit70 | Historical 8 November action item; later completed in merged PR #74. | Superseded by the current disposition at the top of this report and in the [Unit Test Report](Unit_Test_Report.md). |
 | Remaining security/browser/quality execution | Existing case owners execute or seek actual authorized disposition of each gap; keep original outcomes. | TC-SEC-06 is OWNER PASS for its isolated loopback conditions. TC-SEC-08 is PARTIAL pending QA alert disposition. Other browser, availability and portability evidence remains pending. |
 | QA / Dev / PO final decisions | Vaishnavi / Devansh / Sreeharsha provide their own genuine dated decisions bound to the actual final revision. | PENDING; this assisted technical review is not a signature. |
 | Guide acceptance and submission | Actual guide walkthrough; Sreeharsha coordinates instructor channel/cutoff/format, genuine videos, accepted package and actual receipt through #43. | PENDING; no submission receipt recorded. |
@@ -187,7 +197,7 @@ limits. #38/#39/#41/#43 retain their actual remaining work; unit70 stays
 
 ## HMS-17 follow-up reconciliation — 8 November 2026
 
-The [PR #66 review](evidence/issue39/followup-20261108.md) retains original screenshot/run provenance, restores the two omitted raw files per historical CI bundle and reconciles S1-07/S2-07 against eleven passing methods per Python job. Product/test/template sources in the declared scope match historical `32e6f563`. At this 8 November snapshot, expanded totals were **50 OWNER PASS / 3 PARTIAL / 7 NOT RUN / 1 BLOCKED**, with 53/61 (86.89%) exercised and 50/61 (81.97%) owner-pass observations. The 9 November security follow-up updates the current register to **51 OWNER PASS / 3 PARTIAL / 6 NOT RUN / 1 BLOCKED**, with 54/61 (88.52%) exercised; the original 33 statuses/steps/expectations and original 36 RTM rows are unchanged. New static Chrome/Edge-labelled images do not complete STU-01, timed QUAL-01, the SRS portability targets, real mobile execution or QUAL-02 availability. #39 remains OPEN; whole-plan readiness stays NOT READY and unit70 UNPROVEN.
+The [PR #66 review](evidence/issue39/followup-20261108.md) retains original screenshot/run provenance, restores the two omitted raw files per historical CI bundle and reconciles S1-07/S2-07 against eleven passing methods per Python job. Product/test/template sources in the declared scope match historical `32e6f563`. The 8 and 9 November totals in this paragraph are historical snapshots only; see the 14 November current status at the top of this report for updated counts and the owner-approved #41 disposition. The 13 November phone-testing scope decision supersedes the physical-mobile requirement reference in this historical evidence. Whole-plan readiness remains NOT READY.
 
 ## Current-main supplemental full-suite verification — 9 November 2026
 

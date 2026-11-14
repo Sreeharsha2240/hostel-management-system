@@ -1,16 +1,10 @@
 # Part 3: testing, reports and team delivery
 
-**Current technical follow-up - 13 November:** PR #74 is merged and GitHub issue #41 is closed. The allocation-capacity follow-up passed 497 mixed methods (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes and 294 isolated methods. Function-body unit coverage is 955/955 (100%); all-application-statements companion is 955/1,713 (55.75%). The [Code Coverage Report](part3/Code_Coverage_Report.md), [Branch Coverage Report](part3/Branch_Coverage_Report.md) and [source-bound evidence](part3/evidence/hms18-capacity-20261113/README.md) describe the tested implementation revision. These technical results do not supply remaining human approvals, instructor instructions or submission receipt.
+**13 November HMS-19 completion:** PR #74 merged as `a41f884`, and issue #41 is closed. The owner-approved function-body unit-coverage boundary measures 946/946 (100%) across 288 isolated methods, meeting the 70% target under that definition. The companion all-application-statements result remains 946/1,703 (55.55%) and is disclosed in the [Unit Test Report](part3/Unit_Test_Report.md). See the [owner boundary decision](part3/evidence/hms19-function-body-boundary-20261113.md).
 
-## Earlier planning and status snapshots
+**14 November current scope and readiness:** real-phone testing is excluded from this mini-project. HMS-19/#41 is complete; the older issue and case snapshots below are historical. The HMS-16 QA handoff assesses both ZAP observations; TC-SEC-08 remains PARTIAL because the available scan was passive and loopback-only. TC-QUAL-02 (workday availability) and TC-QUAL-03 (desktop browser/OS portability) remain NOT RUN. The Code and Branch Coverage Reports were refreshed against the final application-code tree in PR #76; the owner has now accepted current priorities and 36 RTM design mappings at PO level, defined the REQ-24 student-display boundary, recorded a mini-project exception for SAD §4.4 monitoring/logging, and assigned retrospective severity levels to the four known closed defects. QA/Development agreement remains pending. Other whole-plan dependencies are Vaishnavi's desktop/OS evidence, Sprint 2 recording, instructor instructions and final package/receipt. See the [current readiness checkpoint](part3/HMS21_Final_Readiness.md) and [owner disposition](part3/evidence/owner-disposition-20261114.md).
 
-The dated entries below retain their earlier states; current technical status is above.
-
-**13 November HMS-19 update:** the project owner recorded approval of the narrower function-body unit-coverage boundary, which measures 946/946 (100%) and meets 70% under that interpretation. The preceding all-application-statements criterion measures 946/1,703 (55.55%) and remains below 70%. These boundaries differ in whether declarations count. See the [owner decision](part3/evidence/hms19-function-body-boundary-20261113.md) and [reconciled report](part3/Unit_Test_Report.md). #41 remains open pending review, the applicable acceptance disposition, remaining issue checks and PR merge; this entry does not itself close those checks.
-
-**13 November HMS-19 update:** the project owner approved the function-body application-logic boundary; 288/288 isolated methods pass and the exact selection measures 946/946 (100%) of function-body statements. The 55.55% all-statements companion result remains disclosed. PR #74 has passing CI on the previous report commit; its latest reconciliation checks must complete and the PR must merge before #41 closes. See the [owner decision](part3/evidence/hms19-function-body-boundary-20261113.md) and [report](part3/Unit_Test_Report.md).
-
-**10 November tracking update:** #38, #39 and #43 are now closed for their documented limited project scopes; #41 is the only open issue. The [HMS-16 QA handoff reconciliation](part3/evidence/issue38-security-20261110/qa-disposition-reconciliation.md) records the two ZAP alert assessments and locates the passing login `next` regression test. TC-SEC-08 remains PARTIAL, the complete browser/real-phone matrix and working-hours availability are unverified, and the original Test Plan/submission package remains NOT READY. Dated issue states below are historical snapshots.
+**10 November tracking update:** #38, #39 and #43 are now closed for their documented limited project scopes; #41 is the only open issue. The [HMS-16 QA handoff reconciliation](part3/evidence/issue38-security-20261110/qa-disposition-reconciliation.md) records the two ZAP alert assessments and locates the passing login `next` regression test. TC-SEC-08 remains PARTIAL, the desktop browser/OS matrix and working-hours availability are unverified, and the original Test Plan/submission package remains NOT READY. Dated issue states below are historical snapshots.
 
 This is the team work plan for **2-6 November 2026**. The assigned contributors
 execute their cases and prepare their own evidence. At the 8 November review,
@@ -45,8 +39,11 @@ The original Test Plan contains **33 planned case IDs** and an RTM for
 attributes. The updated Test Case Document must retain these IDs, explain
 revisions, add sprint regression cases and map automated methods to them.
 The delivered register preserves the original IDs/mappings and contains 61
-complete records. Its High/Medium priorities are proposals requiring QA review
-because the original case table lacks priority fields. The register reconciles
+complete records. The project owner accepted its 34 High / 27 Medium proposed
+priorities for current planning on 14 November; QA and Development agreement is
+still pending because the original case table lacks priority fields. This does
+not assign historical priorities or certify the High-priority exit criterion.
+The register reconciles
 TC-AUTH-03's old lockout-message wording with SRS REQ-2's generic credential-error
 requirement while retaining the original wording and five-attempt/15-minute test.
 
@@ -71,7 +68,7 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
 | [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with [authorized scoped AI QA acceptance](part3/evidence/issue40-final/qa-review-20261108.md); feeds System Validation Report, with actual final human approvals separate |
-| [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`); Sreeharsha co-assignee | 3 | [Owner-approved function-body unit coverage](part3/evidence/hms19-function-body-boundary-20261113.md): 288 isolated methods pass; 946/946 (100%) function-body statement coverage; all-statements coverage remains 55.55%; applicable acceptance disposition, remaining #41 checks, PR review and merge remain |
+| [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`); Sreeharsha co-assignee | 3 | Completed in merged PR #74: 288 isolated methods pass; 946/946 (100%) function-body statement coverage under the owner-approved boundary; 55.55% all-statements result remains disclosed |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports are published and the reporting issue is closed; the later owner function-body interpretation is recorded above; the separate all-statements unit measure remains below 70% |
 | [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | [Final readiness checkpoint](part3/HMS21_Final_Readiness.md); final review, required approvals and submission confirmation remain open |
 
@@ -165,25 +162,25 @@ cutoff and export requirements with the instructor through the normal team proce
 
 ## Deliverable destinations and completion evidence
 
-The table lists the required outputs, with links to published documents and
-current report candidates. The Unit Test Report candidate is now prepared on
-this branch; its unit70 result remains UNPROVEN pending independent QA scope and
-denominator review. Markdown is the team's working format; confirm whether the
+The table lists the required outputs and their current owners. HMS-19's Unit Test
+Report is published and its owner-approved function-body result meets the 70%
+target; the all-statements result remains disclosed. The whole-plan package is
+still NOT READY. Markdown is the team's working format; confirm whether the
 instructor also needs PDF/DOCX exports.
 
 | Output under `docs/` | Owner / contributors | Required content |
 |---|---|---|
-| [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, proposed priorities, requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
-| [Unit Test Report](part3/Unit_Test_Report.md) | Vaishnavi coordinates; Sreeharsha supplies this report contribution; module owners supply results | Exact source/CI run, module-level new-test outcomes, previous frozen classification and coverage evidence, mixed-level scope limits, failures/skips, defects/retests and durable sanitized metadata; independent QA boundary/denominator review remains pending |
+| [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, owner-accepted proposed priorities (QA/Dev review pending), requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
+| [Unit Test Report](part3/Unit_Test_Report.md) | Vaishnavi coordinates; Sreeharsha supplies this report contribution; module owners supply results | Published through merged PR #74; owner-approved function-body unit coverage is 100% (946/946); companion all-statements result is 55.55% and remains disclosed |
 | [System Validation Report](part3/System_Validation_Report.md) | Sreeharsha integrates; QA consolidates; all owners execute | Entry/exit criteria, all planned functional/security/performance/recovery/quality cases, RTM, observed results, execution/pass/fail/requirement percentages, defect density/aging, blockers, deviations, readiness and actual approvals |
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
 | [Branch Coverage Report](part3/Branch_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
 
-The two coverage reports now use [6 November current-main measurements](part3/evidence/issue42-main/README.md) on clean `b936e4d`: all 12 gates passed, with 190 methods (189 PASS, one expected timing skip followed by a separate timing PASS). Mixed coverage is **1,584/1,772 statements (89.39%)**, **342/424 branches (80.66%)**, and **87.70% combined**. The two newly merged demo commands add 98 unexecuted statements and 32 uncovered branch outcomes; they remain in the denominator. No percentage-driven tests, omissions or threshold changes were added.
+**Historical 6 November coverage report snapshot:** The two coverage reports then used [main measurements](part3/evidence/issue42-main/README.md) on clean `b936e4d`: all 12 gates passed, with 190 methods (189 PASS, one expected timing skip followed by a separate timing PASS). Mixed coverage was **1,584/1,772 statements (89.39%)**, **342/424 branches (80.66%)**, and **87.70% combined**. These are historical project-wide coverage results; the later HMS-19 result is recorded above.
 
-The unchanged proposed conservative76 now also ran as a separate suite: **76/76 PASS**. Its startup-inclusive application statement observation is **1,127/1,677 (67.20%)**, while exact selected-method attribution is **414/1,677 (24.69%)**. Imports/declarations/shared fixtures and their overlapping execution are reported separately; neither observation establishes a formal SRS result. The full mixed-run conservative/sensitivity observations are **405/1,677 (24.15%)** and **629/1,677 (37.51%)**. The [current startup/shared-setup diagnostic](part3/evidence/issue42-main/startup-context-diagnostic.json) preserves the fixed denominator and all per-file method/empty-context partitions.
+The historical proposed conservative76 selection passed **76/76** on that snapshot. Its startup-inclusive application statement observation was **1,127/1,677 (67.20%)**, while exact selected-method attribution was **414/1,677 (24.69%)**. These are retained historical diagnostics, superseded for HMS-19 by the current disposition at the top of this document.
 
-The original proposed classification and 76/100 selections remain unchanged; all 19 classified test-source hashes match. **SRS unit coverage remains UNPROVEN**, pending joint #41/#42 classification, attribution and application-logic agreement. PR #57 received `harsha2240`'s formal APPROVED review on 7 November at 04:10:33 UTC and merged at 04:10:53 UTC as `c9f30a4`; #42 closed as the reporting task. This supersedes the earlier pending-refresh-review wording without establishing unit70 acceptance. The [earlier 6 November evidence](part3/evidence/issue42-final/README.md), [4 November diagnostics](part3/evidence/owned-defects/coverage-notes.md) and [3 November evidence](part3/evidence/issue42/README.md) remain historical and unchanged. Accepted submission-build decisions and teammates' deliverables remain with their assigned owners.
+The original proposed classification and 76/100 selection are preserved as historical work. PR #57 merged as `c9f30a4` and closed #42 as the reporting task. The later owner-approved function-body unit result and closed #41 are recorded at the top of this document. The [earlier 6 November evidence](part3/evidence/issue42-final/README.md), [4 November diagnostics](part3/evidence/owned-defects/coverage-notes.md) and [3 November evidence](part3/evidence/issue42/README.md) remain historical. Accepted submission-build decisions and teammates' deliverables remain with their assigned owners.
 
 Keep four distinct reports. Every report names the exact tested commit/tree,
 run date, tool/environment versions, data/setup, reproducible commands/steps,
@@ -239,11 +236,13 @@ The assigned execution issues explicitly cover these acceptance areas:
   restore into a separate database, completeness/consistency and at most
   24 hours of data loss. A one-off dump does not demonstrate scheduling.
 - Quality: latest two Chrome/Firefox/Edge versions, Windows/Linux server
-  portability, a real mobile client, a new-warden guide task within 5 minutes,
+  portability, a new-warden guide task within 5 minutes,
   and the at-least-99% availability target during 8 AM-8 PM on working days
   with an observation method/period and stated limits.
 
-Test Plan section 5 requires reviewed cases, an approved SRS, a deployed test
+The owner-approved mini-project scope removes real-phone testing from the quality
+acceptance criteria; TC-QUAL-03 still requires desktop browser and server OS
+portability evidence. Test Plan section 5 requires reviewed cases, an approved SRS, a deployed test
 build and loaded data before execution. Its exit criteria are: **100% of planned
 cases executed, all High-priority cases passed, zero critical/high defects open,
 and every RTM requirement covered by a passed case**. Missing access, failed
@@ -255,8 +254,9 @@ authority, date and rationale, retaining the original outcome. Failed, blocked
 and not-run cases keep their actual statuses. Never infer a pass from an old issue's closed state.
 
 The final coordination task also checks inherited Part 2 obligations: the
-one-minute Sprint 1 and two-minute Sprint 2 outcome videos were not found in
-tracked files at setup. Locate/publish genuine recordings or record the gap.
+owner-provided [Sprint 1 demo](part3/evidence/sprint-recordings/Sprint1_Outcome_Demo.mp4)
+is now tracked and is 51.7 seconds, within the one-minute target. The two-minute
+Sprint 2 outcome video is still missing; locate/publish it or record the gap.
 Keep the original documents, diagrams, historical charts and evidence intact;
 record changes and confirm DOCX/PDF pairs and any final instructor packaging rules.
 
