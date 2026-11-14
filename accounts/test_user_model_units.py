@@ -35,3 +35,10 @@ class UserModelUnitTests(SimpleTestCase):
         user.save(update_fields=["first_name"])
         self.assertEqual(user.role, User.Role.WARDEN)
         self.assertEqual(save.call_args.kwargs["update_fields"], ["first_name"])
+
+    @patch("django.db.models.Model.save", return_value=None)
+    def test_student_save_revokes_staff_and_persists_it_with_update_fields(self, save):
+        user = User(role=User.Role.STUDENT, is_staff=True)
+        user.save(update_fields=["role"])
+        self.assertFalse(user.is_staff)
+        self.assertEqual(save.call_args.kwargs["update_fields"], {"role", "is_staff"})
