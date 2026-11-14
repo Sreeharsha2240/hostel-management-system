@@ -255,8 +255,10 @@ and not-run cases keep their actual statuses. Never infer a pass from an old iss
 
 The final coordination task also checks inherited Part 2 obligations: the
 owner-provided [Sprint 1 demo](part3/evidence/sprint-recordings/Sprint1_Outcome_Demo.mp4)
-is now tracked and is 51.7 seconds, within the one-minute target. The two-minute
-Sprint 2 outcome video is still missing; locate/publish it or record the gap.
+is now tracked and is 51.7 seconds, within the one-minute target. The owner has
+also supplied the [Sprint 2 outcome video](part3/evidence/sprint-recordings/Sprint2_Outcome_Demo.mp4),
+which is tracked at 1:55; review its content and confirm whether the five-second
+shortfall from the two-minute target is acceptable.
 Keep the original documents, diagrams, historical charts and evidence intact;
 record changes and confirm DOCX/PDF pairs and any final instructor packaging rules.
 

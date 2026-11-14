@@ -15,5 +15,16 @@ the demo's spoken content or rubric coverage.
 
 ## Sprint 2
 
-The two-minute Sprint 2 outcome video has not been located in the repository.
-The Sprint 1 demo does not satisfy that separate deliverable.
+The project owner supplied `HMS_Sprint2_Outcome_Demo.mp4`; the repository copy is
+[Sprint2_Outcome_Demo.mp4](Sprint2_Outcome_Demo.mp4).
+
+- Duration: 1 minute 55 seconds, five seconds short of the two-minute target.
+- Size: 155,306 bytes.
+- SHA-256: `A597A3E382F4AEB1E9FADBD84ED398B300D0F60B9B406BCEA115ACB3B1F30F07`.
+- Provenance: copied from the owner-provided file; source and repository-copy
+  hashes match.
+
+This records delivery and duration only. The recording's spoken content and
+rubric coverage have not been independently reviewed. Confirm that the
+five-second shortfall is acceptable or extend the recording if the full
+two-minute target is strict.
