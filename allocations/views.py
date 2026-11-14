@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Count, F, IntegerField, OuterRef, Q, Subquery
+from django.db.models.functions import Coalesce
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
@@ -43,11 +44,28 @@ def form_error(request, form, error=None):
     return None
 
 
-def available_beds():
+def available_beds(*, exclude_allocation_id=None):
+    active = Allocation.objects.filter(
+        bed__room_id=OuterRef("room_id"), status=Allocation.AllocationStatus.ACTIVE
+    )
+    if exclude_allocation_id is not None:
+        active = active.exclude(pk=exclude_allocation_id)
+    active_counts = (
+        active.order_by()
+        .values("bed__room_id")
+        .annotate(total=Count("pk"))
+        .values("total")[:1]
+    )
     return (
         Bed.objects.select_related("room__hostel")
         .filter(status=Bed.BedStatus.AVAILABLE, room__hostel__is_active=True)
         .exclude(allocations__status=Allocation.AllocationStatus.ACTIVE)
+        .alias(
+            room_active_count=Coalesce(
+                Subquery(active_counts, output_field=IntegerField()), 0
+            )
+        )
+        .filter(room_active_count__lt=F("room__capacity"))
     )
 
 
@@ -156,7 +174,9 @@ def allocation_transfer(request, pk):
         if response is not None:
             return response
     else:
-        form.fields["new_bed"].queryset = available_beds().exclude(pk=allocation.bed_id)
+        form.fields["new_bed"].queryset = available_beds(
+            exclude_allocation_id=allocation.pk
+        ).exclude(pk=allocation.bed_id)
     return render(
         request,
         "allocations/allocation_form.html",

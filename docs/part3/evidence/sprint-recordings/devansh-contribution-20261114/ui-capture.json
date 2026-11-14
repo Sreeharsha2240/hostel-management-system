@@ -1,0 +1,1104 @@
+{
+  "steps": [
+    {
+      "name": "allocation form with synthetic values",
+      "elapsed_seconds": 0.0003618000000001302,
+      "url": "http://127.0.0.1:63377/allocations/create/",
+      "result": "ready before recorded submission"
+    },
+    {
+      "name": "allocation created",
+      "elapsed_seconds": 2.2187452000000003,
+      "url": "http://127.0.0.1:63377/allocations/?q=DV11141322192",
+      "result": "DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D101 D101-A 14-11-2026 — Active History Transfer Release with date Complete"
+    },
+    {
+      "name": "transfer form",
+      "elapsed_seconds": 6.0883575,
+      "url": "http://127.0.0.1:63377/allocations/1/transfer/",
+      "result": "selected second synthetic bed"
+    },
+    {
+      "name": "transfer confirmed and history preserved",
+      "elapsed_seconds": 9.2476096,
+      "url": "http://127.0.0.1:63377/students/1/allocations/",
+      "result": "Hostel Allocations History for DV11141322192 — Demo Student - Devansh Create Allocation Search student, bed, or hostel Search STUDENT ID STUDENT NAME HOSTEL ROOM BED ALLOCATED ON VACATED ON STATUS ACTION DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D102 D102-A 14-11-2026 — Active History Transfer Release with date Complete DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D101 D101-A 14-11-2026 14-11-2026 Completed History —"
+    },
+    {
+      "name": "payment form",
+      "elapsed_seconds": 14.1136916,
+      "url": "http://127.0.0.1:63377/payments/create/",
+      "result": "synthetic INR 5000.00 via UPI"
+    },
+    {
+      "name": "numbered receipt generated",
+      "elapsed_seconds": 17.1403359,
+      "url": "http://127.0.0.1:63377/payments/R00000000001/receipt/",
+      "result": "Receipt R00000000001 recorded. Payment receipt Download PDF R00000000001 Student DV11141322192 - Demo Student - Devansh Amount (INR) 5000.00 Payment date 14-11-2026 Mode UPI Reference DEMO14112026 View student payment status Record a correction Back to payments"
+    },
+    {
+      "name": "receipt PDF downloaded",
+      "elapsed_seconds": 20.234098300000003,
+      "url": "http://127.0.0.1:63377/payments/R00000000001/receipt/",
+      "result": "saved for independent PDF text inspection"
+    },
+    {
+      "name": "student balance",
+      "elapsed_seconds": 23.0967098,
+      "url": "http://127.0.0.1:63377/students/1/payment-status/",
+      "result": "Payment status DV11141322192 - Demo Student - Devansh Hostel / room Devansh Demo 14 Nov 5270 / D102 Fee (INR) 10000.00 Paid (INR) 5000.00 Due (INR) 5000.00 Status Partial View payment history"
+    },
+    {
+      "name": "filtered occupancy report",
+      "elapsed_seconds": 26.067451400000003,
+      "url": "http://127.0.0.1:63377/reports/occupancy/?hostel=1",
+      "result": "Devansh Demo 14 Nov 5270 2 1 1 0 50.00%"
+    },
+    {
+      "name": "filtered payment status report",
+      "elapsed_seconds": 30.068028,
+      "url": "http://127.0.0.1:63377/reports/payment-status/?hostel=1",
+      "result": "DV11141322192 Demo Student - Devansh Devansh Demo 14 Nov 5270 D102 D102-A 10000.00 5000.00 5000.00 Partial"
+    },
+    {
+      "name": "filtered CSV downloaded",
+      "elapsed_seconds": 34.141397299999994,
+      "url": "http://127.0.0.1:63377/reports/payment-status/?hostel=1",
+      "result": "saved for independent text inspection"
+    },
+    {
+      "name": "published evidence card",
+      "elapsed_seconds": 36.0126905,
+      "url": "http://127.0.0.1:63377/reports/payment-status/?hostel=1",
+      "result": "editorial card; published historical observations, not a new execution"
+    }
+  ],
+  "frames": [
+    {
+      "file": "frame_00000.jpg",
+      "started_seconds": 0.003065700000000106,
+      "completed_seconds": 0.03165780000000018
+    },
+    {
+      "file": "frame_00001.jpg",
+      "started_seconds": 0.2005685000000001,
+      "completed_seconds": 0.2235561
+    },
+    {
+      "file": "frame_00002.jpg",
+      "started_seconds": 0.4050871000000002,
+      "completed_seconds": 0.43640190000000006
+    },
+    {
+      "file": "frame_00003.jpg",
+      "started_seconds": 0.6070705000000001,
+      "completed_seconds": 0.6308777999999999
+    },
+    {
+      "file": "frame_00004.jpg",
+      "started_seconds": 0.8119113,
+      "completed_seconds": 0.8360687
+    },
+    {
+      "file": "frame_00005.jpg",
+      "started_seconds": 1.0123106,
+      "completed_seconds": 1.0355379
+    },
+    {
+      "file": "frame_00006.jpg",
+      "started_seconds": 1.2121876,
+      "completed_seconds": 1.2360784
+    },
+    {
+      "file": "frame_00007.jpg",
+      "started_seconds": 1.4122026000000003,
+      "completed_seconds": 1.4360088000000002
+    },
+    {
+      "file": "frame_00008.jpg",
+      "started_seconds": 1.6120886000000003,
+      "completed_seconds": 1.6362994999999998
+    },
+    {
+      "file": "frame_00009.jpg",
+      "started_seconds": 1.8122156000000003,
+      "completed_seconds": 1.8362903
+    },
+    {
+      "file": "frame_00010.jpg",
+      "started_seconds": 2.0134288,
+      "completed_seconds": 2.0361076000000002
+    },
+    {
+      "file": "frame_00011.jpg",
+      "started_seconds": 2.1987842,
+      "completed_seconds": 2.2370877
+    },
+    {
+      "file": "frame_00012.jpg",
+      "started_seconds": 2.4127079000000005,
+      "completed_seconds": 2.4360764
+    },
+    {
+      "file": "frame_00013.jpg",
+      "started_seconds": 2.6122537,
+      "completed_seconds": 2.6361506
+    },
+    {
+      "file": "frame_00014.jpg",
+      "started_seconds": 2.8066633999999993,
+      "completed_seconds": 2.8300098
+    },
+    {
+      "file": "frame_00015.jpg",
+      "started_seconds": 3.0002799999999996,
+      "completed_seconds": 3.0241983
+    },
+    {
+      "file": "frame_00016.jpg",
+      "started_seconds": 3.2057713999999997,
+      "completed_seconds": 3.2358742
+    },
+    {
+      "file": "frame_00017.jpg",
+      "started_seconds": 3.4088298999999997,
+      "completed_seconds": 3.430361
+    },
+    {
+      "file": "frame_00018.jpg",
+      "started_seconds": 3.6111907000000003,
+      "completed_seconds": 3.6360217
+    },
+    {
+      "file": "frame_00019.jpg",
+      "started_seconds": 3.8130990000000002,
+      "completed_seconds": 3.8393580999999997
+    },
+    {
+      "file": "frame_00020.jpg",
+      "started_seconds": 4.0122152,
+      "completed_seconds": 4.0357036
+    },
+    {
+      "file": "frame_00021.jpg",
+      "started_seconds": 4.212051,
+      "completed_seconds": 4.236083
+    },
+    {
+      "file": "frame_00022.jpg",
+      "started_seconds": 4.412162499999999,
+      "completed_seconds": 4.4364731
+    },
+    {
+      "file": "frame_00023.jpg",
+      "started_seconds": 4.612226499999999,
+      "completed_seconds": 4.636179
+    },
+    {
+      "file": "frame_00024.jpg",
+      "started_seconds": 4.8120995,
+      "completed_seconds": 4.8364956999999995
+    },
+    {
+      "file": "frame_00025.jpg",
+      "started_seconds": 5.012194099999999,
+      "completed_seconds": 5.0358265
+    },
+    {
+      "file": "frame_00026.jpg",
+      "started_seconds": 5.212685,
+      "completed_seconds": 5.239308100000001
+    },
+    {
+      "file": "frame_00027.jpg",
+      "started_seconds": 5.403104,
+      "completed_seconds": 5.4245106
+    },
+    {
+      "file": "frame_00028.jpg",
+      "started_seconds": 5.6003662,
+      "completed_seconds": 5.6236872
+    },
+    {
+      "file": "frame_00029.jpg",
+      "started_seconds": 5.8009957,
+      "completed_seconds": 5.8332626
+    },
+    {
+      "file": "frame_00030.jpg",
+      "started_seconds": 6.013929599999999,
+      "completed_seconds": 6.1028561
+    },
+    {
+      "file": "frame_00031.jpg",
+      "started_seconds": 6.2011401,
+      "completed_seconds": 6.224181499999999
+    },
+    {
+      "file": "frame_00032.jpg",
+      "started_seconds": 6.4126059,
+      "completed_seconds": 6.435829
+    },
+    {
+      "file": "frame_00033.jpg",
+      "started_seconds": 6.606180899999999,
+      "completed_seconds": 6.636193100000001
+    },
+    {
+      "file": "frame_00034.jpg",
+      "started_seconds": 6.805538899999999,
+      "completed_seconds": 6.852182499999999
+    },
+    {
+      "file": "frame_00035.jpg",
+      "started_seconds": 7.009654199999999,
+      "completed_seconds": 7.0355589
+    },
+    {
+      "file": "frame_00036.jpg",
+      "started_seconds": 7.206277599999999,
+      "completed_seconds": 7.2302577999999995
+    },
+    {
+      "file": "frame_00037.jpg",
+      "started_seconds": 7.400570900000001,
+      "completed_seconds": 7.434064500000001
+    },
+    {
+      "file": "frame_00038.jpg",
+      "started_seconds": 7.606928,
+      "completed_seconds": 7.6294872
+    },
+    {
+      "file": "frame_00039.jpg",
+      "started_seconds": 7.8009758,
+      "completed_seconds": 7.8299421
+    },
+    {
+      "file": "frame_00040.jpg",
+      "started_seconds": 8.0007802,
+      "completed_seconds": 8.023741099999999
+    },
+    {
+      "file": "frame_00041.jpg",
+      "started_seconds": 8.2104653,
+      "completed_seconds": 8.2292382
+    },
+    {
+      "file": "frame_00042.jpg",
+      "started_seconds": 8.4019742,
+      "completed_seconds": 8.423986
+    },
+    {
+      "file": "frame_00043.jpg",
+      "started_seconds": 8.609866700000001,
+      "completed_seconds": 8.6295286
+    },
+    {
+      "file": "frame_00044.jpg",
+      "started_seconds": 8.8010745,
+      "completed_seconds": 8.8298173
+    },
+    {
+      "file": "frame_00045.jpg",
+      "started_seconds": 9.0004814,
+      "completed_seconds": 9.0240974
+    },
+    {
+      "file": "frame_00046.jpg",
+      "started_seconds": 9.2013538,
+      "completed_seconds": 9.2732231
+    },
+    {
+      "file": "frame_00047.jpg",
+      "started_seconds": 9.401262500000001,
+      "completed_seconds": 9.4304573
+    },
+    {
+      "file": "frame_00048.jpg",
+      "started_seconds": 9.6015312,
+      "completed_seconds": 9.624180699999998
+    },
+    {
+      "file": "frame_00049.jpg",
+      "started_seconds": 9.801135899999998,
+      "completed_seconds": 9.8240254
+    },
+    {
+      "file": "frame_00050.jpg",
+      "started_seconds": 10.000669899999998,
+      "completed_seconds": 10.0341476
+    },
+    {
+      "file": "frame_00051.jpg",
+      "started_seconds": 10.2123475,
+      "completed_seconds": 10.2357212
+    },
+    {
+      "file": "frame_00052.jpg",
+      "started_seconds": 10.412246699999999,
+      "completed_seconds": 10.4464571
+    },
+    {
+      "file": "frame_00053.jpg",
+      "started_seconds": 10.6089039,
+      "completed_seconds": 10.630481900000001
+    },
+    {
+      "file": "frame_00054.jpg",
+      "started_seconds": 10.8062258,
+      "completed_seconds": 10.8307747
+    },
+    {
+      "file": "frame_00055.jpg",
+      "started_seconds": 11.006358200000001,
+      "completed_seconds": 11.0363811
+    },
+    {
+      "file": "frame_00056.jpg",
+      "started_seconds": 11.2120711,
+      "completed_seconds": 11.235539999999999
+    },
+    {
+      "file": "frame_00057.jpg",
+      "started_seconds": 11.412280999999998,
+      "completed_seconds": 11.4464879
+    },
+    {
+      "file": "frame_00058.jpg",
+      "started_seconds": 11.6092155,
+      "completed_seconds": 11.6305333
+    },
+    {
+      "file": "frame_00059.jpg",
+      "started_seconds": 11.8068264,
+      "completed_seconds": 11.8365324
+    },
+    {
+      "file": "frame_00060.jpg",
+      "started_seconds": 12.0122836,
+      "completed_seconds": 12.0362626
+    },
+    {
+      "file": "frame_00061.jpg",
+      "started_seconds": 12.2128089,
+      "completed_seconds": 12.236206399999999
+    },
+    {
+      "file": "frame_00062.jpg",
+      "started_seconds": 12.412936,
+      "completed_seconds": 12.4365875
+    },
+    {
+      "file": "frame_00063.jpg",
+      "started_seconds": 12.612384500000001,
+      "completed_seconds": 12.6363764
+    },
+    {
+      "file": "frame_00064.jpg",
+      "started_seconds": 12.812263399999999,
+      "completed_seconds": 12.836427599999999
+    },
+    {
+      "file": "frame_00065.jpg",
+      "started_seconds": 13.0123868,
+      "completed_seconds": 13.0424252
+    },
+    {
+      "file": "frame_00066.jpg",
+      "started_seconds": 13.202638199999999,
+      "completed_seconds": 13.2239712
+    },
+    {
+      "file": "frame_00067.jpg",
+      "started_seconds": 13.4069007,
+      "completed_seconds": 13.4367037
+    },
+    {
+      "file": "frame_00068.jpg",
+      "started_seconds": 13.6122798,
+      "completed_seconds": 13.640812400000002
+    },
+    {
+      "file": "frame_00069.jpg",
+      "started_seconds": 13.8124087,
+      "completed_seconds": 13.8363313
+    },
+    {
+      "file": "frame_00070.jpg",
+      "started_seconds": 14.013406699999999,
+      "completed_seconds": 14.1079637
+    },
+    {
+      "file": "frame_00071.jpg",
+      "started_seconds": 14.2012592,
+      "completed_seconds": 14.230675999999999
+    },
+    {
+      "file": "frame_00072.jpg",
+      "started_seconds": 14.400776,
+      "completed_seconds": 14.4300426
+    },
+    {
+      "file": "frame_00073.jpg",
+      "started_seconds": 14.607042600000002,
+      "completed_seconds": 14.6370725
+    },
+    {
+      "file": "frame_00074.jpg",
+      "started_seconds": 14.799386799999999,
+      "completed_seconds": 14.8302459
+    },
+    {
+      "file": "frame_00075.jpg",
+      "started_seconds": 15.0069527,
+      "completed_seconds": 15.036618
+    },
+    {
+      "file": "frame_00076.jpg",
+      "started_seconds": 15.210827,
+      "completed_seconds": 15.2420102
+    },
+    {
+      "file": "frame_00077.jpg",
+      "started_seconds": 15.4028611,
+      "completed_seconds": 15.4244119
+    },
+    {
+      "file": "frame_00078.jpg",
+      "started_seconds": 15.6005066,
+      "completed_seconds": 15.6347421
+    },
+    {
+      "file": "frame_00079.jpg",
+      "started_seconds": 15.812800099999999,
+      "completed_seconds": 15.845683999999999
+    },
+    {
+      "file": "frame_00080.jpg",
+      "started_seconds": 16.008835700000002,
+      "completed_seconds": 16.0311285
+    },
+    {
+      "file": "frame_00081.jpg",
+      "started_seconds": 16.2065872,
+      "completed_seconds": 16.239611800000002
+    },
+    {
+      "file": "frame_00082.jpg",
+      "started_seconds": 16.403121000000002,
+      "completed_seconds": 16.424482200000003
+    },
+    {
+      "file": "frame_00083.jpg",
+      "started_seconds": 16.600345200000003,
+      "completed_seconds": 16.6301257
+    },
+    {
+      "file": "frame_00084.jpg",
+      "started_seconds": 16.8054829,
+      "completed_seconds": 16.8574156
+    },
+    {
+      "file": "frame_00085.jpg",
+      "started_seconds": 17.0062482,
+      "completed_seconds": 17.030349400000002
+    },
+    {
+      "file": "frame_00086.jpg",
+      "started_seconds": 17.201290200000003,
+      "completed_seconds": 17.2246021
+    },
+    {
+      "file": "frame_00087.jpg",
+      "started_seconds": 17.4018341,
+      "completed_seconds": 17.430125500000003
+    },
+    {
+      "file": "frame_00088.jpg",
+      "started_seconds": 17.599643300000004,
+      "completed_seconds": 17.6276477
+    },
+    {
+      "file": "frame_00089.jpg",
+      "started_seconds": 17.800183,
+      "completed_seconds": 17.823945900000002
+    },
+    {
+      "file": "frame_00090.jpg",
+      "started_seconds": 18.010293100000002,
+      "completed_seconds": 18.0327951
+    },
+    {
+      "file": "frame_00091.jpg",
+      "started_seconds": 18.206469800000004,
+      "completed_seconds": 18.2303256
+    },
+    {
+      "file": "frame_00092.jpg",
+      "started_seconds": 18.400349100000003,
+      "completed_seconds": 18.4336136
+    },
+    {
+      "file": "frame_00093.jpg",
+      "started_seconds": 18.606624600000004,
+      "completed_seconds": 18.640017600000004
+    },
+    {
+      "file": "frame_00094.jpg",
+      "started_seconds": 18.805404300000003,
+      "completed_seconds": 18.8296915
+    },
+    {
+      "file": "frame_00095.jpg",
+      "started_seconds": 19.000293000000003,
+      "completed_seconds": 19.0302626
+    },
+    {
+      "file": "frame_00096.jpg",
+      "started_seconds": 19.199874300000005,
+      "completed_seconds": 19.223954000000003
+    },
+    {
+      "file": "frame_00097.jpg",
+      "started_seconds": 19.410314000000003,
+      "completed_seconds": 19.430008400000002
+    },
+    {
+      "file": "frame_00098.jpg",
+      "started_seconds": 19.6010597,
+      "completed_seconds": 19.630050200000003
+    },
+    {
+      "file": "frame_00099.jpg",
+      "started_seconds": 19.799771900000003,
+      "completed_seconds": 19.8239364
+    },
+    {
+      "file": "frame_00100.jpg",
+      "started_seconds": 20.0114677,
+      "completed_seconds": 20.0388644
+    },
+    {
+      "file": "frame_00101.jpg",
+      "started_seconds": 20.199221800000004,
+      "completed_seconds": 20.2353032
+    },
+    {
+      "file": "frame_00102.jpg",
+      "started_seconds": 20.4012923,
+      "completed_seconds": 20.4314
+    },
+    {
+      "file": "frame_00103.jpg",
+      "started_seconds": 20.6139424,
+      "completed_seconds": 20.6465498
+    },
+    {
+      "file": "frame_00104.jpg",
+      "started_seconds": 20.803273800000003,
+      "completed_seconds": 20.823952100000003
+    },
+    {
+      "file": "frame_00105.jpg",
+      "started_seconds": 21.012266000000004,
+      "completed_seconds": 21.036325500000004
+    },
+    {
+      "file": "frame_00106.jpg",
+      "started_seconds": 21.208182500000003,
+      "completed_seconds": 21.229717200000003
+    },
+    {
+      "file": "frame_00107.jpg",
+      "started_seconds": 21.4038189,
+      "completed_seconds": 21.424173200000002
+    },
+    {
+      "file": "frame_00108.jpg",
+      "started_seconds": 21.6118634,
+      "completed_seconds": 21.642117400000004
+    },
+    {
+      "file": "frame_00109.jpg",
+      "started_seconds": 21.8131093,
+      "completed_seconds": 21.8363729
+    },
+    {
+      "file": "frame_00110.jpg",
+      "started_seconds": 22.006429400000002,
+      "completed_seconds": 22.036646400000002
+    },
+    {
+      "file": "frame_00111.jpg",
+      "started_seconds": 22.205543900000002,
+      "completed_seconds": 22.23035
+    },
+    {
+      "file": "frame_00112.jpg",
+      "started_seconds": 22.4005557,
+      "completed_seconds": 22.4345678
+    },
+    {
+      "file": "frame_00113.jpg",
+      "started_seconds": 22.607357500000003,
+      "completed_seconds": 22.6365614
+    },
+    {
+      "file": "frame_00114.jpg",
+      "started_seconds": 22.805635900000002,
+      "completed_seconds": 22.8303541
+    },
+    {
+      "file": "frame_00115.jpg",
+      "started_seconds": 23.001378900000002,
+      "completed_seconds": 23.0252504
+    },
+    {
+      "file": "frame_00116.jpg",
+      "started_seconds": 23.2014068,
+      "completed_seconds": 23.224798600000003
+    },
+    {
+      "file": "frame_00117.jpg",
+      "started_seconds": 23.404086700000004,
+      "completed_seconds": 23.4263271
+    },
+    {
+      "file": "frame_00118.jpg",
+      "started_seconds": 23.611145200000003,
+      "completed_seconds": 23.6392583
+    },
+    {
+      "file": "frame_00119.jpg",
+      "started_seconds": 23.812083400000002,
+      "completed_seconds": 23.8455483
+    },
+    {
+      "file": "frame_00120.jpg",
+      "started_seconds": 24.003030300000002,
+      "completed_seconds": 24.0238816
+    },
+    {
+      "file": "frame_00121.jpg",
+      "started_seconds": 24.2130446,
+      "completed_seconds": 24.2360216
+    },
+    {
+      "file": "frame_00122.jpg",
+      "started_seconds": 24.406590500000004,
+      "completed_seconds": 24.436803100000002
+    },
+    {
+      "file": "frame_00123.jpg",
+      "started_seconds": 24.6060917,
+      "completed_seconds": 24.63012
+    },
+    {
+      "file": "frame_00124.jpg",
+      "started_seconds": 24.8023303,
+      "completed_seconds": 24.8302582
+    },
+    {
+      "file": "frame_00125.jpg",
+      "started_seconds": 25.001916800000004,
+      "completed_seconds": 25.024090400000002
+    },
+    {
+      "file": "frame_00126.jpg",
+      "started_seconds": 25.212612200000002,
+      "completed_seconds": 25.2357635
+    },
+    {
+      "file": "frame_00127.jpg",
+      "started_seconds": 25.4081432,
+      "completed_seconds": 25.435749300000005
+    },
+    {
+      "file": "frame_00128.jpg",
+      "started_seconds": 25.605684500000002,
+      "completed_seconds": 25.636495900000003
+    },
+    {
+      "file": "frame_00129.jpg",
+      "started_seconds": 25.806179500000002,
+      "completed_seconds": 25.8303516
+    },
+    {
+      "file": "frame_00130.jpg",
+      "started_seconds": 26.000917100000002,
+      "completed_seconds": 26.0909366
+    },
+    {
+      "file": "frame_00131.jpg",
+      "started_seconds": 26.201468500000004,
+      "completed_seconds": 26.2252438
+    },
+    {
+      "file": "frame_00132.jpg",
+      "started_seconds": 26.403749200000004,
+      "completed_seconds": 26.4246715
+    },
+    {
+      "file": "frame_00133.jpg",
+      "started_seconds": 26.6098941,
+      "completed_seconds": 26.6306552
+    },
+    {
+      "file": "frame_00134.jpg",
+      "started_seconds": 26.800477000000004,
+      "completed_seconds": 26.828432
+    },
+    {
+      "file": "frame_00135.jpg",
+      "started_seconds": 27.0098469,
+      "completed_seconds": 27.030167900000002
+    },
+    {
+      "file": "frame_00136.jpg",
+      "started_seconds": 27.200563900000002,
+      "completed_seconds": 27.2238577
+    },
+    {
+      "file": "frame_00137.jpg",
+      "started_seconds": 27.4106215,
+      "completed_seconds": 27.430362200000005
+    },
+    {
+      "file": "frame_00138.jpg",
+      "started_seconds": 27.6011862,
+      "completed_seconds": 27.624366800000004
+    },
+    {
+      "file": "frame_00139.jpg",
+      "started_seconds": 27.810236200000002,
+      "completed_seconds": 27.829905400000005
+    },
+    {
+      "file": "frame_00140.jpg",
+      "started_seconds": 28.001463300000005,
+      "completed_seconds": 28.024047700000004
+    },
+    {
+      "file": "frame_00141.jpg",
+      "started_seconds": 28.209906400000005,
+      "completed_seconds": 28.2298279
+    },
+    {
+      "file": "frame_00142.jpg",
+      "started_seconds": 28.400500700000002,
+      "completed_seconds": 28.4245494
+    },
+    {
+      "file": "frame_00143.jpg",
+      "started_seconds": 28.610755800000003,
+      "completed_seconds": 28.630546400000004
+    },
+    {
+      "file": "frame_00144.jpg",
+      "started_seconds": 28.801255400000002,
+      "completed_seconds": 28.8248752
+    },
+    {
+      "file": "frame_00145.jpg",
+      "started_seconds": 29.0103394,
+      "completed_seconds": 29.030529
+    },
+    {
+      "file": "frame_00146.jpg",
+      "started_seconds": 29.200806800000002,
+      "completed_seconds": 29.224331700000004
+    },
+    {
+      "file": "frame_00147.jpg",
+      "started_seconds": 29.4100852,
+      "completed_seconds": 29.4335911
+    },
+    {
+      "file": "frame_00148.jpg",
+      "started_seconds": 29.606882400000003,
+      "completed_seconds": 29.635981400000002
+    },
+    {
+      "file": "frame_00149.jpg",
+      "started_seconds": 29.8063443,
+      "completed_seconds": 29.830541200000003
+    },
+    {
+      "file": "frame_00150.jpg",
+      "started_seconds": 30.0019025,
+      "completed_seconds": 30.085275400000004
+    },
+    {
+      "file": "frame_00151.jpg",
+      "started_seconds": 30.201542800000002,
+      "completed_seconds": 30.2247662
+    },
+    {
+      "file": "frame_00152.jpg",
+      "started_seconds": 30.4036955,
+      "completed_seconds": 30.4244618
+    },
+    {
+      "file": "frame_00153.jpg",
+      "started_seconds": 30.6098649,
+      "completed_seconds": 30.630550200000002
+    },
+    {
+      "file": "frame_00154.jpg",
+      "started_seconds": 30.8006057,
+      "completed_seconds": 30.824316300000003
+    },
+    {
+      "file": "frame_00155.jpg",
+      "started_seconds": 31.0099159,
+      "completed_seconds": 31.0303401
+    },
+    {
+      "file": "frame_00156.jpg",
+      "started_seconds": 31.201851299999998,
+      "completed_seconds": 31.2240007
+    },
+    {
+      "file": "frame_00157.jpg",
+      "started_seconds": 31.410134800000005,
+      "completed_seconds": 31.4308576
+    },
+    {
+      "file": "frame_00158.jpg",
+      "started_seconds": 31.600886200000005,
+      "completed_seconds": 31.627450700000004
+    },
+    {
+      "file": "frame_00159.jpg",
+      "started_seconds": 31.8108196,
+      "completed_seconds": 31.830158200000003
+    },
+    {
+      "file": "frame_00160.jpg",
+      "started_seconds": 32.0017433,
+      "completed_seconds": 32.024401000000005
+    },
+    {
+      "file": "frame_00161.jpg",
+      "started_seconds": 32.2112398,
+      "completed_seconds": 32.2365848
+    },
+    {
+      "file": "frame_00162.jpg",
+      "started_seconds": 32.4064977,
+      "completed_seconds": 32.4366751
+    },
+    {
+      "file": "frame_00163.jpg",
+      "started_seconds": 32.6058455,
+      "completed_seconds": 32.6338099
+    },
+    {
+      "file": "frame_00164.jpg",
+      "started_seconds": 32.8059327,
+      "completed_seconds": 32.839600999999995
+    },
+    {
+      "file": "frame_00165.jpg",
+      "started_seconds": 33.0124904,
+      "completed_seconds": 33.0419789
+    },
+    {
+      "file": "frame_00166.jpg",
+      "started_seconds": 33.21193219999999,
+      "completed_seconds": 33.2361573
+    },
+    {
+      "file": "frame_00167.jpg",
+      "started_seconds": 33.4072728,
+      "completed_seconds": 33.430671
+    },
+    {
+      "file": "frame_00168.jpg",
+      "started_seconds": 33.6006213,
+      "completed_seconds": 33.624229
+    },
+    {
+      "file": "frame_00169.jpg",
+      "started_seconds": 33.809971,
+      "completed_seconds": 33.830026399999994
+    },
+    {
+      "file": "frame_00170.jpg",
+      "started_seconds": 34.0012451,
+      "completed_seconds": 34.025035599999995
+    },
+    {
+      "file": "frame_00171.jpg",
+      "started_seconds": 34.2026951,
+      "completed_seconds": 34.2312934
+    },
+    {
+      "file": "frame_00172.jpg",
+      "started_seconds": 34.400169999999996,
+      "completed_seconds": 34.4303124
+    },
+    {
+      "file": "frame_00173.jpg",
+      "started_seconds": 34.6001607,
+      "completed_seconds": 34.6251271
+    },
+    {
+      "file": "frame_00174.jpg",
+      "started_seconds": 34.8108492,
+      "completed_seconds": 34.8396697
+    },
+    {
+      "file": "frame_00175.jpg",
+      "started_seconds": 35.0117085,
+      "completed_seconds": 35.0396876
+    },
+    {
+      "file": "frame_00176.jpg",
+      "started_seconds": 35.2120049,
+      "completed_seconds": 35.242158499999995
+    },
+    {
+      "file": "frame_00177.jpg",
+      "started_seconds": 35.411782599999995,
+      "completed_seconds": 35.4390216
+    },
+    {
+      "file": "frame_00178.jpg",
+      "started_seconds": 35.6129216,
+      "completed_seconds": 35.6456478
+    },
+    {
+      "file": "frame_00179.jpg",
+      "started_seconds": 35.8031993,
+      "completed_seconds": 35.8304973
+    },
+    {
+      "file": "frame_00180.jpg",
+      "started_seconds": 36.000292699999996,
+      "completed_seconds": 36.0368303
+    },
+    {
+      "file": "frame_00181.jpg",
+      "started_seconds": 36.2065585,
+      "completed_seconds": 36.229647400000005
+    },
+    {
+      "file": "frame_00182.jpg",
+      "started_seconds": 36.40121189999999,
+      "completed_seconds": 36.445951099999995
+    },
+    {
+      "file": "frame_00183.jpg",
+      "started_seconds": 36.60360789999999,
+      "completed_seconds": 36.6241925
+    },
+    {
+      "file": "frame_00184.jpg",
+      "started_seconds": 36.8108551,
+      "completed_seconds": 36.8359686
+    },
+    {
+      "file": "frame_00185.jpg",
+      "started_seconds": 37.006648799999994,
+      "completed_seconds": 37.030766899999996
+    },
+    {
+      "file": "frame_00186.jpg",
+      "started_seconds": 37.200724199999996,
+      "completed_seconds": 37.2245169
+    },
+    {
+      "file": "frame_00187.jpg",
+      "started_seconds": 37.411354,
+      "completed_seconds": 37.4300859
+    },
+    {
+      "file": "frame_00188.jpg",
+      "started_seconds": 37.6005074,
+      "completed_seconds": 37.6241708
+    },
+    {
+      "file": "frame_00189.jpg",
+      "started_seconds": 37.810040199999996,
+      "completed_seconds": 37.8301163
+    },
+    {
+      "file": "frame_00190.jpg",
+      "started_seconds": 38.0005271,
+      "completed_seconds": 38.02431179999999
+    },
+    {
+      "file": "frame_00191.jpg",
+      "started_seconds": 38.2104658,
+      "completed_seconds": 38.23572969999999
+    },
+    {
+      "file": "frame_00192.jpg",
+      "started_seconds": 38.4069491,
+      "completed_seconds": 38.4526169
+    },
+    {
+      "file": "frame_00193.jpg",
+      "started_seconds": 38.6092075,
+      "completed_seconds": 38.630583200000004
+    },
+    {
+      "file": "frame_00194.jpg",
+      "started_seconds": 38.800918599999996,
+      "completed_seconds": 38.8293688
+    },
+    {
+      "file": "frame_00195.jpg",
+      "started_seconds": 39.0102974,
+      "completed_seconds": 39.0367261
+    },
+    {
+      "file": "frame_00196.jpg",
+      "started_seconds": 39.2080631,
+      "completed_seconds": 39.230076600000004
+    },
+    {
+      "file": "frame_00197.jpg",
+      "started_seconds": 39.400816899999995,
+      "completed_seconds": 39.4245399
+    },
+    {
+      "file": "frame_00198.jpg",
+      "started_seconds": 39.6101743,
+      "completed_seconds": 39.6364865
+    },
+    {
+      "file": "frame_00199.jpg",
+      "started_seconds": 39.8069225,
+      "completed_seconds": 39.830181700000004
+    }
+  ],
+  "human_participation": "none",
+  "target_seconds": 40,
+  "capture_method": "real headless Edge UI screenshots at a target 5 fps",
+  "login_not_recorded": true,
+  "audio": "none",
+  "browser_version": "157.0.4341.46",
+  "started_utc": "2026-11-14T13:22:22.839Z",
+  "completed_seconds": 40.0009876,
+  "dialogs": [
+    {
+      "message": "Transfer this allocation?",
+      "elapsed_seconds": 9.0229503,
+      "accepted": true
+    },
+    {
+      "message": "Transfer this allocation?",
+      "elapsed_seconds": 9.031784,
+      "accepted": true
+    }
+  ],
+  "finished_utc": "2026-11-14T13:23:02.840Z",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "frame_count": 200
+}

@@ -18,13 +18,19 @@ the demo's spoken content or rubric coverage.
 The project owner supplied `HMS_Sprint2_Outcome_Demo.mp4`; the repository copy is
 [Sprint2_Outcome_Demo.mp4](Sprint2_Outcome_Demo.mp4).
 
-- Duration: 1 minute 55 seconds, five seconds short of the two-minute target.
+- Duration: 115.148 seconds (1 minute 55 seconds), five seconds short of the
+  nominal two-minute target.
 - Size: 155,306 bytes.
 - SHA-256: `A597A3E382F4AEB1E9FADBD84ED398B300D0F60B9B406BCEA115ACB3B1F30F07`.
 - Provenance: copied from the owner-provided file; source and repository-copy
   hashes match.
 
-This records delivery and duration only. The recording's spoken content and
-rubric coverage have not been independently reviewed. Confirm that the
-five-second shortfall is acceptable or extend the recording if the full
-two-minute target is strict.
+See [the recording assessment](Sprint2_Outcome_Demo.md) for the capture details
+and shown workflows. The owner approved publishing this clip despite the
+five-second shortfall; team selection and acceptance as the full deliverable
+remain pending.
+
+[Devansh's current 39.96-second contribution](devansh-contribution-20261114/README.md)
+is available for the team editor. It shows real synthetic workflows, recorded by
+automated UI capture on 14 November 2026 without human participation or audio.
+It does not complete the separate two-minute team recording or imply final acceptance.

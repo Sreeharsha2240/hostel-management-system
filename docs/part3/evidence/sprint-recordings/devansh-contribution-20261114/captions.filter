@@ -1,0 +1,9 @@
+pad=1280:960:0:90:color=0x12263a,
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=title.txt:fontcolor=white:fontsize=27:x=34:y=15,
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=subtitle.txt:fontcolor=0xc9dbe8:fontsize=18:x=34:y=53,
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=allocation.txt:fontcolor=white:fontsize=22:x=34:y=915:enable='gte(t,0)*lt(t,14)',
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=payment.txt:fontcolor=white:fontsize=22:x=34:y=915:enable='gte(t,14)*lt(t,23)',
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=balance.txt:fontcolor=white:fontsize=22:x=34:y=915:enable='gte(t,23)*lt(t,26)',
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=occupancy.txt:fontcolor=white:fontsize=22:x=34:y=915:enable='gte(t,26)*lt(t,30)',
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=report.txt:fontcolor=white:fontsize=22:x=34:y=915:enable='gte(t,30)*lt(t,36)',
+drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':textfile=evidence.txt:fontcolor=white:fontsize=22:x=34:y=915:enable='gte(t,36)*lt(t,40)'

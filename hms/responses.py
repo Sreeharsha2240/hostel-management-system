@@ -23,6 +23,8 @@ def validation_response(error):
         status = 404
     elif code in {
         "BED_OCCUPIED",
+        "BED_MOVED",
+        "ROOM_FULL",
         "ALREADY_ALLOCATED",
         "ALREADY_RELEASED",
         "HAS_ACTIVE_ALLOCATION",

@@ -183,7 +183,7 @@ class RemainingAllocationUnitTests(SimpleTestCase):
         with (
             patch.object(Student.objects, "select_for_update") as students,
             patch.object(Bed.objects, "values_list") as bed_room,
-            patch.object(Room.objects, "select_for_update"),
+            patch.object(Room.objects, "select_for_update") as rooms,
             patch.object(Bed.objects, "select_for_update") as beds,
             patch.object(Allocation.objects, "select_for_update") as previous,
             patch.object(allocation, "full_clean") as clean,
@@ -192,6 +192,7 @@ class RemainingAllocationUnitTests(SimpleTestCase):
         ):
             students.return_value.get.return_value = student
             bed_room.return_value.get.return_value = 4
+            rooms.return_value.get.return_value = Room(pk=4, capacity=2)
             beds.return_value.select_related.return_value.get.return_value = bed
             for status in (
                 Allocation.AllocationStatus.COMPLETED,

@@ -1,5 +1,7 @@
 # Development review and HMS-19 classification handoff
 
+**Historical review:** The [14 November Development review](Development_Review_20261114.md) supersedes this snapshot's missing-report/TLS descriptions and issue-open recommendations. Historical evidence and classification reasoning below are preserved at their original date. Current Development review is delivered; final acceptance remains HOLD for the findings and remaining requirements in the newer review.
+
 **Date:** 8 November 2026. **Reviewed main:** `cae69ea2192838b7874ad5be240def842f5aab5e`, tree `4f81f4a5e100f6a3f22505acfa05b4dd0ff9bb1f`.
 
 **Development decision: accept the reports as a documented NOT READY checkpoint; HOLD final development acceptance of HMS-16/#38 and HMS-21/#43.** This is Devansh's authorized AI-assisted technical review, supported by independent automated reviewers. It records a technical decision, not a named human signature, criterion waiver, new coverage run or acceptance of an unassembled final package. Harsha requested final sign-off when the remaining evidence is ready; that condition is not met.

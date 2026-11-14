@@ -1,0 +1,256 @@
+{
+  "source": {
+    "commit": "918477c2767161aa49526a57350a54eea0bd4c3e",
+    "tree": "76d2f64d5ad5ace8c6c2322c7823052600b23a72",
+    "clean": true
+  },
+  "scope": "Devansh allocation-capacity regression and coverage-report refresh; technical evidence only.",
+  "full_regression": {
+    "commit": "918477c2767161aa49526a57350a54eea0bd4c3e",
+    "git_dirty": false,
+    "success": true,
+    "tests": {
+      "tests": 497,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "coverage": {
+      "covered_lines": 1792,
+      "num_statements": 1808,
+      "percent_covered": 99.06832298136646,
+      "percent_covered_display": "99",
+      "missing_lines": 16,
+      "excluded_lines": 0,
+      "percent_statements_covered": 99.11504424778761,
+      "percent_statements_covered_display": "99",
+      "num_branches": 446,
+      "num_partial_branches": 5,
+      "covered_branches": 441,
+      "missing_branches": 5,
+      "percent_branches_covered": 98.87892376681614,
+      "percent_branches_covered_display": "99"
+    },
+    "started_at": "2026-11-13T17:05:58.492253+00:00",
+    "completed_at": "2026-11-13T17:07:05.956765+00:00",
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "dependencies": {
+      "Django": "5.2.18",
+      "mysqlclient": "2.3.0",
+      "python-dotenv": "1.2.4",
+      "reportlab": "4.5.1",
+      "pypdf": "6.21.2",
+      "coverage": "7.16.2",
+      "unittest-xml-reporting": "4.0.0",
+      "ruff": "0.17.1"
+    },
+    "mysql": "8.4.9",
+    "steps": [
+      {
+        "name": "lint",
+        "arguments": [
+          "-m",
+          "ruff",
+          "check",
+          "."
+        ],
+        "exit_code": 0,
+        "seconds": 0.109
+      },
+      {
+        "name": "format",
+        "arguments": [
+          "-m",
+          "ruff",
+          "format",
+          "--check",
+          "."
+        ],
+        "exit_code": 0,
+        "seconds": 0.105
+      },
+      {
+        "name": "dependencies",
+        "arguments": [
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.471
+      },
+      {
+        "name": "django-checks",
+        "arguments": [
+          "manage.py",
+          "check",
+          "--database",
+          "default"
+        ],
+        "exit_code": 0,
+        "seconds": 0.923
+      },
+      {
+        "name": "applied-migrations",
+        "arguments": [
+          "manage.py",
+          "migrate",
+          "--check"
+        ],
+        "exit_code": 0,
+        "seconds": 0.984
+      },
+      {
+        "name": "migration-consistency",
+        "arguments": [
+          "manage.py",
+          "makemigrations",
+          "--check",
+          "--dry-run"
+        ],
+        "exit_code": 0,
+        "seconds": 1.04
+      },
+      {
+        "name": "staticfiles",
+        "arguments": [
+          "manage.py",
+          "collectstatic",
+          "--dry-run",
+          "--noinput",
+          "--verbosity",
+          "0"
+        ],
+        "exit_code": 0,
+        "seconds": 0.763
+      },
+      {
+        "name": "test-results",
+        "arguments": [
+          "-m",
+          "coverage",
+          "run",
+          "manage.py",
+          "test",
+          "--noinput",
+          "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner"
+        ],
+        "exit_code": 0,
+        "seconds": 53.556
+      },
+      {
+        "name": "coverage",
+        "arguments": [
+          "-m",
+          "coverage",
+          "report"
+        ],
+        "exit_code": 0,
+        "seconds": 0.469
+      },
+      {
+        "name": "coverage-xml",
+        "arguments": [
+          "scripts/run_checks.py",
+          "--coverage-xml",
+          "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\pr74-unit-review-20261113\\test-results\\capacity-clean-full\\coverage.xml"
+        ],
+        "exit_code": 0,
+        "seconds": 0.549
+      },
+      {
+        "name": "coverage-json",
+        "arguments": [
+          "-m",
+          "coverage",
+          "json",
+          "-o",
+          "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\pr74-unit-review-20261113\\test-results\\capacity-clean-full\\coverage.json"
+        ],
+        "exit_code": 0,
+        "seconds": 0.547
+      },
+      {
+        "name": "timing-smoke",
+        "arguments": [
+          "manage.py",
+          "test",
+          "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
+          "--noinput"
+        ],
+        "exit_code": 0,
+        "seconds": 6.637
+      }
+    ]
+  },
+  "owned_regressions": {
+    "commit": "918477c2767161aa49526a57350a54eea0bd4c3e",
+    "tree": "76d2f64d5ad5ace8c6c2322c7823052600b23a72",
+    "git_dirty": false,
+    "success": true,
+    "case_counts": {
+      "PASS": 9
+    },
+    "methods": {
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_12_report_history_balances_and_locations": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_13_csv_literals_unicode_and_html": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_14_report_boundaries": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_15_malformed_json_and_controls": "PASS",
+      "scripts.part3.test_owned_reports_inputs.OwnedReportInputCases.test_tc_reg_s2_16_typed_dates_references_and_contracts": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedAllocationTransactions.test_tc_reg_s2_08_rollback_and_retry": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedPaymentCorrectionConcurrency.test_tc_reg_s2_11_competing_corrections": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_09_payment_permanence": "PASS",
+      "scripts.part3.test_owned_transactions.OwnedPaymentTransactions.test_tc_reg_s2_10_rejected_failed_and_exhausted_receipts": "PASS"
+    },
+    "changed_inputs_during_execution": []
+  },
+  "offline_checks": {
+    "measurement_helper": 6,
+    "recovery_safety": 32,
+    "owned_runner_safety": 7,
+    "actionlint": "PASS"
+  },
+  "retained_attempts": [
+    {
+      "name": "red",
+      "raw_sha256": "627ab3e4f0663934b5b4033fdf96f2cc1924def639ae95a1df4aaa5db061f966",
+      "published_sha256": "fc9be71d684386dca7a5a51f12fdeb8d6785a999b8f180d68106145510fa05fa",
+      "sanitization": "Local absolute workspace paths replaced, UTF-8 LF normalized, trailing whitespace removed; failure messages and outcomes retained."
+    },
+    {
+      "name": "red-review-followup",
+      "raw_sha256": "a754b8cdc4c3abec700086244ce52965c3c5a62f54527471a21f25e0e3a01cac",
+      "published_sha256": "25e1e65a3dbb2472cb9eb5bd7ba288bd32f10ef4b4e0a594cb3a204aed000899",
+      "sanitization": "Local absolute workspace paths replaced, UTF-8 LF normalized, trailing whitespace removed; failure messages and outcomes retained."
+    },
+    {
+      "name": "green-final-targeted",
+      "raw_sha256": "6d278605717c8c3363b060d8643ff3053094a7d4f50e4bbe16abb00b1bd1bb9e",
+      "published_sha256": "769c9823f9e98643f1119f3ae66c87dbec93a197b4cb224356888ad3a72ec901",
+      "sanitization": "Local absolute workspace paths replaced, UTF-8 LF normalized, trailing whitespace removed; failure messages and outcomes retained."
+    },
+    {
+      "name": "green-review-followup",
+      "raw_sha256": "d24d89b79b8e2c105e51a8c4646bcd75fc7c43856bb6f8f1da603749981ffcb5",
+      "published_sha256": "6f0dc9ee7db5df8627c85f98973e86c5230f3e1348cac9fa668f27feeb7e292d",
+      "sanitization": "Local absolute workspace paths replaced, UTF-8 LF normalized, trailing whitespace removed; failure messages and outcomes retained."
+    }
+  ],
+  "unit_rule": "Unchanged source-pinned harness; no database, import or shared setup credit.",
+  "owner_boundary": "../hms19-function-body-boundary-20261113.md",
+  "limitation": "The frozen harness srs_disposition is a generic historical scope-pending diagnostic. Acceptance interpretation follows the separately authored owner decision; raw measurement fields were not edited.",
+  "independent_review": "Read-only independent reviewer found a stale bed-room identity gap and missing409 mappings; both fixed and regression-tested. Review is automated technical verification, not a fabricated teammate approval.",
+  "separate_work": "Hostel administration can relocate an already active bed directly. This fix guards allocation admissions, including a bed moved between lookup and lock; it does not change the separate admin relocation policy.",
+  "publication_line_endings": {
+    "format": "UTF-8 LF as required by .gitattributes; raw hashes describe original runtime artifacts, while published hashes describe sanitized LF copies. JSON contents are unchanged. Published log trailing whitespace is removed; original runtime hashes remain unchanged.",
+    "normalized_files": [
+      "checks-run.json",
+      "green-final-targeted.txt",
+      "green-review-followup.txt",
+      "red-review-followup.txt",
+      "red.txt"
+    ],
+    "checks_run_published_sha256": "b408643e9e8d8dd55f7f29b0ed74d2e8445872568a2dff6853044f5128726876"
+  }
+}
