@@ -2,7 +2,7 @@
 
 **13 November HMS-19 completion:** PR #74 merged as `a41f884`, and issue #41 is closed. The owner-approved function-body unit-coverage boundary measures 946/946 (100%) across 288 isolated methods, meeting the 70% target under that definition. The companion all-application-statements result remains 946/1,703 (55.55%) and is disclosed in the [Unit Test Report](part3/Unit_Test_Report.md). See the [owner boundary decision](part3/evidence/hms19-function-body-boundary-20261113.md).
 
-**14 November current scope and readiness:** real-phone testing is excluded from this mini-project. HMS-19/#41 is complete; the older issue and case snapshots below are historical. Remaining case work is TC-SEC-08 (PARTIAL ZAP disposition), TC-QUAL-02 (working-hours availability, NOT RUN), TC-QUAL-03 (desktop browser/OS portability, NOT RUN), plus review of remaining case/priority acceptance. The Sprint 1 demo is now included; the Sprint 2 video, final team approvals, instructor submission details, and final package/receipt remain outstanding. See the [current readiness checkpoint](part3/HMS21_Final_Readiness.md).
+**14 November current scope and readiness:** real-phone testing is excluded from this mini-project. HMS-19/#41 is complete; the older issue and case snapshots below are historical. The HMS-16 QA handoff assesses both ZAP observations; TC-SEC-08 remains PARTIAL because the available scan was passive and loopback-only. TC-QUAL-02 (workday availability) and TC-QUAL-03 (desktop browser/OS portability) remain NOT RUN. The Code and Branch Coverage Reports were refreshed against the final application-code tree in PR #76; the owner has now accepted current priorities and 36 RTM design mappings at PO level, defined the REQ-24 student-display boundary, recorded a mini-project exception for SAD §4.4 monitoring/logging, and assigned retrospective severity levels to the four known closed defects. QA/Development agreement remains pending. Other whole-plan dependencies are Vaishnavi's desktop/OS evidence, Sprint 2 recording, instructor instructions and final package/receipt. See the [current readiness checkpoint](part3/HMS21_Final_Readiness.md) and [owner disposition](part3/evidence/owner-disposition-20261114.md).
 
 **10 November tracking update:** #38, #39 and #43 are now closed for their documented limited project scopes; #41 is the only open issue. The [HMS-16 QA handoff reconciliation](part3/evidence/issue38-security-20261110/qa-disposition-reconciliation.md) records the two ZAP alert assessments and locates the passing login `next` regression test. TC-SEC-08 remains PARTIAL, the desktop browser/OS matrix and working-hours availability are unverified, and the original Test Plan/submission package remains NOT READY. Dated issue states below are historical snapshots.
 
@@ -39,8 +39,11 @@ The original Test Plan contains **33 planned case IDs** and an RTM for
 attributes. The updated Test Case Document must retain these IDs, explain
 revisions, add sprint regression cases and map automated methods to them.
 The delivered register preserves the original IDs/mappings and contains 61
-complete records. Its High/Medium priorities are proposals requiring QA review
-because the original case table lacks priority fields. The register reconciles
+complete records. The project owner accepted its 34 High / 27 Medium proposed
+priorities for current planning on 14 November; QA and Development agreement is
+still pending because the original case table lacks priority fields. This does
+not assign historical priorities or certify the High-priority exit criterion.
+The register reconciles
 TC-AUTH-03's old lockout-message wording with SRS REQ-2's generic credential-error
 requirement while retaining the original wording and five-attempt/15-minute test.
 
@@ -167,7 +170,7 @@ instructor also needs PDF/DOCX exports.
 
 | Output under `docs/` | Owner / contributors | Required content |
 |---|---|---|
-| [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, proposed priorities, requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
+| [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, owner-accepted proposed priorities (QA/Dev review pending), requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
 | [Unit Test Report](part3/Unit_Test_Report.md) | Vaishnavi coordinates; Sreeharsha supplies this report contribution; module owners supply results | Published through merged PR #74; owner-approved function-body unit coverage is 100% (946/946); companion all-statements result is 55.55% and remains disclosed |
 | [System Validation Report](part3/System_Validation_Report.md) | Sreeharsha integrates; QA consolidates; all owners execute | Entry/exit criteria, all planned functional/security/performance/recovery/quality cases, RTM, observed results, execution/pass/fail/requirement percentages, defect density/aging, blockers, deviations, readiness and actual approvals |
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |

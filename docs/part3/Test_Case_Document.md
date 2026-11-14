@@ -2,7 +2,9 @@
 
 **13 November current disposition:** HMS-19/#41 is complete through merged PR #74 (`a41f884`). The project owner approved the function-body unit-coverage boundary: 288/288 isolated methods pass and 946/946 (100%) function-body statements are covered; the 55.55% all-application-statements result remains disclosed. Real-phone testing is excluded from this mini-project. The expanded 61-case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED: TC-SEC-08 and TC-QUAL-04 are PARTIAL; TC-QUAL-02 and desktop/OS portability TC-QUAL-03 are NOT RUN. Dated entries below are historical where they conflict with this update.
 
-**14 November scope clarification:** SRS REQ-24 requires access to only the student's own profile, current allocation and payment status, but does not define the full profile-field list. The current page displays name and student ID plus own allocation and payment summaries/history. No additional personal fields are inferred as requirements pending QA/PO clarification. The SAD §4.4 request-ID error-log and operational-monitoring gap is recorded in the [System Validation Report](System_Validation_Report.md).
+**14 November scope clarification:** The project owner defines REQ-24's mini-project display boundary as the existing My Records content: the student's own name and ID, current allocation and history, and payment status/paid/balance summary and history. No additional personal fields are required under this PO interpretation; QA review remains pending. The SAD §4.4 gap is explicitly documented and dispositioned as a mini-project limitation in the [owner decision](evidence/owner-disposition-20261114.md).
+
+**14 November project-owner disposition:** The project owner accepted the 61 current case-priority proposals for project planning and accepted all 36 original RTM pairs as design mappings; neither decision retroactively assigns priorities to the original Test Plan nor establishes accepted case results. QA and Development agreement remains pending. The owner also fixed the REQ-24 student-display boundary, accepted the documented SAD §4.4 monitoring/logging gap as a mini-project limitation, and assigned retrospective severity levels to the four known closed defects. See the [owner disposition record](evidence/owner-disposition-20261114.md). The formal Test Plan exit criteria and instructor/QA acceptance remain unchanged.
 
 **10 November current-case addendum:** [HMS-17's fresh registration and four regression executions](evidence/issue39/completion-20261110/README.md) supersede the older case-count snapshot below: the expanded 61 now stand at 57 OWNER PASS, 1 PARTIAL, 2 NOT RUN and 1 BLOCKED. The [HMS-16 QA handoff reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses both remaining passive ZAP alerts, locates the previously unlocated `next` regression test and confirms its recorded PASS. TC-SEC-08 stays PARTIAL. HMS-16/#38 and HMS-17/#39 are closed only for their owner-authorized local-project scope; these statuses do not establish whole-plan acceptance.
 
@@ -168,7 +170,7 @@ The 10 November snapshot had 58/61 cases with some execution evidence (95.08%), 
 
 All ten retained and fourteen added regression recipes now have OWNER PASS evidence. The 10 November follow-up completes S1-05 combined-filter navigation and S1-06/S1-08/S2-06; historical source/date and previous pending outcomes remain in their dated records. Owner execution does not constitute independent QA or whole-plan acceptance.
 
-The 9 November HMS-16 loopback TLS probe supplies the specified TC-SEC-06 network conditions. Its evidence remains limited to the isolated test environment and does not certify a public or production host. TC-SEC-08 has a passive ZAP scan covering 10 URLs; two remaining alert dispositions are documented, and QA disposition remains pending, so the case is PARTIAL.
+The 9 November HMS-16 loopback TLS probe supplies the specified TC-SEC-06 network conditions. Its evidence remains limited to the isolated test environment and does not certify a public or production host. TC-SEC-08 has a passive ZAP scan covering 10 URLs; the supplied 10 November QA handoff assesses the Low and Informational alerts. The case remains PARTIAL because loopback passive coverage does not establish a deployed-host or broader scan.
 
 The 9 November HMS-17 Warden first-use walkthrough records successful student registration and bed allocation within the five-minute usability target. This supports the OWNER PASS observations for TC-STU-01 and TC-QUAL-01. However, the walkthrough does not establish that the complete browser compatibility, portability or availability requirements have been independently verified. TC-QUAL-04's coverage target was later met under the owner-approved function-body definition; broader PEP 8 review remains limited to configured checks. Other scan and quality cases retain their actual missing evidence. Do not use the old 43-case denominator when applying a 100%-planned-cases exit criterion.
 
@@ -178,7 +180,7 @@ Test Plan section 14 also requires defect density (defects/module), defect aging
 
 Known linked development defects #45–#48 are closed with retest references in the HMS-18 appendix. The failed volume attempt (75 errors / 21,650 samples) and its complete unchanged-threshold rerun remain retained.
 
-No complete severity-ranked defect inventory or accepted requirement-by-requirement pass assessment is recorded. Therefore, whole-plan defect density, defect aging, zero-critical/high status and complete accepted requirement coverage remain **UNVERIFIED**, not zero or 100%.
+The project owner's retrospective review classifies known closed defects #45/#46 as Medium and #47/#48 as Low; no known open Critical/High defect remains among those four. The full issue inventory is not proven complete, so whole-project severity status and defect density remain **UNVERIFIED**. Accepted requirement-by-requirement pass assessment is also **UNVERIFIED**; the owner accepted the 36 design mappings only. See the [owner disposition](evidence/owner-disposition-20261114.md).
 
 These metrics must be calculated from actual issue creation/closure/severity records and reviewed case evidence in the integrated System Validation Report. A mapped requirement or a single partially relevant passing method does not establish full requirement acceptance, notably for NFR-5, NFR-9 and NFR-12.
 
@@ -186,7 +188,7 @@ The case-level counts above are distinct from automated method counts, test-suit
 
 ## 7. Detailed test case index
 
-Every original and existing regression ID links to its complete source-bound record in section 13. Priority proposals originate on 7 November; original per-case priorities were unspecified and are not retrospectively approved. The nine #63 entries identify the later scoped technical review; its dispositions do not supply whole-team acceptance.
+Every original and existing regression ID links to its complete source-bound record in section 13. Priority proposals originate on 7 November; the project owner accepted the current proposals for planning on 14 November, while the original Test Plan remains without retrospective priorities. QA and Development agreement is still required before applying the High-priority exit criterion. The nine #63 entries identify the later scoped technical review; their dispositions do not supply whole-team acceptance.
 
 | Case | Owner | Proposed priority | Disposition |
 |---|---|---|---|
