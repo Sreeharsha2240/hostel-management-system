@@ -10,10 +10,9 @@ repository.
 ## Part 3: current testing and reports
 
 Follow the [Part 3 team plan](PART3.md) and the instructor PDF linked there.
-Its 2-6 November testing window and the submitted Test Plan govern current
-acceptance; historical test totals and scope exclusions below remain context.
-The 8 November technical review uses main `b523d4c`; it updates evidence/status
-dispositions without claiming new application execution or human acceptance.
+The listed 2-6 November 2026 window has passed; confirm whether late submission
+is accepted. HMS-19's later owner-approved disposition and current case status
+are summarized in the [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.md).
 
 - [x] Published Part 3 issues #37-#43 with original case ownership, initial estimates, dependencies, acceptance criteria and the 6 November milestone date.
 - [x] Added the instructor Part 3 PDF and a team plan defining the Test Case Document and four distinct report destinations under `docs/part3/`.
@@ -24,9 +23,12 @@ dispositions without claiming new application execution or human acceptance.
 - [ ] Obtain remaining actual team case/priority/RTM and historical entry/deviation acceptance; scoped #40 closure does not execute expanded regression recipes or complete whole-plan acceptance.
 - [ ] Complete each member's functional, security, performance/recovery and quality execution with current evidence, defects and retests (#38-#40).
 - [x] Publish the System Validation checkpoint (#38), Code Coverage Report and Branch Coverage Report (#42) under `docs/part3/`, with source-bound evidence. Their publication is distinct from complete plan acceptance.
-- [ ] Vaishnavi publishes and obtains review of the missing Unit Test Report (#41), using genuine module-owner results and reviewed unit/application-logic attribution. Devansh's [module-owner input](part3/Code_Coverage_Report.md#hms-19-module-owner-input--8-november-2026) is supplied; formal unit70 remains UNPROVEN.
+- [x] Publish the Unit Test Report and complete HMS-19/#41. The owner-approved function-body result is 946/946 (100%) over 288 isolated methods; the 55.55% all-statements result remains disclosed. See the [report](part3/Unit_Test_Report.md).
 - [ ] Meet the Test Plan exit criteria and record actual QA/Dev/PO approvals and the project-guide acceptance walkthrough; retain failed/blocked criteria and explicit deviations (#43).
-- [ ] Verify the one-minute Sprint 1 and two-minute Sprint 2 outcome videos from Part 2 are genuinely available, and confirm submission channel, exact cutoff and export requirements (#43).
+- [x] Add the owner-provided [Sprint 1 outcome demo](part3/evidence/sprint-recordings/Sprint1_Outcome_Demo.mp4); verified duration is 51.7 seconds and the repository copy matches the supplied file hash recorded in the evidence README.
+- [ ] Obtain the two-minute Sprint 2 outcome video; it is not present in tracked files.
+- [ ] Confirm submission channel, late-submission acceptance, deadline and export requirements with the instructor (#43).
+- [ ] Obtain QA/PO disposition of the SAD §4.4 request-ID logging and operational-monitoring gap, and clarify the intended student profile fields; see the [current readiness report](part3/System_Validation_Report.md).
 - [ ] Publish the final accepted revision and complete the agreed submission; use Sprint 3 only for actual owned development spillover while testing/reporting continue (#43).
 
 ## Planning and team records
