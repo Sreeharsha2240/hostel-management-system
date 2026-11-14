@@ -1,5 +1,7 @@
 # HMS submission checklist
 
+**14 November Development checkpoint:** [The Development review](part3/Development_Review_20261114.md) is delivered with final acceptance **HOLD**, including fresh owner-assigned defects #78–#80. Present priorities and RTM design mappings have Development agreement; case execution labels remain separate from acceptance. [Devansh's current contribution](part3/evidence/sprint-recordings/devansh-contribution-20261114/README.md) is available, while the full team Sprint 2 recording, final QA/guide decisions, instructor late-submission directions, accepted final package and genuine receipt remain pending. The checklist is not a submission approval.
+
 This checklist covers the whole Team 3 submission: planning, design,
 implementation, verification and packaging. Historical audit results are
 identified below; use the checks on the final submission commit for current

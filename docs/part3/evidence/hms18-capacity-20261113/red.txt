@@ -1,0 +1,103 @@
+python.exe : Creating test database for alias 'default' ('test_hms')...
+At line:2 char:84
++ ... | Out-Null; & '<workspace>\hostel-managem ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Creating test d...('test_hms')...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+Found 7 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: accounts, admin, allocations, audit, auth, contenttypes, hostels, payments, sessions, students
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying accounts.0001_initial... OK
+  Applying accounts.0002_hms04_roles_and_lockout... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying students.0001_initial... OK
+  Applying hostels.0001_initial... OK
+  Applying allocations.0001_initial... OK
+  Applying allocations.0002_remove_allocation_unique_active_allocation_per_student_and_more... OK
+  Applying allocations.0003_allocation_integrity... OK
+  Applying audit.0001_initial... OK
+  Applying hostels.0002_room_fee_amount_room_nonnegative_room_fee... OK
+  Applying payments.0001_initial... OK
+  Applying sessions.0001_initial... OK
+test_backdated_release_frees_capacity_for_a_backdated_allocation (allocations.test_room_capacity.AllocationRoomCapacity
+Tests.test_backdated_release_frees_capacity_for_a_backdated_allocation) ... ok
+test_completed_backdated_history_can_be_saved_while_room_is_full (allocations.test_room_capacity.AllocationRoomCapacity
+Tests.test_completed_backdated_history_can_be_saved_while_room_is_full) ... ok
+test_direct_save_rejects_available_historical_bed_when_room_is_full (allocations.test_room_capacity.AllocationRoomCapac
+ityTests.test_direct_save_rejects_available_historical_bed_when_room_is_full) ... FAIL
+test_same_room_transfer_succeeds_at_capacity
+(allocations.test_room_capacity.AllocationRoomCapacityTests.test_same_room_transfer_succeeds_at_capacity) ... ok
+test_saving_existing_active_allocation_does_not_count_it_twice (allocations.test_room_capacity.AllocationRoomCapacityTe
+sts.test_saving_existing_active_allocation_does_not_count_it_twice) ... ok
+test_service_rejects_regenerated_bed_when_historical_bed_fills_room (allocations.test_room_capacity.AllocationRoomCapac
+ityTests.test_service_rejects_regenerated_bed_when_historical_bed_fills_room) ... FAIL
+test_transfer_to_full_room_rolls_back_original_beds_and_audit (allocations.test_room_capacity.AllocationRoomCapacityTes
+ts.test_transfer_to_full_room_rolls_back_original_beds_and_audit) ... FAIL
+
+======================================================================
+FAIL: test_direct_save_rejects_available_historical_bed_when_room_is_full (allocations.test_room_capacity.AllocationRoo
+mCapacityTests.test_direct_save_rejects_available_historical_bed_when_room_is_full)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File
+"<repo>\allocations\test_room_capacity.py",
+line 86, in test_direct_save_rejects_available_historical_bed_when_room_is_full
+    with self.assertRaises(ValidationError) as error:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_service_rejects_regenerated_bed_when_historical_bed_fills_room (allocations.test_room_capacity.AllocationRoo
+mCapacityTests.test_service_rejects_regenerated_bed_when_historical_bed_fills_room)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File
+"<repo>\allocations\test_room_capacity.py",
+line 98, in test_service_rejects_regenerated_bed_when_historical_bed_fills_room
+    with self.assertRaises(ValidationError) as error:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: ValidationError not raised
+
+======================================================================
+FAIL: test_transfer_to_full_room_rolls_back_original_beds_and_audit (allocations.test_room_capacity.AllocationRoomCapac
+ityTests.test_transfer_to_full_room_rolls_back_original_beds_and_audit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File
+"<repo>\allocations\test_room_capacity.py",
+line 113, in test_transfer_to_full_room_rolls_back_original_beds_and_audit
+    with self.assertRaises(ValidationError) as error:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: ValidationError not raised
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.413s
+
+FAILED (failures=3)
+Destroying test database for alias 'default' ('test_hms')...
+
+  Applying students.0002_student_user_link... OK
+System check identified no issues (0 silenced).

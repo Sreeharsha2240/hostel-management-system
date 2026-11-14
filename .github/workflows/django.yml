@@ -84,16 +84,16 @@ jobs:
       - name: Check lint, configuration, migrations, tests and branch coverage
         run: python scripts/run_checks.py --output-dir test-results/ci
 
-      - name: Remeasure the original 255 isolated methods on current sources
+      - name: Remeasure the previous 288 isolated methods on current sources
         run: >-
           python docs/part3/evidence/hms19-unit-review-20261113/reproduce.py
-          --scope docs/part3/evidence/hms19-all-statements-20261113/scope-baseline.json
+          --scope docs/part3/evidence/hms18-capacity-20261113/scope-baseline.json
           --output-dir test-results/isolated-unit-coverage/baseline
 
       - name: Measure additive isolated-unit scope without database access
         run: >-
           python docs/part3/evidence/hms19-unit-review-20261113/reproduce.py
-          --scope docs/part3/evidence/hms19-all-statements-20261113/scope-expanded.json
+          --scope docs/part3/evidence/hms18-capacity-20261113/scope-expanded.json
           --output-dir test-results/isolated-unit-coverage/expanded
 
       - name: Check backup and recovery safety without external operations

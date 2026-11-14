@@ -1,0 +1,13 @@
+python.exe : ............................................
+At line:2 char:1
++ & '<workspace>\hostel-management-system\. ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.................................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.075s
+
+OK
+Found 44 test(s).
+System check identified no issues (0 silenced).
