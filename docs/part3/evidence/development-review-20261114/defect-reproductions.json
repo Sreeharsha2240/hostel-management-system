@@ -1,0 +1,53 @@
+{
+  "purpose": "Assertions confirm undesired outcomes on a disposable test_hms database, not passing application or planned acceptance cases.",
+  "source_commit": "ccddcbfedb0a809a9bf1de5d67a50dd49070c9d2",
+  "source_tree": "767347feb6f6884406768f03a1dfc3194d4934b4",
+  "main_commit": "a11464eb8995f4e5f4621b09677c7078e74011da",
+  "relevant_sources_identical_to_main": true,
+  "source_sha256_canonical_lf": {
+    "accounts/models.py": "a5265e9df98ee9e3015298638071cc15f71c0c525138b49baf62aec545888523",
+    "accounts/forms.py": "36a16c399d45c57d3bf4bfe1394c3e9e2002152a2adfd2209f4ae4c8da87e2ec",
+    "accounts/views.py": "b632e024369f088586e997b281297a81f368cd1ba4c84b0c86989c4e31fcc2f5",
+    "students/admin.py": "4f11570309dcefdb3af7cbd6325c10e79c037297bc8a7f6f2ae7e65a3af51f0d",
+    "hostels/models.py": "5bf3d2c1e349b36661d3be6a21580ba9ff3dcfb202bf5cf0d8f02fb73ab8b360",
+    "hostels/forms.py": "d598e7197d165518828c9be013d597ec4f4917e69629d1d04539dfeafd09987e",
+    "hostels/views.py": "b32168552bc15f8cfc0a1dc99b891fa78ab584c68d1035cfc10e3d5e704117c2",
+    "hostels/admin.py": "5372ab93fd788374af3ee71ed4366fe86efb1ad9dfb40566cbe3777bb2ac6e7b",
+    "audit/mixins.py": "ad51ecaa918ccd00e47eb766f1753516faa5988c4aee48860ca6c2fa57081f8e"
+  },
+  "reproducer_failures": 0,
+  "observations": [
+    {
+      "id": "ACTIVE_BED_REASSIGNMENT",
+      "result": "REPRODUCED_DEFECT",
+      "trigger": "Authorized DjangoAdmin changes occupied Bed.room to a full room",
+      "response_status": 302,
+      "destination_capacity": 1,
+      "destination_active_allocations": 2,
+      "allocation_admission_guard_bypassed_by_inventory_save": true,
+      "issue": 80
+    },
+    {
+      "id": "ROOM_REASSIGNMENT",
+      "result": "REPRODUCED_DEFECT",
+      "response_status": 302,
+      "student_gender": "Male",
+      "hostel_type": "Girls",
+      "allocation_status": "Active",
+      "issue": 79
+    },
+    {
+      "id": "STUDENT_ADMIN_SCOPE",
+      "result": "REPRODUCED_DEFECT",
+      "trigger": "Admin demotes non-superuser staff Warden to Student through ordinary user-update form",
+      "role": "student",
+      "is_staff_retained": true,
+      "view_student_retained": true,
+      "ordinary_student_list_status": 403,
+      "django_admin_status": 200,
+      "both_own_and_other_student_visible": true,
+      "self_escalation_demonstrated": false,
+      "issue": 78
+    }
+  ]
+}

@@ -17,3 +17,8 @@ the demo's spoken content or rubric coverage.
 
 The two-minute Sprint 2 outcome video has not been located in the repository.
 The Sprint 1 demo does not satisfy that separate deliverable.
+
+[Devansh's current 39.96-second contribution](devansh-contribution-20261114/README.md)
+is available for the team editor. It shows real synthetic workflows, recorded by
+automated UI capture on 14 November 2026 without human participation or audio.
+It does not complete the separate two-minute team recording or imply final acceptance.
