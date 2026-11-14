@@ -24,11 +24,13 @@ are summarized in the [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.
 - [ ] Complete each member's functional, security, performance/recovery and quality execution with current evidence, defects and retests (#38-#40).
 - [x] Publish the System Validation checkpoint (#38), Code Coverage Report and Branch Coverage Report (#42) under `docs/part3/`, with source-bound evidence. Their publication is distinct from complete plan acceptance.
 - [x] Publish the Unit Test Report and complete HMS-19/#41. The owner-approved function-body result is 946/946 (100%) over 288 isolated methods; the 55.55% all-statements result remains disclosed. See the [report](part3/Unit_Test_Report.md).
+- [x] Refresh the Code and Branch Coverage Reports against the final application-code tree and preserve earlier measurements. PR #76 (`dd747ff`) changed documentation and added the Sprint 1 recording only, with no application, test or configuration changes; the PR #74 source-bound figures remain current for final main. See each report's freshness note.
 - [ ] Meet the Test Plan exit criteria and record actual QA/Dev/PO approvals and the project-guide acceptance walkthrough; retain failed/blocked criteria and explicit deviations (#43).
 - [x] Add the owner-provided [Sprint 1 outcome demo](part3/evidence/sprint-recordings/Sprint1_Outcome_Demo.mp4); verified duration is 51.7 seconds and the repository copy matches the supplied file hash recorded in the evidence README.
 - [ ] Obtain the two-minute Sprint 2 outcome video; it is not present in tracked files.
 - [ ] Confirm submission channel, late-submission acceptance, deadline and export requirements with the instructor (#43).
-- [ ] Obtain QA/PO disposition of the SAD §4.4 request-ID logging and operational-monitoring gap, and clarify the intended student profile fields; see the [current readiness report](part3/System_Validation_Report.md).
+- [x] Explicitly document the SAD §4.4 request-ID logging and operational-monitoring gap and the current REQ-24 profile-field boundary; see the [current readiness report](part3/System_Validation_Report.md). This records gaps, not implementation or stakeholder approval.
+- [ ] Obtain QA/PO disposition of the documented SAD/REQ-24 gaps before claiming full design alignment.
 - [ ] Publish the final accepted revision and complete the agreed submission; use Sprint 3 only for actual owned development spillover while testing/reporting continue (#43).
 
 ## Planning and team records
@@ -51,7 +53,7 @@ are summarized in the [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.
 - [x] Django source, migrations, dependency manifests, `.env.example`, setup guide and CI workflow are present.
 - [x] Bed availability is paginated at 50 rows; a regression test covers page size, total count and page two.
 - [x] Pagination and audit fixes from `bf70a66` were included in merged PR #35.
-- [ ] Confirm the final submission revision has passed CI and required teammate review. A local run does not replace remote CI or review.
+- [ ] Confirm the final submission revision has passed CI and received required teammate review. PR #76 is merged and its checks passed; this does not supply whole-plan teammate acceptance.
 - [ ] Confirm GitHub issue states and owners match the completed work. The Part 1 backlog is a planning artifact, not a current board export.
 - [x] Added `.tmp/` to `.gitignore`; keep generated credentials, database dumps, JMeter results and downloaded tools out of the submission.
 
@@ -65,7 +67,8 @@ are summarized in the [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.
 - [x] Supply post-pagination owner load evidence: [5 November normal and volume workloads](part3/evidence/issue40-final/README.md), each 50 users for at least 600 seconds, with passing unchanged-threshold results. Retain the earlier blocked post-change attempt and the failed first volume run as history; scoped technical acceptance is recorded in the 8 November AI QA review; actual whole-team acceptance remains pending.
 - [x] A populated local MySQL dump restore to a separate database had matching table counts; a manual timestamped backup ZIP passed integrity validation.
 - [x] Supply the required daily-backup owner observation: [naturally scheduled populated recovery](part3/evidence/issue40-final/recovery-results.json), preserving all 18 table digests/counts and the live source/task. Earlier scheduling/permission blockers remain historical; the 8 November AI review accepts this scoped technical evidence while retaining historical entry limits and pending actual whole-team acceptance.
-- [ ] Obtain required actual HTTP-to-HTTPS, TLS 1.2+ and authenticated Secure/HttpOnly session-cookie evidence (TC-SEC-06 PARTIAL), plus the separate Test Plan §5.1 ZAP baseline (TC-SEC-08 NOT RUN). An isolated real HTTPS endpoint suffices; settings checks alone do not. Record any actual instructor-approved criterion change separately while preserving original outcomes.
+- [x] Record isolated HTTP-to-HTTPS, TLS 1.2+ and authenticated Secure/HttpOnly session-cookie evidence (TC-SEC-06 OWNER PASS for that scope), run the passive ZAP baseline and reconcile its findings. The QA handoff assesses the Low probe-server banner and Informational `next` hotspot; TC-SEC-08 remains PARTIAL because loopback passive evidence does not establish deployment-host or broader scan coverage. See the [QA reconciliation](part3/evidence/issue38-security-20261110/qa-disposition-reconciliation.md) and [scan evidence](part3/evidence/issue38-security-20261109/README.md).
+- [x] Record the owner's #39 tracking-closure exception for workday availability (TC-QUAL-02 remains NOT RUN; this is not a measured pass or Test Plan waiver). Real-phone testing is out of scope. TC-QUAL-03 still needs Vaishnavi's desktop browser/OS evidence.
 - [ ] Walk through Admin, Warden and Student accounts on the final demo host and save only rubric-requested screenshots. Local automated checks do not establish browser/OS compatibility on that host.
 
 ## Final packaging
