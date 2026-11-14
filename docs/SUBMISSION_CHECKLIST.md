@@ -30,7 +30,7 @@ are summarized in the [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.
 - [ ] Obtain the two-minute Sprint 2 outcome video; it is not present in tracked files.
 - [ ] Confirm submission channel, late-submission acceptance, deadline and export requirements with the instructor (#43).
 - [x] Explicitly document the SAD §4.4 request-ID logging and operational-monitoring gap and the current REQ-24 profile-field boundary; see the [current readiness report](part3/System_Validation_Report.md). This records gaps, not implementation or stakeholder approval.
-- [ ] Obtain QA/PO disposition of the documented SAD/REQ-24 gaps before claiming full design alignment.
+- [ ] Obtain QA review of the PO's SAD/REQ-24 scope disposition before claiming full design alignment; the [owner decision](part3/evidence/owner-disposition-20261114.md) records the current boundaries and remaining implementation gaps.
 - [ ] Publish the final accepted revision and complete the agreed submission; use Sprint 3 only for actual owned development spillover while testing/reporting continue (#43).
 
 ## Planning and team records

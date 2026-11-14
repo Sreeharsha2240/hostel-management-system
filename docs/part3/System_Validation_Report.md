@@ -2,11 +2,11 @@
 
 **14 November current status:** HMS-19/#41 is complete through PR #74 (`a41f884`), with 946/946 (100%) function-body statements covered by 288 isolated methods under the owner-approved definition; the all-application-statements result remains 55.55%. PR #76 is merged as `dd747ff`; it changes documentation and adds the Sprint 1 demo, not application/test/configuration code. The current case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED. TC-SEC-08 remains PARTIAL after QA assessed the two alerts in the supplied 10 November handoff; TC-QUAL-02 and desktop browser/OS TC-QUAL-03 remain NOT RUN; TC-QUAL-04 remains PARTIAL for style assessment beyond configured checks. Real-phone testing is out of scope. Whole-plan readiness remains NOT READY pending the stated project, team and instructor dependencies. Dated sections below preserve historical status and metrics.
 
-## Current SAD alignment and project-scope gaps — 14 November 2026
+## Current SAD alignment and project-scope dispositions — 14 November 2026
 
-The SAD §4.4 requires error logs to carry a request ID, operational monitoring of login failures, HTTP error rates, average response time, backup success and database free space, and weekly review. The current application code has no request-ID middleware/log field and no operational metrics/weekly review mechanism. Audit events are present, but they do not provide those operational measurements. These SAD items remain **not implemented/not evidenced**; this report does not imply production monitoring exists. They need an explicit QA/PO scope disposition or implementation before being claimed as complete.
+The SAD §4.4 requires error logs to carry a request ID, operational monitoring of login failures, HTTP error rates, average response time, backup success and database free space, and weekly review. The current application code has no request-ID middleware/log field and no operational metrics/weekly review mechanism. Audit events are present, but they do not provide those operational measurements. The project owner accepts these documented items as a **mini-project limitation**, not implemented or evidenced; this is not a claim of SAD compliance or production monitoring. QA, the guide and the instructor still need to review the scope disposition against course requirements. The [owner decision](evidence/owner-disposition-20261114.md) records the boundary.
 
-The SRS REQ-24 promises each student their own profile, current allocation and payment status, but it does not enumerate all profile fields. The current My Records page shows the student's name and ID, own current allocation and allocation history, and own payment summary/history. This is the evidenced field boundary for the current implementation. Additional personal fields are not treated as required until QA/PO clarify the intended profile-field list. Existing owner/CI checks cover linked-account isolation; they do not settle that requirements ambiguity.
+The SRS REQ-24 promises each student their own profile, current allocation and payment status, but it does not enumerate all profile fields. The project owner defines the mini-project boundary as the current My Records fields: name, Student ID, own current allocation and allocation history, own payment status/paid/balance summary and payment history. No extra contact or guardian fields are required under this PO interpretation. Existing owner/CI checks cover linked-account isolation. QA review of this interpretation remains pending. See the [owner decision](evidence/owner-disposition-20261114.md).
 
 These documented scope questions supplement the case register and are separate from the owner-approved removal of physical-phone testing. No real-phone test is expected for this mini-project.
 
@@ -119,7 +119,7 @@ Counts are recalculated from all complete records and cross-checked against the 
 | Any exercise: OWNER PASS + PARTIAL | 32 / 33 = 96.97% | 54 / 61 = 88.52% |
 | QA-accepted execution/pass percentage | UNVERIFIED | UNVERIFIED |
 
-The historical 10 November snapshot's exercised numerator included partial work and was not the 100%-completed exit gate. Its current partial/blocked labels and counts are superseded by the 14 November current status at the top of this report. The original priorities remain proposals: 21 High/12 Medium; expanded priorities are 34 High/27 Medium. QA still needs to review the priority rationale and evidence before applying the High-priority exit criterion.
+The historical 10 November snapshot's exercised numerator included partial work and was not the 100%-completed exit gate. Its current partial/blocked labels and counts are superseded by the 14 November current status at the top of this report. The original plan specified no per-case priorities. The project owner accepted the 61-case proposals (34 High/27 Medium) for planning; QA and Development still need to agree to the rationale and evidence before the High-priority exit criterion can be applied.
 
 | Requirement metric | Result / meaning |
 |---|---|
@@ -130,7 +130,7 @@ The historical 10 November snapshot's exercised numerator included partial work 
 
 For example, a negative-registration pass does not prove the unrecorded positive STU-01 journey; AUTH-04's mapped owner observation does not establish NFR-9's live cookie conditions; AUTH-03 does not establish NFR-12's TLS conditions. Keep SRS quality attributes, BR-1..6 and SO-1..4 in the separate assessment without silently changing the original 36-row denominator.
 
-The review queries every public issue with pagination and selects all non-PR issues carrying the `bug` label. The four known labelled defects are closed. Technical module counts are reports **1**, allocations **2**, student self-service **1**; these are known defects/module, not a complete whole-project density or proof other modules have zero defects. No severity labels are present.
+The review queries every public issue with pagination and selects all non-PR issues carrying the `bug` label. The four known labelled defects are closed. The project owner retrospectively assessed #45/#46 Medium and #47/#48 Low; no historical GitHub severity labels are asserted. Technical module counts are reports **1**, allocations **2**, student self-service **1**; these are known defects/module, not a complete whole-project density or proof other modules have zero defects.
 
 | Defect | Technical module | State | Age in days: actual closure minus creation |
 |---|---|---|---:|
@@ -139,7 +139,7 @@ The review queries every public issue with pagination and selects all non-PR iss
 | [#47](https://github.com/Sreeharsha2240/hostel-management-system/issues/47) | allocations | CLOSED | 1.002847 |
 | [#48](https://github.com/Sreeharsha2240/hostel-management-system/issues/48) | student self-service | CLOSED | 1.019699 |
 
-Actual creation/closure timestamps and the query's UTC acquisition time are retained in the [review extraction](evidence/issue38/independent-review-20261108.json). For an open defect, age would be acquisition time minus creation. Severity is UNKNOWN; zero open critical/high defects and whole-project inventory completeness remain UNVERIFIED. Retain PR #44/#49 and the [owner retest appendix](evidence/issue40-final/owner-cases.md), the failed volume attempt and the unreconciled historical harness failure separately.
+Actual creation/closure timestamps and the query's UTC acquisition time are retained in the [review extraction](evidence/issue38/independent-review-20261108.json). For an open defect, age would be acquisition time minus creation. The owner assessment supports zero known open Critical/High defects among these four only. Whole-project inventory completeness and severity-ranked status remain UNVERIFIED. Retain PR #44/#49 and the [owner retest appendix](evidence/issue40-final/owner-cases.md), the failed volume attempt and the unreconciled historical harness failure separately. Full decision and limits are in the [owner disposition](evidence/owner-disposition-20261114.md).
 
 ## Independent evidence review and current build
 
@@ -154,9 +154,9 @@ Accordingly:
 | Whole-plan criterion | Current status |
 |---|---|
 | 100% planned cases executed | Original 33 have 33 OWNER PASS observations. The expanded 61-case register still has 2 NOT RUN and 2 PARTIAL, so the expanded scope is NOT MET; independent QA acceptance of case conditions remains pending. |
-| High-priority cases passed | UNVERIFIED: priorities were absent from the original plan and the current values are proposals; TC-SEC-08 is proposed High and remains PARTIAL. |
-| Zero open critical/high defects | UNVERIFIED: no complete severity-ranked whole-project defect inventory is available. Four known defects were closed, but their severities are unknown. |
-| Every RTM requirement backed by a passed case | Design mapping and OWNER PASS proxy are recorded for all 36 core rows; accepted requirement-by-requirement passed-case coverage remains UNVERIFIED. |
+| High-priority cases passed | NOT MET / acceptance pending: the project owner accepted the 61 proposals (34 High/27 Medium) for planning; QA/Development agreement remains pending, and TC-SEC-08 is High and PARTIAL. |
+| Zero open critical/high defects | No known open Critical/High defect among the four reviewed closed issues (#45–#48); whole-project inventory completeness and independent acceptance remain UNVERIFIED. |
+| Every RTM requirement backed by a passed case | The owner accepted all 36 original RTM pairs as design mappings; accepted requirement-by-requirement passed-case coverage remains UNVERIFIED. |
 | Independent QA/Dev/PO approvals and project-guide walkthrough | PENDING final revision-bound decisions. A Warden walkthrough was owner-reported, but exact guide revision and participant code were not retained; team acceptance is not inferred. |
 
 ## Historical team action ledger — 8 November 2026
