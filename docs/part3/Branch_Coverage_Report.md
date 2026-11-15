@@ -1,8 +1,10 @@
 # Branch Coverage Report
 
-**Independent CI confirmation:** [run 43470319270](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43470319270) passed Python 3.11.18 and 3.14.10 on publication candidate `eebb30afeb63d27618fdd3be4cc4c2b76392fc32`. Its actual synthetic merge checkout `ee3b0c2f5b9c464109e72e360ee8fd89e2fecf7f` has the identical full Git tree `26bcecf56f436ad79c40ddff2fbc005c790be38b`. Both jobs reconcile all 12 gates, 497 exact mixed identities (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes, 288/294 exact isolated PASS selections, zero database attempts and all 179 frozen source pins. Six downloaded ZIP hashes match GitHub; per-file isolated measurements match the clean implementation evidence. The [durable CI extraction](evidence/hms18-capacity-20261113/ci-summary.json) preserves job/environment, source/artifact hashes and gaps. This record describes the tested publication candidate; the later documentation commit recording it is separate. The current head's checks are available on [PR #75](https://github.com/Sreeharsha2240/hostel-management-system/pull/75/checks).
+**Latest isolated-unit refresh — 15 November 2026:** clean commit `ff72065340d859c9512329d9406505c6e40fda15`, tree `8263028d02eb1a128b8742e3c2b7ac7eee3eaa0b`. The retained 288-method baseline and 294-method expanded selection both pass with zero database attempts. The expanded selection covered **418/436 (95.87%)** application branch outcomes; the baseline covered **415/436 (95.18%)**. No new branch threshold is inferred from the SRS. Local evidence and matching function-body/full-statement metrics are recorded in the [versioned refresh](evidence/hms19-main-refresh-20261115/README.md); matching Python 3.11/3.14 CI remains pending.
 
-**Current measured revision - 13 November 2026:** clean source `918477c2767161aa49526a57350a54eea0bd4c3e`, tree `76d2f64d5ad5ace8c6c2322c7823052600b23a72`. The full suite passed all 12 gates: **497 methods, 496 PASS and one expected timing SKIP**; timing passed separately without coverage. The previous 288 isolated IDs all pass; the expanded 294 IDs all pass, with **zero database attempts**. The accepted function-body statement result is **955/955 (100.00%)**; the all-application-statements companion is **955/1,713 (55.75%)**. The separate isolated application-branch diagnostic is **417/432 (96.53%)**.
+**Prior independent CI confirmation (13 November):** [run 43470319270](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43470319270) passed Python 3.11.18 and 3.14.10 on publication candidate `eebb30afeb63d27618fdd3be4cc4c2b76392fc32`. Its actual synthetic merge checkout `ee3b0c2f5b9c464109e72e360ee8fd89e2fecf7f` has the identical full Git tree `26bcecf56f436ad79c40ddff2fbc005c790be38b`. Both jobs reconcile all 12 gates, 497 exact mixed identities (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes, 288/294 exact isolated PASS selections, zero database attempts and all 179 frozen source pins. Six downloaded ZIP hashes match GitHub; per-file isolated measurements match the clean implementation evidence. The [durable CI extraction](evidence/hms18-capacity-20261113/ci-summary.json) preserves job/environment, source/artifact hashes and gaps. This evidence is for that publication candidate; its checks are available on [PR #75](https://github.com/Sreeharsha2240/hostel-management-system/pull/75/checks).
+
+**Previous measured revision — 13 November 2026:** clean source `918477c2767161aa49526a57350a54eea0bd4c3e`, tree `76d2f64d5ad5ace8c6c2322c7823052600b23a72`. Its full-suite and branch results remain dated evidence for that source. The latest isolated-unit results are in the 15 November refresh above.
 
 Owner: Devansh Gupta (`DevaOnL`), HMS-18/#40 and HMS-20/#42 follow-up. The [owner-authored boundary decision](evidence/hms19-function-body-boundary-20261113.md) governs the SRS >=70% unit criterion. The unit result meets that boundary; declarative statements remain outside it and are disclosed in the full-file companion. [Durable source-bound evidence](evidence/hms18-capacity-20261113/README.md) contains selections, per-file lines/arcs, commands, versions and actual outcomes. PR #74 is merged; its earlier measurements remain historical. Teammate review and final submission acceptance are separate.
 
@@ -11,7 +13,7 @@ Mixed configured coverage is **1,792/1,808 (99.12%) statements**, **441/446 (98.
 
 Branch outcomes retain the complete application denominator; the accepted function-body definition applies to statements only. Partial missing outcomes are already included in missing outcomes. No new branch pass threshold is inferred; the unchanged `.coveragerc` gate is 70% combined configured coverage.
 
-## Expanded isolated results by module
+## Previous 13 November expanded isolated results by module
 
 | Module | Measured outcomes | Covered | Missing | Partial missing | Branch rate |
 |---|---|---|---|---|---|
@@ -27,7 +29,7 @@ Branch outcomes retain the complete application denominator; the accepted functi
 | Configured total | 446 | 417 | 29 | 15 | 93.50% |
 | Application subtotal | 432 | 417 | 15 | 15 | 96.53% |
 
-## Full mixed results by module
+## Previous 13 November full mixed results by module
 
 | Module | Measured outcomes | Covered | Missing | Partial missing | Branch rate |
 |---|---|---|---|---|---|

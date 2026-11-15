@@ -12,8 +12,8 @@ repository.
 ## Part 3: current testing and reports
 
 Follow the [Part 3 team plan](PART3.md) and the instructor PDF linked there.
-The listed 2-6 November 2026 window has passed; confirm whether late submission
-is accepted. HMS-19's later owner-approved disposition and current case status
+Late-submission acceptance is excluded from the project owner's current scope.
+Confirm the required submission channel and format. HMS-19's later owner-approved disposition and current case status
 are summarized in the [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.md).
 
 - [x] Published Part 3 issues #37-#43 with original case ownership, initial estimates, dependencies, acceptance criteria and the 6 November milestone date.
@@ -25,12 +25,12 @@ are summarized in the [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.
 - [ ] Obtain remaining actual team case/priority/RTM and historical entry/deviation acceptance; scoped #40 closure does not execute expanded regression recipes or complete whole-plan acceptance.
 - [ ] Complete each member's functional, security, performance/recovery and quality execution with current evidence, defects and retests (#38-#40).
 - [x] Publish the System Validation checkpoint (#38), Code Coverage Report and Branch Coverage Report (#42) under `docs/part3/`, with source-bound evidence. Their publication is distinct from complete plan acceptance.
-- [x] Publish the Unit Test Report and complete HMS-19/#41. The owner-approved function-body result is 946/946 (100%) over 288 isolated methods; the 55.55% all-statements result remains disclosed. See the [report](part3/Unit_Test_Report.md).
-- [x] Refresh the Code and Branch Coverage Reports against the final application-code tree and preserve earlier measurements. PR #76 (`dd747ff`) changed documentation and added the Sprint 1 recording only, with no application, test or configuration changes; the PR #74 source-bound figures remain current for final main. See each report's freshness note.
+- [x] Publish the Unit Test Report and complete HMS-19/#41. The latest local source refresh passes 294 isolated methods at 956/959 (99.69%) under the owner-approved function-body boundary; 55.68% all-statements remains disclosed. Matching Python 3.11/3.14 CI is pending. See the [report](part3/Unit_Test_Report.md).
+- [x] Refresh the Code and Branch Coverage Reports against the latest application-code tree and preserve earlier measurements. The 15 November source-pinned refresh remeasures the 288/294 isolated selections after HMS-27 and updates current unit metrics; its dual-version CI confirmation remains pending. See each report's freshness note.
 - [ ] Meet the Test Plan exit criteria and record actual QA/Dev/PO approvals and the project-guide acceptance walkthrough; retain failed/blocked criteria and explicit deviations (#43).
 - [x] Add the owner-provided [Sprint 1 outcome demo](part3/evidence/sprint-recordings/Sprint1_Outcome_Demo.mp4); verified duration is 51.7 seconds and the repository copy matches the supplied file hash recorded in the evidence README.
 - [x] Add the owner-provided Sprint 2 outcome video at `part3/evidence/sprint-recordings/Sprint2_Outcome_Demo.mp4`; its duration is 1:55, five seconds short of the two-minute target. Review its content/rubric coverage and confirm whether the duration is acceptable or extend it if the full target is strict.
-- [ ] Confirm submission channel, late-submission acceptance, deadline and export requirements with the instructor (#43).
+- [ ] Confirm submission channel, deadline and export requirements with the instructor (#43).
 - [x] Explicitly document the SAD §4.4 request-ID logging and operational-monitoring gap and the current REQ-24 profile-field boundary; see the [current readiness report](part3/System_Validation_Report.md). This records gaps, not implementation or stakeholder approval.
 - [ ] Obtain QA review of the PO's SAD/REQ-24 scope disposition before claiming full design alignment; the [owner decision](part3/evidence/owner-disposition-20261114.md) records the current boundaries and remaining implementation gaps.
 - [ ] Publish the final accepted revision and complete the agreed submission; use Sprint 3 only for actual owned development spillover while testing/reporting continue (#43).
