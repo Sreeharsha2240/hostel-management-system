@@ -1,8 +1,13 @@
 # System Validation Report — HMS Part 3
 
+**18 November mobile-view update:** The owner reports that a friend checked the
+website in phone mode in a laptop browser. This is browser-emulated mobile-view
+evidence, not a physical-phone test; the browser, viewport, exercised workflows
+and captured evidence were not supplied. See the [mobile browser-mode note](evidence/mobile-browser-mode-check-20261118.md).
+
 **14 November Development review:** [The current revision-bound decision](Development_Review_20261114.md) agrees to present priorities and original RTM design mappings and reviews all 61 case records, while keeping execution observations separate from acceptance. Final Development acceptance is **HOLD**: new owner-assigned defects #78–#80 and the remaining case, QA, guide and instructor requirements prevent whole-plan acceptance. Devansh's recording contribution is available; the full team Sprint 2 video is still missing. This supersedes the older Development-review-pending wording below without altering historical executions.
 
-**15 November current status:** HMS-19/#41 remains complete through PR #74 (`a41f884`), with its latest source refresh recorded in PR #84, merged as `324f460`. The refreshed selection passes 294/294 isolated methods, covering 956/959 (99.69%) function-body statements under the owner-approved definition; the all-application-statements result is 55.68%. Both Python 3.11 and 3.14 jobs passed in [CI run 43736427332](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43736427332). See the [current source-pinned remeasurement](evidence/hms19-main-refresh-20261115/README.md). The current case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED. TC-SEC-08 remains PARTIAL after QA assessed the two alerts in the supplied 10 November handoff; TC-QUAL-02 and desktop browser/OS TC-QUAL-03 remain NOT RUN; TC-QUAL-04 remains PARTIAL for style assessment beyond configured checks. Real-phone testing is out of scope. Whole-plan readiness remains NOT READY pending the stated project, team and instructor dependencies. Dated sections below preserve historical status and metrics.
+**18 November current status:** HMS-19/#41 remains complete through PR #74 (`a41f884`), with its latest source refresh recorded in PR #84, merged as `324f460`. The refreshed selection passes 294/294 isolated methods, covering 956/959 (99.69%) function-body statements under the owner-approved definition; the all-application-statements result is 55.68%. Both Python 3.11 and 3.14 jobs passed in [CI run 43736427332](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43736427332). See the [current source-pinned remeasurement](evidence/hms19-main-refresh-20261115/README.md). The current case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED. TC-SEC-08 remains PARTIAL after QA assessed the two alerts in the supplied 10 November handoff; TC-QUAL-02 and desktop browser/OS TC-QUAL-03 remain NOT RUN; TC-QUAL-04 remains PARTIAL for style assessment beyond configured checks. The owner reports a friend checked the site in laptop-browser phone mode; details and captured evidence were not supplied. This replaces the physical-phone activity for this mini-project and is not a real-device test. Whole-plan readiness remains NOT READY pending the stated project, team and instructor dependencies. Dated sections below preserve historical status and metrics.
 
 ## Current SAD alignment and project-scope dispositions — 14 November 2026
 
@@ -10,7 +15,9 @@ The SAD §4.4 requires error logs to carry a request ID, operational monitoring 
 
 The SRS REQ-24 promises each student their own profile, current allocation and payment status, but it does not enumerate all profile fields. The project owner defines the mini-project boundary as the current My Records fields: name, Student ID, own current allocation and allocation history, own payment status/paid/balance summary and payment history. No extra contact or guardian fields are required under this PO interpretation. Existing owner/CI checks cover linked-account isolation. QA review of this interpretation remains pending. See the [owner decision](evidence/owner-disposition-20261114.md).
 
-These documented scope questions supplement the case register and are separate from the owner-approved removal of physical-phone testing. No real-phone test is expected for this mini-project.
+These documented scope questions supplement the case register. Physical-phone
+testing is replaced for this mini-project by the friend-reported laptop-browser
+phone-mode check described in the 18 November update above.
 
 **10 November HMS-16 QA addendum:** The [supplied QA handoff and evidence reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses the remaining ZAP observations: the Low `Server` banner belongs to the temporary probe server, and the Informational `next` hotspot has no demonstrated reflection or redirect use in the inspected login path. No HMS application fix or fix retest is indicated for either finding. The handoff's statement that the `next` regression test could not be found is corrected by `accounts/test_security.py` and a passing 10 November JUnit result. The recorded scan remains 0 High / 0 Medium / 1 Low / 1 Informational; **TC-SEC-08 remains PARTIAL** for the passive loopback scope. HMS-16/#38 was already closed for owner-authorized local-project tracking, while whole-plan readiness remains NOT READY.
 
@@ -21,8 +28,9 @@ all 12 gates. All original 33 are now recorded as OWNER PASS; this is not
 independent QA acceptance. At that dated snapshot, the expanded register was 57 OWNER PASS / 1 PARTIAL / 2 NOT RUN /
 1 BLOCKED. The project owner explicitly authorized #39 tracking closure with the
 then-recorded browser/real-phone matrix and working-hours availability unverified.
-The current owner decision removes physical-phone testing from this mini-project;
-the current ledger and remaining desktop/OS scope are stated at the top of this report.
+The current owner decision replaces physical-phone testing with the friend-
+reported laptop-browser phone-mode check recorded on 18 November; the current
+ledger and remaining desktop/OS scope are stated at the top of this report.
 
 **Historical HMS-16 owner-reported outcomes: 11 OWNER PASS, 1 PARTIAL. Whole-plan readiness: NOT READY.** The historical focused run tested the 5 November `main` revision `8322b4c20c067d512c4bb439fdedd19d4fa27223` using synthetic data and a disposable local MySQL 8.0.46 instance. It does not claim a deployed HTTPS endpoint, complete whole-plan acceptance, or team approvals.
 

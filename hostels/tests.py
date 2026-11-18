@@ -2,6 +2,7 @@ from unittest.mock import patch
 
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
+from django.forms import modelform_factory
 from django.test import TestCase
 from django.urls import reverse
 from django.utils.html import escape
@@ -11,6 +12,7 @@ from allocations.models import Allocation
 from audit.models import AuditEvent
 from tests.factories import make_room, make_student
 
+from .forms import RoomForm
 from .models import Bed, Hostel, Room
 
 
@@ -330,6 +332,80 @@ class HostelModelBehaviorTests(TestCase):
         room.refresh_from_db()
         self.assertEqual(room.capacity, 3)
         self.assertEqual(room.beds.count(), 3)
+
+    def test_room_with_allocation_history_cannot_move_to_another_hostel(self):
+        room = make_room("701", hostel=self.hostel, capacity=1)
+        bed = room.beds.get()
+        Allocation.objects.create(student=make_student(701), bed=bed)
+        girls_hostel = Hostel.objects.create(
+            name="Girls Hostel", hostel_type=Hostel.HostelType.GIRLS
+        )
+
+        form = RoomForm(
+            data={
+                "hostel": girls_hostel.pk,
+                "room_number": room.room_number,
+                "floor": room.floor,
+                "room_type": room.room_type,
+                "capacity": room.capacity,
+                "fee_amount": room.fee_amount,
+            },
+            instance=room,
+        )
+        self.assertFalse(form.is_valid())
+        self.assertIn("hostel", form.errors)
+
+        room.hostel = girls_hostel
+        with self.assertRaisesMessage(
+            ValidationError, "A room with allocation history cannot be moved"
+        ):
+            room.full_clean()
+
+        room.hostel = girls_hostel
+        with self.assertRaisesMessage(
+            ValidationError, "A room with allocation history cannot be moved"
+        ):
+            room.save()
+
+        room.refresh_from_db()
+        self.assertEqual(room.hostel_id, self.hostel.pk)
+        self.assertEqual(bed.allocations.get().bed.room.hostel_id, self.hostel.pk)
+
+        with self.assertRaisesMessage(ValueError, "Use Room.save()"):
+            Room.objects.filter(pk=room.pk).update(hostel_id=girls_hostel.pk)
+
+    def test_bed_with_allocation_history_cannot_move_to_another_room(self):
+        room = make_room("702", hostel=self.hostel, capacity=1)
+        target_room = make_room("703", hostel=self.hostel, capacity=1)
+        bed = room.beds.get()
+        Allocation.objects.create(student=make_student(702), bed=bed)
+
+        BedForm = modelform_factory(Bed, fields=("room", "label", "status"))
+        form = BedForm(
+            data={
+                "room": target_room.pk,
+                "label": bed.label,
+                "status": bed.status,
+            },
+            instance=bed,
+        )
+        self.assertFalse(form.is_valid())
+        self.assertIn("room", form.errors)
+
+        bed.room = target_room
+        with self.assertRaisesMessage(
+            ValidationError, "A bed with allocation history cannot be moved"
+        ):
+            bed.save()
+
+        bed.refresh_from_db()
+        self.assertEqual(bed.room_id, room.pk)
+        self.assertEqual(bed.allocations.get().bed.room_id, room.pk)
+
+        with self.assertRaisesMessage(ValueError, "Use Bed.save()"):
+            Bed.objects.filter(pk=bed.pk).update(room_id=target_room.pk)
+        with self.assertRaisesMessage(ValueError, "Use Bed.save()"):
+            Bed.objects.bulk_update([bed], ["room"])
 
     def test_queryset_update_rejects_capacity_and_room_number(self):
         room = Room.objects.create(

@@ -1,5 +1,11 @@
 # HMS Test Case Document and Requirements Traceability Matrix
 
+**18 November mobile-view update:** The owner reports that a friend checked the
+website in phone mode in a laptop browser. This is an informal emulated mobile-
+layout check replacing the physical-phone activity in this mini-project; it
+does not establish real-device behavior. No browser/version, viewport,
+workflow details or captured evidence were supplied. See the [mobile browser-mode note](evidence/mobile-browser-mode-check-20261118.md).
+
 **14 November Development evidence review:** [All 61 cases and 36 original RTM rows have a separate Development review](Development_Review_20261114.md), with immutable-source fields retained in its JSON ledger. Present priority proposals and original design mappings receive Development agreement; final acceptance remains **HOLD**, including new defects #78–#80. The execution ledger and individual owner observations below are preserved. Vaishnavi coordinates remaining QA/owner reconciliation, including QUAL-01's aggregate OWNER PASS versus primary walkthrough PARTIAL, old STU-01 evidence wording and superseded phone clauses; this technical review does not replace their records or attestations.
 
 **13 November current disposition:** HMS-19/#41 is complete through merged PR #74 (`a41f884`). The project owner approved the function-body unit-coverage boundary: 288/288 isolated methods pass and 946/946 (100%) function-body statements are covered; the 55.55% all-application-statements result remains disclosed. Real-phone testing is excluded from this mini-project. The expanded 61-case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED: TC-SEC-08 and TC-QUAL-04 are PARTIAL; TC-QUAL-02 and desktop/OS portability TC-QUAL-03 are NOT RUN. Dated entries below are historical where they conflict with this update.
@@ -63,9 +69,9 @@ An automated method and a planned case are different counting units. Adding a me
 
 ## 4. Environment, planned data and declared deviations
 
-Submitted Plan section 6: Python 3.11+, Django 5.x, MySQL 8.0; Windows 10+ **or** Ubuntu 20.04+; latest Chrome/Firefox/Edge and one real mobile phone. The project owner has removed real-phone testing from this mini-project's acceptance scope. Desktop browser and server portability remain in scope. Planned tools include Django tests, Selenium, Postman, JMeter and ZAP; TC-QUAL-03 records the adjusted project scope.
+Submitted Plan section 6: Python 3.11+, Django 5.x, MySQL 8.0; Windows 10+ **or** Ubuntu 20.04+; latest Chrome/Firefox/Edge and one real mobile phone. For this mini-project, the physical-phone activity is replaced by the owner-reported laptop-browser phone-mode check documented in the 18 November update. Desktop browser and server portability remain in scope. Planned tools include Django tests, Selenium, Postman, JMeter and ZAP; TC-QUAL-03 records the adjusted project scope.
 
-Current CI uses MySQL 8.4.13 on Linux with Python 3.11.18/3.14.10 and Django 5.2.19. HMS-18 uses Edge/Playwright and MySQL 8.4.9 in its recorded Windows environment; HMS-16/HMS-17 have their own MySQL 8.0 records. These substitutions and loopback HTTP results are usable as evidence with stated scope, but do not prove the submitted MySQL 8.0 environment, Selenium/Postman execution or deployed TLS. Real-phone coverage is excluded under the owner-approved mini-project scope decision above. Acceptance of other requirement/tool deviations remains a real team/instructor decision; this document does not grant it.
+Current CI uses MySQL 8.4.13 on Linux with Python 3.11.18/3.14.10 and Django 5.2.19. HMS-18 uses Edge/Playwright and MySQL 8.4.9 in its recorded Windows environment; HMS-16/HMS-17 have their own MySQL 8.0 records. These substitutions and loopback HTTP results are usable as evidence with stated scope, but do not prove the submitted MySQL 8.0 environment, Selenium/Postman execution or deployed TLS. The physical-phone activity is replaced by the friend-reported laptop-browser phone-mode check in the 18 November update above. Acceptance of other requirement/tool deviations remains a real team/instructor decision; this document does not grant it.
 
 ### 4.1 Shared planned fixture
 
@@ -3219,7 +3225,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 ### TC-QUAL-03: Desktop browser and server portability
 
-**Mini-project scope decision:** The project owner removed real-phone testing from acceptance scope. TC-QUAL-03 covers desktop browser versions and Windows/Linux server portability for this mini-project. Those remaining conditions still lack complete evidence, so the case remains NOT RUN.
+**Mini-project scope decision:** The physical-phone activity is replaced by the friend-reported laptop-browser phone-mode check documented in the 18 November update. TC-QUAL-03 covers desktop browser versions and Windows/Linux server portability for this mini-project. Those remaining conditions still lack complete evidence, so the case remains NOT RUN.
 
 **10 November local follow-up:** A synthetic Warden signed in and opened the dashboard, students, beds, allocations, payments and occupancy report in connected Chrome. Edge was unavailable through the connected browser; Firefox, older versions and Linux workflows were not exercised. See the [local browser observations](evidence/issue39/local-browser-20261110.md). This is supporting evidence, not a complete TC-QUAL-03 execution.
 
@@ -3245,7 +3251,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 1. Execute the main application flows on latest two versions of Chrome, Firefox and Edge, retaining exact versions and results.
 2. Verify supported Windows and Linux operation, recording deployment/configuration and exercised flows on each.
-3. (Excluded by the owner-approved mini-project scope: physical-phone checks.)
+3. Review the mobile layout in laptop-browser phone mode (reported by the owner as completed by a friend; supporting details were not supplied). This is emulated-layout evidence, not a physical-phone check.
 
 **Expected:** SRS portability target (Windows/Linux and latest two Chrome/Firefox/Edge versions) and the Test Plan's real-mobile environment are evidenced. Original TC-QUAL-01 still separately covers the latest-browser main flows and timed new-warden guide task.
 
@@ -3265,7 +3271,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and latest Chrome/Firefox/Edge; SRS section 6.4 separately requires Windows AND Linux/latest-two targets. Physical-phone coverage was removed from this mini-project's acceptance scope. No full Cartesian product is imposed. Current supporting pages/CI do not supply a scoped complete desktop-browser/OS execution of this case.
+**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and latest Chrome/Firefox/Edge; SRS section 6.4 separately requires Windows AND Linux/latest-two targets. The owner-reported laptop-browser phone-mode check replaces the physical-phone activity for this mini-project, but lacks browser, viewport, workflow and captured-evidence details. No full Cartesian product is imposed. Current supporting pages/CI do not supply a scoped complete desktop-browser/OS execution of this case.
 
 ### TC-QUAL-04: Application-logic unit coverage and maintainability
 

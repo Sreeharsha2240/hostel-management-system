@@ -40,6 +40,15 @@ class RoomForm(forms.ModelForm):
         room = self.instance
         capacity = cleaned_data.get("capacity")
 
+        hostel = cleaned_data.get("hostel")
+        if room.pk and hostel is not None and room.hostel_id != hostel.pk:
+            if room.beds.filter(allocations__isnull=False).exists():
+                self.add_error(
+                    "hostel",
+                    "A room with allocation history cannot be moved to another "
+                    "hostel because that would rewrite historical location.",
+                )
+
         if room.pk and capacity is not None:
             from allocations.models import Allocation
 
