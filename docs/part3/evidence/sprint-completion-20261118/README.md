@@ -1,20 +1,22 @@
 # Sprint completion verification, 18-19 November 2026
 
-Application freeze: `0d9adb39f3adcb85e75449c85900b4c283868ded`, tree
-`37f15fa2d2acadae9072dd082da1816b3174cf69`. This is an AI-assisted technical
+Clean automated-verification revision:
+`3a63cae0049565345f0c2f0687fbb9e54c620751`.
+Operational application freeze: `0d9adb39f3adcb85e75449c85900b4c283868ded`,
+tree `37f15fa2d2acadae9072dd082da1816b3174cf69`. This is an AI-assisted technical
 execution and independent blind review under the user's authorization to work
 across assignees. It does not attribute this execution to another teammate.
 Original requirements, case IDs, historical evidence and recorded owner scope
 decisions remain visible.
 
-## Initial frozen-source local results
+## Final clean local results
 
 - All **13 gates passed**: lint, formatting, dependency consistency, Django and
   database checks, applied migrations, migration consistency, static collection,
   mixed tests, canonical coverage data, text/XML/JSON coverage and separate timing.
 - **727 distinct mixed tests:** 726 PASS, one expected timing SKIP. The skipped
   timing method passed separately without tracing. No failures or errors.
-- Mixed statement coverage **2,994/3,380 (88.58%)**; branch coverage
+- Mixed statement coverage **2,995/3,381 (88.58%)**; branch coverage
   **821/1,000 (82.10%)**. XML and JSON agree for every covered line in all
   62 nonempty source files. Scripts are included in this mixed denominator.
 - The clean frozen **415-method** isolated selection passed with zero database
@@ -30,13 +32,20 @@ decisions remain visible.
   requirements and production paths, reproduced the availability defect before
   its correction, and reconciled the full mixed-run artifacts. No remaining
   concrete production blocker was established in that reviewed scope.
+- The nine separately selected owned regression recipes also passed on the same
+  clean revision. All 32 recovery-safety checks passed after preserving the
+  original backup child-window patch.
 
-The full mixed run was executed on staged source: its manifest truthfully records
+The earlier mixed run was executed on staged source: its manifest truthfully records
 `a679ca47` with `git_dirty=true`. That source was then committed as `9b36871`;
 the two integration merges retain its tree unchanged as `0d9adb39`. Clean
 isolated measurements independently validated the frozen source pins afterward.
-The mixed run is **not** relabelled as a clean `0d9adb39` execution. Clean CI
-results will provide a separate revision-bound verification.
+That earlier mixed run is **not** relabelled as a clean `0d9adb39` execution.
+Its initial metrics, isolated measurements and scopes are preserved with their
+exact raw-text hashes in [the initial-candidate archive](initial-candidate-0d9adb3.json.gz).
+The final complete run linked here is a fresh clean `3a63cae0` execution, including
+both isolated selections and the nine owned recipes. Clean CI supplies additional
+verification for the publication revision.
 
 ## Corrections and regression evidence
 

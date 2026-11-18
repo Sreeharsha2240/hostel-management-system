@@ -1,7 +1,7 @@
 {
-  "source_commit": "0d9adb39f3adcb85e75449c85900b4c283868ded",
-  "recorded_git_commit": "a679ca47c0d642f89b708b9e8473d3a2c62697a7",
-  "recorded_git_dirty": true,
+  "source_commit": "3a63cae0049565345f0c2f0687fbb9e54c620751",
+  "recorded_git_commit": "3a63cae0049565345f0c2f0687fbb9e54c620751",
+  "recorded_git_dirty": false,
   "methods": [
     {
       "id": "accounts.test_api.AccountApiTests.test_account_create_and_patch_require_admin_role",

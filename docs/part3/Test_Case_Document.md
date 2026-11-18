@@ -11,13 +11,14 @@ exported snapshot WAITING at zero probes.
 OWNER PASS is an execution attribution, not accepted QA passage.
 
 The current application/test freeze is
+`3a63cae0049565345f0c2f0687fbb9e54c620751` for automated verification. Operational runs retain
 `0d9adb39f3adcb85e75449c85900b4c283868ded`. See the
 [current requirements assessment](Final_Assessment_20261119.md) and
 [current technical evidence](evidence/sprint-completion-20261118/).
 Twelve versioned browser workflows, the real 901.003-second idle test, bounded
 passive ZAP baseline/triage, both sustained workloads and fresh sandbox recovery
-now have actual technical PASS evidence. Final source-pin refresh/clean checks
-remain pending after a later recovery metadata-only correction.
+now have actual technical PASS evidence. The later helper-only follow-up is source-pinned and cleanly verified on
+3a63cae; remote CI/merge/main/package checks remain pending.
 
 All 61 cases and 36 original RTM mappings remain preserved. The PO and
 [14 November Development review](Development_Review_20261114.md) agree to
@@ -38,7 +39,8 @@ records remain attributed to their actual executions.
 415/415 PASS, no DB attempts, 208 verified pins, 1,547/1,740 function-body
 statements (88.91%) under the owner boundary; all-statements companion 56.67%.
 The 288-method baseline remains intact and passes but is below target at
-66.55%. The full mixed run retains actual a679ca47 dirty/precommit provenance.
+66.55%. The current mixed run is clean on 3a63cae; initial dirty/precommit and 0d9 unit
+evidence remain archived. Nine owned recipes also PASS cleanly.
 
 **Owner scope exception:** The [10 November #43 closure](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
 explicitly skips collecting final teammate sign-offs and the project-guide
@@ -51,7 +53,7 @@ stays closed and no approval/collection gate is added here.
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
 | Revision | 19 November current-status reconciliation; historical execution records retain their own dates and sources |
-| Current application/test freeze | `0d9adb39f3adcb85e75449c85900b4c283868ded`; earlier inspected baseline `70c9fe20e462eb0b052e15434f19b347a793afa1` remains historical |
+| Current automated verification source | `3a63cae0049565345f0c2f0687fbb9e54c620751`; operational source remains `0d9adb39f3adcb85e75449c85900b4c283868ded`; earlier inspected baseline `70c9fe20e462eb0b052e15434f19b347a793afa1` remains historical |
 | Nine-case owner follow-up tested baseline | `6636098cb728aa17c2abf5e42c358a5d400261e7`; see section 5.6 |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
 | Requirements | All original REQ-1..24 and NFR-1..12; separate SRS quality, BR and SO mapping |
@@ -69,7 +71,7 @@ stays closed and no approval/collection gate is added here.
 | 8 November, HMS-17 follow-up / PR #66 | Vaishnavi (publication); Devansh with three independent automated reviewers (technical reconciliation) | Added seven screenshots and historical raw CI; corrected unsupported complete passes; accepted S1-07/S2-07 for their existing automated scope, without claiming a new execution |
 | 9 November, HMS-17 follow-up | Vaishnavi | Added Warden first-use and student-registration evidence; updated the current owner disposition and derived case metrics while preserving historical execution records |
 | 9 November, HMS-16 transport/ZAP follow-up | Sreeharsha owner evidence | Added isolated loopback HTTPS/TLS and passive ZAP evidence; recorded TC-SEC-06 as partial against its deployed-candidate prerequisite, TC-SEC-08 as partial pending QA disposition, and recalculated expanded totals |
-| 19 November, current-source reconciliation | Codex, under the user\'s authorization across assignees | Reconciled source 0d9adb39, 13 local gates, clean 288/415 isolated measurements, primary QUAL-01 PARTIAL, actual #43 owner exception and OPEN #90. Historical executions remain unchanged; no teammate or instructor approval is invented. |
+| 19 November, current-source reconciliation | Codex, under the user's authorization across assignees | Reconciled clean automatic source 3a63cae, 13 local gates, 288/415 isolated and nine-owned runs; operational source 0d9adb39, primary QUAL-01 PARTIAL, actual #43 owner exception and OPEN #90. Historical executions remain unchanged; no teammate or instructor approval is invented. |
 
 Devansh authorized finishing and merging this documentation issue without collecting additional teammate messages. This is delivery authorization; no teammate signature, retrospective pre-execution QA approval, instructor waiver or final QA/Dev/PO acceptance is invented. Contributor ownership of execution and the remaining reports stays as recorded in issues #38-#43.
 
@@ -181,12 +183,11 @@ The [8 November follow-up review](evidence/issue39/followup-20261108.md) links s
 
 The [727 exact outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
 and [source/coverage record](evidence/sprint-completion-20261118/technical-verification.json)
-supplement the historical executions below. All 13 local gates passed, with
-726 PASS / one expected timing SKIP and separate timing PASS. The mixed run
-records a679ca47 dirty/precommit; those tested bytes became 9b36871 and remain
-in the 0d9adb39 freeze. Clean 288/415-method isolated measurements independently
-verify 208 source pins. This section attributes execution to Codex under the
-user's cross-assignee authorization, not to a teammate who did not run it.
+describe fresh clean 3a63cae execution: 13 local gates, 726 PASS/one expected
+timing SKIP, separate timing PASS; clean 288/415 isolated runs, 208 verified
+pins, zero DB attempts, and nine clean owned recipes. Initial dirty/precommit
+and 0d9 unit/scopes remain [archived](evidence/sprint-completion-20261118/initial-candidate-0d9adb3.json.gz)
+with original hashes. Executor: Codex under the user's cross-assignee authorization.
 
 | Existing case / original design scope | Current automated companion evidence | Remaining distinction |
 |---|---|---|
@@ -207,8 +208,8 @@ separate from the earlier #79/#80 inventory/history records.
 
 Actual executor: Codex automation under the user's cross-assignee authorization.
 These are source-0d9adb39 executions, with actual dirty/clean state and hashes
-retained by each artifact; a later recovery metadata-only correction awaits
-final source-pin refresh and clean regression. They are not teammate attestations.
+retained by each artifact; the later helper-only correction is verified by clean 3a63cae runs and
+32 recovery-safety tests. They are not teammate attestations.
 
 - [Twelve browser workflows and real session test](evidence/sprint-completion-20261118/browser-security/README.md): 228 observations, actual script nonexecution/CSRF/privacy/Back checks and 901.003 seconds with zero application requests before protected revisit redirected to login. Historical login-control outlier 2.356176 seconds remains retained; later NavigationTiming and WebDriver-inclusive measurements are labelled separately.
 - [Fresh sustained workloads](evidence/sprint-completion-20261118/operations/load-results.json): 50 real full-duration users per scenario; normal 28,952 HTTP requests, maximum 1,599 ms; volume 28,806 requests with 5,000 students/2,000 beds, maximum 1,519 ms. Both have zero errors and 100% within two seconds; minimum per-user measured intervals exceed 600 seconds. Compressed raw samples and independent reparse are retained.
@@ -3243,7 +3244,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Execution status:** PASS
 
-**Actual executor:** Codex automation and assisted technical review under the user\'s cross-assignee authorization; no teammate signature.
+**Actual executor:** Codex automation and assisted technical review under the user's cross-assignee authorization; no teammate signature.
 
 **Tested commit:** 0d9adb39f3adcb85e75449c85900b4c283868ded
 
@@ -3350,7 +3351,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Execution status:** PASS
 
-**Actual executor:** Codex automation and assisted technical review under the user\'s cross-assignee authorization; no teammate signature.
+**Actual executor:** Codex automation and assisted technical review under the user's cross-assignee authorization; no teammate signature.
 
 **Tested commit:** 0d9adb39f3adcb85e75449c85900b4c283868ded
 

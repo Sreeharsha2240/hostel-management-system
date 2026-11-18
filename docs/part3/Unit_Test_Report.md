@@ -1,20 +1,28 @@
 # Unit Test Report — Part 3
 
-**19 November current measurement.** **Verified execution source:** 0d9adb39f3adcb85e75449c85900b4c283868ded.
+**19 November current measurement.** **Verified clean execution source:** 3a63cae0049565345f0c2f0687fbb9e54c620751.
 The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
 and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
 record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
 timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
-coverage is **2,994/3,380 statements (88.58%)**, **821/1,000 branch outcomes
+coverage is **2,995/3,381 statements (88.58%)**, **821/1,000 branch outcomes
 (82.10%)**, and **87.10% combined**. Scripts are included in this mixed
 denominator; these results are not isolated-unit coverage.
 
-The full mixed run truthfully records a679ca47 with git_dirty=true;
-its tested bytes were committed as 9b36871 and retained in 0d9adb39.
-It is not relabelled as a clean-commit execution. Both isolated measurements
-ran on clean 0d9adb39, validated all 208 canonical-LF source pins, retained
-their exact method lists and made zero database attempts. The source tree is
-37f15fa2d2acadae9072dd082da1816b3174cf69.
+The full 13-gate run and both isolated measurements were executed on clean
+3a63cae0049565345f0c2f0687fbb9e54c620751 (tree
+e4b06445ea710139ad8b4a64885606ec62411fa1), with git_dirty=false.
+The clean 288/415-method runs validated all 208 canonical-LF source pins and
+made zero database attempts. All nine separately owned regression recipes also
+passed cleanly. These are separate runs; their test counts are not added.
+
+The earlier dirty/precommit mixed run and initial clean 0d9adb39 unit evidence
+remain [archived with original raw-text hashes](evidence/sprint-completion-20261118/initial-candidate-0d9adb3.json.gz).
+They are not relabelled as this clean run. Browser, scan, load, idle and recovery
+executions retain source 0d9adb39. Application code/templates/assets/dependencies
+are unchanged; only backup child-window flags and a recovery-report literal
+differ. The helper delta received 32 passing recovery-safety tests and fresh
+clean verification.
 
 | Frozen isolated selection | Exact outcomes | Function-body application statements | All-application-statements companion |
 |---|---:|---:|---:|
@@ -38,7 +46,8 @@ certify every module/path or system requirement.
 
 The clean unit runs occurred on 18 November UTC / 19 November IST using Windows
 11, Python 3.14.7, Django 5.2.19, coverage 7.16.2, unittest-xml-reporting 4.0.0
-and mysqlclient 2.3.2; no DB connection was attempted. Commands, settings,
+and mysqlclient 2.3.2; no DB connection was attempted. The clean mixed suite
+used MySQL 8.4.9 and Ruff 0.17.1, as recorded in technical evidence. Commands, settings,
 versions and exact hashes are in the [reproduction record](evidence/sprint-completion-20261118/README.md).
 The unchanged attribution harness and .coveragerc remain in use.
 
@@ -55,11 +64,11 @@ submission/receipt remain unrecorded.
 Original course readiness remains **NOT READY** under the
 [current requirements assessment](Final_Assessment_20261119.md).
 
-Subsequent changes affect a recovery-report literal and the existing hidden-
-console backup launch only; Django application behavior is unchanged. Their
-32 recovery-safety tests passed, but final source-pin refresh, clean regression,
-CI/merge and package verification remain pending. The 0d9adb39 execution hashes
-and results below are preserved and are not relabelled as the successor SHA.
+Final source pins and clean local regression are verified on 3a63cae.
+Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
+reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
+merge/main verification and the candidate package remain pending. Availability
+and original course criteria keep their separately recorded states.
 
 ## Historical measurements and report text
 

@@ -1,7 +1,7 @@
 # HMS submission checklist
 
 **19 November: scoped #43 CLOSED; original course submission NOT READY.**
-The verified execution source is 0d9adb39f3adcb85e75449c85900b4c283868ded. The
+The verified execution source is 3a63cae0049565345f0c2f0687fbb9e54c620751. The
 [current assessment](part3/Final_Assessment_20261119.md) separates published
 deliverables, attributed execution observations and actual acceptance.
 This checklist records technical/package work and unmet original course criteria.
@@ -14,8 +14,8 @@ walkthrough; it creates no such approvals and is not reopened here.
 - [x] Publish the instructor [Part 3 PDF](part3/SE_Mini_Project_Delivereables_Part-3.pdf), [team plan](PART3.md), updated [61-case document/RTM](part3/Test_Case_Document.md), [Unit Test Report](part3/Unit_Test_Report.md), [System Validation Report](part3/System_Validation_Report.md), [Code Coverage Report](part3/Code_Coverage_Report.md) and [Branch Coverage Report](part3/Branch_Coverage_Report.md).
 - [x] Record PO and 14 November Development agreement to current 34 High / 27 Medium priorities and original RTM design mappings; preserve the Development HOLD and separate QA acceptance.
 - [x] Reconcile TC-QUAL-01 to its primary PARTIAL walkthrough; retain the reported 93-second guide task and its missing provenance. Current ledger: 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING.
-- [x] Reconcile [current technical evidence](part3/evidence/sprint-completion-20261118/README.md): 13 gates PASS, 727 distinct mixed methods (726 PASS / one expected timing SKIP), separate timing PASS; 2,994/3,380 statements, 821/1,000 branches and 87.10% combined. Preserve its actual a679ca47 dirty/precommit provenance, committed as 9b36871 and retained in 0d9adb39.
-- [x] Reconcile clean no-database unit measurements on 0d9adb39: 415/415 PASS, 208 verified pins, 1,547/1,740 function-body statements (88.91%) under the owner boundary; all-statements companion 56.67%. Retained 288 baseline passes but measures 66.55%, below the target.
+- [x] Reconcile fresh clean 3a63cae verification: 13 gates PASS, 727 distinct mixed methods (726 PASS/one expected timing SKIP), separate timing PASS; 2,995/3,381 statements, 821/1,000 branches, 87.10% combined. Initial dirty/precommit evidence is separately archived without relabelling.
+- [x] Reconcile clean no-database units on 3a63cae: 415/415 PASS, 208 verified pins, 1,547/1,740 function-body statements (88.91%) under the owner boundary; all-statements companion 56.67%. Retained 288 baseline passes but measures 66.55%, below target.
 - [x] Verify all twelve real Windows/Linux latest-two browser workflows (228 observations) on source 0d9adb39, including real writes, PDF/CSV, script nonexecution, CSRF, privacy, logout/Back and confirmation cancel/accept; actual executor is Codex automation.
 - [x] Record current SEC-08 bounded technical PASS after actual baseline/triage; retain the Medium development-static 404 CSP finding, Low observations and five unsilenced check--deploy warnings. No production/TLS approval is inferred.
 - [x] Reconcile both full 600-second/50-user workloads: baseline 28,952 requests/maximum 1,599 ms; volume 28,806 requests with 5,000 students/2,000 beds/maximum 1,519 ms. Zero errors, 100% under 2 s; raw compressed samples retained.
@@ -29,7 +29,7 @@ walkthrough; it creates no such approvals and is not reopened here.
 - [x] Record that the same owner exception skips collecting the project-guide walkthrough for this mini-project; no guide acceptance is invented. The original course criterion remains unmet, and the reported new-Warden usability task remains separate.
 
 - [x] Supply fresh natural daily-trigger/populated-restore evidence on a new owned sandbox plus stable read-only browser backup. Seventeen consistency checks pass; temporary task/server cleaned up, legacy task unchanged. The removed demonstration task is not an ongoing current-browser schedule.
-- [ ] Complete final source-pin refresh/clean regression after the script-only metadata/hidden-console follow-up, then final CI/merge/package verification.
+- [x] Refresh final source pins and verify clean 13-gate, 288/415 isolated and nine-owned runs on 3a63cae after the helper-only follow-up; 32 recovery-safety tests pass. Remote CI, merge/main and package verification remain pending.
 
 ## Scope, sprint and team records
 

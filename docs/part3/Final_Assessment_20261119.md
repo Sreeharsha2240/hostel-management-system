@@ -5,14 +5,20 @@ CLOSED.** The updated 61-case document, 36-row core RTM and four required
 reports are present. Publication and scoped tracking closure do not establish
 every original Test Plan/course criterion.
 
-The verified execution source is
-0d9adb39f3adcb85e75449c85900b4c283868ded (tree
-37f15fa2d2acadae9072dd082da1816b3174cf69). All 13 local gates passed:
-727 mixed methods, 726 PASS / one expected timing SKIP, with separate timing
-PASS. The full mixed run records a679ca47 with git_dirty=true; its tested
-bytes became 9b36871 and remain in 0d9adb39. It is not a clean-commit mixed run.
-Both isolated measurements ran on clean 0d9adb39 and validated 208 source pins.
-See the [technical evidence](evidence/sprint-completion-20261118/README.md).
+The verified clean execution source is
+3a63cae0049565345f0c2f0687fbb9e54c620751 (tree
+e4b06445ea710139ad8b4a64885606ec62411fa1). All 13 local gates passed:
+727 mixed methods, 726 PASS/one expected timing SKIP, separate timing PASS,
+2,995/3,381 statements, 821/1,000 branches and 87.10% combined.
+Both isolated runs are clean with 208 verified pins/zero DB attempts; 415 methods
+cover 1,547/1,740 function-body statements (88.91%) and 1,547/2,730 all-statements
+(56.67%). Nine separate owned recipes also pass cleanly.
+
+The [initial 0d9 evidence archive](evidence/sprint-completion-20261118/initial-candidate-0d9adb3.json.gz)
+preserves original dirty/precommit mixed results and initial clean unit results.
+Browser, scan, load, idle and recovery runs remain bound to 0d9adb39. Application
+behavior/assets/dependencies are unchanged; the two helper-only changes are
+verified by 32 recovery-safety tests and the new clean run. No old run is relabelled.
 
 The [actual 10 November owner closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
 explicitly skips collecting teammate QA/Development/PO sign-offs and the
@@ -35,10 +41,10 @@ no fresh human Development signature is invented.
 
 | Area | Current assessment | Evidence or remaining condition |
 |---|---|---|
-| Local automated verification | **13 gates PASS; 727 distinct mixed methods, 726 PASS / one expected SKIP; separate timing PASS** | Mixed coverage: 2,994/3,380 statements (88.58%), 821/1,000 branches (82.10%), 87.10% combined. [Exact outcomes/source provenance](evidence/sprint-completion-20261118/technical-verification.json) retain the dirty/precommit mixed execution. |
+| Local automated verification | **13 gates PASS; 727 distinct mixed methods, 726 PASS / one expected SKIP; separate timing PASS** | Mixed coverage: 2,995/3,381 statements (88.58%), 821/1,000 branches (82.10%), 87.10% combined. [Exact outcomes/source provenance](evidence/sprint-completion-20261118/technical-verification.json) record the fresh clean mixed execution and separately archived initial provenance. |
 | Isolated-unit target | **415/415 PASS; 1,547/1,740 function-body statements (88.91%) under the owner boundary** | Clean freeze, 208 verified source pins and zero DB attempts. The retained 288-method baseline passes its tests but covers 1,158/1,740 (66.55%), below 70%. Expanded all-statements companion is 1,547/2,730 (56.67%), not a 70% pass. |
 | TC-QUAL-01: browser compatibility and usability | **PARTIAL** | The [primary walkthrough](evidence/issue39/usability-walkthrough-20261109.md) explicitly retains overall PARTIAL. Its 93-second first-use result is owner-reported; exact guide revision, participant code and start/end timing trace were not retained. A visible automated browser workflow cannot establish a new participant's guide use. |
-| TC-QUAL-02: office-hours availability | **PENDING** | Real observer job job_c4c3658121/PID 2322483 is installed for19 November 08:00-20:00 IST. [Exported WAITING snapshot](evidence/sprint-completion-20261118/browser-security/availability/summary.json): 0/1,440 probes; no pass. Missing/failures count; 1,426 successes required. |
+| TC-QUAL-02: office-hours availability | **PENDING** | Real observer job job_c4c3658121/PID 2322483 is installed for 19 November 08:00-20:00 IST. [Exported WAITING snapshot](evidence/sprint-completion-20261118/browser-security/availability/summary.json): 0/1,440 probes; no pass. Missing/failures count; 1,426 successes required. |
 | TC-QUAL-03: desktop browser/server portability | **PASS - Codex technical execution** | [Twelve Windows 11/Fedora 44 workflows](evidence/sprint-completion-20261118/browser-security/README.md), nineteen observations each, all 269 accepted source/font pins matched. Real writes/downloads/security/browser-Back/confirmation paths exercised; no human first-use claim. |
 | TC-QUAL-04: maintainability | **PARTIAL** | The unit target is evaluated under the recorded owner boundary. Configured Ruff checks and modular apps support the style/design assessment; they do not certify every PEP 8 provision. |
 | TC-SEC-08: baseline and triage | **PASS - Codex bounded technical execution** | [Actual triage](evidence/sprint-completion-20261118/browser-security/security/qa-development-triage.md): completed authenticated passive baseline,12 explicit HTTP-200 routes, drained queue. Retain one Medium static 404 CSP finding,Low/Informational observations and five insecure-loopback deploy warnings; no production/TLS approval. |
@@ -91,11 +97,11 @@ and MySQL versions used. A mapped test or passing companion proves only its
 asserted conditions; the original browser timing, Back/idle and script-execution
 subconditions need their own evidence or an actual bounded acceptance decision.
 
-Subsequent changes affect a recovery-report literal and the existing hidden-
-console backup launch only; Django application behavior is unchanged. Their
-32 recovery-safety tests passed, but final source-pin refresh, clean regression,
-CI/merge and package verification remain pending. The 0d9adb39 execution hashes
-and results below are preserved and are not relabelled as the successor SHA.
+Final source pins and clean local regression are verified on 3a63cae.
+Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
+reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
+merge/main verification and the candidate package remain pending. Availability
+and original course criteria keep their separately recorded states.
 
 ## Package and external decisions
 

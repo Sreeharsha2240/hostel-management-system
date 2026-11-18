@@ -1,20 +1,28 @@
 # Code Coverage Report
 
-**19 November current measurement.** **Verified execution source:** 0d9adb39f3adcb85e75449c85900b4c283868ded.
+**19 November current measurement.** **Verified clean execution source:** 3a63cae0049565345f0c2f0687fbb9e54c620751.
 The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
 and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
 record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
 timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
-coverage is **2,994/3,380 statements (88.58%)**, **821/1,000 branch outcomes
+coverage is **2,995/3,381 statements (88.58%)**, **821/1,000 branch outcomes
 (82.10%)**, and **87.10% combined**. Scripts are included in this mixed
 denominator; these results are not isolated-unit coverage.
 
-The full mixed run truthfully records a679ca47 with git_dirty=true;
-its tested bytes were committed as 9b36871 and retained in 0d9adb39.
-It is not relabelled as a clean-commit execution. Both isolated measurements
-ran on clean 0d9adb39, validated all 208 canonical-LF source pins, retained
-their exact method lists and made zero database attempts. The source tree is
-37f15fa2d2acadae9072dd082da1816b3174cf69.
+The full 13-gate run and both isolated measurements were executed on clean
+3a63cae0049565345f0c2f0687fbb9e54c620751 (tree
+e4b06445ea710139ad8b4a64885606ec62411fa1), with git_dirty=false.
+The clean 288/415-method runs validated all 208 canonical-LF source pins and
+made zero database attempts. All nine separately owned regression recipes also
+passed cleanly. These are separate runs; their test counts are not added.
+
+The earlier dirty/precommit mixed run and initial clean 0d9adb39 unit evidence
+remain [archived with original raw-text hashes](evidence/sprint-completion-20261118/initial-candidate-0d9adb3.json.gz).
+They are not relabelled as this clean run. Browser, scan, load, idle and recovery
+executions retain source 0d9adb39. Application code/templates/assets/dependencies
+are unchanged; only backup child-window flags and a recovery-report literal
+differ. The helper delta received 32 passing recovery-safety tests and fresh
+clean verification.
 
 ## Current statement coverage by module
 
@@ -27,10 +35,10 @@ their exact method lists and made zero database attempts. The source tree is
 | hostels | 580/603 | 23 | 96.19% | 280/406 (68.97%) | 280/603 (46.43%) |
 | payments | 443/452 | 9 | 98.01% | 283/292 (96.92%) | 283/452 (62.61%) |
 | reports | 86/86 | 0 | 100.00% | 54/54 (100.00%) | 54/86 (62.79%) |
-| scripts | 311/650 | 339 | 47.85% | Outside application scope | Outside application scope |
+| scripts | 312/651 | 339 | 47.93% | Outside application scope | Outside application scope |
 | students | 373/381 | 8 | 97.90% | 205/235 (87.23%) | 205/381 (53.81%) |
 | Application subtotal | 2,683/2,730 | 47 | 98.28% | 1,547/1,740 (88.91%) | 1,547/2,730 (56.67%) |
-| Configured mixed total | 2,994/3,380 | 386 | 88.58% | Separate application measure | Separate application measure |
+| Configured mixed total | 2,995/3,381 | 386 | 88.58% | Separate application measure | Separate application measure |
 
 The original 288-method selection covers 1,158/1,740 (66.55%) current
 function-body statements; the additive 415-method selection reaches
@@ -48,7 +56,7 @@ are retained, including declarations receiving no selected-method credit.
 
 Reproduce using the [current commands and environment record](evidence/sprint-completion-20261118/README.md).
 The clean isolated environment is Windows 11/Python 3.14.7, Django 5.2.19 and
-coverage 7.16.2. The mixed run's dirty/precommit source remains explicit above.
+coverage 7.16.2. The current full mixed run is clean; initial dirty/precommit evidence is archived separately.
 Neither the attribution harness nor .coveragerc was weakened for the target.
 
 The [10 November owner-directed closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
@@ -62,11 +70,11 @@ submission/receipt remain unrecorded.
 Coverage does not establish full case/RTM acceptance. Original course readiness
 is **NOT READY**; see the [current assessment](Final_Assessment_20261119.md).
 
-Subsequent changes affect a recovery-report literal and the existing hidden-
-console backup launch only; Django application behavior is unchanged. Their
-32 recovery-safety tests passed, but final source-pin refresh, clean regression,
-CI/merge and package verification remain pending. The 0d9adb39 execution hashes
-and results below are preserved and are not relabelled as the successor SHA.
+Final source pins and clean local regression are verified on 3a63cae.
+Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
+reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
+merge/main verification and the candidate package remain pending. Availability
+and original course criteria keep their separately recorded states.
 
 ## Historical measurements and report text
 

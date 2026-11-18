@@ -10,11 +10,12 @@ Part 1 requirements, design and test-plan documents, with revision histories.
 
 The [current assessment](docs/part3/Final_Assessment_20261119.md) reviews the
 original requirements and actual evidence. The verified execution source is
-0d9adb39f3adcb85e75449c85900b4c283868ded. All 13 local gates passed:
+3a63cae0049565345f0c2f0687fbb9e54c620751. All 13 local gates passed:
 727 mixed methods (726 PASS / one expected timing SKIP), separate timing PASS,
 and 87.10% combined coverage. The clean 415-method isolated selection meets
 the owner-approved function-body target at 88.91%; its separate all-statements
-diagnostic is 56.67%. Actual precommit/dirty mixed-run provenance is retained.
+diagnostic is 56.67%. The full mixed, isolated and nine-owned runs are clean
+on this revision; initial precommit/dirty evidence remains separately archived.
 
 The [61-case document/36-row RTM](docs/part3/Test_Case_Document.md) and all four
 reports are present. Current ledger: 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING;
@@ -22,7 +23,7 @@ original course readiness remains **NOT READY** for unfinished conditions.
 The owner's recorded #43 exception closes the scoped task and skips collecting
 teammate sign-offs and a guide walkthrough; no such approvals are inferred.
 Current browser/scan/load/recovery checks have bounded technical PASS results;
-the real availability window and final source/CI/merge/package checks remain
+the real availability window and final CI/merge/main/package checks remain
 pending. Instructor submission/receipt is unrecorded.
 The owner-selected Sprint 2 clip is included at 1:55, about five seconds below
 the nominal two-minute target. See the [plan](docs/PART3.md) and

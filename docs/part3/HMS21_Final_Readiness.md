@@ -2,7 +2,7 @@
 
 **19 November: owner-scoped HMS-21/#43 CLOSED; original course readiness
 NOT READY.** The verified execution source is
-0d9adb39f3adcb85e75449c85900b4c283868ded. This assisted technical checkpoint
+3a63cae0049565345f0c2f0687fbb9e54c620751. This assisted technical checkpoint
 records actual results and scope decisions; it supplies no other person's
 approval or a submission receipt.
 
@@ -10,9 +10,9 @@ approval or a submission receipt.
 |---|---|
 | Updated cases and RTM | Published: 61 records, original 33 IDs and all 36 original RTM mappings retained. |
 | Four required reports | Unit, System Validation, Code Coverage and Branch Coverage Reports are present under docs/part3 and refreshed against current evidence. |
-| Local automated verification | 13 gates PASS; 727 distinct mixed methods, 726 PASS / one expected timing SKIP; separate timing PASS. Mixed statements 2,994/3,380 (88.58%), branches 821/1,000 (82.10%), combined 87.10%. |
+| Local automated verification | 13 gates PASS; 727 distinct mixed methods, 726 PASS / one expected timing SKIP; separate timing PASS. Mixed statements 2,995/3,381 (88.58%), branches 821/1,000 (82.10%), combined 87.10%. |
 | Isolated-unit target | Clean 415/415 PASS, no DB attempts, 208 verified pins; function-body 1,547/1,740 (88.91%) under the owner boundary. Conservative all-statements companion 56.67%. Retained 288-method baseline passes its tests but measures 66.55%, below 70%. |
-| Run provenance | Full mixed run records a679ca47 dirty/precommit; its tested source became 9b36871 and remains in 0d9adb39. Clean isolated runs validate the frozen source. No clean-commit mixed execution is invented. |
+| Run provenance | Fresh full mixed, 288/415 isolated and nine-owned executions are clean on 3a63cae. Initial dirty/precommit and 0d9 unit evidence are separately archived; operational runs remain 0d9 with reviewed helper-only carry-forward. |
 | Current execution ledger | 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING; original 33: 32 OWNER PASS / 1 PARTIAL. QUAL-01 follows its primary PARTIAL walkthrough; execution attribution is separate from accepted passage. |
 | Current operational execution | Twelve browser workflows/228 observations and real 901.003-second idle PASS; bounded ZAP baseline/triage PASS with retained Medium/Low findings; both 600-second/50-user workloads PASS; fresh owned sandbox recovery plus read-only browser backup PASS. |
 | Availability | QUAL-02 PENDING: real observer job job_c4c3658121 / PID 2322483 is installed for 19 November 08:00-20:00 IST. Exported WAITING snapshot has zero probes; no availability pass. |
@@ -31,11 +31,11 @@ The owner-reported 93-second new-Warden guide task lacks exact guide revision,
 participant code and start/end timing trace; it is separate from a project-guide
 walkthrough. Historical pre-execution entry approval is not backdated.
 
-Subsequent changes affect a recovery-report literal and the existing hidden-
-console backup launch only; Django application behavior is unchanged. Their
-32 recovery-safety tests passed, but final source-pin refresh, clean regression,
-CI/merge and package verification remain pending. The 0d9adb39 execution hashes
-and results below are preserved and are not relabelled as the successor SHA.
+Final source pins and clean local regression are verified on 3a63cae.
+Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
+reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
+merge/main verification and the candidate package remain pending. Availability
+and original course criteria keep their separately recorded states.
 
 <details>
 <summary>Historical readiness records through 18 November (original source/date scopes)</summary>

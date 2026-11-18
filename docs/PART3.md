@@ -1,19 +1,20 @@
 # Part 3: testing, reports and team delivery
 
 **19 November: scoped #43 task CLOSED; original course readiness NOT READY.**
-The verified execution source is 0d9adb39f3adcb85e75449c85900b4c283868ded.
+The verified execution source is 3a63cae0049565345f0c2f0687fbb9e54c620751.
 All 13 local gates passed with 727 distinct mixed methods (726 PASS / one
 expected timing SKIP), separate timing PASS and 87.10% configured combined
 coverage. The clean 415-method isolated selection reaches 1,547/1,740 (88.91%)
 function-body statements under the actual owner boundary; 56.67% all-statements
-coverage stays separate. The full mixed run retains its actual dirty/precommit
-provenance. See the [current assessment](part3/Final_Assessment_20261119.md)
+coverage stays separate. The full mixed, isolated and nine-owned runs are clean
+on this revision; initial dirty/precommit evidence remains separately archived.
+See the [current assessment](part3/Final_Assessment_20261119.md)
 and [technical evidence](part3/evidence/sprint-completion-20261118/README.md).
 
 The 61-case document, 36 original RTM mappings and four reports are published.
 The current ledger is 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING after reconciling
 QUAL-01 with its primary PARTIAL walkthrough. Current browser/scan/load/recovery evidence has bounded technical PASS results;
-the real availability window and final source/CI/merge/package checks remain
+the real availability window and final CI/merge/main/package checks remain
 pending.
 PO/recorded Development agreement concerns priorities and design mappings;
 accepted passed-case coverage remains unverified.
