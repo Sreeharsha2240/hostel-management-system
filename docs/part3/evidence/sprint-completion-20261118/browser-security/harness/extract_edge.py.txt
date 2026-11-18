@@ -1,0 +1,95 @@
+"""Extract official Edge MSI bundles without installing or updating a browser.
+
+Edge's MSI Binary table contains an Omaha bootstrapper. Its LZMA resource
+decodes to four BCJ2 streams; wrap those in a minimal valid 7z container so the
+official 7-Zip decoder can reconstruct the tar, then extract the standalone
+browser archive. Original packages remain untouched and every stage is private.
+"""
+import ctypes
+import json
+import struct
+import subprocess
+import zlib
+from ctypes import wintypes
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+
+def number(value):
+    for size in range(9):
+        if value < 1 << (7 * (size + 1)):
+            if size == 8:
+                return b'\xff' + value.to_bytes(8, 'little')
+            return bytes([((0xff << (8 - size)) & 0xff) | (value >> (8 * size))]) + value.to_bytes(size + 1, 'little')[:size]
+    raise ValueError(value)
+
+
+def unpack(path, destination, log):
+    result = subprocess.run([str(ROOT / '7zip' / '7z.exe'), 'x', str(path), '-o' + str(destination), '-y'], capture_output=True, creationflags=subprocess.CREATE_NO_WINDOW)
+    (ROOT / log).write_bytes(result.stdout + result.stderr)
+    if result.returncode:
+        raise RuntimeError('Archive extraction failed: ' + str(path.name))
+
+
+def msi_payload(msi, target):
+    api = ctypes.windll.msi
+    db, view = wintypes.UINT(), wintypes.UINT()
+    assert api.MsiOpenDatabaseW(str(msi.resolve()), None, ctypes.byref(db)) == 0
+    assert api.MsiDatabaseOpenViewW(db, 'SELECT `Name`, `Data` FROM `Binary`', ctypes.byref(view)) == 0
+    assert api.MsiViewExecute(view, 0) == 0
+    try:
+        while True:
+            record = wintypes.UINT()
+            error = api.MsiViewFetch(view, ctypes.byref(record))
+            if error == 259:
+                break
+            assert error == 0
+            try:
+                name, length = ctypes.create_unicode_buffer(512), wintypes.DWORD(512)
+                assert api.MsiRecordGetStringW(record, 1, name, ctypes.byref(length)) == 0
+                if name.value == 'MicrosoftEdgeInstaller':
+                    with target.open('wb') as output:
+                        while True:
+                            data, length = ctypes.create_string_buffer(65536), wintypes.DWORD(65536)
+                            assert api.MsiRecordReadStream(record, 2, data, ctypes.byref(length)) == 0
+                            if not length.value:
+                                return
+                            output.write(data.raw[:length.value])
+            finally:
+                api.MsiCloseHandle(record)
+    finally:
+        api.MsiCloseHandle(view)
+        api.MsiCloseHandle(db)
+    raise RuntimeError('Official Edge installer payload was not found')
+
+
+def extract(version):
+    target = ROOT / 'browsers' / ('edge-' + version)
+    target.mkdir(parents=True, exist_ok=True)
+    installer = target / 'MicrosoftEdgeInstaller.bin'
+    msi_payload(ROOT / 'downloads' / ('edge-' + version + '.msi'), installer)
+    unpack(installer, target / 'installer', 'edge-' + version + '-resource.log')
+    raw = (target / 'installer' / '102~').read_bytes()
+    unpacked_size, *stream_sizes = struct.unpack_from('<5I', raw)
+    assert len(raw) == 20 + sum(stream_sizes)
+    header = b'\x01\x04\x06' + number(0) + number(4) + b'\x09' + b''.join(number(n) for n in stream_sizes) + b'\x00'
+    header += b'\x07\x0b\x01\x00\x01\x14\x03\x03\x01\x1b\x04\x01\x00\x01\x02\x03\x0c' + number(unpacked_size) + b'\x00\x00'
+    name = b'\x00' + 'edge.tar\0'.encode('utf-16le')
+    header += b'\x05\x01\x11' + number(len(name)) + name + b'\x00\x00'
+    packed = raw[20:]
+    start = struct.pack('<QQI', len(packed), len(header), zlib.crc32(header))
+    wrapper = target / 'omaha-bcj2.7z'
+    wrapper.write_bytes(b'7z\xbc\xaf\x27\x1c\x00\x04' + struct.pack('<I', zlib.crc32(start)) + start + packed + header)
+    unpack(wrapper, target / 'decoded', 'edge-' + version + '-bcj2.log')
+    unpack(target / 'decoded' / 'edge.tar', target / 'omaha-tar', 'edge-' + version + '-tar.log')
+    standalone = next((target / 'omaha-tar').glob('MicrosoftEdge_X64*'))
+    unpack(standalone, target / 'standalone', 'edge-' + version + '-standalone.log')
+    unpack(target / 'standalone' / 'MSEDGE.7z', target / 'application', 'edge-' + version + '-application.log')
+    binary = target / 'application' / 'Chrome-bin' / version / 'msedge.exe'
+    assert binary.is_file()
+    return {'version': version, 'binary': str(binary), 'method': 'MSI Binary stream -> Omaha LZMA -> four BCJ2 streams -> tar -> MSEDGE.7z'}
+
+
+if __name__ == '__main__':
+    print(json.dumps([extract(v) for v in ['157.0.4341.60', '156.0.4314.84']], indent=2))

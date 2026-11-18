@@ -37,7 +37,7 @@ class RoomQuerySetContractUnitTests(SimpleTestCase):
 class RoomSaveContractUnitTests(SimpleTestCase):
     def setUp(self):
         self.room = Room(
-            pk=8, room_number="201", capacity=2, fee_amount=Decimal("750.00")
+            pk=8, room_number="201", floor=0, capacity=2, fee_amount=Decimal("750.00")
         )
         self.beds = Mock()
         self.beds.count.return_value = 2
@@ -193,12 +193,12 @@ class RoomSaveContractUnitTests(SimpleTestCase):
 class RoomPartialSaveContractUnitTests(SimpleTestCase):
     def setUp(self):
         self.room = Room(
-            pk=8, room_number="201", capacity=2, fee_amount=Decimal("750.00")
+            pk=8, room_number="201", floor=0, capacity=2, fee_amount=Decimal("750.00")
         )
         self.beds = Mock()
         self.beds.count.return_value = 2
         self.previous = Room(
-            pk=8, room_number="201", capacity=2, fee_amount=Decimal("750.00")
+            pk=8, room_number="201", floor=0, capacity=2, fee_amount=Decimal("750.00")
         )
         self.locked = self.enterContext(
             patch("hostels.models.Room.objects.select_for_update")
@@ -221,7 +221,7 @@ class RoomPartialSaveContractUnitTests(SimpleTestCase):
         self.room.capacity = 4
         self.room.fee_amount = "950.00"
         existing = Mock(label="201-A")
-        self.beds.select_for_update.return_value.all.return_value = [existing]
+        self.beds.select_for_update.return_value.order_by.return_value = [existing]
 
         Room.save.__wrapped__(self.room, update_fields=["fee_amount"])
 
@@ -255,7 +255,7 @@ class RoomPartialSaveContractUnitTests(SimpleTestCase):
                 self.room.room_number = "202"
                 self.room.capacity = 4
                 bed = Mock(label="201-A")
-                self.beds.select_for_update.return_value.all.return_value = [bed]
+                self.beds.select_for_update.return_value.order_by.return_value = [bed]
 
                 Room.save.__wrapped__(self.room, update_fields=fields)
 
@@ -278,7 +278,7 @@ class RoomPartialSaveContractUnitTests(SimpleTestCase):
                 self.persist.reset_mock()
                 self.room.room_number = "UNSAVED"
                 self.room.capacity = 3
-                self.beds.select_for_update.return_value.all.return_value = []
+                self.beds.select_for_update.return_value.order_by.return_value = []
 
                 if positional:
                     Room.save.__wrapped__(self.room, False, False, None, ["capacity"])
@@ -299,7 +299,7 @@ class RoomPartialSaveContractUnitTests(SimpleTestCase):
         self.room.room_number = "202"
         self.room.capacity = 3
         bed = Mock(label="201-A")
-        self.beds.select_for_update.return_value.all.return_value = [bed]
+        self.beds.select_for_update.return_value.order_by.return_value = [bed]
 
         Room.save.__wrapped__(self.room, update_fields=["room_number", "capacity"])
 

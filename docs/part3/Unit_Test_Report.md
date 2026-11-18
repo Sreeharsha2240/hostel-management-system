@@ -1,5 +1,81 @@
 # Unit Test Report — Part 3
 
+**19 November current measurement.** **Verified clean execution source:** 3a63cae0049565345f0c2f0687fbb9e54c620751.
+The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
+and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
+record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
+timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
+coverage is **2,995/3,381 statements (88.58%)**, **821/1,000 branch outcomes
+(82.10%)**, and **87.10% combined**. Scripts are included in this mixed
+denominator; these results are not isolated-unit coverage.
+
+The full 13-gate run and both isolated measurements were executed on clean
+3a63cae0049565345f0c2f0687fbb9e54c620751 (tree
+e4b06445ea710139ad8b4a64885606ec62411fa1), with git_dirty=false.
+The clean 288/415-method runs validated all 208 canonical-LF source pins and
+made zero database attempts. All nine separately owned regression recipes also
+passed cleanly. These are separate runs; their test counts are not added.
+
+The earlier dirty/precommit mixed run and initial clean 0d9adb39 unit evidence
+remain [archived with original raw-text hashes](evidence/sprint-completion-20261118/initial-candidate-0d9adb3.json.gz).
+They are not relabelled as this clean run. Browser, scan, load, idle and recovery
+executions retain source 0d9adb39. Application code/templates/assets/dependencies
+are unchanged; only backup child-window flags and a recovery-report literal
+differ. The helper delta received 32 passing recovery-safety tests and fresh
+clean verification.
+
+| Frozen isolated selection | Exact outcomes | Function-body application statements | All-application-statements companion |
+|---|---:|---:|---:|
+| Original baseline | 288/288 PASS | 1,158/1,740 (66.55%); below 70% | 1,158/2,730 (42.42%) |
+| Additive expanded selection | 415/415 PASS | **1,547/1,740 (88.91%); target met under the owner boundary** | **1,547/2,730 (56.67%)** |
+
+The expansion retains every original baseline identity and all 294 previous
+expanded identities; it adds 121 methods to that previous selection. Both
+selections use the same current denominator. Startup, shared setup and database
+execution receive no selected-method credit. The conservative all-statements
+companion remains below 70%; no pass is claimed on that measure.
+
+The actual [owner function-body interpretation](evidence/hms19-function-body-boundary-20261113.md)
+defines executable callable bodies as application logic. Declarations, imports
+and schema constraints remain outside that denominator; their behavior remains
+subject to tests/review. Expanded evidence retains [per-file lines and contexts](evidence/sprint-completion-20261118/isolated-expanded-summary.json);
+the [baseline](evidence/sprint-completion-20261118/isolated-baseline-summary.json)
+is also retained. Remaining callable-body gaps total 193 statements, including
+126 in hostels, 30 in students and 20 in accounts. The aggregate result does not
+certify every module/path or system requirement.
+
+The clean unit runs occurred on 18 November UTC / 19 November IST using Windows
+11, Python 3.14.7, Django 5.2.19, coverage 7.16.2, unittest-xml-reporting 4.0.0
+and mysqlclient 2.3.2; no DB connection was attempted. The clean mixed suite
+used MySQL 8.4.9 and Ruff 0.17.1, as recorded in technical evidence. Commands, settings,
+versions and exact hashes are in the [reproduction record](evidence/sprint-completion-20261118/README.md).
+The unchanged attribution harness and .coveragerc remain in use.
+
+HMS-19/#41's scoped delivery remains complete. TC-QUAL-04 stays PARTIAL for PEP 8
+assessment beyond configured checks; unit coverage itself meets the recorded
+owner interpretation. The [10 November owner-directed closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting teammate QA/Development/PO sign-offs and the
+project-guide walkthrough for this mini-project. That scoped task remains
+CLOSED; no new collection or approval gate is imposed here. These people did
+not thereby approve the project, and original Test Plan/course acceptance
+criteria remain unmet. Instructor submission instructions and a genuine
+submission/receipt remain unrecorded.
+
+Original course readiness remains **NOT READY** under the
+[current requirements assessment](Final_Assessment_20261119.md).
+
+Final source pins and clean local regression are verified on 3a63cae.
+Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
+reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
+merge/main verification and the candidate package remain pending. Availability
+and original course criteria keep their separately recorded states.
+
+## Historical measurements and report text
+
+The source-bound material below is retained at its original execution scope.
+Its uses of "current" or "latest" refer to those dated snapshots. The 19 November
+assessment above takes precedence for present metrics, cases and readiness.
+
 **Latest isolated-unit refresh — 15 November 2026:** clean commit `ff72065340d859c9512329d9406505c6e40fda15`, tree `8263028d02eb1a128b8742e3c2b7ac7eee3eaa0b`. The retained 288-method baseline passed **288/288** and the expanded selection passed **294/294**, both with zero database attempts. On the expanded selection, the owner-approved function-body diagnostic is **956/959 (99.69%)**, above the 70% target; the companion all-application-statements diagnostic is **956/1,717 (55.68%)**. Both Python 3.11 and 3.14 CI jobs passed in [PR #84 run 43736427332](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43736427332), before the PR merged to `main` as `324f460`. See the [full source-pinned measurements](evidence/hms19-main-refresh-20261115/README.md).
 
 **Prior independent CI confirmation (13 November):** [run 43470319270](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43470319270) passed Python 3.11.18 and 3.14.10 on publication candidate `eebb30afeb63d27618fdd3be4cc4c2b76392fc32`. Its actual synthetic merge checkout `ee3b0c2f5b9c464109e72e360ee8fd89e2fecf7f` has the identical full Git tree `26bcecf56f436ad79c40ddff2fbc005c790be38b`. Both jobs reconcile all 12 gates, 497 exact mixed identities (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes, 288/294 exact isolated PASS selections, zero database attempts and all 179 frozen source pins. Six downloaded ZIP hashes match GitHub; per-file isolated measurements match the clean implementation evidence. The [durable CI extraction](evidence/hms18-capacity-20261113/ci-summary.json) preserves job/environment, source/artifact hashes and gaps. This is evidence for that publication candidate; its checks are available on [PR #75](https://github.com/Sreeharsha2240/hostel-management-system/pull/75/checks).

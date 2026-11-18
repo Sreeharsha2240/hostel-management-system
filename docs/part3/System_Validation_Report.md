@@ -1,5 +1,76 @@
 # System Validation Report — HMS Part 3
 
+**19 November assessment: NOT READY against the submitted Test Plan.**
+**Verified clean execution source:** 3a63cae0049565345f0c2f0687fbb9e54c620751.
+The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
+and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
+record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
+timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
+coverage is **2,995/3,381 statements (88.58%)**, **821/1,000 branch outcomes
+(82.10%)**, and **87.10% combined**. Scripts are included in this mixed
+denominator; these results are not isolated-unit coverage.
+
+The full 13-gate run and both isolated measurements were executed on clean
+3a63cae0049565345f0c2f0687fbb9e54c620751 (tree
+e4b06445ea710139ad8b4a64885606ec62411fa1), with git_dirty=false.
+The clean 288/415-method runs validated all 208 canonical-LF source pins and
+made zero database attempts. All nine separately owned regression recipes also
+passed cleanly. These are separate runs; their test counts are not added.
+
+The earlier dirty/precommit mixed run and initial clean 0d9adb39 unit evidence
+remain [archived with original raw-text hashes](evidence/sprint-completion-20261118/initial-candidate-0d9adb3.json.gz).
+They are not relabelled as this clean run. Browser, scan, load, idle and recovery
+executions retain source 0d9adb39. Application code/templates/assets/dependencies
+are unchanged; only backup child-window flags and a recovery-report literal
+differ. The helper delta received 32 passing recovery-safety tests and fresh
+clean verification.
+
+| Current validation measure | Disposition |
+|---|---|
+| Original 33 cases | 32 OWNER PASS / 1 PARTIAL. QUAL-01's aggregate pass is corrected to its primary walkthrough's PARTIAL. |
+| Expanded 61 cases | 56 OWNER PASS (91.80%) / 2 current Codex technical PASS (3.28%) / 2 PARTIAL (3.28%) / 1 PENDING (1.64%). Passing observations: 58/61 (95.08%); passing/partial: 60/61 (98.36%). |
+| Partial cases | QUAL-01 (reported new-Warden guide task with missing provenance) and QUAL-04 (broader PEP 8 assessment beyond configured checks). |
+| Pending case | QUAL-02: real observer installed for 19 November 08:00-20:00 IST; exported WAITING snapshot has zero probes and no availability result. |
+| Unit target | 415/415 isolated PASS, no DB attempts; 1,547/1,740 function-body statements (88.91%) under the owner boundary. All-statements companion 56.67%. |
+| Current browser/scan/load/recovery execution | Twelve workflows/228 observations PASS; real 901.003-second idle PASS; SEC-08 bounded baseline/triage technical PASS with retained Medium/Low findings; both 600-second/50-user workloads PASS and fresh owned recovery PASS. [Execution index](evidence/sprint-completion-20261118/browser-security/README.md), [load](evidence/sprint-completion-20261118/operations/load-results.json), [recovery](evidence/sprint-completion-20261118/operations/recovery-results.json). |
+| High-priority original exit gate | SEC-08 now has bounded technical PASS, superseding its older partial procedure result. Original case/priority acceptance remains distinct; OPEN #90 still prevents the separate zero-open-High gate. |
+| Current defect assessment | [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) is OPEN and includes High technical severity assessments. Focused fixes, 26 independently reviewed tests and full mixed checks are recorded, while clean CI/merge/final acceptance is unchecked. No zero-open-High claim is made; #79/#80 retain their own scope. |
+| RTM acceptance | All 36 original mappings preserved and accepted as design traceability by PO/recorded Development review; accepted passed-case coverage UNVERIFIED. |
+| Owner-scoped #43 task | CLOSED by the actual 10 November exception skipping collection of teammate sign-offs and guide walkthrough; no reopening/new approval gate. |
+| Course submission | Instructor late-submission/channel/deadline/format decisions, accepted course package and genuine submission/receipt unrecorded. |
+
+The [primary QUAL-01 walkthrough](evidence/issue39/usability-walkthrough-20261109.md)
+records overall PARTIAL and a 93-second owner-reported task, without exact guide
+revision, participant code or start/end trace. Automated registration/allocation
+does not establish a new participant's guide use or project-guide acceptance.
+
+The [10 November owner-directed closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting teammate QA/Development/PO sign-offs and the
+project-guide walkthrough for this mini-project. That scoped task remains
+CLOSED; no new collection or approval gate is imposed here. These people did
+not thereby approve the project, and original Test Plan/course acceptance
+criteria remain unmet. Instructor submission instructions and a genuine
+submission/receipt remain unrecorded.
+
+The [owner-selected Sprint 2 clip](evidence/sprint-recordings/Sprint2_Outcome_Demo.md)
+is included at 115.148 seconds (1:55), approximately five seconds below the
+nominal two-minute target. Owner publication is recorded; no instructor acceptance
+of the shortfall is inferred. SAD section 4.4 request-ID logging/monitoring
+remain an owner-disclosed limitation. Historical entry, source and tool/
+environment limits remain visible in the [current assessment](Final_Assessment_20261119.md).
+
+Final source pins and clean local regression are verified on 3a63cae.
+Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
+reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
+merge/main verification and the candidate package remain pending. Availability
+and original course criteria keep their separately recorded states.
+
+## Historical measurements and report text
+
+The source-bound material below is retained at its original execution scope.
+Its uses of "current" or "latest" refer to those dated snapshots. The 19 November
+assessment above takes precedence for present metrics, cases and readiness.
+
 **18 November mobile-view update:** The owner reports that a friend checked the
 website in phone mode in a laptop browser. This is browser-emulated mobile-view
 evidence, not a physical-phone test; the browser, viewport, exercised workflows

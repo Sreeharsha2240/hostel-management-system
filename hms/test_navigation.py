@@ -60,9 +60,10 @@ class DashboardNavigationSmokeTests(TestCase):
     def test_student_dashboard_navigation_and_staff_route_denials(self):
         self.assert_pages_load(
             self.student,
-            ("bed-list", "student-self-service", "settings"),
+            ("student-self-service", "settings"),
         )
         for route_name in (
+            "bed-list",
             "student-list",
             "allocation-list",
             "payment-list",

@@ -12,7 +12,9 @@ from .models import Bed
 class RoomPartialSaveIntegrationTests(TestCase):
     def setUp(self):
         self.room = make_room("201", fee_amount=Decimal("750.00"))
-        self.room.beds.filter(label="201-B").update(status=Bed.BedStatus.MAINTENANCE)
+        bed = self.room.beds.get(label="201-B")
+        bed.status = Bed.BedStatus.MAINTENANCE
+        bed.save(update_fields=["status"])
 
     def bed_state(self):
         return list(self.room.beds.order_by("label").values_list("label", "status"))

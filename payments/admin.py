@@ -1,10 +1,12 @@
 from django.contrib import admin
 
+from audit.mixins import RoleRestrictedAdminMixin
+
 from .models import Payment
 
 
 @admin.register(Payment)
-class PaymentAdmin(admin.ModelAdmin):
+class PaymentAdmin(RoleRestrictedAdminMixin, admin.ModelAdmin):
     list_display = ("receipt_no", "student", "amount", "date", "mode", "adjustment_of")
     list_filter = ("mode", "date")
     search_fields = ("receipt_no", "student__student_id", "student__name")

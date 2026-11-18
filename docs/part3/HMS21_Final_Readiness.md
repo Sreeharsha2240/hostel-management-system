@@ -1,3 +1,50 @@
+# HMS-21 final readiness checkpoint
+
+**19 November: owner-scoped HMS-21/#43 CLOSED; original course readiness
+NOT READY.** The verified execution source is
+3a63cae0049565345f0c2f0687fbb9e54c620751. This assisted technical checkpoint
+records actual results and scope decisions; it supplies no other person's
+approval or a submission receipt.
+
+| Requirement | Current disposition |
+|---|---|
+| Updated cases and RTM | Published: 61 records, original 33 IDs and all 36 original RTM mappings retained. |
+| Four required reports | Unit, System Validation, Code Coverage and Branch Coverage Reports are present under docs/part3 and refreshed against current evidence. |
+| Local automated verification | 13 gates PASS; 727 distinct mixed methods, 726 PASS / one expected timing SKIP; separate timing PASS. Mixed statements 2,995/3,381 (88.58%), branches 821/1,000 (82.10%), combined 87.10%. |
+| Isolated-unit target | Clean 415/415 PASS, no DB attempts, 208 verified pins; function-body 1,547/1,740 (88.91%) under the owner boundary. Conservative all-statements companion 56.67%. Retained 288-method baseline passes its tests but measures 66.55%, below 70%. |
+| Run provenance | Fresh full mixed, 288/415 isolated and nine-owned executions are clean on 3a63cae. Initial dirty/precommit and 0d9 unit evidence are separately archived; operational runs remain 0d9 with reviewed helper-only carry-forward. |
+| Current execution ledger | 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING; original 33: 32 OWNER PASS / 1 PARTIAL. QUAL-01 follows its primary PARTIAL walkthrough; execution attribution is separate from accepted passage. |
+| Current operational execution | Twelve browser workflows/228 observations and real 901.003-second idle PASS; bounded ZAP baseline/triage PASS with retained Medium/Low findings; both 600-second/50-user workloads PASS; fresh owned sandbox recovery plus read-only browser backup PASS. |
+| Availability | QUAL-02 PENDING: real observer job job_c4c3658121 / PID 2322483 is installed for 19 November 08:00-20:00 IST. Exported WAITING snapshot has zero probes; no availability pass. |
+| Current production corrections | Inventory/history, available-bed consistency, one confirmation per submission and canonical coverage exports corrected. Independent technical review reconciles 26 focused tests and full mixed artifacts; no concrete blocker established in that scope. Current GitHub states are #79 CLOSED / #80 OPEN; remote CI remains separate; [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) tracks consolidated findings and has final CI/merge acceptance unchecked. |
+| Original exit criteria | NOT MET / UNVERIFIED: QUAL-01/04 PARTIAL, QUAL-02 PENDING, OPEN #90 with High technical assessments, accepted-pass RTM coverage unverified. SEC-08 technical execution is now PASS. |
+| Owner-scoped task exception | Actual 10 November #43 owner closure skips collecting teammate QA/Development/PO sign-offs and guide walkthrough. Task stays CLOSED; no new collection or approval gate. Original course criteria remain unmet and no such approvals are inferred. |
+| Scope limits | Owner REQ-24 interpretation, excluded physical-phone activity and unimplemented SAD section 4.4 request-ID/monitoring items remain disclosed. |
+| Sprint videos | Sprint 1 included at 51.719 seconds. Owner-selected Sprint 2 included at 115.148 seconds (1:55), approximately five seconds below the nominal two-minute target; no instructor acceptance of the shortfall is inferred. |
+| Course submission | Instructor late-submission/channel/deadline/format decisions, accepted course package and genuine submission/receipt remain unrecorded. |
+
+The [current assessment](Final_Assessment_20261119.md) and
+[technical evidence](evidence/sprint-completion-20261118/README.md) give scope,
+source and per-file results. The [checklist](../SUBMISSION_CHECKLIST.md) respects
+the [actual owner closure](https://github.com/Sreeharsha2240/hostel-management-system/issues/43).
+The owner-reported 93-second new-Warden guide task lacks exact guide revision,
+participant code and start/end timing trace; it is separate from a project-guide
+walkthrough. Historical pre-execution entry approval is not backdated.
+
+Final source pins and clean local regression are verified on 3a63cae.
+Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
+reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
+merge/main verification and the candidate package remain pending. Availability
+and original course criteria keep their separately recorded states.
+
+<details>
+<summary>Historical readiness records through 18 November (original source/date scopes)</summary>
+
+The dated checkpoint text below is retained for provenance. Its then-current
+counts, metrics, issue states and pending-video language must not override the
+19 November assessment above. Historical OWNER PASS summaries for QUAL-01 are
+superseded by reconciliation with the primary PARTIAL walkthrough.
+
 # HMS-21 Final Readiness Checkpoint
 
 **18 November mobile-view update:** The owner reports that a friend checked the
@@ -150,3 +197,5 @@ At the time of this earlier 9 November coverage snapshot, the local TLS rerun wa
 The two transport/ZAP statements immediately above are historical and superseded by the later same-day loopback evidence in [issue38-security-20261109](evidence/issue38-security-20261109/README.md): TC-SEC-06 is OWNER PASS for its listed isolated test conditions, without claiming public/production TLS. TC-SEC-08's passive baseline ran and is PARTIAL with one Low server-banner alert and one Informational/Low-confidence `next` hotspot awaiting QA disposition. The expanded case totals above include these updated dispositions; no QA approval or false-positive acceptance is inferred.
 
 The published PR #68 head `49851396796918103681aacf47394e5010426201` also has successful fresh MySQL CI: [run 42566973066](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066), Python 3.11 and 3.14, 208 passed plus one expected skip in each 209-test run, all 12 verification gates passed, 88% full-project coverage against the unchanged 70% gate, and nine owned expanded regression cases passed. Formal SRS unit-only coverage and HMS-21 readiness remain unresolved as stated above; no human approval is inferred.
+
+</details>

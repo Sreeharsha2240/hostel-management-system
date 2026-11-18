@@ -4,6 +4,7 @@ from datetime import timedelta
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.hashers import check_password
 from django.db import transaction
 from django.utils import timezone
 
@@ -25,13 +26,26 @@ class LockoutBackend(ModelBackend):
 
         # Hash outside the row lock so concurrent logins do not hold it during
         # the normal PBKDF2 calculation. Recheck if the password changed.
-        password_matches = user.check_password(password)
+        needs_upgrade = False
+
+        def defer_upgrade(raw_password):
+            nonlocal needs_upgrade
+            needs_upgrade = True
+
+        # User.check_password saves upgraded hashes immediately. Defer that
+        # write so it cannot overwrite a concurrent password reset.
+        password_matches = check_password(password, user.password, setter=defer_upgrade)
         with transaction.atomic():
             current = user_model.objects.select_for_update().get(pk=user.pk)
             if not self.user_can_authenticate(current) or current.is_locked():
                 return None
+            update_fields = ["failed_attempts", "locked_until"]
             if current.password != user.password:
                 password_matches = current.check_password(password)
+            elif password_matches and needs_upgrade:
+                current.set_password(password)
+                current._password = None  # Hash upgrades are not password changes.
+                update_fields.append("password")
             if current.locked_until:
                 current.failed_attempts = 0
                 current.locked_until = None
@@ -42,5 +56,5 @@ class LockoutBackend(ModelBackend):
                 if current.failed_attempts >= self.attempts:
                     current.locked_until = timezone.now() + self.duration
                     current.failed_attempts = 0
-            current.save(update_fields=["failed_attempts", "locked_until"])
+            current.save(update_fields=update_fields)
             return current if password_matches else None

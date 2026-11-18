@@ -71,6 +71,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "hms.security_headers.ContentSecurityPolicyMiddleware",
+    "hms.api.ErrorResponseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -140,7 +141,9 @@ AUTHENTICATION_BACKENDS = ["accounts.backends.LockoutBackend"]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+        ),
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
@@ -175,6 +178,7 @@ CSRF_COOKIE_SECURE = (
     == "true"
 )
 CSRF_COOKIE_HTTPONLY = True
+CSRF_FAILURE_VIEW = "hms.csrf.csrf_failure"
 SECURE_SSL_REDIRECT = (
     env(
         "DJANGO_SECURE_SSL_REDIRECT",

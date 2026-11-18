@@ -5,10 +5,41 @@ from django.db import models, transaction
 
 
 class StudentQuerySet(models.QuerySet):
+    def bulk_create(
+        self,
+        objs,
+        batch_size=None,
+        ignore_conflicts=False,
+        update_conflicts=False,
+        update_fields=None,
+        unique_fields=None,
+    ):
+        if update_conflicts:
+            raise ValidationError(
+                "Save existing students individually to check identity and "
+                "active allocations."
+            )
+        return super().bulk_create(
+            objs,
+            batch_size=batch_size,
+            ignore_conflicts=ignore_conflicts,
+            update_conflicts=update_conflicts,
+            update_fields=update_fields,
+            unique_fields=unique_fields,
+        )
+
     def update(self, **kwargs):
         if "status" in kwargs:
             raise ValidationError(
                 "Save student status individually to check active allocations."
+            )
+        if "student_id" in kwargs:
+            raise ValidationError(
+                "Student ID cannot be changed.", code="IMMUTABLE_FIELD"
+            )
+        if "gender" in kwargs:
+            raise ValidationError(
+                "Save student gender individually to check active allocations."
             )
         return super().update(**kwargs)
 
@@ -79,11 +110,47 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.student_id} - {self.name}"
 
+    def validate_allocation_gender(self, gender):
+        from allocations.models import Allocation
+        from hostels.models import Hostel
+
+        hostel_type = {
+            self.Gender.MALE: Hostel.HostelType.BOYS,
+            self.Gender.FEMALE: Hostel.HostelType.GIRLS,
+        }.get(gender)
+        if (
+            hostel_type
+            and Allocation.objects.filter(
+                student_id=self.pk, status=Allocation.AllocationStatus.ACTIVE
+            )
+            .exclude(bed__room__hostel__hostel_type=hostel_type)
+            .exists()
+        ):
+            raise ValidationError(
+                "Release this student's active allocation before changing gender.",
+                code="GENDER_MISMATCH",
+            )
+
     @transaction.atomic
     def save(self, *args, **kwargs):
+        if kwargs.get("update_fields") is not None:
+            kwargs["update_fields"] = frozenset(kwargs["update_fields"])
         if self.pk:
-            Student.objects.select_for_update().get(pk=self.pk)
-            if self.status == self.Status.INACTIVE:
+            previous = Student.objects.select_for_update().get(pk=self.pk)
+            fields = kwargs.get("update_fields")
+            if (fields is None or "student_id" in fields) and (
+                self.student_id != previous.student_id
+            ):
+                raise ValidationError(
+                    "Student ID cannot be changed.", code="IMMUTABLE_FIELD"
+                )
+            if (
+                fields is None or "gender" in fields
+            ) and self.gender != previous.gender:
+                self.validate_allocation_gender(self.gender)
+            if (
+                fields is None or "status" in fields
+            ) and self.status == self.Status.INACTIVE:
                 from allocations.models import Allocation
 
                 if Allocation.objects.filter(

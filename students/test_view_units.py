@@ -42,11 +42,18 @@ class StudentViewUnitTests(SimpleTestCase):
                 )
 
     @patch("students.views.StudentForm")
-    def test_student_role_cannot_open_registration(self, form):
+    @patch("students.views.record_event")
+    def test_student_role_cannot_open_registration(self, audit, form):
         request = self.factory.get("/students/new/")
         request.user = SimpleNamespace(is_authenticated=True, role=User.Role.STUDENT)
         self.assertEqual(student_create(request).status_code, 403)
         form.assert_not_called()
+        audit.assert_called_once_with(
+            user=request.user,
+            action=AuditEvent.Action.ACCESS_DENIED,
+            record_type="view",
+            record_id="student_create",
+        )
 
     @patch("students.views.redirect", return_value=HttpResponse("redirected"))
     @patch("students.views.messages.success")

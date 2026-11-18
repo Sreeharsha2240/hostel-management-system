@@ -1,0 +1,68 @@
+"""Genuine fifteen-minute browser inactivity check, with a separate session."""
+import argparse
+import hashlib
+import json
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from urllib.parse import urlparse
+
+from matrix import source_snapshot
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--config',type=Path,required=True);p.add_argument('--specs',type=Path,required=True);p.add_argument('--output',type=Path,required=True);args=p.parse_args()
+    config=json.loads(args.config.read_text());assert config['authorized_frozen_run']
+    base=config['base_url'].rstrip('/');assert urlparse(base).hostname in ['127.0.0.1','localhost']
+    before=source_snapshot(Path(config['source_root']))
+    assert before['commit']==config['expected_commit']
+    expected=json.loads(Path(config['expected_source_pins']).read_text())['pins'];assert before['pins']==expected
+    args.output.mkdir(parents=True,exist_ok=False)
+    spec=json.loads(args.specs.read_text())[0]
+    options=webdriver.ChromeOptions();options.binary_location=spec['binary'];options.set_capability('goog:loggingPrefs',{'performance':'ALL'})
+    for flag in ['--headless=new','--no-sandbox','--disable-dev-shm-usage','--no-first-run']:options.add_argument(flag)
+    driver=webdriver.Chrome(service=Service(spec['driver'],log_output=str(args.output/'driver.log')),options=options)
+    result={'case':'TC-AUTH-04 inactivity','source_before':before,'started_at':datetime.now(timezone.utc).isoformat(),'state':'STARTING','result':'PENDING','browser':driver.capabilities['browserVersion'],'method':'Separate real browser cookie/session, actual901-second inactivity, no application request during idle'}
+    def save():(args.output/'result.json').write_text(json.dumps(result,indent=2))
+    try:
+        wait=WebDriverWait(driver,20)
+        driver.get(base+'/login/')
+        for name in ['username','password']:driver.find_element(By.NAME,name).send_keys(config['accounts']['warden'][name])
+        driver.find_element(By.CSS_SELECTOR,'main button[type=submit]').click()
+        wait.until(lambda d:urlparse(d.current_url).path=='/dashboard/' and 'warden workspace' in d.find_element(By.TAG_NAME,'main').text.lower())
+        time.sleep(2)
+        driver.get_log('performance')
+        result['idle_started_at']=datetime.now(timezone.utc).isoformat();wall_start=time.time();tick=time.monotonic();result['state']='IN_PROGRESS';save()
+        while time.monotonic()-tick<901:
+            time.sleep(min(30,901-(time.monotonic()-tick)))
+            result['observed_idle_seconds']=round(time.monotonic()-tick,3);save()
+        wall_end=time.time();events=driver.get_log('performance');requests=[]
+        for entry in events:
+            event=json.loads(entry['message'])['message']
+            if event.get('method')=='Network.requestWillBeSent':
+                item=event['params'];url=item['request']['url']
+                if url.startswith(base+'/') and wall_start<=item.get('wallTime',0)<=wall_end:requests.append({'path':urlparse(url).path,'method':item['request']['method'],'wall_time':item['wallTime']})
+        result['idle_app_requests']=requests;result['observed_idle_seconds']=round(time.monotonic()-tick,3)
+        driver.get(base+'/dashboard/')
+        wait.until(lambda d:urlparse(d.current_url).path=='/login/')
+        result['protected_revisit_path']=urlparse(driver.current_url).path
+        result['private_dashboard_visible']='warden workspace' in driver.find_element(By.TAG_NAME,'main').text.lower()
+        driver.save_screenshot(str(args.output/'expired-session-login.png'))
+        result['screenshot_sha256']=hashlib.sha256((args.output/'expired-session-login.png').read_bytes()).hexdigest()
+        after=source_snapshot(Path(config['source_root']));result['source_after']=after;result['source_unchanged']=before['pins']==after['pins']
+        passed=result['observed_idle_seconds']>=900 and not requests and not result['private_dashboard_visible'] and result['source_unchanged']
+        result['result']='PASS' if passed else 'FAIL';result['state']='COMPLETE';result['completed_at']=datetime.now(timezone.utc).isoformat();save()
+        print(json.dumps({k:result[k] for k in ['case','result','observed_idle_seconds','protected_revisit_path','source_unchanged']}),flush=True)
+        return 0 if passed else 1
+    except Exception as error:
+        result['state']='ERROR';result['result']='FAIL';result['error_type']=type(error).__name__;save();raise
+    finally:driver.quit()
+
+
+if __name__=='__main__':raise SystemExit(main())
+

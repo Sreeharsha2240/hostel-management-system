@@ -1,4 +1,8 @@
 from django import forms
+from django.contrib.auth.forms import (
+    AdminPasswordChangeForm as DjangoAdminPasswordChangeForm,
+)
+from django.contrib.auth.forms import PasswordChangeForm as DjangoPasswordChangeForm
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 
@@ -30,7 +34,17 @@ class AccountCreationForm(forms.ModelForm):
         return user
 
 
-class AccountUpdateForm(forms.ModelForm):
+class _AccountEditForm(forms.ModelForm):
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            # A settings edit can outlive a concurrent role or activation
+            # change. Persist only the fields this form is allowed to edit.
+            user.save(update_fields=self.Meta.fields)
+        return user
+
+
+class AccountUpdateForm(_AccountEditForm):
     class Meta:
         model = User
         fields = ("first_name", "last_name", "email", "role")
@@ -42,7 +56,7 @@ class AccountUpdateForm(forms.ModelForm):
         return role
 
 
-class ProfileSettingsForm(forms.ModelForm):
+class ProfileSettingsForm(_AccountEditForm):
     class Meta:
         model = User
         fields = ("first_name", "last_name", "email")
@@ -51,3 +65,19 @@ class ProfileSettingsForm(forms.ModelForm):
             "last_name": "Last name",
             "email": "Email address",
         }
+
+
+class SettingsPasswordChangeForm(DjangoPasswordChangeForm):
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save(update_fields=["password"])
+        return user
+
+
+class AdminPasswordChangeForm(DjangoAdminPasswordChangeForm):
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        if commit:
+            user.save(update_fields=["password"])
+        return user

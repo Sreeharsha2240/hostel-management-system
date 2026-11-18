@@ -1,0 +1,442 @@
+"""Private, real-browser workflow verification. Requires an explicit frozen config.
+
+All mutations use the ordinary web UI. Read-only ORM snapshots identify the
+uniquely named synthetic fixtures and verify persistence. Never run against a
+database containing real students. Credentials stay in the private config.
+"""
+import argparse
+import base64
+import csv
+import hashlib
+import io
+import json
+import os
+import platform
+import re
+import secrets
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from urllib.parse import urlencode, urljoin, urlparse
+
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / 'pydeps'))
+from selenium import webdriver
+from selenium.common.exceptions import UnexpectedAlertPresentException
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select, WebDriverWait
+
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def browser(spec, output):
+    common = ['--headless=new', '--no-first-run', '--disable-default-apps', '--disable-search-engine-choice-screen', '--disable-dev-shm-usage', '--no-sandbox', '--window-size=1440,1000']
+    if spec['kind'] == 'firefox':
+        from selenium.webdriver.firefox.service import Service
+        options = webdriver.FirefoxOptions()
+        options.binary_location = spec['binary']
+        options.unhandled_prompt_behavior = 'ignore'
+        options.add_argument('-headless')
+        options.set_preference('browser.shell.checkDefaultBrowser', False)
+        options.set_preference('app.update.auto', False)
+        options.set_preference('browser.download.folderList', 2)
+        options.set_preference('browser.download.dir', str(output))
+        options.set_preference('browser.helperApps.neverAsk.saveToDisk', 'text/csv,application/pdf')
+        return webdriver.Firefox(service=Service(spec['driver'], log_output=str(output / 'driver.log')), options=options)
+    if spec['kind'] == 'edge':
+        from selenium.webdriver.edge.service import Service
+        options = webdriver.EdgeOptions()
+        options.binary_location = spec['binary']
+        options.unhandled_prompt_behavior = 'ignore'
+        for arg in common:
+            options.add_argument(arg)
+        return webdriver.Edge(service=Service(spec['driver'], log_output=str(output / 'driver.log')), options=options)
+    from selenium.webdriver.chrome.service import Service
+    options = webdriver.ChromeOptions()
+    options.binary_location = spec['binary']
+    options.unhandled_prompt_behavior = 'ignore'
+    for arg in common:
+        options.add_argument(arg)
+    return webdriver.Chrome(service=Service(spec['driver'], log_output=str(output / 'driver.log')), options=options)
+
+
+def source_snapshot(source):
+    prefixes = ['accounts','allocations','audit','hms','hostels','payments','reports','students','templates','static','tests','scripts']
+    names = {str(p.relative_to(source)).replace('\\','/') for prefix in prefixes for p in (source/prefix).rglob('*') if p.is_file() and p.suffix in ['.py','.html','.css','.js','.cjs'] and '__pycache__' not in p.parts}
+    names.update(str(p.relative_to(source)).replace('\\','/') for p in (source/'payments'/'fonts').rglob('*') if p.is_file())
+    names.update(n for n in ['manage.py','requirements.txt','requirements-dev.txt','ruff.toml','.coveragerc'] if (source/n).is_file())
+    pins = {n: digest(source / n) for n in sorted(names)}
+    return {'commit': subprocess.check_output(['git','rev-parse','HEAD'],cwd=source).decode().strip(),'pins':pins,'pin_count':len(pins),'scope':'application, templates, static assets, all bundled runtime font assets and their manifest/licenses, tests, verification scripts and dependency/check configuration; reports/evidence excluded'}
+
+
+class Flow:
+    def __init__(self, driver, config, spec, output):
+        self.d, self.c, self.spec, self.out = driver, config, spec, output
+        self.wait = WebDriverWait(driver, 15)
+        self.base = config['base_url'].rstrip('/') + '/'
+        self.results = []
+        self.timing_failures = []
+        self.prefix = config.get('fixture_prefix', 'MX') + secrets.token_hex(3).upper()
+        self.password = secrets.token_urlsafe(18) + 'a8'
+        self.srn = 'MX' + str(secrets.randbelow(10**11)).zfill(11)
+        self.other_srn = 'MY' + str(secrets.randbelow(10**11)).zfill(11)
+        from django.utils import timezone as django_timezone
+        self.today = django_timezone.localdate().isoformat()
+        self.own_username, self.other_username = self.prefix.lower() + 'own', self.prefix.lower() + 'other'
+        self.hostel_name, self.room_number = self.prefix + ' Boys', 'M' + self.prefix[-4:]
+        self.student_name = self.prefix + ' Resident'
+        self.script_name = '<script>window.__hmsInjected=1</script>'
+
+    def find(self, selector):
+        return self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, selector)))
+
+    def text(self):
+        return self.find('main').text
+
+    def goto(self, path):
+        self.d.get(urljoin(self.base, path.lstrip('/')))
+        self.find('main')
+        self.wait.until(lambda d:d.execute_script('return document.getAnimations().every(a=>a.playState!=="running")'))
+        assert 'Traceback' not in self.d.page_source and 'Server Error (500)' not in self.d.page_source
+
+    def set(self, name, value):
+        field = self.find('main [name="' + name + '"]')
+        if field.tag_name == 'select':
+            Select(field).select_by_value(str(value))
+        elif field.get_attribute('type') == 'date':
+            self.d.execute_script("arguments[0].value=arguments[1];arguments[0].dispatchEvent(new Event('change',{bubbles:true}));", field, str(value))
+        elif field.get_attribute('type') == 'checkbox':
+            if field.is_selected() != bool(value):
+                field.click()
+        else:
+            field.clear()
+            field.send_keys(str(value))
+
+    def submit(self, confirm=None, selector='main form[method="post"]', cancel=False, enter_selector=None):
+        form = self.find(selector)
+        token=secrets.token_hex(12)
+        self.d.execute_script('window.__hmsMatrixDocument=arguments[0]',token)
+        try:
+            if enter_selector:
+                self.find(enter_selector).send_keys(Keys.ENTER)
+            else:
+                form.find_element(By.CSS_SELECTOR,'button[type="submit"]').click()
+        except UnexpectedAlertPresentException:
+            if confirm is None:raise
+        if confirm is not None:
+            alert=self.wait.until(EC.alert_is_present())
+            assert alert.text==confirm
+            if cancel:alert.dismiss()
+            else:alert.accept()
+        if cancel:
+            assert self.d.execute_script('return window.__hmsMatrixDocument')==token
+            assert not EC.alert_is_present()(self.d), 'Cancellation produced another dialog'
+            return {'dialog_count':1,'cancelled':True,'navigation':False,'keyboard_target':enter_selector}
+        self.wait.until(lambda d:d.execute_script('return window.__hmsMatrixDocument')!=token)
+        self.find('main')
+        errors=self.d.find_elements(By.CSS_SELECTOR,'.field-errors,.notice.error')
+        assert not errors,'; '.join(e.text for e in errors)
+        return {'dialog_count':1 if confirm else 0,'cancelled':False,'navigation':True,'keyboard_target':enter_selector}
+
+    def observed(self, name, detail, status='PASS'):
+        shot = name.lower().replace(' ', '-') + '.png'
+        self.d.save_screenshot(str(self.out / shot))
+        self.results.append({'id': name, 'status': status, 'actual': detail, 'screenshot': shot, 'screenshot_sha256': digest(self.out / shot), 'at': datetime.now(timezone.utc).isoformat()})
+        (self.out / 'observations.json').write_text(json.dumps(self.results, indent=2), encoding='utf-8')
+
+    def login(self, account, label):
+        self.goto('/login/')
+        self.set('username', account['username'])
+        self.set('password', account['password'])
+        started = time.perf_counter()
+        self.submit()
+        self.wait.until(lambda d: urlparse(d.current_url).path == '/dashboard/')
+        self.wait.until(lambda d: label.lower() + ' workspace' in self.text().lower())
+        elapsed = time.perf_counter() - started
+        navigation=self.d.execute_script('return performance.getEntriesByType("navigation")[0].toJSON()')
+        browser_seconds=navigation['duration']/1000
+        assert browser_seconds>0 and navigation['type']=='navigate'
+        passed=browser_seconds<2
+        self.observed(label + ' login', {'webdriver_inclusive_seconds':round(elapsed,6),'browser_navigation_seconds':browser_seconds,'navigation':navigation,'method':'Browser NavigationTiming includes same-origin login POST/redirect through dashboard load; WebDriver-inclusive control time is retained separately','threshold_seconds':2,'meets_threshold':passed},status='PASS' if passed else 'FAIL')
+        if not passed:self.timing_failures.append({'role':label,'browser_navigation_seconds':browser_seconds})
+
+    def logout(self):
+        token=secrets.token_hex(12)
+        self.d.execute_script('window.__hmsMatrixDocument=arguments[0]',token)
+        self.d.find_element(By.CSS_SELECTOR,'.account-menu form button').click()
+        self.wait.until(lambda d:d.execute_script('return window.__hmsMatrixDocument')!=token)
+        self.wait.until(lambda d:urlparse(d.current_url).path=='/login/')
+
+    def account(self, username):
+        self.goto('/manage/users/')
+        self.find('details.account-create summary').click()
+        for name, value in {'username': username, 'first_name': self.prefix, 'last_name': 'Student', 'email': username + '@example.test', 'role': 'student', 'password': self.password}.items():
+            self.set(name, value)
+        self.submit(selector='details.account-create form')
+        row = self.find('main tbody').find_element(By.XPATH, './/tr[td[1]="' + username + '"]')
+        return int(re.search(r'/users/(\d+)/', row.find_element(By.LINK_TEXT, 'Edit').get_attribute('href')).group(1))
+
+    def student(self, srn, name, account_id):
+        self.goto('/students/register/')
+        values = {'student_id': srn, 'name': name, 'date_of_birth': '2005-01-02', 'gender': 'Male', 'course': 'BTech CSE', 'year': '2', 'mobile': '9000000001', 'email': srn.lower() + '@example.test', 'guardian_name': 'Synthetic Guardian', 'guardian_mobile': '9000000002', 'address': 'Synthetic test address', 'user': account_id, 'status': 'Active'}
+        for key, value in values.items():
+            self.set(key, value)
+        self.submit()
+        self.goto('/students/?' + urlencode({'q': srn}))
+        assert srn in self.text()
+
+    def fixture(self):
+        from hostels.models import Hostel, Room
+        from students.models import Student
+        hostel = Hostel.objects.get(name=self.hostel_name)
+        room = Room.objects.get(hostel=hostel, room_number=self.room_number)
+        student = Student.objects.get(student_id=self.srn)
+        other = Student.objects.get(student_id=self.other_srn)
+        return {'hostel': hostel.pk, 'room': room.pk, 'student': student.pk, 'other_student': other.pk, 'beds': list(room.beds.order_by('label').values('id', 'label', 'status'))}
+
+    def fetch(self, path, method='GET', payload=None):
+        return self.d.execute_async_script("""const done=arguments[arguments.length-1],path=arguments[0],method=arguments[1],payload=arguments[2];fetch(path,{method,credentials:'same-origin',headers:payload?{'Content-Type':'application/x-www-form-urlencoded'}:{},body:payload?new URLSearchParams(payload):undefined}).then(async r=>{const bytes=new Uint8Array(await r.arrayBuffer());let raw='';for(const b of bytes)raw+=String.fromCharCode(b);done({status:r.status,url:r.url,type:r.headers.get('content-type'),body:btoa(raw)});}).catch(e=>done({error:e.name}));""", path, method, payload)
+
+    def run(self):
+        from allocations.models import Allocation
+        from payments.models import Payment
+        from students.models import Student
+        from hostels.models import Bed, Room
+        self.login(self.c['accounts']['admin'], 'Admin')
+        own_id, other_id = self.account(self.own_username), self.account(self.other_username)
+        self.observed('Admin creates Student accounts', {'created': [self.own_username, self.other_username]})
+        self.goto('/hostels/')
+        self.set('name', self.hostel_name)
+        self.set('hostel_type', 'Boys')
+        self.set('is_active', True)
+        self.submit()
+        self.goto('/rooms/add/')
+        # Route is configurable only where the repository explicitly differs.
+        self.set('hostel', self._hostel_pk())
+        for k,v in {'room_number':self.room_number,'floor':0,'room_type':'Double','capacity':2,'fee_amount':'10000.00'}.items():
+            self.set(k,v)
+        self.submit()
+        self.student(self.srn, self.student_name, own_id)
+        self.student(self.other_srn, self.script_name, other_id)
+        f = self.fixture()
+        self.goto('/hostels/' + str(f['hostel']) + '/edit/')
+        self.set('name', self.hostel_name + ' Updated')
+        self.submit()
+        self.hostel_name += ' Updated'
+        self.goto('/rooms/' + str(f['room']) + '/edit/')
+        self.set('floor', 1)
+        self.submit()
+        assert Room.objects.get(pk=f['room']).floor == 1
+        self.goto('/students/' + str(f['student']) + '/update/')
+        assert self.find('#id_student_id').get_attribute('disabled') is not None
+        self.set('mobile','9000000003')
+        self.submit()
+        assert Student.objects.get(pk=f['student']).mobile == '9000000003'
+        self.observed('Admin creates and updates inventory and students', {'fixture':self.fixture(),'updated_floor':1,'updated_mobile':'9000000003','student_id_disabled':True})
+        self.goto('/students/?'+urlencode({'q':self.other_srn}))
+        assert self.script_name in self.text()
+        assert self.d.execute_script('return window.__hmsInjected') is None
+        assert '&lt;script&gt;window.__hmsInjected=1&lt;/script&gt;' in self.d.page_source
+        self.observed('Stored script is escaped', {'stored_text':self.script_name,'executed':False})
+        self.goto('/students/register/')
+        response=self.fetch('/students/register/', 'POST', {'student_id':self.srn})
+        assert response['status']==403
+        assert Student.objects.filter(student_id=self.srn).count()==1
+        self.observed('Missing CSRF rejected', {'status':403,'duplicate_student_count':1})
+        self.logout()
+        self.login(self.c['accounts']['warden'],'Warden')
+        denied=self.fetch('/manage/users/')
+        assert denied['status']==403
+        self.observed('Warden Admin route denied',{'status':403})
+        self.goto('/allocations/create/')
+        self.set('student',f['student']);self.set('bed',f['beds'][0]['id']);self.set('allocated_on',self.today)
+        self.submit()
+        allocation=Allocation.objects.get(student_id=f['student'],status='Active')
+        assert allocation.bed_id==f['beds'][0]['id']
+        self.observed('Warden allocates available bed',{'allocation':allocation.pk,'bed':allocation.bed_id,'status':allocation.status})
+        self.goto('/allocations/'+str(allocation.pk)+'/transfer/')
+        self.set('new_bed',f['beds'][1]['id'])
+        before_transfer=list(Allocation.objects.filter(student_id=f['student']).values('pk','bed_id','status','vacated_on'))
+        cancelled_transfer=self.submit('Transfer this allocation?',cancel=True)
+        assert before_transfer==list(Allocation.objects.filter(student_id=f['student']).values('pk','bed_id','status','vacated_on'))
+        accepted_transfer=self.submit('Transfer this allocation?')
+        active=Allocation.objects.get(student_id=f['student'],status='Active')
+        assert active.bed_id==f['beds'][1]['id']
+        assert Bed.objects.get(pk=f['beds'][0]['id']).status=='Available'
+        assert Allocation.objects.filter(student_id=f['student']).count()==2
+        self.observed('Warden transfer preserves history',{'old_allocation':allocation.pk,'active_allocation':active.pk,'new_bed':active.bed_id,'history_count':2,'cancelled':cancelled_transfer,'accepted':accepted_transfer})
+        self.goto('/payments/create/')
+        for k,v in {'student':f['student'],'amount':'5000.00','date':self.today,'mode':'UPI','reference':self.prefix+'PAY'}.items():self.set(k,v)
+        self.submit()
+        payment=Payment.objects.filter(student_id=f['student']).get(adjustment_of__isnull=True)
+        self.goto('/payments/'+payment.receipt_no+'/receipt/')
+        assert payment.receipt_no in self.text() and '5000.00' in self.text()
+        pdf=self.fetch('/payments/'+payment.receipt_no+'/receipt.pdf')
+        assert pdf['status']==200 and pdf['type'].startswith('application/pdf')
+        pdf_bytes=base64.b64decode(pdf['body']);assert pdf_bytes.startswith(b'%PDF-')
+        (self.out/'receipt.pdf').write_bytes(pdf_bytes)
+        from pypdf import PdfReader
+        pdf_text='\n'.join(p.extract_text() for p in PdfReader(io.BytesIO(pdf_bytes)).pages)
+        assert payment.receipt_no in pdf_text and self.srn in pdf_text
+        self.observed('Warden payment and receipt PDF',{'receipt':payment.receipt_no,'pdf_sha256':digest(self.out/'receipt.pdf'),'pdf_contains_student_and_receipt':True})
+        self.goto('/payments/'+payment.receipt_no+'/adjust/')
+        for k,v in {'amount':'-1000.00','date':self.today,'mode':'UPI','reference':self.prefix+'REFUND','adjustment_reason':'Synthetic matrix correction'}.items():self.set(k,v)
+        self.submit()
+        payment.refresh_from_db();assert str(payment.amount)=='5000.00'
+        adjustment=Payment.objects.get(adjustment_of=payment)
+        assert str(adjustment.amount)=='-1000.00'
+        self.observed('Warden adjustment retains original',{'original_receipt':payment.receipt_no,'original_amount':str(payment.amount),'adjustment_receipt':adjustment.receipt_no,'adjustment_amount':str(adjustment.amount)})
+        for kind in ['occupancy','payment-status']:
+            path='/reports/'+kind+'/?'+urlencode({'hostel':f['hostel']})
+            self.goto(path)
+            csv_response=self.fetch(path+'&format=csv')
+            assert csv_response['status']==200
+            csv_bytes=base64.b64decode(csv_response['body'])
+            (self.out/(kind+'.csv')).write_bytes(csv_bytes)
+            rows=list(csv.DictReader(io.StringIO(csv_bytes.decode('utf-8-sig'))))
+            assert len(rows)==(1 if kind=='occupancy' else 1),rows
+            if kind=='occupancy':
+                row=rows[0];assert row['Total Beds']=='2' and row['Occupied Beds']=='1' and row['Available Beds']=='1'
+            else:
+                row=rows[0];assert row['Student ID']==self.srn and row['Amount Paid (INR)']=='4000.00' and row['Payment Status']=='Partial' and row['Bed']==f['beds'][1]['label']
+            self.observed('Warden '+kind+' CSV',{'rows':rows,'sha256':digest(self.out/(kind+'.csv'))})
+        self.goto('/allocations/'+str(active.pk)+'/release/')
+        self.set('vacate_date',self.today)
+        keyboard_selector='main form button[type=submit]' if self.spec['kind']=='firefox' else '[name=vacate_date]'
+        cancelled_release=self.submit('Release this allocation?',cancel=True,enter_selector=keyboard_selector)
+        active.refresh_from_db();assert active.status=='Active' and active.vacated_on is None
+        accepted_release=self.submit('Release this allocation?',enter_selector=keyboard_selector)
+        active.refresh_from_db();assert active.status=='Completed'
+        assert Bed.objects.get(pk=active.bed_id).status=='Available'
+        self.observed('Warden release retains history',{'status':active.status,'vacated_on':active.vacated_on.isoformat(),'history_count':Allocation.objects.filter(student_id=f['student']).count(),'keyboard_cancelled':cancelled_release,'keyboard_accepted':accepted_release})
+        self.goto('/students/?'+urlencode({'q':self.other_srn}))
+        cancelled_deactivation=self.submit('Deactivate this student?',selector='main tbody form[method=post]',cancel=True)
+        assert Student.objects.get(pk=f['other_student']).status=='Active'
+        accepted_deactivation=self.submit('Deactivate this student?',selector='main tbody form[method=post]')
+        assert Student.objects.get(pk=f['other_student']).status=='Inactive'
+        self.observed('Button confirmation and cancellation',{'cancelled':cancelled_deactivation,'accepted':accepted_deactivation,'student_status':'Inactive','cancel_preserved_active_status':True})
+        self.logout()
+        self.login({'username':self.own_username,'password':self.password},'Student')
+        self.goto('/my-records/')
+        own=self.text();assert self.srn in own and payment.receipt_no in own and adjustment.receipt_no in own and '4000.00' in own
+        assert self.other_srn not in own and self.script_name not in own
+        self.goto('/my-records/?student_id='+str(f['other_student']))
+        assert self.srn in self.text() and self.other_srn not in self.text()
+        for path in ['/students/','/allocations/','/students/'+str(f['other_student'])+'/payment-status/']:
+            denied=self.fetch(path);assert denied['status'] in [403,404]
+        self.observed('Student own records and URL isolation',{'own_receipts_present':True,'other_student_absent':True,'cross_record_routes_denied':True,'tampered_self_service_id_ignored':True})
+        self.logout()
+        self.d.back()
+        back_path=urlparse(self.d.current_url).path
+        back_text=self.text()
+        assert self.srn not in back_text and payment.receipt_no not in back_text
+        self.goto('/my-records/')
+        assert urlparse(self.d.current_url).path=='/login/'
+        self.observed('Logout protected revisit',{'after_back_path':back_path,'cached_private_records_visible':False,'protected_revisit_redirect':'/login/'})
+        self.d.set_window_size(390,844)
+        if self.spec['kind'] != 'firefox':
+            self.d.execute_cdp_cmd('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
+        viewport=self.d.execute_script('return {width:innerWidth,height:innerHeight}')
+        assert self.d.execute_script('return document.documentElement.scrollWidth<=innerWidth')
+        self.observed('Emulated phone layout',{'requested_viewport':[390,844],'actual_viewport':viewport,'page':'login','physical_phone':False})
+        return {'fixture_prefix':self.prefix,'student_id':self.srn,'observations':self.results,'timing_failures':self.timing_failures}
+
+    def _hostel_pk(self):
+        from hostels.models import Hostel
+        return Hostel.objects.get(name=self.hostel_name).pk
+
+
+def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--config',type=Path)
+    parser.add_argument('--specs',type=Path,required=True)
+    parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--launch-only',action='store_true')
+    parser.add_argument('--fail-fast',action='store_true')
+    args=parser.parse_args()
+    args.output.mkdir(parents=True,exist_ok=False)
+    specs=json.loads(args.specs.read_text())
+    config={} if args.launch_only else json.loads(args.config.read_text())
+    source=None;before=None
+    if not args.launch_only:
+        assert config.get('authorized_frozen_run') is True
+        assert urlparse(config['base_url']).hostname in ['127.0.0.1','localhost']
+        source=Path(config['source_root']).resolve()
+        before=source_snapshot(source)
+        if config.get('expected_commit'):assert before['commit']==config['expected_commit']
+        if config.get('expected_source_pins'):
+            expected=config['expected_source_pins']
+            if isinstance(expected,str):expected=json.loads(Path(expected).read_text())
+            expected=expected.get('pins',expected)
+            assert all(digest(source/path)==value for path,value in expected.items()), 'Frozen source pin mismatch'
+            before['accepted_freeze_pin_count']=len(expected)
+        if config.get('django_env_file'):
+            from dotenv import dotenv_values
+            os.environ.update({k:v for k,v in dotenv_values(config['django_env_file']).items() if v is not None})
+        sys.path.insert(0,str(source));os.environ['DJANGO_SETTINGS_MODULE']='hms.settings'
+        import django
+        django.setup()
+        from django.db import connection
+        assert connection.vendor=='mysql'
+        with connection.cursor() as c:c.execute('SELECT VERSION()');mysql_version=c.fetchone()[0]
+        (args.output/'source-before.json').write_text(json.dumps(before,indent=2))
+    summary={'started_at':datetime.now(timezone.utc).isoformat(),'os':platform.platform(),'python':platform.python_version(),'harness_sha256':digest(__file__),'launch_only':args.launch_only,'database':None if args.launch_only else {'vendor':'mysql','version':mysql_version},'browsers':[]}
+    for spec in specs:
+        output=args.output/spec['id'];output.mkdir()
+        result={'id':spec['id'],'expected_version':spec['version'],'binary_sha256':digest(spec['binary']),'driver_sha256':digest(spec['driver']),'status':'FAIL'}
+        d=None
+        try:
+            d=browser(spec,output);d.set_page_load_timeout(30);d.set_script_timeout(20)
+            result['capabilities']={k:d.capabilities.get(k) for k in ['browserName','browserVersion','platformName']}
+            assert d.capabilities['browserVersion'].startswith(spec['version'])
+            if args.launch_only:
+                d.get('data:text/html,<title>HMS private binary verification</title><h1>HMS browser ready</h1>')
+                assert d.title=='HMS private binary verification'
+            else:
+                result['flow']=Flow(d,config,spec,output).run()
+                result['workflow_status']='PASS'
+            result['status']='FAIL_TIMING' if result.get('flow',{}).get('timing_failures') else 'PASS'
+        except Exception as e:
+            message=str(e)
+            for account in config.get('accounts',{}).values():
+                if account.get('password'):message=message.replace(account['password'],'[REDACTED]')
+            result['error_type']=type(e).__name__;result['error']=message[:1600]
+            if d:
+                try:
+                    alert=d.switch_to.alert
+                    result['unexpected_dialog']=alert.text
+                    alert.dismiss()
+                except Exception:pass
+                try:result['failed_url']=d.current_url
+                except Exception:result['failed_url']='Unavailable during navigation'
+                try:d.save_screenshot(str(output/'failure.png'))
+                except Exception:pass
+        finally:
+            if d:d.quit()
+        (output/'result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
+        summary['browsers'].append(result)
+        (args.output/'summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+        print(json.dumps({'browser':spec['id'],'status':result['status'],'error':result.get('error')}),flush=True)
+        if args.fail_fast and result['status']=='FAIL':break
+    summary['planned_browser_count']=len(specs)
+    summary['executed_browser_count']=len(summary['browsers'])
+    if source:
+        after=source_snapshot(source)
+        if 'accepted_freeze_pin_count' in before:after['accepted_freeze_pin_count']=before['accepted_freeze_pin_count']
+        (args.output/'source-after.json').write_text(json.dumps(after,indent=2))
+        summary['source_unchanged']=before['pins']==after['pins']
+        summary['commit_unchanged']=before['commit']==after['commit']
+    summary['completed_at']=datetime.now(timezone.utc).isoformat()
+    summary['success']=len(summary['browsers'])==len(specs) and all(v['status']=='PASS' for v in summary['browsers']) and summary.get('source_unchanged',True)
+    (args.output/'summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+    return 0 if summary['success'] else 1
+
+
+if __name__=='__main__':
+    raise SystemExit(main())

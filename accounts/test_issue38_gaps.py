@@ -187,12 +187,32 @@ class Issue38GapTests(TestCase):
         self.assertEqual(client.get(url).status_code, 200)
         token = client.cookies["csrftoken"].value
         payload = self.student_data(name="<script>alert(1)</script>")
-        before = (Student.objects.count(), AuditEvent.objects.count())
+        before = (
+            Student.objects.count(),
+            AuditEvent.objects.exclude(action=AuditEvent.Action.ACCESS_DENIED).count(),
+        )
         self.assertEqual(client.post(url, payload).status_code, 403)
         self.assertEqual(
             client.post(url, payload, HTTP_X_CSRFTOKEN="invalid").status_code, 403
         )
-        self.assertEqual((Student.objects.count(), AuditEvent.objects.count()), before)
+        self.assertEqual(
+            (
+                Student.objects.count(),
+                AuditEvent.objects.exclude(
+                    action=AuditEvent.Action.ACCESS_DENIED
+                ).count(),
+            ),
+            before,
+        )
+        self.assertEqual(
+            AuditEvent.objects.filter(
+                user=self.warden,
+                action=AuditEvent.Action.ACCESS_DENIED,
+                record_type="csrf",
+                record_id="student-create",
+            ).count(),
+            2,
+        )
         self.assertEqual(
             client.post(url, payload, HTTP_X_CSRFTOKEN=token).status_code, 302
         )

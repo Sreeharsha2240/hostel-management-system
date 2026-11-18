@@ -1,6 +1,7 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 
-from audit.mixins import AuditedAdminMixin
+from audit.mixins import AuditedAdminMixin, RoleRestrictedAdminMixin
 from audit.models import AuditEvent
 from audit.services import record_event
 
@@ -8,13 +9,48 @@ from .forms import RoomForm
 from .models import Bed, Hostel, Room
 
 
-class RoomInline(admin.TabularInline):
+class InventoryValidationAdminMixin:
+    """Render a race-time model rejection as a bound admin form error."""
+
+    def changeform_view(self, request, object_id=None, form_url="", extra_context=None):
+        try:
+            return super().changeform_view(request, object_id, form_url, extra_context)
+        except ValidationError as error:
+            # ModelAdmin's atomic block has rolled back every parent/inline save.
+            request._inventory_validation_error = error
+            return super().changeform_view(request, object_id, form_url, extra_context)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form_class = super().get_form(request, obj, **kwargs)
+        error = getattr(request, "_inventory_validation_error", None)
+        if error is None:
+            return form_class
+
+        class RejectedInventoryForm(form_class):
+            def clean(self):
+                cleaned = super().clean()
+                if hasattr(error, "message_dict"):
+                    for field, messages in error.message_dict.items():
+                        self.add_error(
+                            field if field in self.fields else None, messages
+                        )
+                else:
+                    self.add_error(None, error.messages)
+                return cleaned
+
+        return RejectedInventoryForm
+
+
+class RoomInline(RoleRestrictedAdminMixin, admin.TabularInline):
+    write_roles = ("admin",)
     model = Room
+    form = RoomForm
     extra = 1
     can_delete = False
 
 
-class BedInline(admin.TabularInline):
+class BedInline(RoleRestrictedAdminMixin, admin.TabularInline):
+    write_roles = ("admin",)
     model = Bed
     extra = 0
     readonly_fields = ("label",)
@@ -34,7 +70,8 @@ def save_audited_formset(request, formset):
 
 
 @admin.register(Hostel)
-class HostelAdmin(AuditedAdminMixin, admin.ModelAdmin):
+class HostelAdmin(InventoryValidationAdminMixin, AuditedAdminMixin, admin.ModelAdmin):
+    write_roles = ("admin",)
     list_display = ("name", "hostel_type", "is_active")
     search_fields = ("name",)
     list_filter = ("hostel_type", "is_active")
@@ -45,7 +82,8 @@ class HostelAdmin(AuditedAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(Room)
-class RoomAdmin(AuditedAdminMixin, admin.ModelAdmin):
+class RoomAdmin(InventoryValidationAdminMixin, AuditedAdminMixin, admin.ModelAdmin):
+    write_roles = ("admin",)
     form = RoomForm
     list_display = ("room_number", "hostel", "floor", "room_type", "capacity")
     list_filter = ("hostel", "floor", "room_type")
@@ -57,7 +95,8 @@ class RoomAdmin(AuditedAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(Bed)
-class BedAdmin(AuditedAdminMixin, admin.ModelAdmin):
+class BedAdmin(InventoryValidationAdminMixin, AuditedAdminMixin, admin.ModelAdmin):
+    write_roles = ("admin",)
     list_display = ("label", "room", "status")
     list_filter = ("status", "room__hostel")
     search_fields = ("label", "room__room_number", "room__hostel__name")

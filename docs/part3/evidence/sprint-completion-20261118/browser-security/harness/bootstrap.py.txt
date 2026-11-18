@@ -1,0 +1,29 @@
+"""Run only after the parent supplies the frozen source commit."""
+import argparse,json,os,secrets,subprocess,sys
+from pathlib import Path
+from dotenv import dotenv_values
+root=Path(__file__).resolve().parent
+p=argparse.ArgumentParser();p.add_argument('--commit',required=True);args=p.parse_args()
+source=root/'source'
+actual=subprocess.check_output(['git','rev-parse','HEAD'],cwd=source).decode().strip()
+assert actual==args.commit
+assert not subprocess.check_output(['git','status','--porcelain'],cwd=source).decode().strip()
+values={k:v for k,v in dotenv_values(root/'private.env').items() if v is not None}
+assert values['DB_HOST']=='127.0.0.1' and values['DB_PORT']=='33079' and values['DB_NAME']=='hms'
+os.environ.update(values);sys.path.insert(0,str(source));os.environ['DJANGO_SETTINGS_MODULE']='hms.settings'
+import django;django.setup()
+from django.core.management import call_command
+from django.db import connection
+from accounts.models import User
+call_command('migrate',interactive=False,verbosity=0)
+accounts={}
+for role in ['admin','warden']:
+ username='browser-'+role
+ assert not User.objects.filter(username=username).exists(), 'Bootstrap accounts already exist; preserve existing credentials'
+ password=secrets.token_urlsafe(24)+'a8'
+ User.objects.create_user(username=username,password=password,role=role,is_staff=(role=='admin'),is_superuser=(role=='admin'))
+ accounts[role]={'username':username,'password':password}
+config={'authorized_frozen_run':True,'base_url':'http://127.0.0.1:8109','accounts':accounts,'source_root':str(source),'expected_commit':actual,'django_env_file':str(root/'private.env'),'fixture_prefix':'LX'}
+private=root/'private-config.json';private.write_text(json.dumps(config,indent=2));private.chmod(0o600)
+with connection.cursor() as cursor:cursor.execute('SELECT VERSION()');version=cursor.fetchone()[0]
+print(json.dumps({'source_commit':actual,'mysql_version':version,'synthetic_accounts_created':len(accounts),'private_config_path':str(private),'base_url':config['base_url']}))

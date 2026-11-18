@@ -3,7 +3,8 @@
 Usage: python scripts/run_checks.py [--output-dir test-results/ci]
 Relative output paths are resolved from the repository root. Tests use a separate
 database; no check migrates or populates the application database. Run one suite
-at a time against the configured MySQL test database.
+at a time against the configured MySQL test database. Existing test databases
+are never replaced: test creation stays interactive with closed child stdin.
 """
 
 import argparse
@@ -12,7 +13,6 @@ import os
 import platform
 import subprocess
 import sys
-import tempfile
 import time
 from datetime import UTC, datetime
 from importlib.metadata import version
@@ -25,6 +25,7 @@ DEPENDENCIES = (
     "mysqlclient",
     "python-dotenv",
     "reportlab",
+    "uharfbuzz",
     "pypdf",
     "coverage",
     "unittest-xml-reporting",
@@ -90,26 +91,58 @@ def verification_steps(output):
                 "run",
                 "manage.py",
                 "test",
-                "--noinput",
                 "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner",
             ],
         ),
-        ("coverage", ["-m", "coverage", "report"]),
+        (
+            "coverage-normalize",
+            [
+                "scripts/run_checks.py",
+                "--normalize-coverage",
+                str(output / ".coverage.normalized"),
+            ],
+        ),
+        (
+            "coverage",
+            [
+                "-m",
+                "coverage",
+                "report",
+                "--data-file",
+                str(output / ".coverage.normalized"),
+            ],
+        ),
         (
             "coverage-xml",
-            ["scripts/run_checks.py", "--coverage-xml", str(output / "coverage.xml")],
+            [
+                "scripts/run_checks.py",
+                "--coverage-xml",
+                str(output / "coverage.xml"),
+                "--coverage-data",
+                str(output / ".coverage.normalized"),
+            ],
         ),
         (
             "coverage-json",
-            ["-m", "coverage", "json", "-o", str(output / "coverage.json")],
+            [
+                "-m",
+                "coverage",
+                "json",
+                "--data-file",
+                str(output / ".coverage.normalized"),
+                "-o",
+                str(output / "coverage.json"),
+            ],
         ),
         (
             "timing-smoke",
             [
                 "manage.py",
                 "test",
-                "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
-                "--noinput",
+                (
+                    "accounts.tests.AuthenticationTests.test_login_and_role_dashboard"
+                    "_respond_within_two_seconds"
+                ),
             ],
         ),
     )
@@ -123,6 +156,7 @@ def run_step(name, arguments, output, environment):
             [sys.executable, *arguments],
             cwd=ROOT,
             env=environment,
+            stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
@@ -153,38 +187,41 @@ def read_test_results(output):
     return totals, len(suites)
 
 
-def export_coverage_xml(output):
-    """Export matching coverage data with normalized paths and contexts."""
+def normalize_coverage_data(output):
+    """Preserve raw data; canonicalize one copy for every reporting format."""
     from coverage import Coverage, CoverageData
 
+    if output.exists():
+        raise FileExistsError("Refusing to replace existing normalized coverage data.")
     measured = Coverage()
     measured.load()
+    if not measured.get_data().measured_files():
+        raise ValueError("Coverage collection produced no source files.")
+    normalized = CoverageData(basename=str(output))
+    normalized.update(
+        measured.get_data(), map_path=lambda filename: str(Path(filename).resolve())
+    )
+    normalized.write()
 
+
+def export_coverage_xml(output, *, data_file=None):
+    """Export matching data without merging same-named package files in XML."""
+    from coverage import Coverage
+
+    measured = (
+        Coverage(data_file=str(data_file)) if data_file is not None else Coverage()
+    )
+    measured.load()
     contexts = measured.get_option("report:contexts")
-    original_data = measured.get_data()
-
-    with tempfile.TemporaryDirectory() as temp_dir:
-        mapped_file = Path(temp_dir) / ".coverage"
-        mapped_data = CoverageData(basename=str(mapped_file))
-
-        # Normalize Windows short paths to canonical paths.
-        mapped_data.update(
-            original_data,
-            map_path=measured._file_mapper,
-        )
-        mapped_data.write()
-
-        # Load normalized data and apply the selected context filter.
-        reporting = Coverage(data_file=str(mapped_file))
-        reporting.set_option("run:source", [str(ROOT)])
-        reporting.load()
-
-        reporting.get_data().set_query_contexts(contexts)
-
-        reporting.xml_report(
-            morfs=sorted(reporting.get_data().measured_files()),
-            outfile=str(output),
-        )
+    if contexts:
+        # XML reporting otherwise retains statement hits from startup contexts.
+        measured.get_data().set_query_contexts(contexts)
+    # Change XML path roots only after loading the original collection scope.
+    # Each package's models.py must retain its package prefix in Cobertura XML.
+    measured.set_option("run:source", [str(ROOT)])
+    measured.xml_report(
+        morfs=sorted(measured.get_data().measured_files()), outfile=str(output)
+    )
 
 
 def main(argv=None):
@@ -194,9 +231,20 @@ def main(argv=None):
     mode.add_argument(
         "--coverage-xml", type=Path, help="Export the matching coverage data only."
     )
+    mode.add_argument(
+        "--normalize-coverage",
+        type=Path,
+        help="Write a new canonical-path coverage data copy before all exports.",
+    )
+    parser.add_argument("--coverage-data", type=Path)
     args = parser.parse_args(argv)
+    if args.coverage_data is not None and args.coverage_xml is None:
+        parser.error("--coverage-data requires --coverage-xml.")
+    if args.normalize_coverage is not None:
+        normalize_coverage_data(args.normalize_coverage)
+        return 0
     if args.coverage_xml is not None:
-        export_coverage_xml(args.coverage_xml)
+        export_coverage_xml(args.coverage_xml, data_file=args.coverage_data)
         return 0
     started = datetime.now(UTC)
     output = args.output_dir or Path("test-results") / started.strftime(

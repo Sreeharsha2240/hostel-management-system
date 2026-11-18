@@ -1,0 +1,311 @@
+[
+  {
+    "id": "Admin login",
+    "status": "PASS",
+    "actual": {
+      "seconds_click_to_dashboard_and_workspace_text": 0.354947,
+      "threshold_seconds": 2,
+      "meets_threshold": true
+    },
+    "screenshot": "admin-login.png",
+    "screenshot_sha256": "63d4998e791984308a8e5aa8faaf9c8e1554c42385d8aa13c610fed2bd859937",
+    "at": "2026-11-18T18:51:49.242958+00:00"
+  },
+  {
+    "id": "Admin creates Student accounts",
+    "status": "PASS",
+    "actual": {
+      "created": [
+        "mx4871b7own",
+        "mx4871b7other"
+      ]
+    },
+    "screenshot": "admin-creates-student-accounts.png",
+    "screenshot_sha256": "61a54836a580ce3b1439d961bced36c8c7c269c7465b50c9f806c1dba7cd0d30",
+    "at": "2026-11-18T18:51:50.669802+00:00"
+  },
+  {
+    "id": "Admin creates and updates inventory and students",
+    "status": "PASS",
+    "actual": {
+      "fixture": {
+        "hostel": 13,
+        "room": 14,
+        "student": 22,
+        "other_student": 23,
+        "beds": [
+          {
+            "id": 25,
+            "label": "M71B7-A",
+            "status": "Available"
+          },
+          {
+            "id": 26,
+            "label": "M71B7-B",
+            "status": "Available"
+          }
+        ]
+      },
+      "updated_floor": 1,
+      "updated_mobile": "9000000003",
+      "student_id_disabled": true
+    },
+    "screenshot": "admin-creates-and-updates-inventory-and-students.png",
+    "screenshot_sha256": "356231a6861f7ad73f73926f044c9678a793fada1355afe4a36c14f15eb25f55",
+    "at": "2026-11-18T18:51:54.719186+00:00"
+  },
+  {
+    "id": "Stored script is escaped",
+    "status": "PASS",
+    "actual": {
+      "stored_text": "<script>window.__hmsInjected=1</script>",
+      "executed": false
+    },
+    "screenshot": "stored-script-is-escaped.png",
+    "screenshot_sha256": "a26325a16ef8768cf77c1f8b75956bd3f9628fd49dbb15910b8f79284f1f3ed0",
+    "at": "2026-11-18T18:51:54.843485+00:00"
+  },
+  {
+    "id": "Missing CSRF rejected",
+    "status": "PASS",
+    "actual": {
+      "status": 403,
+      "duplicate_student_count": 1
+    },
+    "screenshot": "missing-csrf-rejected.png",
+    "screenshot_sha256": "798247ac6237604bf196e479552ec3bcf656663fcc1c65b6f608260ef6983a0c",
+    "at": "2026-11-18T18:51:54.986746+00:00"
+  },
+  {
+    "id": "Warden login",
+    "status": "PASS",
+    "actual": {
+      "seconds_click_to_dashboard_and_workspace_text": 0.553964,
+      "threshold_seconds": 2,
+      "meets_threshold": true
+    },
+    "screenshot": "warden-login.png",
+    "screenshot_sha256": "11633dbbdd6c07518f1e1ff6bfa96a2a6ad50c83584508800034e04e0ed7cc1a",
+    "at": "2026-11-18T18:51:55.851743+00:00"
+  },
+  {
+    "id": "Warden Admin route denied",
+    "status": "PASS",
+    "actual": {
+      "status": 403
+    },
+    "screenshot": "warden-admin-route-denied.png",
+    "screenshot_sha256": "a6ada6205faea78b308bdece221e80cb2a6e6befff147cab5860ae4ba479512e",
+    "at": "2026-11-18T18:51:55.947067+00:00"
+  },
+  {
+    "id": "Warden allocates available bed",
+    "status": "PASS",
+    "actual": {
+      "allocation": 16,
+      "bed": 25,
+      "status": "Active"
+    },
+    "screenshot": "warden-allocates-available-bed.png",
+    "screenshot_sha256": "69fe12d95cc623f00e27d22f6ee705cc769165cc0ff4345b02e7919e94b4d6ba",
+    "at": "2026-11-18T18:51:56.696652+00:00"
+  },
+  {
+    "id": "Warden transfer preserves history",
+    "status": "PASS",
+    "actual": {
+      "old_allocation": 16,
+      "active_allocation": 17,
+      "new_bed": 26,
+      "history_count": 2,
+      "cancelled": {
+        "dialog_count": 1,
+        "cancelled": true,
+        "navigation": false,
+        "keyboard_target": null
+      },
+      "accepted": {
+        "dialog_count": 1,
+        "cancelled": false,
+        "navigation": true,
+        "keyboard_target": null
+      }
+    },
+    "screenshot": "warden-transfer-preserves-history.png",
+    "screenshot_sha256": "52a849624f909a86a84f08dae64242cd0eb94847a59c52c3c07d53bb7bbb9cfb",
+    "at": "2026-11-18T18:51:57.042071+00:00"
+  },
+  {
+    "id": "Warden payment and receipt PDF",
+    "status": "PASS",
+    "actual": {
+      "receipt": "R00000000012",
+      "pdf_sha256": "6377e20e3207006caf2fbac4a31022790918abfad55a96b4dc4363caebd86dcc",
+      "pdf_contains_student_and_receipt": true
+    },
+    "screenshot": "warden-payment-and-receipt-pdf.png",
+    "screenshot_sha256": "2b2c4abab341710e1e9fa50e65c6bada9b4d0d00b4800eb35dd9f35dc77a91c3",
+    "at": "2026-11-18T18:51:57.588487+00:00"
+  },
+  {
+    "id": "Warden adjustment retains original",
+    "status": "PASS",
+    "actual": {
+      "original_receipt": "R00000000012",
+      "original_amount": "5000.00",
+      "adjustment_receipt": "R00000000013",
+      "adjustment_amount": "-1000.00"
+    },
+    "screenshot": "warden-adjustment-retains-original.png",
+    "screenshot_sha256": "0a9b0bfd76052c0757be40427734a2af771792f29d012e5cbdd092c1c79cd230",
+    "at": "2026-11-18T18:51:58.050157+00:00"
+  },
+  {
+    "id": "Warden occupancy CSV",
+    "status": "PASS",
+    "actual": {
+      "rows": [
+        {
+          "Hostel Name": "MX4871B7 Boys Updated",
+          "Total Beds": "2",
+          "Occupied Beds": "1",
+          "Available Beds": "1",
+          "Beds Under Maintenance": "0",
+          "Occupancy %": "50.00",
+          "Generated On": "19-11-2026 00:21:58 IST"
+        }
+      ],
+      "sha256": "3b40730d90dddf46c8a1f98b5c39a24bb4323b4cfaa55f553505bb08e641deea"
+    },
+    "screenshot": "warden-occupancy-csv.png",
+    "screenshot_sha256": "4b979a30717ed1510c8b7f0b8a6516a4c2532ab215998af211af0a6b5b3c1835",
+    "at": "2026-11-18T18:51:58.200841+00:00"
+  },
+  {
+    "id": "Warden payment-status CSV",
+    "status": "PASS",
+    "actual": {
+      "rows": [
+        {
+          "Student ID": "MX56113256249",
+          "Student Name": "MX4871B7 Resident",
+          "Hostel Name": "MX4871B7 Boys Updated",
+          "Room": "M71B7",
+          "Bed": "M71B7-B",
+          "Fee Amount (INR)": "10000.00",
+          "Amount Paid (INR)": "4000.00",
+          "Due (INR)": "6000.00",
+          "Payment Status": "Partial",
+          "Generated On": "19-11-2026 00:21:58 IST"
+        }
+      ],
+      "sha256": "f97852f49485025782a1e8efc75cc3140d1b61b313dc11f9a3a8486b8a66d872"
+    },
+    "screenshot": "warden-payment-status-csv.png",
+    "screenshot_sha256": "1d8b2c93698022edd20d1e7312f1e31521a7cc1b6e9a613cff70525c83334e04",
+    "at": "2026-11-18T18:51:58.353114+00:00"
+  },
+  {
+    "id": "Warden release retains history",
+    "status": "PASS",
+    "actual": {
+      "status": "Completed",
+      "vacated_on": "2026-11-19",
+      "history_count": 2,
+      "keyboard_cancelled": {
+        "dialog_count": 1,
+        "cancelled": true,
+        "navigation": false,
+        "keyboard_target": "[name=vacate_date]"
+      },
+      "keyboard_accepted": {
+        "dialog_count": 1,
+        "cancelled": false,
+        "navigation": true,
+        "keyboard_target": "[name=vacate_date]"
+      }
+    },
+    "screenshot": "warden-release-retains-history.png",
+    "screenshot_sha256": "56e329fd28cb99b7b9665f278e7ca9101c5761c02537c0530c7bbce814f02414",
+    "at": "2026-11-18T18:51:58.655165+00:00"
+  },
+  {
+    "id": "Button confirmation and cancellation",
+    "status": "PASS",
+    "actual": {
+      "cancelled": {
+        "dialog_count": 1,
+        "cancelled": true,
+        "navigation": false,
+        "keyboard_target": null
+      },
+      "accepted": {
+        "dialog_count": 1,
+        "cancelled": false,
+        "navigation": true,
+        "keyboard_target": null
+      },
+      "student_status": "Inactive",
+      "cancel_preserved_active_status": true
+    },
+    "screenshot": "button-confirmation-and-cancellation.png",
+    "screenshot_sha256": "9657a945218a38cf3b1b9a8d7747c2fc1bcb7569cc80d8906ff8a7978e54ee41",
+    "at": "2026-11-18T18:51:58.952628+00:00"
+  },
+  {
+    "id": "Student login",
+    "status": "PASS",
+    "actual": {
+      "seconds_click_to_dashboard_and_workspace_text": 0.835368,
+      "threshold_seconds": 2,
+      "meets_threshold": true
+    },
+    "screenshot": "student-login.png",
+    "screenshot_sha256": "b37181c79e1dd9fef29ce993b0d3e6ba0d72379463f9269353d8f0d6a5e7c17d",
+    "at": "2026-11-18T18:52:00.600818+00:00"
+  },
+  {
+    "id": "Student own records and URL isolation",
+    "status": "PASS",
+    "actual": {
+      "own_receipts_present": true,
+      "other_student_absent": true,
+      "cross_record_routes_denied": true,
+      "tampered_self_service_id_ignored": true
+    },
+    "screenshot": "student-own-records-and-url-isolation.png",
+    "screenshot_sha256": "dbc859583310bf28e02811f5778bb03acc49e1a28c76caa1cdb64f8abf9fa400",
+    "at": "2026-11-18T18:52:00.892793+00:00"
+  },
+  {
+    "id": "Logout protected revisit",
+    "status": "PASS",
+    "actual": {
+      "after_back_path": "/login/",
+      "cached_private_records_visible": false,
+      "protected_revisit_redirect": "/login/"
+    },
+    "screenshot": "logout-protected-revisit.png",
+    "screenshot_sha256": "e06efeae3cd7c53a6d4ac331af2369bc3b40aa69aa83cdc0708838f81ffd529d",
+    "at": "2026-11-18T18:52:01.137425+00:00"
+  },
+  {
+    "id": "Emulated phone layout",
+    "status": "PASS",
+    "actual": {
+      "requested_viewport": [
+        390,
+        844
+      ],
+      "actual_viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "page": "login",
+      "physical_phone": false
+    },
+    "screenshot": "emulated-phone-layout.png",
+    "screenshot_sha256": "afaee4a40c58440e1466b52bd1423c735dae6f00a184b1f474a7bf11114c8374",
+    "at": "2026-11-18T18:52:01.535658+00:00"
+  }
+]

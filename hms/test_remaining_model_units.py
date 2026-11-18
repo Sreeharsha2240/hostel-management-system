@@ -150,7 +150,7 @@ class RemainingQuerySetUnitTests(SimpleTestCase):
         self.assertEqual(result, "saved")
         locked.return_value.get.assert_called_once_with(pk=8)
         allocations.assert_not_called()
-        save.assert_called_once_with(update_fields=["name"])
+        save.assert_called_once_with(update_fields=frozenset({"name"}))
 
 
 class RemainingAllocationUnitTests(SimpleTestCase):

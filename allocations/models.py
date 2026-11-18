@@ -108,6 +108,24 @@ class Allocation(models.Model):
         from hostels.models import Bed, Hostel, Room
         from students.models import Student
 
+        if len(args) > 4:
+            raise TypeError("save() accepts at most four positional arguments.")
+        for name, value in zip(
+            ("force_insert", "force_update", "using", "update_fields"),
+            args,
+            strict=False,
+        ):
+            if name in kwargs:
+                raise TypeError(f"save() got multiple values for argument '{name}'.")
+            kwargs[name] = value
+        args = ()
+        update_fields = kwargs.get("update_fields")
+        if update_fields is not None:
+            update_fields = frozenset(update_fields)
+            if not update_fields:
+                return
+            kwargs["update_fields"] = update_fields
+
         # Lock Student, then Rooms/Beds in PK order, then Allocation.
         # Student deactivation takes the same Student lock.
         try:
@@ -116,7 +134,10 @@ class Allocation(models.Model):
             room = Room.objects.select_for_update().get(pk=room_id)
             bed = (
                 Bed.objects.select_for_update()
-                .select_related("room__hostel")
+                # Joined FOR UPDATE queries also lock Hostel on MySQL. That
+                # reverses inventory's Hostel -> Room lock order, since this
+                # transaction already holds Room. Lock only the Bed row.
+                .select_related(None)
                 .get(pk=self.bed_id)
             )
         except (Student.DoesNotExist, Room.DoesNotExist, Bed.DoesNotExist):
@@ -128,6 +149,7 @@ class Allocation(models.Model):
                 "The selected bed has moved to another room. Refresh and try again.",
                 code="BED_MOVED",
             )
+        bed.room = room
         previous = None
         if not self._state.adding:
             previous = Allocation.objects.select_for_update().get(pk=self.pk)
@@ -143,6 +165,13 @@ class Allocation(models.Model):
                 raise ValidationError(
                     "This allocation is already inactive.", code="ALREADY_RELEASED"
                 )
+            # Validate the state that this partial write will actually persist.
+            # Unsaved changes in excluded fields must not clear the active keys
+            # or release the bed while the stored allocation remains Active.
+            if update_fields is not None:
+                for field in ("status", "vacated_on"):
+                    if field not in update_fields:
+                        setattr(self, field, getattr(previous, field))
 
         active = self.status == self.AllocationStatus.ACTIVE
         self.active_student_id = self.student_id if active else None
@@ -189,7 +218,10 @@ class Allocation(models.Model):
                 )
             if previous is None and bed.status != Bed.BedStatus.AVAILABLE:
                 raise ValidationError(
-                    "Select an available bed; occupied and maintenance beds cannot be allocated.",
+                    (
+                        "Select an available bed; occupied and maintenance beds "
+                        "cannot be allocated."
+                    ),
                     code="BED_OCCUPIED",
                 )
             # Historical beds can survive a capacity reduction. The Room lock

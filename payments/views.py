@@ -6,6 +6,7 @@ from django.http import FileResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_GET, require_http_methods
 
+from hms.api import validate_api_types
 from hms.decorators import staff_required
 from hms.http import api_error, request_data, wants_json
 from hms.responses import form_error_response, validation_response
@@ -67,6 +68,13 @@ def payment_form(request, original=None):
     if request.method == "POST":
         try:
             data = request_data(request)
+            if request.content_type == "application/json":
+                data = dict(data)
+                if data.get("reference", "") is None:
+                    data["reference"] = ""
+                validate_api_types(
+                    data, text_fields=("reference", "mode", "adjustment_reason")
+                )
             if request.content_type == "application/json" and original is None:
                 data = dict(data)
                 identifier = data.pop("student_id", None)

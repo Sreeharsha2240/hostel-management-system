@@ -1,0 +1,61 @@
+{
+  "scan_job": "job_02e36d0b44",
+  "harness_sha256": "f76d31f687c98dfc9f2cbff790f9f69a54bf9ac8a32ff53dfffd224d25f2b906",
+  "command_without_private_paths": [
+    "python",
+    "zap_baseline.py",
+    "--config",
+    "<private-config.json>",
+    "--output",
+    "<new-empty-output-directory>"
+  ],
+  "exact_docker_arguments": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "<unique-hms-zap-baseline-name>",
+    "--network",
+    "host",
+    "--user",
+    "0:0",
+    "--volume",
+    "<private-raw>:/zap/wrk:Z",
+    "--workdir",
+    "/zap/wrk",
+    "ghcr.io/zaproxy/zaproxy@sha256:9624669db72f54d86c4b46a7064518bd9bf79d8c61a4c31befa9923489f328af",
+    "zap-baseline.py",
+    "--autooff",
+    "-t",
+    "http://127.0.0.1:8109",
+    "-m",
+    "1",
+    "-T",
+    "5",
+    "-P",
+    "18098",
+    "-I",
+    "-J",
+    "private-report.json",
+    "-r",
+    "private-report.html",
+    "--hook",
+    "/zap/wrk/hook.py",
+    "-z",
+    "-config spider.processForm=false -config spider.postForm=false"
+  ],
+  "console_status_lines": [
+    "WARN-NEW: X-Content-Type-Options Header Missing [10021] x 2",
+    "WARN-NEW: Server Leaks Version Information via \"Server\" HTTP Response Header Field [10036] x 16",
+    "WARN-NEW: Content Security Policy (CSP) Header Not Set [10038] x 1",
+    "WARN-NEW: Permissions Policy Header Not Set [10063] x 13",
+    "WARN-NEW: Cross-Origin-Resource-Policy Header Missing or Invalid [90004] x 20",
+    "FAIL-NEW: 0\tFAIL-INPROG: 0\tWARN-NEW: 5\tWARN-INPROG: 0\tINFO: 0\tIGNORE: 0\tPASS: 62"
+  ],
+  "notes": [
+    "Raw JSON export retains the scanner-reported counts and capped instance samples. Console warning counts can exceed exported instance samples. Two variants share passive rule90004.",
+    "The scan configured processForm=false and postForm=false. Authentication-identification informational metadata nevertheless includes two POST /login/ messages; no claim of GET-only spider behavior is made. The active scan list was empty.",
+    "-I permits warning-only baseline completion; exit0 does not dispose or erase findings.",
+    "No raw cookie, HTTP body, authentication payload or scanner log is published."
+  ]
+}

@@ -1,17 +1,27 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
-from django.db import transaction
+from django.db import IntegrityError, transaction
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
+from accounts.decorators import roles_required
 from accounts.models import User
+from allocations.views import available_beds
 from audit.models import AuditEvent
 from audit.services import record_event
 
 from .forms import BedFilterForm, HostelForm, RoomForm
 from .models import Bed, Hostel, Room
+
+
+def add_inventory_errors(form, error):
+    if hasattr(error, "message_dict"):
+        for field, messages in error.message_dict.items():
+            form.add_error(field if field in form.fields else None, messages)
+    else:
+        form.add_error(None, error.messages)
 
 
 def can_manage_hostels(user):
@@ -27,14 +37,20 @@ def hostel_list(request):
     form = HostelForm(request.POST if request.method == "POST" else None)
 
     if request.method == "POST" and form.is_valid():
-        with transaction.atomic():
-            hostel = form.save()
-            record_event(
-                user=request.user,
-                action=AuditEvent.Action.CREATE,
-                record=hostel,
+        try:
+            with transaction.atomic():
+                hostel = form.save()
+                record_event(
+                    user=request.user,
+                    action=AuditEvent.Action.CREATE,
+                    record=hostel,
+                )
+        except IntegrityError:
+            form.add_error(
+                "name", "A hostel with this name already exists. Refresh and try again."
             )
-        return redirect("hostel-list")
+        else:
+            return redirect("hostel-list")
 
     hostels = Hostel.objects.all()
     return render(
@@ -59,20 +75,27 @@ def hostel_update(request, pk):
     )
 
     if request.method == "POST" and form.is_valid():
-        with transaction.atomic():
-            # ModelForm validation mutates its instance before save(), so read
-            # the persisted value to classify deactivation reliably.
-            was_active = Hostel.objects.values_list("is_active", flat=True).get(
-                pk=hostel.pk
+        try:
+            with transaction.atomic():
+                # ModelForm validation mutates its instance before save(), so read
+                # the persisted value to classify deactivation reliably.
+                was_active = Hostel.objects.values_list("is_active", flat=True).get(
+                    pk=hostel.pk
+                )
+                hostel = form.save()
+                action = (
+                    AuditEvent.Action.DEACTIVATE
+                    if was_active and not hostel.is_active
+                    else AuditEvent.Action.UPDATE
+                )
+                record_event(user=request.user, action=action, record=hostel)
+            return redirect("hostel-list")
+        except IntegrityError:
+            form.add_error(
+                "name", "A hostel with this name already exists. Refresh and try again."
             )
-            hostel = form.save()
-            action = (
-                AuditEvent.Action.DEACTIVATE
-                if was_active and not hostel.is_active
-                else AuditEvent.Action.UPDATE
-            )
-            record_event(user=request.user, action=action, record=hostel)
-        return redirect("hostel-list")
+        except ValidationError as error:
+            add_inventory_errors(form, error)
 
     return render(
         request,
@@ -93,14 +116,25 @@ def room_create(request):
     form = RoomForm(request.POST if request.method == "POST" else None)
 
     if request.method == "POST" and form.is_valid():
-        with transaction.atomic():
-            room = form.save()
-            record_event(
-                user=request.user,
-                action=AuditEvent.Action.CREATE,
-                record=room,
+        try:
+            with transaction.atomic():
+                room = form.save()
+                record_event(
+                    user=request.user,
+                    action=AuditEvent.Action.CREATE,
+                    record=room,
+                )
+            return redirect("bed-list")
+        except IntegrityError:
+            form.add_error(
+                "room_number",
+                (
+                    "That room number already exists in this hostel. Refresh and try "
+                    "again."
+                ),
             )
-        return redirect("bed-list")
+        except ValidationError as error:
+            add_inventory_errors(form, error)
 
     return render(
         request,
@@ -134,12 +168,16 @@ def room_update(request, pk):
                     record=room,
                 )
             return redirect("bed-list")
+        except IntegrityError:
+            form.add_error(
+                "room_number",
+                (
+                    "That room number already exists in this hostel. Refresh and try "
+                    "again."
+                ),
+            )
         except ValidationError as error:
-            if hasattr(error, "message_dict"):
-                for field, messages in error.message_dict.items():
-                    form.add_error(field, messages)
-            else:
-                form.add_error(None, error.messages)
+            add_inventory_errors(form, error)
 
     return render(
         request,
@@ -151,7 +189,7 @@ def room_update(request, pk):
     )
 
 
-@login_required
+@roles_required(User.Role.ADMIN, User.Role.WARDEN)
 def bed_list(request):
     beds = Bed.objects.select_related("room__hostel")
     filter_form = BedFilterForm(request.GET)
@@ -161,6 +199,8 @@ def bed_list(request):
     floor = request.GET.get("floor")
     room_type = request.GET.get("room_type")
     status = request.GET.get("status", Bed.BedStatus.AVAILABLE)
+    if valid_filters and status == Bed.BedStatus.AVAILABLE:
+        beds = available_beds()
 
     if valid_filters:
         cleaned_hostel = filter_form.cleaned_data["hostel"]

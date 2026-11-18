@@ -5,12 +5,7 @@ from unittest.mock import patch
 
 from django.contrib.admin.sites import AdminSite
 from django.core.exceptions import ValidationError
-from django.db import (
-    IntegrityError,
-    close_old_connections,
-    connections,
-    transaction,
-)
+from django.db import IntegrityError, close_old_connections, connections, transaction
 from django.forms import modelform_factory
 from django.test import RequestFactory, TestCase, TransactionTestCase
 from django.urls import reverse
@@ -112,6 +107,7 @@ class HostelManagementViewTests(TestCase):
             {
                 "hostel": created_hostel.pk,
                 "room_number": "901",
+                "fee_amount": "0.00",
                 "floor": 9,
                 "room_type": Room.RoomType.SINGLE,
                 "capacity": 1,
@@ -164,6 +160,7 @@ class HostelManagementViewTests(TestCase):
                     {
                         "hostel": self.hostel.pk,
                         "room_number": "799",
+                        "fee_amount": "0.00",
                         "floor": 7,
                         "room_type": Room.RoomType.SINGLE,
                         "capacity": 1,
@@ -251,7 +248,7 @@ class HostelModelBehaviorTests(TestCase):
         with self.assertRaises(ValueError):
             Room.objects.filter(pk=room.pk).update(hostel=girls_hostel)
 
-    def test_completed_allocation_blocks_hostel_reassignment(self):
+    def test_completed_allocation_preserves_historical_hostel(self):
         room = Room.objects.create(
             hostel=self.hostel,
             room_number="704",
@@ -275,10 +272,7 @@ class HostelModelBehaviorTests(TestCase):
         allocation.save(update_fields=["status", "vacated_on"])
 
         room.hostel = girls_hostel
-
-        with self.assertRaisesMessage(
-            ValidationError, "A room with allocation history cannot be moved"
-        ):
+        with self.assertRaisesMessage(ValidationError, "allocation history"):
             room.save()
 
         room.refresh_from_db()
@@ -291,7 +285,7 @@ class HostelModelBehaviorTests(TestCase):
         )
         self.assertIsNotNone(allocation.vacated_on)
 
-    def test_room_with_active_resident_cannot_move_to_compatible_hostel(self):
+    def test_active_allocation_preserves_even_compatible_historical_hostel(self):
         room = Room.objects.create(
             hostel=self.hostel,
             room_number="702",
@@ -313,10 +307,7 @@ class HostelModelBehaviorTests(TestCase):
         )
 
         room.hostel = another_boys_hostel
-
-        with self.assertRaisesMessage(
-            ValidationError, "A room with allocation history cannot be moved"
-        ):
+        with self.assertRaisesMessage(ValidationError, "allocation history"):
             room.save()
 
         room.refresh_from_db()
@@ -684,7 +675,7 @@ class BedFilteringViewTests(TestCase):
         self.user = User.objects.create_user(
             username="bed_filter_user",
             password="TestPassword123!",
-            role=User.Role.STUDENT,
+            role=User.Role.WARDEN,
         )
         self.client.force_login(self.user)
 
@@ -788,7 +779,7 @@ class BedFilteringViewTests(TestCase):
     def test_invalid_numeric_filters_return_400_without_bed_results(self):
         invalid_values = {
             "hostel": ["bad", "1.5", "-1", "0", str(2**63), "9" * 5000],
-            "floor": ["bad", "1.5", "-1", "65536", "9" * 5000],
+            "floor": ["bad", "1.5", "-1", "100", "9" * 5000],
         }
 
         for field, values in invalid_values.items():
@@ -832,7 +823,7 @@ class BedFilteringViewTests(TestCase):
         self.assertNotContains(response, "<script>", status_code=400)
 
     def test_zero_and_upper_boundary_floor_filters_match_only_their_beds(self):
-        for floor in (0, 65535):
+        for floor in (0, 99):
             with self.subTest(floor=floor):
                 room = Room.objects.create(
                     hostel=self.hostel1,

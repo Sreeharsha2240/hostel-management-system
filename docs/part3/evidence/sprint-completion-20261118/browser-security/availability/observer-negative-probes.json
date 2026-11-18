@@ -1,0 +1,9 @@
+{
+  "scope": "Offline fake responses and temporary Git fixtures; no real probe or clock manipulation",
+  "tests": 7,
+  "failures": 0,
+  "errors": 0,
+  "successful": true,
+  "observer_sha256": "54cd83b3aaa2ecb93d72e3377e863ba22ed450f6c2d42b679d41d8b5301be945",
+  "helper_sha256": "f3afe624d892a5611ba2a918160b5583548c08ea02ebd7e0287e3c4c1c919a04"
+}

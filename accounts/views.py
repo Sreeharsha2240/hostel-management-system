@@ -1,19 +1,25 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
-from django.db import transaction
+from django.db import IntegrityError, transaction
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 
+from allocations.views import available_beds
 from audit.models import AuditEvent
 from audit.services import record_event
-from hostels.models import Bed
 
 from .decorators import roles_required
-from .forms import AccountCreationForm, AccountUpdateForm, ProfileSettingsForm
+from .forms import (
+    AccountCreationForm,
+    AccountUpdateForm,
+    ProfileSettingsForm,
+)
+from .forms import (
+    SettingsPasswordChangeForm as PasswordChangeForm,
+)
 from .models import User
 
 
@@ -54,10 +60,7 @@ def dashboard(request):
     if request.user.role == User.Role.STUDENT:
         context.update(
             {
-                "available_bed_count": Bed.objects.filter(
-                    status=Bed.BedStatus.AVAILABLE,
-                    room__hostel__is_active=True,
-                ).count(),
+                "available_bed_count": available_beds().count(),
             }
         )
     return render(request, template, context)
@@ -114,11 +117,20 @@ def user_management(request):
     if request.method == "POST":
         form = AccountCreationForm(request.POST)
         if form.is_valid():
-            account = form.save()
-            record_event(
-                user=request.user, action=AuditEvent.Action.CREATE, record=account
-            )
-            return redirect("user-management")
+            try:
+                with transaction.atomic():
+                    account = form.save()
+                    record_event(
+                        user=request.user,
+                        action=AuditEvent.Action.CREATE,
+                        record=account,
+                    )
+            except IntegrityError:
+                if not User.objects.filter(username=form.instance.username).exists():
+                    raise
+                form.add_error("username", "Username already registered.")
+            else:
+                return redirect("user-management")
     else:
         form = AccountCreationForm()
     users = User.objects.order_by("username")
@@ -156,6 +168,13 @@ def update_user(request, user_id):
 def deactivate_user(request, user_id):
     target = get_object_or_404(User.objects.select_for_update(), pk=user_id)
     if target.pk == request.user.pk:
+        record_event(
+            user=request.user,
+            action=AuditEvent.Action.ACCESS_DENIED,
+            record_type="view",
+            record_id="deactivate_user",
+        )
+        request._access_denied_audited = True
         return HttpResponseForbidden("You cannot deactivate your own account")
     if target.is_active:
         target.is_active = False

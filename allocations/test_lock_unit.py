@@ -25,9 +25,12 @@ class LockAllocationUnitTests(SimpleTestCase):
         )
         allocation_get.return_value = source
         allocation_lock.return_value.get.return_value = source
-        bed_query.return_value.values_list.return_value = [4, 2, 4]
+        bed_query.return_value.values_list.return_value = [(3, 2), (9, 4)]
         room_lock.return_value.filter.return_value.order_by.return_value = []
-        bed_lock.return_value.filter.return_value.order_by.return_value = []
+        bed_lock.return_value.filter.return_value.order_by.return_value = [
+            SimpleNamespace(pk=3, room_id=2),
+            SimpleNamespace(pk=9, room_id=4),
+        ]
         self.assertIs(lock_allocation(10, extra_bed=SimpleNamespace(pk=3)), source)
         student.return_value.get.assert_called_once_with(pk=8)
         bed_query.assert_called_once_with(pk__in=[3, 9])
@@ -51,9 +54,11 @@ class LockAllocationUnitTests(SimpleTestCase):
         allocation_lock.return_value.get.return_value = SimpleNamespace(
             status=Allocation.AllocationStatus.COMPLETED
         )
-        bed_query.return_value.values_list.return_value = [4]
+        bed_query.return_value.values_list.return_value = [(9, 4)]
         room_lock.return_value.filter.return_value.order_by.return_value = []
-        bed_lock.return_value.filter.return_value.order_by.return_value = []
+        bed_lock.return_value.filter.return_value.order_by.return_value = [
+            SimpleNamespace(pk=9, room_id=4)
+        ]
         with self.assertRaises(ValidationError) as error:
             lock_allocation(10)
         self.assertEqual(error.exception.code, "ALREADY_RELEASED")

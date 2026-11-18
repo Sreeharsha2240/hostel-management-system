@@ -9,6 +9,7 @@ from django.test import RequestFactory, SimpleTestCase
 
 from accounts.models import User
 from allocations.models import Allocation
+from audit.models import AuditEvent
 
 from .models import Student
 from .views import student_deactivate, student_list, student_update
@@ -45,7 +46,12 @@ class RemainingStudentViewUnitTests(SimpleTestCase):
                 locked.assert_not_called()
                 lookup.assert_not_called()
                 form.assert_not_called()
-                audit.assert_not_called()
+                audit.assert_called_once_with(
+                    user=request.user,
+                    action=AuditEvent.Action.ACCESS_DENIED,
+                    record_type="view",
+                    record_id=view.__name__,
+                )
 
     def test_update_get_and_invalid_post_keep_identity_read_only_and_hide_status(self):
         student = SimpleNamespace(pk=8, student_id="STUDENT000008")

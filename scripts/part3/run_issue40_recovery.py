@@ -271,7 +271,8 @@ def resume(private):
         raise SafetyError("The existing private sandbox failed its containment check.")
     if (private / "mysql.pid").exists():
         raise SafetyError(
-            "The private sandbox already has a PID file; do not overwrite a running instance."
+            "The private sandbox already has a PID file; do not overwrite a "
+            "running instance."
         )
     original_environment = dict(os.environ)
     database = source_settings(connection_file)
@@ -286,7 +287,10 @@ def resume(private):
         "case": "TC-OPS-01",
         "operation": "post-fix populated recovery and monitor-child cleanup rerun",
         "started_at": datetime.now(UTC).isoformat(),
-        "scope": "same isolated populated synthetic MySQL source and original naturally scheduled backup; existing live daily task unchanged",
+        "scope": (
+            "same isolated populated synthetic MySQL source and original "
+            "naturally scheduled backup; existing live daily task unchanged"
+        ),
         "source_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),
@@ -402,7 +406,8 @@ def resume(private):
         try:
             with control.cursor() as cursor:
                 cursor.execute(
-                    "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='test_hms'"
+                    "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE "
+                    "SCHEMA_NAME='test_hms'"
                 )
                 report["owned_restore_target_removed"] = cursor.fetchone()[0] == 0
         finally:
@@ -480,7 +485,10 @@ def main():
     report = {
         "case": "TC-OPS-01",
         "started_at": datetime.now(UTC).isoformat(),
-        "scope": "isolated synthetic populated recovery plus separate live read-only daily backup",
+        "scope": (
+            "isolated synthetic populated recovery plus separate live "
+            "read-only daily backup"
+        ),
         "source_script_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
         "runner_script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "sandbox_bind": "127.0.0.1",
@@ -594,12 +602,17 @@ def main():
             "table_row_counts": {
                 name: table["rows"] for name, table in manifest["source_after"].items()
             },
-            "populated_restore_scope": "the live source has no domain rows; populated restore is demonstrated only in the separate sandbox",
+            "populated_restore_scope": (
+                "the live source is backed up read-only; populated restore is "
+                "demonstrated only in the separate sandbox"
+            ),
         }
         if not report["live_backup"]["source_unchanged"]:
             raise SafetyError("The live source changed while its read-only backup ran.")
         report["daily_schedule_limitation"] = (
-            "Current Windows user must be logged in and computer/MySQL running; StartWhenAvailable handles a missed trigger when available."
+            "Current Windows user must be logged in and computer/MySQL "
+            "running; StartWhenAvailable handles a missed trigger when "
+            "available."
         )
         report["status"] = "PASS"
     except Exception as error:

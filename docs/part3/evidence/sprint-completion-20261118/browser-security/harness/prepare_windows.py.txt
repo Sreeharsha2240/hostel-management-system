@@ -1,0 +1,116 @@
+import concurrent.futures
+import hashlib
+import json
+import time
+import urllib.request
+import zipfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+DOWNLOADS = ROOT / 'downloads'
+BINARIES = ROOT / 'browsers'
+DOWNLOADS.mkdir(exist_ok=True)
+BINARIES.mkdir(exist_ok=True)
+
+
+def get(url):
+    request = urllib.request.Request(url, headers={'User-Agent': 'HMS-private-browser-verification/1.0'})
+    return urllib.request.urlopen(request, timeout=90)
+
+
+def sha(path):
+    h = hashlib.sha256()
+    with path.open('rb') as f:
+        for block in iter(lambda: f.read(1024 * 1024), b''):
+            h.update(block)
+    return h.hexdigest()
+
+
+def download(task):
+    path = DOWNLOADS / task['filename']
+    if not path.exists():
+        partial = path.with_suffix(path.suffix + '.partial')
+        for attempt in range(3):
+            try:
+                with get(task['url']) as response, partial.open('wb') as f:
+                    while block := response.read(1024 * 1024):
+                        f.write(block)
+                partial.replace(path)
+                break
+            except Exception:
+                if attempt == 2:
+                    raise
+                time.sleep(2)
+    digest = sha(path)
+    if task.get('expected_sha256') and digest.lower() != task['expected_sha256'].lower():
+        raise ValueError('Checksum mismatch for ' + task['filename'])
+    record = {**task, 'path': str(path), 'sha256': digest, 'bytes': path.stat().st_size}
+    if path.suffix == '.zip':
+        target = BINARIES / task['id']
+        target.mkdir(exist_ok=True)
+        with zipfile.ZipFile(path) as z:
+            z.extractall(target)
+        record['extract_directory'] = str(target)
+    print(json.dumps({'downloaded': task['id'], 'version': task.get('version'), 'sha256': digest}), flush=True)
+    return record
+
+
+def main():
+    known = json.loads((ROOT / 'chrome-feed.json').read_bytes())['versions']
+    latest = json.loads((ROOT / 'chrome-stable-feed.json').read_bytes())['channels']['Stable']['version']
+    major = int(latest.split('.')[0])
+    current = next(v for v in known if v['version'] == latest)
+    previous = next(v for v in reversed(known) if int(v['version'].split('.')[0]) == major - 1)
+    tasks = []
+    for release in (current, previous):
+        for kind in ('chrome', 'chromedriver'):
+            item = next(d for d in release['downloads'][kind] if d['platform'] == 'win64')
+            ident = f"{kind}-{release['version']}"
+            tasks.append({'id': ident, 'version': release['version'], 'kind': kind, 'url': item['url'], 'filename': ident + '.zip', 'official_source': 'Google Chrome for Testing official JSON feed'})
+    stable = next(v for v in json.loads((ROOT / 'edge-feed.json').read_bytes()) if v['Product'] == 'Stable')
+    by_major = {}
+    for release in stable['Releases']:
+        if release['Platform'] == 'Windows' and release['Architecture'] == 'x64':
+            by_major.setdefault(int(release['ProductVersion'].split('.')[0]), release)
+    for key in sorted(by_major, reverse=True)[:2]:
+        release = by_major[key]
+        item = next(a for a in release['Artifacts'] if a['ArtifactName'] == 'msi')
+        version = release['ProductVersion']
+        tasks.append({'id': 'edge-' + version, 'version': version, 'kind': 'edge', 'url': item['Location'], 'filename': 'edge-' + version + '.msi', 'expected_sha256': item['Hash'], 'official_source': 'Microsoft Edge enterprise update API'})
+        tasks.append({'id': 'edgedriver-' + version, 'version': version, 'kind': 'edgedriver', 'url': f'https://msedgedriver.microsoft.com/{version}/edgedriver_win64.zip', 'filename': 'edgedriver-' + version + '.zip', 'official_source': 'Microsoft Edge WebDriver CDN'})
+    major_releases = json.loads((ROOT / 'firefox_history-feed.json').read_bytes())
+    current_ff = json.loads((ROOT / 'firefox-feed.json').read_bytes())['LATEST_FIREFOX_VERSION']
+    ff_major = int(current_ff.split('.')[0])
+    security = json.loads((ROOT / 'firefox-security-feed.json').read_bytes())
+    prev_candidates = [v for v in [*major_releases, *security] if v.split('.')[0] == str(ff_major - 1)]
+    prev_ff = max(prev_candidates, key=lambda v: tuple(map(int, v.split('.'))))
+    for version in (current_ff, prev_ff):
+        base = f'https://archive.mozilla.org/pub/firefox/releases/{version}/'
+        sums = get(base + 'SHA256SUMS').read()
+        (ROOT / f'firefox-{version}-SHA256SUMS').write_bytes(sums)
+        suffix = f'win64/en-US/Firefox Setup {version}.exe'
+        checksum = next(line.split()[0] for line in sums.decode().splitlines() if line.endswith(suffix))
+        tasks.append({'id': 'firefox-' + version, 'version': version, 'kind': 'firefox', 'url': base + urllib.parse.quote(suffix), 'filename': 'firefox-' + version + '.exe', 'expected_sha256': checksum, 'official_source': 'Mozilla release archive and SHA256SUMS'})
+    gecko = json.loads(get('https://api.github.com/repos/mozilla/geckodriver/releases/latest').read())
+    (ROOT / 'geckodriver-release.json').write_text(json.dumps(gecko, indent=2))
+    asset = next(v for v in gecko['assets'] if v['name'].endswith('win64.zip'))
+    tasks.append({'id': 'geckodriver', 'kind': 'geckodriver', 'version': gecko['tag_name'], 'filename': asset['name'], 'url': asset['browser_download_url'], 'official_source': 'mozilla/geckodriver official GitHub release', 'expected_sha256': (asset.get('digest') or '').removeprefix('sha256:')})
+    tasks.append({'id': '7zr', 'kind': 'extractor', 'filename': '7zr.exe', 'url': 'https://www.7-zip.org/a/7zr.exe', 'official_source': '7-zip official standalone extractor'})
+    (ROOT / 'download-plan.json').write_text(json.dumps(tasks, indent=2))
+    records = []
+    failures = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+        running = {pool.submit(download, task): task for task in tasks}
+        for future in concurrent.futures.as_completed(running):
+            try:
+                records.append(future.result())
+            except Exception as error:
+                failures.append({'id': running[future]['id'], 'error_type': type(error).__name__, 'error': str(error)})
+            (ROOT / 'download-manifest.json').write_text(json.dumps({'downloads': records, 'failures': failures}, indent=2))
+    if failures:
+        print(json.dumps({'failures': failures}), flush=True)
+        raise SystemExit(1)
+
+
+if __name__ == '__main__':
+    main()

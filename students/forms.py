@@ -19,9 +19,10 @@ class StudentForm(forms.ModelForm):
         self.fields["user"].queryset = accounts.order_by("username")
         self.fields["user"].label = "Linked student login"
         self.fields["user"].required = False
-        self.fields[
-            "user"
-        ].help_text = "Only this Student account can view the profile's allocation and payment details."
+        self.fields["user"].help_text = (
+            "Only this Student account can view the profile's allocation and "
+            "payment details."
+        )
 
     class Meta:
         model = Student
@@ -57,3 +58,41 @@ class StudentForm(forms.ModelForm):
             raise forms.ValidationError("Student ID already registered")
 
         return student_id
+
+    def clean_status(self):
+        status = self.cleaned_data["status"]
+        if self.instance.pk and status == Student.Status.INACTIVE:
+            from allocations.models import Allocation
+
+            allocation = (
+                Allocation.objects.select_related("bed")
+                .filter(
+                    student_id=self.instance.pk,
+                    status=Allocation.AllocationStatus.ACTIVE,
+                )
+                .first()
+            )
+            if allocation:
+                raise forms.ValidationError(
+                    f"Release active bed {allocation.bed.label} before deactivation.",
+                    code="HAS_ACTIVE_ALLOCATION",
+                )
+        return status
+
+    def clean_gender(self):
+        gender = self.cleaned_data["gender"]
+        if self.instance.pk and gender != self.instance.gender:
+            self.instance.validate_allocation_gender(gender)
+        return gender
+
+    def save(self, commit=True):
+        student = super().save(commit=False)
+        if commit:
+            if student._state.adding:
+                student.save()
+            else:
+                # The update screen deliberately removes status. Saving every
+                # model field could restore a concurrent deactivation.
+                student.save(update_fields=set(self.fields) | {"updated_at"})
+            self._save_m2m()
+        return student

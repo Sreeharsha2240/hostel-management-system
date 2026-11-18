@@ -12,10 +12,17 @@ from .models import Bed, Hostel, Room
 class RoomDecisionUnitTests(SimpleTestCase):
     def setUp(self):
         self.hostel = Hostel(pk=1, name="Test", hostel_type=Hostel.HostelType.BOYS)
+        hostel_lock = patch("hostels.models.Hostel.objects.select_for_update")
+        hostel_lock.start()
+        self.addCleanup(hostel_lock.stop)
+        room_filter = patch("hostels.models.Room.objects.filter")
+        room_filter.start().return_value.values_list.return_value.first.return_value = 1
+        self.addCleanup(room_filter.stop)
         self.room = Room(
             pk=2,
             hostel=self.hostel,
             room_number="101",
+            floor=0,
             capacity=2,
             fee_amount=Decimal("1000"),
         )
@@ -78,7 +85,7 @@ class RoomDecisionUnitTests(SimpleTestCase):
             pk=2, hostel=self.hostel, room_number="OLD"
         )
         bed_a, bed_b = Mock(label="OLD-A"), Mock(label="OLD-B")
-        self.beds.select_for_update.return_value.all.return_value = [bed_a, bed_b]
+        self.beds.select_for_update.return_value.order_by.return_value = [bed_a, bed_b]
         self.beds.count.return_value = 2
         Room.save.__wrapped__(self.room)
         self.assertEqual((bed_a.label, bed_b.label), ("101-A", "101-B"))

@@ -6,18 +6,28 @@ A Django/MySQL application for student records, hostel inventory, allocations,
 payments, reports and audit logging. The repository also contains the original
 Part 1 requirements, design and test-plan documents, with revision histories.
 
-## Part 3: 2-6 November 2026
+## Part 3: testing and submission
 
-The [Part 3 team plan](docs/PART3.md) links the instructor instructions,
-assigned issues, case ownership, report destinations and acceptance checks.
-The [Part 3 milestone](https://github.com/Sreeharsha2240/hostel-management-system/milestone/1)
-contains issues #37-#43 for all three contributors. The 61-case Test Case
-Document/RTM and all four required reports are published. The
-[14 November Development review](docs/part3/Development_Review_20261114.md)
-records scoped acceptance and a final **HOLD**, with new defects #78–#80 tracked.
-[Final readiness](docs/part3/HMS21_Final_Readiness.md) is **NOT READY**
-pending defect disposition, execution acceptance, remaining evidence and actual approvals. Sprint 3
-is conditional on actual development spillover.
+The [current assessment](docs/part3/Final_Assessment_20261119.md) reviews the
+original requirements and actual evidence. The verified execution source is
+3a63cae0049565345f0c2f0687fbb9e54c620751. All 13 local gates passed:
+727 mixed methods (726 PASS / one expected timing SKIP), separate timing PASS,
+and 87.10% combined coverage. The clean 415-method isolated selection meets
+the owner-approved function-body target at 88.91%; its separate all-statements
+diagnostic is 56.67%. The full mixed, isolated and nine-owned runs are clean
+on this revision; initial precommit/dirty evidence remains separately archived.
+
+The [61-case document/36-row RTM](docs/part3/Test_Case_Document.md) and all four
+reports are present. Current ledger: 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING;
+original course readiness remains **NOT READY** for unfinished conditions.
+The owner's recorded #43 exception closes the scoped task and skips collecting
+teammate sign-offs and a guide walkthrough; no such approvals are inferred.
+Current browser/scan/load/recovery checks have bounded technical PASS results;
+the real availability window and final CI/merge/main/package checks remain
+pending. Instructor submission/receipt is unrecorded.
+The owner-selected Sprint 2 clip is included at 1:55, about five seconds below
+the nominal two-minute target. See the [plan](docs/PART3.md) and
+[checklist](docs/SUBMISSION_CHECKLIST.md).
 
 ## Team and roles
 

@@ -27,6 +27,7 @@ def roles_required(*roles):
                     record_type="view",
                     record_id=view.__name__,
                 )
+                request._access_denied_audited = True
                 if wants_json(request):
                     return api_error(
                         "Access denied",

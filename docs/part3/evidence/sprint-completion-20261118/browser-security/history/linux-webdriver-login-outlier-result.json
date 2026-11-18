@@ -1,0 +1,15 @@
+{
+  "id": "chrome-157.0.8103.78-linux",
+  "expected_version": "157.0.8103.78",
+  "binary_sha256": "f60cb86024464df9740504a1584b605c2b3cf107625ff11e1da22c875c1627e8",
+  "driver_sha256": "758da273bc800d2c04f43f9ffe9a3e9f4288ea18cc0f8becfe1135e221853011",
+  "status": "FAIL",
+  "capabilities": {
+    "browserName": "chrome",
+    "browserVersion": "157.0.8103.78",
+    "platformName": "linux"
+  },
+  "error_type": "AssertionError",
+  "error": "Admin browser login took 2.356s",
+  "failed_url": "http://127.0.0.1:8109/dashboard/"
+}

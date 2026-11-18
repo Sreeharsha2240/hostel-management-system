@@ -1,0 +1,90 @@
+{
+  "checked_at": "2026-11-18T19:18:57.649634+00:00",
+  "method": "Read-only authenticated Warden GET follow-up against unchanged loopback application; selected headers only, cookies and response bodies withheld",
+  "responses": [
+    {
+      "path": "/static/hms",
+      "status": 404,
+      "final_path": "/static/hms",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Server": "WSGIServer/0.2 CPython/3.14.7"
+      },
+      "body_sha256": "5848263ad739e7dded13c583745e8c224ef7e1c4f65bcc4fe0790f6760a35d75",
+      "body_length": 1828
+    },
+    {
+      "path": "/static/hms/app.js",
+      "status": 200,
+      "final_path": "/static/hms/app.js",
+      "headers": {
+        "Content-Type": "text/javascript",
+        "Server": "WSGIServer/0.2 CPython/3.14.7"
+      },
+      "body_sha256": "d1c232e2c17936bd15a9ff0a67a2f0ef8465d1520471cc88edbbf60645a4e560",
+      "body_length": 793
+    },
+    {
+      "path": "/static/hms/styles.css",
+      "status": 200,
+      "final_path": "/static/hms/styles.css",
+      "headers": {
+        "Content-Type": "text/css",
+        "Server": "WSGIServer/0.2 CPython/3.14.7"
+      },
+      "body_sha256": "aed96601fe30f08a26934148c690020e4210a4902e9946315c3a2adbbe87f996",
+      "body_length": 10560
+    },
+    {
+      "path": "/dashboard/",
+      "status": 200,
+      "final_path": "/dashboard/",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:",
+        "X-Content-Type-Options": "nosniff",
+        "Server": "WSGIServer/0.2 CPython/3.14.7",
+        "Cache-Control": "max-age=0, no-cache, no-store, must-revalidate, private",
+        "Expires": "Wed, 18 Nov 2026 19:18:55 GMT",
+        "Vary": "Cookie",
+        "Cross-Origin-Opener-Policy": "same-origin"
+      },
+      "body_sha256": "c78fa05f6951cee3108f56efa5ceee69f93ff4404b87278e5c21cade91aae2ac",
+      "body_length": 2518
+    },
+    {
+      "path": "/allocations",
+      "status": 200,
+      "final_path": "/allocations/",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:",
+        "X-Content-Type-Options": "nosniff",
+        "Server": "WSGIServer/0.2 CPython/3.14.7",
+        "Cache-Control": "max-age=0, no-cache, no-store, must-revalidate, private",
+        "Expires": "Wed, 18 Nov 2026 19:18:56 GMT",
+        "Vary": "Cookie",
+        "Cross-Origin-Opener-Policy": "same-origin"
+      },
+      "body_sha256": "6373bb0671158f372cbe5c5dfc9cf1a840cdb0f1492db664a1772f75b0d22633",
+      "body_length": 7544
+    },
+    {
+      "path": "/allocations/",
+      "status": 200,
+      "final_path": "/allocations/",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:",
+        "X-Content-Type-Options": "nosniff",
+        "Server": "WSGIServer/0.2 CPython/3.14.7",
+        "Cache-Control": "max-age=0, no-cache, no-store, must-revalidate, private",
+        "Expires": "Wed, 18 Nov 2026 19:18:57 GMT",
+        "Vary": "Cookie",
+        "Cross-Origin-Opener-Policy": "same-origin"
+      },
+      "body_sha256": "50b89d24d10496750c1bc7d42197fe452d5e975f2324dc1bd2b9378d395a17eb",
+      "body_length": 7544
+    }
+  ]
+}

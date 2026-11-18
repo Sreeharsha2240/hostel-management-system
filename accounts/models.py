@@ -24,11 +24,15 @@ class User(AbstractUser):
         return bool(self.locked_until and self.locked_until > timezone.now())
 
     def save(self, *args, **kwargs):
+        if kwargs.get("update_fields") is not None:
+            kwargs["update_fields"] = frozenset(kwargs["update_fields"])
         if self.is_superuser and self.role != self.Role.ADMIN:
             self.role = self.Role.ADMIN
             if kwargs.get("update_fields") is not None:
                 kwargs["update_fields"] = set(kwargs["update_fields"]) | {"role"}
-        if self.role == self.Role.STUDENT and self.is_staff:
+        if self.role == self.Role.STUDENT and (
+            self.is_staff or "role" in (kwargs.get("update_fields") or ())
+        ):
             # Django's admin site uses is_staff as its entry gate. Keep it in
             # sync with HMS roles so demoting an account immediately removes
             # its Django admin access, including when save(update_fields=...)

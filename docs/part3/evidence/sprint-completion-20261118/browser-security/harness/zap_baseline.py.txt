@@ -1,0 +1,130 @@
+"""Private authenticated passive baseline using the official pinned ZAP image.
+
+Do not run until the parent authorizes the frozen source and running app.
+Raw reports, cookies and scanner logs remain in a private directory. Only the
+derived sanitized JSON and source fingerprints are intended for publication.
+"""
+import argparse
+import hashlib
+import http.cookiejar
+import json
+import os
+import re
+import socket
+import subprocess
+import sys
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+
+from matrix import source_snapshot
+from observe_availability import validate_accepted_source
+
+IMAGE = 'ghcr.io/zaproxy/zaproxy@sha256:9624669db72f54d86c4b46a7064518bd9bf79d8c61a4c31befa9923489f328af'
+
+HOOK = r'''import hashlib,json
+from pathlib import Path
+from urllib.parse import urlparse
+ROOT=Path('/zap/wrk')
+def cli_opts(opts):
+    import zap_common
+    original=zap_common.create_start_options
+    def private_start_options(mode,port,extra):
+        options=original(mode,port,extra)
+        options[options.index('-host')+1]='127.0.0.1'
+        options=[o.replace('api.addrs.addr.name=.*','api.addrs.addr.name=^(127\\.0\\.0\\.1|localhost|zap)$') for o in options]
+        return options
+    zap_common.create_start_options=private_start_options
+def zap_started(zap,target):
+    private=json.loads((ROOT/'private-cookie.json').read_text())
+    base=private['base_url'].rstrip('/')
+    assert target.rstrip('/')==base
+    zap.replacer.add_rule('HMS isolated authenticated baseline','true','REQ_HEADER','false','Cookie',private['cookie'],url='^'+__import__('re').escape(base)+'/.*')
+    rows=[]
+    for path in ['/dashboard/','/students/','/students/register/','/beds/','/allocations/','/allocations/create/','/payments/','/payments/create/','/reports/occupancy/','/reports/payment-status/','/static/hms/styles.css','/static/hms/app.js']:
+        messages=zap.core.access_url(base+path,followredirects=True)
+        message=messages[-1]
+        header=message.get('responseHeader','')
+        body=message.get('responseBody','')
+        code=int(header.splitlines()[0].split()[1])
+        protected=not path.startswith('/static/')
+        assert code==200,(path,code)
+        if protected:assert 'Sign out' in body,(path,'Not authenticated')
+        if path=='/dashboard/':assert 'Warden workspace' in body
+        rows.append({'path':path,'status':code,'authenticated_page':protected,'body_sha256':hashlib.sha256(body.encode()).hexdigest()})
+    (ROOT/'authenticated-route-proof.json').write_text(json.dumps({'zap_version':zap.core.version,'routes':rows},indent=2))
+def zap_pre_shutdown(zap):
+    queue=int(zap.pscan.records_to_scan)
+    urls=zap.core.urls()
+    (ROOT/'passive-completion.json').write_text(json.dumps({'passive_queue_remaining':queue,'reached_paths':sorted({urlparse(u).path for u in urls}),'active_scans':zap.ascan.scans},indent=2))
+'''
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=Path, required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    config = json.loads(args.config.read_text())
+    assert config['authorized_frozen_run'] is True
+    base = config['base_url'].rstrip('/')
+    assert urllib.parse.urlparse(base).hostname in ['127.0.0.1', 'localhost']
+    source = Path(config['source_root']).resolve()
+    before = source_snapshot(source)
+    validate_accepted_source(config,before)
+    with socket.socket() as check:
+        check.bind(('127.0.0.1', 18098))
+    args.output.mkdir(parents=True, exist_ok=False)
+    args.output.chmod(0o700)
+    private = args.output / 'private-raw'
+    private.mkdir(mode=0o700)
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), urllib.request.HTTPCookieProcessor(jar))
+    login_url = base + '/login/'
+    html = opener.open(login_url, timeout=15).read().decode()
+    token = re.search(r'name="csrfmiddlewaretoken" value="([^"]+)"', html).group(1)
+    credentials = config['accounts']['warden']
+    body = urllib.parse.urlencode({'username': credentials['username'], 'password': credentials['password'], 'csrfmiddlewaretoken': token}).encode()
+    request = urllib.request.Request(login_url, data=body, headers={'Referer': login_url})
+    response = opener.open(request, timeout=15)
+    assert urllib.parse.urlparse(response.url).path == '/dashboard/'
+    assert b'Warden workspace' in response.read()
+    cookie_file = private / 'private-cookie.json'
+    cookie_file.write_text(json.dumps({'base_url': base, 'cookie': '; '.join(c.name + '=' + c.value for c in jar)}))
+    cookie_file.chmod(0o600)
+    (private / 'hook.py').write_text(HOOK)
+    name = 'hms-zap-baseline-' + datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')
+    command = ['docker', 'run', '--rm', '--name', name, '--network', 'host', '--user', '0:0', '--volume', str(private.resolve()) + ':/zap/wrk:Z', '--workdir', '/zap/wrk', IMAGE, 'zap-baseline.py', '--autooff', '-t', base, '-m', '1', '-T', '5', '-P', '18098', '-I', '-J', 'private-report.json', '-r', 'private-report.html', '--hook', '/zap/wrk/hook.py', '-z', '-config spider.processForm=false -config spider.postForm=false']
+    started = datetime.now(timezone.utc).isoformat()
+    try:
+        with (private / 'baseline.log').open('wb') as log:
+            completed = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, timeout=600)
+    except subprocess.TimeoutExpired:
+        subprocess.run(['docker','stop','--time','10',name],capture_output=True)
+        raise
+    finally:
+        cookie_file.unlink(missing_ok=True)
+    after = source_snapshot(source)
+    raw = json.loads((private / 'private-report.json').read_text())
+    alerts = []
+    for site in raw.get('site', []):
+        for alert in site.get('alerts', []):
+            alerts.append({'rule_id': str(alert['pluginid']), 'name': alert.get('alert', alert.get('name')), 'risk_code': int(alert['riskcode']), 'risk': alert.get('riskdesc'), 'confidence': alert.get('confidence'), 'instances': [{'path': urllib.parse.urlparse(i['uri']).path, 'method': i.get('method'), 'parameter': i.get('param')} for i in alert.get('instances', [])], 'instance_count': int(alert.get('count', len(alert.get('instances', [])))), 'disposition': 'PENDING technical review; raw evidence retained privately'})
+    auth = json.loads((private / 'authenticated-route-proof.json').read_text())
+    finish = json.loads((private / 'passive-completion.json').read_text())
+    assert auth['zap_version'] == '2.17.0'
+    assert finish['passive_queue_remaining'] == 0
+    assert finish['active_scans'] == []
+    summary = {'case': 'TC-SEC-08', 'started_at': started, 'completed_at': datetime.now(timezone.utc).isoformat(), 'tool_version': auth['zap_version'], 'image_digest': IMAGE, 'procedure': 'Official zap-baseline.py, one-minute traditional spider, passive scan only, authenticated same-origin cookie injection, form submission disabled', 'documented_procedure': 'https://www.zaproxy.org/docs/docker/baseline-scan/', 'baseline_exit_code': completed.returncode, 'source_before': before, 'source_after': after, 'source_unchanged': before['pins'] == after['pins'], 'authenticated_routes': auth['routes'], **finish, 'alerts': alerts, 'high_count': sum(a['risk_code'] >= 3 for a in alerts), 'medium_count': sum(a['risk_code'] == 2 for a in alerts), 'raw_report_sha256': hashlib.sha256((private / 'private-report.json').read_bytes()).hexdigest(), 'scope_limits': ['Isolated synthetic loopback HTTP application', 'Authenticated Warden scope', 'No active vulnerability scan', 'Deployment and TLS claims require their own evidence'], 'acceptance': 'PENDING finding disposition; completion and whole-plan acceptance remain separate'}
+    (args.output / 'sanitized-baseline.json').write_text(json.dumps(summary, indent=2))
+    print(json.dumps({'baseline_exit_code': completed.returncode, 'tool_version': auth['zap_version'], 'authenticated_routes': len(auth['routes']), 'high_count': summary['high_count'], 'medium_count': summary['medium_count'], 'passive_queue_remaining': finish['passive_queue_remaining'], 'active_scan_count': len(finish['active_scans']), 'source_unchanged': summary['source_unchanged']}))
+    return 0 if completed.returncode in [0, 2] and summary['source_unchanged'] else 1
+
+
+if __name__ == '__main__':
+    try:
+        raise SystemExit(main())
+    except Exception as error:
+        print(json.dumps({'error_type': type(error).__name__, 'detail': 'See private logs; exception text withheld to avoid exposing credentials'}), file=sys.stderr)
+        raise SystemExit(1)

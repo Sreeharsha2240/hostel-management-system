@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-11-18T18:51:12.035826+00:00",
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.7",
+  "harness_sha256": "68ee305acff126309d07a0a5d5608cfce36242539c7fd8cd3a4227b627d1cc91",
+  "launch_only": false,
+  "database": {
+    "vendor": "mysql",
+    "version": "8.4.9"
+  },
+  "planned_browser_count": 4,
+  "executed_browser_count": 4,
+  "source_unchanged": true,
+  "commit_unchanged": true,
+  "completed_at": "2026-11-18T18:52:19.398689+00:00",
+  "success": true
+}
