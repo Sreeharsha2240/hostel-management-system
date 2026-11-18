@@ -10,6 +10,28 @@ Sprint 2 outcome video as the final demo. It supersedes the earlier candidate
 status. The five-second difference from the nominal two-minute target remains
 disclosed; team and instructor acceptance are separate decisions.
 
+**18 November acceptance review:** The recorded Development review agrees with
+the proposed 34 High / 27 Medium priorities and accepts the original 36 RTM
+mappings as design traceability, but its final build decision is **HOLD**. The
+owner's priority/scope decisions do not supply QA agreement or instructor
+approval. The expanded case register remains 57 OWNER PASS / 2 PARTIAL / 2 NOT
+RUN; TC-SEC-08 is High and PARTIAL, so the submitted High-case exit gate is not
+met. Accepted-pass coverage for all 36 requirements is unverified. #79 and #80
+remain open; the 14 November Development review needs a fresh decision against
+the current source after those defects and review dependencies are resolved.
+The laptop-browser phone-mode check is owner-reported with no retained test
+details; it is not evidence of physical-device behavior. This is an independent
+document review, not a QA or Development sign-off. See the [Development
+review](Development_Review_20261114.md), [owner decisions](evidence/owner-disposition-20261114.md),
+and [current validation report](System_Validation_Report.md).
+
+**18 November #79/#80 fix candidate:** Room and bed saves now reject
+reassignments that would rewrite allocation history; direct queryset/bulk
+updates are guarded too. The focused `HostelModelBehaviorTests` pass 13/13 on a
+local SQLite test database, and Ruff checks pass. MySQL was not available for
+this run, so its row-locking behavior still needs the project's MySQL CI and
+QA retest. GitHub issues #79 and #80 remain open until that review and merge.
+
 The [15 November test follow-up](evidence/remaining-test-gaps-20261115.md)
 records additional Windows and Ubuntu checks, authenticated passive ZAP
 findings and the scheduled working-hours availability observation.
