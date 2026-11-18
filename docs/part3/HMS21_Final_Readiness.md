@@ -38,8 +38,9 @@ checks pass. PR #87's full MySQL suite passed, then its job stopped because the
 15 November coverage source pins were stale. The unchanged 288/294 selections
 have now been remeasured against 18 November pins and both local selections
 passed without database access (95.89% and 96.19% function-body diagnostics).
-PR #87 must pass CI with the refreshed pins before the MySQL locking and
-coverage refresh are considered verified. Issues #79 and #80 remain open for
+CI run [#151](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/44315160437)
+passed both Python 3.11 and 3.14 jobs on PR #87's merge candidate, including the
+MySQL suite and refreshed coverage scopes. Issues #79 and #80 remain open for
 QA retest and acceptance. See the [18 November coverage refresh](evidence/hms19-main-refresh-20261118/README.md).
 
 The [15 November test follow-up](evidence/remaining-test-gaps-20261115.md)
