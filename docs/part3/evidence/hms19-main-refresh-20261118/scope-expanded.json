@@ -473,7 +473,7 @@
     "scripts/part3/test_owned_reports_inputs.py": "eb936bb1e5590085a902cd2179a34028ad45cffffdf6b640574b9367fbc1d147",
     "scripts/part3/test_owned_runner_safety.py": "80c6699b7f5887a420a558579b8c41905c2e6e7a19d45a1d46d68b6cdb0b18ba",
     "scripts/part3/test_owned_transactions.py": "e83e10e9198306eb73fd2b91e69686bfac68559fd7f916324514b7db6c30f7fa",
-    "scripts/run_checks.py": "257fb4306f6943e7396db781f9ee7c47f180878e2851494b17a5f086c1c2ee62",
+    "scripts/run_checks.py": "5886fa4a158b15d43a4a79236065a2e3e62a9b285633224769d87f3591684fa8",
     "students/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "students/admin.py": "4f11570309dcefdb3af7cbd6325c10e79c037297bc8a7f6f2ae7e65a3af51f0d",
     "students/apps.py": "67496af5ea6c06477243e58305d9807c0041068a059331cf0f1a76743bea80c5",
