@@ -1,0 +1,209 @@
+{
+  "downloads": [
+    {
+      "id": "chromedriver-157.0.8103.78",
+      "version": "157.0.8103.78",
+      "kind": "chromedriver",
+      "url": "https://storage.googleapis.com/chrome-for-testing-public/157.0.8103.78/win64/chromedriver-win64.zip",
+      "filename": "chromedriver-157.0.8103.78.zip",
+      "official_source": "Google Chrome for Testing official JSON feed",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\chromedriver-157.0.8103.78.zip",
+      "sha256": "1aef985d02c9118d0034c23bb627e380b05a46950f9e17bb060a4b171056f8f0",
+      "bytes": 11537069,
+      "extract_directory": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chromedriver-157.0.8103.78"
+    },
+    {
+      "id": "chromedriver-158.0.8127.36",
+      "version": "158.0.8127.36",
+      "kind": "chromedriver",
+      "url": "https://storage.googleapis.com/chrome-for-testing-public/158.0.8127.36/win64/chromedriver-win64.zip",
+      "filename": "chromedriver-158.0.8127.36.zip",
+      "official_source": "Google Chrome for Testing official JSON feed",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\chromedriver-158.0.8127.36.zip",
+      "sha256": "ed65348ea2ffce89a0e747f5d20b31c521b59364269d6b2d3a6635872db53017",
+      "bytes": 11767851,
+      "extract_directory": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chromedriver-158.0.8127.36"
+    },
+    {
+      "id": "edgedriver-157.0.4341.60",
+      "version": "157.0.4341.60",
+      "kind": "edgedriver",
+      "url": "https://msedgedriver.microsoft.com/157.0.4341.60/edgedriver_win64.zip",
+      "filename": "edgedriver-157.0.4341.60.zip",
+      "official_source": "Microsoft Edge WebDriver CDN",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\edgedriver-157.0.4341.60.zip",
+      "sha256": "35d49e4c388d5dca135880483c286ccd32c7bc69e80fff94fd53bd247ce0535e",
+      "bytes": 11707133,
+      "extract_directory": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\edgedriver-157.0.4341.60"
+    },
+    {
+      "id": "chrome-157.0.8103.78",
+      "version": "157.0.8103.78",
+      "kind": "chrome",
+      "url": "https://storage.googleapis.com/chrome-for-testing-public/157.0.8103.78/win64/chrome-win64.zip",
+      "filename": "chrome-157.0.8103.78.zip",
+      "official_source": "Google Chrome for Testing official JSON feed",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\chrome-157.0.8103.78.zip",
+      "sha256": "5f6ec40206407112702e163bf694d07f9fdc8ccbd346c70ce61fa62f716493f9",
+      "bytes": 209854321,
+      "extract_directory": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chrome-157.0.8103.78"
+    },
+    {
+      "id": "edgedriver-156.0.4314.84",
+      "version": "156.0.4314.84",
+      "kind": "edgedriver",
+      "url": "https://msedgedriver.microsoft.com/156.0.4314.84/edgedriver_win64.zip",
+      "filename": "edgedriver-156.0.4314.84.zip",
+      "official_source": "Microsoft Edge WebDriver CDN",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\edgedriver-156.0.4314.84.zip",
+      "sha256": "8da63dd8eab4086c37f862bd227cef60263d3fa837f4ccca98590dc2c7889d97",
+      "bytes": 11631106,
+      "extract_directory": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\edgedriver-156.0.4314.84"
+    },
+    {
+      "id": "chrome-158.0.8127.36",
+      "version": "158.0.8127.36",
+      "kind": "chrome",
+      "url": "https://storage.googleapis.com/chrome-for-testing-public/158.0.8127.36/win64/chrome-win64.zip",
+      "filename": "chrome-158.0.8127.36.zip",
+      "official_source": "Google Chrome for Testing official JSON feed",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\chrome-158.0.8127.36.zip",
+      "sha256": "6a8ad290952cc612c7777ffb3eb62f345539a2a1a8d440cfac190c6d36b34d2c",
+      "bytes": 214927656,
+      "extract_directory": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chrome-158.0.8127.36"
+    },
+    {
+      "id": "edge-157.0.4341.60",
+      "version": "157.0.4341.60",
+      "kind": "edge",
+      "url": "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/277044fc-f1ea-4102-a313-b58e7fc47c6c/MicrosoftEdgeEnterpriseX64.msi",
+      "filename": "edge-157.0.4341.60.msi",
+      "expected_sha256": "B86B238035C47673E1C70589A28F2E0961E8CABDD3FF25EDBB1E52239D7ECD76",
+      "official_source": "Microsoft Edge enterprise update API",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\edge-157.0.4341.60.msi",
+      "sha256": "b86b238035c47673e1c70589a28f2e0961e8cabdd3ff25edbb1e52239d7ecd76",
+      "bytes": 215552000
+    },
+    {
+      "id": "edge-156.0.4314.84",
+      "version": "156.0.4314.84",
+      "kind": "edge",
+      "url": "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/5d0b69b9-bfd0-4f2d-8c65-9820a31fcf3c/MicrosoftEdgeEnterpriseX64.msi",
+      "filename": "edge-156.0.4314.84.msi",
+      "expected_sha256": "B7147C54A10A720DB76CB0A5DBAC15869AE3C24CE09D1229409FE7F38115EC28",
+      "official_source": "Microsoft Edge enterprise update API",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\edge-156.0.4314.84.msi",
+      "sha256": "b7147c54a10a720db76cb0a5dbac15869ae3c24ce09d1229409fe7f38115ec28",
+      "bytes": 215224320
+    },
+    {
+      "id": "firefox-160.0.1",
+      "version": "160.0.1",
+      "kind": "firefox",
+      "url": "https://archive.mozilla.org/pub/firefox/releases/160.0.1/win64/en-US/Firefox%20Setup%20160.0.1.exe",
+      "filename": "firefox-160.0.1.exe",
+      "expected_sha256": "768e29619f3463c157f20c5ab1e4d480acfb0d84f1a39ee60ef3151fed91ceb2",
+      "official_source": "Mozilla release archive and SHA256SUMS",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\firefox-160.0.1.exe",
+      "sha256": "768e29619f3463c157f20c5ab1e4d480acfb0d84f1a39ee60ef3151fed91ceb2",
+      "bytes": 95785328
+    },
+    {
+      "id": "7zr",
+      "kind": "extractor",
+      "filename": "7zr.exe",
+      "url": "https://www.7-zip.org/a/7zr.exe",
+      "official_source": "7-zip official standalone extractor",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\7zr.exe",
+      "sha256": "256feca8e274e5da655e2a284fabafd9f554365eb164862089dacd4e8276d282",
+      "bytes": 602624
+    },
+    {
+      "id": "geckodriver",
+      "kind": "geckodriver",
+      "version": "v0.37.1",
+      "filename": "geckodriver-v0.37.1-win64.zip",
+      "url": "https://github.com/mozilla/geckodriver/releases/download/v0.37.1/geckodriver-v0.37.1-win64.zip",
+      "official_source": "mozilla/geckodriver official GitHub release",
+      "expected_sha256": "dfed9315abe8d2fbc1b6161a2ee8002452e79cf05ee92fdc653a4e26bc35edd8",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\geckodriver-v0.37.1-win64.zip",
+      "sha256": "dfed9315abe8d2fbc1b6161a2ee8002452e79cf05ee92fdc653a4e26bc35edd8",
+      "bytes": 1780114,
+      "extract_directory": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\geckodriver"
+    },
+    {
+      "id": "firefox-159.0.1",
+      "version": "159.0.1",
+      "kind": "firefox",
+      "url": "https://archive.mozilla.org/pub/firefox/releases/159.0.1/win64/en-US/Firefox%20Setup%20159.0.1.exe",
+      "filename": "firefox-159.0.1.exe",
+      "expected_sha256": "729af643b8e0a3809d6153a57a448cb96a01e6fa5e2e7ff782152ede6202eadd",
+      "official_source": "Mozilla release archive and SHA256SUMS",
+      "path": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\downloads\\firefox-159.0.1.exe",
+      "sha256": "729af643b8e0a3809d6153a57a448cb96a01e6fa5e2e7ff782152ede6202eadd",
+      "bytes": 94602272
+    }
+  ],
+  "failures": [],
+  "extractor": {
+    "official_url": "https://github.com/ip7z/7zip/releases/download/26.06/7z2606-x64.exe",
+    "sha256": "9b697f65ecc2d9b0152f5ee96d72dde522a7827690349d9307935dacf40f42ec",
+    "extract_only": true
+  },
+  "browser_binaries": [
+    {
+      "id": "chrome-158.0.8127.36",
+      "kind": "chrome",
+      "version": "158.0.8127.36",
+      "binary": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chrome-158.0.8127.36\\chrome-win64\\chrome.exe",
+      "driver": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chromedriver-158.0.8127.36\\chromedriver-win64\\chromedriver.exe",
+      "binary_sha256": "f304cbc534586babe4e1e49817ab6d562f3ac9bf7d0d49f8ebb15295997f8fd6",
+      "driver_sha256": "3229152a2bb622f66a881e013149e91f7cb62b4814ec9d62618a22342515413b"
+    },
+    {
+      "id": "chrome-157.0.8103.78",
+      "kind": "chrome",
+      "version": "157.0.8103.78",
+      "binary": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chrome-157.0.8103.78\\chrome-win64\\chrome.exe",
+      "driver": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\chromedriver-157.0.8103.78\\chromedriver-win64\\chromedriver.exe",
+      "binary_sha256": "9196f87743c5a0baae3589c226ad72941bf6f0eb7669cec548ae1c80b4461c33",
+      "driver_sha256": "e32106adb49b38ed290b89a9e5b039f48a1fb652c0bd94dd880b8d896ee0c966"
+    },
+    {
+      "id": "firefox-160.0.1",
+      "kind": "firefox",
+      "version": "160.0.1",
+      "binary": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\firefox-160.0.1\\core\\firefox.exe",
+      "driver": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\geckodriver\\geckodriver.exe",
+      "binary_sha256": "4ddac0767cb3cf7196d5c3c5fad7fb0a83413453d59ff49a71168311455e1df2",
+      "driver_sha256": "e95b4eac7960ffcd5acbfd92bb7d49d48f99c1d01a20ddd297fef8c80821020d"
+    },
+    {
+      "id": "firefox-159.0.1",
+      "kind": "firefox",
+      "version": "159.0.1",
+      "binary": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\firefox-159.0.1\\core\\firefox.exe",
+      "driver": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\geckodriver\\geckodriver.exe",
+      "binary_sha256": "004d95fb4ebebad4ecfc0b15c23a81ddf13f52c21b3dc35ef4ca3e233f363632",
+      "driver_sha256": "e95b4eac7960ffcd5acbfd92bb7d49d48f99c1d01a20ddd297fef8c80821020d"
+    },
+    {
+      "id": "edge-157.0.4341.60",
+      "kind": "edge",
+      "version": "157.0.4341.60",
+      "binary": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\edge-157.0.4341.60\\application\\Chrome-bin\\157.0.4341.60\\msedge.exe",
+      "driver": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\edgedriver-157.0.4341.60\\msedgedriver.exe",
+      "binary_sha256": "2497874639116d8edc3de34b3fd83f72fa099112a5d2a426e1f08fcf39a99612",
+      "driver_sha256": "f56e074d3a994b37add6a197f5e6c3fc22de8b9443ad3d8858874b56ba7cc4a6"
+    },
+    {
+      "id": "edge-156.0.4314.84",
+      "kind": "edge",
+      "version": "156.0.4314.84",
+      "binary": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\edge-156.0.4314.84\\application\\Chrome-bin\\156.0.4314.84\\msedge.exe",
+      "driver": "C:\\Users\\Deva\\Downloads\\SE_Mini_Project\\.codex-work\\all-sprints-20261118\\browser\\browsers\\edgedriver-156.0.4314.84\\msedgedriver.exe",
+      "binary_sha256": "3cf0e228df549dcf93b8d037264410a4a55dc68a70d1a6e98f5653a523ee72e5",
+      "driver_sha256": "6b211417e8c8b09e9c8c3d39cb928f718708ab47c83f08c2ca15596083fbf26b"
+    }
+  ]
+}

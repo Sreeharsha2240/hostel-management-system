@@ -1,21 +1,73 @@
 # Branch Coverage Report
 
-**19 November source reconciliation:** The initial review-candidate source is
-`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. Frozen-source configured
-mixed branch outcomes, per-module gaps and the separate 415-method isolated
-measurement are being reconciled in the
-[technical evidence](evidence/sprint-completion-20261118/).
-The 13/15 November percentages below remain historical.
+**19 November current measurement.** **Verified execution source:** 0d9adb39f3adcb85e75449c85900b4c283868ded.
+The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
+and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
+record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
+timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
+coverage is **2,994/3,380 statements (88.58%)**, **821/1,000 branch outcomes
+(82.10%)**, and **87.10% combined**. Scripts are included in this mixed
+denominator; these results are not isolated-unit coverage.
 
-Branch coverage counts outcomes, including missing outcomes on partially
-covered lines; partial counts must not be added again to the missing total.
-The owner's function-body interpretation applies to unit statement coverage.
-It does not remove declarative branch outcomes from the branch denominator.
-The SRS and Part 3 PDF provide no separate branch-percentage target; the
-repository's configured gate is >=70% combined statement/branch coverage.
-Mixed coverage and isolated coverage are reported separately. Neither
-establishes final system/RTM acceptance, which remains **NOT READY** under the
-[current requirements assessment](Final_Assessment_20261119.md).
+The full mixed run truthfully records a679ca47 with git_dirty=true;
+its tested bytes were committed as 9b36871 and retained in 0d9adb39.
+It is not relabelled as a clean-commit execution. Both isolated measurements
+ran on clean 0d9adb39, validated all 208 canonical-LF source pins, retained
+their exact method lists and made zero database attempts. The source tree is
+37f15fa2d2acadae9072dd082da1816b3174cf69.
+
+## Current branch outcomes by module
+
+| Module | Mixed covered/measured | Missing | Partial missing | Mixed branch rate | Isolated application covered/measured |
+|---|---:|---:|---:|---:|---:|
+| accounts | 141/150 | 9 | 9 | 94.00% | 133/150 (88.67%) |
+| allocations | 116/120 | 4 | 4 | 96.67% | 108/120 (90.00%) |
+| audit | 26/26 | 0 | 0 | 100.00% | 26/26 (100.00%) |
+| hms | 52/52 | 0 | 0 | 100.00% | 52/52 (100.00%) |
+| hostels | 192/216 | 24 | 18 | 88.89% | 136/216 (62.96%) |
+| payments | 111/120 | 9 | 7 | 92.50% | 110/120 (91.67%) |
+| reports | 20/20 | 0 | 0 | 100.00% | 19/20 (95.00%) |
+| scripts | 68/196 | 128 | 26 | 34.69% | Outside application scope |
+| students | 95/100 | 5 | 3 | 95.00% | 84/100 (84.00%) |
+| Application subtotal | 753/804 | 51 | 41 | 93.66% | 668/804 (83.08%) |
+| Configured mixed total | 821/1,000 | 179 | 67 | 82.10% | Separate application measure |
+
+Partial-missing outcomes are already included in missing outcomes and must not
+be added twice. Of 179 missing mixed outcomes, 128 belong to verification
+scripts and 51 to the application. Every current missing arc and file is in
+the [per-file evidence](evidence/sprint-completion-20261118/technical-verification.json);
+the [isolated evidence](evidence/sprint-completion-20261118/isolated-expanded-summary.json)
+retains selected-method branch counts.
+
+The owner function-body interpretation applies to unit statements. Application
+branches retain their complete denominator. The expanded isolated selection
+covers 668/804 application outcomes (83.08%); scripts are outside that
+application-only diagnostic. Mixed application coverage is 753/804 (93.66%);
+the configured mixed total also includes scripts.
+
+Neither the SRS nor the Part 3 PDF sets a separate branch-percentage target.
+The unchanged repository gate is >=70% combined configured coverage; the
+current mixed result is 87.10%. Branch coverage does not replace executed case
+conditions or browser/load observations. Reproduction commands and versions
+are in the [current record](evidence/sprint-completion-20261118/README.md);
+the clean isolated runs use Windows 11/Python 3.14.7 and coverage 7.16.2.
+
+The [10 November owner-directed closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting teammate QA/Development/PO sign-offs and the
+project-guide walkthrough for this mini-project. That scoped task remains
+CLOSED; no new collection or approval gate is imposed here. These people did
+not thereby approve the project, and original Test Plan/course acceptance
+criteria remain unmet. Instructor submission instructions and a genuine
+submission/receipt remain unrecorded.
+
+Original course readiness is **NOT READY** under the
+[current assessment](Final_Assessment_20261119.md).
+
+Subsequent changes affect a recovery-report literal and the existing hidden-
+console backup launch only; Django application behavior is unchanged. Their
+32 recovery-safety tests passed, but final source-pin refresh, clean regression,
+CI/merge and package verification remain pending. The 0d9adb39 execution hashes
+and results below are preserved and are not relabelled as the successor SHA.
 
 ## Historical measurements and report text
 

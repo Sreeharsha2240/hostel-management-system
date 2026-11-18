@@ -1,27 +1,65 @@
 # Unit Test Report — Part 3
 
-**19 November source reconciliation:** The initial review-candidate source is
-`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. A fresh 415-method
-database-forbidden measurement and the retained original 288-method baseline
-are being reconciled in the [current technical evidence](evidence/sprint-completion-20261118/).
-Fresh totals will be recorded here only after the durable source pins,
-method outcomes and per-file attribution are checked. The 15 November
-956/959 result below is historical; the later 18 November 294-method result
-was 960/998 (96.19%) function-body statements and 960/1,767 (54.33%)
-all-application statements ([evidence](evidence/hms19-main-refresh-20261118/README.md)).
+**19 November current measurement.** **Verified execution source:** 0d9adb39f3adcb85e75449c85900b4c283868ded.
+The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
+and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
+record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
+timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
+coverage is **2,994/3,380 statements (88.58%)**, **821/1,000 branch outcomes
+(82.10%)**, and **87.10% combined**. Scripts are included in this mixed
+denominator; these results are not isolated-unit coverage.
+
+The full mixed run truthfully records a679ca47 with git_dirty=true;
+its tested bytes were committed as 9b36871 and retained in 0d9adb39.
+It is not relabelled as a clean-commit execution. Both isolated measurements
+ran on clean 0d9adb39, validated all 208 canonical-LF source pins, retained
+their exact method lists and made zero database attempts. The source tree is
+37f15fa2d2acadae9072dd082da1816b3174cf69.
+
+| Frozen isolated selection | Exact outcomes | Function-body application statements | All-application-statements companion |
+|---|---:|---:|---:|
+| Original baseline | 288/288 PASS | 1,158/1,740 (66.55%); below 70% | 1,158/2,730 (42.42%) |
+| Additive expanded selection | 415/415 PASS | **1,547/1,740 (88.91%); target met under the owner boundary** | **1,547/2,730 (56.67%)** |
+
+The expansion retains every original baseline identity and all 294 previous
+expanded identities; it adds 121 methods to that previous selection. Both
+selections use the same current denominator. Startup, shared setup and database
+execution receive no selected-method credit. The conservative all-statements
+companion remains below 70%; no pass is claimed on that measure.
 
 The actual [owner function-body interpretation](evidence/hms19-function-body-boundary-20261113.md)
-governs the project unit-logic target; imports/declarations receive no
-method-context credit. The all-statements diagnostic is published separately
-and is not claimed to reach 70%. Full-suite, integration, browser, load and
-concurrency checks remain different evidence scopes. Test counts across
-selections, runs or Python jobs are not added together.
+defines executable callable bodies as application logic. Declarations, imports
+and schema constraints remain outside that denominator; their behavior remains
+subject to tests/review. Expanded evidence retains [per-file lines and contexts](evidence/sprint-completion-20261118/isolated-expanded-summary.json);
+the [baseline](evidence/sprint-completion-20261118/isolated-baseline-summary.json)
+is also retained. Remaining callable-body gaps total 193 statements, including
+126 in hostels, 30 in students and 20 in accounts. The aggregate result does not
+certify every module/path or system requirement.
 
-HMS-19/#41's earlier scoped delivery remains recorded. Final case acceptance,
-actual QA/Development/PO decisions, guide walkthrough and submission remain
-pending; the current whole-plan decision is **NOT READY**. TC-QUAL-04 remains
-PARTIAL because configured style checks do not certify every PEP 8 provision.
-See the [requirements assessment](Final_Assessment_20261119.md).
+The clean unit runs occurred on 18 November UTC / 19 November IST using Windows
+11, Python 3.14.7, Django 5.2.19, coverage 7.16.2, unittest-xml-reporting 4.0.0
+and mysqlclient 2.3.2; no DB connection was attempted. Commands, settings,
+versions and exact hashes are in the [reproduction record](evidence/sprint-completion-20261118/README.md).
+The unchanged attribution harness and .coveragerc remain in use.
+
+HMS-19/#41's scoped delivery remains complete. TC-QUAL-04 stays PARTIAL for PEP 8
+assessment beyond configured checks; unit coverage itself meets the recorded
+owner interpretation. The [10 November owner-directed closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting teammate QA/Development/PO sign-offs and the
+project-guide walkthrough for this mini-project. That scoped task remains
+CLOSED; no new collection or approval gate is imposed here. These people did
+not thereby approve the project, and original Test Plan/course acceptance
+criteria remain unmet. Instructor submission instructions and a genuine
+submission/receipt remain unrecorded.
+
+Original course readiness remains **NOT READY** under the
+[current requirements assessment](Final_Assessment_20261119.md).
+
+Subsequent changes affect a recovery-report literal and the existing hidden-
+console backup launch only; Django application behavior is unchanged. Their
+32 recovery-safety tests passed, but final source-pin refresh, clean regression,
+CI/merge and package verification remain pending. The 0d9adb39 execution hashes
+and results below are preserved and are not relabelled as the successor SHA.
 
 ## Historical measurements and report text
 

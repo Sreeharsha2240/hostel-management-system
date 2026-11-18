@@ -1,37 +1,61 @@
 # System Validation Report — HMS Part 3
 
-**19 November validation assessment: NOT READY.** The application/test freeze
-is `a679ca47c0d642f89b708b9e8473d3a2c62697a7`.
-All 61 case records, 36 original RTM mappings and four required reports are
-published. The [current requirements assessment](Final_Assessment_20261119.md)
-and [technical evidence](evidence/sprint-completion-20261118/) distinguish
-frozen-source verification from retained historical owner observations.
+**19 November assessment: NOT READY against the submitted Test Plan.**
+**Verified execution source:** 0d9adb39f3adcb85e75449c85900b4c283868ded.
+The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
+and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
+record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
+timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
+coverage is **2,994/3,380 statements (88.58%)**, **821/1,000 branch outcomes
+(82.10%)**, and **87.10% combined**. Scripts are included in this mixed
+denominator; these results are not isolated-unit coverage.
+
+The full mixed run truthfully records a679ca47 with git_dirty=true;
+its tested bytes were committed as 9b36871 and retained in 0d9adb39.
+It is not relabelled as a clean-commit execution. Both isolated measurements
+ran on clean 0d9adb39, validated all 208 canonical-LF source pins, retained
+their exact method lists and made zero database attempts. The source tree is
+37f15fa2d2acadae9072dd082da1816b3174cf69.
 
 | Current validation measure | Disposition |
 |---|---|
 | Original 33 cases | 32 OWNER PASS / 1 PARTIAL. QUAL-01's aggregate pass is corrected to its primary walkthrough's PARTIAL. |
-| Expanded 61 cases | 56 OWNER PASS (91.80%) / 3 PARTIAL (4.92%) / 2 NOT RUN (3.28%) / 0 BLOCKED. OWNER PASS/PARTIAL: 59/61 (96.72%); this is not complete expected-condition execution. |
-| Partial cases | TC-QUAL-01 (reported first-use guide task with missing provenance and incomplete original browser coverage), TC-QUAL-04 (configured style checks only), TC-SEC-08 (bounded passive scan and findings). |
-| Not-run cases | TC-QUAL-02 (no valid full working-day availability measurement); TC-QUAL-03 (complete current desktop/browser/OS workflow evidence pending). |
-| Current-source checks / unit measurement | Fresh results awaiting durable evidence reconciliation here. Do not apply the 13/15 November coverage figures to this source. |
-| Current browser/scan/load revalidation | Running/pending review. No completion or case pass is inferred from starting a run. |
-| High-priority exit gate | NOT MET: TC-SEC-08 is High/PARTIAL. PO and 14 November Development agree to 34 High / 27 Medium; final QA agreement and accepted passage remain pending. |
-| Defect gate | Full severity-reviewed inventory and final retests/decisions pending. #79/#80 corrections are implemented on the freeze, with independent/browser/CI disposition still pending. |
-| Requirement acceptance | All 36 original mappings preserved and accepted as design traceability by PO/recorded Development review. Accepted passed-case coverage remains UNVERIFIED. |
-| Final acceptance and submission | Actual final QA/Development/PO decisions, actual project-guide walkthrough, instructor late-submission/channel/deadline/format decisions, accepted package and genuine receipt remain pending. |
+| Expanded 61 cases | 56 OWNER PASS (91.80%) / 2 current Codex technical PASS (3.28%) / 2 PARTIAL (3.28%) / 1 PENDING (1.64%). Passing observations: 58/61 (95.08%); passing/partial: 60/61 (98.36%). |
+| Partial cases | QUAL-01 (reported new-Warden guide task with missing provenance) and QUAL-04 (broader PEP 8 assessment beyond configured checks). |
+| Pending case | QUAL-02: real observer installed for 19 November 08:00-20:00 IST; exported WAITING snapshot has zero probes and no availability result. |
+| Unit target | 415/415 isolated PASS, no DB attempts; 1,547/1,740 function-body statements (88.91%) under the owner boundary. All-statements companion 56.67%. |
+| Current browser/scan/load/recovery execution | Twelve workflows/228 observations PASS; real 901.003-second idle PASS; SEC-08 bounded baseline/triage technical PASS with retained Medium/Low findings; both 600-second/50-user workloads PASS and fresh owned recovery PASS. [Execution index](evidence/sprint-completion-20261118/browser-security/README.md), [load](evidence/sprint-completion-20261118/operations/load-results.json), [recovery](evidence/sprint-completion-20261118/operations/recovery-results.json). |
+| High-priority original exit gate | SEC-08 now has bounded technical PASS, superseding its older partial procedure result. Original case/priority acceptance remains distinct; OPEN #90 still prevents the separate zero-open-High gate. |
+| Current defect assessment | [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) is OPEN and includes High technical severity assessments. Focused fixes, 26 independently reviewed tests and full mixed checks are recorded, while clean CI/merge/final acceptance is unchecked. No zero-open-High claim is made; #79/#80 retain their own scope. |
+| RTM acceptance | All 36 original mappings preserved and accepted as design traceability by PO/recorded Development review; accepted passed-case coverage UNVERIFIED. |
+| Owner-scoped #43 task | CLOSED by the actual 10 November exception skipping collection of teammate sign-offs and guide walkthrough; no reopening/new approval gate. |
+| Course submission | Instructor late-submission/channel/deadline/format decisions, accepted course package and genuine submission/receipt unrecorded. |
 
-The primary [QUAL-01 walkthrough](evidence/issue39/usability-walkthrough-20261109.md)
-records overall PARTIAL and an owner-reported 93-second task. Exact guide
-revision, participant code and start/end timing trace were not retained.
-Visible automated registration/allocation is supporting workflow evidence,
-not an independent new-Warden guide session or project-guide acceptance.
+The [primary QUAL-01 walkthrough](evidence/issue39/usability-walkthrough-20261109.md)
+records overall PARTIAL and a 93-second owner-reported task, without exact guide
+revision, participant code or start/end trace. Automated registration/allocation
+does not establish a new participant's guide use or project-guide acceptance.
+
+The [10 November owner-directed closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting teammate QA/Development/PO sign-offs and the
+project-guide walkthrough for this mini-project. That scoped task remains
+CLOSED; no new collection or approval gate is imposed here. These people did
+not thereby approve the project, and original Test Plan/course acceptance
+criteria remain unmet. Instructor submission instructions and a genuine
+submission/receipt remain unrecorded.
 
 The [owner-selected Sprint 2 clip](evidence/sprint-recordings/Sprint2_Outcome_Demo.md)
-is included at 115.148 seconds (1:55). Older missing-video statements below
-are superseded; team/instructor acceptance of content and the approximately
-five-second shortfall from the two-minute minimum remains pending.
-SAD section 4.4 request-ID logging/monitoring remain a disclosed PO limitation.
-Historical entry approval and source/tool/environment limits are preserved.
+is included at 115.148 seconds (1:55), approximately five seconds below the
+nominal two-minute target. Owner publication is recorded; no instructor acceptance
+of the shortfall is inferred. SAD section 4.4 request-ID logging/monitoring
+remain an owner-disclosed limitation. Historical entry, source and tool/
+environment limits remain visible in the [current assessment](Final_Assessment_20261119.md).
+
+Subsequent changes affect a recovery-report literal and the existing hidden-
+console backup launch only; Django application behavior is unchanged. Their
+32 recovery-safety tests passed, but final source-pin refresh, clean regression,
+CI/merge and package verification remain pending. The 0d9adb39 execution hashes
+and results below are preserved and are not relabelled as the successor SHA.
 
 ## Historical measurements and report text
 

@@ -1,0 +1,18 @@
+{
+  "case": "TC-QUAL-02",
+  "state": "WAITING",
+  "result": "PENDING",
+  "updated_at": "2026-11-19T00:37:08.012971+05:30",
+  "window_start": "2026-11-19T08:00:00+05:30",
+  "window_end": "2026-11-19T20:00:00+05:30",
+  "recorded_slots": 0,
+  "planned_slots": 1440,
+  "successes": 0,
+  "failures": 0,
+  "missing": 0,
+  "success_percent_of_all_planned_slots": 0.0,
+  "minimum_successes": 1426,
+  "source_unchanged": true,
+  "complete": false,
+  "observer_pid": 2322483
+}

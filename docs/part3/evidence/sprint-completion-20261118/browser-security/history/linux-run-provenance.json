@@ -1,0 +1,56 @@
+[
+  {
+    "run": "linux-frozen-0d9adb3",
+    "started_at": "2026-11-18T18:51:37.594766+00:00",
+    "os": "Linux-7.1.7-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "python": "3.14.7",
+    "harness_sha256": "3a0031601c56708dd4de69a59807891c2b876c61a2913b5f0b0ba0c808504556",
+    "launch_only": false,
+    "database": {
+      "vendor": "mysql",
+      "version": "8.4.13"
+    },
+    "planned_browser_count": 6,
+    "executed_browser_count": 2,
+    "source_unchanged": true,
+    "commit_unchanged": true,
+    "completed_at": "2026-11-18T18:52:25.496371+00:00",
+    "success": false
+  },
+  {
+    "run": "linux-frozen-0d9adb3-remaining",
+    "started_at": "2026-11-18T18:56:31.379582+00:00",
+    "os": "Linux-7.1.7-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "python": "3.14.7",
+    "harness_sha256": "ba41f4444fee4287038015fd18f552c290353d7fc064d4f382ce2c37acd74201",
+    "launch_only": false,
+    "database": {
+      "vendor": "mysql",
+      "version": "8.4.13"
+    },
+    "planned_browser_count": 5,
+    "executed_browser_count": 2,
+    "source_unchanged": true,
+    "commit_unchanged": true,
+    "completed_at": "2026-11-18T18:57:31.693364+00:00",
+    "success": false
+  },
+  {
+    "run": "linux-frozen-0d9adb3-final-four-v2",
+    "started_at": "2026-11-18T19:02:04.505534+00:00",
+    "os": "Linux-7.1.7-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "python": "3.14.7",
+    "harness_sha256": "f3afe624d892a5611ba2a918160b5583548c08ea02ebd7e0287e3c4c1c919a04",
+    "launch_only": false,
+    "database": {
+      "vendor": "mysql",
+      "version": "8.4.13"
+    },
+    "planned_browser_count": 4,
+    "executed_browser_count": 4,
+    "source_unchanged": true,
+    "commit_unchanged": true,
+    "completed_at": "2026-11-18T19:06:27.308426+00:00",
+    "success": true
+  }
+]

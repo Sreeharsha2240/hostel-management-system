@@ -1,0 +1,106 @@
+{
+  "case": "TC-OPS-01",
+  "technical_result": "PASS",
+  "acceptance": "Pending actual case-owner/team acceptance; no human approval supplied",
+  "started_at": "2026-11-18T19:18:14.530448+00:00",
+  "completed_at": "2026-11-18T19:19:47.520353+00:00",
+  "runtime_commit": "0d9adb39f3adcb85e75449c85900b4c283868ded",
+  "actual_checkout_head": "0d9adb39f3adcb85e75449c85900b4c283868ded",
+  "checkout_dirty": true,
+  "runtime_file_hash_count": 260,
+  "runtime_files_unchanged": true,
+  "orchestrator_sha256": "f5292726f538aecc6515c2f7ff1d1e196a64b4366c4b2688e3fd6bc53ed4f1cb",
+  "backup_helper_sha256": "9adf9bdf5f1b92a8bddbe2c8c0f101eed518831d1d2e7b062856fdd8a448bec8",
+  "recovery_runner_sha256": "a1c185caf8f22c7a8853e7bab21d1a521dee71fa2bb9fa14fad01d8fd0089b26",
+  "python_version": "3.14.7",
+  "mysql_version": "8.4.9 (owned server startup log)",
+  "natural_daily_trigger": {
+    "observed": true,
+    "manually_started": false,
+    "last_run": "2026-11-19T00:49:27.0000000+05:30",
+    "last_result": 0,
+    "daily_interval": "1",
+    "task_removed_after_demonstration": true
+  },
+  "backup_evidence": {
+    "sandbox": {
+      "status": "PASS",
+      "completed_at": "2026-11-18T19:19:35.006055+00:00",
+      "source_quiescent_during_backup": true,
+      "dump_sha256": "b8b37f0fa5daa55e76bc3b3f5eed3e55cb86d4a53280f5ca3cd4f959883bcdee",
+      "dump_bytes": 30063,
+      "domain_rows": {
+        "students_student": 3,
+        "hostels_bed": 4,
+        "allocations_allocation": 2,
+        "payments_payment": 2,
+        "audit_auditevent": 3
+      }
+    },
+    "browser_source": {
+      "status": "PASS",
+      "completed_at": "2026-11-18T19:19:42.955925+00:00",
+      "source_quiescent_during_backup": true,
+      "dump_sha256": "1031bb1d6059138c826d709e1bddc6a68f4ce7c8b434c04baecb74d76ffa7d0c",
+      "dump_bytes": 68837,
+      "domain_rows": {
+        "students_student": 25,
+        "hostels_bed": 28,
+        "allocations_allocation": 19,
+        "payments_payment": 15,
+        "audit_auditevent": 259
+      }
+    }
+  },
+  "populated_restore": {
+    "recovery_status": "PASS",
+    "backup_age_seconds": 3.299,
+    "source_unchanged": true,
+    "all_table_counts_rows_and_schema_match": true,
+    "logical_consistency": {
+      "violations": {
+        "orphan_allocation_student": 0,
+        "orphan_allocation_bed": 0,
+        "orphan_payment_student": 0,
+        "orphan_adjustment_original": 0,
+        "orphan_bed_room": 0,
+        "orphan_room_hostel": 0,
+        "orphan_student_user": 0,
+        "orphan_audit_actor": 0,
+        "duplicate_active_student": 0,
+        "duplicate_active_bed": 0,
+        "active_allocation_bed_not_reserved": 0,
+        "occupied_bed_without_active_allocation": 0,
+        "invalid_adjustment_original_student_or_date": 0,
+        "over_reversed_payment": 0,
+        "invalid_receipt_format": 0,
+        "duplicate_receipt": 0,
+        "receipt_sequence_or_gap": 0
+      },
+      "all_consistency_checks_pass": true,
+      "receipt_count": 2,
+      "last_receipt_value": 2
+    },
+    "data_loss_at_comparison": "none; all rows and schema digests match the unchanged source"
+  },
+  "cleanup": {
+    "owned_task_removed": true,
+    "owned_sandbox_stopped": true,
+    "existing_default_task_definition_unchanged": true,
+    "independently_observed_owned_task_absent": true,
+    "independently_observed_owned_port_process_count": 0,
+    "independently_observed_owned_pid_file_absent": true,
+    "browser_source_process_retained": true,
+    "existing_default_task_state": "Ready",
+    "verified_at": "2026-11-18T19:21:04.754183+00:00"
+  },
+  "live_application_seeded_or_restored": false,
+  "private_report_sha256": "5e739abdc0421964cf43e7645bd6d132b3145804abc905facde8c6665cb92e98",
+  "preflight_history": "One earlier private-orchestrator attempt refused before resource creation because the least-privilege app account cannot USE mysql; the read-only identity query was corrected to use hms. That refused attempt is retained privately.",
+  "limitations": [
+    "One actual natural daily trigger was observed; the temporary task was then removed before its disposable source shut down. This does not establish an ongoing backup schedule for the transient browser deployment.",
+    "Populated restore was performed only on a separate owned loopback sandbox. The browser source received only read-only backup/snapshot operations.",
+    "The pre-existing original-checkout/global-MySQL daily task was neither replaced nor executed by this demonstration.",
+    "Original MySQL8.0 target differs from actual MySQL8.4.9."
+  ]
+}

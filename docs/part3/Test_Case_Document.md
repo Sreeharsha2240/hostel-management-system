@@ -1,19 +1,23 @@
 # HMS Test Case Document and Requirements Traceability Matrix
 
-**19 November current assessment:** **56 OWNER PASS / 3 PARTIAL / 2 NOT RUN /
-0 BLOCKED**, with **32 OWNER PASS / 1 PARTIAL** among the original 33.
+**19 November current assessment:** **56 OWNER PASS / 2 technical PASS / 2 PARTIAL /
+1 PENDING**, with **32 OWNER PASS / 1 PARTIAL** among the original 33.
 TC-QUAL-01 is PARTIAL after reconciliation with its primary walkthrough;
 the 93-second guide-task result remains an attributed owner report.
-TC-SEC-08 and TC-QUAL-04 are also PARTIAL. Availability TC-QUAL-02 and
-desktop/browser/OS TC-QUAL-03 remain NOT RUN pending complete reviewed evidence.
+TC-SEC-08 and desktop/browser/OS TC-QUAL-03 now have technical PASS
+observations executed by Codex. QUAL-04 remains PARTIAL for broader style
+assessment. QUAL-02's real 08:00-20:00 IST observation is PENDING, with the
+exported snapshot WAITING at zero probes.
 OWNER PASS is an execution attribution, not accepted QA passage.
 
-The initial review-candidate source is
-`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. See the
+The current application/test freeze is
+`0d9adb39f3adcb85e75449c85900b4c283868ded`. See the
 [current requirements assessment](Final_Assessment_20261119.md) and
 [current technical evidence](evidence/sprint-completion-20261118/).
-Fresh desktop workflows, passive scan and load work are pending until actual
-results are reconciled; their commencement supplies no pass.
+Twelve versioned browser workflows, the real 901.003-second idle test, bounded
+passive ZAP baseline/triage, both sustained workloads and fresh sandbox recovery
+now have actual technical PASS evidence. Final source-pin refresh/clean checks
+remain pending after a later recovery metadata-only correction.
 
 All 61 cases and 36 original RTM mappings remain preserved. The PO and
 [14 November Development review](Development_Review_20261114.md) agree to
@@ -29,13 +33,25 @@ SRS portability conditions for desktop browsers and Windows/Linux remain in
 scope. Historical dates, tools, source hashes and outcomes in the case
 records remain attributed to their actual executions.
 
+**Current technical verification:** 13 local gates PASS; 727 mixed methods
+(726 PASS / one expected timing SKIP), separate timing PASS. Clean isolated
+415/415 PASS, no DB attempts, 208 verified pins, 1,547/1,740 function-body
+statements (88.91%) under the owner boundary; all-statements companion 56.67%.
+The 288-method baseline remains intact and passes but is below target at
+66.55%. The full mixed run retains actual a679ca47 dirty/precommit provenance.
+
+**Owner scope exception:** The [10 November #43 closure](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting final teammate sign-offs and the project-guide
+walkthrough. Those original course criteria remain unmet; the scoped task
+stays closed and no approval/collection gate is added here.
+
 ## 1. Document information and revision history
 
 | Field | Value |
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
 | Revision | 19 November current-status reconciliation; historical execution records retain their own dates and sources |
-| Current initial review-candidate source | `a679ca47c0d642f89b708b9e8473d3a2c62697a7`; earlier inspected baseline `70c9fe20e462eb0b052e15434f19b347a793afa1` remains historical |
+| Current application/test freeze | `0d9adb39f3adcb85e75449c85900b4c283868ded`; earlier inspected baseline `70c9fe20e462eb0b052e15434f19b347a793afa1` remains historical |
 | Nine-case owner follow-up tested baseline | `6636098cb728aa17c2abf5e42c358a5d400261e7`; see section 5.6 |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
 | Requirements | All original REQ-1..24 and NFR-1..12; separate SRS quality, BR and SO mapping |
@@ -53,6 +69,7 @@ records remain attributed to their actual executions.
 | 8 November, HMS-17 follow-up / PR #66 | Vaishnavi (publication); Devansh with three independent automated reviewers (technical reconciliation) | Added seven screenshots and historical raw CI; corrected unsupported complete passes; accepted S1-07/S2-07 for their existing automated scope, without claiming a new execution |
 | 9 November, HMS-17 follow-up | Vaishnavi | Added Warden first-use and student-registration evidence; updated the current owner disposition and derived case metrics while preserving historical execution records |
 | 9 November, HMS-16 transport/ZAP follow-up | Sreeharsha owner evidence | Added isolated loopback HTTPS/TLS and passive ZAP evidence; recorded TC-SEC-06 as partial against its deployed-candidate prerequisite, TC-SEC-08 as partial pending QA disposition, and recalculated expanded totals |
+| 19 November, current-source reconciliation | Codex, under the user\'s authorization across assignees | Reconciled source 0d9adb39, 13 local gates, clean 288/415 isolated measurements, primary QUAL-01 PARTIAL, actual #43 owner exception and OPEN #90. Historical executions remain unchanged; no teammate or instructor approval is invented. |
 
 Devansh authorized finishing and merging this documentation issue without collecting additional teammate messages. This is delivery authorization; no teammate signature, retrospective pre-execution QA approval, instructor waiver or final QA/Dev/PO acceptance is invented. Contributor ownership of execution and the remaining reports stays as recorded in issues #38-#43.
 
@@ -73,6 +90,8 @@ Original execution ownership remains Sreeharsha's 12 authentication/security cas
 | Status | Meaning |
 |---|---|
 | OWNER PASS | A retained owner execution observation; linked evidence/limits and independent acceptance must still be reviewed. It is not final QA acceptance. |
+| PASS | A complete bounded technical execution by the recorded actual executor, including Codex automation. It is not another person\'s observation, signature or final acceptance. |
+| PENDING | A real execution job is installed/waiting or running, with no completed result. It is not counted as a pass. |
 | PARTIAL | Some expected conditions have evidence; the full planned case is not established. |
 | NOT RUN | No sufficiently scoped case-execution record is available; separately passing companions are shown without relabelling the case. |
 | BLOCKED | A necessary input/decision for the complete case is absent. |
@@ -158,6 +177,43 @@ unproven; the original browser/load/recovery evidence is not relabelled.
 
 The [8 November follow-up review](evidence/issue39/followup-20261108.md) links seven new screenshot observations and the complete original PR #58 CI bundles. The clean tested source is `32e6f563335a1ed20e2c6f619ba7e82de56dbd1f`, executed 7 November; it is not a fresh PR #66 browser run. Source and raw JUnit reconciliation establish S1-07 (five methods) and S2-07 (six methods) for their automated integration scope in both Python jobs. Their case records now bind actual steps/results to that historical execution. A separately named rerun is not required merely because the recipe was specified later. S1-07 uses the observed Student fixture; S2-07 navigation means rendered link presence, with response-wide date assertions. No complete original browser/portability case or whole-plan acceptance is inferred. Other proposed complete-pass changes lack sufficient scoped evidence and retain NOT RUN. #39 remains OPEN.
 
+### 5.8 Current-source automated companions - 18 November UTC / 19 November IST
+
+The [727 exact outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
+and [source/coverage record](evidence/sprint-completion-20261118/technical-verification.json)
+supplement the historical executions below. All 13 local gates passed, with
+726 PASS / one expected timing SKIP and separate timing PASS. The mixed run
+records a679ca47 dirty/precommit; those tested bytes became 9b36871 and remain
+in the 0d9adb39 freeze. Clean 288/415-method isolated measurements independently
+verify 208 source pins. This section attributes execution to Codex under the
+user's cross-assignee authorization, not to a teammate who did not run it.
+
+| Existing case / original design scope | Current automated companion evidence | Remaining distinction |
+|---|---|---|
+| AUTH-01..04, USR-01, SEC-01/04/05/07; SAD auth/users contracts | Account HTML/JSON tests cover credential/lock responses, session/logout, unique users, roles, partial edits, password hashing, CSRF, audited denial and concurrent protected-state safeguards. | Server/test-client results do not by themselves establish original browser journey timing, real idle/Back behavior or human acceptance. |
+| STU-01..05, SEC-02/03 and REG-S2-06/07; SAD student/self-view contracts | Student HTML/JSON tests cover required/duplicate/immutable fields, searches/updates/deactivation, linked own-data access and strict payload/role/CSRF handling. | Actual browser script nonexecution and complete versioned flows need their real browser observations. |
+| HST-01/02, REG-S1-03/04 and ALC-01..06; inventory/allocation integrity | Model/form/admin/API and race regressions exercise capacity, immutable historical location, bulk/partial-edit guards and locking. Two availability regressions failed before correction and passed after; full mixed suite retains them. | These tests do not supply a sustained load run or another owner's personal attestation. |
+| PAY-01/02, RPT-01 and payment/report regression recipes | Current automated evidence covers exact JSON/HTML contracts, payment/reference bounds, adjusting entries, report formats and Unicode/multiline PDF handling with explicit unsupported-codepoint fallback. | Versioned browser downloads and sustained normal/volume workloads remain separate evidence. |
+| Verification/recovery safety | Actual short-path regression verifies consistent text/XML/JSON exports and retained raw data. Database-creation races refuse pre-existing targets; active Maintenance reservations are assessed consistently. | Mocked/runner checks are not a new populated restore or naturally scheduled backup. |
+
+All 36 original requirement mappings remain unchanged. These supplementary
+methods are not added to the 61 case count, and no case is promoted from
+PARTIAL/NOT RUN merely because one companion passed. Current defect/retest
+tracking is [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90),
+separate from the earlier #79/#80 inventory/history records.
+
+
+### 5.9 Current browser, load and recovery executions
+
+Actual executor: Codex automation under the user's cross-assignee authorization.
+These are source-0d9adb39 executions, with actual dirty/clean state and hashes
+retained by each artifact; a later recovery metadata-only correction awaits
+final source-pin refresh and clean regression. They are not teammate attestations.
+
+- [Twelve browser workflows and real session test](evidence/sprint-completion-20261118/browser-security/README.md): 228 observations, actual script nonexecution/CSRF/privacy/Back checks and 901.003 seconds with zero application requests before protected revisit redirected to login. Historical login-control outlier 2.356176 seconds remains retained; later NavigationTiming and WebDriver-inclusive measurements are labelled separately.
+- [Fresh sustained workloads](evidence/sprint-completion-20261118/operations/load-results.json): 50 real full-duration users per scenario; normal 28,952 HTTP requests, maximum 1,599 ms; volume 28,806 requests with 5,000 students/2,000 beds, maximum 1,519 ms. Both have zero errors and 100% within two seconds; minimum per-user measured intervals exceed 600 seconds. Compressed raw samples and independent reparse are retained.
+- [Fresh backup/recovery](evidence/sprint-completion-20261118/operations/recovery-results.json): real natural daily trigger on a new owned sandbox, populated restore from a 3.299-second-old backup, matching counts/row/schema digests and 17 zero-violation checks; separate stable read-only browser backup. Owned temporary task/server cleaned up; legacy task unchanged. This removed demonstration task does not establish an ongoing current-browser daily schedule.
+
 ## 6. Counts, metrics and defect/retest interpretation
 
 ### 6.1 Original test-case disposition
@@ -183,28 +239,30 @@ No source-bound original observation is rewritten as a fresh execution.
 | Disposition | Cases | Percentage |
 |---|---:|---:|
 | OWNER PASS | 56 | 91.80% |
-| PARTIAL | 3 | 4.92% |
-| NOT RUN | 2 | 3.28% |
-| BLOCKED | 0 | 0.00% |
+| PASS - current Codex technical execution | 2 | 3.28% |
+| PARTIAL | 2 | 3.28% |
+| PENDING | 1 | 1.64% |
 | **Total** | **61** | **100.00%** |
 
-OWNER PASS or PARTIAL case dispositions cover 59/61 (96.72%). This does not establish complete
-execution or accepted passage of every expected condition. TC-QUAL-01,
-TC-QUAL-04 and TC-SEC-08 are PARTIAL; TC-QUAL-02 and TC-QUAL-03 remain NOT RUN.
-Fresh desktop workflows, passive scan and load results are pending review.
-The 15 November page checks and uncompleted previous-Edge run are supporting
-observations, not a complete latest-two-browser/Windows/Linux workflow case.
+The two current technical passes are TC-QUAL-03 (all twelve versioned
+Windows/Linux workflows) and TC-SEC-08 (completed bounded baseline/triage).
+They are not attributed to Vaishnavi or another teammate. QUAL-01 usability
+and QUAL-04 broader style assessment remain PARTIAL. QUAL-02 is PENDING:
+the real observer is installed, but the exported snapshot has zero probes and
+cannot establish availability. Passing observations total 58/61 (95.08%);
+passing or partial dispositions total 60/61 (98.36%). Original 33 remain
+32 OWNER PASS / 1 PARTIAL.
 
-All ten retained and fourteen added regression recipes retain OWNER PASS
-observations at their recorded source/date. Historical failed volume,
-partial rollback browser evidence and passing companion assertions remain
-separate. The isolated TLS conditions support TC-SEC-06 for loopback scope.
-The guide-based first-use report is distinct from project-guide acceptance.
-The exact unit measurement and conservative companion are in the
-[Unit Test Report](Unit_Test_Report.md); configured style checks do not
-certify every PEP 8 provision.
+Historical owner observations, failed load attempts, the earlier partial scan
+and raw browser/control timing outliers remain at their actual source/date.
+The new executions do not retroactively approve entry criteria or create
+human signatures. The #43 owner exception skips collecting teammate sign-offs
+and the guide walkthrough while retaining unmet original course criteria.
 
 ### 6.3 Defect, retest and requirement-coverage metrics
+
+**19 November current inventory:** [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) is OPEN and consolidates verified cross-sprint defects beyond #79/#80, including two High technical assessments. Fixes and local retests are recorded; final clean CI/merge acceptance remains unchecked. The historical four-closed-issue statistics below do not establish zero current open High defects. GitHub currently records #79 CLOSED (18 November 18:34:53 UTC) and #80 OPEN; neither state is inferred from local testing.
+
 
 Test Plan section 14 also requires defect density (defects/module), defect aging (days open), and requirement coverage.
 
@@ -279,9 +337,9 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-REG-S2-14](#case-tc-reg-s2-14) - Report empty/filter/format/method boundaries | Devansh | Medium (#63 technical review) | OWNER PASS |
 | [TC-REG-S2-15](#case-tc-reg-s2-15) - Malformed JSON is a safe validation error | Devansh | High (#63 technical review) | OWNER PASS |
 | [TC-REG-S2-16](#case-tc-reg-s2-16) - Typed JSON dates/references keep correct errors and state | Devansh | High (#63 technical review) | OWNER PASS |
-| [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | PARTIAL |
-| [TC-QUAL-02](#case-tc-qual-02) - Working-hours service availability | Sreeharsha | Medium (proposed) | NOT RUN |
-| [TC-QUAL-03](#case-tc-qual-03) - Desktop browser and server portability | Vaishnavi | Medium (proposed) | NOT RUN |
+| [TC-SEC-08](#case-tc-sec-08) - OWASP ZAP baseline on the running application | Sreeharsha | High (proposed) | PASS (Codex technical execution) |
+| [TC-QUAL-02](#case-tc-qual-02) - Working-hours service availability | Sreeharsha | Medium (proposed) | PENDING |
+| [TC-QUAL-03](#case-tc-qual-03) - Desktop browser and server portability | Vaishnavi | Medium (proposed) | PASS (Codex technical execution) |
 | [TC-QUAL-04](#case-tc-qual-04) - Application-logic unit coverage and maintainability | Vaishnavi (QA), Devansh (coverage evidence), Sreeharsha (PO review) | Medium (proposed) | PARTIAL |
 
 ## 8. Requirements Traceability Matrix (RTM)
@@ -411,11 +469,11 @@ Test Plan section 5 requires **SRS approved; build deployed to test environment;
 | Original criterion | Current disposition |
 |---|---|
 | 100% of planned test cases executed | NOT MET: TC-QUAL-01, TC-SEC-08 and TC-QUAL-04 are PARTIAL; TC-QUAL-02/03 remain NOT RUN. Original STU-01 has later registration evidence and is OWNER PASS. |
-| All High-priority cases passed | NOT MET: High TC-SEC-08 is PARTIAL. PO/recorded Development agreement to 34 High / 27 Medium is present; actual QA agreement and complete accepted evidence remain pending. Original plan priorities were unspecified. |
-| Zero critical/high defects open | UNVERIFIED: no complete reviewed severity inventory is recorded; known fixed issues alone do not establish zero. |
+| All High-priority cases passed | Current SEC-08 bounded technical execution is PASS, superseding its older partial procedure result. Original priority/case acceptance remains distinct; no human QA agreement is invented. OPEN #90 still prevents the separate zero-open-High criterion. |
+| Zero critical/high defects open | NOT MET while [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) remains OPEN with current High technical assessments. Local fixes/retests do not supply its pending clean CI/merge acceptance. |
 | Every RTM requirement covered by at least one passed case | UNVERIFIED/PARTIAL: all 36 are mapped, but passed method/owner observations do not establish every full requirement. |
 
-Actual QA/Dev/PO approvals (Plan section 15) and the project-guide acceptance walkthrough (section 5) remain separate final-readiness work. Any authorized instructor change must retain original unmet outcomes and record authority/date/rationale. **Whole-plan readiness: NOT READY.**
+Actual QA/Dev/PO approvals (Plan section 15) and the project-guide walkthrough (section 5) remain unmet original course criteria. Their collection is explicitly skipped by the owner-scoped #43 closure; this document does not reopen that task. Any authorized instructor change must retain original unmet outcomes and record authority/date/rationale. **Whole-plan readiness: NOT READY.**
 
 ## 12. Revision notes and remaining execution
 
@@ -3179,25 +3237,34 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** Baseline completes against the actual running application; findings are recorded as defects and triaged. Scan coverage/limitations are explicit. The whole-plan exit criterion requires zero open critical/high defects; a baseline is not required to have zero informational alerts.
 
-**Actual:** ZAP 2.17.0 passive baseline completed on 9 November against the isolated loopback app (one site, 10 spidered URLs, exit 0; no active scan). Final result: 0 High, 0 Medium, 1 Low server-banner alert (four responses, temporary Python `wsgiref` probe server), and 1 Informational/Low-confidence `next`-parameter hotspot (two instances); the HTML-injection regression test confirms the supplied marker is not reflected. Initial CSP and CSRF-cookie findings disappeared after code fixes and rescan. Sanitized details and limitations are recorded in [issue38-security-20261109](evidence/issue38-security-20261109/README.md) and its JSON.
+**Actual:** Codex completed the official ZAP 2.17.0 passive baseline against the actual isolated Fedora 44/MySQL 8.4.13 HTTP app on 0d9adb39, with twelve explicit HTTP-200 routes (ten protected Warden pages plus exact JS/CSS), drained passive queue and no active scan. Retain one Medium missing-CSP finding on an actual development-static 404, five Low variants and four Informational variants; nothing was erased or called fixed. Actual check --deploy exited zero with five unsilenced insecure-loopback-setting warnings and is not a production-hardening pass. The authorized assisted QA/Development triage accepts completion of this bounded baseline/triage procedure; it does not certify TLS or public deployment. The earlier 9 November PARTIAL scan remains historical.
 
 **10 November QA trace:** The supplied QA review assesses the server banner as a temporary probe-server observation and finds no `next` reflection or redirect use in the login path. Its claim that the marker regression test was not located is corrected by the exact test and passing JUnit entry linked in the [reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md). Both alerts remain in the scan record; this evidence does not promote the passive loopback case to PASS.
 
-**Execution status:** PARTIAL
+**Execution status:** PASS
 
-**Tested commit:** PR #68 head `49851396796918103681aacf47394e5010426201` (probe evidence generated on equivalent pre-publication source; published code was subsequently confirmed at this exact head by CI).
+**Actual executor:** Codex automation and assisted technical review under the user\'s cross-assignee authorization; no teammate signature.
 
-**Execution date and environment:** 9 November 2026; Windows 11, OWASP ZAP 2.17.0, Java 25.0.2, synthetic SQLite-backed app bound only to `127.0.0.1`; passive baseline only.
+**Tested commit:** 0d9adb39f3adcb85e75449c85900b4c283868ded
+
+**Execution date and environment:** 18 November UTC / 19 November IST; Fedora 44 Linux, Python 3.14.7, MySQL 8.4.13, ZAP 2.17.0, isolated loopback HTTP, synthetic Warden data.
+
+**Current evidence:** [current scan/triage](evidence/sprint-completion-20261118/browser-security/security/qa-development-triage.md); [raw finding summary](evidence/sprint-completion-20261118/browser-security/security/sanitized-baseline.json)
 
 **Evidence:** [sanitized transport/ZAP report](evidence/issue38-security-20261109/README.md); [machine-readable summary](evidence/issue38-security-20261109/transport-zap-summary.json); [full-suite MySQL CI](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066)
 
 **Defects and retests:** CSP and CSRF-cookie findings were fixed and absent on rescan. The supplied QA handoff assesses the remaining Low server-banner and Informational hotspot; see the 10 November reconciliation above. No application defect or fix retest is indicated for either finding. No High/Medium ZAP findings were observed in this passive baseline.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Current bounded technical PASS by the actual automated/assisted executor. Historical source-bound outcomes remain unchanged; no human QA, guide, PO or instructor approval is inferred.
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The scan is passive and loopback-only, reached 10 URLs, and does not claim authenticated-area coverage or a deployed environment. The supplied QA handoff assesses the remaining alerts; no active scanning was run. Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
+**Historical 9 November evidence limits:** That scan was passive/loopback-only, reached 10 URLs and did not claim authenticated-area coverage. The current authenticated baseline/triage is recorded separately above. The supplied QA handoff assesses the remaining alerts; no active scanning was run. Test Plan section 5.1 already requires this scan. This ID makes that existing obligation explicit; it is not a newly invented faculty requirement.
+
+
+**Historical supporting observation (preserved):**
+
+**Actual:** ZAP 2.17.0 passive baseline completed on 9 November against the isolated loopback app (one site, 10 spidered URLs, exit 0; no active scan). Final result: 0 High, 0 Medium, 1 Low server-banner alert (four responses, temporary Python `wsgiref` probe server), and 1 Informational/Low-confidence `next`-parameter hotspot (two instances); the HTML-injection regression test confirms the supplied marker is not reflected. Initial CSP and CSRF-cookie findings disappeared after code fixes and rescan. Sanitized details and limitations are recorded in [issue38-security-20261109](evidence/issue38-security-20261109/README.md) and its JSON.
 
 ### TC-QUAL-02: Working-hours service availability
 
@@ -3227,13 +3294,15 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** At least 99% availability during the SRS-defined working hours (8 am to 8 pm on working days), with reproducible monitoring/period evidence.
 
-**Actual:** No valid full 08:00-20:00 working-day availability observation is published. The 16 November attempt produced zero probes; a later partial run was stopped and its temporary log removed at the owner's request. A 19 November 08:00-20:00 IST observation is prepared for the remote host; job installation and review of the complete probe log and denominator remain pending. Short CI, load and recovery runs do not measure this target.
+**Actual:** The real remote observer is installed and running as job job_c4c3658121 / PID 2322483 for 19 November 08:00-20:00 IST. Exported state is WAITING with zero of 1,440 probes and result PENDING. Every missing/failed slot counts, five-second deadline, 1,426 successes needed. Strict HTTP-200, source/startup pins and no-backfill guards passed seven independent offline checks. No availability pass is claimed; earlier zero-probe/aborted attempts remain historical.
 
-**Execution status:** NOT RUN
+**Execution status:** PENDING
 
 **Tested commit:** No complete case execution recorded; supporting observations retain their original SHAs.
 
 **Execution date and environment:** No complete case run recorded.
+
+**Current evidence:** [real observation plan/snapshot](evidence/sprint-completion-20261118/browser-security/availability/summary.json)
 
 **Evidence:** [availability follow-up](evidence/remaining-test-gaps-20261115.md); [current assessment](Final_Assessment_20261119.md)
 
@@ -3247,7 +3316,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 ### TC-QUAL-03: Desktop browser and server portability
 
-**Mini-project scope decision:** The physical-phone activity is replaced by the friend-reported laptop-browser phone-mode check documented in the 18 November update. TC-QUAL-03 covers desktop browser versions and Windows/Linux server portability for this mini-project. Those remaining conditions still lack complete evidence, so the case remains NOT RUN.
+**Mini-project scope decision:** The physical-phone activity is replaced by the friend-reported laptop-browser phone-mode check documented in the 18 November update. TC-QUAL-03 covers desktop browser versions and Windows/Linux server portability for this mini-project. The current twelve-workflow evidence below now supplies a technical PASS for those desktop conditions.
 
 **10 November local follow-up:** A synthetic Warden signed in and opened the dashboard, students, beds, allocations, payments and occupancy report in connected Chrome. Edge was unavailable through the connected browser; Firefox, older versions and Linux workflows were not exercised. See the [local browser observations](evidence/issue39/local-browser-20261110.md). This is supporting evidence, not a complete TC-QUAL-03 execution.
 
@@ -3277,23 +3346,32 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** SRS portability target (Windows/Linux servers and latest two Chrome/Firefox/Edge versions) is evidenced. The original Test Plan's physical-phone activity is retained as a disclosed owner scope change, without claiming real-device evidence. Original TC-QUAL-01 still separately covers the latest-browser main flows and timed new-warden guide task.
 
-**Actual:** The 15 November follow-up records versioned Windows login/page checks and an Ubuntu HTTP-client check on synthetic SQLite instances; it does not exercise the main write workflows or MySQL. Previous Edge remained untested. Twelve fresh Windows/Linux browser workflow runs are in progress on the frozen source; no result is assigned before actual versioned workflow evidence is reconciled.
+**Actual:** Codex completed twelve real Selenium workflows, nineteen observations each (228 total), on Windows 11 and Fedora 44 Linux. Both hosts tested Chrome 158.0.8127.36/157.0.8103.78 and Firefox 160.0.1/159.0.1; Edge was 157.0.4341.60 plus Windows 156.0.4314.84/Linux 156.0.4314.58. The workflows exercise real create/update/allocation/transfer/release/payment/adjustment flows, parsed PDF and both CSVs, role/own-data isolation, script nonexecution, CSRF, logout/Back and single confirmation cancel/accept. All 269 accepted source/font pins match both hosts. Physical-phone behavior and a human new-Warden guide task are not claimed.
 
-**Execution status:** NOT RUN
+**Execution status:** PASS
 
-**Tested commit:** No complete case execution recorded; supporting observations retain their original SHAs.
+**Actual executor:** Codex automation and assisted technical review under the user\'s cross-assignee authorization; no teammate signature.
 
-**Execution date and environment:** No complete case run recorded.
+**Tested commit:** 0d9adb39f3adcb85e75449c85900b4c283868ded
+
+**Execution date and environment:** 18 November UTC / 19 November IST; Windows 11/MySQL 8.4.9 and Fedora 44/MySQL 8.4.13; Python 3.14.7, Selenium 4.53.0, isolated synthetic HTTP instances.
+
+**Current evidence:** [current twelve-version matrix](evidence/sprint-completion-20261118/browser-security/README.md); [exact workflow results](evidence/sprint-completion-20261118/browser-security/summary.json)
 
 **Evidence:** [15 November follow-up](evidence/remaining-test-gaps-20261115.md); [current technical evidence](evidence/sprint-completion-20261118/); [Historical HMS-17 index](evidence/issue39/README.md); [8 November follow-up review](evidence/issue39/followup-20261108.md); [retained earlier CI extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** No result or severity is inferred; record genuine findings/retests when execution occurs.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Current bounded technical PASS by the actual automated/assisted executor. Historical source-bound outcomes remain unchanged; no human QA, guide, PO or instructor approval is inferred.
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
-**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and latest Chrome/Firefox/Edge; SRS section 6.4 separately requires Windows AND Linux/latest-two targets. The owner-reported laptop-browser phone-mode check replaces the physical-phone activity for this mini-project, but lacks browser, viewport, workflow and captured-evidence details. No full Cartesian product is imposed. Current supporting pages/CI do not supply a scoped complete desktop-browser/OS execution of this case.
+**Evidence limits:** The submitted Plan permits Windows 10+ OR Ubuntu 20.04+ and latest Chrome/Firefox/Edge; SRS section 6.4 separately requires Windows AND Linux/latest-two targets. The owner-reported laptop-browser phone-mode check replaces the physical-phone activity for this mini-project, but lacks browser, viewport, workflow and captured-evidence details. No full Cartesian product is imposed. Current Selenium evidence supplies the twelve desktop workflows; earlier pages/CI retain their narrower historical scope.
+
+
+**Historical supporting observation (preserved):**
+
+**Actual:** The 15 November follow-up records versioned Windows login/page checks and an Ubuntu HTTP-client check on synthetic SQLite instances; it does not exercise the main write workflows or MySQL. Previous Edge remained untested. Twelve fresh Windows/Linux browser workflow runs are in progress on the frozen source; no result is assigned before actual versioned workflow evidence is reconciled.
 
 ### TC-QUAL-04: Application-logic unit coverage and maintainability
 
@@ -3324,7 +3402,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** The complete SRS section 6.4 maintainability target is assessed: modular Django apps, PEP 8 adherence and unit tests covering at least 70% of application logic. Repository lint/format checks support the style assessment; mixed-suite statement/branch percentages alone cannot establish unit70.
 
-**Actual:** Earlier source-bound CI/isolated measurements and configured lint/format checks are retained in the Unit Test Report. The current frozen-source 415-method measurement and original baseline are awaiting durable evidence reconciliation in the technical evidence. The owner's function-body boundary applies to the unit target; all-statements coverage stays separate. Full PEP 8 adherence beyond the configured rules is not certified.
+**Actual:** Current-source configured lint/format gates passed. Clean 415/415 isolated methods passed with zero DB attempts and 208 verified source pins, covering 1,547/1,740 application function-body statements (88.91%) under the actual owner boundary. All-statements companion: 1,547/2,730 (56.67%). The retained 288-method baseline passes but measures 1,158/1,740 (66.55%), below 70%. Broader PEP 8 adherence beyond configured rules is not certified.
 
 **Execution status:** PARTIAL
 

@@ -1,0 +1,123 @@
+"""Read-only verification of the packaged browser evidence; standard library only."""
+
+import hashlib
+import json
+import sys
+from pathlib import Path
+
+
+def read_json(path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def sha256(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    root = Path(sys.argv[1]).resolve()
+    manifest = read_json(root / "artifact-manifest.json")
+    for name, entry in manifest.items():
+        path = (root / name).resolve()
+        assert path.is_relative_to(root), name
+        assert path.is_file(), name
+        assert path.stat().st_size == entry["bytes"], name
+        assert sha256(path) == entry["sha256"], name
+
+    accepted = read_json(root / "source/accepted-git-pins.json")
+    canonical = accepted["pins"]
+    assert len(canonical) == 269
+    commit = "0d9adb39f3adcb85e75449c85900b4c283868ded"
+    snapshots = list((root / "source").glob("*-source-*.json"))
+    snapshots.append(root / "source/linux-server-startup.json")
+    source_checks = 0
+    for path in snapshots:
+        snapshot = read_json(path)
+        if "source" in snapshot:
+            snapshot = snapshot["source"]
+        assert snapshot["commit"] == commit, path.name
+        assert all(snapshot["pins"].get(k) == v for k, v in canonical.items())
+        extra = set(snapshot["pins"]) - set(canonical)
+        assert extra <= {"payments/fonts/__pycache__/rebuild_subsets.cpython-314.pyc"}
+        source_checks += 1
+
+    browser_count = observation_count = screenshot_count = export_count = 0
+    for platform in ["windows", "linux"]:
+        summary = read_json(root / platform / "summary.json")
+        assert summary["commit"] == commit
+        assert len(summary["browsers"]) == 6
+        for browser in summary["browsers"]:
+            folder = root / platform / browser["id"]
+            result = read_json(folder / "result.json")
+            assert result == {k: v for k, v in browser.items() if k not in ["evidence_directory", "original_private_run"]}
+            assert result["status"] == "PASS"
+            assert result["capabilities"]["browserVersion"] == result["expected_version"]
+            observations = result["flow"]["observations"]
+            assert len(observations) == 19
+            assert not result["flow"].get("timing_failures")
+            for observation in observations:
+                assert observation["status"] == "PASS"
+                assert sha256(folder / observation["screenshot"]) == observation["screenshot_sha256"]
+                actual = observation["actual"]
+                if observation["id"].endswith("login"):
+                    assert actual["meets_threshold"] is True
+                    seconds = actual.get("browser_navigation_seconds", actual.get("seconds_click_to_dashboard_and_workspace_text"))
+                    assert seconds <= actual["threshold_seconds"] == 2
+                if "pdf_sha256" in actual:
+                    assert sha256(folder / "receipt.pdf") == actual["pdf_sha256"]
+                    assert (folder / "receipt.pdf").read_bytes().startswith(b"%PDF-")
+                    export_count += 1
+                if observation["id"] in ["Warden occupancy CSV", "Warden payment-status CSV"]:
+                    name = "occupancy.csv" if "occupancy" in observation["id"] else "payment-status.csv"
+                    assert sha256(folder / name) == actual["sha256"]
+                    assert len((folder / name).read_text(encoding="utf-8-sig").splitlines()) >= 2
+                    export_count += 1
+                screenshot_count += 1
+                observation_count += 1
+            browser_count += 1
+
+    idle = read_json(root / "session/result.json")
+    assert idle["result"] == "PASS"
+    assert idle["observed_idle_seconds"] >= 901
+    assert idle["idle_app_requests"] == []
+    assert idle["protected_revisit_path"] == "/login/"
+    assert idle["private_dashboard_visible"] is False
+    assert idle["source_unchanged"] is True
+    assert sha256(root / "session/expired-session-login.png") == idle["screenshot_sha256"]
+
+    scan = read_json(root / "security/sanitized-baseline.json")
+    assert scan["tool_version"] == "2.17.0"
+    assert scan["source_unchanged"] is True
+    assert scan["passive_queue_remaining"] == 0
+    assert scan["active_scans"] == []
+    assert len(scan["authenticated_routes"]) == 12
+    assert sum(row["authenticated_page"] for row in scan["authenticated_routes"]) == 10
+    assert all(row["status"] == 200 for row in scan["authenticated_routes"])
+    assert scan["high_count"] == 0 and scan["medium_count"] == 1
+    assert len(scan["alerts"]) == 10
+    assert len([a for a in scan["alerts"] if a["risk_code"] == 1]) == 5
+
+    deploy = read_json(root / "security/check-deploy-actual-environment.json")
+    for warning in ["security.W004", "security.W008", "security.W012", "security.W016", "security.W018"]:
+        assert warning in deploy["stderr"]
+    assert deploy["source_unchanged"] is True
+
+    availability = read_json(root / "availability/summary.json")
+    assert availability["state"] == "WAITING"
+    assert availability["result"] == "PENDING" and availability["complete"] is False
+    assert availability["recorded_slots"] == 0
+    assert availability["planned_slots"] == 1440 and availability["minimum_successes"] == 1426
+    plan = read_json(root / "availability/observation-plan.json")
+    assert sha256(root / "harness/observe_availability.py.txt") == plan["script_sha256"]
+    assert sha256(root / "harness/matrix.py.txt") == plan["source_helper_sha256"]
+
+    outlier = read_json(root / "history/linux-webdriver-login-outlier-observations.json")[0]
+    assert outlier["status"] == "FAIL"
+    assert outlier["actual"]["seconds_click_to_dashboard_and_workspace_text"] == 2.356176
+    assert sha256(root / "history/admin-login.png") == outlier["screenshot_sha256"]
+
+    print(json.dumps({"result": "PASS", "manifest_files": len(manifest), "browser_results": browser_count, "observations": observation_count, "browser_screenshots": screenshot_count, "exports": export_count, "source_snapshots": source_checks, "canonical_pins": len(canonical), "idle_seconds": idle["observed_idle_seconds"], "scan_alert_variants_preserved": len(scan["alerts"]), "availability_result": availability["result"], "historical_timing_failure_preserved": True}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

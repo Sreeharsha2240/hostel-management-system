@@ -1,0 +1,434 @@
+[
+  {
+    "id": "Admin login",
+    "status": "PASS",
+    "actual": {
+      "webdriver_inclusive_seconds": 2.253614,
+      "browser_navigation_seconds": 1.687,
+      "navigation": {
+        "connectEnd": 1383,
+        "connectStart": 1383,
+        "contentType": "text/html",
+        "decodedBodySize": 3048,
+        "deliveryType": "",
+        "domComplete": 1687,
+        "domContentLoadedEventEnd": 1679,
+        "domContentLoadedEventStart": 1678,
+        "domInteractive": 1671,
+        "domainLookupEnd": 1382,
+        "domainLookupStart": 1382,
+        "duration": 1687,
+        "encodedBodySize": 3048,
+        "entryType": "navigation",
+        "fetchStart": 1382,
+        "finalResponseHeadersStart": 1665,
+        "firstInterimResponseStart": 0,
+        "initiatorType": "navigation",
+        "loadEventEnd": 1687,
+        "loadEventStart": 1687,
+        "name": "http://127.0.0.1:8109/dashboard/",
+        "nextHopProtocol": "http/1.1",
+        "redirectCount": 1,
+        "redirectEnd": 1382,
+        "redirectStart": 2,
+        "requestStart": 1383,
+        "responseEnd": 1665,
+        "responseStart": 1665,
+        "responseStatus": 200,
+        "secureConnectionStart": 0,
+        "serverTiming": [],
+        "startTime": 0,
+        "transferSize": 3348,
+        "type": "navigate",
+        "unloadEventEnd": 1669,
+        "unloadEventStart": 1668,
+        "workerStart": 0
+      },
+      "method": "Browser NavigationTiming includes same-origin login POST/redirect through dashboard load; WebDriver-inclusive control time is retained separately",
+      "threshold_seconds": 2,
+      "meets_threshold": true
+    },
+    "screenshot": "admin-login.png",
+    "screenshot_sha256": "ec4bde1112be7b3ddf7d7f293ade90c7228c4d1a96db6bc4929acf5ebcf4aad6",
+    "at": "2026-11-18T19:02:11.792280+00:00"
+  },
+  {
+    "id": "Admin creates Student accounts",
+    "status": "PASS",
+    "actual": {
+      "created": [
+        "lxc7bf74own",
+        "lxc7bf74other"
+      ]
+    },
+    "screenshot": "admin-creates-student-accounts.png",
+    "screenshot_sha256": "5d6b08a7c56a24a42d1d1630aaecf836c8d3f6b15e8f59771c6d3acb4621e7b5",
+    "at": "2026-11-18T19:02:16.850651+00:00"
+  },
+  {
+    "id": "Admin creates and updates inventory and students",
+    "status": "PASS",
+    "actual": {
+      "fixture": {
+        "hostel": 4,
+        "room": 4,
+        "student": 7,
+        "other_student": 8,
+        "beds": [
+          {
+            "id": 7,
+            "label": "MBF74-A",
+            "status": "Available"
+          },
+          {
+            "id": 8,
+            "label": "MBF74-B",
+            "status": "Available"
+          }
+        ]
+      },
+      "updated_floor": 1,
+      "updated_mobile": "9000000003",
+      "student_id_disabled": true
+    },
+    "screenshot": "admin-creates-and-updates-inventory-and-students.png",
+    "screenshot_sha256": "248bd7d86edcb23bf38d5107813198468e271ec7539a5b460ebf8061db9daa6c",
+    "at": "2026-11-18T19:02:33.661462+00:00"
+  },
+  {
+    "id": "Stored script is escaped",
+    "status": "PASS",
+    "actual": {
+      "stored_text": "<script>window.__hmsInjected=1</script>",
+      "executed": false
+    },
+    "screenshot": "stored-script-is-escaped.png",
+    "screenshot_sha256": "3eb2808336201c5aebb4c22d169da4131379ce5e36428e3844e44df2522de24d",
+    "at": "2026-11-18T19:02:34.383911+00:00"
+  },
+  {
+    "id": "Missing CSRF rejected",
+    "status": "PASS",
+    "actual": {
+      "status": 403,
+      "duplicate_student_count": 1
+    },
+    "screenshot": "missing-csrf-rejected.png",
+    "screenshot_sha256": "ef72fe784e82062e8693689a4d77519b0b000a68f445140aa00d463f37a9f1df",
+    "at": "2026-11-18T19:02:35.486124+00:00"
+  },
+  {
+    "id": "Warden login",
+    "status": "PASS",
+    "actual": {
+      "webdriver_inclusive_seconds": 2.075188,
+      "browser_navigation_seconds": 1.533,
+      "navigation": {
+        "connectEnd": 1272,
+        "connectStart": 1272,
+        "contentType": "text/html",
+        "decodedBodySize": 2518,
+        "deliveryType": "",
+        "domComplete": 1533,
+        "domContentLoadedEventEnd": 1531,
+        "domContentLoadedEventStart": 1531,
+        "domInteractive": 1524,
+        "domainLookupEnd": 1272,
+        "domainLookupStart": 1271,
+        "duration": 1533,
+        "encodedBodySize": 2518,
+        "entryType": "navigation",
+        "fetchStart": 1271,
+        "finalResponseHeadersStart": 1520,
+        "firstInterimResponseStart": 0,
+        "initiatorType": "navigation",
+        "loadEventEnd": 1533,
+        "loadEventStart": 1533,
+        "name": "http://127.0.0.1:8109/dashboard/",
+        "nextHopProtocol": "http/1.1",
+        "redirectCount": 1,
+        "redirectEnd": 1271,
+        "redirectStart": 0,
+        "requestStart": 1272,
+        "responseEnd": 1520,
+        "responseStart": 1520,
+        "responseStatus": 200,
+        "secureConnectionStart": 0,
+        "serverTiming": [],
+        "startTime": 0,
+        "transferSize": 2818,
+        "type": "navigate",
+        "unloadEventEnd": 1523,
+        "unloadEventStart": 1522,
+        "workerStart": 0
+      },
+      "method": "Browser NavigationTiming includes same-origin login POST/redirect through dashboard load; WebDriver-inclusive control time is retained separately",
+      "threshold_seconds": 2,
+      "meets_threshold": true
+    },
+    "screenshot": "warden-login.png",
+    "screenshot_sha256": "3acb6446e95d9f2620c90da36916440a4a2e186cdf261651e89d7026a2ed0198",
+    "at": "2026-11-18T19:02:38.535607+00:00"
+  },
+  {
+    "id": "Warden Admin route denied",
+    "status": "PASS",
+    "actual": {
+      "status": 403
+    },
+    "screenshot": "warden-admin-route-denied.png",
+    "screenshot_sha256": "3acb6446e95d9f2620c90da36916440a4a2e186cdf261651e89d7026a2ed0198",
+    "at": "2026-11-18T19:02:39.724982+00:00"
+  },
+  {
+    "id": "Warden allocates available bed",
+    "status": "PASS",
+    "actual": {
+      "allocation": 5,
+      "bed": 7,
+      "status": "Active"
+    },
+    "screenshot": "warden-allocates-available-bed.png",
+    "screenshot_sha256": "f96d2a7d56fc6534d7121d83124f221e287f315d300d9da69dfd5192c8b18c6c",
+    "at": "2026-11-18T19:02:42.051148+00:00"
+  },
+  {
+    "id": "Warden transfer preserves history",
+    "status": "PASS",
+    "actual": {
+      "old_allocation": 5,
+      "active_allocation": 6,
+      "new_bed": 8,
+      "history_count": 2,
+      "cancelled": {
+        "dialog_count": 1,
+        "cancelled": true,
+        "navigation": false,
+        "keyboard_target": null
+      },
+      "accepted": {
+        "dialog_count": 1,
+        "cancelled": false,
+        "navigation": true,
+        "keyboard_target": null
+      }
+    },
+    "screenshot": "warden-transfer-preserves-history.png",
+    "screenshot_sha256": "033cdde97a0058d8b5e34d1782e5ed96c09a0a65547d6d6cea11ba101ac7d8db",
+    "at": "2026-11-18T19:02:44.501584+00:00"
+  },
+  {
+    "id": "Warden payment and receipt PDF",
+    "status": "PASS",
+    "actual": {
+      "receipt": "R00000000005",
+      "pdf_sha256": "4705d2c985d85e2d23acc30b623becc527d3ff70194a5611ad6996c0a15f6220",
+      "pdf_contains_student_and_receipt": true
+    },
+    "screenshot": "warden-payment-and-receipt-pdf.png",
+    "screenshot_sha256": "148f1451126a1dca2c2ce5395a51412e0e98b50cf525438ed532a81c343415fc",
+    "at": "2026-11-18T19:02:47.522945+00:00"
+  },
+  {
+    "id": "Warden adjustment retains original",
+    "status": "PASS",
+    "actual": {
+      "original_receipt": "R00000000005",
+      "original_amount": "5000.00",
+      "adjustment_receipt": "R00000000006",
+      "adjustment_amount": "-1000.00"
+    },
+    "screenshot": "warden-adjustment-retains-original.png",
+    "screenshot_sha256": "1547b483b496ed3c9ddb57ca5f210e029357628840fbc96adc5a62db68a043f5",
+    "at": "2026-11-18T19:02:49.658417+00:00"
+  },
+  {
+    "id": "Warden occupancy CSV",
+    "status": "PASS",
+    "actual": {
+      "rows": [
+        {
+          "Hostel Name": "LXC7BF74 Boys Updated",
+          "Total Beds": "2",
+          "Occupied Beds": "1",
+          "Available Beds": "1",
+          "Beds Under Maintenance": "0",
+          "Occupancy %": "50.00",
+          "Generated On": "19-11-2026 00:32:50 IST"
+        }
+      ],
+      "sha256": "7cb3def56cef9d0fbb57fa8be25ed4810f08a4d1caec8c53cbfded027e4ede36"
+    },
+    "screenshot": "warden-occupancy-csv.png",
+    "screenshot_sha256": "ac971a6b3c9fe9615451ef621a1eeb0bd8ed69ba49a553ed6a81ca7585839346",
+    "at": "2026-11-18T19:02:50.660407+00:00"
+  },
+  {
+    "id": "Warden payment-status CSV",
+    "status": "PASS",
+    "actual": {
+      "rows": [
+        {
+          "Student ID": "MX71263670478",
+          "Student Name": "LXC7BF74 Resident",
+          "Hostel Name": "LXC7BF74 Boys Updated",
+          "Room": "MBF74",
+          "Bed": "MBF74-B",
+          "Fee Amount (INR)": "10000.00",
+          "Amount Paid (INR)": "4000.00",
+          "Due (INR)": "6000.00",
+          "Payment Status": "Partial",
+          "Generated On": "19-11-2026 00:32:51 IST"
+        }
+      ],
+      "sha256": "70c08f2d08cfd990000675c2ea8e37ddc045457d7e8384094bb6132fc51d40b7"
+    },
+    "screenshot": "warden-payment-status-csv.png",
+    "screenshot_sha256": "d04b494817ec93641d8f24fa95f5071bf2e80fdb6ae07cb2eeabe064a05d3300",
+    "at": "2026-11-18T19:02:51.502867+00:00"
+  },
+  {
+    "id": "Warden release retains history",
+    "status": "PASS",
+    "actual": {
+      "status": "Completed",
+      "vacated_on": "2026-11-19",
+      "history_count": 2,
+      "keyboard_cancelled": {
+        "dialog_count": 1,
+        "cancelled": true,
+        "navigation": false,
+        "keyboard_target": "main form button[type=submit]"
+      },
+      "keyboard_accepted": {
+        "dialog_count": 1,
+        "cancelled": false,
+        "navigation": true,
+        "keyboard_target": "main form button[type=submit]"
+      }
+    },
+    "screenshot": "warden-release-retains-history.png",
+    "screenshot_sha256": "01e8e8cb51adcf52039e4cf004a6d3b58508d8a5ff8b92491cbfc7557e952c6f",
+    "at": "2026-11-18T19:02:53.359478+00:00"
+  },
+  {
+    "id": "Button confirmation and cancellation",
+    "status": "PASS",
+    "actual": {
+      "cancelled": {
+        "dialog_count": 1,
+        "cancelled": true,
+        "navigation": false,
+        "keyboard_target": null
+      },
+      "accepted": {
+        "dialog_count": 1,
+        "cancelled": false,
+        "navigation": true,
+        "keyboard_target": null
+      },
+      "student_status": "Inactive",
+      "cancel_preserved_active_status": true
+    },
+    "screenshot": "button-confirmation-and-cancellation.png",
+    "screenshot_sha256": "d3a48dbf0b78ec80dce8d1a6dc03087907c9d387f1ad2a4df6b1d440cc9eee0b",
+    "at": "2026-11-18T19:02:55.685486+00:00"
+  },
+  {
+    "id": "Student login",
+    "status": "PASS",
+    "actual": {
+      "webdriver_inclusive_seconds": 1.939575,
+      "browser_navigation_seconds": 1.396,
+      "navigation": {
+        "connectEnd": 1176,
+        "connectStart": 1176,
+        "contentType": "text/html",
+        "decodedBodySize": 2722,
+        "deliveryType": "",
+        "domComplete": 1396,
+        "domContentLoadedEventEnd": 1393,
+        "domContentLoadedEventStart": 1393,
+        "domInteractive": 1388,
+        "domainLookupEnd": 1176,
+        "domainLookupStart": 1176,
+        "duration": 1396,
+        "encodedBodySize": 2722,
+        "entryType": "navigation",
+        "fetchStart": 1176,
+        "finalResponseHeadersStart": 1383,
+        "firstInterimResponseStart": 0,
+        "initiatorType": "navigation",
+        "loadEventEnd": 1396,
+        "loadEventStart": 1396,
+        "name": "http://127.0.0.1:8109/dashboard/",
+        "nextHopProtocol": "http/1.1",
+        "redirectCount": 1,
+        "redirectEnd": 1175,
+        "redirectStart": 1,
+        "requestStart": 1176,
+        "responseEnd": 1383,
+        "responseStart": 1383,
+        "responseStatus": 200,
+        "secureConnectionStart": 0,
+        "serverTiming": [],
+        "startTime": 0,
+        "transferSize": 3022,
+        "type": "navigate",
+        "unloadEventEnd": 1385,
+        "unloadEventStart": 1385,
+        "workerStart": 0
+      },
+      "method": "Browser NavigationTiming includes same-origin login POST/redirect through dashboard load; WebDriver-inclusive control time is retained separately",
+      "threshold_seconds": 2,
+      "meets_threshold": true
+    },
+    "screenshot": "student-login.png",
+    "screenshot_sha256": "5ac349436cafbc18c1dae5c99a5513bafdd35a9ec08e6c197d375c59646b8151",
+    "at": "2026-11-18T19:02:58.918070+00:00"
+  },
+  {
+    "id": "Student own records and URL isolation",
+    "status": "PASS",
+    "actual": {
+      "own_receipts_present": true,
+      "other_student_absent": true,
+      "cross_record_routes_denied": true,
+      "tampered_self_service_id_ignored": true
+    },
+    "screenshot": "student-own-records-and-url-isolation.png",
+    "screenshot_sha256": "dbc7b4eeeab97336403b3317189151bf92354eb6c5e00d369321062aa970636a",
+    "at": "2026-11-18T19:03:02.140099+00:00"
+  },
+  {
+    "id": "Logout protected revisit",
+    "status": "PASS",
+    "actual": {
+      "after_back_path": "/login/",
+      "cached_private_records_visible": false,
+      "protected_revisit_redirect": "/login/"
+    },
+    "screenshot": "logout-protected-revisit.png",
+    "screenshot_sha256": "332508f20606c94bb11fa3ecb36d9a2e288813ff3b7137ed48b521cdbd23ac6c",
+    "at": "2026-11-18T19:03:03.165761+00:00"
+  },
+  {
+    "id": "Emulated phone layout",
+    "status": "PASS",
+    "actual": {
+      "requested_viewport": [
+        390,
+        844
+      ],
+      "actual_viewport": {
+        "height": 758,
+        "width": 500
+      },
+      "page": "login",
+      "physical_phone": false
+    },
+    "screenshot": "emulated-phone-layout.png",
+    "screenshot_sha256": "5855a7705a5e0ff1ff2c7a9be3973d4540b11886344b38c2352157c07ebc29ec",
+    "at": "2026-11-18T19:03:03.948623+00:00"
+  }
+]

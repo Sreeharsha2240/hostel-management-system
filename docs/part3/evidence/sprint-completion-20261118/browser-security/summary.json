@@ -1,0 +1,505 @@
+{
+  "assembled_at": "2026-11-18T19:22:30.117331+00:00",
+  "application_commit": "0d9adb39f3adcb85e75449c85900b4c283868ded",
+  "browser_workflows": {
+    "planned_os_browser_versions": 12,
+    "selected_complete_pass_results": 12,
+    "observations": 228,
+    "results": [
+      {
+        "platform": "windows",
+        "browser": "chrome-158.0.8127.36",
+        "version": "158.0.8127.36",
+        "status": "PASS",
+        "observations": 19,
+        "result": "windows/chrome-158.0.8127.36/result.json",
+        "binary_sha256": "f304cbc534586babe4e1e49817ab6d562f3ac9bf7d0d49f8ebb15295997f8fd6",
+        "driver_sha256": "3229152a2bb622f66a881e013149e91f7cb62b4814ec9d62618a22342515413b"
+      },
+      {
+        "platform": "windows",
+        "browser": "chrome-157.0.8103.78",
+        "version": "157.0.8103.78",
+        "status": "PASS",
+        "observations": 19,
+        "result": "windows/chrome-157.0.8103.78/result.json",
+        "binary_sha256": "9196f87743c5a0baae3589c226ad72941bf6f0eb7669cec548ae1c80b4461c33",
+        "driver_sha256": "e32106adb49b38ed290b89a9e5b039f48a1fb652c0bd94dd880b8d896ee0c966"
+      },
+      {
+        "platform": "windows",
+        "browser": "firefox-160.0.1",
+        "version": "160.0.1",
+        "status": "PASS",
+        "observations": 19,
+        "result": "windows/firefox-160.0.1/result.json",
+        "binary_sha256": "4ddac0767cb3cf7196d5c3c5fad7fb0a83413453d59ff49a71168311455e1df2",
+        "driver_sha256": "e95b4eac7960ffcd5acbfd92bb7d49d48f99c1d01a20ddd297fef8c80821020d"
+      },
+      {
+        "platform": "windows",
+        "browser": "firefox-159.0.1",
+        "version": "159.0.1",
+        "status": "PASS",
+        "observations": 19,
+        "result": "windows/firefox-159.0.1/result.json",
+        "binary_sha256": "004d95fb4ebebad4ecfc0b15c23a81ddf13f52c21b3dc35ef4ca3e233f363632",
+        "driver_sha256": "e95b4eac7960ffcd5acbfd92bb7d49d48f99c1d01a20ddd297fef8c80821020d"
+      },
+      {
+        "platform": "windows",
+        "browser": "edge-157.0.4341.60",
+        "version": "157.0.4341.60",
+        "status": "PASS",
+        "observations": 19,
+        "result": "windows/edge-157.0.4341.60/result.json",
+        "binary_sha256": "2497874639116d8edc3de34b3fd83f72fa099112a5d2a426e1f08fcf39a99612",
+        "driver_sha256": "f56e074d3a994b37add6a197f5e6c3fc22de8b9443ad3d8858874b56ba7cc4a6"
+      },
+      {
+        "platform": "windows",
+        "browser": "edge-156.0.4314.84",
+        "version": "156.0.4314.84",
+        "status": "PASS",
+        "observations": 19,
+        "result": "windows/edge-156.0.4314.84/result.json",
+        "binary_sha256": "3cf0e228df549dcf93b8d037264410a4a55dc68a70d1a6e98f5653a523ee72e5",
+        "driver_sha256": "6b211417e8c8b09e9c8c3d39cb928f718708ab47c83f08c2ca15596083fbf26b"
+      },
+      {
+        "platform": "linux",
+        "browser": "chrome-158.0.8127.36-linux",
+        "version": "158.0.8127.36",
+        "status": "PASS",
+        "observations": 19,
+        "result": "linux/chrome-158.0.8127.36-linux/result.json",
+        "binary_sha256": "27513c5ffbfcb1e98e29b78d8dceb752cd343a77968335904f1b45a1c555e7b0",
+        "driver_sha256": "d48f6685c0ec010758a1807182cce3c08a0d87e8ed7996646b9c6113f4372299"
+      },
+      {
+        "platform": "linux",
+        "browser": "chrome-157.0.8103.78-linux",
+        "version": "157.0.8103.78",
+        "status": "PASS",
+        "observations": 19,
+        "result": "linux/chrome-157.0.8103.78-linux/result.json",
+        "binary_sha256": "f60cb86024464df9740504a1584b605c2b3cf107625ff11e1da22c875c1627e8",
+        "driver_sha256": "758da273bc800d2c04f43f9ffe9a3e9f4288ea18cc0f8becfe1135e221853011"
+      },
+      {
+        "platform": "linux",
+        "browser": "firefox-160.0.1-linux",
+        "version": "160.0.1",
+        "status": "PASS",
+        "observations": 19,
+        "result": "linux/firefox-160.0.1-linux/result.json",
+        "binary_sha256": "852ba4c20cbd62e17fa5da95cf9ddfebcab9fceb344c56f89ee803f45f41a50a",
+        "driver_sha256": "f831b7e61454804e8a307edd951bf8a5f373efe3f718e75454a6485a51f6e39f"
+      },
+      {
+        "platform": "linux",
+        "browser": "firefox-159.0.1-linux",
+        "version": "159.0.1",
+        "status": "PASS",
+        "observations": 19,
+        "result": "linux/firefox-159.0.1-linux/result.json",
+        "binary_sha256": "de3f1f70c111692fce304c7af83a7bf2e6f4bc8033191ea8b8ccc25f1aa122ed",
+        "driver_sha256": "f831b7e61454804e8a307edd951bf8a5f373efe3f718e75454a6485a51f6e39f"
+      },
+      {
+        "platform": "linux",
+        "browser": "edge-157.0.4341.60-linux",
+        "version": "157.0.4341.60",
+        "status": "PASS",
+        "observations": 19,
+        "result": "linux/edge-157.0.4341.60-linux/result.json",
+        "binary_sha256": "798f13e6dae69642d6f5de06295e45b14a2c17ba3ba1ecd21181cd389c25b9b2",
+        "driver_sha256": "dc6592d18e601069b98b70c2931842252cfed10df5b61b4dbb974ad7f8ba02c3"
+      },
+      {
+        "platform": "linux",
+        "browser": "edge-156.0.4314.58-linux",
+        "version": "156.0.4314.58",
+        "status": "PASS",
+        "observations": 19,
+        "result": "linux/edge-156.0.4314.58-linux/result.json",
+        "binary_sha256": "7e5caa0edada0859637f77c04266edd9ee28eaa0b71e6f45338646f0335d8026",
+        "driver_sha256": "b5e6d72c093b94242b9a31728ebf1509c9254706b6c3a21acc661142970a9b19"
+      }
+    ]
+  },
+  "canonical_source_pins": 269,
+  "windows_additional_ignored_bytecode": "payments/fonts/__pycache__/rebuild_subsets.cpython-314.pyc",
+  "login_observations": [
+    {
+      "platform": "windows",
+      "browser": "chrome-158.0.8127.36",
+      "role": "Admin",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.57695,
+      "webdriver_inclusive_seconds": 0.57695,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "chrome-158.0.8127.36",
+      "role": "Warden",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.574732,
+      "webdriver_inclusive_seconds": 0.574732,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "chrome-158.0.8127.36",
+      "role": "Student",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.333547,
+      "webdriver_inclusive_seconds": 0.333547,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "chrome-157.0.8103.78",
+      "role": "Admin",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.574363,
+      "webdriver_inclusive_seconds": 0.574363,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "chrome-157.0.8103.78",
+      "role": "Warden",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.337206,
+      "webdriver_inclusive_seconds": 0.337206,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "chrome-157.0.8103.78",
+      "role": "Student",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.560465,
+      "webdriver_inclusive_seconds": 0.560465,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "firefox-160.0.1",
+      "role": "Admin",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.59534,
+      "webdriver_inclusive_seconds": 0.59534,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "firefox-160.0.1",
+      "role": "Warden",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.301493,
+      "webdriver_inclusive_seconds": 0.301493,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "firefox-160.0.1",
+      "role": "Student",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.307887,
+      "webdriver_inclusive_seconds": 0.307887,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "firefox-159.0.1",
+      "role": "Admin",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.834942,
+      "webdriver_inclusive_seconds": 0.834942,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "firefox-159.0.1",
+      "role": "Warden",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.320407,
+      "webdriver_inclusive_seconds": 0.320407,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "firefox-159.0.1",
+      "role": "Student",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.304149,
+      "webdriver_inclusive_seconds": 0.304149,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "edge-157.0.4341.60",
+      "role": "Admin",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.354947,
+      "webdriver_inclusive_seconds": 0.354947,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "edge-157.0.4341.60",
+      "role": "Warden",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.553964,
+      "webdriver_inclusive_seconds": 0.553964,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "edge-157.0.4341.60",
+      "role": "Student",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.835368,
+      "webdriver_inclusive_seconds": 0.835368,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "edge-156.0.4314.84",
+      "role": "Admin",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.854639,
+      "webdriver_inclusive_seconds": 0.854639,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "edge-156.0.4314.84",
+      "role": "Warden",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.338861,
+      "webdriver_inclusive_seconds": 0.338861,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "windows",
+      "browser": "edge-156.0.4314.84",
+      "role": "Student",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 0.346685,
+      "webdriver_inclusive_seconds": 0.346685,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "chrome-158.0.8127.36-linux",
+      "role": "Admin",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 1.564851,
+      "webdriver_inclusive_seconds": 1.564851,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "chrome-158.0.8127.36-linux",
+      "role": "Warden",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 1.149542,
+      "webdriver_inclusive_seconds": 1.149542,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "chrome-158.0.8127.36-linux",
+      "role": "Student",
+      "method": "webdriver_inclusive",
+      "threshold_measure_seconds": 1.343164,
+      "webdriver_inclusive_seconds": 1.343164,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "chrome-157.0.8103.78-linux",
+      "role": "Admin",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.114800000011921,
+      "webdriver_inclusive_seconds": 1.254793,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "chrome-157.0.8103.78-linux",
+      "role": "Warden",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.067600000023842,
+      "webdriver_inclusive_seconds": 1.185479,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "chrome-157.0.8103.78-linux",
+      "role": "Student",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.1055999999642372,
+      "webdriver_inclusive_seconds": 1.212746,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "firefox-160.0.1-linux",
+      "role": "Admin",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.687,
+      "webdriver_inclusive_seconds": 2.253614,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "firefox-160.0.1-linux",
+      "role": "Warden",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.533,
+      "webdriver_inclusive_seconds": 2.075188,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "firefox-160.0.1-linux",
+      "role": "Student",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.396,
+      "webdriver_inclusive_seconds": 1.939575,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "firefox-159.0.1-linux",
+      "role": "Admin",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.678,
+      "webdriver_inclusive_seconds": 2.240871,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "firefox-159.0.1-linux",
+      "role": "Warden",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.605,
+      "webdriver_inclusive_seconds": 2.145058,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "firefox-159.0.1-linux",
+      "role": "Student",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.508,
+      "webdriver_inclusive_seconds": 2.047039,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "edge-157.0.4341.60-linux",
+      "role": "Admin",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.609699999988079,
+      "webdriver_inclusive_seconds": 2.271724,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "edge-157.0.4341.60-linux",
+      "role": "Warden",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.231699999988079,
+      "webdriver_inclusive_seconds": 1.857713,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "edge-157.0.4341.60-linux",
+      "role": "Student",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.0671000000238418,
+      "webdriver_inclusive_seconds": 1.696448,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "edge-156.0.4314.58-linux",
+      "role": "Admin",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.6205,
+      "webdriver_inclusive_seconds": 2.283059,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "edge-156.0.4314.58-linux",
+      "role": "Warden",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.0633000000119208,
+      "webdriver_inclusive_seconds": 1.691482,
+      "meets_recorded_threshold": true
+    },
+    {
+      "platform": "linux",
+      "browser": "edge-156.0.4314.58-linux",
+      "role": "Student",
+      "method": "browser_navigation",
+      "threshold_measure_seconds": 1.278300000011921,
+      "webdriver_inclusive_seconds": 1.906222,
+      "meets_recorded_threshold": true
+    }
+  ],
+  "timing_limit": "Methods are recorded per observation. The original2.356176s WebDriver-inclusive Linux Chrome157 failure is preserved under history; a later browser NavigationTiming method retains control time separately. Do not erase or combine methods silently.",
+  "inactivity": {
+    "result": "PASS",
+    "observed_idle_seconds": 901.003,
+    "application_requests_during_idle": 0,
+    "protected_revisit_path": "/login/",
+    "evidence": "session/result.json"
+  },
+  "passive_security": {
+    "scan_completed": true,
+    "finding_disposition": "See security/qa-development-triage.md; original finding data remains unchanged",
+    "high_alert_variants": 0,
+    "medium_alert_variants": 1,
+    "low_alert_variants": 5,
+    "informational_variants": 4,
+    "explicit_http200_routes": 12,
+    "explicit_protected_routes": 10,
+    "passive_queue_remaining": 0,
+    "active_scans": 0,
+    "evidence": "security/sanitized-baseline.json",
+    "deployment_check_unsilenced_warnings": [
+      "security.W004",
+      "security.W008",
+      "security.W012",
+      "security.W016",
+      "security.W018"
+    ],
+    "triage": "security/qa-development-triage.md"
+  },
+  "availability": {
+    "result": "PENDING",
+    "state": "WAITING",
+    "window_ist": "2026-11-19 08:00:00 to20:00:00",
+    "recorded_slots_at_export": 0,
+    "planned_slots": 1440,
+    "minimum_successes": 1426,
+    "live_job": "job_c4c3658121",
+    "live_pid": 2322483,
+    "evidence": "availability/summary.json"
+  },
+  "limits": [
+    "Automated synthetic browser testing, including emulated phone viewport; no physical-phone or human-usability result",
+    "Actual isolated loopback HTTP app; no production or TLS acceptance follows",
+    "Raw credentials/cookies/driver/scanner logs/HTTP bodies excluded",
+    "Whole-plan acceptance and actual human approvals remain separate"
+  ]
+}

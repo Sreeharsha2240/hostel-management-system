@@ -603,7 +603,7 @@ def main():
                 name: table["rows"] for name, table in manifest["source_after"].items()
             },
             "populated_restore_scope": (
-                "the live source has no domain rows; populated restore is "
+                "the live source is backed up read-only; populated restore is "
                 "demonstrated only in the separate sandbox"
             ),
         }

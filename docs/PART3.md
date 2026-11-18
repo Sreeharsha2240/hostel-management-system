@@ -1,39 +1,37 @@
 # Part 3: testing, reports and team delivery
 
-**19 November assessment: NOT READY for final submission.** The initial review-candidate
-source is `a679ca47c0d642f89b708b9e8473d3a2c62697a7`. The
-[current assessment](part3/Final_Assessment_20261119.md) is the authority for
-present case totals, technical evidence and outstanding acceptance work;
-dated execution records below keep their original source and scope.
+**19 November: scoped #43 task CLOSED; original course readiness NOT READY.**
+The verified execution source is 0d9adb39f3adcb85e75449c85900b4c283868ded.
+All 13 local gates passed with 727 distinct mixed methods (726 PASS / one
+expected timing SKIP), separate timing PASS and 87.10% configured combined
+coverage. The clean 415-method isolated selection reaches 1,547/1,740 (88.91%)
+function-body statements under the actual owner boundary; 56.67% all-statements
+coverage stays separate. The full mixed run retains its actual dirty/precommit
+provenance. See the [current assessment](part3/Final_Assessment_20261119.md)
+and [technical evidence](part3/evidence/sprint-completion-20261118/README.md).
 
-The updated 61-case document, 36 original RTM mappings and all four reports are
-published. After reconciling TC-QUAL-01 with its primary PARTIAL walkthrough,
-the present ledger is **56 OWNER PASS / 3 PARTIAL / 2 NOT RUN**. Availability
-has no valid full-day measurement. Current desktop/browser workflows, passive
-scan and normal/volume load revalidation remain pending until their actual
-evidence is reviewed. Prior source-bound passes remain historical observations.
+The 61-case document, 36 original RTM mappings and four reports are published.
+The current ledger is 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING after reconciling
+QUAL-01 with its primary PARTIAL walkthrough. Current browser/scan/load/recovery evidence has bounded technical PASS results;
+the real availability window and final source/CI/merge/package checks remain
+pending.
+PO/recorded Development agreement concerns priorities and design mappings;
+accepted passed-case coverage remains unverified.
 
-The owner and the [recorded Development review](part3/Development_Review_20261114.md)
-agree to the 34 High / 27 Medium planning priorities and original RTM design
-mappings. Final QA agreement and requirement-by-requirement accepted passes
-remain pending; the recorded Development acceptance is **HOLD**. Later fixes
-do not supply a new human approval. Real-phone testing is excluded by the
-owner's mini-project decision; the reported laptop-browser phone-mode check
-has no retained version, viewport or workflow details.
+The [actual 10 November #43 owner exception](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+skips collecting teammate QA/Development/PO sign-offs and the project-guide
+walkthrough. Respect that scoped closure without inventing those approvals or
+reopening the task. The submitted Test Plan/course criteria remain unchanged.
+Instructor submission instructions and a genuine submission/receipt remain
+unrecorded. The owner-selected Sprint 2 clip is included at 1:55, with its
+approximately five-second shortfall from the nominal two-minute target disclosed.
 
-The included 1:55 Sprint 2 clip was selected by the owner on 18 November.
-The approximately five-second shortfall from the two-minute minimum remains
-disclosed. Team/instructor acceptance, final guide walkthrough, actual
-QA/Development/PO final decisions, instructor late-submission instructions,
-accepted final package and genuine receipt are still required. The original
-2-6 November window has passed. Follow the [checklist](SUBMISSION_CHECKLIST.md)
-and [current readiness checkpoint](part3/HMS21_Final_Readiness.md).
+The original plan window is **2-6 November 2026**. Original ownership and
+history are preserved; the user authorizes technical work across assignees.
+See the [checklist](SUBMISSION_CHECKLIST.md) and
+[current readiness checkpoint](part3/HMS21_Final_Readiness.md).
 
-This remains the team plan for **2-6 November 2026**. Original ownership is
-preserved; the user has authorized technical follow-through across assignees.
-Vaishnavi coordinates QA, Devansh leads development/coverage, and Sreeharsha
-coordinates integration and submission. Preserve actual contribution and
-approval histories.
+Current cross-sprint defects/retests are consolidated in [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) (OPEN; includes High technical assessments), separately from #79/#80. Devansh owns this Sprint 3 correction/retest task; its eight-point estimate is retrospective planning, with no team approval inferred. Fixes and local checks are recorded; clean CI/merge/final acceptance remains unchecked.
 
 ## Instructions and baseline
 
@@ -91,9 +89,9 @@ instructor requirement. The historical Sprint 1/2 issues stay closed.
 | [HMS-16 / #38](https://github.com/Sreeharsha2240/hostel-management-system/issues/38) | Sreeharsha (`harsha2240`) | 8 | 12 auth/user/security cases; System Validation Report integrates other owners' evidence with QA |
 | [HMS-17 / #39](https://github.com/Sreeharsha2240/hostel-management-system/issues/39) | Vaishnavi (`VaishnaviCH6`) | 5 | 8 student/hostel/quality cases; feeds System Validation Report |
 | [HMS-18 / #40](https://github.com/Sreeharsha2240/hostel-management-system/issues/40) | Devansh (`DevaOnL`) | 8 | 13 allocation/payment/report/performance/recovery cases; [recorded execution and owner appendix](part3/evidence/issue40-final/README.md), merged evidence with [authorized scoped AI QA acceptance](part3/evidence/issue40-final/qa-review-20261108.md); feeds System Validation Report, with actual final human approvals separate |
-| [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`); Sreeharsha co-assignee | 3 | Completed in merged PR #74: 288 isolated methods pass; 946/946 (100%) function-body statement coverage under the owner-approved boundary; 55.55% all-statements result remains disclosed |
+| [HMS-19 / #41](https://github.com/Sreeharsha2240/hostel-management-system/issues/41) | Vaishnavi (`VaishnaviCH6`); Sreeharsha co-assignee | 3 | Delivered through PR #74; current clean 415-method refresh meets the owner function-body boundary at 1,547/1,740 (88.91%); 56.67% all-statements remains disclosed |
 | [HMS-20 / #42](https://github.com/Sreeharsha2240/hostel-management-system/issues/42) | Devansh (`DevaOnL`) | 3 | Two distinct coverage reports are published and the reporting issue is closed; the later owner function-body interpretation is recorded above; the separate all-statements unit measure remains below 70% |
-| [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | [Final readiness checkpoint](part3/HMS21_Final_Readiness.md); final review, required approvals and submission confirmation remain open |
+| [HMS-21 / #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) | Sreeharsha (`harsha2240`) | 2 | [Final readiness checkpoint](part3/HMS21_Final_Readiness.md); CLOSED for the actual 10 November owner scope exception skipping teammate sign-offs/guide collection. Original course readiness and actual submission remain unmet/unrecorded |
 
 The 4 November requirements audit found actual development spillover in
 Devansh's scope. These Sprint 3 defects were fixed in merged PR #44 and
@@ -196,7 +194,7 @@ instructor also needs PDF/DOCX exports.
 | Output under `docs/` | Owner / contributors | Required content |
 |---|---|---|
 | [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, PO/Development-agreed current priorities (QA review pending), requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
-| [Unit Test Report](part3/Unit_Test_Report.md) | Vaishnavi coordinates; Sreeharsha supplies this report contribution; module owners supply results | Published through merged PR #74; owner-approved function-body unit coverage is 100% (946/946); companion all-statements result is 55.55% and remains disclosed |
+| [Unit Test Report](part3/Unit_Test_Report.md) | Vaishnavi coordinates; Sreeharsha supplies this report contribution; module owners supply results | Published through PR #74; current clean 415-method function-body result is 1,547/1,740 (88.91%); conservative all-statements companion is 56.67% |
 | [System Validation Report](part3/System_Validation_Report.md) | Sreeharsha integrates; QA consolidates; all owners execute | Entry/exit criteria, all planned functional/security/performance/recovery/quality cases, RTM, observed results, execution/pass/fail/requirement percentages, defect density/aging, blockers, deviations, readiness and actual approvals |
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
 | [Branch Coverage Report](part3/Branch_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, covered, missing and partial branches, branch percentages, gaps/exclusions and interpretation |
@@ -272,18 +270,21 @@ build and loaded data before execution. Its exit criteria are: **100% of planned
 cases executed, all High-priority cases passed, zero critical/high defects open,
 and every RTM requirement covered by a passed case**. Missing access, failed
 thresholds and unexecuted cases remain explicit blockers with owners/next steps.
-Record actual QA/Dev/PO approvals and the guide acceptance walkthrough; an
-unmet original criterion means not ready against the submitted Test Plan. Record
+The original Test Plan requires actual QA/Dev/PO approvals and a guide
+walkthrough. The #43 owner exception skips collecting them for this scoped
+task; those original criteria remain unmet without reopening the task. Record
 any instructor-approved requirement/criterion change separately with its
 authority, date and rationale, retaining the original outcome. Failed, blocked
 and not-run cases keep their actual statuses. Never infer a pass from an old issue's closed state.
 
 The final coordination task also checks inherited Part 2 obligations: the
 owner-provided [Sprint 1 demo](part3/evidence/sprint-recordings/Sprint1_Outcome_Demo.mp4)
-is now tracked and is 51.7 seconds, within the one-minute target. The owner has
+is tracked at 51.719 seconds against the nominal one-minute wording. The owner has
 also supplied the [Sprint 2 outcome video](part3/evidence/sprint-recordings/Sprint2_Outcome_Demo.mp4),
-which is tracked at 1:55; review its content and obtain an actual team/instructor decision on the approximately five-second
-shortfall from the two-minute minimum.
+which is tracked at 115.148 seconds (1:55), about five seconds shorter than the
+nominal two-minute target. Part 2 gives no strict duration bounds or tolerance;
+instructor tolerance/acceptance is unspecified. Retain the owner-selected clip;
+no replacement or extra footage is inferred as required.
 Keep the original documents, diagrams, historical charts and evidence intact;
 record changes and confirm DOCX/PDF pairs and any final instructor packaging rules.
 

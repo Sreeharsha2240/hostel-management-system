@@ -1,32 +1,41 @@
 # HMS-21 final readiness checkpoint
 
-**19 November disposition: NOT READY.** The initial review candidate's
-source is `a679ca47c0d642f89b708b9e8473d3a2c62697a7`.
-The [current assessment](Final_Assessment_20261119.md) reconciles the original
-assignment, SRS, SAD and submitted Test Plan against the actual records.
-This is an assisted technical checkpoint; it is not a teammate signature,
-guide acceptance, instructor decision, selected final package or receipt.
+**19 November: owner-scoped HMS-21/#43 CLOSED; original course readiness
+NOT READY.** The verified execution source is
+0d9adb39f3adcb85e75449c85900b4c283868ded. This assisted technical checkpoint
+records actual results and scope decisions; it supplies no other person's
+approval or a submission receipt.
 
 | Requirement | Current disposition |
 |---|---|
-| Updated case document and RTM | Published: 61 case records, original 33 IDs and all 36 original mappings retained. |
-| Four required reports under `docs/` | Published. Current source-bound metrics and historical measurements are distinguished in each report. |
-| Current execution ledger | 56 OWNER PASS / 3 PARTIAL / 2 NOT RUN; original 33: 32 OWNER PASS / 1 PARTIAL. QUAL-01's old aggregate PASS is corrected to the primary walkthrough's PARTIAL. These are attributed observations, not QA-accepted passes. |
-| Frozen-source automated checks and isolated coverage | Fresh evidence is being reconciled in the [technical evidence](evidence/sprint-completion-20261118/); do not substitute older-source percentages. |
-| Desktop/browser/OS, passive scan and load refresh | Current workflow/scan/load runs pending review. Historical evidence remains source-bound. |
-| Availability | TC-QUAL-02 NOT RUN: no valid complete 12-hour working-day observation yet. 19 November 08:00-20:00 IST observation prepared; job installation and actual log review pending. |
-| Test Plan exit criteria | NOT MET / UNVERIFIED: incomplete planned cases, High TC-SEC-08 PARTIAL, complete severity-reviewed defect inventory and accepted-pass RTM coverage pending. |
-| #79/#80 | Corrections implemented on the frozen source; independent/browser/CI retest and actual issue decisions remain pending. |
-| Review decisions | PO/recorded Development agreement exists for current priorities and original design mappings. Recorded final Development decision is HOLD; final QA/Development/PO decisions, actual case-owner acceptance and project-guide walkthrough remain pending. |
-| Scope deviations | Owner's REQ-24 field boundary, excluded physical-phone activity and SAD section 4.4 request-ID/monitoring limitation are disclosed. They supply no instructor-approved amendment. |
-| Sprint recordings | Sprint 1 included at 51.719 seconds. Owner selected included Sprint 2 at 115.148 seconds (1:55); acceptance of its content and approximately five-second shortfall from the two-minute minimum remains separate. |
-| Final submission | Instructor late-submission/channel/deadline/format decision, accepted SHA/package, final package checks and genuine receipt are pending. |
+| Updated cases and RTM | Published: 61 records, original 33 IDs and all 36 original RTM mappings retained. |
+| Four required reports | Unit, System Validation, Code Coverage and Branch Coverage Reports are present under docs/part3 and refreshed against current evidence. |
+| Local automated verification | 13 gates PASS; 727 distinct mixed methods, 726 PASS / one expected timing SKIP; separate timing PASS. Mixed statements 2,994/3,380 (88.58%), branches 821/1,000 (82.10%), combined 87.10%. |
+| Isolated-unit target | Clean 415/415 PASS, no DB attempts, 208 verified pins; function-body 1,547/1,740 (88.91%) under the owner boundary. Conservative all-statements companion 56.67%. Retained 288-method baseline passes its tests but measures 66.55%, below 70%. |
+| Run provenance | Full mixed run records a679ca47 dirty/precommit; its tested source became 9b36871 and remains in 0d9adb39. Clean isolated runs validate the frozen source. No clean-commit mixed execution is invented. |
+| Current execution ledger | 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING; original 33: 32 OWNER PASS / 1 PARTIAL. QUAL-01 follows its primary PARTIAL walkthrough; execution attribution is separate from accepted passage. |
+| Current operational execution | Twelve browser workflows/228 observations and real 901.003-second idle PASS; bounded ZAP baseline/triage PASS with retained Medium/Low findings; both 600-second/50-user workloads PASS; fresh owned sandbox recovery plus read-only browser backup PASS. |
+| Availability | QUAL-02 PENDING: real observer job job_c4c3658121 / PID 2322483 is installed for 19 November 08:00-20:00 IST. Exported WAITING snapshot has zero probes; no availability pass. |
+| Current production corrections | Inventory/history, available-bed consistency, one confirmation per submission and canonical coverage exports corrected. Independent technical review reconciles 26 focused tests and full mixed artifacts; no concrete blocker established in that scope. Current GitHub states are #79 CLOSED / #80 OPEN; remote CI remains separate; [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) tracks consolidated findings and has final CI/merge acceptance unchecked. |
+| Original exit criteria | NOT MET / UNVERIFIED: QUAL-01/04 PARTIAL, QUAL-02 PENDING, OPEN #90 with High technical assessments, accepted-pass RTM coverage unverified. SEC-08 technical execution is now PASS. |
+| Owner-scoped task exception | Actual 10 November #43 owner closure skips collecting teammate QA/Development/PO sign-offs and guide walkthrough. Task stays CLOSED; no new collection or approval gate. Original course criteria remain unmet and no such approvals are inferred. |
+| Scope limits | Owner REQ-24 interpretation, excluded physical-phone activity and unimplemented SAD section 4.4 request-ID/monitoring items remain disclosed. |
+| Sprint videos | Sprint 1 included at 51.719 seconds. Owner-selected Sprint 2 included at 115.148 seconds (1:55), approximately five seconds below the nominal two-minute target; no instructor acceptance of the shortfall is inferred. |
+| Course submission | Instructor late-submission/channel/deadline/format decisions, accepted course package and genuine submission/receipt remain unrecorded. |
 
-The [submission checklist](../SUBMISSION_CHECKLIST.md) records the concrete
-remaining actions. The reported 93-second new-Warden guide task is a limited
-usability observation with no exact guide revision, participant code or timing
-trace; it is distinct from acceptance with the actual project guide.
-Current automation cannot establish historical pre-execution entry approval.
+The [current assessment](Final_Assessment_20261119.md) and
+[technical evidence](evidence/sprint-completion-20261118/README.md) give scope,
+source and per-file results. The [checklist](../SUBMISSION_CHECKLIST.md) respects
+the [actual owner closure](https://github.com/Sreeharsha2240/hostel-management-system/issues/43).
+The owner-reported 93-second new-Warden guide task lacks exact guide revision,
+participant code and start/end timing trace; it is separate from a project-guide
+walkthrough. Historical pre-execution entry approval is not backdated.
+
+Subsequent changes affect a recovery-report literal and the existing hidden-
+console backup launch only; Django application behavior is unchanged. Their
+32 recovery-safety tests passed, but final source-pin refresh, clean regression,
+CI/merge and package verification remain pending. The 0d9adb39 execution hashes
+and results below are preserved and are not relabelled as the successor SHA.
 
 <details>
 <summary>Historical readiness records through 18 November (original source/date scopes)</summary>

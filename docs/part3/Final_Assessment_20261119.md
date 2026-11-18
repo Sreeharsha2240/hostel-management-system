@@ -1,44 +1,67 @@
 # Part 3 assessment — 19 November 2026
 
-**Submission readiness: NOT READY.** The updated 61-case document, 36-row core
-RTM and all four required reports are present. Their publication and the closed
-tracking issues do not establish the submitted Test Plan's exit criteria.
+**Original course-submission readiness: NOT READY. Owner-scoped HMS-21/#43:
+CLOSED.** The updated 61-case document, 36-row core RTM and four required
+reports are present. Publication and scoped tracking closure do not establish
+every original Test Plan/course criterion.
 
-The initial review-candidate source for this assessment is
-`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. Documentation and evidence may be
-added after that freeze; each execution must retain its actual checkout,
-dirty/clean state and source fingerprints. This is an assisted technical
-assessment under the user's authorization across assignees. It supplies no
-other person's signature or final acceptance.
+The verified execution source is
+0d9adb39f3adcb85e75449c85900b4c283868ded (tree
+37f15fa2d2acadae9072dd082da1816b3174cf69). All 13 local gates passed:
+727 mixed methods, 726 PASS / one expected timing SKIP, with separate timing
+PASS. The full mixed run records a679ca47 with git_dirty=true; its tested
+bytes became 9b36871 and remain in 0d9adb39. It is not a clean-commit mixed run.
+Both isolated measurements ran on clean 0d9adb39 and validated 208 source pins.
+See the [technical evidence](evidence/sprint-completion-20261118/README.md).
 
-**Successor verification in progress:** blind review found an HTML/API bed-
-availability mismatch and a duplicate-confirmation problem. Corrections and
-coverage-XML path normalization are being verified before the successor code
-freeze. The runner now has 13 gates. Current results remain pending; any
-measurement on `a679ca4` is evidence for that initial candidate, not for these
-subsequent changes.
+The [actual 10 November owner closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting teammate QA/Development/PO sign-offs and the
+project-guide walkthrough for this mini-project. Respect that scope exception:
+the task stays closed and this assessment imposes no new collection or
+approval gate. Those people did not thereby approve the project; original
+course criteria remain unmet and no instructor-approved amendment or actual
+submission/receipt is recorded. Technical work across assignees is authorized;
+today's automated executions are not attributed to another teammate.
+
+Fresh independent technical review covered 26 focused tests and the full mixed
+artifacts. Inventory/history and HTML/API availability consistency corrections,
+single submission confirmation and canonical coverage export normalization are
+verified in that scope; no remaining concrete production blocker was established.
+Browser, scan, load and recovery now have the bounded technical results below;
+the real availability window remains pending. Historical Development HOLD and its source remain recorded;
+no fresh human Development signature is invented.
 
 ## Current evidence and case assessment
 
 | Area | Current assessment | Evidence or remaining condition |
 |---|---|---|
-| Local automated verification | Fresh runner result awaiting durable evidence reconciliation here | The coordinator is publishing the source-bound checks under [current technical evidence](evidence/sprint-completion-20261118/). Do not substitute older CI or coverage figures for the frozen source. |
-| Isolated-unit target | Fresh 415-method measurement awaiting durable evidence reconciliation here | Retain the original baseline selection, no-database enforcement and exact source pins. Apply the owner's function-body interpretation and disclose all-statements coverage separately. Earlier 288/294-method measurements remain historical. |
+| Local automated verification | **13 gates PASS; 727 distinct mixed methods, 726 PASS / one expected SKIP; separate timing PASS** | Mixed coverage: 2,994/3,380 statements (88.58%), 821/1,000 branches (82.10%), 87.10% combined. [Exact outcomes/source provenance](evidence/sprint-completion-20261118/technical-verification.json) retain the dirty/precommit mixed execution. |
+| Isolated-unit target | **415/415 PASS; 1,547/1,740 function-body statements (88.91%) under the owner boundary** | Clean freeze, 208 verified source pins and zero DB attempts. The retained 288-method baseline passes its tests but covers 1,158/1,740 (66.55%), below 70%. Expanded all-statements companion is 1,547/2,730 (56.67%), not a 70% pass. |
 | TC-QUAL-01: browser compatibility and usability | **PARTIAL** | The [primary walkthrough](evidence/issue39/usability-walkthrough-20261109.md) explicitly retains overall PARTIAL. Its 93-second first-use result is owner-reported; exact guide revision, participant code and start/end timing trace were not retained. A visible automated browser workflow cannot establish a new participant's guide use. |
-| TC-QUAL-02: office-hours availability | **NOT RUN** | No valid complete 08:00-20:00 working-day observation establishes ≥99%. The failed/aborted earlier attempts remain disclosed in the [follow-up](evidence/remaining-test-gaps-20261115.md). A 19 November 08:00-20:00 IST observation is prepared; job installation and review of its actual probe log and denominator remain pending. |
-| TC-QUAL-03: desktop browser and server portability | **NOT RUN** pending current full workflow evidence | The [15 November checks](evidence/remaining-test-gaps-20261115.md) exercised login/pages and an HTTP Linux check, with Edge's previous version missing. Twelve current Windows/Linux browser workflows are in progress; no result is inferred before their versioned workflow records are reconciled. |
+| TC-QUAL-02: office-hours availability | **PENDING** | Real observer job job_c4c3658121/PID 2322483 is installed for19 November 08:00-20:00 IST. [Exported WAITING snapshot](evidence/sprint-completion-20261118/browser-security/availability/summary.json): 0/1,440 probes; no pass. Missing/failures count; 1,426 successes required. |
+| TC-QUAL-03: desktop browser/server portability | **PASS - Codex technical execution** | [Twelve Windows 11/Fedora 44 workflows](evidence/sprint-completion-20261118/browser-security/README.md), nineteen observations each, all 269 accepted source/font pins matched. Real writes/downloads/security/browser-Back/confirmation paths exercised; no human first-use claim. |
 | TC-QUAL-04: maintainability | **PARTIAL** | The unit target is evaluated under the recorded owner boundary. Configured Ruff checks and modular apps support the style/design assessment; they do not certify every PEP 8 provision. |
-| TC-SEC-08: ZAP/deployment inspection | **PARTIAL** | The historical authenticated passive scan has Low/Informational observations and local HTTP scope. A fresh passive scan is pending. Scanning, alert review, deployment-settings checks and real TLS evidence have distinct scopes. |
-| TC-PERF-01 / TC-PERF-03 | Historical **OWNER PASS** observations retained; frozen-source revalidation pending | The [5 November owner results](evidence/issue40-final/README.md) retain both complete workloads and the failed first volume run. Fresh normal/volume workloads, each 50 users for at least 600 seconds, are in progress. |
-| #79 / #80 inventory/history corrections | Implemented on the frozen source; final retest/review disposition pending | Local regression evidence is being reconciled. Do not infer issue closure, independent review or a new Development approval from the implementation alone. |
+| TC-SEC-08: baseline and triage | **PASS - Codex bounded technical execution** | [Actual triage](evidence/sprint-completion-20261118/browser-security/security/qa-development-triage.md): completed authenticated passive baseline,12 explicit HTTP-200 routes, drained queue. Retain one Medium static 404 CSP finding,Low/Informational observations and five insecure-loopback deploy warnings; no production/TLS approval. |
+| TC-PERF-01 / TC-PERF-03 | **Current technical PASS; historical owner passes retained** | [Both full workloads](evidence/sprint-completion-20261118/operations/load-results.json):50 users/600 s each. Baseline 28,952 requests/maximum 1,599 ms; volume 28,806 at 5,000 students/2,000 beds/maximum 1,519 ms; zero errors, 100% under 2 s. |
+| #79 / #80 inventory/history corrections | Implemented; local regressions and independent technical review recorded | GitHub currently records #79 CLOSED (18 November 18:34:53 UTC) and #80 OPEN. Keep those actual states separate from fixed-source observations and pending follow-up CI/merge acceptance. |
+| [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) consolidated defect/retest record | **OPEN; includes current High technical assessments** | Records cross-sprint account/state and allocation-race integrity findings plus interface, receipt, availability, confirmation, coverage-export and runner/recovery findings. Fixes/local retests are recorded; clean CI/merge/final acceptance remains unchecked. Do not claim zero open High defects. |
 
-After correcting TC-QUAL-01's aggregate label to match its primary evidence,
-the register contains **56 OWNER PASS / 3 PARTIAL / 2 NOT RUN / 0 BLOCKED**.
-The original 33 contain **32 OWNER PASS / 1 PARTIAL**. These are attributed
-execution dispositions, not accepted passes. OWNER PASS or PARTIAL dispositions
-cover 59/61 cases (96.72%); 56/61 are OWNER PASS (91.80%). The three partial cases are
-TC-QUAL-01, TC-QUAL-04 and TC-SEC-08. New evidence may change these counts only
-after its case conditions have been checked.
+The current register is **56 historical OWNER PASS / 2 current Codex
+technical PASS / 2 PARTIAL / 1 PENDING**. The original 33 remain 32 OWNER PASS /
+1 PARTIAL. Passing observations total 58/61 (95.08%); passing or partial
+dispositions total 60/61 (98.36%). QUAL-01 usability and QUAL-04 style remain
+PARTIAL; QUAL-02 has no completed availability result. The two new technical
+passes do not attribute execution to a teammate.
+
+Fresh [session evidence](evidence/sprint-completion-20261118/browser-security/session/result.json)
+records 901.003 actual idle seconds without application requests before protected
+revisit redirected to login. Historical login-control outliers remain retained;
+browser NavigationTiming and WebDriver-inclusive measurements are labelled
+separately. [Fresh recovery](evidence/sprint-completion-20261118/operations/recovery-results.json)
+records a real natural daily trigger, 3.299-second-old populated restore with
+matching counts/row/schema digests and 17 zero-violation checks, plus a stable
+read-only browser backup. The temporary task/server were removed; no ongoing
+current-browser daily schedule is claimed.
 
 ## Requirements and exit criteria
 
@@ -50,14 +73,14 @@ of late submission is recorded.
 
 | Submitted requirement | Assessment |
 |---|---|
-| Test Plan §5: 100% of planned cases executed | **NOT MET.** The expanded plan has two NOT RUN cases and incomplete cases. A partial observation is not complete execution of every expected condition. |
-| Test Plan §5: all High-priority cases passed | **NOT MET.** TC-SEC-08 is High and PARTIAL. The PO and recorded Development review agree to the current 34 High / 27 Medium proposal; actual QA agreement and case acceptance remain pending. The original plan had no per-case priorities. |
-| Test Plan §5: zero open Critical/High defects | **UNVERIFIED** for the complete frozen-source inventory. Closed defects and implemented fixes do not certify inventory completeness, severity review or acceptance of all current retests. |
-| Test Plan §5 / §13.2: every RTM requirement covered by a passed case | **UNVERIFIED.** All 36 original mappings are preserved and accepted as design traceability by the PO and recorded Development review. Accepted passed-case coverage must be decided requirement by requirement. |
-| Test Plan §5: project-guide acceptance walkthrough | **PENDING.** A real guide must review the revision-bound main flows and record findings and a decision. The owner-reported new-Warden task is a separate usability observation. |
-| Test Plan §15: QA / Development / PO approvals | **PENDING** for the final revision and package. The [14 November Development decision](Development_Review_20261114.md) is HOLD; later fixes do not silently convert it to approval. |
-| SRS §6.4 unit tests cover ≥70% of application logic | Apply the actual [owner function-body decision](evidence/hms19-function-body-boundary-20261113.md); retain the conservative all-statements diagnostic. This is a project-owner interpretation, with no invented instructor endorsement. |
-| SRS §6.4 portability and usability | Desktop/latest-two Windows/Linux workflows and a new-Warden guide task are separate conditions. Physical-phone testing is excluded by the owner; the reported laptop-browser phone-mode check has no retained version/viewport/workflow detail. |
+| Test Plan section 5: 100% planned cases executed | **NOT MET:** QUAL-01/04 remain PARTIAL and the real QUAL-02 window is PENDING. |
+| Test Plan section 5: all High-priority cases passed | SEC-08 now has bounded technical PASS. Original accepted-case/priority agreement remains distinct; no human approval is inferred. OPEN #90 still fails the separate High-defect gate. |
+| Test Plan section 5: zero open Critical/High defects | **NOT MET while [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) remains open with High technical assessments.** Implemented fixes and local retests do not close this tracked criterion; complete inventory/acceptance remains separate. |
+| Test Plan section 5 / section 13.2: every RTM requirement covered by a passed case | **UNVERIFIED.** All 36 original mappings are preserved and accepted as design traceability by the PO and recorded Development review. Accepted passed-case coverage must be decided requirement by requirement. |
+| Test Plan section 5: project-guide acceptance walkthrough | **Unmet original course criterion; collection skipped by the actual #43 owner exception.** No guide session/approval is invented; the new-Warden usability task is separate. |
+| Test Plan section 15: QA / Development / PO approvals | **Unmet original course criterion; collection skipped by the actual #43 owner exception.** Historical Development HOLD stays recorded; no final human approvals are inferred. |
+| SRS section 6.4 unit tests cover >=70% of application logic | **Met under the actual [owner function-body decision](evidence/hms19-function-body-boundary-20261113.md): 88.91%.** The conservative all-statements companion is 56.67%; no instructor endorsement is invented. |
+| SRS section 6.4 portability and usability | Desktop/latest-two Windows/Linux workflows and a new-Warden guide task are separate conditions. Physical-phone testing is excluded by the owner; the reported laptop-browser phone-mode check has no retained version/viewport/workflow detail. |
 | SAD section 4.4 request-ID error logs and operational monitoring | **Disclosed limitation.** The [PO disposition](evidence/owner-disposition-20261114.md) records these items as unimplemented/unverified for the mini-project. Audit/backup checks do not satisfy them. QA/guide/instructor acceptance remains separate. |
 
 Historical entry approval, late execution and tool/environment substitutions
@@ -68,19 +91,28 @@ and MySQL versions used. A mapped test or passing companion proves only its
 asserted conditions; the original browser timing, Back/idle and script-execution
 subconditions need their own evidence or an actual bounded acceptance decision.
 
+Subsequent changes affect a recovery-report literal and the existing hidden-
+console backup launch only; Django application behavior is unchanged. Their
+32 recovery-safety tests passed, but final source-pin refresh, clean regression,
+CI/merge and package verification remain pending. The 0d9adb39 execution hashes
+and results below are preserved and are not relabelled as the successor SHA.
+
 ## Package and external decisions
 
 The owner selected the included [Sprint 2 outcome video](evidence/sprint-recordings/Sprint2_Outcome_Demo.md)
-on 18 November. It is 115.148 seconds (1:55), about five seconds below the
-two-minute minimum; owner publication authorization is recorded, while team
-and instructor acceptance of the shortfall is not. The [Sprint 1 recording](evidence/sprint-recordings/README.md)
-is 51.719 seconds. Neither recording supplies a guide walkthrough or a final
-submission receipt.
+on 18 November. It is 115.148 seconds (1:55), about five seconds shorter than
+the nominal two-minute target. Part 2 says "Record a two minute video" and gives
+no strict duration bounds or tolerance; instructor tolerance/acceptance is
+unspecified. Retain the owner-selected final clip without inventing a need for
+replacement or extra footage. The [Sprint 1 recording](evidence/sprint-recordings/README.md)
+is 51.719 seconds against the nominal one-minute wording. Neither recording
+supplies a guide walkthrough or a final submission receipt.
 
-Final QA/Development/PO decisions, case-owner evidence acceptance, guide
-walkthrough, instructor late-submission/channel/deadline/format decisions,
-accepted final package and a genuine submission receipt remain outstanding.
-GitHub Project synchronization and the acceptability of the merge-history
-burndown reconstruction also remain unconfirmed. See the [submission
-checklist](../SUBMISSION_CHECKLIST.md). No issue-state change, external message,
-submission or human approval is asserted by this assessment.
+The owner has excluded collection of final teammate sign-offs and guide
+walkthrough from the scoped task, without claiming those original criteria
+passed. Instructor late-submission/channel/deadline/format decisions, accepted
+course package and a genuine submission receipt remain unrecorded. GitHub
+Project synchronization and acceptance of the merge-history burndown
+reconstruction remain unconfirmed. See the [submission checklist](../SUBMISSION_CHECKLIST.md).
+No issue reopening, external message, submission or human approval is asserted
+by this assessment.

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "Admin login",
+    "status": "FAIL",
+    "actual": {
+      "seconds_click_to_dashboard_and_workspace_text": 2.356176,
+      "threshold_seconds": 2,
+      "meets_threshold": false
+    },
+    "screenshot": "admin-login.png",
+    "screenshot_sha256": "7d0c5befbea0b350ea97de18640b970ed6f1999ec3f0726f0cc501417f7de1a6",
+    "at": "2026-11-18T18:52:25.266000+00:00"
+  }
+]

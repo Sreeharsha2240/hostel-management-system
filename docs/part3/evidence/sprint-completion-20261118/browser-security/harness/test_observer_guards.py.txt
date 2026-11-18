@@ -1,0 +1,37 @@
+"""Offline harness checks only; these are not availability observations."""
+import hashlib,json,subprocess,tempfile,unittest
+from pathlib import Path
+from types import SimpleNamespace
+from matrix import source_snapshot
+from observe_availability import validate_accepted_source,protected_response_valid,result_exit_code
+ROOT=Path(__file__).resolve().parent
+class ResponseGuards(unittest.TestCase):
+ def test_actual_200_dashboard_required(self):
+  for status in [201,202,204,302,403,500]:
+   with self.subTest(status=status):self.assertFalse(protected_response_valid(SimpleNamespace(status=status,url='http://127.0.0.1:8109/dashboard/'),b'Warden workspace'))
+  self.assertTrue(protected_response_valid(SimpleNamespace(status=200,url='http://127.0.0.1:8109/dashboard/'),b'Warden workspace'))
+ def test_login_page_and_wrong_body_rejected(self):
+  self.assertFalse(protected_response_valid(SimpleNamespace(status=200,url='http://127.0.0.1:8109/login/'),b'Warden workspace'))
+  self.assertFalse(protected_response_valid(SimpleNamespace(status=200,url='http://127.0.0.1:8109/dashboard/'),b'Welcome to HMS'))
+ def test_failed_completion_is_nonzero(self):
+  self.assertEqual(result_exit_code('PASS'),0);self.assertEqual(result_exit_code('FAIL'),1);self.assertNotEqual(result_exit_code('PENDING'),0)
+class SourceGuards(unittest.TestCase):
+ def setUp(self):
+  self.temp=tempfile.TemporaryDirectory(prefix='observer-guard-',dir=ROOT);self.repo=Path(self.temp.name)
+  (self.repo/'hms').mkdir();self.runtime=self.repo/'hms/runtime.py';self.runtime.write_text('value = 1\n')
+  for args in [['init','-q'],['add','.'],['-c','user.name=Offline guard fixture','-c','user.email=fixture@example.test','commit','-qm','fixture']]:subprocess.run(['git',*args],cwd=self.repo,check=True,capture_output=True)
+  self.accepted=source_snapshot(self.repo);self.config={'expected_commit':self.accepted['commit'],'expected_source_pins':self.accepted['pins']}
+ def tearDown(self):self.temp.cleanup()
+ def test_clean_accepted_tree_passes(self):validate_accepted_source(self.config,source_snapshot(self.repo))
+ def test_same_head_modified_runtime_rejected(self):
+  self.runtime.write_text('value = 2\n');changed=source_snapshot(self.repo);self.assertEqual(changed['commit'],self.accepted['commit'])
+  with self.assertRaises(AssertionError):validate_accepted_source(self.config,changed)
+ def test_untracked_runtime_rejected(self):
+  (self.repo/'hms/extra.py').write_text('extra = 1\n')
+  with self.assertRaises(AssertionError):validate_accepted_source(self.config,source_snapshot(self.repo))
+ def test_missing_accepted_pins_rejected(self):
+  with self.assertRaises(AssertionError):validate_accepted_source({'expected_commit':self.accepted['commit']},source_snapshot(self.repo))
+if __name__=='__main__':
+ suite=unittest.defaultTestLoader.loadTestsFromModule(__import__(__name__));result=unittest.TextTestRunner(verbosity=2).run(suite)
+ summary={'scope':'Offline fake responses and temporary Git fixtures; no real probe or clock manipulation','tests':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),'successful':result.wasSuccessful(),'observer_sha256':hashlib.sha256((ROOT/'observe_availability.py').read_bytes()).hexdigest(),'helper_sha256':hashlib.sha256((ROOT/'matrix.py').read_bytes()).hexdigest()}
+ (ROOT/'observer-negative-probes.json').write_text(json.dumps(summary,indent=2));print(json.dumps(summary));raise SystemExit(0 if result.wasSuccessful() else 1)

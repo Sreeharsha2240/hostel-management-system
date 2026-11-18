@@ -9,6 +9,10 @@
 > owner-selected Sprint 2 video supersedes the old missing-video condition,
 > with its 1:55 duration shortfall disclosed. No new human Development sign-off
 > is inferred from those updates.
+> The actual 10 November owner closure of #43 skips collecting teammate
+> sign-offs and the guide walkthrough. Historical collection requests below
+> do not add those tasks back to the owner's scope; unmet original course
+> criteria remain distinguished in the current assessment.
 
 
 **Development review completed; final Development acceptance HOLD. Whole-plan submission NOT READY.**

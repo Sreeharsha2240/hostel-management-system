@@ -1,0 +1,28 @@
+{
+  "verified_at": "2026-11-18T19:25:52.498851+00:00",
+  "command": [
+    "python",
+    "harness/verify_published_evidence.py.txt",
+    "<browser-security-directory>"
+  ],
+  "exit_code": 0,
+  "artifact_manifest_sha256": "271b2ad387787df891aa33772f98050770ff03fa798f894be25c4d3ac39eb515",
+  "verifier_sha256": "700f7dc22d7cff8001ec8e2db650198dc272370e81312f3b8aa2fb80fce2bfdf",
+  "checks": {
+    "result": "PASS",
+    "manifest_files": 350,
+    "browser_results": 12,
+    "observations": 228,
+    "browser_screenshots": 228,
+    "exports": 36,
+    "source_snapshots": 11,
+    "canonical_pins": 269,
+    "idle_seconds": 901.003,
+    "scan_alert_variants_preserved": 10,
+    "availability_result": "PENDING",
+    "historical_timing_failure_preserved": true
+  },
+  "publication_scope": "Only new sanitized evidence files. No application source mutation, staging, commit or push performed by this publishing agent.",
+  "index_links": "PASS",
+  "credential_values_checked": "Private Windows account passwords checked across published bytes; remote exporter also checked remote account passwords before copying session/security files."
+}

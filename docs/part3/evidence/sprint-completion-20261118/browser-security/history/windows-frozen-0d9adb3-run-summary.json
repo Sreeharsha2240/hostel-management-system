@@ -1,0 +1,16 @@
+{
+  "started_at": "2026-11-18T18:47:39.439115+00:00",
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.7",
+  "launch_only": false,
+  "database": {
+    "vendor": "mysql",
+    "version": "8.4.9"
+  },
+  "planned_browser_count": 6,
+  "executed_browser_count": 3,
+  "source_unchanged": true,
+  "commit_unchanged": true,
+  "completed_at": "2026-11-18T18:48:41.366074+00:00",
+  "success": false
+}

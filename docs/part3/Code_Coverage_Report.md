@@ -1,22 +1,72 @@
 # Code Coverage Report
 
-**19 November source reconciliation:** The initial review-candidate source is
-`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. Current full-suite configured
-statement/branch coverage and separate isolated-unit diagnostics are being
-reconciled in the [technical evidence](evidence/sprint-completion-20261118/).
-The older 99.12% mixed statement figure and 956/959 unit figure below do not
-describe this frozen source. The 18 November 294-method measurement was
-960/998 (96.19%) function-body statements and 960/1,767 (54.33%) complete
-application statements ([source-bound record](evidence/hms19-main-refresh-20261118/README.md)).
+**19 November current measurement.** **Verified execution source:** 0d9adb39f3adcb85e75449c85900b4c283868ded.
+The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
+and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
+record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
+timing SKIP**, with separate uninstrumented timing PASS. Mixed configured
+coverage is **2,994/3,380 statements (88.58%)**, **821/1,000 branch outcomes
+(82.10%)**, and **87.10% combined**. Scripts are included in this mixed
+denominator; these results are not isolated-unit coverage.
 
-The configured mixed denominator includes measured verification tooling and
-startup/integration execution. The isolated unit denominator is separately
-application-only, credits only selected method contexts, retains no-database
-enforcement and applies the actual owner-approved function-body rule.
-Uncovered import/declaration lines stay disclosed in the conservative
-all-statements companion. Coverage percentages do not establish case/RTM
-acceptance; whole-plan submission remains **NOT READY**. See the
-[current requirements assessment](Final_Assessment_20261119.md).
+The full mixed run truthfully records a679ca47 with git_dirty=true;
+its tested bytes were committed as 9b36871 and retained in 0d9adb39.
+It is not relabelled as a clean-commit execution. Both isolated measurements
+ran on clean 0d9adb39, validated all 208 canonical-LF source pins, retained
+their exact method lists and made zero database attempts. The source tree is
+37f15fa2d2acadae9072dd082da1816b3174cf69.
+
+## Current statement coverage by module
+
+| Module | Mixed statements covered/measured | Missing | Mixed statement rate | Isolated function-body statements | Isolated all-statements companion |
+|---|---:|---:|---:|---:|---:|
+| accounts | 538/541 | 3 | 99.45% | 321/341 (94.13%) | 321/541 (59.33%) |
+| allocations | 335/339 | 4 | 98.82% | 222/230 (96.52%) | 222/339 (65.49%) |
+| audit | 172/172 | 0 | 100.00% | 75/75 (100.00%) | 75/172 (43.60%) |
+| hms | 156/156 | 0 | 100.00% | 107/107 (100.00%) | 107/156 (68.59%) |
+| hostels | 580/603 | 23 | 96.19% | 280/406 (68.97%) | 280/603 (46.43%) |
+| payments | 443/452 | 9 | 98.01% | 283/292 (96.92%) | 283/452 (62.61%) |
+| reports | 86/86 | 0 | 100.00% | 54/54 (100.00%) | 54/86 (62.79%) |
+| scripts | 311/650 | 339 | 47.85% | Outside application scope | Outside application scope |
+| students | 373/381 | 8 | 97.90% | 205/235 (87.23%) | 205/381 (53.81%) |
+| Application subtotal | 2,683/2,730 | 47 | 98.28% | 1,547/1,740 (88.91%) | 1,547/2,730 (56.67%) |
+| Configured mixed total | 2,994/3,380 | 386 | 88.58% | Separate application measure | Separate application measure |
+
+The original 288-method selection covers 1,158/1,740 (66.55%) current
+function-body statements; the additive 415-method selection reaches
+1,547/1,740 (88.91%) under the recorded owner boundary. Both exact selections
+pass without database attempts. Their complete application-statement companions
+are 42.42% and 56.67%. These are separate denominators and scopes.
+
+The mixed suite leaves 386 configured statements uncovered: 339 in verification
+scripts and 47 in application files. Isolated callable-body gaps total 193,
+including 126 in hostels. No new per-module percentage target is imposed.
+All files remain in their applicable denominator; configured excluded lines
+total zero. Full current [per-file measured/covered/missing lines](evidence/sprint-completion-20261118/technical-verification.json)
+and [isolated lines/contexts](evidence/sprint-completion-20261118/isolated-expanded-summary.json)
+are retained, including declarations receiving no selected-method credit.
+
+Reproduce using the [current commands and environment record](evidence/sprint-completion-20261118/README.md).
+The clean isolated environment is Windows 11/Python 3.14.7, Django 5.2.19 and
+coverage 7.16.2. The mixed run's dirty/precommit source remains explicit above.
+Neither the attribution harness nor .coveragerc was weakened for the target.
+
+The [10 November owner-directed closure of #43](https://github.com/Sreeharsha2240/hostel-management-system/issues/43)
+explicitly skips collecting teammate QA/Development/PO sign-offs and the
+project-guide walkthrough for this mini-project. That scoped task remains
+CLOSED; no new collection or approval gate is imposed here. These people did
+not thereby approve the project, and original Test Plan/course acceptance
+criteria remain unmet. Instructor submission instructions and a genuine
+submission/receipt remain unrecorded.
+
+Coverage does not establish full case/RTM acceptance. Original course readiness
+is **NOT READY**; see the [current assessment](Final_Assessment_20261119.md).
+
+Subsequent changes affect a recovery-report literal and the existing hidden-
+console backup launch only; Django application behavior is unchanged. Their
+32 recovery-safety tests passed, but final source-pin refresh, clean regression,
+CI/merge and package verification remain pending. The 0d9adb39 execution hashes
+and results below are preserved and are not relabelled as the successor SHA.
 
 ## Historical measurements and report text
 

@@ -23,6 +23,8 @@ ROOT = Path(__file__).resolve().parents[2]
 TASK_NAME = "HMS-Issue40-DailyBackup"
 TARGET = "test_hms"
 MYSQL_BIN = Path(r"C:\Program Files\MySQL\MySQL Server 8.4\bin")
+# pythonw hides its own window, but console children need this flag as well.
+CHILD_CREATION_FLAGS = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 REQUIRED_TABLES = (
     "students_student",
     "hostels_bed",
@@ -138,6 +140,7 @@ def protect_directory(path):
     if os.name == "nt":
         result = subprocess.run(
             ["whoami", "/user", "/fo", "csv", "/nh"],
+            creationflags=CHILD_CREATION_FLAGS,
             capture_output=True,
             text=True,
             check=True,
@@ -157,6 +160,7 @@ def protect_directory(path):
                 "/grant:r",
                 "*S-1-5-18:(OI)(CI)F",
             ],
+            creationflags=CHILD_CREATION_FLAGS,
             check=True,
             capture_output=True,
         )
@@ -395,6 +399,7 @@ def backup(output, dump_exe, connection_file=None):
                     "--column-statistics=0",
                     "hms",
                 ],
+                creationflags=CHILD_CREATION_FLAGS,
                 stdout=stream,
                 stderr=subprocess.PIPE,
                 check=True,
@@ -502,6 +507,7 @@ def recover(output, mysql_exe, connection_file=None, evidence_dir=None):
                         "--binary-mode",
                         "test_hms",
                     ],
+                    creationflags=CHILD_CREATION_FLAGS,
                     stdin=stream,
                     capture_output=True,
                     check=True,
@@ -555,6 +561,7 @@ def recover(output, mysql_exe, connection_file=None, evidence_dir=None):
 def powershell_json(script):
     result = subprocess.run(
         ["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", script],
+        creationflags=CHILD_CREATION_FLAGS,
         capture_output=True,
         text=True,
         check=True,

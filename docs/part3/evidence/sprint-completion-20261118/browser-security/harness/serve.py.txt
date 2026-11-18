@@ -1,0 +1,17 @@
+import os,sys,json,hashlib
+from datetime import datetime,timezone
+from pathlib import Path
+from dotenv import dotenv_values
+from matrix import source_snapshot
+root=Path(__file__).resolve().parent
+config=json.loads((root/'private-config.json').read_text())
+source=root/'source';snapshot=source_snapshot(source)
+assert snapshot['commit']==config['expected_commit']
+expected=json.loads(Path(config['expected_source_pins']).read_text())['pins']
+assert snapshot['pins']==expected
+os.environ.update({k:v for k,v in dotenv_values(root/'private.env').items() if v is not None})
+sys.path.insert(0,str(source));os.environ['DJANGO_SETTINGS_MODULE']='hms.settings'
+metadata={'pid':os.getpid(),'started_at':datetime.now(timezone.utc).isoformat(),'source':snapshot,'runner_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'interpreter':sys.executable,'argv':['runserver','127.0.0.1:8109','--noreload','--nothreading']}
+(root/'serve-startup.json').write_text(json.dumps(metadata,indent=2))
+from django.core.management import execute_from_command_line
+execute_from_command_line(['manage.py','runserver','127.0.0.1:8109','--noreload','--nothreading'])
