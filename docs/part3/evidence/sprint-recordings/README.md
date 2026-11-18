@@ -26,9 +26,9 @@ The project owner supplied `HMS_Sprint2_Outcome_Demo.mp4`; the repository copy i
   hashes match.
 
 See [the recording assessment](Sprint2_Outcome_Demo.md) for the capture details
-and shown workflows. The owner approved publishing this clip despite the
-five-second shortfall; team selection and acceptance as the full deliverable
-remain pending.
+and shown workflows. The owner selected this as the final Sprint 2 demo on 18
+November and approved publishing it despite the five-second shortfall. Team and
+instructor acceptance remain separate decisions.
 
 [Devansh's current 39.96-second contribution](devansh-contribution-20261114/README.md)
 is available for the team editor. It shows real synthetic workflows, recorded by
