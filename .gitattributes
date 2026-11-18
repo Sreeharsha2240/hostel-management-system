@@ -18,6 +18,6 @@
 *.ttf binary
 
 # Captured assignment evidence is checksummed as raw bytes across operating systems.
-docs/part3/evidence/sprint-completion-20261118/browser-security/** -text
-docs/part3/evidence/sprint-completion-20261118/browser-security/harness/*.txt whitespace=-blank-at-eof
-docs/part3/evidence/sprint-completion-20261118/operations/** -text
+docs/part3/evidence/sprint-completion-20261118/browser-security/** -text whitespace=cr-at-eol
+docs/part3/evidence/sprint-completion-20261118/browser-security/harness/*.txt whitespace=cr-at-eol,-blank-at-eof
+docs/part3/evidence/sprint-completion-20261118/operations/** -text whitespace=cr-at-eol
