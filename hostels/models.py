@@ -89,6 +89,28 @@ class Room(models.Model):
         if self.capacity is not None and not 1 <= self.capacity <= 4:
             raise ValidationError({"capacity": "Capacity must be between 1 and 4."})
 
+        if not self._state.adding and self.pk and self.hostel_id is not None:
+            previous_hostel_id = (
+                type(self)
+                .objects.filter(pk=self.pk)
+                .values_list("hostel_id", flat=True)
+                .first()
+            )
+            if (
+                previous_hostel_id is not None
+                and previous_hostel_id != self.hostel_id
+                and self.beds.filter(allocations__isnull=False).exists()
+            ):
+                raise ValidationError(
+                    {
+                        "hostel": (
+                            "A room with allocation history cannot be moved to "
+                            "another hostel because that would rewrite historical "
+                            "location."
+                        )
+                    }
+                )
+
         if not self.pk or self.capacity is None:
             return
 

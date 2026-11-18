@@ -26,11 +26,13 @@ review](Development_Review_20261114.md), [owner decisions](evidence/owner-dispos
 and [current validation report](System_Validation_Report.md).
 
 **18 November #79/#80 fix candidate:** Room and bed saves now reject
-reassignments that would rewrite allocation history; direct queryset/bulk
-updates are guarded too. The focused `HostelModelBehaviorTests` pass 13/13 on a
-local SQLite test database, and Ruff checks pass. MySQL was not available for
-this run, so its row-locking behavior still needs the project's MySQL CI and
-QA retest. GitHub issues #79 and #80 remain open until that review and merge.
+reassignments that would rewrite allocation history; the regular room form and
+Django model validation show errors, direct saves reject the change, queryset
+and bulk updates are guarded, and bed moves lock affected rooms. The focused
+room/model/form selection passes 37/37 on a local SQLite test database; Ruff
+checks pass. MySQL was not available for this run, so its row-locking behavior
+still needs the project's MySQL CI and QA retest. GitHub issues #79 and #80
+remain open until that review and merge.
 
 The [15 November test follow-up](evidence/remaining-test-gaps-20261115.md)
 records additional Windows and Ubuntu checks, authenticated passive ZAP

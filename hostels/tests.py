@@ -359,6 +359,12 @@ class HostelModelBehaviorTests(TestCase):
         with self.assertRaisesMessage(
             ValidationError, "A room with allocation history cannot be moved"
         ):
+            room.full_clean()
+
+        room.hostel = girls_hostel
+        with self.assertRaisesMessage(
+            ValidationError, "A room with allocation history cannot be moved"
+        ):
             room.save()
 
         room.refresh_from_db()
