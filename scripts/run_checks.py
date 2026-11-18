@@ -94,14 +94,45 @@ def verification_steps(output):
                 "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner",
             ],
         ),
-        ("coverage", ["-m", "coverage", "report"]),
+        (
+            "coverage-normalize",
+            [
+                "scripts/run_checks.py",
+                "--normalize-coverage",
+                str(output / ".coverage.normalized"),
+            ],
+        ),
+        (
+            "coverage",
+            [
+                "-m",
+                "coverage",
+                "report",
+                "--data-file",
+                str(output / ".coverage.normalized"),
+            ],
+        ),
         (
             "coverage-xml",
-            ["scripts/run_checks.py", "--coverage-xml", str(output / "coverage.xml")],
+            [
+                "scripts/run_checks.py",
+                "--coverage-xml",
+                str(output / "coverage.xml"),
+                "--coverage-data",
+                str(output / ".coverage.normalized"),
+            ],
         ),
         (
             "coverage-json",
-            ["-m", "coverage", "json", "-o", str(output / "coverage.json")],
+            [
+                "-m",
+                "coverage",
+                "json",
+                "--data-file",
+                str(output / ".coverage.normalized"),
+                "-o",
+                str(output / "coverage.json"),
+            ],
         ),
         (
             "timing-smoke",
@@ -156,11 +187,30 @@ def read_test_results(output):
     return totals, len(suites)
 
 
-def export_coverage_xml(output):
+def normalize_coverage_data(output):
+    """Preserve raw data; canonicalize one copy for every reporting format."""
+    from coverage import Coverage, CoverageData
+
+    if output.exists():
+        raise FileExistsError("Refusing to replace existing normalized coverage data.")
+    measured = Coverage()
+    measured.load()
+    if not measured.get_data().measured_files():
+        raise ValueError("Coverage collection produced no source files.")
+    normalized = CoverageData(basename=str(output))
+    normalized.update(
+        measured.get_data(), map_path=lambda filename: str(Path(filename).resolve())
+    )
+    normalized.write()
+
+
+def export_coverage_xml(output, *, data_file=None):
     """Export matching data without merging same-named package files in XML."""
     from coverage import Coverage
 
-    measured = Coverage()
+    measured = (
+        Coverage(data_file=str(data_file)) if data_file is not None else Coverage()
+    )
     measured.load()
     contexts = measured.get_option("report:contexts")
     if contexts:
@@ -181,9 +231,20 @@ def main(argv=None):
     mode.add_argument(
         "--coverage-xml", type=Path, help="Export the matching coverage data only."
     )
+    mode.add_argument(
+        "--normalize-coverage",
+        type=Path,
+        help="Write a new canonical-path coverage data copy before all exports.",
+    )
+    parser.add_argument("--coverage-data", type=Path)
     args = parser.parse_args(argv)
+    if args.coverage_data is not None and args.coverage_xml is None:
+        parser.error("--coverage-data requires --coverage-xml.")
+    if args.normalize_coverage is not None:
+        normalize_coverage_data(args.normalize_coverage)
+        return 0
     if args.coverage_xml is not None:
-        export_coverage_xml(args.coverage_xml)
+        export_coverage_xml(args.coverage_xml, data_file=args.coverage_data)
         return 0
     started = datetime.now(UTC)
     output = args.output_dir or Path("test-results") / started.strftime(

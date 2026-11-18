@@ -1,5 +1,16 @@
 # Development review and final-acceptance decision — 14 November 2026
 
+> **19 November reconciliation note:** This is the retained 14 November
+> source-bound Development decision and case/RTM ledger. Its recorded HOLD,
+> source hashes, then-current counts and defect observations remain historical.
+> Current case totals, later fixes and pending retests are assessed in
+> [the 19 November assessment](Final_Assessment_20261119.md).
+> TC-QUAL-01 is now reconciled to PARTIAL in the active register. The included
+> owner-selected Sprint 2 video supersedes the old missing-video condition,
+> with its 1:55 duration shortfall disclosed. No new human Development sign-off
+> is inferred from those updates.
+
+
 **Development review completed; final Development acceptance HOLD. Whole-plan submission NOT READY.**
 
 This is Devansh Gupta's authorized AI-assisted technical review, recorded by Codex under his instruction and checked by independent automated reviewers. It is a scoped Development decision, not a human signature or an approval for QA, the PO, the guide or the instructor. Devansh's existing HMS-18/#40, HMS-20/#42 and HMS-26/#63 deliveries remain delivered. Newly discovered failures are tracked separately, rather than rewriting historical observations as if they were current successful tests.

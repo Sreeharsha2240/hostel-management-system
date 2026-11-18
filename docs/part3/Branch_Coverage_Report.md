@@ -1,5 +1,28 @@
 # Branch Coverage Report
 
+**19 November source reconciliation:** The initial review-candidate source is
+`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. Frozen-source configured
+mixed branch outcomes, per-module gaps and the separate 415-method isolated
+measurement are being reconciled in the
+[technical evidence](evidence/sprint-completion-20261118/).
+The 13/15 November percentages below remain historical.
+
+Branch coverage counts outcomes, including missing outcomes on partially
+covered lines; partial counts must not be added again to the missing total.
+The owner's function-body interpretation applies to unit statement coverage.
+It does not remove declarative branch outcomes from the branch denominator.
+The SRS and Part 3 PDF provide no separate branch-percentage target; the
+repository's configured gate is >=70% combined statement/branch coverage.
+Mixed coverage and isolated coverage are reported separately. Neither
+establishes final system/RTM acceptance, which remains **NOT READY** under the
+[current requirements assessment](Final_Assessment_20261119.md).
+
+## Historical measurements and report text
+
+The source-bound material below is retained at its original execution scope.
+Its uses of "current" or "latest" refer to those dated snapshots. The 19 November
+assessment above takes precedence for present metrics, cases and readiness.
+
 **Latest isolated-unit refresh — 15 November 2026:** clean commit `ff72065340d859c9512329d9406505c6e40fda15`, tree `8263028d02eb1a128b8742e3c2b7ac7eee3eaa0b`. The retained 288-method baseline and 294-method expanded selection both pass with zero database attempts. The expanded selection covered **418/436 (95.87%)** application branch outcomes; the baseline covered **415/436 (95.18%)**. No new branch threshold is inferred from the SRS. Local evidence and matching function-body/full-statement metrics are recorded in the [versioned refresh](evidence/hms19-main-refresh-20261115/README.md); both Python 3.11 and 3.14 CI jobs passed in [PR #84 run 43736427332](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43736427332), before merge as `324f460`.
 
 **Prior independent CI confirmation (13 November):** [run 43470319270](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43470319270) passed Python 3.11.18 and 3.14.10 on publication candidate `eebb30afeb63d27618fdd3be4cc4c2b76392fc32`. Its actual synthetic merge checkout `ee3b0c2f5b9c464109e72e360ee8fd89e2fecf7f` has the identical full Git tree `26bcecf56f436ad79c40ddff2fbc005c790be38b`. Both jobs reconcile all 12 gates, 497 exact mixed identities (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes, 288/294 exact isolated PASS selections, zero database attempts and all 179 frozen source pins. Six downloaded ZIP hashes match GitHub; per-file isolated measurements match the clean implementation evidence. The [durable CI extraction](evidence/hms18-capacity-20261113/ci-summary.json) preserves job/environment, source/artifact hashes and gaps. This evidence is for that publication candidate; its checks are available on [PR #75](https://github.com/Sreeharsha2240/hostel-management-system/pull/75/checks).

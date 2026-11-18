@@ -6,18 +6,25 @@ A Django/MySQL application for student records, hostel inventory, allocations,
 payments, reports and audit logging. The repository also contains the original
 Part 1 requirements, design and test-plan documents, with revision histories.
 
-## Part 3: 2-6 November 2026
+## Part 3: testing and submission
 
-The [Part 3 team plan](docs/PART3.md) links the instructor instructions,
-assigned issues, case ownership, report destinations and acceptance checks.
-The [Part 3 milestone](https://github.com/Sreeharsha2240/hostel-management-system/milestone/1)
-contains issues #37-#43 for all three contributors. The 61-case Test Case
-Document/RTM and all four required reports are published. The
-[14 November Development review](docs/part3/Development_Review_20261114.md)
-records scoped acceptance and a final **HOLD**, with new defects #78–#80 tracked.
-[Final readiness](docs/part3/HMS21_Final_Readiness.md) is **NOT READY**
-pending defect disposition, execution acceptance, remaining evidence and actual approvals. Sprint 3
-is conditional on actual development spillover.
+The [current assessment](docs/part3/Final_Assessment_20261119.md) reconciles the
+original SRS, SAD, submitted Test Plan and Part 3 PDF against the recorded
+evidence. The initial review-candidate source is
+`a679ca47c0d642f89b708b9e8473d3a2c62697a7`.
+The [61-case document and 36-row RTM](docs/part3/Test_Case_Document.md) and all
+four required reports are published. Final submission remains **NOT READY**:
+unfinished quality/security conditions, final case/RTM acceptance, genuine
+QA/Development/PO decisions, a project-guide walkthrough and instructor
+submission directions/package/receipt remain outstanding.
+
+The current evidence-supported case ledger is **56 OWNER PASS / 3 PARTIAL /
+2 NOT RUN**; TC-QUAL-01 is PARTIAL because its primary walkthrough does not
+support the old aggregate PASS. Fresh desktop workflows, scan and load results
+remain pending until reviewed. The owner-selected Sprint 2 video is included
+at 1:55, about five seconds below the two-minute minimum; acceptance of that
+shortfall remains separate. See the [team plan](docs/PART3.md) and
+[submission checklist](docs/SUBMISSION_CHECKLIST.md).
 
 ## Team and roles
 

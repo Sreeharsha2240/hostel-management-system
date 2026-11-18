@@ -1,5 +1,34 @@
 # Unit Test Report — Part 3
 
+**19 November source reconciliation:** The initial review-candidate source is
+`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. A fresh 415-method
+database-forbidden measurement and the retained original 288-method baseline
+are being reconciled in the [current technical evidence](evidence/sprint-completion-20261118/).
+Fresh totals will be recorded here only after the durable source pins,
+method outcomes and per-file attribution are checked. The 15 November
+956/959 result below is historical; the later 18 November 294-method result
+was 960/998 (96.19%) function-body statements and 960/1,767 (54.33%)
+all-application statements ([evidence](evidence/hms19-main-refresh-20261118/README.md)).
+
+The actual [owner function-body interpretation](evidence/hms19-function-body-boundary-20261113.md)
+governs the project unit-logic target; imports/declarations receive no
+method-context credit. The all-statements diagnostic is published separately
+and is not claimed to reach 70%. Full-suite, integration, browser, load and
+concurrency checks remain different evidence scopes. Test counts across
+selections, runs or Python jobs are not added together.
+
+HMS-19/#41's earlier scoped delivery remains recorded. Final case acceptance,
+actual QA/Development/PO decisions, guide walkthrough and submission remain
+pending; the current whole-plan decision is **NOT READY**. TC-QUAL-04 remains
+PARTIAL because configured style checks do not certify every PEP 8 provision.
+See the [requirements assessment](Final_Assessment_20261119.md).
+
+## Historical measurements and report text
+
+The source-bound material below is retained at its original execution scope.
+Its uses of "current" or "latest" refer to those dated snapshots. The 19 November
+assessment above takes precedence for present metrics, cases and readiness.
+
 **Latest isolated-unit refresh — 15 November 2026:** clean commit `ff72065340d859c9512329d9406505c6e40fda15`, tree `8263028d02eb1a128b8742e3c2b7ac7eee3eaa0b`. The retained 288-method baseline passed **288/288** and the expanded selection passed **294/294**, both with zero database attempts. On the expanded selection, the owner-approved function-body diagnostic is **956/959 (99.69%)**, above the 70% target; the companion all-application-statements diagnostic is **956/1,717 (55.68%)**. Both Python 3.11 and 3.14 CI jobs passed in [PR #84 run 43736427332](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43736427332), before the PR merged to `main` as `324f460`. See the [full source-pinned measurements](evidence/hms19-main-refresh-20261115/README.md).
 
 **Prior independent CI confirmation (13 November):** [run 43470319270](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/43470319270) passed Python 3.11.18 and 3.14.10 on publication candidate `eebb30afeb63d27618fdd3be4cc4c2b76392fc32`. Its actual synthetic merge checkout `ee3b0c2f5b9c464109e72e360ee8fd89e2fecf7f` has the identical full Git tree `26bcecf56f436ad79c40ddff2fbc005c790be38b`. Both jobs reconcile all 12 gates, 497 exact mixed identities (496 PASS/one expected timing SKIP), separate timing PASS, nine owned recipes, 288/294 exact isolated PASS selections, zero database attempts and all 179 frozen source pins. Six downloaded ZIP hashes match GitHub; per-file isolated measurements match the clean implementation evidence. The [durable CI extraction](evidence/hms18-capacity-20261113/ci-summary.json) preserves job/environment, source/artifact hashes and gaps. This is evidence for that publication candidate; its checks are available on [PR #75](https://github.com/Sreeharsha2240/hostel-management-system/pull/75/checks).

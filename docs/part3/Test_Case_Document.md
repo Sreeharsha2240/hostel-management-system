@@ -1,28 +1,41 @@
 # HMS Test Case Document and Requirements Traceability Matrix
 
-**18 November mobile-view update:** The owner reports that a friend checked the
-website in phone mode in a laptop browser. This is an informal emulated mobile-
-layout check replacing the physical-phone activity in this mini-project; it
-does not establish real-device behavior. No browser/version, viewport,
-workflow details or captured evidence were supplied. See the [mobile browser-mode note](evidence/mobile-browser-mode-check-20261118.md).
+**19 November current assessment:** **56 OWNER PASS / 3 PARTIAL / 2 NOT RUN /
+0 BLOCKED**, with **32 OWNER PASS / 1 PARTIAL** among the original 33.
+TC-QUAL-01 is PARTIAL after reconciliation with its primary walkthrough;
+the 93-second guide-task result remains an attributed owner report.
+TC-SEC-08 and TC-QUAL-04 are also PARTIAL. Availability TC-QUAL-02 and
+desktop/browser/OS TC-QUAL-03 remain NOT RUN pending complete reviewed evidence.
+OWNER PASS is an execution attribution, not accepted QA passage.
 
-**14 November Development evidence review:** [All 61 cases and 36 original RTM rows have a separate Development review](Development_Review_20261114.md), with immutable-source fields retained in its JSON ledger. Present priority proposals and original design mappings receive Development agreement; final acceptance remains **HOLD**, including new defects #78–#80. The execution ledger and individual owner observations below are preserved. Vaishnavi coordinates remaining QA/owner reconciliation, including QUAL-01's aggregate OWNER PASS versus primary walkthrough PARTIAL, old STU-01 evidence wording and superseded phone clauses; this technical review does not replace their records or attestations.
+The initial review-candidate source is
+`a679ca47c0d642f89b708b9e8473d3a2c62697a7`. See the
+[current requirements assessment](Final_Assessment_20261119.md) and
+[current technical evidence](evidence/sprint-completion-20261118/).
+Fresh desktop workflows, passive scan and load work are pending until actual
+results are reconciled; their commencement supplies no pass.
 
-**13 November current disposition:** HMS-19/#41 is complete through merged PR #74 (`a41f884`). The project owner approved the function-body unit-coverage boundary: 288/288 isolated methods pass and 946/946 (100%) function-body statements are covered; the 55.55% all-application-statements result remains disclosed. Real-phone testing is excluded from this mini-project. The expanded 61-case ledger is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED: TC-SEC-08 and TC-QUAL-04 are PARTIAL; TC-QUAL-02 and desktop/OS portability TC-QUAL-03 are NOT RUN. Dated entries below are historical where they conflict with this update.
+All 61 cases and 36 original RTM mappings remain preserved. The PO and
+[14 November Development review](Development_Review_20261114.md) agree to
+present priorities and design traceability; final QA agreement, accepted-case
+coverage and actual final approvals remain pending. The recorded Development
+decision is HOLD. The owner's [REQ-24 and SAD scope decisions](evidence/owner-disposition-20261114.md)
+are limited project decisions, with no inferred instructor endorsement.
 
-**14 November scope clarification:** The project owner defines REQ-24's mini-project display boundary as the existing My Records content: the student's own name and ID, current allocation and history, and payment status/paid/balance summary and history. No additional personal fields are required under this PO interpretation; QA review remains pending. The SAD §4.4 gap is explicitly documented and dispositioned as a mini-project limitation in the [owner decision](evidence/owner-disposition-20261114.md).
-
-**14 November project-owner disposition:** The project owner accepted the 61 current case-priority proposals for project planning and accepted all 36 original RTM pairs as design mappings; neither decision retroactively assigns priorities to the original Test Plan nor establishes accepted case results. QA and Development agreement remains pending. The owner also fixed the REQ-24 student-display boundary, accepted the documented SAD §4.4 monitoring/logging gap as a mini-project limitation, and assigned retrospective severity levels to the four known closed defects. See the [owner disposition record](evidence/owner-disposition-20261114.md). The formal Test Plan exit criteria and instructor/QA acceptance remain unchanged.
-
-**10 November current-case addendum:** [HMS-17's fresh registration and four regression executions](evidence/issue39/completion-20261110/README.md) supersede the older case-count snapshot below: the expanded 61 now stand at 57 OWNER PASS, 1 PARTIAL, 2 NOT RUN and 1 BLOCKED. The [HMS-16 QA handoff reconciliation](evidence/issue38-security-20261110/qa-disposition-reconciliation.md) assesses both remaining passive ZAP alerts, locates the previously unlocated `next` regression test and confirms its recorded PASS. TC-SEC-08 stays PARTIAL. HMS-16/#38 and HMS-17/#39 are closed only for their owner-authorized local-project scope; these statuses do not establish whole-plan acceptance.
+Physical-phone testing is excluded by the owner. The informal
+[laptop-browser phone-mode report](evidence/mobile-browser-mode-check-20261118.md)
+has no retained browser/version, viewport or workflow details. The original
+SRS portability conditions for desktop browsers and Windows/Linux remain in
+scope. Historical dates, tools, source hashes and outcomes in the case
+records remain attributed to their actual executions.
 
 ## 1. Document information and revision history
 
 | Field | Value |
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
-| Revision | Part 3 reconciliation, updated with HMS-16 transport/ZAP evidence and HMS-17 owner execution updates through 9 November 2026 |
-| Code baseline inspected | `70c9fe20e462eb0b052e15434f19b347a793afa1` |
+| Revision | 19 November current-status reconciliation; historical execution records retain their own dates and sources |
+| Current initial review-candidate source | `a679ca47c0d642f89b708b9e8473d3a2c62697a7`; earlier inspected baseline `70c9fe20e462eb0b052e15434f19b347a793afa1` remains historical |
 | Nine-case owner follow-up tested baseline | `6636098cb728aa17c2abf5e42c358a5d400261e7`; see section 5.6 |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
 | Requirements | All original REQ-1..24 and NFR-1..12; separate SRS quality, BR and SO mapping |
@@ -119,7 +132,7 @@ The [owner manual record](evidence/issue39/manual-execution-20261107.md) reports
 
 The later [PR #66 follow-up](evidence/issue39/followup-20261108.md) adds a visible student-list result, allocation-success result, bed/filter observations and three desktop Chrome pages. Their capture date/build/version are unrecorded; they are not silently assigned the historical metadata above.
 
-The separate 9 November follow-up adds student registration evidence and a guide-based Warden first-use walkthrough. Following review of this additional evidence, the current owner disposition for the eight original HMS-17 cases is 8 OWNER PASS. The 9 November evidence does not change the historical 7 November execution record. The complete latest-two-version desktop Chrome/Firefox/Edge compatibility matrix, deployed Linux server portability and SRS availability target remain unverified. Physical-phone testing is excluded by the current mini-project scope decision. HST-01 retains its historical reported result without a named case screenshot.
+The separate 9 November follow-up adds student registration evidence and an owner-reported guide-based Warden first-use task. Its primary record explicitly keeps overall TC-QUAL-01 PARTIAL. The reconciled eight original HMS-17 cases are therefore 7 OWNER PASS / 1 PARTIAL. The 9 November evidence does not change the historical 7 November execution record. The complete latest-two-version desktop Chrome/Firefox/Edge compatibility matrix, deployed Linux server portability and SRS availability target remain unverified. Physical-phone testing is excluded by the current mini-project scope decision. HST-01 retains its historical reported result without a named case screenshot.
 
 ### 5.5 HMS-16 authentication/security handoff
 
@@ -149,38 +162,47 @@ The [8 November follow-up review](evidence/issue39/followup-20261108.md) links s
 
 ### 6.1 Original test-case disposition
 
-Following the additional HMS-17 evidence review and the HMS-16 security evidence update, all 33 original test cases have an OWNER PASS disposition based on the retained owner execution observations.
+The current evidence-supported original 33-case ledger is:
 
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 33 | 100.00% |
-| PARTIAL | 0 | 0.00% |
+| OWNER PASS | 32 | 96.97% |
+| PARTIAL | 1 | 3.03% |
 | NOT RUN | 0 | 0.00% |
 | **Total** | **33** | **100.00%** |
 
-All 33 original cases have an owner execution disposition. OWNER PASS records retained owner observations and does not constitute independent QA acceptance or whole-plan exit approval. The isolated HMS-16 TLS evidence does not certify a public or production host.
+TC-QUAL-01 remains PARTIAL as explicitly stated by its
+[primary walkthrough](evidence/issue39/usability-walkthrough-20261109.md).
+Earlier 33/33 OWNER PASS summaries overstate that source. The owner-reported
+93-second guide task and visible registration/allocation workflow are retained,
+with missing guide revision, participant code and start/end timing trace.
+No source-bound original observation is rewritten as a fresh execution.
 
 ### 6.2 Expanded test-case register
 
-The expanded register contains 61 designed cases. The 10 November snapshot below is superseded by the current disposition at the top of this document. At the 13 November update, the register is 57 OWNER PASS / 2 PARTIAL / 2 NOT RUN / 0 BLOCKED.
-
-The prior 10 November case-level disposition was:
-
 | Disposition | Cases | Percentage |
 |---|---:|---:|
-| OWNER PASS | 57 | 93.44% |
-| PARTIAL | 1 | 1.64% |
+| OWNER PASS | 56 | 91.80% |
+| PARTIAL | 3 | 4.92% |
 | NOT RUN | 2 | 3.28% |
-| BLOCKED | 1 | 1.64% |
+| BLOCKED | 0 | 0.00% |
 | **Total** | **61** | **100.00%** |
 
-The 10 November snapshot had 58/61 cases with some execution evidence (95.08%), counting OWNER PASS and PARTIAL together. At the current update, 59/61 have some execution evidence (96.72%), including PARTIALs, and 57/61 are OWNER PASS observations (93.44%). Availability and complete desktop/OS portability remain NOT RUN; TC-SEC-08 and TC-QUAL-04 remain PARTIAL. The guide walkthrough has owner execution evidence; final team acceptance remains pending.
+OWNER PASS or PARTIAL case dispositions cover 59/61 (96.72%). This does not establish complete
+execution or accepted passage of every expected condition. TC-QUAL-01,
+TC-QUAL-04 and TC-SEC-08 are PARTIAL; TC-QUAL-02 and TC-QUAL-03 remain NOT RUN.
+Fresh desktop workflows, passive scan and load results are pending review.
+The 15 November page checks and uncompleted previous-Edge run are supporting
+observations, not a complete latest-two-browser/Windows/Linux workflow case.
 
-All ten retained and fourteen added regression recipes now have OWNER PASS evidence. The 10 November follow-up completes S1-05 combined-filter navigation and S1-06/S1-08/S2-06; historical source/date and previous pending outcomes remain in their dated records. Owner execution does not constitute independent QA or whole-plan acceptance.
-
-The 9 November HMS-16 loopback TLS probe supplies the specified TC-SEC-06 network conditions. Its evidence remains limited to the isolated test environment and does not certify a public or production host. TC-SEC-08 has a passive ZAP scan covering 10 URLs; the supplied 10 November QA handoff assesses the Low and Informational alerts. The case remains PARTIAL because loopback passive coverage does not establish a deployed-host or broader scan.
-
-The 9 November HMS-17 Warden first-use walkthrough records successful student registration and bed allocation within the five-minute usability target. This supports the OWNER PASS observations for TC-STU-01 and TC-QUAL-01. However, the walkthrough does not establish that the complete browser compatibility, portability or availability requirements have been independently verified. TC-QUAL-04's coverage target was later met under the owner-approved function-body definition; broader PEP 8 review remains limited to configured checks. Other scan and quality cases retain their actual missing evidence. Do not use the old 43-case denominator when applying a 100%-planned-cases exit criterion.
+All ten retained and fourteen added regression recipes retain OWNER PASS
+observations at their recorded source/date. Historical failed volume,
+partial rollback browser evidence and passing companion assertions remain
+separate. The isolated TLS conditions support TC-SEC-06 for loopback scope.
+The guide-based first-use report is distinct from project-guide acceptance.
+The exact unit measurement and conservative companion are in the
+[Unit Test Report](Unit_Test_Report.md); configured style checks do not
+certify every PEP 8 provision.
 
 ### 6.3 Defect, retest and requirement-coverage metrics
 
@@ -196,7 +218,7 @@ The case-level counts above are distinct from automated method counts, test-suit
 
 ## 7. Detailed test case index
 
-Every original and existing regression ID links to its complete source-bound record in section 13. Priority proposals originate on 7 November; the project owner accepted the current proposals for planning on 14 November, while the original Test Plan remains without retrospective priorities. QA and Development agreement is still required before applying the High-priority exit criterion. The nine #63 entries identify the later scoped technical review; their dispositions do not supply whole-team acceptance.
+Every original and existing regression ID links to its complete source-bound record in section 13. Priority proposals originate on 7 November; the project owner accepted the current proposals for planning on 14 November, while the original Test Plan remains without retrospective priorities. PO and 14 November Development agreement is recorded; actual QA agreement and complete evidence acceptance remain necessary for the High-priority exit criterion. The nine #63 entries identify the later scoped technical review; their dispositions do not supply whole-team acceptance.
 
 | Case | Owner | Proposed priority | Disposition |
 |---|---|---|---|
@@ -232,7 +254,7 @@ Every original and existing regression ID links to its complete source-bound rec
 | [TC-PERF-02](#case-tc-perf-02) - Allocation time and concurrency | Devansh | Medium (proposed) | OWNER PASS |
 | [TC-PERF-03](#case-tc-perf-03) - Data volume | Devansh | Medium (proposed) | OWNER PASS |
 | [TC-OPS-01](#case-tc-ops-01) - Backup and restore | Devansh | High (proposed) | OWNER PASS |
-| [TC-QUAL-01](#case-tc-qual-01) - Browser compatibility and usability | Vaishnavi | Medium (proposed) | OWNER PASS |
+| [TC-QUAL-01](#case-tc-qual-01) - Browser compatibility and usability | Vaishnavi | Medium (proposed) | PARTIAL |
 | [TC-REG-S1-01](#case-tc-reg-s1-01) - Search 5,000 student records | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-02](#case-tc-reg-s1-02) - Update student without changing Student ID | Vaishnavi | Medium (proposed) | OWNER PASS |
 | [TC-REG-S1-03](#case-tc-reg-s1-03) - Create one Available bed per capacity unit | Vaishnavi | Medium (proposed) | OWNER PASS |
@@ -264,7 +286,7 @@ Every original and existing regression ID links to its complete source-bound rec
 
 ## 8. Requirements Traceability Matrix (RTM)
 
-The 36 core rows preserve every original Test Plan section 13.2 mapping; additions trace accepted implementation changes and missing original SRS scope. These are coverage **plans**, not accepted pass claims.
+The 36 core rows preserve every original Test Plan section 13.2 mapping; additions trace implementation changes and missing original SRS scope. PO and recorded Development acceptance applies to design traceability only. On 19 November, accepted passed-case coverage remains **UNVERIFIED for all 36 as an aggregate** pending actual case-by-case QA/owner decisions on the frozen source, original subconditions and defect retests. A proposed mapping is not an accepted pass.
 
 | Requirement ID | Mapped Test Case IDs |
 |---|---|
@@ -388,8 +410,8 @@ Test Plan section 5 requires **SRS approved; build deployed to test environment;
 
 | Original criterion | Current disposition |
 |---|---|
-| 100% of planned test cases executed | NOT MET: original STU-01 lacks reconciled case evidence; partial/security/quality and added case-execution gaps remain visible. |
-| All High-priority cases passed | UNVERIFIED: original case priorities were unspecified; current proposals and complete evidence require actual review. |
+| 100% of planned test cases executed | NOT MET: TC-QUAL-01, TC-SEC-08 and TC-QUAL-04 are PARTIAL; TC-QUAL-02/03 remain NOT RUN. Original STU-01 has later registration evidence and is OWNER PASS. |
+| All High-priority cases passed | NOT MET: High TC-SEC-08 is PARTIAL. PO/recorded Development agreement to 34 High / 27 Medium is present; actual QA agreement and complete accepted evidence remain pending. Original plan priorities were unspecified. |
 | Zero critical/high defects open | UNVERIFIED: no complete reviewed severity inventory is recorded; known fixed issues alone do not establish zero. |
 | Every RTM requirement covered by at least one passed case | UNVERIFIED/PARTIAL: all 36 are mapped, but passed method/owner observations do not establish every full requirement. |
 
@@ -403,7 +425,7 @@ Issue #37 is the case-document/traceability delivery. This document does not com
 
 ## 13. Complete case records
 
-For every record, **Priority review** distinguishes proposed planning from approved historical priority. **QA disposition** is separate from owner execution. A passing current method is supplementary evidence at `70c9fe2`; original owner results remain attached to the earlier SHA/date/environment actually observed.
+For every record, **Priority review** distinguishes current planning agreement from historical priority. **QA disposition** is separate from owner execution. Historical automated companions retain their actual CI source/date; fresh supplementary evidence is linked separately to the frozen source. Original owner observations remain attached to the SHA/date/environment actually observed.
 
 ### TC-AUTH-01: Valid login
 
@@ -415,7 +437,7 @@ For every record, **Priority review** distinguishes proposed planning from appro
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-1
 
@@ -463,7 +485,7 @@ Pre: Warden account exists.
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-2
 
@@ -512,7 +534,7 @@ Pre: Warden account exists.
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-2, NFR-12
 
@@ -560,7 +582,7 @@ Pre: Warden account exists.
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-3, NFR-9
 
@@ -607,7 +629,7 @@ Pre: Warden account exists.
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-4
 
@@ -655,7 +677,7 @@ Pre: Warden account exists.
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-5
 
@@ -702,7 +724,7 @@ Pre: Warden account exists.
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-5, REQ-6
 
@@ -749,7 +771,7 @@ Pre: Warden account exists.
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-7
 
@@ -795,7 +817,7 @@ Search by (a) full Student ID, (b) partial name, (c) hostel.
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-8
 
@@ -842,7 +864,7 @@ Search by (a) full Student ID, (b) partial name, (c) hostel.
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-9, NFR-5
 
@@ -889,7 +911,7 @@ Search by (a) full Student ID, (b) partial name, (c) hostel.
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-10, REQ-11
 
@@ -938,7 +960,7 @@ Search by (a) full Student ID, (b) partial name, (c) hostel.
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-12, REQ-13
 
@@ -1408,7 +1430,7 @@ Open the occupancy report and the payment status report for a hostel with known 
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-4, NFR-7
 
@@ -1455,7 +1477,7 @@ Open the occupancy report and the payment status report for a hostel with known 
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-24, NFR-8
 
@@ -1502,7 +1524,7 @@ Open the occupancy report and the payment status report for a hostel with known 
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** NFR-10
 
@@ -1549,7 +1571,7 @@ Open the occupancy report and the payment status report for a hostel with known 
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** NFR-6
 
@@ -1596,7 +1618,7 @@ Open the occupancy report and the payment status report for a hostel with known 
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** NFR-10
 
@@ -1642,7 +1664,7 @@ Submit a state-changing POST (for example add student) without a valid CSRF toke
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** NFR-12, NFR-9
 
@@ -1692,7 +1714,7 @@ Submit a state-changing POST (for example add student) without a valid CSRF toke
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** NFR-11
 
@@ -1925,7 +1947,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** SRS section 6.4 quality attributes (no invented core requirement ID).
 
@@ -1933,7 +1955,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Type:** Non-functional
 
-**Prerequisites and data:** Deployedcandidate;syntheticstudent/beds;onepageguide;genuinelynewwarden participant;timingmethod;browser/version/OS/mobilematrix. {"original_browser_work": "mainflows latestChrome,Firefox,Edge", "task": "newwarden registersstudent andallocatesbed usingonepageguide", "time_limit_seconds": 300, "srs_extension": "latestTWO versions each browser plusBOTH Windows/Linux servers andactualmobilebrowser"}
+**Prerequisites and data:** Revision-bound candidate, synthetic students/beds, identified one-page guide revision, a genuinely new Warden participant (non-identifying code), timing method and exact desktop browser/OS versions. Original case: latest Chrome/Firefox/Edge main flows plus the guide task within 300 seconds. TC-QUAL-03 separately extends desktop coverage to the SRS latest-two versions and Windows/Linux servers. Physical-phone testing is excluded by the owner.
 
 **Steps:**
 
@@ -1942,11 +1964,11 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Expected:** All flows work on the three browsers. The task is completed within 5 minutes.
 
-**Actual:** On 7 November, the owner reported dashboard, navigation, Students and Beds checks in Firefox and Edge. In a separate 9 November execution, a new Warden participant completed student registration and bed allocation using the one-page Warden guide in 93 seconds, without assistance and with no errors reported. The recording shows the workflow in Firefox on Ubuntu 26.04.1 LTS under WSL2. The exact guide revision and participant code were not retained. The 93-second timing is owner-reported; the recording supports the visible workflow but does not independently verify the stopwatch measurement.
+**Actual:** On 7 November, the owner reported dashboard, navigation, Students and Beds checks in Firefox and Edge. In a separate 9 November report, the owner says a new Warden participant completed student registration and bed allocation using the one-page Warden guide in 93 seconds, without assistance or errors. The recording shows the workflow in Firefox on Ubuntu 26.04.1 LTS under WSL2. The exact guide revision and participant code were not retained. The 93-second timing is owner-reported; the recording supports the visible workflow but does not independently verify the stopwatch measurement.
 
-**Execution status:** OWNER PASS
+**Execution status:** PARTIAL
 
-**Tested commit:** c9f30a48c6dc54ccaec799156f3e52fe7bc8666a
+**Tested commit:** 7 November observations: `c9f30a48c6dc54ccaec799156f3e52fe7bc8666a`. The 9 November first-use report retains no exact application revision; do not assign the earlier SHA to that execution.
 
 **Execution date and environment:** Manual owner report on 7 November 2026: Windows, Firefox and Microsoft Edge (versions unrecorded), http://127.0.0.1:8022/, MySQL 8.0, synthetic demo data, Admin/Warden/Student accounts. The separate 5 November automated owner report names commit 8d60e83f1ce57ad99a2b2a22b3b5878f1390995b with git_dirty: true. Six claimed JUnit XML reports are absent from the published issue39 directory; 57/57 and the full 190-method (189 PASS, one SKIP, separate timing PASS) results remain published owner summaries.
 
@@ -1954,7 +1976,7 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 **Defects and retests:** No case-specific application defect reported; independent case review remains pending.
 
-**QA disposition:** Owner/companion evidence and limits are documented; final case/entry/deviation acceptance is not inferred by this documentation merge.
+**QA disposition:** Reconciled to PARTIAL from the primary walkthrough, which explicitly distinguishes an owner-reported task pass from an incomplete overall case. The previous aggregate OWNER PASS is superseded; no new participant/guide execution or human acceptance is claimed.
 
 **Automation:** Manual/operational evidence required; no automated method substitutes for this criterion.
 
@@ -1962,8 +1984,8 @@ Check that the daily backup job ran; restore the latest backup into a test datab
 
 Additional execution on 9 November 2026: the owner reports that a new
 Warden completed student registration and successful bed allocation
-using the one-page guide in less than five minutes. The exact elapsed
-time, guide revision and participant identifier were not retained.
+using the one-page guide in less than five minutes. The owner reports 93 seconds; start/end timestamps, guide revision and
+participant identifier were not retained.
 See [the additional walkthrough record](evidence/issue39/usability-walkthrough-20261109.md).
 
 ### TC-REG-S1-01: Search 5,000 student records
@@ -1976,7 +1998,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-7, NFR-1
 
@@ -2023,7 +2045,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-8, NFR-11
 
@@ -2070,7 +2092,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-11, REQ-12
 
@@ -2117,7 +2139,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-12, REQ-13, REQ-15
 
@@ -2164,7 +2186,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-13
 
@@ -2214,7 +2236,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-17, REQ-18, REQ-19, NFR-5, NFR-11
 
@@ -2264,7 +2286,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-15, NFR-2
 
@@ -2312,7 +2334,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-20, REQ-21
 
@@ -2359,7 +2381,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-20, REQ-21, REQ-22, NFR-5
 
@@ -2408,7 +2430,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-23
 
@@ -2456,7 +2478,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-5, REQ-10, REQ-11, NFR-10
 
@@ -2505,7 +2527,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-13, NFR-10
 
@@ -2554,7 +2576,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: partial audited writes can leave the database inconsistent.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-5, REQ-9, REQ-11, NFR-11
 
@@ -2604,7 +2626,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: the linked privacy, transaction, financial or validation invariant must hold on every request.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-5, REQ-8, REQ-24, NFR-8
 
@@ -2655,7 +2677,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** REQ-24, NFR-7, NFR-8
 
@@ -3139,7 +3161,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; High (proposed). Risk: authentication, privacy or security failure can expose protected data or operations.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** NFR-7, NFR-10, NFR-12
 
@@ -3187,7 +3209,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** SRS section 6.4 quality attributes (no invented core requirement ID).
 
@@ -3205,7 +3227,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** At least 99% availability during the SRS-defined working hours (8 am to 8 pm on working days), with reproducible monitoring/period evidence.
 
-**Actual:** No working-hours availability observation is published; short CI, load and recovery runs do not measure this target.
+**Actual:** No valid full 08:00-20:00 working-day availability observation is published. The 16 November attempt produced zero probes; a later partial run was stopped and its temporary log removed at the owner's request. A 19 November 08:00-20:00 IST observation is prepared for the remote host; job installation and review of the complete probe log and denominator remain pending. Short CI, load and recovery runs do not measure this target.
 
 **Execution status:** NOT RUN
 
@@ -3213,7 +3235,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Execution date and environment:** No complete case run recorded.
 
-**Evidence:** [HMS21_Final_Readiness.md](HMS21_Final_Readiness.md)
+**Evidence:** [availability follow-up](evidence/remaining-test-gaps-20261115.md); [current assessment](Final_Assessment_20261119.md)
 
 **Defects and retests:** No result or severity is inferred; record genuine findings/retests when execution occurs.
 
@@ -3237,7 +3259,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** SRS section 6.4 quality attributes (no invented core requirement ID).
 
@@ -3245,7 +3267,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Type:** Portability
 
-**Prerequisites and data:** Record the candidate build, Windows/Linux server versions, current and previous browser versions and one actual mobile browser/device. Define main flows from the submitted Plan, retaining synthetic data and roles. Synthetic data only; retain the source-bound setup with actual execution.
+**Prerequisites and data:** Record the candidate build, Windows/Linux server versions, and current and previous Chrome/Firefox/Edge versions. Physical-phone testing is excluded by the owner. Define main flows from the submitted Plan, retaining synthetic data and roles. Synthetic data only; retain the source-bound setup with actual execution.
 
 **Steps:**
 
@@ -3253,9 +3275,9 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 2. Verify supported Windows and Linux operation, recording deployment/configuration and exercised flows on each.
 3. Review the mobile layout in laptop-browser phone mode (reported by the owner as completed by a friend; supporting details were not supplied). This is emulated-layout evidence, not a physical-phone check.
 
-**Expected:** SRS portability target (Windows/Linux and latest two Chrome/Firefox/Edge versions) and the Test Plan's real-mobile environment are evidenced. Original TC-QUAL-01 still separately covers the latest-browser main flows and timed new-warden guide task.
+**Expected:** SRS portability target (Windows/Linux servers and latest two Chrome/Firefox/Edge versions) is evidenced. The original Test Plan's physical-phone activity is retained as a disclosed owner scope change, without claiming real-device evidence. Original TC-QUAL-01 still separately covers the latest-browser main flows and timed new-warden guide task.
 
-**Actual:** Historical Windows Firefox/Edge pages, three new desktop Chrome page captures and historical Linux CI are supporting observations. They do not establish the latest-two browser targets, Windows/Linux deployed workflows or actual mobile execution. The new screenshots have no recorded capture build/date/version.
+**Actual:** The 15 November follow-up records versioned Windows login/page checks and an Ubuntu HTTP-client check on synthetic SQLite instances; it does not exercise the main write workflows or MySQL. Previous Edge remained untested. Twelve fresh Windows/Linux browser workflow runs are in progress on the frozen source; no result is assigned before actual versioned workflow evidence is reconciled.
 
 **Execution status:** NOT RUN
 
@@ -3263,7 +3285,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Execution date and environment:** No complete case run recorded.
 
-**Evidence:** [Historical HMS-17 index](evidence/issue39/README.md); [8 November follow-up review](evidence/issue39/followup-20261108.md); [retained earlier CI extraction](evidence/issue37/ci-methods.json).
+**Evidence:** [15 November follow-up](evidence/remaining-test-gaps-20261115.md); [current technical evidence](evidence/sprint-completion-20261118/); [Historical HMS-17 index](evidence/issue39/README.md); [8 November follow-up review](evidence/issue39/followup-20261108.md); [retained earlier CI extraction](evidence/issue37/ci-methods.json).
 
 **Defects and retests:** No result or severity is inferred; record genuine findings/retests when execution occurs.
 
@@ -3283,7 +3305,7 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Priority:** Unspecified in original plan; Medium (proposed). Risk: an incorrect operational result, user workflow or quality target disrupts staff work.
 
-**Priority review:** Proposed 7 November; no historical approval inferred. Agree before applying the High-priority exit criterion.
+**Priority review:** Proposed 7 November; current planning accepted by the PO and recorded Development review on 14 November. Actual QA agreement remains pending. No historical pre-execution priority approval is inferred.
 
 **Requirements:** SRS section 6.4 quality attributes (no invented core requirement ID).
 
@@ -3302,15 +3324,17 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 
 **Expected:** The complete SRS section 6.4 maintainability target is assessed: modular Django apps, PEP 8 adherence and unit tests covering at least 70% of application logic. Repository lint/format checks support the style assessment; mixed-suite statement/branch percentages alone cannot establish unit70.
 
-**Actual:** Current CI lint and format gates passed under the repository's configured rules. Full PEP 8 adherence beyond those rules is not certified. The Unit Test Report is published; the project owner approved the function-body application-logic boundary, with 946/946 (100%) coverage across 288 isolated methods. The companion all-application-statements result is 946/1,703 (55.55%).
+**Actual:** Earlier source-bound CI/isolated measurements and configured lint/format checks are retained in the Unit Test Report. The current frozen-source 415-method measurement and original baseline are awaiting durable evidence reconciliation in the technical evidence. The owner's function-body boundary applies to the unit target; all-statements coverage stays separate. Full PEP 8 adherence beyond the configured rules is not certified.
 
-**Execution status:** PARTIAL — unit-coverage target met under the owner-approved function-body boundary; broader PEP 8 adherence beyond configured checks is not certified.
+**Execution status:** PARTIAL
+
+The unit result is evaluated under the actual owner-approved function-body boundary; broader PEP 8 adherence beyond configured checks is not certified.
 
 **Tested commit:** See the [HMS-19 Unit Test Report and exact-source evidence](Unit_Test_Report.md).
 
-**Execution date and environment:** 13 November 2026; isolated unit selection and exact-head CI as documented in the Unit Test Report.
+**Execution date and environment:** Each historical measurement retains its own source/date. The current frozen-source measurement is documented separately in the Unit Test Report and technical evidence.
 
-**Evidence:** [Code_Coverage_Report.md](Code_Coverage_Report.md); [Branch_Coverage_Report.md](Branch_Coverage_Report.md); [evidence/issue42-main/README.md](evidence/issue42-main/README.md); [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
+**Evidence:** [Unit_Test_Report.md](Unit_Test_Report.md); [current technical evidence](evidence/sprint-completion-20261118/); [Code_Coverage_Report.md](Code_Coverage_Report.md); [Branch_Coverage_Report.md](Branch_Coverage_Report.md); [evidence/issue42-main/README.md](evidence/issue42-main/README.md); [evidence/issue37/ci-methods.json](evidence/issue37/ci-methods.json)
 
 **Defects and retests:** No result or severity is inferred; record genuine findings/retests when execution occurs.
 

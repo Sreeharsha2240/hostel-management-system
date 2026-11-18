@@ -1,5 +1,44 @@
 # System Validation Report — HMS Part 3
 
+**19 November validation assessment: NOT READY.** The application/test freeze
+is `a679ca47c0d642f89b708b9e8473d3a2c62697a7`.
+All 61 case records, 36 original RTM mappings and four required reports are
+published. The [current requirements assessment](Final_Assessment_20261119.md)
+and [technical evidence](evidence/sprint-completion-20261118/) distinguish
+frozen-source verification from retained historical owner observations.
+
+| Current validation measure | Disposition |
+|---|---|
+| Original 33 cases | 32 OWNER PASS / 1 PARTIAL. QUAL-01's aggregate pass is corrected to its primary walkthrough's PARTIAL. |
+| Expanded 61 cases | 56 OWNER PASS (91.80%) / 3 PARTIAL (4.92%) / 2 NOT RUN (3.28%) / 0 BLOCKED. OWNER PASS/PARTIAL: 59/61 (96.72%); this is not complete expected-condition execution. |
+| Partial cases | TC-QUAL-01 (reported first-use guide task with missing provenance and incomplete original browser coverage), TC-QUAL-04 (configured style checks only), TC-SEC-08 (bounded passive scan and findings). |
+| Not-run cases | TC-QUAL-02 (no valid full working-day availability measurement); TC-QUAL-03 (complete current desktop/browser/OS workflow evidence pending). |
+| Current-source checks / unit measurement | Fresh results awaiting durable evidence reconciliation here. Do not apply the 13/15 November coverage figures to this source. |
+| Current browser/scan/load revalidation | Running/pending review. No completion or case pass is inferred from starting a run. |
+| High-priority exit gate | NOT MET: TC-SEC-08 is High/PARTIAL. PO and 14 November Development agree to 34 High / 27 Medium; final QA agreement and accepted passage remain pending. |
+| Defect gate | Full severity-reviewed inventory and final retests/decisions pending. #79/#80 corrections are implemented on the freeze, with independent/browser/CI disposition still pending. |
+| Requirement acceptance | All 36 original mappings preserved and accepted as design traceability by PO/recorded Development review. Accepted passed-case coverage remains UNVERIFIED. |
+| Final acceptance and submission | Actual final QA/Development/PO decisions, actual project-guide walkthrough, instructor late-submission/channel/deadline/format decisions, accepted package and genuine receipt remain pending. |
+
+The primary [QUAL-01 walkthrough](evidence/issue39/usability-walkthrough-20261109.md)
+records overall PARTIAL and an owner-reported 93-second task. Exact guide
+revision, participant code and start/end timing trace were not retained.
+Visible automated registration/allocation is supporting workflow evidence,
+not an independent new-Warden guide session or project-guide acceptance.
+
+The [owner-selected Sprint 2 clip](evidence/sprint-recordings/Sprint2_Outcome_Demo.md)
+is included at 115.148 seconds (1:55). Older missing-video statements below
+are superseded; team/instructor acceptance of content and the approximately
+five-second shortfall from the two-minute minimum remains pending.
+SAD section 4.4 request-ID logging/monitoring remain a disclosed PO limitation.
+Historical entry approval and source/tool/environment limits are preserved.
+
+## Historical measurements and report text
+
+The source-bound material below is retained at its original execution scope.
+Its uses of "current" or "latest" refer to those dated snapshots. The 19 November
+assessment above takes precedence for present metrics, cases and readiness.
+
 **18 November mobile-view update:** The owner reports that a friend checked the
 website in phone mode in a laptop browser. This is browser-emulated mobile-view
 evidence, not a physical-phone test; the browser, viewport, exercised workflows

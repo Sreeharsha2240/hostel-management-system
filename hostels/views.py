@@ -8,6 +8,7 @@ from django.views.decorators.http import require_http_methods
 
 from accounts.decorators import roles_required
 from accounts.models import User
+from allocations.views import available_beds
 from audit.models import AuditEvent
 from audit.services import record_event
 
@@ -198,6 +199,8 @@ def bed_list(request):
     floor = request.GET.get("floor")
     room_type = request.GET.get("room_type")
     status = request.GET.get("status", Bed.BedStatus.AVAILABLE)
+    if valid_filters and status == Bed.BedStatus.AVAILABLE:
+        beds = available_beds()
 
     if valid_filters:
         cleaned_hostel = filter_form.cleaned_data["hostel"]

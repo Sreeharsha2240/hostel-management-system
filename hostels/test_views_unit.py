@@ -139,11 +139,13 @@ class HostelViewUnitTests(SimpleTestCase):
     @patch("hostels.views.render", return_value=HttpResponse("beds"))
     @patch("hostels.views.Hostel.objects.filter")
     @patch("hostels.views.Paginator")
+    @patch("hostels.views.available_beds")
     @patch("hostels.views.Bed.objects.select_related")
     def test_valid_bed_filters_are_applied_and_retained(
-        self, beds, paginator, hostels, render
+        self, beds, available, paginator, hostels, render
     ):
         filtered = beds.return_value
+        available.return_value = filtered
         filtered.filter.return_value = filtered
         request = self.request(
             data={

@@ -1,18 +1,39 @@
 # Part 3: testing, reports and team delivery
 
-**14 November Development review delivered:** The [current Development decision](part3/Development_Review_20261114.md) reviews all 61 cases and 36 RTM mappings, agrees to current priorities and design traceability, and keeps final acceptance **HOLD** for new defects #78–#80 and remaining evidence/approvals. [Devansh's current recording contribution](part3/evidence/sprint-recordings/devansh-contribution-20261114/README.md) is available for the team editor; the full Sprint 2 recording remains missing. This supersedes generic Development-review-pending wording below. QA, case-owner, guide and instructor decisions remain their own records.
+**19 November assessment: NOT READY for final submission.** The initial review-candidate
+source is `a679ca47c0d642f89b708b9e8473d3a2c62697a7`. The
+[current assessment](part3/Final_Assessment_20261119.md) is the authority for
+present case totals, technical evidence and outstanding acceptance work;
+dated execution records below keep their original source and scope.
 
-**13 November HMS-19 completion:** PR #74 merged as `a41f884`, and issue #41 is closed. The owner-approved function-body unit-coverage boundary measures 946/946 (100%) across 288 isolated methods, meeting the 70% target under that definition. The companion all-application-statements result remains 946/1,703 (55.55%) and is disclosed in the [Unit Test Report](part3/Unit_Test_Report.md). See the [owner boundary decision](part3/evidence/hms19-function-body-boundary-20261113.md).
+The updated 61-case document, 36 original RTM mappings and all four reports are
+published. After reconciling TC-QUAL-01 with its primary PARTIAL walkthrough,
+the present ledger is **56 OWNER PASS / 3 PARTIAL / 2 NOT RUN**. Availability
+has no valid full-day measurement. Current desktop/browser workflows, passive
+scan and normal/volume load revalidation remain pending until their actual
+evidence is reviewed. Prior source-bound passes remain historical observations.
 
-**14 November current scope and readiness:** real-phone testing is excluded from this mini-project. HMS-19/#41 is complete; the older issue and case snapshots below are historical. The HMS-16 QA handoff assesses both ZAP observations; TC-SEC-08 remains PARTIAL because the available scan was passive and loopback-only. TC-QUAL-02 (workday availability) and TC-QUAL-03 (desktop browser/OS portability) remain NOT RUN. The Code and Branch Coverage Reports were refreshed against the final application-code tree in PR #76; the owner has now accepted current priorities and 36 RTM design mappings at PO level, defined the REQ-24 student-display boundary, recorded a mini-project exception for SAD §4.4 monitoring/logging, and assigned retrospective severity levels to the four known closed defects. QA/Development agreement remains pending. Other whole-plan dependencies are Vaishnavi's desktop/OS evidence, Sprint 2 recording, instructor instructions and final package/receipt. See the [current readiness checkpoint](part3/HMS21_Final_Readiness.md) and [owner disposition](part3/evidence/owner-disposition-20261114.md).
+The owner and the [recorded Development review](part3/Development_Review_20261114.md)
+agree to the 34 High / 27 Medium planning priorities and original RTM design
+mappings. Final QA agreement and requirement-by-requirement accepted passes
+remain pending; the recorded Development acceptance is **HOLD**. Later fixes
+do not supply a new human approval. Real-phone testing is excluded by the
+owner's mini-project decision; the reported laptop-browser phone-mode check
+has no retained version, viewport or workflow details.
 
-**10 November tracking update:** #38, #39 and #43 are now closed for their documented limited project scopes; #41 is the only open issue. The [HMS-16 QA handoff reconciliation](part3/evidence/issue38-security-20261110/qa-disposition-reconciliation.md) records the two ZAP alert assessments and locates the passing login `next` regression test. TC-SEC-08 remains PARTIAL, the desktop browser/OS matrix and working-hours availability are unverified, and the original Test Plan/submission package remains NOT READY. Dated issue states below are historical snapshots.
+The included 1:55 Sprint 2 clip was selected by the owner on 18 November.
+The approximately five-second shortfall from the two-minute minimum remains
+disclosed. Team/instructor acceptance, final guide walkthrough, actual
+QA/Development/PO final decisions, instructor late-submission instructions,
+accepted final package and genuine receipt are still required. The original
+2-6 November window has passed. Follow the [checklist](SUBMISSION_CHECKLIST.md)
+and [current readiness checkpoint](part3/HMS21_Final_Readiness.md).
 
-This is the team work plan for **2-6 November 2026**. The assigned contributors
-execute their cases and prepare their own evidence. At the 8 November review,
-#37's case-document delivery and #42's coverage-reporting task are closed;
-#38/#39/#41/#43 retain outstanding work; the later [HMS-18 scoped AI QA review](part3/evidence/issue40-final/qa-review-20261108.md) accepts #40 for technical closure. Vaishnavi coordinates QA, Devansh leads
-development/coverage, and Sreeharsha coordinates integration and final readiness.
+This remains the team plan for **2-6 November 2026**. Original ownership is
+preserved; the user has authorized technical follow-through across assignees.
+Vaishnavi coordinates QA, Devansh leads development/coverage, and Sreeharsha
+coordinates integration and submission. Preserve actual contribution and
+approval histories.
 
 ## Instructions and baseline
 
@@ -42,8 +63,8 @@ attributes. The updated Test Case Document must retain these IDs, explain
 revisions, add sprint regression cases and map automated methods to them.
 The delivered register preserves the original IDs/mappings and contains 61
 complete records. The project owner accepted its 34 High / 27 Medium proposed
-priorities for current planning on 14 November; QA and Development agreement is
-still pending because the original case table lacks priority fields. This does
+priorities for current planning on 14 November; Development agreement is recorded in the 14 November review; QA agreement is
+still pending. The original case table lacks priority fields. This does
 not assign historical priorities or certify the High-priority exit criterion.
 The register reconciles
 TC-AUTH-03's old lockout-message wording with SRS REQ-2's generic credential-error
@@ -110,7 +131,7 @@ delivery and this scoped review do not supply actual final human approvals or
 retroactively establish pre-execution entry compliance.
 The appendix does not complete either teammate's deliverable or global readiness.
 
-The 8 November technical review of main `b523d4c` is recorded in the
+The historical 8 November technical review of main `b523d4c` is recorded in the
 [HMS-21 readiness checkpoint](part3/HMS21_Final_Readiness.md). PR #58 is
 merged, but issue #39 remains open: its evidence disposition includes one
 NOT RUN case and one PARTIAL quality case. HMS-16's report now incorporates
@@ -164,7 +185,9 @@ cutoff and export requirements with the instructor through the normal team proce
 
 ## Deliverable destinations and completion evidence
 
-The table lists the required outputs and their current owners. HMS-19's Unit Test
+The table lists the required outputs and their accountable owners. Historical
+measurement figures in its delivery descriptions identify earlier completion;
+use the current assessment and each report for frozen-source results. HMS-19's Unit Test
 Report is published and its owner-approved function-body result meets the 70%
 target; the all-statements result remains disclosed. The whole-plan package is
 still NOT READY. Markdown is the team's working format; confirm whether the
@@ -172,7 +195,7 @@ instructor also needs PDF/DOCX exports.
 
 | Output under `docs/` | Owner / contributors | Required content |
 |---|---|---|
-| [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, owner-accepted proposed priorities (QA/Dev review pending), requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
+| [Test Case Document and RTM](part3/Test_Case_Document.md) | Vaishnavi; all original case owners; Devansh reconciliation | Revision history, retained/new case IDs, PO/Development-agreed current priorities (QA review pending), requirement/RTM, level/type, owner, prerequisites/data, steps, expected/actual results, status, tested commit, evidence and defects/retests |
 | [Unit Test Report](part3/Unit_Test_Report.md) | Vaishnavi coordinates; Sreeharsha supplies this report contribution; module owners supply results | Published through merged PR #74; owner-approved function-body unit coverage is 100% (946/946); companion all-statements result is 55.55% and remains disclosed |
 | [System Validation Report](part3/System_Validation_Report.md) | Sreeharsha integrates; QA consolidates; all owners execute | Entry/exit criteria, all planned functional/security/performance/recovery/quality cases, RTM, observed results, execution/pass/fail/requirement percentages, defect density/aging, blockers, deviations, readiness and actual approvals |
 | [Code Coverage Report](part3/Code_Coverage_Report.md) | Devansh; independent reviewer | Per-module/total measured, executed and missing statements, statement percentages, application-logic scope, omissions and SRS coverage assessment |
@@ -259,8 +282,8 @@ The final coordination task also checks inherited Part 2 obligations: the
 owner-provided [Sprint 1 demo](part3/evidence/sprint-recordings/Sprint1_Outcome_Demo.mp4)
 is now tracked and is 51.7 seconds, within the one-minute target. The owner has
 also supplied the [Sprint 2 outcome video](part3/evidence/sprint-recordings/Sprint2_Outcome_Demo.mp4),
-which is tracked at 1:55; review its content and confirm whether the five-second
-shortfall from the two-minute target is acceptable.
+which is tracked at 1:55; review its content and obtain an actual team/instructor decision on the approximately five-second
+shortfall from the two-minute minimum.
 Keep the original documents, diagrams, historical charts and evidence intact;
 record changes and confirm DOCX/PDF pairs and any final instructor packaging rules.
 

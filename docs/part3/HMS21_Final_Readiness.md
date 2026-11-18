@@ -1,3 +1,41 @@
+# HMS-21 final readiness checkpoint
+
+**19 November disposition: NOT READY.** The initial review candidate's
+source is `a679ca47c0d642f89b708b9e8473d3a2c62697a7`.
+The [current assessment](Final_Assessment_20261119.md) reconciles the original
+assignment, SRS, SAD and submitted Test Plan against the actual records.
+This is an assisted technical checkpoint; it is not a teammate signature,
+guide acceptance, instructor decision, selected final package or receipt.
+
+| Requirement | Current disposition |
+|---|---|
+| Updated case document and RTM | Published: 61 case records, original 33 IDs and all 36 original mappings retained. |
+| Four required reports under `docs/` | Published. Current source-bound metrics and historical measurements are distinguished in each report. |
+| Current execution ledger | 56 OWNER PASS / 3 PARTIAL / 2 NOT RUN; original 33: 32 OWNER PASS / 1 PARTIAL. QUAL-01's old aggregate PASS is corrected to the primary walkthrough's PARTIAL. These are attributed observations, not QA-accepted passes. |
+| Frozen-source automated checks and isolated coverage | Fresh evidence is being reconciled in the [technical evidence](evidence/sprint-completion-20261118/); do not substitute older-source percentages. |
+| Desktop/browser/OS, passive scan and load refresh | Current workflow/scan/load runs pending review. Historical evidence remains source-bound. |
+| Availability | TC-QUAL-02 NOT RUN: no valid complete 12-hour working-day observation yet. 19 November 08:00-20:00 IST observation prepared; job installation and actual log review pending. |
+| Test Plan exit criteria | NOT MET / UNVERIFIED: incomplete planned cases, High TC-SEC-08 PARTIAL, complete severity-reviewed defect inventory and accepted-pass RTM coverage pending. |
+| #79/#80 | Corrections implemented on the frozen source; independent/browser/CI retest and actual issue decisions remain pending. |
+| Review decisions | PO/recorded Development agreement exists for current priorities and original design mappings. Recorded final Development decision is HOLD; final QA/Development/PO decisions, actual case-owner acceptance and project-guide walkthrough remain pending. |
+| Scope deviations | Owner's REQ-24 field boundary, excluded physical-phone activity and SAD section 4.4 request-ID/monitoring limitation are disclosed. They supply no instructor-approved amendment. |
+| Sprint recordings | Sprint 1 included at 51.719 seconds. Owner selected included Sprint 2 at 115.148 seconds (1:55); acceptance of its content and approximately five-second shortfall from the two-minute minimum remains separate. |
+| Final submission | Instructor late-submission/channel/deadline/format decision, accepted SHA/package, final package checks and genuine receipt are pending. |
+
+The [submission checklist](../SUBMISSION_CHECKLIST.md) records the concrete
+remaining actions. The reported 93-second new-Warden guide task is a limited
+usability observation with no exact guide revision, participant code or timing
+trace; it is distinct from acceptance with the actual project guide.
+Current automation cannot establish historical pre-execution entry approval.
+
+<details>
+<summary>Historical readiness records through 18 November (original source/date scopes)</summary>
+
+The dated checkpoint text below is retained for provenance. Its then-current
+counts, metrics, issue states and pending-video language must not override the
+19 November assessment above. Historical OWNER PASS summaries for QUAL-01 are
+superseded by reconciliation with the primary PARTIAL walkthrough.
+
 # HMS-21 Final Readiness Checkpoint
 
 **18 November mobile-view update:** The owner reports that a friend checked the
@@ -150,3 +188,5 @@ At the time of this earlier 9 November coverage snapshot, the local TLS rerun wa
 The two transport/ZAP statements immediately above are historical and superseded by the later same-day loopback evidence in [issue38-security-20261109](evidence/issue38-security-20261109/README.md): TC-SEC-06 is OWNER PASS for its listed isolated test conditions, without claiming public/production TLS. TC-SEC-08's passive baseline ran and is PARTIAL with one Low server-banner alert and one Informational/Low-confidence `next` hotspot awaiting QA disposition. The expanded case totals above include these updated dispositions; no QA approval or false-positive acceptance is inferred.
 
 The published PR #68 head `49851396796918103681aacf47394e5010426201` also has successful fresh MySQL CI: [run 42566973066](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/42566973066), Python 3.11 and 3.14, 208 passed plus one expected skip in each 209-test run, all 12 verification gates passed, 88% full-project coverage against the unchanged 70% gate, and nine owned expanded regression cases passed. Formal SRS unit-only coverage and HMS-21 readiness remain unresolved as stated above; no human approval is inferred.
+
+</details>
