@@ -7726,8 +7726,81 @@
     "applicability": "Application code/templates/assets/dependencies and load harness unchanged. Only backup child-window flags and a recovery reporting literal differ; original raw helper hashes and independently reviewed delta remain explicit."
   },
   "pending": [
-    "Real 19 November 08:00-20:00 IST availability; observer runs remotely, no result inferred before real window ends",
-    "Final Python3.11/3.14 CI artifact reconciliation, merge/main verification and candidate package",
-    "Instructor late-acceptance/channel/deadline/format and genuine submission receipt; existing owner tracking exceptions remain separately attributed"
-  ]
+    "Real19Nov08:00-20:00IST availability; remotely running observer remains PENDING until actual window finishes.",
+    "Original-course usability/strict-style evidence and acceptance limits remain explicit in current assessment.",
+    "Instructor late acceptance/channel/deadline/format and genuine submission receipt; owner tracking exceptions remain separately attributed."
+  ],
+  "ci_verification": {
+    "record": "ci-evidence/ci-summary.json",
+    "candidate": "e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf",
+    "candidate_tree": "1c30b1e73f2bf466821e0bdd749c544ff6010424",
+    "explicit_run": 44383638276,
+    "automatic_pr_run": 44383945828,
+    "merge_commit": "9ad6cf9a076d3b87f3287e46f73e118bc80ec0b0",
+    "merge_tree_equals_tested_tree": true,
+    "all_recorded_audit_checks_pass": true,
+    "note": "Actual code/source pins match the clean3a63 local run; published raw CI boundaries keep interpreter annotations and namespace script inventories explicit.",
+    "merged_main_run": 44388359523,
+    "merged_main_result": "SUCCESS; both Python jobs"
+  },
+  "original_checkout_verification": {
+    "commit": "e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf",
+    "git_dirty": false,
+    "success": true,
+    "python": "3.14.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "mysql": "8.4.9",
+    "dependencies": {
+      "Django": "5.2.19",
+      "mysqlclient": "2.3.2",
+      "python-dotenv": "1.2.4",
+      "reportlab": "4.5.1",
+      "uharfbuzz": "0.57.0",
+      "pypdf": "6.21.2",
+      "coverage": "7.16.2",
+      "unittest-xml-reporting": "4.0.0",
+      "ruff": "0.17.1"
+    },
+    "tests": {
+      "tests": 727,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "coverage": {
+      "covered_lines": 2995,
+      "num_statements": 3381,
+      "percent_covered": 87.10340104998859,
+      "percent_covered_display": "87",
+      "missing_lines": 386,
+      "excluded_lines": 0,
+      "percent_statements_covered": 88.58325939071281,
+      "percent_statements_covered_display": "89",
+      "num_branches": 1000,
+      "num_partial_branches": 67,
+      "covered_branches": 821,
+      "missing_branches": 179,
+      "percent_branches_covered": 82.1,
+      "percent_branches_covered_display": "82"
+    },
+    "started_at": "2026-11-18T20:08:23.413221+00:00",
+    "completed_at": "2026-11-18T20:09:51.590199+00:00",
+    "raw_local_run_sha256": "36097c0ec484cd454cb7ee1787db073483152367d11f3c0dda3ceaab99b343e5",
+    "notes": [
+      "Existing local hidden-backup-child-process edit preserved verbatim and separately backed up; existing main branch fast-forwarded to tested candidate.",
+      "Applied only hostels0003/payments0002 pending validator migrations; no application data seeded or restored.",
+      "All13gates including separate timing passed on original checkout/global database configuration."
+    ]
+  },
+  "issue_checkpoint": {
+    "pull_request": 91,
+    "state": "MERGED",
+    "known_open_issues": [],
+    "closed_finding_issues": [
+      80,
+      90
+    ],
+    "scope": "Actual tracked inventory at19Nov checkpoint; not a guarantee that all possible bugs are absent."
+  },
+  "report_checkpoint_note": "This record fixes the actual tested revisions above. Final source/PDF delivery manifests are generated separately from their selected commit and do not constitute an instructor submission."
 }

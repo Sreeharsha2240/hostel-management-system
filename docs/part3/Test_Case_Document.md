@@ -18,7 +18,8 @@ The current application/test freeze is
 Twelve versioned browser workflows, the real 901.003-second idle test, bounded
 passive ZAP baseline/triage, both sustained workloads and fresh sandbox recovery
 now have actual technical PASS evidence. The later helper-only follow-up is source-pinned and cleanly verified on
-3a63cae; remote CI/merge/main/package checks remain pending.
+3a63cae. Both supported-Python CI runs on e2fe45f and PR #91 merge are now
+verified; final docs/main verification and package remain pending.
 
 All 61 cases and 36 original RTM mappings remain preserved. The PO and
 [14 November Development review](Development_Review_20261114.md) agree to
@@ -47,13 +48,21 @@ explicitly skips collecting final teammate sign-offs and the project-guide
 walkthrough. Those original course criteria remain unmet; the scoped task
 stays closed and no approval/collection gate is added here.
 
+**Latest CI/merge checkpoint:** PR #91 merged as
+9ad6cf9a076d3b87f3287e46f73e118bc80ec0b0 at 18 November 20:11:20 UTC.
+Exact tested head e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf/tree
+1c30b1e73f2bf466821e0bdd749c544ff6010424 passes Python 3.11/3.14 in both
+manual CI 44383638276 and automatic PR CI 44383945828. The [six-ZIP audit](evidence/sprint-completion-20261118/ci-evidence/ci-summary.json)
+passes fourteen checks. #80/#90 are CLOSED; the current GitHub query has no open
+issues, so zero known open High/Critical among tracked fixed defects.
+
 ## 1. Document information and revision history
 
 | Field | Value |
 |---|---|
 | Project / team | Hostel Management System / Team 3 |
 | Revision | 19 November current-status reconciliation; historical execution records retain their own dates and sources |
-| Current automated verification source | `3a63cae0049565345f0c2f0687fbb9e54c620751`; operational source remains `0d9adb39f3adcb85e75449c85900b4c283868ded`; earlier inspected baseline `70c9fe20e462eb0b052e15434f19b347a793afa1` remains historical |
+| Latest CI verification source | `e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf` (PR #91 merged as 9ad6cf9); clean local source remains3a63cae; operational source remains `0d9adb39f3adcb85e75449c85900b4c283868ded`; earlier inspected baseline `70c9fe20e462eb0b052e15434f19b347a793afa1` remains historical |
 | Nine-case owner follow-up tested baseline | `6636098cb728aa17c2abf5e42c358a5d400261e7`; see section 5.6 |
 | Case inventory | 33 original cases + 10 retained regression IDs + 14 new sprint-regression IDs + 4 explicit security/quality cases = **61** |
 | Requirements | All original REQ-1..24 and NFR-1..12; separate SRS quality, BR and SO mapping |
@@ -71,7 +80,7 @@ stays closed and no approval/collection gate is added here.
 | 8 November, HMS-17 follow-up / PR #66 | Vaishnavi (publication); Devansh with three independent automated reviewers (technical reconciliation) | Added seven screenshots and historical raw CI; corrected unsupported complete passes; accepted S1-07/S2-07 for their existing automated scope, without claiming a new execution |
 | 9 November, HMS-17 follow-up | Vaishnavi | Added Warden first-use and student-registration evidence; updated the current owner disposition and derived case metrics while preserving historical execution records |
 | 9 November, HMS-16 transport/ZAP follow-up | Sreeharsha owner evidence | Added isolated loopback HTTPS/TLS and passive ZAP evidence; recorded TC-SEC-06 as partial against its deployed-candidate prerequisite, TC-SEC-08 as partial pending QA disposition, and recalculated expanded totals |
-| 19 November, current-source reconciliation | Codex, under the user's authorization across assignees | Reconciled clean automatic source 3a63cae, 13 local gates, 288/415 isolated and nine-owned runs; operational source 0d9adb39, primary QUAL-01 PARTIAL, actual #43 owner exception and OPEN #90. Historical executions remain unchanged; no teammate or instructor approval is invented. |
+| 19 November, current-source reconciliation | Codex, under the user's authorization across assignees | Reconciled clean automatic source 3a63cae, 13 local gates, 288/415 isolated and nine-owned runs; operational source 0d9adb39, primary QUAL-01 PARTIAL, actual #43 owner exception and then-open #90 at that earlier checkpoint. Historical executions remain unchanged; no teammate or instructor approval is invented. |
 
 Devansh authorized finishing and merging this documentation issue without collecting additional teammate messages. This is delivery authorization; no teammate signature, retrospective pre-execution QA approval, instructor waiver or final QA/Dev/PO acceptance is invented. Contributor ownership of execution and the remaining reports stays as recorded in issues #38-#43.
 
@@ -215,6 +224,23 @@ retained by each artifact; the later helper-only correction is verified by clean
 - [Fresh sustained workloads](evidence/sprint-completion-20261118/operations/load-results.json): 50 real full-duration users per scenario; normal 28,952 HTTP requests, maximum 1,599 ms; volume 28,806 requests with 5,000 students/2,000 beds, maximum 1,519 ms. Both have zero errors and 100% within two seconds; minimum per-user measured intervals exceed 600 seconds. Compressed raw samples and independent reparse are retained.
 - [Fresh backup/recovery](evidence/sprint-completion-20261118/operations/recovery-results.json): real natural daily trigger on a new owned sandbox, populated restore from a 3.299-second-old backup, matching counts/row/schema digests and 17 zero-violation checks; separate stable read-only browser backup. Owned temporary task/server cleaned up; legacy task unchanged. This removed demonstration task does not establish an ongoing current-browser daily schedule.
 
+### 5.10 Merged PR #91 and strict CI reconciliation
+
+Exact tested head e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf has tree
+1c30b1e73f2bf466821e0bdd749c544ff6010424;PR #91 merged as 9ad6cf9 on
+18 November 20:11:20 UTC. Both manual and automatic PR CI passed Python 3.11/3.14.
+The [fourteen-check audit](evidence/sprint-completion-20261118/ci-evidence/ci-summary.json)
+verifies all six ZIPs, exact test outcomes, source pins, per-file attribution and
+the five pinned verification scripts measured only by the mixed suite.
+Frozen methods, harness and .coveragerc are unchanged.
+
+Function-body unit coverage is 1,547/1,740 (88.91%) in both jobs. Python 3.11
+counts three source-proved eager class annotations, so its all-statements unit
+companion is 1,547/2,733(56.60%) versus 1,547/2,730(56.67%) on 3.14.
+Mixed statements are 2,998/3,384 versus 2,995/3,381; both cover 821/1,000 branches.
+These interpreter totals remain separate. Historical 3a63 clean local and 0d9
+operational evidence retains its actual source, settings and hashes.
+
 ## 6. Counts, metrics and defect/retest interpretation
 
 ### 6.1 Original test-case disposition
@@ -262,7 +288,13 @@ and the guide walkthrough while retaining unmet original course criteria.
 
 ### 6.3 Defect, retest and requirement-coverage metrics
 
-**19 November current inventory:** [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) is OPEN and consolidates verified cross-sprint defects beyond #79/#80, including two High technical assessments. Fixes and local retests are recorded; final clean CI/merge acceptance remains unchecked. The historical four-closed-issue statistics below do not establish zero current open High defects. GitHub currently records #79 CLOSED (18 November 18:34:53 UTC) and #80 OPEN; neither state is inferred from local testing.
+**19 November current inventory:** #79/#80 and
+[HMS-30/#90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90)
+are CLOSED after the verified correction/retest delivery. PR #91 is merged with
+both supported-Python CI runs passing. The current GitHub query returns no open
+issues: zero known open High/Critical among the tracked fixed defects. Earlier
+High assessments,failed observations and fixes remain retained;this bounded
+inventory result does not assert that unreported defects cannot exist.
 
 
 Test Plan section 14 also requires defect density (defects/module), defect aging (days open), and requirement coverage.
@@ -470,8 +502,8 @@ Test Plan section 5 requires **SRS approved; build deployed to test environment;
 | Original criterion | Current disposition |
 |---|---|
 | 100% of planned test cases executed | NOT MET: TC-QUAL-01, TC-SEC-08 and TC-QUAL-04 are PARTIAL; TC-QUAL-02/03 remain NOT RUN. Original STU-01 has later registration evidence and is OWNER PASS. |
-| All High-priority cases passed | Current SEC-08 bounded technical execution is PASS, superseding its older partial procedure result. Original priority/case acceptance remains distinct; no human QA agreement is invented. OPEN #90 still prevents the separate zero-open-High criterion. |
-| Zero critical/high defects open | NOT MET while [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) remains OPEN with current High technical assessments. Local fixes/retests do not supply its pending clean CI/merge acceptance. |
+| All High-priority cases passed | Current SEC-08 bounded technical execution is PASS, superseding its older partial procedure result. Original priority/case acceptance remains distinct; no human QA agreement is invented. Tracked High defects are now closed after verified CI and PR #91 merge. |
+| Zero critical/high defects open | MET for the known tracked fixed inventory: #80/#90 are CLOSED after verified CI and merged PR #91; the current GitHub query returns no open issues. No assertion about unreported defects is inferred. |
 | Every RTM requirement covered by at least one passed case | UNVERIFIED/PARTIAL: all 36 are mapped, but passed method/owner observations do not establish every full requirement. |
 
 Actual QA/Dev/PO approvals (Plan section 15) and the project-guide walkthrough (section 5) remain unmet original course criteria. Their collection is explicitly skipped by the owner-scoped #43 closure; this document does not reopen that task. Any authorized instructor change must retain original unmet outcomes and record authority/date/rationale. **Whole-plan readiness: NOT READY.**
@@ -3402,6 +3434,13 @@ See [the additional walkthrough record](evidence/issue39/usability-walkthrough-2
 4. Assess the SRS threshold, retaining failing or unproven outcomes and exact revision/commands.
 
 **Expected:** The complete SRS section 6.4 maintainability target is assessed: modular Django apps, PEP 8 adherence and unit tests covering at least 70% of application logic. Repository lint/format checks support the style assessment; mixed-suite statement/branch percentages alone cannot establish unit70.
+
+**Latest CI companion:** Both Python 3.11/3.14 jobs pass the exact 415-method
+selection on e2fe45f at 1,547/1,740 function-body statements (88.91%).
+The source-proved annotation boundary makes the all-statements companions
+1,547/2,733 (3.11) and1,547/2,730 (3.14). See the
+[strict CI audit](evidence/sprint-completion-20261118/ci-evidence/ci-summary.json).
+The retained local observation below is Python 3.14 evidence.
 
 **Actual:** Current-source configured lint/format gates passed. Clean 415/415 isolated methods passed with zero DB attempts and 208 verified source pins, covering 1,547/1,740 application function-body statements (88.91%) under the actual owner boundary. All-statements companion: 1,547/2,730 (56.67%). The retained 288-method baseline passes but measures 1,158/1,740 (66.55%), below 70%. Broader PEP 8 adherence beyond configured rules is not certified.
 

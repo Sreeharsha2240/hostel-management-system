@@ -1,5 +1,23 @@
 # HMS-21 final readiness checkpoint
 
+**Latest CI/merge checkpoint:** [PR #91](https://github.com/Sreeharsha2240/hostel-management-system/pull/91)
+merged as 9ad6cf9a076d3b87f3287e46f73e118bc80ec0b0 at 18 November 20:11:20 UTC.
+Exact tested head: e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf;tree 1c30b1e73f2bf466821e0bdd749c544ff6010424.
+ManualCI44383638276 and automatic PR CI 44383945828 both passed Python 3.11/3.14.
+The [six-ZIP audit](evidence/sprint-completion-20261118/ci-evidence/ci-summary.json)
+passes all fourteen checks. All tracked issues,including #80/#90, are CLOSED;
+the current query has no open issues: zero known open High/Critical among those
+tracked fixed defects. Final main verification after this docs checkpoint
+and the candidate package remain pending.
+
+Python 3.11 mixed coverage is 2,998/3,384 statements; Python 3.14 is 2,995/3,381.
+Both cover 821/1,000 branches and 1,547/1,740 function-body statements (88.91%).
+Unit all-statements companions are 1,547/2,733 (56.60%) and 1,547/2,730 (56.67%).
+The only interpreter variance is three source-proved eager class annotations;
+method credit, harness and thresholds are unchanged. [Per-version coverage](evidence/sprint-completion-20261118/ci-evidence/coverage-tables-py3.11.md)
+retains the actual totals. Local3a63cae and operational 0d9adb39 evidence below
+is preserved at its own execution source.
+
 **19 November: owner-scoped HMS-21/#43 CLOSED; original course readiness
 NOT READY.** The verified execution source is
 3a63cae0049565345f0c2f0687fbb9e54c620751. This assisted technical checkpoint
@@ -16,8 +34,8 @@ approval or a submission receipt.
 | Current execution ledger | 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING; original 33: 32 OWNER PASS / 1 PARTIAL. QUAL-01 follows its primary PARTIAL walkthrough; execution attribution is separate from accepted passage. |
 | Current operational execution | Twelve browser workflows/228 observations and real 901.003-second idle PASS; bounded ZAP baseline/triage PASS with retained Medium/Low findings; both 600-second/50-user workloads PASS; fresh owned sandbox recovery plus read-only browser backup PASS. |
 | Availability | QUAL-02 PENDING: real observer job job_c4c3658121 / PID 2322483 is installed for 19 November 08:00-20:00 IST. Exported WAITING snapshot has zero probes; no availability pass. |
-| Current production corrections | Inventory/history, available-bed consistency, one confirmation per submission and canonical coverage exports corrected. Independent technical review reconciles 26 focused tests and full mixed artifacts; no concrete blocker established in that scope. Current GitHub states are #79 CLOSED / #80 OPEN; remote CI remains separate; [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) tracks consolidated findings and has final CI/merge acceptance unchecked. |
-| Original exit criteria | NOT MET / UNVERIFIED: QUAL-01/04 PARTIAL, QUAL-02 PENDING, OPEN #90 with High technical assessments, accepted-pass RTM coverage unverified. SEC-08 technical execution is now PASS. |
+| Current production corrections | Delivered in merged PR #91. #79/#80/#90 are CLOSED; no open issues returned by current query. Zero known open High/Critical among tracked fixed defects. Manual/automatic PR CI passed; final docs/main verification and package remain pending. |
+| Original exit criteria | NOT MET/UNVERIFIED: QUAL-01/04 PARTIAL, QUAL-02 PENDING and accepted-pass RTM coverage unverified. The known tracked High-defect inventory is now closed. |
 | Owner-scoped task exception | Actual 10 November #43 owner closure skips collecting teammate QA/Development/PO sign-offs and guide walkthrough. Task stays CLOSED; no new collection or approval gate. Original course criteria remain unmet and no such approvals are inferred. |
 | Scope limits | Owner REQ-24 interpretation, excluded physical-phone activity and unimplemented SAD section 4.4 request-ID/monitoring items remain disclosed. |
 | Sprint videos | Sprint 1 included at 51.719 seconds. Owner-selected Sprint 2 included at 115.148 seconds (1:55), approximately five seconds below the nominal two-minute target; no instructor acceptance of the shortfall is inferred. |
@@ -31,11 +49,11 @@ The owner-reported 93-second new-Warden guide task lacks exact guide revision,
 participant code and start/end timing trace; it is separate from a project-guide
 walkthrough. Historical pre-execution entry approval is not backdated.
 
-Final source pins and clean local regression are verified on 3a63cae.
-Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
-reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
-merge/main verification and the candidate package remain pending. Availability
-and original course criteria keep their separately recorded states.
+Clean local verification,strict CI artifact reconciliation and PR #91 merge are
+complete. Final main verification after this documentation checkpoint and the
+candidate package remain pending. Operational0d9adb39 evidence and reviewed
+helper-only carry-forward are preserved. Availability and original course
+submission criteria keep their separately recorded state.
 
 <details>
 <summary>Historical readiness records through 18 November (original source/date scopes)</summary>

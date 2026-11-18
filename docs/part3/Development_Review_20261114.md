@@ -13,6 +13,10 @@
 > sign-offs and the guide walkthrough. Historical collection requests below
 > do not add those tasks back to the owner's scope; unmet original course
 > criteria remain distinguished in the current assessment.
+> PR #91 has since merged as 9ad6cf9 with Python 3.11/3.14 CI verified;
+> #80/#90 are now CLOSED and the current tracked open-issue query is empty.
+> The original course status remains NOT READY for QUAL-01/04 PARTIAL,
+> QUAL-02 PENDING and unrecorded instructor submission.
 
 
 **Development review completed; final Development acceptance HOLD. Whole-plan submission NOT READY.**
@@ -176,7 +180,7 @@ The PO's earlier zero-open-High observation was explicitly limited to the four o
 
 ## Devansh's recording contribution
 
-The [current 39.96-second contribution](evidence/sprint-recordings/devansh-contribution-20261114/Devansh_Sprint2_Contribution_Current_2026-11-14.mp4) shows actual synthetic allocation, transfer/history, payment/receipt/PDF, balance and filtered-report/CSV workflows on the integrated candidate. Recorded on 14 November 2026: automated Edge UI capture, text captions, no human participation or audio. The final evidence card is labelled editorial and refers to existing 27 OWNER PASS observations; it is not a new suite run. [Capture provenance/editor handoff](evidence/sprint-recordings/devansh-contribution-20261114/README.md) records tool versions, source pins, checks and hash. This is Devansh's contribution for the team editor, not the complete two-minute team Sprint 2 outcome recording or historical sprint evidence.
+The [current 39.96-second contribution](evidence/sprint-recordings/devansh-contribution-20261114/Devansh_Sprint 2_Contribution_Current_2026-11-14.mp4) shows actual synthetic allocation, transfer/history, payment/receipt/PDF, balance and filtered-report/CSV workflows on the integrated candidate. Recorded on 14 November 2026: automated Edge UI capture, text captions, no human participation or audio. The final evidence card is labelled editorial and refers to existing 27 OWNER PASS observations; it is not a new suite run. [Capture provenance/editor handoff](evidence/sprint-recordings/devansh-contribution-20261114/README.md) records tool versions, source pins, checks and hash. This is Devansh's contribution for the team editor, not the complete two-minute team Sprint 2 outcome recording or historical sprint evidence.
 
 ## Exact remaining handoff and final-release conditions
 

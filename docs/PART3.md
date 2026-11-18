@@ -1,20 +1,22 @@
 # Part 3: testing, reports and team delivery
 
 **19 November: scoped #43 task CLOSED; original course readiness NOT READY.**
-The verified execution source is 3a63cae0049565345f0c2f0687fbb9e54c620751.
-All 13 local gates passed with 727 distinct mixed methods (726 PASS / one
-expected timing SKIP), separate timing PASS and 87.10% configured combined
-coverage. The clean 415-method isolated selection reaches 1,547/1,740 (88.91%)
-function-body statements under the actual owner boundary; 56.67% all-statements
-coverage stays separate. The full mixed, isolated and nine-owned runs are clean
-on this revision; initial dirty/precommit evidence remains separately archived.
-See the [current assessment](part3/Final_Assessment_20261119.md)
-and [technical evidence](part3/evidence/sprint-completion-20261118/README.md).
+[PR #91](https://github.com/Sreeharsha2240/hostel-management-system/pull/91)
+is merged as 9ad6cf9a076d3b87f3287e46f73e118bc80ec0b0
+(18 November 20:11:20 UTC). Exact tested head: e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf.
+Both manual CI 44383638276 and automatic PR CI 44383945828 passed Python 3.11/3.14.
+The [strict six-ZIP CI audit](part3/evidence/sprint-completion-20261118/ci-evidence/ci-summary.json)
+passes fourteen checks. Each job passes thirteen gates, 727 mixed methods with
+one expected skip/separate timing PASS,288/415 isolated selections and nine
+owned recipes. Function-body unit coverage is 88.91% on both interpreters;
+the all-statements companion is 56.60% (3.11)/56.67% (3.14). Source-proved eager
+annotations account for the three-statement difference. Earlier local 3a63cae
+and operational 0d9adb39 runs keep their actual provenance.
 
 The 61-case document, 36 original RTM mappings and four reports are published.
 The current ledger is 56 OWNER PASS / 2 technical PASS / 2 PARTIAL / 1 PENDING after reconciling
 QUAL-01 with its primary PARTIAL walkthrough. Current browser/scan/load/recovery evidence has bounded technical PASS results;
-the real availability window and final CI/merge/main/package checks remain
+the real availability window and final main verification after this documentation checkpoint and package checks remain
 pending.
 PO/recorded Development agreement concerns priorities and design mappings;
 accepted passed-case coverage remains unverified.
@@ -32,7 +34,11 @@ history are preserved; the user authorizes technical work across assignees.
 See the [checklist](SUBMISSION_CHECKLIST.md) and
 [current readiness checkpoint](part3/HMS21_Final_Readiness.md).
 
-Current cross-sprint defects/retests are consolidated in [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) (OPEN; includes High technical assessments), separately from #79/#80. Devansh owns this Sprint 3 correction/retest task; its eight-point estimate is retrospective planning, with no team approval inferred. Fixes and local checks are recorded; clean CI/merge/final acceptance remains unchecked.
+Cross-sprint findings in [HMS-30/#90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90)
+and the separate #80 inventory/history record are CLOSED after PR #91; #79 was
+already closed. The current GitHub query returns no open issues, so zero known
+open High/Critical remain among tracked fixed defects. Devansh's eight-point
+estimate remains retrospective planning, with no team estimate approval inferred.
 
 ## Instructions and baseline
 

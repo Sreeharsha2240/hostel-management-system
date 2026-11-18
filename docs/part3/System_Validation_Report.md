@@ -1,7 +1,30 @@
 # System Validation Report — HMS Part 3
 
+**PR #91 is MERGED** as
+9ad6cf9a076d3b87f3287e46f73e118bc80ec0b0 on 18 November at 20:11:20 UTC.
+The exact tested head is e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf,
+tree 1c30b1e73f2bf466821e0bdd749c544ff6010424.
+Both [manual CI 44383638276](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/44383638276)
+and [automatic PR CI 44383945828](https://github.com/Sreeharsha2240/hostel-management-system/actions/runs/44383945828)
+passed Python 3.11 and 3.14. The strict [six-ZIP artifact audit](evidence/sprint-completion-20261118/ci-evidence/ci-summary.json)
+passes all fourteen reconciliation checks, including exact tests, source pins,
+per-file attribution and separately parsed mixed-only verification scripts.
+
+| CI Python | Mixed statements | Mixed branches | Isolated function-body statements | Isolated all-statements companion |
+|---|---:|---:|---:|---:|
+| 3.11 | 2,998/3,384 (88.59%) | 821/1,000 (82.10%) | 1,547/1,740 (88.91%) | 1,547/2,733 (56.60%) |
+| 3.14 | 2,995/3,381 (88.58%) | 821/1,000 (82.10%) | 1,547/1,740 (88.91%) | 1,547/2,730 (56.67%) |
+
+The three-statement difference is source-proved eager class annotations in
+payments/receipts.py on Python 3.11; pinned coverage on Python 3.14 omits the
+deferred __annotate__ code. Selected-method credit and the function-body
+denominator are identical. The frozen attribution harness and .coveragerc
+are unchanged. Full current [Python 3.11 tables](evidence/sprint-completion-20261118/ci-evidence/coverage-tables-py3.11.md)
+and [Python 3.14 tables](evidence/sprint-completion-20261118/ci-evidence/coverage-tables-py3.14.md)
+retain per-file metrics rather than forcing the two totals to match.
+
 **19 November assessment: NOT READY against the submitted Test Plan.**
-**Verified clean execution source:** 3a63cae0049565345f0c2f0687fbb9e54c620751.
+**Retained clean local execution source:** 3a63cae0049565345f0c2f0687fbb9e54c620751.
 The [source-bound technical results](evidence/sprint-completion-20261118/technical-verification.json)
 and [exact mixed outcomes](evidence/sprint-completion-20261118/mixed-junit-outcomes.json)
 record 13 passing gates, **727 distinct mixed methods: 726 PASS / one expected
@@ -33,8 +56,8 @@ clean verification.
 | Pending case | QUAL-02: real observer installed for 19 November 08:00-20:00 IST; exported WAITING snapshot has zero probes and no availability result. |
 | Unit target | 415/415 isolated PASS, no DB attempts; 1,547/1,740 function-body statements (88.91%) under the owner boundary. All-statements companion 56.67%. |
 | Current browser/scan/load/recovery execution | Twelve workflows/228 observations PASS; real 901.003-second idle PASS; SEC-08 bounded baseline/triage technical PASS with retained Medium/Low findings; both 600-second/50-user workloads PASS and fresh owned recovery PASS. [Execution index](evidence/sprint-completion-20261118/browser-security/README.md), [load](evidence/sprint-completion-20261118/operations/load-results.json), [recovery](evidence/sprint-completion-20261118/operations/recovery-results.json). |
-| High-priority original exit gate | SEC-08 now has bounded technical PASS, superseding its older partial procedure result. Original case/priority acceptance remains distinct; OPEN #90 still prevents the separate zero-open-High gate. |
-| Current defect assessment | [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) is OPEN and includes High technical severity assessments. Focused fixes, 26 independently reviewed tests and full mixed checks are recorded, while clean CI/merge/final acceptance is unchecked. No zero-open-High claim is made; #79/#80 retain their own scope. |
+| High-priority original exit gate | SEC-08 bounded technical execution is PASS. Original case/priority acceptance remains distinct; no human agreement is invented. The tracked High-defect closure is recorded separately below. |
+| Current defect assessment | #79, #80 and [HMS-30/#90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) are CLOSED after merged PR #91 and verified CI. The current GitHub query returns no open issues: zero known open High/Critical among the tracked fixed defects, a bounded inventory result. |
 | RTM acceptance | All 36 original mappings preserved and accepted as design traceability by PO/recorded Development review; accepted passed-case coverage UNVERIFIED. |
 | Owner-scoped #43 task | CLOSED by the actual 10 November exception skipping collection of teammate sign-offs and guide walkthrough; no reopening/new approval gate. |
 | Course submission | Instructor late-submission/channel/deadline/format decisions, accepted course package and genuine submission/receipt unrecorded. |
@@ -59,11 +82,12 @@ of the shortfall is inferred. SAD section 4.4 request-ID logging/monitoring
 remain an owner-disclosed limitation. Historical entry, source and tool/
 environment limits remain visible in the [current assessment](Final_Assessment_20261119.md).
 
-Final source pins and clean local regression are verified on 3a63cae.
-Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
-reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
-merge/main verification and the candidate package remain pending. Availability
-and original course criteria keep their separately recorded states.
+PR #91 and both supported-Python CI runs are verified and merged. Final
+main verification after this documentation checkpoint and the candidate package
+remain pending. Operational runs remain bound to 0d9adb39 with their actual
+helper hashes and reviewed carry-forward; clean local 3a63cae evidence remains
+separate from CI. The real availability window and original course submission
+criteria retain their separately recorded state.
 
 ## Historical measurements and report text
 

@@ -1,5 +1,23 @@
 # Part 3 assessment — 19 November 2026
 
+**Latest CI/merge checkpoint:** [PR #91](https://github.com/Sreeharsha2240/hostel-management-system/pull/91)
+merged as 9ad6cf9a076d3b87f3287e46f73e118bc80ec0b0 at 18 November 20:11:20 UTC.
+Exact tested head: e2fe45fa7877bccbe9a864ff4cb3097efd3e2bdf;tree 1c30b1e73f2bf466821e0bdd749c544ff6010424.
+ManualCI44383638276 and automatic PR CI 44383945828 both passed Python 3.11/3.14.
+The [six-ZIP audit](evidence/sprint-completion-20261118/ci-evidence/ci-summary.json)
+passes all fourteen checks. All tracked issues,including #80/#90, are CLOSED;
+the current query has no open issues: zero known open High/Critical among those
+tracked fixed defects. Final main verification after this docs checkpoint
+and the candidate package remain pending.
+
+Python 3.11 mixed coverage is 2,998/3,384 statements; Python 3.14 is 2,995/3,381.
+Both cover 821/1,000 branches and 1,547/1,740 function-body statements (88.91%).
+Unit all-statements companions are 1,547/2,733 (56.60%) and 1,547/2,730 (56.67%).
+The only interpreter variance is three source-proved eager class annotations;
+method credit, harness and thresholds are unchanged. [Per-version coverage](evidence/sprint-completion-20261118/ci-evidence/coverage-tables-py3.11.md)
+retains the actual totals. Local3a63cae and operational 0d9adb39 evidence below
+is preserved at its own execution source.
+
 **Original course-submission readiness: NOT READY. Owner-scoped HMS-21/#43:
 CLOSED.** The updated 61-case document, 36-row core RTM and four required
 reports are present. Publication and scoped tracking closure do not establish
@@ -49,8 +67,8 @@ no fresh human Development signature is invented.
 | TC-QUAL-04: maintainability | **PARTIAL** | The unit target is evaluated under the recorded owner boundary. Configured Ruff checks and modular apps support the style/design assessment; they do not certify every PEP 8 provision. |
 | TC-SEC-08: baseline and triage | **PASS - Codex bounded technical execution** | [Actual triage](evidence/sprint-completion-20261118/browser-security/security/qa-development-triage.md): completed authenticated passive baseline,12 explicit HTTP-200 routes, drained queue. Retain one Medium static 404 CSP finding,Low/Informational observations and five insecure-loopback deploy warnings; no production/TLS approval. |
 | TC-PERF-01 / TC-PERF-03 | **Current technical PASS; historical owner passes retained** | [Both full workloads](evidence/sprint-completion-20261118/operations/load-results.json):50 users/600 s each. Baseline 28,952 requests/maximum 1,599 ms; volume 28,806 at 5,000 students/2,000 beds/maximum 1,519 ms; zero errors, 100% under 2 s. |
-| #79 / #80 inventory/history corrections | Implemented; local regressions and independent technical review recorded | GitHub currently records #79 CLOSED (18 November 18:34:53 UTC) and #80 OPEN. Keep those actual states separate from fixed-source observations and pending follow-up CI/merge acceptance. |
-| [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) consolidated defect/retest record | **OPEN; includes current High technical assessments** | Records cross-sprint account/state and allocation-race integrity findings plus interface, receipt, availability, confirmation, coverage-export and runner/recovery findings. Fixes/local retests are recorded; clean CI/merge/final acceptance remains unchecked. Do not claim zero open High defects. |
+| #79 / #80 inventory/history corrections | CLOSED | #79 closed earlier; #80 closed with the verified PR #91 correction. Actual source-bound retests and CI remain linked. |
+| [HMS-30/#90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) | CLOSED | Consolidated corrections/retests delivered in merged PR #91 with both supported-Python CI runs passing. Prior High technical assessments and fix history remain retained. |
 
 The current register is **56 historical OWNER PASS / 2 current Codex
 technical PASS / 2 PARTIAL / 1 PENDING**. The original 33 remain 32 OWNER PASS /
@@ -80,8 +98,8 @@ of late submission is recorded.
 | Submitted requirement | Assessment |
 |---|---|
 | Test Plan section 5: 100% planned cases executed | **NOT MET:** QUAL-01/04 remain PARTIAL and the real QUAL-02 window is PENDING. |
-| Test Plan section 5: all High-priority cases passed | SEC-08 now has bounded technical PASS. Original accepted-case/priority agreement remains distinct; no human approval is inferred. OPEN #90 still fails the separate High-defect gate. |
-| Test Plan section 5: zero open Critical/High defects | **NOT MET while [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90) remains open with High technical assessments.** Implemented fixes and local retests do not close this tracked criterion; complete inventory/acceptance remains separate. |
+| Test Plan section 5: all High-priority cases passed | SEC-08 technical execution is PASS. Original case/priority acceptance remains distinct; no human agreement is invented. Tracked High defects are now closed. |
+| Test Plan section 5: zero open Critical/High defects | **MET for the known tracked fixed inventory:** current GitHub query returns no open issues and #80/#90 are CLOSED. This is a bounded inventory result, not a claim about unreported defects. |
 | Test Plan section 5 / section 13.2: every RTM requirement covered by a passed case | **UNVERIFIED.** All 36 original mappings are preserved and accepted as design traceability by the PO and recorded Development review. Accepted passed-case coverage must be decided requirement by requirement. |
 | Test Plan section 5: project-guide acceptance walkthrough | **Unmet original course criterion; collection skipped by the actual #43 owner exception.** No guide session/approval is invented; the new-Warden usability task is separate. |
 | Test Plan section 15: QA / Development / PO approvals | **Unmet original course criterion; collection skipped by the actual #43 owner exception.** Historical Development HOLD stays recorded; no final human approvals are inferred. |
@@ -97,11 +115,11 @@ and MySQL versions used. A mapped test or passing companion proves only its
 asserted conditions; the original browser timing, Back/idle and script-execution
 subconditions need their own evidence or an actual bounded acceptance decision.
 
-Final source pins and clean local regression are verified on 3a63cae.
-Operational runs remain bound to 0d9adb39 and their actual helper hashes, with
-reviewed helper-only carry-forward. Remote Python 3.11/3.14 CI reconciliation,
-merge/main verification and the candidate package remain pending. Availability
-and original course criteria keep their separately recorded states.
+Clean local verification,strict CI artifact reconciliation and PR #91 merge are
+complete. Final main verification after this documentation checkpoint and the
+candidate package remain pending. Operational0d9adb39 evidence and reviewed
+helper-only carry-forward are preserved. Availability and original course
+submission criteria keep their separately recorded state.
 
 ## Package and external decisions
 

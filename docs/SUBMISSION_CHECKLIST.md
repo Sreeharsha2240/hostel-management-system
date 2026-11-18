@@ -22,14 +22,14 @@ walkthrough; it creates no such approvals and is not reopened here.
 - [x] Install/review the real protected-page observer with strict200/source/startup/no-backfill guards; seven offline negatives PASS. [Real job snapshot](part3/evidence/sprint-completion-20261118/browser-security/availability/summary.json) is WAITING/zero probes for19 November 08:00-20:00 IST.
 - [ ] Complete the actual QUAL-02 observation:1,440 planned slots, 30-second cadence, five-second deadline, at least 1,426 successes; missing/failed slots count. No availability result is inferred before completion.
 - [x] Supply current browser script/nonexecution,logout/Back and real 901.003-second idle evidence. Retain per-observation login timing methods and original 2.356176-second WebDriver-inclusive outlier; later browser NavigationTiming is a distinct measurement.
-- [ ] Retain actual #79 CLOSED / #80 OPEN dispositions and reconcile OPEN [HMS-30 / #90](https://github.com/Sreeharsha2240/hostel-management-system/issues/90), which records verified cross-sprint findings and current High assessments. Fixes/local retests are recorded; finish current browser/load checks and clean CI/merge acceptance without inferring closure.
-- [ ] Meet the Test Plan's 100%-executed, all-High-pass and zero-open-Critical/High exit criteria, with a complete severity-reviewed defect inventory. OPEN #90 currently prevents a zero-open-High claim.
+- [x] Verify actual PR #91 MERGED as 9ad6cf9 and #79/#80/#90 CLOSED; current GitHub query returns no open issues. Zero known open High/Critical among tracked fixed defects; historical assessments/retests retained.
+- [ ] Meet original complete-case/accepted-result criteria: QUAL-01/04 remain PARTIAL and QUAL-02 PENDING. The known tracked High-defect criterion is satisfied after actual issue closure.
 - [ ] Record accepted passed-case evidence for every one of the 36 RTM requirements. Design traceability agreement does not establish accepted-pass coverage.
 - [x] Record and respect the [actual 10 November owner exception](https://github.com/Sreeharsha2240/hostel-management-system/issues/43) skipping collection of teammate QA/Development/PO sign-offs. The scoped task stays CLOSED; those original course criteria are not claimed as passed. Preserve actual technical evidence/deviation decisions and do not backdate historical entry approval.
 - [x] Record that the same owner exception skips collecting the project-guide walkthrough for this mini-project; no guide acceptance is invented. The original course criterion remains unmet, and the reported new-Warden usability task remains separate.
 
 - [x] Supply fresh natural daily-trigger/populated-restore evidence on a new owned sandbox plus stable read-only browser backup. Seventeen consistency checks pass; temporary task/server cleaned up, legacy task unchanged. The removed demonstration task is not an ongoing current-browser schedule.
-- [x] Refresh final source pins and verify clean 13-gate, 288/415 isolated and nine-owned runs on 3a63cae after the helper-only follow-up; 32 recovery-safety tests pass. Remote CI, merge/main and package verification remain pending.
+- [x] Refresh final source pins and verify clean 13-gate, 288/415 isolated and nine-owned runs on 3a63cae after the helper-only follow-up; 32 recovery-safety tests pass. Both supported-Python CI runs and PR #91 merge are now verified; only final docs/main verification and package remain pending.
 
 ## Scope, sprint and team records
 
@@ -43,13 +43,13 @@ walkthrough; it creates no such approvals and is not reopened here.
 - [x] Preserve member/SRN/role records, sprint notes, original backlog/work distribution and the [merge-history burndown reconstruction](BURNDOWN.md).
 - [ ] Confirm instructor acceptance of that reconstruction; obtain actual daily board values if required.
 - [ ] Synchronize the existing GitHub Project when access permits; the last recorded token lacked `read:project`. Do not claim a new access check or board update.
-- [ ] Verify actual issue ownership/status and any Sprint 3 development spillover against current GitHub records; preserve historical sprint records.
+- [x] Verify current tracked issue status and retain ownership/Sprint3 history; no open GitHub issues remain after PR #91.
 
 ## Final revision and submission
 
 - [ ] Obtain instructor late-submission acceptance and the actual channel, deadline/timezone and export/naming/rubric requirements. The PDF's 2-6 November window has passed and supplies no cutoff hour or export format.
 - [ ] Assemble and verify the owner-scoped technical package against the frozen source/evidence. Do not add excluded teammate/guide approval collection as a gate. Distinguish that package from an instructor-accepted submission.
-- [ ] Verify matching final-revision CI and actual repository review state; download matching Python 3.11/3.14 MySQL artifacts before expiry. Local results do not imply remote CI or an unrecorded teammate approval.
+- [x] Download/reconcile all six manual-CI artifact ZIPs: fourteen checks PASS on exact e2fe45f;manual CI 44383638276 and automatic PR CI 44383945828 both pass Python 3.11/3.14. Final main verification after the docs-only checkpoint remains pending.
 - [ ] Follow the README setup in a clean environment and exercise Admin/Warden/Student demo flows using synthetic data and fresh demo accounts.
 - [ ] Check DOCX/PDF correspondence, rendered pages/diagrams, links, filenames, team names/SRNs, required signatures and any requested slides/live demo. Original copies are present; final rendering/pair acceptance is not yet recorded.
 - [ ] Inspect final package contents and hashes. Exclude credentials, `.env`, local databases, backups, temporary/downloaded tools and unsanitized raw outputs; retain required sanitized evidence and original documents.
