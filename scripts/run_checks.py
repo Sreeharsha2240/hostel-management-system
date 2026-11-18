@@ -12,6 +12,7 @@ import os
 import platform
 import subprocess
 import sys
+import tempfile
 import time
 from datetime import UTC, datetime
 from importlib.metadata import version
@@ -153,21 +154,37 @@ def read_test_results(output):
 
 
 def export_coverage_xml(output):
-    """Export matching data without merging same-named package files in XML."""
-    from coverage import Coverage
+    """Export matching coverage data with normalized paths and contexts."""
+    from coverage import Coverage, CoverageData
 
     measured = Coverage()
     measured.load()
+
     contexts = measured.get_option("report:contexts")
-    if contexts:
-        # XML reporting otherwise retains statement hits from startup contexts.
-        measured.get_data().set_query_contexts(contexts)
-    # Change XML path roots only after loading the original collection scope.
-    # Each package's models.py must retain its package prefix in Cobertura XML.
-    measured.set_option("run:source", [str(ROOT)])
-    measured.xml_report(
-        morfs=sorted(measured.get_data().measured_files()), outfile=str(output)
-    )
+    original_data = measured.get_data()
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+        mapped_file = Path(temp_dir) / ".coverage"
+        mapped_data = CoverageData(basename=str(mapped_file))
+
+        # Normalize Windows short paths to canonical paths.
+        mapped_data.update(
+            original_data,
+            map_path=measured._file_mapper,
+        )
+        mapped_data.write()
+
+        # Load normalized data and apply the selected context filter.
+        reporting = Coverage(data_file=str(mapped_file))
+        reporting.set_option("run:source", [str(ROOT)])
+        reporting.load()
+
+        reporting.get_data().set_query_contexts(contexts)
+
+        reporting.xml_report(
+            morfs=sorted(reporting.get_data().measured_files()),
+            outfile=str(output),
+        )
 
 
 def main(argv=None):
