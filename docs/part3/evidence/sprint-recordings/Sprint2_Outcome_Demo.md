@@ -8,4 +8,7 @@
 - Captured from local HMS at revision `30e81f3` using an isolated SQLite database with synthetic data.
 - Shows bed allocation and transfer history, payment recording and receipt, and the occupancy and payment status reports.
 
-This is a candidate for the Sprint 2 submission. Team selection remains pending.
+The project owner selected this as the final Sprint 2 demo on 18 November 2026,
+superseding its earlier candidate status. The owner approved publishing it
+despite being five seconds short of the nominal two-minute target. Team and
+instructor acceptance remain separate decisions.

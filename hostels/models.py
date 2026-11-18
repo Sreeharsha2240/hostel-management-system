@@ -85,21 +85,22 @@ class Hostel(models.Model):
 
 
 class RoomQuerySet(models.QuerySet):
-    SYNC_FIELDS = {"capacity", "room_number", "hostel"}
+    SYNC_FIELDS = {"capacity", "room_number"}
+    PROTECTED_FIELDS = SYNC_FIELDS | {"hostel", "hostel_id"}
 
     def update(self, **kwargs):
-        if self.SYNC_FIELDS.intersection(kwargs):
+        if self.PROTECTED_FIELDS.intersection(kwargs):
             raise ValueError(
-                "Use Room.save() to change capacity or room_number "
-                "so beds can be synchronized."
+                "Use Room.save() to change capacity, room_number, or hostel "
+                "so room and bed history can be checked."
             )
         return super().update(**kwargs)
 
     def bulk_update(self, objs, fields, batch_size=None):
-        if self.SYNC_FIELDS.intersection(fields):
+        if self.PROTECTED_FIELDS.intersection(fields):
             raise ValueError(
-                "Use Room.save() to change capacity or room_number "
-                "so beds can be synchronized."
+                "Use Room.save() to change capacity, room_number, or hostel "
+                "so room and bed history can be checked."
             )
         return super().bulk_update(objs, fields, batch_size=batch_size)
 
@@ -255,10 +256,10 @@ class Room(models.Model):
             previous = Room.objects.select_for_update().get(pk=self.pk)
             old_room_number = previous.room_number
 
-            hostel_is_being_updated = update_fields is None or "hostel" in update_fields
-
-            if hostel_is_being_updated and previous.hostel_id != self.hostel_id:
-                self._validate_active_resident_eligibility(self.hostel_id)
+            # Determine which fields are being updated BEFORE using the flags.
+            hostel_is_being_updated = update_fields is None or bool(
+                {"hostel", "hostel_id"}.intersection(update_fields)
+            )
 
             if update_fields is not None:
                 if "room_number" not in update_fields:
@@ -266,6 +267,29 @@ class Room(models.Model):
 
                 if "capacity" not in update_fields:
                     capacity = previous.capacity
+
+            # Preserve historical allocation locations.
+            hostel_is_being_saved = update_fields is None or bool(
+                {"hostel", "hostel_id"}.intersection(update_fields)
+            )
+
+            if (
+                hostel_is_being_saved
+                and previous.hostel_id != self.hostel_id
+                and self.beds.filter(allocations__isnull=False).exists()
+            ):
+                raise ValidationError(
+                    {
+                        "hostel": (
+                            "A room with allocation history cannot be moved to "
+                            "another hostel; that would rewrite historical location."
+                        )
+                    }
+                )
+
+            # Check active resident eligibility after historical protection.
+            if hostel_is_being_updated and previous.hostel_id != self.hostel_id:
+                self._validate_active_resident_eligibility(self.hostel_id)
 
         super().save(*args, **kwargs)
 
@@ -322,7 +346,29 @@ class Room(models.Model):
         return f"{self.hostel.name} - Room {self.room_number}"
 
 
+class BedQuerySet(models.QuerySet):
+    ROOM_FIELDS = {"room", "room_id"}
+
+    def update(self, **kwargs):
+        if self.ROOM_FIELDS.intersection(kwargs):
+            raise ValueError(
+                "Use Bed.save() to change a bed's room so allocation history "
+                "can be checked."
+            )
+        return super().update(**kwargs)
+
+    def bulk_update(self, objs, fields, batch_size=None):
+        if self.ROOM_FIELDS.intersection(fields):
+            raise ValueError(
+                "Use Bed.save() to change a bed's room so allocation history "
+                "can be checked."
+            )
+        return super().bulk_update(objs, fields, batch_size=batch_size)
+
+
 class Bed(models.Model):
+    objects = BedQuerySet.as_manager()
+
     class BedStatus(models.TextChoices):
         AVAILABLE = "Available", "Available"
         OCCUPIED = "Occupied", "Occupied"
@@ -348,6 +394,79 @@ class Bed(models.Model):
                 name="unique_bed_label_per_room",
             )
         ]
+
+    def clean(self):
+        super().clean()
+        if not self.pk or self.room_id is None:
+            return
+
+        previous_room_id = (
+            type(self)
+            .objects.filter(pk=self.pk)
+            .values_list("room_id", flat=True)
+            .first()
+        )
+        if previous_room_id is None or previous_room_id == self.room_id:
+            return
+
+        from allocations.models import Allocation
+
+        if Allocation.objects.filter(bed_id=self.pk).exists():
+            raise ValidationError(
+                {
+                    "room": (
+                        "A bed with allocation history cannot be moved to another "
+                        "room; that would rewrite historical location."
+                    )
+                }
+            )
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        update_fields = kwargs.get("update_fields")
+        room_is_being_saved = update_fields is None or bool(
+            {"room", "room_id"}.intersection(update_fields)
+        )
+
+        if self.pk and room_is_being_saved:
+            previous_room_id = (
+                type(self)
+                .objects.filter(pk=self.pk)
+                .values_list("room_id", flat=True)
+                .first()
+            )
+            if previous_room_id is not None and previous_room_id != self.room_id:
+                from allocations.models import Allocation
+
+                room_ids = sorted({previous_room_id, self.room_id})
+                list(
+                    Room.objects.select_for_update()
+                    .filter(pk__in=room_ids)
+                    .order_by("pk")
+                    .values_list("pk", flat=True)
+                )
+                try:
+                    previous = type(self).objects.select_for_update().get(pk=self.pk)
+                except type(self).DoesNotExist:
+                    raise ValidationError(
+                        "This bed no longer exists. Refresh and try again."
+                    ) from None
+
+                if previous.room_id != previous_room_id:
+                    raise ValidationError(
+                        "This bed's room changed. Refresh and try again."
+                    )
+                if Allocation.objects.filter(bed_id=self.pk).exists():
+                    raise ValidationError(
+                        {
+                            "room": (
+                                "A bed with allocation history cannot be moved to "
+                                "another room; that would rewrite historical location."
+                            )
+                        }
+                    )
+
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.label
