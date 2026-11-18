@@ -21,7 +21,7 @@ def record_payment(*, actor, **data):
 
 
 def payment_status_queryset(students=None):
-    """One query for student balances; independent subqueries avoid join multiplication."""
+    "One query for student balances; independent subqueries avoid join multiplication."
     students = Student.objects.all() if students is None else students
     latest = (
         Allocation.objects.filter(student_id=OuterRef("pk"))

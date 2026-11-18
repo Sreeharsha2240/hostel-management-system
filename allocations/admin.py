@@ -1,10 +1,12 @@
 from django.contrib import admin
 
+from audit.mixins import RoleRestrictedAdminMixin
+
 from .models import Allocation
 
 
 @admin.register(Allocation)
-class AllocationAdmin(admin.ModelAdmin):
+class AllocationAdmin(RoleRestrictedAdminMixin, admin.ModelAdmin):
     list_display = ("student", "bed", "allocated_on", "vacated_on", "status")
     readonly_fields = (
         "student",

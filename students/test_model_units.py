@@ -48,6 +48,7 @@ class StudentModelUnitTests(SimpleTestCase):
         self, locked, allocation, save
     ):
         student = Student(pk=7, status=Student.Status.INACTIVE)
+        locked.return_value.get.return_value = Student(pk=7)
         allocation.return_value.exists.return_value = True
         with self.assertRaises(ValidationError) as error:
             Student.save.__wrapped__(student)
@@ -62,10 +63,11 @@ class StudentModelUnitTests(SimpleTestCase):
     @patch("students.models.Student.objects.select_for_update")
     def test_deactivation_without_allocation_saves(self, locked, allocation, save):
         student = Student(pk=7, status=Student.Status.INACTIVE)
+        locked.return_value.get.return_value = Student(pk=7)
         allocation.return_value.exists.return_value = False
         Student.save.__wrapped__(student, update_fields=["status"])
         locked.return_value.get.assert_called_once_with(pk=7)
-        save.assert_called_once_with(update_fields=["status"])
+        save.assert_called_once_with(update_fields=frozenset({"status"}))
 
     @patch("django.db.models.Model.save", return_value=None)
     @patch("students.models.Student.objects.select_for_update")

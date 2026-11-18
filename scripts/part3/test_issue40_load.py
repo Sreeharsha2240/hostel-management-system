@@ -369,7 +369,8 @@ class Issue40LoadExecution(StaticLiveServerTestCase):
                 "Load criteria failed; inspect load-results.json and retained raw evidence.",
             )
 
-    def seed_fixture(self, hostel, student_count, bed_count):
+    @staticmethod
+    def seed_fixture(hostel, student_count, bed_count):
         Student.objects.bulk_create(
             [
                 Student(
@@ -389,26 +390,14 @@ class Issue40LoadExecution(StaticLiveServerTestCase):
             batch_size=500,
         )
         first_new_room = Room.objects.count()
-        Room.objects.bulk_create(
-            [
-                Room(
-                    hostel=hostel,
-                    room_number=f"R{index:04d}",
-                    floor=index // 100,
-                    room_type="Double",
-                    capacity=2,
-                    fee_amount=Decimal("10000.00"),
-                )
-                for index in range(first_new_room, bed_count // 2)
-            ],
-            batch_size=500,
-        )
-        rooms = Room.objects.filter(room_number__gte=f"R{first_new_room:04d}")
-        Bed.objects.bulk_create(
-            [
-                Bed(room=room, label=f"{room.room_number}-{suffix}", status="Available")
-                for room in rooms
-                for suffix in ("A", "B")
-            ],
-            batch_size=500,
-        )
+        # Exercise supported room creation and its automatic bed synchronization.
+        # A bulk insert bypasses those invariants and is intentionally rejected.
+        for index in range(first_new_room, bed_count // 2):
+            Room.objects.create(
+                hostel=hostel,
+                room_number=f"R{index:04d}",
+                floor=index // 100,
+                room_type="Double",
+                capacity=2,
+                fee_amount=Decimal("10000.00"),
+            )

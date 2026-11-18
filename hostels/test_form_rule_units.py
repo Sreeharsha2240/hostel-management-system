@@ -85,4 +85,5 @@ class RoomFormCapacityUnitTests(SimpleTestCase):
         with self.assertRaises(ValidationError):
             fee.clean("-0.01", room)
         self.assertEqual(form.fields["fee_amount"].clean("0.00"), Decimal("0.00"))
-        self.assertIsNone(form.fields["fee_amount"].clean(""))
+        with self.assertRaises(ValidationError):
+            form.fields["fee_amount"].clean("")

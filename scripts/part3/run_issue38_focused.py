@@ -1,4 +1,8 @@
-"""Run one HMS-16 evidence batch serially against disposable MySQL test_hms."""
+"""Run an HMS-16 owner, gap or audit batch against disposable MySQL test_hms.
+
+The current functional browser harness has its own run_issue40_browser.py runner.
+These batches do not claim browser, transport or scanner verification.
+"""
 
 import argparse
 import hashlib
@@ -20,19 +24,39 @@ LABELS = {
         "accounts.test_security",
         "audit.tests",
         "students.test_self_service",
-        "students.tests.StudentManagementViewTests.test_student_list_escapes_script_payload_and_search_treats_sql_as_literal",
+        (
+            "students.tests.StudentManagementViewTests.test_student_list_escap"
+            "es_script_payload_and_search_treats_sql_as_literal"
+        ),
     ],
     "gaps": ["accounts.test_issue38_gaps"],
     "audit": [
-        "audit.tests.AuditTests.test_events_cannot_be_changed_or_deleted_through_supported_orm_operations",
-        "audit.tests.AuditTests.test_retention_command_preserves_a_full_year_and_supports_dry_run",
+        (
+            "audit.tests.AuditTests.test_events_cannot_be_changed_or_deleted_t"
+            "hrough_supported_orm_operations"
+        ),
+        (
+            "audit.tests.AuditTests.test_retention_command_preserves_a_full_ye"
+            "ar_and_supports_dry_run"
+        ),
         "audit.tests.AuditTests.test_audit_failure_rolls_back_account_creation",
-        "audit.tests.AuditTests.test_authentication_events_include_actor_record_and_time_without_secrets",
-        "audit.tests.AuditTests.test_create_update_and_deactivate_accounts_record_the_admin_actor",
-        "audit.tests.AuditTests.test_only_admin_can_read_audit_log_including_direct_json_requests",
-        "accounts.test_issue38_gaps.Issue38GapTests.test_sec07_original_six_actions_have_records_times_and_expected_actors",
+        (
+            "audit.tests.AuditTests.test_authentication_events_include_actor_r"
+            "ecord_and_time_without_secrets"
+        ),
+        (
+            "audit.tests.AuditTests.test_create_update_and_deactivate_accounts"
+            "_record_the_admin_actor"
+        ),
+        (
+            "audit.tests.AuditTests.test_only_admin_can_read_audit_log_includi"
+            "ng_direct_json_requests"
+        ),
+        (
+            "accounts.test_issue38_gaps.Issue38GapTests.test_sec07_original_si"
+            "x_actions_have_records_times_and_expected_actors"
+        ),
     ],
-    "browser": ["scripts.part3.test_issue38_browser"],
 }
 
 
@@ -59,7 +83,10 @@ def database_preflight(database, connection):
             cursor.execute("SELECT VERSION()")
             server = cursor.fetchone()[0]
             cursor.execute(
-                "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = %s",
+                (
+                    "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE "
+                    "SCHEMA_NAME = %s"
+                ),
                 ["test_hms"],
             )
             if cursor.fetchone() is not None:
@@ -108,7 +135,10 @@ def main():
         "issue": 38,
         "started_at": datetime.now(UTC).isoformat(),
         "mode": args.mode,
-        "scope": "Synthetic MySQL component/integration/browser evidence; not unit-only or whole-plan approval",
+        "scope": (
+            "Synthetic MySQL component/integration evidence; not browser, "
+            "unit-only or whole-plan approval"
+        ),
         "success": False,
         "python": platform.python_version(),
         "platform": platform.platform(),

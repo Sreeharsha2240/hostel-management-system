@@ -80,7 +80,6 @@ def main():
 
     django.setup()
     from django.conf import settings
-    from django.core.management import call_command
     from django.db import connection
 
     database = settings.DATABASES["default"]
@@ -105,8 +104,23 @@ def main():
             "Identify its owner and preserve/remove it separately before running this harness."
         )
     output.mkdir(parents=True, exist_ok=True)
-    call_command("test", "test_issue40_load", interactive=False, verbosity=2)
+    # Interactive creation with closed stdin also refuses a test_hms database
+    # created by another process between preflight and Django's CREATE.
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "manage.py",
+            "test",
+            "scripts.part3.test_issue40_load",
+            "--verbosity=2",
+        ],
+        cwd=ROOT,
+        env=os.environ.copy(),
+        stdin=subprocess.DEVNULL,
+        check=False,
+    )
+    return completed.returncode
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

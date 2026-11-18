@@ -67,6 +67,11 @@ class AllocationSaveDecisionUnitTests(SimpleTestCase):
         self.assertTrue(self.mocks["save"].call_args.kwargs["force_insert"])
         self.mocks["bed_save"].assert_called_once_with(update_fields=["status"])
 
+    def test_locked_bed_does_not_join_and_lock_the_hostel(self):
+        self.save_body()
+        self.mocks["beds"].return_value.select_related.assert_called_once_with(None)
+        self.assertIs(self.bed.room, self.room)
+
     def test_inactive_student_is_rejected_before_save(self):
         self.student.status = Student.Status.INACTIVE
         with self.assertRaises(ValidationError) as error:
@@ -130,6 +135,7 @@ class AllocationSaveDecisionUnitTests(SimpleTestCase):
         self.allocation.pk = 20
         self.allocation._state.adding = False
         self.allocation.status = Allocation.AllocationStatus.COMPLETED
+        self.allocation.vacated_on = date(2026, 11, 2)
         previous = Allocation(
             pk=20,
             student_id=11,
@@ -139,13 +145,13 @@ class AllocationSaveDecisionUnitTests(SimpleTestCase):
         )
         self.mocks["previous"].return_value.get.return_value = previous
         self.bed.status = Bed.BedStatus.OCCUPIED
-        self.save_body(update_fields=["status"])
+        self.save_body(update_fields=["status", "vacated_on"])
         self.assertIsNone(self.allocation.active_student_id)
         self.assertIsNone(self.allocation.active_bed_id)
         self.assertEqual(self.bed.status, Bed.BedStatus.AVAILABLE)
         self.assertEqual(
             self.mocks["save"].call_args.kwargs["update_fields"],
-            {"status", "active_student_id", "active_bed_id"},
+            {"status", "vacated_on", "active_student_id", "active_bed_id"},
         )
 
     def test_full_room_uses_locked_capacity_instead_of_cached_bed_room_capacity(self):

@@ -79,7 +79,7 @@ class DashboardUnitTests(SimpleTestCase):
                 self.assertEqual(render.call_args.args[2], {})
 
     @patch("accounts.views.render", return_value=HttpResponse("dashboard"))
-    @patch("accounts.views.Bed.objects.filter")
+    @patch("accounts.views.available_beds")
     def test_student_dashboard_counts_only_active_hostel_available_beds(
         self, beds, render
     ):
@@ -89,4 +89,4 @@ class DashboardUnitTests(SimpleTestCase):
         self.assertEqual(dashboard(request).content, b"dashboard")
         self.assertEqual(render.call_args.args[1], "accounts/dashboard_student.html")
         self.assertEqual(render.call_args.args[2]["available_bed_count"], 4)
-        beds.assert_called_once_with(status="Available", room__hostel__is_active=True)
+        beds.assert_called_once_with()

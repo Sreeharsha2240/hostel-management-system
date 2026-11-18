@@ -44,7 +44,8 @@ def private_destination(value):
         or path == Path(path.anchor)
     ):
         raise SafetyError(
-            "Backup storage cannot be the repository, its contents, an ancestor directory, or a drive root."
+            "Backup storage cannot be the repository, its contents, an "
+            "ancestor directory, or a drive root."
         )
     return path
 
@@ -124,7 +125,8 @@ $rules=@($acl.Access|ForEach-Object {{[ordered]@{{sid=$_.IdentityReference.Trans
             and rule["sid"] not in allowed
         ):
             raise SafetyError(
-                "The backup directory explicitly grants access to another Windows principal; choose a private directory."
+                "The backup directory explicitly grants access to another "
+                "Windows principal; choose a private directory."
             )
     if not explicit_only and not acl["inheritance_disabled"]:
         raise SafetyError("The backup directory still inherits Windows permissions.")
@@ -262,22 +264,80 @@ def consistency(database, name):
     if name not in ("hms", TARGET):
         raise SafetyError("Unexpected consistency-check database.")
     queries = {
-        "orphan_allocation_student": "SELECT COUNT(*) FROM allocations_allocation a LEFT JOIN students_student s ON s.id=a.student_id WHERE s.id IS NULL",
-        "orphan_allocation_bed": "SELECT COUNT(*) FROM allocations_allocation a LEFT JOIN hostels_bed b ON b.id=a.bed_id WHERE b.id IS NULL",
-        "orphan_payment_student": "SELECT COUNT(*) FROM payments_payment p LEFT JOIN students_student s ON s.id=p.student_id WHERE s.id IS NULL",
-        "orphan_adjustment_original": "SELECT COUNT(*) FROM payments_payment p LEFT JOIN payments_payment o ON o.id=p.adjustment_of_id WHERE p.adjustment_of_id IS NOT NULL AND o.id IS NULL",
-        "orphan_bed_room": "SELECT COUNT(*) FROM hostels_bed b LEFT JOIN hostels_room r ON r.id=b.room_id WHERE r.id IS NULL",
-        "orphan_room_hostel": "SELECT COUNT(*) FROM hostels_room r LEFT JOIN hostels_hostel h ON h.id=r.hostel_id WHERE h.id IS NULL",
-        "orphan_student_user": "SELECT COUNT(*) FROM students_student s LEFT JOIN accounts_user u ON u.id=s.user_id WHERE s.user_id IS NOT NULL AND u.id IS NULL",
-        "orphan_audit_actor": "SELECT COUNT(*) FROM audit_auditevent a LEFT JOIN accounts_user u ON u.id=a.user_id WHERE a.user_id IS NOT NULL AND u.id IS NULL",
-        "duplicate_active_student": "SELECT COUNT(*) FROM (SELECT student_id FROM allocations_allocation WHERE status='Active' GROUP BY student_id HAVING COUNT(*)>1) v",
-        "duplicate_active_bed": "SELECT COUNT(*) FROM (SELECT bed_id FROM allocations_allocation WHERE status='Active' GROUP BY bed_id HAVING COUNT(*)>1) v",
-        "active_allocation_bed_not_occupied": "SELECT COUNT(*) FROM allocations_allocation a JOIN hostels_bed b ON b.id=a.bed_id WHERE a.status='Active' AND b.status<>'Occupied'",
-        "occupied_bed_without_active_allocation": "SELECT COUNT(*) FROM hostels_bed b LEFT JOIN allocations_allocation a ON a.bed_id=b.id AND a.status='Active' WHERE b.status='Occupied' AND a.id IS NULL",
-        "invalid_adjustment_original_student_or_date": "SELECT COUNT(*) FROM payments_payment p JOIN payments_payment o ON o.id=p.adjustment_of_id WHERE o.adjustment_of_id IS NOT NULL OR o.student_id<>p.student_id OR p.date<o.date",
-        "over_reversed_payment": "SELECT COUNT(*) FROM (SELECT o.id FROM payments_payment o LEFT JOIN payments_payment a ON a.adjustment_of_id=o.id WHERE o.adjustment_of_id IS NULL GROUP BY o.id,o.amount HAVING o.amount+COALESCE(SUM(a.amount),0)<0) v",
-        "invalid_receipt_format": "SELECT COUNT(*) FROM payments_payment WHERE receipt_no NOT REGEXP '^R[0-9]{11}$'",
-        "duplicate_receipt": "SELECT COUNT(*) FROM (SELECT receipt_no FROM payments_payment GROUP BY receipt_no HAVING COUNT(*)>1) v",
+        "orphan_allocation_student": (
+            "SELECT COUNT(*) FROM allocations_allocation a LEFT JOIN "
+            "students_student s ON s.id=a.student_id WHERE s.id IS NULL"
+        ),
+        "orphan_allocation_bed": (
+            "SELECT COUNT(*) FROM allocations_allocation a LEFT JOIN "
+            "hostels_bed b ON b.id=a.bed_id WHERE b.id IS NULL"
+        ),
+        "orphan_payment_student": (
+            "SELECT COUNT(*) FROM payments_payment p LEFT JOIN "
+            "students_student s ON s.id=p.student_id WHERE s.id IS NULL"
+        ),
+        "orphan_adjustment_original": (
+            "SELECT COUNT(*) FROM payments_payment p LEFT JOIN "
+            "payments_payment o ON o.id=p.adjustment_of_id WHERE "
+            "p.adjustment_of_id IS NOT NULL AND o.id IS NULL"
+        ),
+        "orphan_bed_room": (
+            "SELECT COUNT(*) FROM hostels_bed b LEFT JOIN hostels_room r ON "
+            "r.id=b.room_id WHERE r.id IS NULL"
+        ),
+        "orphan_room_hostel": (
+            "SELECT COUNT(*) FROM hostels_room r LEFT JOIN hostels_hostel h "
+            "ON h.id=r.hostel_id WHERE h.id IS NULL"
+        ),
+        "orphan_student_user": (
+            "SELECT COUNT(*) FROM students_student s LEFT JOIN accounts_user "
+            "u ON u.id=s.user_id WHERE s.user_id IS NOT NULL AND u.id IS NULL"
+        ),
+        "orphan_audit_actor": (
+            "SELECT COUNT(*) FROM audit_auditevent a LEFT JOIN accounts_user "
+            "u ON u.id=a.user_id WHERE a.user_id IS NOT NULL AND u.id IS NULL"
+        ),
+        "duplicate_active_student": (
+            "SELECT COUNT(*) FROM (SELECT student_id FROM "
+            "allocations_allocation WHERE status='Active' GROUP BY student_id "
+            "HAVING COUNT(*)>1) v"
+        ),
+        "duplicate_active_bed": (
+            "SELECT COUNT(*) FROM (SELECT bed_id FROM allocations_allocation "
+            "WHERE status='Active' GROUP BY bed_id HAVING COUNT(*)>1) v"
+        ),
+        # Maintenance can be reserved before release; release intentionally
+        # preserves that state. It still must never advertise an active bed as
+        # Available. Match the same policy as Bed.save() and allocation release.
+        "active_allocation_bed_not_reserved": (
+            "SELECT COUNT(*) FROM allocations_allocation a JOIN hostels_bed b "
+            "ON b.id=a.bed_id WHERE a.status='Active' AND b.status NOT IN "
+            "('Occupied','Maintenance')"
+        ),
+        "occupied_bed_without_active_allocation": (
+            "SELECT COUNT(*) FROM hostels_bed b LEFT JOIN "
+            "allocations_allocation a ON a.bed_id=b.id AND a.status='Active' "
+            "WHERE b.status='Occupied' AND a.id IS NULL"
+        ),
+        "invalid_adjustment_original_student_or_date": (
+            "SELECT COUNT(*) FROM payments_payment p JOIN payments_payment o "
+            "ON o.id=p.adjustment_of_id WHERE o.adjustment_of_id IS NOT NULL "
+            "OR o.student_id<>p.student_id OR p.date<o.date"
+        ),
+        "over_reversed_payment": (
+            "SELECT COUNT(*) FROM (SELECT o.id FROM payments_payment o LEFT "
+            "JOIN payments_payment a ON a.adjustment_of_id=o.id WHERE "
+            "o.adjustment_of_id IS NULL GROUP BY o.id,o.amount HAVING "
+            "o.amount+COALESCE(SUM(a.amount),0)<0) v"
+        ),
+        "invalid_receipt_format": (
+            "SELECT COUNT(*) FROM payments_payment WHERE receipt_no NOT "
+            "REGEXP '^R[0-9]{11}$'"
+        ),
+        "duplicate_receipt": (
+            "SELECT COUNT(*) FROM (SELECT receipt_no FROM payments_payment "
+            "GROUP BY receipt_no HAVING COUNT(*)>1) v"
+        ),
     }
     connection = connect(database, name)
     try:
@@ -288,7 +348,9 @@ def consistency(database, name):
                 cursor.execute(query)
                 violations[check] = int(cursor.fetchone()[0])
             cursor.execute(
-                "SELECT COUNT(*), COALESCE(MAX(CAST(SUBSTRING(receipt_no,2) AS UNSIGNED)),0), COALESCE(MIN(CAST(SUBSTRING(receipt_no,2) AS UNSIGNED)),0) FROM payments_payment"
+                "SELECT COUNT(*), COALESCE(MAX(CAST(SUBSTRING(receipt_no,2) AS "
+                "UNSIGNED)),0), COALESCE(MIN(CAST(SUBSTRING(receipt_no,2) AS "
+                "UNSIGNED)),0) FROM payments_payment"
             )
             count, maximum, minimum = map(int, cursor.fetchone())
             cursor.execute("SELECT id,`last_value` FROM payments_receiptsequence")
@@ -389,19 +451,22 @@ def recover(output, mysql_exe, connection_file=None, evidence_dir=None):
         )
     if not manifest["source_quiescent_during_backup"]:
         raise SafetyError(
-            "Source changed during backup; repeat the verification backup while writes are paused."
+            "Source changed during backup; repeat the verification backup "
+            "while writes are paused."
         )
     source_before = snapshot(database, "hms")
     if source_before != manifest["source_after"]:
         raise SafetyError(
-            "Source changed since backup; use a fresh stable backup for exact comparison."
+            "Source changed since backup; use a fresh stable backup for exact "
+            "comparison."
         )
     if any(
         manifest["source_after"].get(name, {}).get("rows", 0) == 0
         for name in REQUIRED_TABLES
     ):
         raise SafetyError(
-            "Populated students, beds, allocations, payments and audit tables are required."
+            "Populated students, beds, allocations, payments and audit tables "
+            "are required."
         )
     dump = folder / "hms.sql"
     if hashlib.sha256(dump.read_bytes()).hexdigest() != manifest["dump_sha256"]:
@@ -412,15 +477,20 @@ def recover(output, mysql_exe, connection_file=None, evidence_dir=None):
     try:
         with connection.cursor() as cursor:
             cursor.execute(
-                "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME=%s",
+                (
+                    "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE "
+                    "SCHEMA_NAME=%s"
+                ),
                 [TARGET],
             )
             if cursor.fetchone():
                 raise SafetyError(
-                    "test_hms already exists; stop other suites and do not overwrite it."
+                    "test_hms already exists; stop other suites and do not "
+                    "overwrite it."
                 )
             cursor.execute(
-                "CREATE DATABASE `test_hms` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci"
+                "CREATE DATABASE `test_hms` CHARACTER SET utf8mb4 COLLATE "
+                "utf8mb4_0900_ai_ci"
             )
             created = True
         with client_options(database, output) as options:
@@ -440,7 +510,8 @@ def recover(output, mysql_exe, connection_file=None, evidence_dir=None):
         source_after = snapshot(database, "hms")
         if restored != manifest["source_after"] or source_before != source_after:
             raise SafetyError(
-                "Restored/source table digests differ; retain private evidence and investigate."
+                "Restored/source table digests differ; retain private evidence "
+                "and investigate."
             )
         logical = consistency(database, TARGET)
         write_json(results / "recovery-consistency.json", logical)
@@ -511,7 +582,8 @@ try {
 def install_schedule(output, dump_exe, delay, connection_file=None):
     if os.name != "nt" or not 1 <= delay <= 10:
         raise SafetyError(
-            "A Windows daily trigger with a one-to-ten-minute first-run delay is required."
+            "A Windows daily trigger with a one-to-ten-minute first-run delay "
+            "is required."
         )
     source_settings(connection_file)
     output = private_destination(output)

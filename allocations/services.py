@@ -24,11 +24,21 @@ def lock_allocation(pk, extra_bed=None):
     source = Allocation.objects.get(pk=pk)
     Student.objects.select_for_update().get(pk=source.student_id)
     bed_ids = sorted({source.bed_id} | ({extra_bed.pk} if extra_bed else set()))
-    room_ids = sorted(
-        set(Bed.objects.filter(pk__in=bed_ids).values_list("room_id", flat=True))
-    )
+    bed_rooms = dict(Bed.objects.filter(pk__in=bed_ids).values_list("pk", "room_id"))
+    if len(bed_rooms) != len(bed_ids):
+        raise ValidationError("The selected bed no longer exists.", code="NOT_FOUND")
+    room_ids = sorted(set(bed_rooms.values()))
     list(Room.objects.select_for_update().filter(pk__in=room_ids).order_by("pk"))
-    list(Bed.objects.select_for_update().filter(pk__in=bed_ids).order_by("pk"))
+    beds = list(Bed.objects.select_for_update().filter(pk__in=bed_ids).order_by("pk"))
+    if len(beds) != len(bed_ids):
+        raise ValidationError("The selected bed no longer exists.", code="NOT_FOUND")
+    if any(bed.room_id != bed_rooms[bed.pk] for bed in beds):
+        # A free transfer target can move after the room snapshot. Do not lock
+        # its new Room after already taking Bed: inventory uses Room -> Bed.
+        raise ValidationError(
+            "A selected bed has moved to another room. Refresh and try again.",
+            code="BED_MOVED",
+        )
     source = Allocation.objects.select_for_update().get(pk=pk)
     if source.status != Allocation.AllocationStatus.ACTIVE:
         raise ValidationError(

@@ -22,9 +22,11 @@ from students.forms import StudentForm
 
 class FormRuleUnitTests(SimpleTestCase):
     def test_bed_filter_accepts_exact_storage_boundaries(self):
-        form = BedFilterForm({"hostel": str(2**63 - 1), "floor": "65535"})
+        # Preserve the historical frozen method ID; the SRS business limit is
+        # two digits even though the database column can store larger values.
+        form = BedFilterForm({"hostel": str(2**63 - 1), "floor": "99"})
         self.assertTrue(form.is_valid(), form.errors)
-        self.assertEqual(form.cleaned_data, {"hostel": 2**63 - 1, "floor": 65535})
+        self.assertEqual(form.cleaned_data, {"hostel": 2**63 - 1, "floor": 99})
         self.assertTrue(BedFilterForm({"floor": "0"}).is_valid())
 
     def test_bed_filter_rejects_out_of_range_identifiers(self):
@@ -32,7 +34,7 @@ class FormRuleUnitTests(SimpleTestCase):
             ({"hostel": "0"}, "hostel"),
             ({"hostel": str(2**63)}, "hostel"),
             ({"floor": "-1"}, "floor"),
-            ({"floor": "65536"}, "floor"),
+            ({"floor": "100"}, "floor"),
         ):
             with self.subTest(data=data):
                 form = BedFilterForm(data)

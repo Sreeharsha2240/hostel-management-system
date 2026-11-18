@@ -3,7 +3,8 @@
 Usage: python scripts/run_checks.py [--output-dir test-results/ci]
 Relative output paths are resolved from the repository root. Tests use a separate
 database; no check migrates or populates the application database. Run one suite
-at a time against the configured MySQL test database.
+at a time against the configured MySQL test database. Existing test databases
+are never replaced: test creation stays interactive with closed child stdin.
 """
 
 import argparse
@@ -24,6 +25,7 @@ DEPENDENCIES = (
     "mysqlclient",
     "python-dotenv",
     "reportlab",
+    "uharfbuzz",
     "pypdf",
     "coverage",
     "unittest-xml-reporting",
@@ -89,7 +91,6 @@ def verification_steps(output):
                 "run",
                 "manage.py",
                 "test",
-                "--noinput",
                 "--testrunner=xmlrunner.extra.djangotestrunner.XMLTestRunner",
             ],
         ),
@@ -107,8 +108,10 @@ def verification_steps(output):
             [
                 "manage.py",
                 "test",
-                "accounts.tests.AuthenticationTests.test_login_and_role_dashboard_respond_within_two_seconds",
-                "--noinput",
+                (
+                    "accounts.tests.AuthenticationTests.test_login_and_role_dashboard"
+                    "_respond_within_two_seconds"
+                ),
             ],
         ),
     )
@@ -122,6 +125,7 @@ def run_step(name, arguments, output, environment):
             [sys.executable, *arguments],
             cwd=ROOT,
             env=environment,
+            stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,

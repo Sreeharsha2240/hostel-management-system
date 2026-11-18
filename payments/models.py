@@ -28,7 +28,10 @@ class ReceiptSequence(models.Model):
 class PaymentQuerySet(models.QuerySet):
     def immutable(self, *args, **kwargs):
         raise ValidationError(
-            "Payments are permanent. Record a new adjusting entry to make a correction.",
+            (
+                "Payments are permanent. Record a new adjusting entry to make a "
+                "correction."
+            ),
             code="IMMUTABLE_FIELD",
         )
 
@@ -51,7 +54,9 @@ class Payment(models.Model):
     reference = models.CharField(
         max_length=30,
         blank=True,
-        validators=[RegexValidator(r"^[A-Za-z0-9]*$", "Use letters and numbers only.")],
+        validators=[
+            RegexValidator(r"\A[A-Za-z0-9]*\Z", "Use letters and numbers only.")
+        ],
     )
     adjustment_of = models.ForeignKey(
         "self",
@@ -104,7 +109,10 @@ class Payment(models.Model):
         if bool(self.adjustment_of_id) != bool(self.adjustment_reason):
             raise ValidationError(
                 {
-                    "adjustment_reason": "A correction must identify the original payment and give a reason."
+                    "adjustment_reason": (
+                        "A correction must identify the original payment and give a "
+                        "reason."
+                    )
                 }
             )
 
@@ -130,7 +138,8 @@ class Payment(models.Model):
             original = Payment.objects.select_for_update().get(pk=self.adjustment_of_id)
             if original.student_id != self.student_id or original.adjustment_of_id:
                 raise ValidationError(
-                    "Adjust the original payment for the same student, not another adjustment."
+                    "Adjust the original payment for the same student, not "
+                    "another adjustment."
                 )
             if self.date < original.date:
                 raise ValidationError(

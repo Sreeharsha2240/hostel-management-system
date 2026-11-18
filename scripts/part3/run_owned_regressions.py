@@ -33,18 +33,30 @@ CASE_METHODS = dict(
             MODULES[0]
             + ".OwnedPaymentTransactions.test_tc_reg_s2_09_payment_permanence",
             MODULES[0]
-            + ".OwnedPaymentTransactions.test_tc_reg_s2_10_rejected_failed_and_exhausted_receipts",
+            + (
+                ".OwnedPaymentTransactions.test_tc_reg_s2_10_rejected_failed_and_e"
+                "xhausted_receipts"
+            ),
             MODULES[0]
-            + ".OwnedPaymentCorrectionConcurrency.test_tc_reg_s2_11_competing_corrections",
+            + (
+                ".OwnedPaymentCorrectionConcurrency.test_tc_reg_s2_11_competing_co"
+                "rrections"
+            ),
             MODULES[1]
-            + ".OwnedReportInputCases.test_tc_reg_s2_12_report_history_balances_and_locations",
+            + (
+                ".OwnedReportInputCases.test_tc_reg_s2_12_report_history_balances_"
+                "and_locations"
+            ),
             MODULES[1]
             + ".OwnedReportInputCases.test_tc_reg_s2_13_csv_literals_unicode_and_html",
             MODULES[1] + ".OwnedReportInputCases.test_tc_reg_s2_14_report_boundaries",
             MODULES[1]
             + ".OwnedReportInputCases.test_tc_reg_s2_15_malformed_json_and_controls",
             MODULES[1]
-            + ".OwnedReportInputCases.test_tc_reg_s2_16_typed_dates_references_and_contracts",
+            + (
+                ".OwnedReportInputCases.test_tc_reg_s2_16_typed_dates_references_a"
+                "nd_contracts"
+            ),
         ),
         strict=True,
     )
@@ -74,7 +86,10 @@ def check_database(database, connection):
             cursor.execute("SELECT VERSION()")
             mysql_version = cursor.fetchone()[0]
             cursor.execute(
-                "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = %s",
+                (
+                    "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE "
+                    "SCHEMA_NAME = %s"
+                ),
                 ["test_hms"],
             )
             if cursor.fetchone() is not None:
@@ -171,7 +186,10 @@ def main(argv=None):
         "platform": platform.platform(),
         "expected_case_methods": CASE_METHODS,
         "success": False,
-        "scope": "Nine reviewed synthetic integration cases; not unit-only or whole-plan acceptance",
+        "scope": (
+            "Nine reviewed synthetic integration cases; not unit-only or "
+            "whole-plan acceptance"
+        ),
     }
     # Save even failed setup/launch/result collection; never copy exception text.
     (output / "run.json").write_text(

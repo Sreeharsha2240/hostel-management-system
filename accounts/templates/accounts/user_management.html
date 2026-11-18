@@ -33,7 +33,7 @@
           <td>
             <a href="{% url 'user-update' account.pk %}">Edit</a>
             {% if account.is_active %}
-            <form class="inline-form" method="post" action="{% url 'user-deactivate' account.pk %}">
+            <form class="inline-form" method="post" action="{% url 'user-deactivate' account.pk %}" data-confirm="Deactivate this account?">
               {% csrf_token %}
               <button class="secondary" type="submit">Deactivate</button>
             </form>

@@ -2,6 +2,7 @@ import csv
 from decimal import Decimal
 from io import StringIO
 
+from django.db import models
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -57,8 +58,9 @@ class ReportTests(TestCase):
         first = self.allocate()
         release(allocation_id=first.pk, actor=self.actor)
         self.allocate()
-        Bed.objects.filter(pk=self.beds[1].pk).update(status="Maintenance")
-        Bed.objects.filter(pk=self.beds[2].pk).update(status="Occupied")
+        for bed, status in ((self.beds[1], "Maintenance"), (self.beds[2], "Occupied")):
+            bed.status = status
+            bed.save(update_fields=["status"])
         rows = {row["hostel_id"]: row for row in self.rows("occupancy-report")}
         self.assertEqual(
             rows[self.room.hostel_id],
@@ -77,10 +79,12 @@ class ReportTests(TestCase):
 
     def test_active_allocations_override_stale_availability_and_maintenance_flags(self):
         first = self.allocate()
-        Bed.objects.filter(pk=self.beds[0].pk).update(status="Available")
+        # Deliberately corrupt a flag to verify the report trusts active records.
+        models.QuerySet(model=Bed).filter(pk=self.beds[0].pk).update(status="Available")
         row = occupancy_rows(self.room.hostel_id)[0]
         self.assertEqual((row["occupied_beds"], row["available_beds"]), (1, 3))
-        Bed.objects.filter(pk=self.beds[0].pk).update(status="Maintenance")
+        self.beds[0].status = Bed.BedStatus.MAINTENANCE
+        self.beds[0].save(update_fields=["status"])
         row = occupancy_rows(self.room.hostel_id)[0]
         self.assertEqual((row["occupied_beds"], row["maintenance_beds"]), (1, 0))
         release(allocation_id=first.pk, actor=self.actor)

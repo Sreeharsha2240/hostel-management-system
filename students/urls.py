@@ -1,8 +1,10 @@
 from django.urls import path
 
-from . import views
+from . import api, views
 
 urlpatterns = [
+    path("students/<int:pk>/", api.student_update, name="api-student-update"),
+    path("me/", api.my_records, name="api-student-self-service"),
     path("students/", views.student_list, name="student-list"),
     path("students/register/", views.student_create, name="student-create"),
     path("students/<int:pk>/update/", views.student_update, name="student-update"),

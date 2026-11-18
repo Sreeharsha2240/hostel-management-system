@@ -86,7 +86,7 @@ class Issue40BrowserExecution(StaticLiveServerTestCase):
             )
         conflict_students = [make_student(300 + index) for index in range(2)]
         conflict_bed = make_room(
-            "CONFLICT", hostel=timing_hostel, capacity=1, room_type="Single"
+            "CNFLCT", hostel=timing_hostel, capacity=1, room_type="Single"
         ).beds.get()
         config = {
             "base_url": self.live_server_url,

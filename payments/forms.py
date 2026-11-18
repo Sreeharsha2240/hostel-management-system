@@ -28,7 +28,10 @@ class AdjustmentForm(PaymentForm):
         max_digits=10,
         decimal_places=2,
         label="Adjustment (INR)",
-        help_text="Use a negative amount to reverse a payment, or a positive amount to add to it.",
+        help_text=(
+            "Use a negative amount to reverse a payment, or a positive amount "
+            "to add to it."
+        ),
     )
     adjustment_reason = forms.CharField(
         max_length=200, widget=forms.Textarea(attrs={"rows": 3})

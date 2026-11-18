@@ -87,17 +87,24 @@ jobs:
       - name: Remeasure the 288-method isolated baseline on current source pins
         run: >-
           python docs/part3/evidence/hms19-unit-review-20261113/reproduce.py
-          --scope docs/part3/evidence/hms19-main-refresh-20261118/scope-baseline.json
+          --scope docs/part3/evidence/sprint-completion-20261118/scope-baseline.json
           --output-dir test-results/isolated-unit-coverage/baseline
 
       - name: Measure additive isolated-unit scope without database access
         run: >-
           python docs/part3/evidence/hms19-unit-review-20261113/reproduce.py
-          --scope docs/part3/evidence/hms19-main-refresh-20261118/scope-expanded.json
+          --scope docs/part3/evidence/sprint-completion-20261118/scope-expanded.json
           --output-dir test-results/isolated-unit-coverage/expanded
 
       - name: Check backup and recovery safety without external operations
         run: python -m unittest discover -s scripts/part3 -p test_issue40_recovery_safety.py -v
+
+      - name: Enforce the owner-approved 70 percent isolated unit target
+        # The unchanged harness reports measurements without assigning acceptance.
+        # Enforce the separately recorded owner-approved unit boundary here.
+        run: >-
+          python scripts/part3/check_unit_coverage.py
+          test-results/isolated-unit-coverage/expanded/summary.json --minimum 70
 
       - name: Check owned-case runner safety without database operations
         run: python -S -m unittest discover -s scripts/part3 -p test_owned_runner_safety.py -v

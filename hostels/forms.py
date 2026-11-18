@@ -5,17 +5,22 @@ from .models import Hostel, Room
 
 class BedFilterForm(forms.Form):
     hostel = forms.IntegerField(required=False, min_value=1, max_value=2**63 - 1)
-    # The configured MySQL backend stores room floors as unsigned SMALLINTs.
-    floor = forms.IntegerField(required=False, min_value=0, max_value=65535)
+    # Appendix B permits at most two numeric digits for the floor.
+    floor = forms.IntegerField(required=False, min_value=0, max_value=99)
 
 
 class HostelForm(forms.ModelForm):
+    name = forms.CharField(max_length=40)
+
     class Meta:
         model = Hostel
         fields = ["name", "hostel_type", "is_active"]
 
 
 class RoomForm(forms.ModelForm):
+    room_number = forms.CharField(max_length=6, strip=False)
+    floor = forms.IntegerField(min_value=0, max_value=99)
+
     class Meta:
         model = Room
         fields = [
@@ -29,7 +34,9 @@ class RoomForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["fee_amount"].required = False
+        # Creation requires an explicitly supplied fee. Existing HTML edits may
+        # omit the fee to preserve their previously configured amount.
+        self.fields["fee_amount"].required = self.instance._state.adding
 
     def clean_fee_amount(self):
         fee = self.cleaned_data.get("fee_amount")

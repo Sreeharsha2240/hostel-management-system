@@ -3,6 +3,7 @@
 Permission and real transaction behavior have separate integration tests.
 """
 
+from contextlib import nullcontext
 from inspect import unwrap
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
@@ -97,8 +98,11 @@ class AccountSettingsViewUnitTests(SimpleTestCase):
 
     @patch("accounts.views.redirect", return_value=HttpResponse("redirected"))
     @patch("accounts.views.record_event")
+    @patch("accounts.views.transaction.atomic", return_value=nullcontext())
     @patch("accounts.views.AccountCreationForm")
-    def test_valid_account_creation_saves_and_audits(self, form, audit, redirect):
+    def test_valid_account_creation_saves_and_audits(
+        self, form, atomic, audit, redirect
+    ):
         form.return_value.is_valid.return_value = True
         account = form.return_value.save.return_value
         self.assertEqual(
@@ -140,7 +144,12 @@ class AccountSettingsViewUnitTests(SimpleTestCase):
         response = unwrap(deactivate_user)(self.request({}), 1)
         self.assertEqual(response.status_code, 403)
         target.save.assert_not_called()
-        audit.assert_not_called()
+        audit.assert_called_once_with(
+            user=self.actor,
+            action=AuditEvent.Action.ACCESS_DENIED,
+            record_type="view",
+            record_id="deactivate_user",
+        )
 
     @patch("accounts.views.redirect", return_value=HttpResponse("redirected"))
     @patch("accounts.views.record_event")
