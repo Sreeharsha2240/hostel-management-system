@@ -74,7 +74,9 @@ class RoomDecisionUnitTests(SimpleTestCase):
     @patch("django.db.models.Model.save", return_value=None)
     @patch("hostels.models.Room.objects.select_for_update")
     def test_renaming_room_updates_existing_bed_labels(self, previous, save, create):
-        previous.return_value.get.return_value = Room(room_number="OLD")
+        previous.return_value.get.return_value = Room(
+            hostel=self.hostel, room_number="OLD"
+        )
         bed_a, bed_b = Mock(label="OLD-A"), Mock(label="OLD-B")
         self.beds.select_for_update.return_value.all.return_value = [bed_a, bed_b]
         self.beds.count.return_value = 2
@@ -89,7 +91,9 @@ class RoomDecisionUnitTests(SimpleTestCase):
     @patch("django.db.models.Model.save", return_value=None)
     @patch("hostels.models.Room.objects.select_for_update")
     def test_reduction_deletes_only_removable_excess_beds(self, previous, save, create):
-        previous.return_value.get.return_value = Room(room_number="101")
+        previous.return_value.get.return_value = Room(
+            hostel=self.hostel, room_number="101"
+        )
         excess = Mock()
         self.beds.count.side_effect = [3, 3, 2]
         self.beds.exclude.return_value.order_by.return_value.distinct.return_value = [
