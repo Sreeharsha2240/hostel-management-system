@@ -28,15 +28,19 @@ and [current validation report](System_Validation_Report.md).
 **18 November #79/#80 follow-up:** PR #86 merged as `306d240`. Room and bed
 saves reject reassignments that would rewrite allocation history; regular and
 Django Admin room forms show errors, queryset and bulk updates are guarded, and
-bed moves lock affected rooms. The merge's MySQL CI run failed: two isolated
-room tests hit the database through model validation, and a race test used the
-normal bed-save path that now rejects historical moves. The follow-up removes
+bed moves lock affected rooms. The merge's MySQL CI run failed because two
+isolated room tests hit the database through model validation, and a race test
+used the normal bed-save path that now rejects historical moves. PR #87 removes
 the extra database read from `Room.clean`, uses the protected `RoomForm` in
 Django Admin, and makes the race test simulate only its concurrent database
-write. The focused affected selection passes 21/21 on a local SQLite test
-database and Ruff checks pass. MySQL CI must pass on the follow-up before the
-locking behavior is considered verified; issues #79 and #80 remain open for QA
-retest and acceptance.
+write. The focused affected selection passes 21/21 on local SQLite, and Ruff
+checks pass. PR #87's full MySQL suite passed, then its job stopped because the
+15 November coverage source pins were stale. The unchanged 288/294 selections
+have now been remeasured against 18 November pins and both local selections
+passed without database access (95.89% and 96.19% function-body diagnostics).
+PR #87 must pass CI with the refreshed pins before the MySQL locking and
+coverage refresh are considered verified. Issues #79 and #80 remain open for
+QA retest and acceptance. See the [18 November coverage refresh](evidence/hms19-main-refresh-20261118/README.md).
 
 The [15 November test follow-up](evidence/remaining-test-gaps-20261115.md)
 records additional Windows and Ubuntu checks, authenticated passive ZAP
