@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.db import transaction
 from django.http import HttpResponseForbidden
@@ -118,17 +119,27 @@ def room_update(request, pk):
         return HttpResponseForbidden("Only admins can manage rooms.")
 
     room = get_object_or_404(Room, pk=pk)
-    form = RoomForm(request.POST if request.method == "POST" else None, instance=room)
+    form = RoomForm(
+        request.POST if request.method == "POST" else None,
+        instance=room,
+    )
 
     if request.method == "POST" and form.is_valid():
-        with transaction.atomic():
-            room = form.save()
-            record_event(
-                user=request.user,
-                action=AuditEvent.Action.UPDATE,
-                record=room,
-            )
-        return redirect("bed-list")
+        try:
+            with transaction.atomic():
+                room = form.save()
+                record_event(
+                    user=request.user,
+                    action=AuditEvent.Action.UPDATE,
+                    record=room,
+                )
+            return redirect("bed-list")
+        except ValidationError as error:
+            if hasattr(error, "message_dict"):
+                for field, messages in error.message_dict.items():
+                    form.add_error(field, messages)
+            else:
+                form.add_error(None, error.messages)
 
     return render(
         request,
