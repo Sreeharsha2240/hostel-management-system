@@ -6,7 +6,7 @@ from threading import Barrier
 from unittest.mock import patch
 
 from django.core.exceptions import ValidationError
-from django.db import close_old_connections, connections
+from django.db import close_old_connections, connections, models
 from django.test import TestCase, TransactionTestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -187,10 +187,13 @@ class AllocationRoomCapacityTests(TestCase):
             locked_room = get_locked_room(*args, **kwargs)
             self.assertEqual(locked_room.pk, self.room.pk)
             # Control the gap between the room lookup and locked bed load.
-            moved_bed = Bed.objects.get(pk=self.historical_bed.pk)
-            moved_bed.room = target
-            moved_bed.save(update_fields=["room"])
-            moved_to.append(moved_bed.room_id)
+            # Simulate a concurrent database write between the initial room
+            # lookup and the locked bed reload. Normal Bed.save() correctly
+            # rejects moving beds that already have allocation history.
+            models.QuerySet.update(
+                Bed.objects.filter(pk=self.historical_bed.pk), room_id=target.pk
+            )
+            moved_to.append(target.pk)
             return locked_room
 
         with (

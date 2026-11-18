@@ -4,6 +4,7 @@ from audit.mixins import AuditedAdminMixin
 from audit.models import AuditEvent
 from audit.services import record_event
 
+from .forms import RoomForm
 from .models import Bed, Hostel, Room
 
 
@@ -45,6 +46,7 @@ class HostelAdmin(AuditedAdminMixin, admin.ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(AuditedAdminMixin, admin.ModelAdmin):
+    form = RoomForm
     list_display = ("room_number", "hostel", "floor", "room_type", "capacity")
     list_filter = ("hostel", "floor", "room_type")
     search_fields = ("room_number", "hostel__name")

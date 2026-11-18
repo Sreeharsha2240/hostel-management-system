@@ -25,14 +25,18 @@ document review, not a QA or Development sign-off. See the [Development
 review](Development_Review_20261114.md), [owner decisions](evidence/owner-disposition-20261114.md),
 and [current validation report](System_Validation_Report.md).
 
-**18 November #79/#80 fix candidate:** Room and bed saves now reject
-reassignments that would rewrite allocation history; the regular room form and
-Django model validation show errors, direct saves reject the change, queryset
-and bulk updates are guarded, and bed moves lock affected rooms. The focused
-room/model/form selection passes 37/37 on a local SQLite test database; Ruff
-checks pass. MySQL was not available for this run, so its row-locking behavior
-still needs the project's MySQL CI and QA retest. GitHub issues #79 and #80
-remain open until that review and merge.
+**18 November #79/#80 follow-up:** PR #86 merged as `306d240`. Room and bed
+saves reject reassignments that would rewrite allocation history; regular and
+Django Admin room forms show errors, queryset and bulk updates are guarded, and
+bed moves lock affected rooms. The merge's MySQL CI run failed: two isolated
+room tests hit the database through model validation, and a race test used the
+normal bed-save path that now rejects historical moves. The follow-up removes
+the extra database read from `Room.clean`, uses the protected `RoomForm` in
+Django Admin, and makes the race test simulate only its concurrent database
+write. The focused affected selection passes 21/21 on a local SQLite test
+database and Ruff checks pass. MySQL CI must pass on the follow-up before the
+locking behavior is considered verified; issues #79 and #80 remain open for QA
+retest and acceptance.
 
 The [15 November test follow-up](evidence/remaining-test-gaps-20261115.md)
 records additional Windows and Ubuntu checks, authenticated passive ZAP

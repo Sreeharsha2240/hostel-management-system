@@ -1,9 +1,10 @@
 from unittest.mock import patch
 
+from django.contrib.admin.sites import AdminSite
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
 from django.forms import modelform_factory
-from django.test import TestCase
+from django.test import RequestFactory, TestCase
 from django.urls import reverse
 from django.utils.html import escape
 
@@ -12,6 +13,7 @@ from allocations.models import Allocation
 from audit.models import AuditEvent
 from tests.factories import make_room, make_student
 
+from .admin import RoomAdmin
 from .forms import RoomForm
 from .models import Bed, Hostel, Room
 
@@ -355,11 +357,22 @@ class HostelModelBehaviorTests(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn("hostel", form.errors)
 
-        room.hostel = girls_hostel
-        with self.assertRaisesMessage(
-            ValidationError, "A room with allocation history cannot be moved"
-        ):
-            room.full_clean()
+        admin_form_class = RoomAdmin(Room, AdminSite()).get_form(
+            RequestFactory().get("/admin/hostels/room/"), obj=room
+        )
+        admin_form = admin_form_class(
+            data={
+                "hostel": girls_hostel.pk,
+                "room_number": room.room_number,
+                "floor": room.floor,
+                "room_type": room.room_type,
+                "capacity": room.capacity,
+                "fee_amount": room.fee_amount,
+            },
+            instance=room,
+        )
+        self.assertFalse(admin_form.is_valid())
+        self.assertIn("hostel", admin_form.errors)
 
         room.hostel = girls_hostel
         with self.assertRaisesMessage(
