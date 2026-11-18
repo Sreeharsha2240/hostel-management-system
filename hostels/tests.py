@@ -1,8 +1,16 @@
+from concurrent.futures import ThreadPoolExecutor
+from datetime import date
+from threading import Barrier
 from unittest.mock import patch
 
 from django.core.exceptions import ValidationError
-from django.db import IntegrityError, transaction
-from django.test import TestCase
+from django.db import (
+    IntegrityError,
+    close_old_connections,
+    connections,
+    transaction,
+)
+from django.test import TestCase, TransactionTestCase
 from django.urls import reverse
 from django.utils.html import escape
 
@@ -15,6 +23,42 @@ from .models import Bed, Hostel, Room
 
 
 class HostelManagementViewTests(TestCase):
+    def test_room_edit_rejects_incompatible_hostel_with_active_resident(self):
+        student = make_student(702)
+        bed = self.room.beds.get(label="701-A")
+
+        allocation = Allocation.objects.create(
+            student=student,
+            bed=bed,
+        )
+
+        audit_count_before = AuditEvent.objects.count()
+
+        response = self.client.post(
+            reverse("room-update", args=[self.room.pk]),
+            {
+                "hostel": self.other_hostel.pk,
+                "room_number": self.room.room_number,
+                "floor": self.room.floor,
+                "room_type": self.room.room_type,
+                "capacity": self.room.capacity,
+                "fee_amount": str(self.room.fee_amount),
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("hostel", response.context["form"].errors)
+
+        self.room.refresh_from_db()
+        allocation.refresh_from_db()
+
+        self.assertEqual(self.room.hostel_id, self.hostel.pk)
+        self.assertEqual(
+            allocation.status,
+            Allocation.AllocationStatus.ACTIVE,
+        )
+        self.assertEqual(AuditEvent.objects.count(), audit_count_before)
+
     def setUp(self):
         self.admin = User.objects.create_user(
             username="hostel_admin", password="TestPassword123!", role=User.Role.ADMIN
@@ -187,6 +231,150 @@ class HostelManagementViewTests(TestCase):
 
 
 class HostelModelBehaviorTests(TestCase):
+    def test_queryset_update_rejects_hostel_reassignment(self):
+        room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="705",
+            floor=7,
+            room_type=Room.RoomType.SINGLE,
+            capacity=1,
+        )
+        girls_hostel = Hostel.objects.create(
+            name="Girls QuerySet Test Hostel",
+            hostel_type=Hostel.HostelType.GIRLS,
+        )
+
+        with self.assertRaises(ValueError):
+            Room.objects.filter(pk=room.pk).update(hostel=girls_hostel)
+
+    def test_completed_allocation_does_not_block_hostel_reassignment(self):
+        room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="704",
+            floor=7,
+            room_type=Room.RoomType.DOUBLE,
+            capacity=2,
+        )
+
+        girls_hostel = Hostel.objects.create(
+            name="Historical Test Girls Hostel",
+            hostel_type=Hostel.HostelType.GIRLS,
+        )
+
+        allocation = Allocation.objects.create(
+            student=make_student(704),
+            bed=room.beds.get(label="704-A"),
+        )
+
+        allocation.status = Allocation.AllocationStatus.COMPLETED
+        allocation.vacated_on = date.today()
+        allocation.save(update_fields=["status", "vacated_on"])
+
+        room.hostel = girls_hostel
+        room.save()
+
+        room.refresh_from_db()
+        allocation.refresh_from_db()
+
+        self.assertEqual(room.hostel_id, girls_hostel.pk)
+        self.assertEqual(
+            allocation.status,
+            Allocation.AllocationStatus.COMPLETED,
+        )
+        self.assertIsNotNone(allocation.vacated_on)
+
+    def test_room_can_move_to_compatible_hostel_with_active_resident(self):
+        room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="702",
+            floor=7,
+            room_type=Room.RoomType.DOUBLE,
+            capacity=2,
+        )
+
+        another_boys_hostel = Hostel.objects.create(
+            name="Another Boys Hostel",
+            hostel_type=Hostel.HostelType.BOYS,
+        )
+
+        student = make_student(703)
+
+        allocation = Allocation.objects.create(
+            student=student,
+            bed=room.beds.get(label="702-A"),
+        )
+
+        room.hostel = another_boys_hostel
+        room.save()
+
+        room.refresh_from_db()
+        allocation.refresh_from_db()
+
+        self.assertEqual(room.hostel_id, another_boys_hostel.pk)
+        self.assertEqual(
+            allocation.status,
+            Allocation.AllocationStatus.ACTIVE,
+        )
+
+    def test_empty_room_can_move_to_different_hostel_type(self):
+        room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="703",
+            floor=7,
+            room_type=Room.RoomType.SINGLE,
+            capacity=1,
+        )
+
+        girls_hostel = Hostel.objects.create(
+            name="Another Girls Hostel",
+            hostel_type=Hostel.HostelType.GIRLS,
+        )
+
+        room.hostel = girls_hostel
+        room.save()
+
+        room.refresh_from_db()
+
+        self.assertEqual(room.hostel_id, girls_hostel.pk)
+        self.assertEqual(room.beds.count(), 1)
+
+    def test_room_cannot_move_to_incompatible_hostel_with_active_resident(self):
+        room = Room.objects.create(
+            hostel=self.hostel,
+            room_number="701",
+            floor=7,
+            room_type=Room.RoomType.DOUBLE,
+            capacity=2,
+        )
+
+        girls_hostel = Hostel.objects.create(
+            name="Girls Test Hostel",
+            hostel_type=Hostel.HostelType.GIRLS,
+        )
+
+        student = make_student(701)
+        bed = room.beds.get(label="701-A")
+
+        allocation = Allocation.objects.create(
+            student=student,
+            bed=bed,
+        )
+
+        room.hostel = girls_hostel
+
+        with self.assertRaises(ValidationError):
+            room.save()
+
+        room.refresh_from_db()
+        allocation.refresh_from_db()
+
+        self.assertEqual(room.hostel_id, self.hostel.pk)
+        self.assertEqual(
+            allocation.status,
+            Allocation.AllocationStatus.ACTIVE,
+        )
+        self.assertEqual(room.beds.count(), 2)
+
     def setUp(self):
         self.hostel = Hostel.objects.create(
             name="Test Hostel",
@@ -605,3 +793,73 @@ class BedFilteringViewTests(TestCase):
         self.assertEqual(first_page.context["page_obj"].paginator.count, 57)
         self.assertEqual(len(second_page.context["beds"]), 7)
         self.assertContains(second_page, "Page 2 of 2")
+
+
+class RoomReassignmentConcurrencyTests(TransactionTestCase):
+    def setUp(self):
+        self.boys_hostel = Hostel.objects.create(
+            name="Concurrency Boys Hostel",
+            hostel_type=Hostel.HostelType.BOYS,
+        )
+        self.girls_hostel = Hostel.objects.create(
+            name="Concurrency Girls Hostel",
+            hostel_type=Hostel.HostelType.GIRLS,
+        )
+
+        self.room = make_room("901", hostel=self.boys_hostel)
+        self.bed = self.room.beds.get(label="901-A")
+        self.student = make_student(901)
+
+    def test_room_reassignment_racing_allocation_preserves_eligibility(self):
+        barrier = Barrier(2, timeout=20)
+
+        def run(operation):
+            close_old_connections()
+            try:
+                barrier.wait()
+                operation()
+                return "ok"
+            except ValidationError:
+                return "rejected"
+            finally:
+                connections.close_all()
+
+        def allocate_resident():
+            from allocations.models import Allocation
+            from hostels.models import Bed
+            from students.models import Student
+
+            Allocation.objects.create(
+                student=Student.objects.get(pk=self.student.pk),
+                bed=Bed.objects.get(pk=self.bed.pk),
+            )
+
+        def reassign_room():
+            room = Room.objects.get(pk=self.room.pk)
+            room.hostel = Hostel.objects.get(pk=self.girls_hostel.pk)
+            room.save()
+
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            statuses = list(pool.map(run, [allocate_resident, reassign_room]))
+
+        self.assertEqual(sorted(statuses), ["ok", "rejected"])
+
+        self.room.refresh_from_db()
+
+        from allocations.models import Allocation
+
+        active_allocation = Allocation.objects.filter(
+            bed__room=self.room,
+            status=Allocation.AllocationStatus.ACTIVE,
+        ).exists()
+
+        if active_allocation:
+            self.assertEqual(
+                self.room.hostel.hostel_type,
+                Hostel.HostelType.BOYS,
+            )
+        else:
+            self.assertEqual(
+                self.room.hostel.hostel_type,
+                Hostel.HostelType.GIRLS,
+            )

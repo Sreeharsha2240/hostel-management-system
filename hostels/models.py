@@ -19,12 +19,73 @@ class Hostel(models.Model):
     class Meta:
         ordering = ["name"]
 
+    def _validate_active_residents(self):
+        from allocations.models import Allocation
+        from students.models import Student
+
+        active_allocations = Allocation.objects.filter(
+            bed__room__hostel_id=self.pk,
+            status=Allocation.AllocationStatus.ACTIVE,
+        )
+
+        if not self.is_active and active_allocations.exists():
+            raise ValidationError(
+                {
+                    "is_active": (
+                        "This hostel cannot be deactivated while it has "
+                        "active resident allocations."
+                    )
+                }
+            )
+
+        expected_gender = {
+            self.HostelType.BOYS: Student.Gender.MALE,
+            self.HostelType.GIRLS: Student.Gender.FEMALE,
+        }.get(self.hostel_type)
+
+        if (
+            expected_gender
+            and active_allocations.exclude(student__gender=expected_gender).exists()
+        ):
+            raise ValidationError(
+                {
+                    "hostel_type": (
+                        "The hostel type cannot be changed because active "
+                        "residents would become ineligible."
+                    )
+                }
+            )
+
+    def clean(self):
+        super().clean()
+
+        if self.pk:
+            self._validate_active_residents()
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        if self.pk:
+            update_fields = kwargs.get("update_fields")
+            eligibility_fields = {"hostel_type", "is_active"}
+
+            if update_fields is None or eligibility_fields.intersection(update_fields):
+                list(
+                    Room.objects.select_for_update()
+                    .filter(hostel_id=self.pk)
+                    .order_by("pk")
+                    .values_list("pk", flat=True)
+                )
+
+                self._validate_active_residents()
+
+        return super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
 
 class RoomQuerySet(models.QuerySet):
-    SYNC_FIELDS = {"capacity", "room_number"}
+    SYNC_FIELDS = {"capacity", "room_number", "hostel"}
 
     def update(self, **kwargs):
         if self.SYNC_FIELDS.intersection(kwargs):
@@ -78,9 +139,61 @@ class Room(models.Model):
                 name="unique_room_number_per_hostel",
             ),
             models.CheckConstraint(
-                condition=models.Q(fee_amount__gte=0), name="nonnegative_room_fee"
+                condition=models.Q(fee_amount__gte=0),
+                name="nonnegative_room_fee",
             ),
         ]
+
+    def _validate_active_resident_eligibility(self, hostel_id):
+        """Reject moves that make active residents ineligible."""
+        from allocations.models import Allocation
+        from students.models import Student
+
+        target_hostel = (
+            Hostel.objects.filter(pk=hostel_id)
+            .values("hostel_type", "is_active")
+            .first()
+        )
+
+        if target_hostel is None:
+            return
+
+        active_allocations = Allocation.objects.filter(
+            bed__room_id=self.pk,
+            status=Allocation.AllocationStatus.ACTIVE,
+        )
+
+        if not active_allocations.exists():
+            return
+
+        if not target_hostel["is_active"]:
+            raise ValidationError(
+                {
+                    "hostel": (
+                        "This room cannot be moved to an inactive hostel while "
+                        "it has active residents."
+                    )
+                }
+            )
+
+        expected_gender = {
+            Hostel.HostelType.BOYS: Student.Gender.MALE,
+            Hostel.HostelType.GIRLS: Student.Gender.FEMALE,
+        }.get(target_hostel["hostel_type"])
+
+        if expected_gender is None:
+            return
+
+        if active_allocations.exclude(student__gender=expected_gender).exists():
+            raise ValidationError(
+                {
+                    "hostel": (
+                        "This room cannot be moved to the selected hostel because "
+                        "it has active residents whose gender is incompatible. "
+                        "Transfer or complete their allocations first."
+                    )
+                }
+            )
 
     def clean(self):
         super().clean()
@@ -88,35 +201,42 @@ class Room(models.Model):
         if self.capacity is not None and not 1 <= self.capacity <= 4:
             raise ValidationError({"capacity": "Capacity must be between 1 and 4."})
 
-        if not self.pk or self.capacity is None:
+        if not self.pk:
             return
 
         from allocations.models import Allocation
 
-        allocated_beds = (
-            self.beds.filter(allocations__status=Allocation.AllocationStatus.ACTIVE)
-            .distinct()
-            .count()
-        )
-
-        if allocated_beds > self.capacity:
-            raise ValidationError(
-                {
-                    "capacity": (
-                        f"This room has {allocated_beds} beds with active "
-                        "allocations. Complete or move allocations before "
-                        "reducing capacity further."
-                    )
-                }
+        if self.capacity is not None:
+            allocated_beds = (
+                self.beds.filter(allocations__status=Allocation.AllocationStatus.ACTIVE)
+                .distinct()
+                .count()
             )
+
+            if allocated_beds > self.capacity:
+                raise ValidationError(
+                    {
+                        "capacity": (
+                            f"This room has {allocated_beds} beds with active "
+                            "allocations. Complete or move allocations before "
+                            "reducing capacity further."
+                        )
+                    }
+                )
 
     @transaction.atomic
     def save(self, *args, **kwargs):
-        update_fields = kwargs.get("update_fields", args[3] if len(args) > 3 else None)
+        update_fields = kwargs.get(
+            "update_fields",
+            args[3] if len(args) > 3 else None,
+        )
+
         if update_fields is not None:
             update_fields = frozenset(update_fields)
+
             if not update_fields:
                 return
+
             if len(args) > 3 and "update_fields" not in kwargs:
                 args = (*args[:3], update_fields, *args[4:])
             else:
@@ -125,6 +245,7 @@ class Room(models.Model):
         old_room_number = None
         room_number = self.room_number
         capacity = self.capacity
+
         if update_fields is None or "fee_amount" in update_fields:
             self.fee_amount = self._meta.get_field("fee_amount").clean(
                 self.fee_amount, self
@@ -133,9 +254,16 @@ class Room(models.Model):
         if self.pk:
             previous = Room.objects.select_for_update().get(pk=self.pk)
             old_room_number = previous.room_number
+
+            hostel_is_being_updated = update_fields is None or "hostel" in update_fields
+
+            if hostel_is_being_updated and previous.hostel_id != self.hostel_id:
+                self._validate_active_resident_eligibility(self.hostel_id)
+
             if update_fields is not None:
                 if "room_number" not in update_fields:
                     room_number = previous.room_number
+
                 if "capacity" not in update_fields:
                     capacity = previous.capacity
 
@@ -154,7 +282,6 @@ class Room(models.Model):
                 bed.save(update_fields=["label"])
 
         # Remove excess beds only when they have no allocation history.
-        # Beds with allocation records must be preserved.
         if self.beds.count() > capacity:
             removable_beds = (
                 self.beds.exclude(allocations__isnull=False)
@@ -175,8 +302,7 @@ class Room(models.Model):
                 defaults={"status": Bed.BedStatus.AVAILABLE},
             )
 
-        # A historical or allocated bed may need to remain beyond capacity.
-        # Never silently delete a bed that has an allocation record.
+        # Never silently delete a bed with allocation history.
         if self.beds.count() > capacity:
             from allocations.models import Allocation
 
