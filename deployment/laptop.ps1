@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Start', 'Run', 'Stop', 'Status', 'InstallStartup', 'RemoveStartup')]
+    [ValidateSet('Start', 'Stop', 'Status', 'InstallStartup', 'RemoveStartup')]
     [string]$Action = 'Status',
     [string]$Root = (Join-Path $env:LOCALAPPDATA 'HMSDeployment')
 )
@@ -12,6 +12,8 @@ if ([System.IO.Path]::GetFullPath($operations.root) -ne $Root) {
     throw 'The operations root does not match the selected private directory.'
 }
 $controlPath = Join-Path $Root 'control.ps1'
+$launcherPath = Join-Path $Root 'launch.py'
+$pythonw = Join-Path (Split-Path -Parent $operations.python) 'pythonw.exe'
 $stopPath = Join-Path $Root 'stop.request'
 $taskName = 'HMS-se.d3va.dev'
 
@@ -32,29 +34,21 @@ function Test-Supervisor {
 }
 
 switch ($Action) {
-    'Run' {
-        $logsPath = Join-Path $Root 'logs'
-        New-Item -ItemType Directory -Force -Path $logsPath | Out-Null
-        $hostLog = Join-Path $logsPath 'host.log'
-        if ((Test-Path -LiteralPath $hostLog) -and (Get-Item -LiteralPath $hostLog).Length -gt 1048576) {
-            Move-Item -LiteralPath $hostLog -Destination ($hostLog + '.previous') -Force
-        }
-        Set-Location -LiteralPath $operations.release
-        & $operations.python -m deployment.supervise --config $operationsPath *>> $hostLog
-        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-    }
     'Start' {
         if (Test-Supervisor) { Write-Output 'HMS is already running.'; break }
         Remove-Item -LiteralPath $stopPath -ErrorAction SilentlyContinue
         if (-not (Test-Path -LiteralPath $controlPath)) {
             Copy-Item -LiteralPath $PSCommandPath -Destination $controlPath
         }
-        $arguments = '-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "{0}" -Action Run -Root "{1}"' -f $controlPath, $Root
+        if (-not (Test-Path -LiteralPath $launcherPath)) {
+            Copy-Item -LiteralPath (Join-Path $operations.release 'deployment\launch.py') -Destination $launcherPath
+        }
+        $arguments = '"{0}" --config "{1}"' -f $launcherPath, $operationsPath
         $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
         if ($null -ne $task) {
             Start-ScheduledTask -TaskName $taskName
         } else {
-            Start-Process -FilePath 'powershell.exe' -ArgumentList $arguments -WindowStyle Hidden | Out-Null
+            Start-Process -FilePath $pythonw -ArgumentList $arguments -WindowStyle Hidden | Out-Null
         }
         Write-Output 'HMS startup requested; inspect Status and the private logs.'
     }
@@ -78,9 +72,10 @@ switch ($Action) {
         if ([System.IO.Path]::GetFullPath($PSCommandPath) -ne $controlPath) {
             Copy-Item -LiteralPath $PSCommandPath -Destination $controlPath -Force
         }
+        Copy-Item -LiteralPath (Join-Path $operations.release 'deployment\launch.py') -Destination $launcherPath -Force
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        $arguments = '-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "{0}" -Action Run -Root "{1}"' -f $controlPath, $Root
-        $taskAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument $arguments -WorkingDirectory $Root
+        $arguments = '"{0}" --config "{1}"' -f $launcherPath, $operationsPath
+        $taskAction = New-ScheduledTaskAction -Execute $pythonw -Argument $arguments -WorkingDirectory $Root
         $trigger = New-ScheduledTaskTrigger -AtLogOn -User $identity
         $principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited
         $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -MultipleInstances IgnoreNew -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)

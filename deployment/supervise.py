@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import codecs
 import configparser
+import ctypes
 import json
 import logging
 import os
@@ -74,6 +75,104 @@ MYSQL_OPTIONS = {
     },
     "client": {"host", "port", "protocol", "user", "password"},
 }
+
+
+class BasicJobLimits(ctypes.Structure):
+    _fields_ = [
+        ("PerProcessUserTimeLimit", ctypes.c_int64),
+        ("PerJobUserTimeLimit", ctypes.c_int64),
+        ("LimitFlags", ctypes.c_uint32),
+        ("MinimumWorkingSetSize", ctypes.c_size_t),
+        ("MaximumWorkingSetSize", ctypes.c_size_t),
+        ("ActiveProcessLimit", ctypes.c_uint32),
+        ("Affinity", ctypes.c_size_t),
+        ("PriorityClass", ctypes.c_uint32),
+        ("SchedulingClass", ctypes.c_uint32),
+    ]
+
+
+class JobIoCounters(ctypes.Structure):
+    _fields_ = [
+        (name, ctypes.c_uint64)
+        for name in (
+            "ReadOperationCount",
+            "WriteOperationCount",
+            "OtherOperationCount",
+            "ReadTransferCount",
+            "WriteTransferCount",
+            "OtherTransferCount",
+        )
+    ]
+
+
+class ExtendedJobLimits(ctypes.Structure):
+    _fields_ = [
+        ("BasicLimitInformation", BasicJobLimits),
+        ("IoInfo", JobIoCounters),
+        ("ProcessMemoryLimit", ctypes.c_size_t),
+        ("JobMemoryLimit", ctypes.c_size_t),
+        ("PeakProcessMemoryUsed", ctypes.c_size_t),
+        ("PeakJobMemoryUsed", ctypes.c_size_t),
+    ]
+
+
+class WindowsProcessJob:
+    """Own the supervisor and all descendants, including launcher wrappers.
+
+    Assigning ourselves before spawning avoids a child/grandchild assignment
+    race. The unnamed, noninheritable job handle dies with the supervisor even
+    on forced termination; Windows then terminates the entire associated tree.
+    """
+
+    def __init__(self, kernel=None):
+        self.kernel = kernel or ctypes.WinDLL("kernel32", use_last_error=True)
+        signatures = {
+            "CreateJobObjectW": ([ctypes.c_void_p, ctypes.c_wchar_p], ctypes.c_void_p),
+            "SetInformationJobObject": (
+                [ctypes.c_void_p, ctypes.c_int, ctypes.c_void_p, ctypes.c_uint32],
+                ctypes.c_int,
+            ),
+            "AssignProcessToJobObject": (
+                [ctypes.c_void_p, ctypes.c_void_p],
+                ctypes.c_int,
+            ),
+            "GetCurrentProcess": ([], ctypes.c_void_p),
+            "CloseHandle": ([ctypes.c_void_p], ctypes.c_int),
+        }
+        for name, (arguments, result) in signatures.items():
+            method = getattr(self.kernel, name)
+            method.argtypes = arguments
+            method.restype = result
+        self.handle = self.kernel.CreateJobObjectW(None, None)
+        if not self.handle:
+            raise OSError("Cannot create the supervisor process job.")
+        try:
+            self._limits(kill_on_close=True)
+            if not self.kernel.AssignProcessToJobObject(
+                self.handle, self.kernel.GetCurrentProcess()
+            ):
+                raise OSError("Cannot isolate the supervisor process tree.")
+        except BaseException:
+            self.kernel.CloseHandle(self.handle)
+            self.handle = None
+            raise
+
+    def _limits(self, *, kill_on_close: bool):
+        limits = ExtendedJobLimits()
+        limits.BasicLimitInformation.LimitFlags = 0x2000 if kill_on_close else 0
+        if not self.kernel.SetInformationJobObject(
+            self.handle, 9, ctypes.byref(limits), ctypes.sizeof(limits)
+        ):
+            raise OSError("Cannot configure supervisor process-tree cleanup.")
+
+    def close(self, *, disarm: bool):
+        if self.handle and disarm:
+            self._limits(kill_on_close=False)
+            handle, self.handle = self.handle, None
+            self.kernel.CloseHandle(handle)
+        # On an unclean exit retain the raw Win32 handle until ExitProcess.
+        # Closing the armed self-job here could terminate us before our nonzero
+        # exit status reaches Task Scheduler. There is deliberately no __del__.
 
 
 def within(root: Path, path: Path) -> Path:
@@ -259,6 +358,7 @@ class Supervisor:
         self.children: dict[str, subprocess.Popen] = {}
         self.streams: dict[str, RotatingFileHandler] = {}
         self.readers: dict[str, threading.Thread] = {}
+        self.force_tree_cleanup = False
         for name in ("logs", "backups"):
             within(self.root, self.root / name).mkdir(exist_ok=True)
         self.events = rotating_log(
@@ -331,6 +431,7 @@ class Supervisor:
         deadline = time.monotonic() + seconds
         while not self.stopped() and time.monotonic() < deadline:
             if self.children[name].poll() is not None:
+                self.force_tree_cleanup = True
                 raise RuntimeError("A managed child exited before readiness.")
             if probe() and self.children[name].poll() is None:
                 return
@@ -411,24 +512,50 @@ class Supervisor:
             within(self.root, obsolete).unlink()
         self.event("database backup completed")
 
+    def terminate_tree(self, child):
+        """Terminate only a live process retained by our own Popen handle."""
+        if child.poll() is not None:
+            self.force_tree_cleanup = True
+            return
+        if os.name != "nt":
+            child.terminate()
+            return
+        executable = os.path.join(
+            os.environ.get("SystemRoot", r"C:\Windows"), "System32", "taskkill.exe"
+        )
+        result = subprocess.run(
+            [str(executable), "/PID", str(child.pid), "/T", "/F"],
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=15,
+            check=False,
+            creationflags=subprocess.CREATE_NO_WINDOW,
+        )
+        if result.returncode and child.poll() is None:
+            raise RuntimeError("An owned process tree did not stop.")
+
     def stop_children(self):
         for name in ("tunnel", "application", "database"):
             child = self.children.get(name)
             finished = child is None or child.poll() is not None
+            if child is not None and finished:
+                self.force_tree_cleanup = True
             try:
                 if not finished:
                     if name == "database":
                         self.admin("shutdown")
                     else:
-                        child.terminate()
+                        self.terminate_tree(child)
                     try:
                         child.wait(timeout=30)
                     except subprocess.TimeoutExpired:
                         self.event(f"forced stop {name}")
-                        child.kill()
+                        self.terminate_tree(child)
                         child.wait(timeout=10)
                     finished = True
-            except (OSError, subprocess.TimeoutExpired):
+            except (OSError, RuntimeError, subprocess.TimeoutExpired):
+                self.force_tree_cleanup = True
                 self.event(f"stop incomplete {name}")
             finally:
                 if finished:
@@ -436,6 +563,7 @@ class Supervisor:
                     if reader:
                         reader.join(timeout=5)
                     if reader and reader.is_alive():
+                        self.force_tree_cleanup = True
                         self.event(f"output drain incomplete {name}")
                     else:
                         self.children.pop(name, None)
@@ -465,6 +593,7 @@ class Supervisor:
                         [
                             str(self.config["mysqld"]),
                             f"--defaults-file={self.config['mysql_config']}",
+                            "--no-monitor",
                         ],
                     )
                     self.wait_ready("database", lambda: self.admin("status"))
@@ -498,7 +627,11 @@ class Supervisor:
                         if any(
                             child.poll() is not None for child in self.children.values()
                         ):
-                            raise RuntimeError("A managed child exited.")
+                            self.force_tree_cleanup = True
+                            self.event(
+                                "managed child exited; returning to the task restarter"
+                            )
+                            return 1
                         now = time.monotonic()
                         if now - healthy_since >= 60:
                             delay = 1
@@ -514,6 +647,8 @@ class Supervisor:
                         self.pause(1)
                 except (OSError, RuntimeError, subprocess.SubprocessError) as error:
                     self.event(f"stack retry ({type(error).__name__}); delay {delay}s")
+                    if self.force_tree_cleanup:
+                        return 1
                 finally:
                     self.stop_children()
                 self.pause(delay)
@@ -522,7 +657,7 @@ class Supervisor:
             self.stop_children()
             self.event("supervisor stopped")
             self.events.close()
-        return 0
+        return 1 if self.children else 0
 
 
 def main(argv=None) -> int:
@@ -536,10 +671,22 @@ def main(argv=None) -> int:
             print("Supervisor configuration validated; no processes started.")
             return 0
         with exclusive_lock(config["root"] / "supervisor.lock"):
-            supervisor = Supervisor(config)
-            for name in (signal.SIGINT, signal.SIGTERM):
-                signal.signal(name, lambda signum, frame: supervisor.stopping.set())
-            return supervisor.run()
+            job = WindowsProcessJob() if os.name == "nt" else None
+            supervisor = None
+            try:
+                supervisor = Supervisor(config)
+                for name in (signal.SIGINT, signal.SIGTERM):
+                    signal.signal(name, lambda signum, frame: supervisor.stopping.set())
+                return supervisor.run()
+            finally:
+                if job:
+                    job.close(
+                        disarm=supervisor is None
+                        or (
+                            not supervisor.children
+                            and not supervisor.force_tree_cleanup
+                        )
+                    )
     except KeyboardInterrupt:
         return 0
     except Exception as error:

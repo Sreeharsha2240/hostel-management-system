@@ -41,7 +41,7 @@ jobs:
           python -m ruff check deployment
           python -m ruff format --check deployment
       - name: Verify launcher and supervisor without services
-        run: python -m unittest deployment.verify_windows deployment.verify_supervise -v
+        run: python -m unittest deployment.verify_windows deployment.verify_supervise deployment.verify_launch -v
       - name: Verify production HTTP, CSRF, proxy, and collected assets without database
         run: python manage.py test deployment.verification --noinput --verbosity=2
       - name: Run Django deployment checks

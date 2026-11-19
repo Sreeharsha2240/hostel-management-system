@@ -54,6 +54,11 @@ requests in progress can be interrupted. It never imports migrations at startup.
 removes that task without stopping an existing host. The installed private
 `control.ps1` reads `operations.json`, so it follows that file's selected release.
 The task does not change Windows sleep or power policies.
+Its console-free Python launcher avoids dependence on a PowerShell console.
+A Windows job owns the supervisor and its descendants so an abrupt supervisor
+exit cannot leave an unmonitored web server or tunnel running. Task Scheduler
+retries failed launches; an explicit Stop remains latched. MySQL's separate
+monitor process is disabled because this supervisor owns restart behavior.
 
 ## Trust and secrets
 
@@ -113,7 +118,8 @@ For an update:
    `python -m deployment.windows --config <private-runtime.json> --check` from
    the new release. Stop the maintenance database gracefully.
 6. Change only `operations.json`'s release path, refresh private `control.ps1`
-   from `deployment/laptop.ps1`, then `Start`. Check public workflows and data
+   from `deployment/laptop.ps1`, refresh private `launch.py`, re-register startup
+   if its action changed, then `Start`. Check public workflows and data
    persistence. Keep the preceding release and backup for rollback. A source
    rollback cannot undo an incompatible schema migration; restore its matching
    backup in isolation and verify it before selecting that database.
@@ -138,7 +144,7 @@ With the production requirements installed and explicit dummy environment
 values (a strong test-only secret and unused DB credentials), run:
 
 ```powershell
-python -m unittest deployment.verify_windows deployment.verify_supervise -v
+python -m unittest deployment.verify_windows deployment.verify_supervise deployment.verify_launch -v
 python manage.py test deployment.verification --settings=deployment.settings --noinput
 python manage.py check --settings=deployment.settings --deploy --fail-level=WARNING
 ```

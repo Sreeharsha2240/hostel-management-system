@@ -228,10 +228,17 @@ class SupervisorTests(unittest.TestCase):
             child.terminate.side_effect = lambda name=name: order.append(name)
             child.wait.return_value = 0
             supervisor.children[name] = child
-        with patch.object(
-            supervisor,
-            "admin",
-            side_effect=lambda operation: order.append(operation) or True,
+        with (
+            patch.object(
+                supervisor,
+                "admin",
+                side_effect=lambda operation: order.append(operation) or True,
+            ),
+            patch.object(
+                supervisor,
+                "terminate_tree",
+                side_effect=lambda child: child.terminate(),
+            ),
         ):
             supervisor.stop_children()
         self.assertEqual(order, ["tunnel", "application", "shutdown"])
@@ -271,9 +278,9 @@ class SupervisorTests(unittest.TestCase):
         child.poll.return_value = None
         child.wait.side_effect = [subprocess.TimeoutExpired("owned", 30), 0]
         supervisor.children["application"] = child
-        supervisor.stop_children()
-        child.terminate.assert_called_once_with()
-        child.kill.assert_called_once_with()
+        with patch.object(supervisor, "terminate_tree") as terminate:
+            supervisor.stop_children()
+        self.assertEqual(terminate.call_count, 2)
 
     def test_failed_cleanup_keeps_handle_so_restart_cannot_duplicate_it(self):
         supervisor = self.supervisor()
@@ -281,7 +288,8 @@ class SupervisorTests(unittest.TestCase):
         child.poll.return_value = None
         child.wait.side_effect = subprocess.TimeoutExpired("owned", 30)
         supervisor.children["application"] = child
-        supervisor.stop_children()
+        with patch.object(supervisor, "terminate_tree"):
+            supervisor.stop_children()
         self.assertIs(supervisor.children["application"], child)
 
     def test_startup_orders_readiness_backup_app_and_named_tunnel(self):
@@ -297,6 +305,7 @@ class SupervisorTests(unittest.TestCase):
         with (
             patch.object(supervisor, "start", side_effect=start),
             patch.object(supervisor, "admin", return_value=True),
+            patch.object(supervisor, "terminate_tree"),
             patch.object(supervisor, "require_free_port"),
             patch.object(
                 supervisor,
@@ -319,6 +328,7 @@ class SupervisorTests(unittest.TestCase):
         )
         database_command = actions[0][1]
         self.assertTrue(database_command[1].startswith("--defaults-file="))
+        self.assertEqual(database_command[2], "--no-monitor")
         app_command = actions[3][1]
         self.assertEqual(app_command[1:4], ["-m", "deployment.windows", "--config"])
         tunnel_command = actions[-1][1]
@@ -421,6 +431,108 @@ class SupervisorTests(unittest.TestCase):
         self.assertEqual(
             (self.root / "logs" / "utf8.log").read_text(encoding="utf-8"), payload
         )
+
+    def test_windows_tree_termination_targets_only_live_owned_pid(self):
+        supervisor = self.supervisor()
+        child = Mock()
+        child.pid = 12345
+        child.poll.return_value = None
+        with (
+            patch.object(supervise.os, "name", "nt"),
+            patch.object(
+                supervise.subprocess, "run", return_value=SimpleNamespace(returncode=0)
+            ) as run,
+        ):
+            supervisor.terminate_tree(child)
+        command = run.call_args.args[0]
+        self.assertTrue(command[0].endswith("taskkill.exe"))
+        self.assertEqual(command[1:], ["/PID", "12345", "/T", "/F"])
+        child.poll.return_value = 1
+        with patch.object(supervise.subprocess, "run") as run:
+            supervisor.terminate_tree(child)
+        run.assert_not_called()
+        self.assertTrue(supervisor.force_tree_cleanup)
+
+    def test_unexpected_child_exit_returns_failure_for_full_job_cleanup(self):
+        supervisor = self.supervisor()
+        starts = []
+
+        def start(name, command):
+            starts.append(name)
+            child = Mock()
+            child.poll.return_value = 1 if name == "tunnel" else None
+            supervisor.children[name] = child
+
+        with (
+            patch.object(supervisor, "start", side_effect=start),
+            patch.object(supervisor, "require_free_port"),
+            patch.object(supervisor, "wait_ready"),
+            patch.object(supervisor, "backup"),
+            patch.object(supervisor, "admin", return_value=True),
+            patch.object(supervisor, "terminate_tree"),
+        ):
+            self.assertEqual(supervisor.run(), 1)
+        self.assertEqual(starts, ["database", "application", "tunnel"])
+        self.assertTrue(supervisor.force_tree_cleanup)
+
+
+class WindowsJobTests(unittest.TestCase):
+    def kernel(self):
+        kernel = Mock()
+        kernel.CreateJobObjectW.return_value = 123
+        kernel.SetInformationJobObject.return_value = 1
+        kernel.GetCurrentProcess.return_value = -1
+        kernel.AssignProcessToJobObject.return_value = 1
+        return kernel
+
+    def test_job_arms_before_assigning_current_process_and_disarms_after_clean_exit(
+        self,
+    ):
+        kernel = self.kernel()
+        job = supervise.WindowsProcessJob(kernel)
+        self.assertEqual(
+            [entry[0] for entry in kernel.method_calls],
+            [
+                "CreateJobObjectW",
+                "SetInformationJobObject",
+                "GetCurrentProcess",
+                "AssignProcessToJobObject",
+            ],
+        )
+        limits = kernel.SetInformationJobObject.call_args.args[2]._obj
+        self.assertEqual(limits.BasicLimitInformation.LimitFlags, 0x2000)
+        kernel.AssignProcessToJobObject.assert_called_once_with(123, -1)
+        job.close(disarm=True)
+        self.assertEqual(
+            kernel.SetInformationJobObject.call_args.args[
+                2
+            ]._obj.BasicLimitInformation.LimitFlags,
+            0,
+        )
+        kernel.CloseHandle.assert_called_once_with(123)
+
+    def test_abnormal_exit_retains_armed_handle_until_os_exit_preserves_failure_status(
+        self,
+    ):
+        kernel = self.kernel()
+        job = supervise.WindowsProcessJob(kernel)
+        job.close(disarm=False)
+        kernel.SetInformationJobObject.assert_called_once()
+        self.assertEqual(
+            kernel.SetInformationJobObject.call_args.args[
+                2
+            ]._obj.BasicLimitInformation.LimitFlags,
+            0x2000,
+        )
+        kernel.CloseHandle.assert_not_called()
+        self.assertEqual(job.handle, 123)
+
+    def test_job_assignment_failure_closes_empty_job_and_prevents_startup(self):
+        kernel = self.kernel()
+        kernel.AssignProcessToJobObject.return_value = 0
+        with self.assertRaises(OSError):
+            supervise.WindowsProcessJob(kernel)
+        kernel.CloseHandle.assert_called_once_with(123)
 
 
 if __name__ == "__main__":
