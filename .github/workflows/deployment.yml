@@ -1,0 +1,48 @@
+name: Production deployment checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.14"]
+    env:
+      DJANGO_SETTINGS_MODULE: deployment.settings
+      PYTHON_DOTENV_DISABLED: "1"
+      DJANGO_SECRET_KEY: production-checks-only-0123456789-ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      DB_NAME: unused_production_checks
+      DB_USER: unused_production_checks
+      DB_PASSWORD: unused_production_checks
+      DB_HOST: 127.0.0.1
+      DB_PORT: "33081"
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            deployment/requirements.txt
+      - name: Install production dependencies
+        run: python -m pip install -r deployment/requirements.txt ruff==0.17.1
+      - name: Check production Python style
+        run: |
+          python -m ruff check deployment
+          python -m ruff format --check deployment
+      - name: Verify launcher and supervisor without services
+        run: python -m unittest deployment.verify_windows deployment.verify_supervise -v
+      - name: Verify production HTTP, CSRF, proxy, and collected assets without database
+        run: python manage.py test deployment.verification --noinput --verbosity=2
+      - name: Run Django deployment checks
+        run: python manage.py check --deploy --fail-level=WARNING

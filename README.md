@@ -6,6 +6,11 @@ A Django/MySQL application for student records, hostel inventory, allocations,
 payments, reports and audit logging. The repository also contains the original
 Part 1 requirements, design and test-plan documents, with revision histories.
 
+Live application: **[https://se.d3va.dev/](https://se.d3va.dev/)**, served through
+Cloudflare Tunnel from the owner's Windows laptop. It requires the laptop to be
+awake, online, and signed in. [Deployment and operator commands](deployment/README.md)
+describe the separate production database, HTTPS configuration, backups, and startup.
+
 ## Part 3: testing and submission
 
 [PR #91](https://github.com/Sreeharsha2240/hostel-management-system/pull/91)

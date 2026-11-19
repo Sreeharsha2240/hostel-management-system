@@ -1,0 +1,6 @@
+# Install from the project root: python -m pip install -r deployment/requirements.txt
+-r ../requirements.txt
+
+# Both packages support Python 3.11 and 3.14, including Windows.
+waitress==3.0.2
+whitenoise==6.12.0
